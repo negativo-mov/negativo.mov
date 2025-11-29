@@ -1,60 +1,29 @@
 # NEGATIVO.mov — Hub mínimo nos meios
 
-**NEGATIVO.mov** é um hub cultural experimental que nasce em Miranda do Douro / Terra de Miranda para testar uma hipótese simples e radical:
+NEGATIVO.mov é um **MVP de mediação cultural** que parte de Miranda do Douro / Terra de Miranda para experimentar uma estética do negativo aplicada ao território.
 
-> a cultura pode ser inscrita como fluxo vivo — e não como catálogo morto nem feed ansioso.
+O site em produção está em:  
+👉 https://negativo-mov.github.io/negativo.mov/
 
-Este repositório contém o **MVP do site** do projeto: uma superfície mínima, navegável e indexável, que demonstra a forma antes da infraestrutura pesada.
+## O que é este repositório
 
----
+Este repositório hospeda o **hub estático** do projeto:
 
-## O que o projeto faz
+- Página-manifesto do NEGATIVO.mov  
+- Apresentação das frentes em operação (cinema.triz, colunistas, ensaios, museu digital, experimentos visuais)  
+- Secção de pitch e contactos para parcerias e captação  
+- Ligação para as newsletters e colunas individuais no Substack  
 
-- **Cinema Pobre**  
-  Roteiros e cenas graváveis com recursos mínimos (casa, corpo, voz, chuva, mofo conceptual), pensados como laboratório de cinema de baixo custo e alta densidade estética.
+Não é um CMS; é um **ponto de inscrição mínima**: HTML + CSS leve, pensados para mostrar forma antes de infraestruturas pesadas.
 
-- **Colunistas / Personas editoriais**  
-  Um conjunto de personagens-escritores (médico, astrologista, coach, poeta, estudante de direito, etc.) que comentam o território, a política e a economia estética em diferentes registros.
+## Tecnologias
 
-- **Ensaios & Filosofia**  
-  Textos teóricos em fluxo sobre estética, midialogia, museus, circulação de afetos e formas de vida em Terra de Miranda e além.
+- GitHub Pages (hosting estático)
+- HTML + CSS puro
+- Imagens em negativo com paleta Fuji / mofo-neon
 
-- **Museu Digital do Possível**  
-  Protótipo de museu como superfície em tempo real, mais próximo de um “substrato dinâmico” do que de uma vitrina estática de objetos.
+## Contato
 
-- **Experimentos Visuais**  
-  Negativos, colagens, mofo-neon, Fuji estragadão: uma linguagem visual própria, que funciona como atrator inicial, mas sempre subordinada à forma do projeto.
+- Email: [negativomov@gmail.com](mailto:negativomov@gmail.com)  
+- Geografia: Miranda do Douro · Terra de Miranda
 
-- **Pitch & Captação**  
-  Espaço para apresentar o projeto a patrocinadores, instituições e agentes culturais interessados em apoiar uma infraestrutura cultural digital em Trás-os-Montes.
-
----
-
-## Site (MVP em produção)
-
-O site público do projeto pode ser acedido em:
-
-👉 **https://negativo-mov.github.io/negativo.mov/**
-
-Ele é construído em **HTML + CSS + JS puros**, hospedado via **GitHub Pages**, com foco em:
-
-- baixo custo material,
-- resposta rápida em telemóvel,
-- estrutura clara para indexação futura (SEO mínimo).
-
----
-
-## Público-alvo inicial
-
-- Patrocinadores que podem abater imposto via cultura.  
-- Empresas com agenda de inovação cultural/digital/educação.  
-- Agentes culturais e programadores que precisam ver **forma demonstrável** antes de decidir.
-
----
-
-## Contacto
-
-- Email: **negativomov@gmail.com**
-- Local: Miranda do Douro · Terra de Miranda (Portugal)
-
-O projeto está em fluxo contínuo; este repositório acompanha o desenvolvimento do MVP e suas próximas iterações.
