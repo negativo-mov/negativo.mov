@@ -2,1801 +2,1695 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Museu do Possível — Laboratório de Inscrição (gramática gerativa mirandesa)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <title>Museu do Possível — Laboratório de Inscrição</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* ============ PALETA / ATMOSFERA NEGATIVO.mov ============ */
     :root {
-      --bg: #050201;
-      --bg-alt: #1b0703;
-      --fg: #f9f8f4;
-      --muted: #d2c7c0;
-      --accent: #8ceb60;
-      --accent-2: #ff5a00;
-
-      --border: #3b1c10;
-      --shadow-soft: 0 18px 40px rgba(0,0,0,0.75);
-      --radius-lg: 18px;
-      --radius-xl: 26px;
-      --max-width: 960px;
+      --bg: #050608;
+      --card-bg: rgba(10, 12, 16, 0.96);
+      --accent: #6BFFB5;
+      --accent-soft: rgba(107, 255, 181, 0.15);
+      --accent-strong: #9CFFEA;
+      --border-soft: rgba(255,255,255,0.06);
+      --text-main: #F5F7FA;
+      --text-muted: #A3ADB8;
+      --danger: #FF5577;
+      --shadow-soft: 0 18px 45px rgba(0,0,0,0.65);
     }
 
-    * { box-sizing: border-box; }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      scroll-behavior: smooth;
+    * {
+      box-sizing: border-box;
     }
 
     body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #171b24 0, #050608 45%, #000000 100%);
+      color: var(--text-main);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      color: var(--fg);
-      position: relative;
-      overflow-x: hidden;
-
-      background-image:
-        radial-gradient(circle at top, rgba(255,90,0,0.22) 0, transparent 55%),
-        radial-gradient(circle at bottom right, rgba(140,235,96,0.06) 0, transparent 55%),
-        url("film-strip.jpg");
-      background-size: 140% 140%, 120% 120%, cover;
-      background-position: top left, bottom right, center;
-      background-repeat: no-repeat, no-repeat, no-repeat;
-      background-attachment: scroll, scroll, fixed;
-      background-color: #140305;
-      background-blend-mode: normal, normal, soft-light;
     }
 
     a {
       color: var(--accent);
       text-decoration: none;
-      font-weight: 550;
     }
-    a:hover { text-decoration: underline; }
-
-    .wrap {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 1.5rem 1rem 3rem;
-      line-height: 1.5;
+    a:hover {
+      text-decoration: underline;
     }
 
-    header {
-      margin-bottom: 1.8rem;
-      padding: 0.9rem 1rem 1.1rem;
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(255,255,255,0.06);
-      background: rgba(16,6,3,0.82);
+    .top-bar {
+      width: 100%;
+      padding: 12px 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-soft);
+      background: radial-gradient(circle at top left, rgba(107,255,181,0.12), transparent 55%);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 50%;
+    }
+
+    .brand-block img {
+      height: 40px;
+      width: auto;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 0 18px rgba(107,255,181,0.35);
+      background: rgba(0,0,0,0.65);
+    }
+
+    .brand-text {
+      font-size: 0.82rem;
+      line-height: 1.3;
+      color: var(--text-muted);
+    }
+
+    .brand-text strong {
+      display: block;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-link span.icon-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(107,255,181,0.9);
+    }
+
+    .main-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 24px 5vw 56px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 1024px;
+      background: var(--card-bg);
+      border-radius: 24px;
       box-shadow: var(--shadow-soft);
+      padding: 28px 22px 32px;
+      border: 1px solid var(--border-soft);
+      position: relative;
+      overflow: hidden;
     }
 
-    h1 {
-      font-size: 1.7rem;
-      margin: 0 0 0.2rem;
-      text-shadow: 0 0 14px rgba(0,0,0,0.6);
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -60%;
+      background-image:
+        linear-gradient(120deg, rgba(107,255,181,0.07) 0, transparent 40%, transparent 60%, rgba(156,255,234,0.06) 100%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 3px);
+      mix-blend-mode: soft-light;
+      opacity: 0.55;
+      pointer-events: none;
     }
 
-    .subtitle {
-      font-size: 0.9rem;
-      opacity: 0.8;
-      margin: 0 0 0.75rem;
-      color: var(--muted);
+    .card-inner {
+      position: relative;
+      z-index: 2;
     }
 
-    .intro {
-      font-size: 0.95rem;
-      opacity: 0.9;
-      max-width: 48rem;
-      color: var(--muted);
+    header.hero {
+      margin-bottom: 24px;
+      border-bottom: 1px dashed rgba(255,255,255,0.1);
+      padding-bottom: 16px;
     }
 
-    h2 {
-      margin-top: 2rem;
-      margin-bottom: 0.5rem;
-      font-size: 1.25rem;
-      color: var(--accent-2);
-      text-shadow: 0 0 14px rgba(255,90,0,0.7);
+    header.hero h1 {
+      font-size: 1.6rem;
+      margin: 0 0 8px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
     }
 
-    h3 {
-      margin-top: 1.1rem;
-      margin-bottom: 0.4rem;
+    header.hero h2 {
       font-size: 1rem;
+      margin: 0 0 10px;
+      color: var(--text-main);
+      font-weight: 500;
     }
 
-    section {
-      margin-bottom: 1.7rem;
-      padding: 1.3rem 1.1rem;
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(255,255,255,0.06);
-      background: radial-gradient(circle at top left, rgba(16,6,3,0.9), rgba(5,2,1,0.9) 60%);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .modulo-desc {
+    header.hero p {
+      margin: 0;
       font-size: 0.9rem;
-      opacity: 0.9;
-      margin-bottom: 0.4rem;
-      color: var(--muted);
+      color: var(--text-muted);
+    }
+
+    .hero-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(107,255,181,0.08);
+      border: 1px solid rgba(107,255,181,0.5);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .hero-highlight span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(107,255,181,0.8);
+    }
+
+    section.modulo {
+      margin: 24px 0;
+      padding: 16px 14px 18px;
+      border-radius: 18px;
+      background: radial-gradient(circle at top left, rgba(107,255,181,0.12), rgba(2,3,6,0.9));
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    section.modulo h2 {
+      margin-top: 0;
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+      color: var(--accent-strong);
+    }
+
+    section.modulo p.descricao-modulo {
+      margin: 0 0 8px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
     }
 
     fieldset {
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 0.9rem 0.9rem 0.7rem;
-      margin-bottom: 0.9rem;
-      background: rgba(11,3,2,0.9);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 10px 12px 12px;
+      margin-top: 10px;
     }
 
     legend {
-      padding: 0 0.45rem;
+      padding: 0 6px;
+      font-size: 0.83rem;
+      color: var(--accent);
+    }
+
+    .frase-bloco {
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed rgba(255,255,255,0.04);
+    }
+
+    .frase-bloco:last-of-type {
+      border-bottom: none;
+      margin-bottom: 4px;
+      padding-bottom: 2px;
+    }
+
+    .frase-texto {
       font-size: 0.9rem;
-      opacity: 0.9;
-      color: var(--muted);
+      margin: 0 0 4px;
     }
 
-    .frase {
-      margin-bottom: 0.4rem;
-      font-weight: 500;
-      color: var(--fg);
-    }
-
-    .opcoes {
-      margin-bottom: 0.25rem;
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
-
-    label {
-      cursor: pointer;
-    }
-    input[type="radio"] {
-      accent-color: var(--accent);
-    }
-
-    .linha-radio {
-      margin-bottom: 0.15rem;
-    }
-
-    .pergunta-bonita {
-      margin: 0.4rem 0 0.2rem;
-      font-size: 0.86rem;
-      opacity: 0.9;
-      color: var(--muted);
-    }
-
-    .grupo-bonita {
-      font-size: 0.86rem;
-      margin-bottom: 0.1rem;
-      color: var(--muted);
-    }
-
-    .grupo-bonita label {
-      margin-right: 0.7rem;
-    }
-
-    .pergunta-global {
-      margin-top: 0.6rem;
-      font-size: 0.9rem;
-      opacity: 0.95;
-      color: var(--muted);
-    }
-
-    .pergunta-global-opcoes {
-      font-size: 0.86rem;
-      margin-top: 0.2rem;
-      color: var(--muted);
-    }
-
-    .pergunta-global-opcoes label {
-      display: block;
-      margin-bottom: 0.15rem;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 1.5rem;
-      padding: 0.6rem 1.3rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.35);
-      background: var(--accent);
-      color: var(--bg);
-      font-size: 0.92rem;
-      font-weight: 650;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      cursor: pointer;
-      text-shadow: 0 0 12px rgba(0,0,0,0.7);
-      box-shadow:
-        0 0 28px rgba(140,235,96,0.7),
-        0 0 45px rgba(255,90,0,0.4);
-      transition: transform 0.08s ease-out, box-shadow 0.08s ease-out, background 0.1s;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      background: #9cf06d;
-      box-shadow:
-        0 0 32px rgba(140,235,96,0.9),
-        0 0 55px rgba(255,90,0,0.9);
-    }
-
-    .btn-primary:active {
-      transform: translateY(1px);
-      box-shadow: none;
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 0.8rem;
-      padding: 0.55rem 1.15rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.25);
-      background: rgba(5,2,1,0.95);
-      color: var(--fg);
-      font-size: 0.85rem;
-      font-weight: 580;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      cursor: pointer;
-      text-shadow: 0 0 8px rgba(0,0,0,0.7);
-      box-shadow: 0 0 20px rgba(0,0,0,0.8);
-      transition: transform 0.08s ease-out, box-shadow 0.08s ease-out, background 0.1s;
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-1px);
-      background: rgba(16,6,3,1);
-      box-shadow: 0 0 26px rgba(0,0,0,0.95);
-    }
-
-    #mensagemErro {
-      margin-top: 0.8rem;
-      font-size: 0.86rem;
-      color: #ffb0b0;
-      min-height: 1.1em;
-    }
-
-    #relatorio {
-      margin-top: 2.2rem;
-      padding: 1.3rem 1rem;
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(255,255,255,0.08);
-      background: radial-gradient(circle at top, rgba(140,235,96,0.18), rgba(5,2,1,0.96));
-      box-shadow:
-        0 0 32px rgba(140,235,96,0.9),
-        0 0 46px rgba(255,90,0,0.65);
-    }
-
-    #relatorio h2 {
-      margin-top: 0.8rem;
-      margin-bottom: 0.4rem;
-      font-size: 1.05rem;
-      color: var(--fg);
-      text-shadow: 0 0 10px rgba(0,0,0,0.8);
-    }
-
-    #relatorioLeigo, #relatorioTecnico {
-      font-size: 0.9rem;
-      white-space: pre-wrap;
-      color: var(--muted);
-    }
-
-    details {
-      margin-top: 1rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    summary {
-      cursor: pointer;
-      opacity: 0.8;
-    }
-
-    #dadosTecnicos {
-      margin-top: 0.4rem;
-      padding: 0.6rem;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      background: rgba(5,2,1,0.95);
+    .frase-opcoes label {
+      display: inline-block;
+      margin-right: 10px;
       font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .mais-bonita {
+      margin-top: 6px;
+      font-size: 0.8rem;
+    }
+
+    .mais-bonita label {
+      margin-right: 10px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .relatorio-wrapper {
+      margin-top: 22px;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(255,255,255,0.16);
+    }
+
+    .relatorio-wrapper h2 {
+      font-size: 1rem;
+      margin: 8px 0 4px;
+      color: var(--accent-strong);
+    }
+
+    #relatorioAcessivel, #relatorioTecnico {
+      font-size: 0.86rem;
+      color: var(--text-muted);
       white-space: pre-wrap;
-      max-height: 260px;
-      overflow: auto;
-      color: var(--muted);
+      background: rgba(0,0,0,0.5);
+      border-radius: 12px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+      margin-top: 4px;
+    }
+
+    .acoes {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    #btnGerarRelatorio {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #020305;
+      box-shadow: 0 12px 30px rgba(107,255,181,0.45);
+    }
+
+    #btnGerarRelatorio:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 36px rgba(107,255,181,0.6);
+    }
+
+    .nota-rodape {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      max-width: 600px;
     }
 
     #substack-cta {
-      margin-top: 2.2rem;
-      padding: 1.3rem 1.1rem;
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(255,255,255,0.08);
-      background: radial-gradient(circle at top left, rgba(255,90,0,0.25), rgba(5,2,1,0.96));
-      box-shadow:
-        0 0 36px rgba(255,90,0,0.85),
-        0 0 42px rgba(0,0,0,0.95);
+      margin-top: 22px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px dashed rgba(255,255,255,0.16);
+      background: radial-gradient(circle at top right, rgba(156,255,234,0.16), rgba(0,0,0,0.85));
     }
 
     #substack-cta h2 {
-      margin-top: 0;
-      margin-bottom: 0.35rem;
-      color: var(--fg);
+      margin: 0 0 6px;
+      font-size: 0.95rem;
+      color: var(--accent-strong);
     }
 
     #substack-cta p {
-      margin: 0 0 0.8rem;
-      font-size: 0.88rem;
-      color: var(--muted);
+      margin: 0 0 10px;
+      font-size: 0.83rem;
+      color: var(--text-muted);
     }
 
-    #substack-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.55rem 1.3rem;
+    #substack-cta a {
+      display: inline-block;
+      padding: 8px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.4);
-      background: var(--accent-2);
-      color: var(--bg);
-      font-size: 0.9rem;
-      font-weight: 650;
-      letter-spacing: 0.16em;
+      background: rgba(107,255,181,0.12);
+      border: 1px solid var(--accent);
+      font-size: 0.8rem;
       text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    #substack-cta a:hover {
+      background: rgba(107,255,181,0.22);
       text-decoration: none;
-      box-shadow:
-        0 0 30px rgba(255,90,0,0.9),
-        0 0 40px rgba(0,0,0,0.9);
-      text-shadow: 0 0 10px rgba(0,0,0,0.9);
-      transition: transform 0.08s ease-out, box-shadow 0.08s ease-out, background 0.1s;
     }
 
-    #substack-link:hover {
-      transform: translateY(-1px);
-      background: #ff7a2f;
-      box-shadow:
-        0 0 40px rgba(255,120,40,1),
-        0 0 45px rgba(0,0,0,1);
+    .dados-museu {
+      margin-top: 24px;
+      padding: 14px 14px 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(4,6,10,0.9);
+      font-size: 0.84rem;
+      color: var(--text-muted);
     }
 
-    #formsEnvio {
-      margin-top: 1.6rem;
-      padding: 1rem 1.1rem;
-      border-radius: var(--radius-xl);
-      border: 1px dashed rgba(255,255,255,0.18);
-      background: rgba(5,2,1,0.88);
-      box-shadow: 0 0 24px rgba(0,0,0,0.85);
-      font-size: 0.86rem;
-      color: var(--muted);
+    .dados-museu h2 {
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+      color: var(--accent-strong);
     }
 
-    #formsEnvio p {
-      margin-top: 0;
-      margin-bottom: 0.6rem;
+    .dados-museu ul {
+      margin: 4px 0 8px 18px;
+      padding: 0;
+    }
+
+    .dados-museu li {
+      margin-bottom: 3px;
     }
 
     footer {
-      margin-top: 2.2rem;
-      font-size: 0.8rem;
-      opacity: 0.85;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 1rem;
-      text-align: center;
-      color: var(--muted);
-      background: rgba(0,0,0,0.45);
+      margin-top: 16px;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.45);
+      text-align: right;
     }
 
     @media (max-width: 768px) {
-      header {
-        padding: 0.9rem 0.9rem 1.0rem;
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
       }
-      section {
-        padding: 1.1rem 0.9rem;
+      .brand-block {
+        max-width: 100%;
       }
-      #substack-cta {
-        padding: 1.1rem 0.9rem;
-      }
-      #formsEnvio {
-        padding: 0.9rem;
+      .card {
+        padding: 20px 14px 26px;
+        border-radius: 18px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>Museu do Possível — Laboratório de Inscrição</h1>
-      <p class="subtitle">(o mirandês como caso em processo, via gramática gerativa)</p>
-      <p class="intro">
-        Esta página é um pequeno laboratório interativo de gramática: vais ver frases em mirandês
-        (ou aproximações) com ordens diferentes de palavras. Para cada frase, dirás se ela
-        <strong>soa natural</strong>, se é <strong>possível mas estranha</strong>, ou se simplesmente
-        <strong>“não pode”</strong>. Depois, escolhes qual forma achas mais bonita/expressiva.
-        No final, o sistema gera um relatório em duas camadas: uma leitura acessível e uma leitura
-        técnica inspirada na teoria gerativa (Chomsky).
-      </p>
-    </header>
-
-    <!-- MÓDULO 1: HEAD PARAMETER -->
-    <section id="modulo1">
-      <h2>Módulo 1 — Ordem das palavras (Head Parameter)</h2>
-      <p class="modulo-desc">
-        Aqui testamos como sentes a ordem básica da frase: mais direta, mais invertida,
-        mais “cabeça” (núcleo) antes dos complementos ou mais marcada.
-      </p>
-
-      <!-- Grupo 1 -->
-      <h3>Grupo 1 — Sintagma nominal (artigo, nome, adjetivo)</h3>
-      <fieldset>
-        <legend>Frases</legend>
-
-        <div class="frase">H1A: La casa vieja ye grande.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="H1A_accept" value="natural"> Soa natural na tua língua.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="H1A_accept" value="estranha"> É possível, mas soa estranha.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="H1A_accept" value="nao_pode"> Não pode / nunca dirias assim.</label>
-          </div>
+  <!-- Top header com os dois logos -->
+  <div class="top-bar">
+    <div class="brand-block">
+      <a class="brand-link" href="https://gramaticaimprovavel.substack.com/" target="_blank" rel="noopener noreferrer">
+        <img src="improvavel-logo.png" alt="Gramática Improvável">
+        <div class="brand-text">
+          <strong>Gramática Improvável</strong>
+          <span>Leia a Gramática Improvável do Mirandês no Substack — estados diários da gramática em processo.</span>
         </div>
-
-        <div class="frase">H1B: Casa la vieja ye grande.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="H1B_accept" value="natural"> Soa natural na tua língua.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="H1B_accept" value="estranha"> É possível, mas soa estranha.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="H1B_accept" value="nao_pode"> Não pode / nunca dirias assim.</label>
-          </div>
-        </div>
-
-        <div class="frase">H1C: La vieja casa ye grande.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="H1C_accept" value="natural"> Soa natural na tua língua.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="H1C_accept" value="estranha"> É possível, mas soa estranha.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="H1C_accept" value="nao_pode"> Não pode / nunca dirias assim.</label>
-          </div>
-        </div>
-
-        <div class="pergunta-bonita">
-          Dessas três formas, qual achas mais bonita/expressiva (entre as que consideraste possíveis)?
-        </div>
-        <div class="grupo-bonita">
-          <label><input type="radio" name="H1_best" value="H1A"> H1A</label>
-          <label><input type="radio" name="H1_best" value="H1B"> H1B</label>
-          <label><input type="radio" name="H1_best" value="H1C"> H1C</label>
-        </div>
-      </fieldset>
-
-      <!-- Grupo 2 -->
-      <h3>Grupo 2 — Ordem da frase (SVO e variações)</h3>
-      <fieldset>
-        <legend>Frases</legend>
-
-        <div class="frase">H2A: L’home canta na praça.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="H2A_accept" value="natural"> Soa natural na tua língua.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="H2A_accept" value="estranha"> É possível, mas soa estranha.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="H2A_accept" value="nao_pode"> Não pode / nunca dirias assim.</label>
-          </div>
-        </div>
-
-        <div class="frase">H2B: Na praça canta l’home.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="H2B_accept" value="natural"> Soa natural na tua língua.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="H2B_accept" value="estranha"> É possível, mas soa estranha.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="H2B_accept" value="nao_pode"> Não pode / nunca dirias assim.</label>
-          </div>
-        </div>
-
-        <div class="frase">H2C: Canta l’home na praça.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="H2C_accept" value="natural"> Soa natural na tua língua.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="H2C_accept" value="estranha"> É possível, mas soa estranha.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="H2C_accept" value="nao_pode"> Não pode / nunca dirias assim.</label>
-          </div>
-        </div>
-
-        <div class="pergunta-bonita">
-          Dessas três formas, qual achas mais bonita/expressiva (entre as possíveis)?
-        </div>
-        <div class="grupo-bonita">
-          <label><input type="radio" name="H2_best" value="H2A"> H2A</label>
-          <label><input type="radio" name="H2_best" value="H2B"> H2B</label>
-          <label><input type="radio" name="H2_best" value="H2C"> H2C</label>
-        </div>
-      </fieldset>
-
-      <!-- Grupo 3 -->
-      <h3>Grupo 3 — Verbo e adjuntos (ordem mais marcada)</h3>
-      <fieldset>
-        <legend>Frases</legend>
-
-        <div class="frase">H3A: La casa queda na montanha.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="H3A_accept" value="natural"> Soa natural na tua língua.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="H3A_accept" value="estranha"> É possível, mas soa estranha.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="H3A_accept" value="nao_pode"> Não pode / nunca dirias assim.</label>
-          </div>
-        </div>
-
-        <div class="frase">H3B: Na montanha queda la casa.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="H3B_accept" value="natural"> Soa natural na tua língua.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="H3B_accept" value="estranha"> É possível, mas soa estranha.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="H3B_accept" value="nao_pode"> Não pode / nunca dirias assim.</label>
-          </div>
-        </div>
-
-        <div class="frase">H3C: Montanha na queda la casa.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="H3C_accept" value="natural"> Soa natural na tua língua.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="H3C_accept" value="estranha"> É possível, mas soa estranha.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="H3C_accept" value="nao_pode"> Não pode / nunca dirias assim.</label>
-          </div>
-        </div>
-
-        <div class="pergunta-bonita">
-          Dessas três formas, qual achas mais bonita/expressiva (entre as possíveis)?
-        </div>
-        <div class="grupo-bonita">
-          <label><input type="radio" name="H3_best" value="H3A"> H3A</label>
-          <label><input type="radio" name="H3_best" value="H3B"> H3B</label>
-          <label><input type="radio" name="H3_best" value="H3C"> H3C</label>
-        </div>
-      </fieldset>
-    </section>
-
-    <!-- MÓDULO 2: NULL SUBJECT -->
-    <section id="modulo2">
-      <h2>Módulo 2 — Sujeito nulo (Null Subject Parameter)</h2>
-      <p class="modulo-desc">
-        Aqui vemos se é natural, para ti, deixar o sujeito não dito, quando ele já está claro pelo verbo.
-      </p>
-
-      <!-- Grupo 4 -->
-      <h3>Grupo 4 — Presença/ausência de sujeito</h3>
-      <fieldset>
-        <legend>Frases</legend>
-
-        <div class="frase">N1A: Iou studi l mirandés cada nuite.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="N1A_accept" value="natural"> Soa natural na tua língua.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="N1A_accept" value="estranha"> É possível, mas soa estranha.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="N1A_accept" value="nao_pode"> Não pode / nunca dirias assim.</label>
-          </div>
-        </div>
-
-        <div class="frase">N1B: Studi l mirandés cada nuite.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="N1B_accept" value="natural"> Soa natural na tua língua.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="N1B_accept" value="estranha"> É possível, mas soa estranha.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="N1B_accept" value="nao_pode"> Não pode / nunca dirias assim.</label>
-          </div>
-        </div>
-
-        <div class="frase">N1C: Estuda iou l mirandés cada nuite.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="N1C_accept" value="natural"> Soa natural na tua língua.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="N1C_accept" value="estranha"> É possível, mas soa estranha.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="N1C_accept" value="nao_pode"> Não pode / nunca dirias assim.</label>
-          </div>
-        </div>
-
-        <div class="pergunta-bonita">
-          Dessas três formas, qual achas mais bonita/expressiva (entre as possíveis)?
-        </div>
-        <div class="grupo-bonita">
-          <label><input type="radio" name="N1_best" value="N1A"> N1A</label>
-          <label><input type="radio" name="N1_best" value="N1B"> N1B</label>
-          <label><input type="radio" name="N1_best" value="N1C"> N1C</label>
-        </div>
-      </fieldset>
-
-      <div class="pergunta-global">
-        Na tua língua (como a sentes), é normal deixar o sujeito não dito, quando está claro pelo verbo?
-      </div>
-      <div class="pergunta-global-opcoes">
-        <label><input type="radio" name="NS_global" value="frequente"> Sim, frequentemente, isso é natural.</label>
-        <label><input type="radio" name="NS_global" value="contextos_especificos"> Sim, mas só em contextos específicos (informalidade, repetição, etc.).</label>
-        <label><input type="radio" name="NS_global" value="quase_nunca"> Não, quase nunca: normalmente o sujeito aparece.</label>
-      </div>
-    </section>
-
-    <!-- MÓDULO 3: WH-MOVEMENT -->
-    <section id="modulo3">
-      <h2>Módulo 3 — Perguntas (wh-movement)</h2>
-      <p class="modulo-desc">
-        Agora olhamos para perguntas com “qué”: preferes o “quê” no início da frase ou aceitas que fique mais para dentro?
-      </p>
-
-      <!-- Grupo 5 -->
-      <h3>Grupo 5 — “O que estudas?”</h3>
-      <fieldset>
-        <legend>Frases</legend>
-
-        <div class="frase">W1A: Qué studi iou?</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="W1A_accept" value="natural"> Soa natural na tua língua.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="W1A_accept" value="estranha"> É possível, mas soa estranha.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="W1A_accept" value="nao_pode"> Não pode / nunca dirias assim.</label>
-          </div>
-        </div>
-
-        <div class="frase">W1B: Iou studi qué?</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="W1B_accept" value="natural"> Soa natural na tua língua.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="W1B_accept" value="estranha"> É possível, mas soa estranha.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="W1B_accept" value="nao_pode"> Não pode / nunca dirias assim.</label>
-          </div>
-        </div>
-
-        <div class="frase">W1C: Studi qué iou?</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="W1C_accept" value="natural"> Soa natural na tua língua.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="W1C_accept" value="estranha"> É possível, mas soa estranha.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="W1C_accept" value="nao_pode"> Não pode / nunca dirias assim.</label>
-          </div>
-        </div>
-
-        <div class="pergunta-bonita">
-          Dessas três perguntas, qual achas mais bonita/expressiva (entre as possíveis)?
-        </div>
-        <div class="grupo-bonita">
-          <label><input type="radio" name="W1_best" value="W1A"> W1A</label>
-          <label><input type="radio" name="W1_best" value="W1B"> W1B</label>
-          <label><input type="radio" name="W1_best" value="W1C"> W1C</label>
-        </div>
-      </fieldset>
-
-      <!-- Grupo 6 -->
-      <h3>Grupo 6 — “Qual é a tua língua?”</h3>
-      <fieldset>
-        <legend>Frases</legend>
-
-        <div class="frase">W2A: Qué ye la tua lengua?</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="W2A_accept" value="natural"> Soa natural na tua língua.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="W2A_accept" value="estranha"> É possível, mas soa estranha.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="W2A_accept" value="nao_pode"> Não pode / nunca dirias assim.</label>
-          </div>
-        </div>
-
-        <div class="frase">W2B: La tua lengua ye qué?</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="W2B_accept" value="natural"> Soa natural na tua língua.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="W2B_accept" value="estranha"> É possível, mas soa estranha.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="W2B_accept" value="nao_pode"> Não pode / nunca dirias assim.</label>
-          </div>
-        </div>
-
-        <div class="frase">W2C: Ye qué la tua lengua?</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="W2C_accept" value="natural"> Soa natural na tua língua.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="W2C_accept" value="estranha"> É possível, mas soa estranha.</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="W2C_accept" value="nao_pode"> Não pode / nunca dirias assim.</label>
-          </div>
-        </div>
-
-        <div class="pergunta-bonita">
-          Dessas três perguntas, qual achas mais bonita/expressiva (entre as possíveis)?
-        </div>
-        <div class="grupo-bonita">
-          <label><input type="radio" name="W2_best" value="W2A"> W2A</label>
-          <label><input type="radio" name="W2_best" value="W2B"> W2B</label>
-          <label><input type="radio" name="W2_best" value="W2C"> W2C</label>
-        </div>
-      </fieldset>
-    </section>
-
-    <!-- MÓDULO 4: CLÍTICOS -->
-    <section id="modulo4">
-      <h2>Módulo 4 — Clíticos pronominais</h2>
-      <p class="modulo-desc">
-        Aqui olhamos para a posição do pronome átono (-te) em frases afirmativas e negativas.
-      </p>
-
-      <!-- Grupo 7 -->
-      <h3>Grupo 7 — Clítico em frase afirmativa</h3>
-      <fieldset id="grupoC1">
-        <legend>Frases</legend>
-
-        <div class="frase"><strong>C1A</strong>: Dígo-te la verdad.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="C1A_aceit" value="natural"> Soa natural</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="C1A_aceit" value="estranha"> É possível, mas estranha</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="C1A_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
-          </div>
-        </div>
-
-        <div class="frase"><strong>C1B</strong>: Te dígo la verdad.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="C1B_aceit" value="natural"> Soa natural</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="C1B_aceit" value="estranha"> É possível, mas estranha</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="C1B_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
-          </div>
-        </div>
-
-        <div class="frase"><strong>C1C</strong>: La verdad dígo-te.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="C1C_aceit" value="natural"> Soa natural</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="C1C_aceit" value="estranha"> É possível, mas estranha</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="C1C_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
-          </div>
-        </div>
-
-        <div class="pergunta-bonita">
-          Dessas três, qual achas mais bonita/expressiva (entre as possíveis)?
-        </div>
-        <div class="grupo-bonita">
-          <label><input type="radio" name="C1_mais_bonita" value="C1A"> C1A</label>
-          <label><input type="radio" name="C1_mais_bonita" value="C1B"> C1B</label>
-          <label><input type="radio" name="C1_mais_bonita" value="C1C"> C1C</label>
-        </div>
-      </fieldset>
-
-      <!-- Grupo 8 -->
-      <h3>Grupo 8 — Clítico com negação</h3>
-      <fieldset id="grupoC2">
-        <legend>Frases</legend>
-
-        <div class="frase"><strong>C2A</strong>: Nun te dígo la verdad.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="C2A_aceit" value="natural"> Soa natural</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="C2A_aceit" value="estranha"> É possível, mas estranha</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="C2A_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
-          </div>
-        </div>
-
-        <div class="frase"><strong>C2B</strong>: Nun dígo-te la verdad.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="C2B_aceit" value="natural"> Soa natural</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="C2B_aceit" value="estranha"> É possível, mas estranha</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="C2B_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
-          </div>
-        </div>
-
-        <div class="frase"><strong>C2C</strong>: Te nun dígo la verdad.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="C2C_aceit" value="natural"> Soa natural</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="C2C_aceit" value="estranha"> É possível, mas estranha</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="C2C_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
-          </div>
-        </div>
-
-        <div class="pergunta-bonita">
-          Dessas três, qual achas mais bonita/expressiva (entre as possíveis)?
-        </div>
-        <div class="grupo-bonita">
-          <label><input type="radio" name="C2_mais_bonita" value="C2A"> C2A</label>
-          <label><input type="radio" name="C2_mais_bonita" value="C2B"> C2B</label>
-          <label><input type="radio" name="C2_mais_bonita" value="C2C"> C2C</label>
-        </div>
-      </fieldset>
-    </section>
-
-    <!-- MÓDULO 5: NEGAÇÃO -->
-    <section id="modulo5">
-      <h2>Módulo 5 — Negação</h2>
-      <p class="modulo-desc">
-        Aqui sondamos a negação simples, a possível duplicação e as ordens mais marcadas de “nun”.
-      </p>
-
-      <!-- Grupo 9 -->
-      <h3>Grupo 9 — Negação e concordância negativa</h3>
-      <fieldset id="grupoN2">
-        <legend>Frases</legend>
-
-        <div class="frase"><strong>N2A</strong>: Nun vi nada.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="N2A_aceit" value="natural"> Soa natural</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="N2A_aceit" value="estranha"> É possível, mas estranha</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="N2A_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
-          </div>
-        </div>
-
-        <div class="frase"><strong>N2B</strong>: Nun vi nada nun.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="N2B_aceit" value="natural"> Soa natural</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="N2B_aceit" value="estranha"> É possível, mas estranha</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="N2B_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
-          </div>
-        </div>
-
-        <div class="frase"><strong>N2C</strong>: Vi nada nun.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="N2C_aceit" value="natural"> Soa natural</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="N2C_aceit" value="estranha"> É possível, mas estranha</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="N2C_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
-          </div>
-        </div>
-
-        <div class="pergunta-bonita">
-          Dessas três, qual achas mais bonita/expressiva (entre as possíveis)?
-        </div>
-        <div class="grupo-bonita">
-          <label><input type="radio" name="N2_mais_bonita" value="N2A"> N2A</label>
-          <label><input type="radio" name="N2_mais_bonita" value="N2B"> N2B</label>
-          <label><input type="radio" name="N2_mais_bonita" value="N2C"> N2C</label>
-        </div>
-      </fieldset>
-
-      <!-- Grupo 10 -->
-      <h3>Grupo 10 — Negação com sujeito</h3>
-      <fieldset id="grupoN3">
-        <legend>Frases</legend>
-
-        <div class="frase"><strong>N3A</strong>: Él nun vien de ayer.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="N3A_aceit" value="natural"> Soa natural</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="N3A_aceit" value="estranha"> É possível, mas estranha</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="N3A_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
-          </div>
-        </div>
-
-        <div class="frase"><strong>N3B</strong>: Nun vien él de ayer.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="N3B_aceit" value="natural"> Soa natural</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="N3B_aceit" value="estranha"> É possível, mas estranha</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="N3B_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
-          </div>
-        </div>
-
-        <div class="frase"><strong>N3C</strong>: Él vien nun de ayer.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="N3C_aceit" value="natural"> Soa natural</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="N3C_aceit" value="estranha"> É possível, mas estranha</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="N3C_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
-          </div>
-        </div>
-
-        <div class="pergunta-bonita">
-          Dessas três, qual achas mais bonita/expressiva (entre as possíveis)?
-        </div>
-        <div class="grupo-bonita">
-          <label><input type="radio" name="N3_mais_bonita" value="N3A"> N3A</label>
-          <label><input type="radio" name="N3_mais_bonita" value="N3B"> N3B</label>
-          <label><input type="radio" name="N3_mais_bonita" value="N3C"> N3C</label>
-        </div>
-      </fieldset>
-    </section>
-
-    <!-- MÓDULO 6: COMPLEMENTADORES -->
-    <section id="modulo6">
-      <h2>Módulo 6 — Complementadores (“que”)</h2>
-      <p class="modulo-desc">
-        Aqui testamos a presença ou ausência de “que” e algumas ordens mais marcadas de oração encaixada.
-      </p>
-
-      <!-- Grupo 11 -->
-      <h3>Grupo 11 — Oração encaixada com/sem “que”</h3>
-      <fieldset id="grupoQ1">
-        <legend>Frases</legend>
-
-        <div class="frase"><strong>Q1A</strong>: Penso que él vien mañá.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="Q1A_aceit" value="natural"> Soa natural</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="Q1A_aceit" value="estranha"> É possível, mas estranha</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="Q1A_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
-          </div>
-        </div>
-
-        <div class="frase"><strong>Q1B</strong>: Penso él vien mañá.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="Q1B_aceit" value="natural"> Soa natural</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="Q1B_aceit" value="estranha"> É possível, mas estranha</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="Q1B_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
-          </div>
-        </div>
-
-        <div class="frase"><strong>Q1C</strong>: Que él vien mañá, penso.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="Q1C_aceit" value="natural"> Soa natural</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="Q1C_aceit" value="estranha"> É possível, mas estranha</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="Q1C_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
-          </div>
-        </div>
-
-        <div class="pergunta-bonita">
-          Dessas três, qual achas mais bonita/expressiva (entre as possíveis)?
-        </div>
-        <div class="grupo-bonita">
-          <label><input type="radio" name="Q1_mais_bonita" value="Q1A"> Q1A</label>
-          <label><input type="radio" name="Q1_mais_bonita" value="Q1B"> Q1B</label>
-          <label><input type="radio" name="Q1_mais_bonita" value="Q1C"> Q1C</label>
-        </div>
-      </fieldset>
-
-      <!-- Grupo 12 -->
-      <h3>Grupo 12 — Oração com “que” e predicação</h3>
-      <fieldset id="grupoQ2">
-        <legend>Frases</legend>
-
-        <div class="frase"><strong>Q2A</strong>: Ye certo que él vien.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="Q2A_aceit" value="natural"> Soa natural</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="Q2A_aceit" value="estranha"> É possível, mas estranha</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="Q2A_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
-          </div>
-        </div>
-
-        <div class="frase"><strong>Q2B</strong>: Ye certo él vien.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="Q2B_aceit" value="natural"> Soa natural</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="Q2B_aceit" value="estranha"> É possível, mas estranha</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="Q2B_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
-          </div>
-        </div>
-
-        <div class="frase"><strong>Q2C</strong>: Que él vien ye certo.</div>
-        <div class="opcoes">
-          <div class="linha-radio">
-            <label><input type="radio" name="Q2C_aceit" value="natural"> Soa natural</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="Q2C_aceit" value="estranha"> É possível, mas estranha</label>
-          </div>
-          <div class="linha-radio">
-            <label><input type="radio" name="Q2C_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
-          </div>
-        </div>
-
-        <div class="pergunta-bonita">
-          Dessas três, qual achas mais bonita/expressiva (entre as possíveis)?
-        </div>
-        <div class="grupo-bonita">
-          <label><input type="radio" name="Q2_mais_bonita" value="Q2A"> Q2A</label>
-          <label><input type="radio" name="Q2_mais_bonita" value="Q2B"> Q2B</label>
-          <label><input type="radio" name="Q2_mais_bonita" value="Q2C"> Q2C</label>
-        </div>
-      </fieldset>
-    </section>
-
-    <button class="btn-primary" id="btnRelatorio">Gerar relatório da minha gramática</button>
-    <div id="mensagemErro"></div>
-
-    <div id="relatorio" style="display:none;">
-      <h2>Leitura acessível</h2>
-      <div id="relatorioLeigo"></div>
-
-      <h2>Leitura técnica (modelo gerativo)</h2>
-      <div id="relatorioTecnico"></div>
-
-      <details>
-        <summary>Ver dados técnicos / estrutura para envio (JSON)</summary>
-        <pre id="dadosTecnicos"></pre>
-      </details>
-    </div>
-
-    <div id="substack-cta">
-      <h2>Gramática Improvável do Mirandês</h2>
-      <p>
-        Aqui fora, no Substack, o museu recompõe os estados diários da gramática em processo —
-        a partir das respostas de todas as pessoas que passaram por este laboratório.
-      </p>
-      <!-- TODO: URL já colocada; altere se mudar o endereço do Substack -->
-      <a id="substack-link" href="https://gramaticaimprovavel.substack.com/" target="_blank" rel="noopener noreferrer">
-        Ver relatórios no Substack
       </a>
     </div>
+    <div class="brand-block" style="justify-content: flex-end;">
+      <a class="brand-link" href="https://negativo-mov.github.io/negativo.mov/" target="_blank" rel="noopener noreferrer">
+        <div class="brand-text" style="text-align: right;">
+          <strong>NEGATIVO.mov</strong>
+          <span>site NEGATIVO.mov — hub mínimo nos meios, radical nas consequências.</span>
+        </div>
+        <span class="icon-dot"></span>
+        <img src="logo.png" alt="NEGATIVO.mov">
+      </a>
+    </div>
+  </div>
 
-    <!-- FORM PARA ENVIO AO GOOGLE FORMS (UM ÚNICO CAMPO JSON) -->
-<form id="formsEnvio"
-      method="POST"
-      action="https://docs.google.com/forms/d/e/1FAIpQLSeGb9lkJ3DkeU4tFh1GzMSlZqR5BU_WjGDAW6Yqkd-A9U3TiA/formResponse"
-      target="_blank">
+  <div class="main-wrapper">
+    <div class="card">
+      <div class="card-inner">
+        <header class="hero">
+          <div class="hero-highlight">
+            <span class="dot"></span>
+            <span>Museu do Possível — Laboratório de Inscrição</span>
+          </div>
+          <h1>Gramática improvável do mirandês</h1>
+          <h2>Teste paramétrico da tua gramática interna em fluxo</h2>
+          <p>
+            Esta página funciona como um laboratório: apresentamos pares e trios de frases em mirandês (ou aproximadas)
+            e pedimos que julgues aceitabilidade e beleza. No final, geramos um relatório com uma leitura acessível
+            e outra em vocabulário gerativo, e o teu gesto passa a integrar a Gramática Improvável em processo.
+          </p>
+        </header>
 
-  <p>
-    Se quiser contribuir com a pesquisa, podes enviar anonimamente as tuas respostas
-    (como um único bloco JSON) para o nosso repositório de dados.
-  </p>
+        <!-- ================= MÓDULO 1 ================= -->
+        <section id="modulo1" class="modulo">
+          <h2>Módulo 1 — Ordem das palavras (Head Parameter)</h2>
+          <p class="descricao-modulo">
+            Aqui testamos como sentes a ordem básica de constituintes: se o núcleo (verbo, nome) tende a vir antes
+            dos complementos, se há muitas inversões aceitáveis, ou se ordens mais marcadas também funcionam.
+          </p>
 
-  <input type="hidden"
-         id="formsPayload"
-         name="entry.358873"
-         value="">
+          <!-- Grupo 1: H1A/B/C -->
+          <fieldset id="grupoH1">
+            <legend>Grupo 1 — Sintagma nominal (artigo, nome, adjetivo)</legend>
 
-  <button type="submit" id="btnEnviarForms" class="btn-secondary">
-    Enviar minhas respostas para pesquisa
-  </button>
-</form>
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>H1A</strong>: La casa vieja ye grande.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="H1A_aceitabilidade" value="natural"> Soa natural</label>
+                <label><input type="radio" name="H1A_aceitabilidade" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="H1A_aceitabilidade" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
 
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>H1B</strong>: Casa la vieja ye grande.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="H1B_aceitabilidade" value="natural"> Soa natural</label>
+                <label><input type="radio" name="H1B_aceitabilidade" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="H1B_aceitabilidade" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
 
-    <footer>
-      Este laboratório é um protótipo em fluxo: a cada sessão, uma gramática interna improvável
-      se deixa entrever — e logo volta a tender à entropia. O envio de dados ao Forms é opcional
-      e anónimo.
-    </footer>
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>H1C</strong>: La vieja casa ye grande.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="H1C_aceitabilidade" value="natural"> Soa natural</label>
+                <label><input type="radio" name="H1C_aceitabilidade" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="H1C_aceitabilidade" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="mais-bonita">
+              <p>Dessas três, qual achas mais bonita/expressiva (entre as possíveis)?</p>
+              <label><input type="radio" name="H1_mais_bonita" value="H1A"> H1A</label>
+              <label><input type="radio" name="H1_mais_bonita" value="H1B"> H1B</label>
+              <label><input type="radio" name="H1_mais_bonita" value="H1C"> H1C</label>
+            </div>
+          </fieldset>
+
+          <!-- Grupo 2: H2A/B/C -->
+          <fieldset id="grupoH2">
+            <legend>Grupo 2 — Ordem da frase (SVO e variações)</legend>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>H2A</strong>: L’home canta na praça.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="H2A_aceitabilidade" value="natural"> Soa natural</label>
+                <label><input type="radio" name="H2A_aceitabilidade" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="H2A_aceitabilidade" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>H2B</strong>: Na praça canta l’home.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="H2B_aceitabilidade" value="natural"> Soa natural</label>
+                <label><input type="radio" name="H2B_aceitabilidade" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="H2B_aceitabilidade" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>H2C</strong>: Canta l’home na praça.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="H2C_aceitabilidade" value="natural"> Soa natural</label>
+                <label><input type="radio" name="H2C_aceitabilidade" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="H2C_aceitabilidade" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="mais-bonita">
+              <p>Dessas três, qual achas mais bonita/expressiva (entre as possíveis)?</p>
+              <label><input type="radio" name="H2_mais_bonita" value="H2A"> H2A</label>
+              <label><input type="radio" name="H2_mais_bonita" value="H2B"> H2B</label>
+              <label><input type="radio" name="H2_mais_bonita" value="H2C"> H2C</label>
+            </div>
+          </fieldset>
+
+          <!-- Grupo 3: H3A/B/C -->
+          <fieldset id="grupoH3">
+            <legend>Grupo 3 — Ordem do verbo e adjuntos</legend>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>H3A</strong>: La casa queda na montanha.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="H3A_aceitabilidade" value="natural"> Soa natural</label>
+                <label><input type="radio" name="H3A_aceitabilidade" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="H3A_aceitabilidade" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>H3B</strong>: Na montanha queda la casa.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="H3B_aceitabilidade" value="natural"> Soa natural</label>
+                <label><input type="radio" name="H3B_aceitabilidade" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="H3B_aceitabilidade" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>H3C</strong>: Montanha na queda la casa.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="H3C_aceitabilidade" value="natural"> Soa natural</label>
+                <label><input type="radio" name="H3C_aceitabilidade" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="H3C_aceitabilidade" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="mais-bonita">
+              <p>Dessas três, qual achas mais bonita/expressiva (entre as possíveis)?</p>
+              <label><input type="radio" name="H3_mais_bonita" value="H3A"> H3A</label>
+              <label><input type="radio" name="H3_mais_bonita" value="H3B"> H3B</label>
+              <label><input type="radio" name="H3_mais_bonita" value="H3C"> H3C</label>
+            </div>
+          </fieldset>
+        </section>
+
+        <!-- ================= MÓDULO 2 ================= -->
+        <section id="modulo2" class="modulo">
+          <h2>Módulo 2 — Sujeito nulo (Null Subject Parameter)</h2>
+          <p class="descricao-modulo">
+            Testamos aqui se a tua gramática aceita frases finitas sem sujeito expresso, e em que medida isso
+            te parece natural, condicionado ou pouco possível.
+          </p>
+
+          <fieldset id="grupoN1">
+            <legend>Grupo 4 — Presença/ausência de sujeito</legend>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>N1A</strong>: Iou studi l mirandés cada nuite.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="N1A_aceitabilidade" value="natural"> Soa natural</label>
+                <label><input type="radio" name="N1A_aceitabilidade" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="N1A_aceitabilidade" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>N1B</strong>: Studi l mirandés cada nuite.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="N1B_aceitabilidade" value="natural"> Soa natural</label>
+                <label><input type="radio" name="N1B_aceitabilidade" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="N1B_aceitabilidade" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>N1C</strong>: Estuda iou l mirandés cada nuite.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="N1C_aceitabilidade" value="natural"> Soa natural</label>
+                <label><input type="radio" name="N1C_aceitabilidade" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="N1C_aceitabilidade" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="mais-bonita">
+              <p>Dessas três, qual achas mais bonita/expressiva (entre as possíveis)?</p>
+              <label><input type="radio" name="N1_mais_bonita" value="N1A"> N1A</label>
+              <label><input type="radio" name="N1_mais_bonita" value="N1B"> N1B</label>
+              <label><input type="radio" name="N1_mais_bonita" value="N1C"> N1C</label>
+            </div>
+          </fieldset>
+
+          <fieldset id="grupoNSglobal">
+            <legend>Pergunta global sobre sujeito nulo</legend>
+            <p class="frase-texto">
+              Na tua língua (como a sentes), é normal deixar o sujeito não dito, quando está claro pelo verbo?
+            </p>
+            <div class="frase-opcoes">
+              <label><input type="radio" name="null_subject_global" value="frequente"> Sim, frequentemente, isso é natural.</label><br>
+              <label><input type="radio" name="null_subject_global" value="contextos_especificos"> Sim, mas só em contextos específicos.</label><br>
+              <label><input type="radio" name="null_subject_global" value="quase_nunca"> Não, quase nunca: sujeito normalmente aparece.</label>
+            </div>
+          </fieldset>
+        </section>
+
+        <!-- ================= MÓDULO 3 ================= -->
+        <section id="modulo3" class="modulo">
+          <h2>Módulo 3 — Perguntas (wh-movement)</h2>
+          <p class="descricao-modulo">
+            Aqui observamos se preferes perguntas com o “quê” na frente ou se aceitas o elemento interrogativo
+            em posições internas à frase.
+          </p>
+
+          <fieldset id="grupoW1">
+            <legend>Grupo 5 — “O que estudas?”</legend>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>W1A</strong>: Qué studi iou?</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="W1A_aceitabilidade" value="natural"> Soa natural</label>
+                <label><input type="radio" name="W1A_aceitabilidade" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="W1A_aceitabilidade" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>W1B</strong>: Iou studi qué?</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="W1B_aceitabilidade" value="natural"> Soa natural</label>
+                <label><input type="radio" name="W1B_aceitabilidade" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="W1B_aceitabilidade" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>W1C</strong>: Studi qué iou?</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="W1C_aceitabilidade" value="natural"> Soa natural</label>
+                <label><input type="radio" name="W1C_aceitabilidade" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="W1C_aceitabilidade" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="mais-bonita">
+              <p>Dessas três perguntas, qual achas mais bonita/expressiva (entre as possíveis)?</p>
+              <label><input type="radio" name="W1_mais_bonita" value="W1A"> W1A</label>
+              <label><input type="radio" name="W1_mais_bonita" value="W1B"> W1B</label>
+              <label><input type="radio" name="W1_mais_bonita" value="W1C"> W1C</label>
+            </div>
+          </fieldset>
+
+          <fieldset id="grupoW2">
+            <legend>Grupo 6 — “Qual é a tua língua?”</legend>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>W2A</strong>: Qué ye la tua lengua?</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="W2A_aceitabilidade" value="natural"> Soa natural</label>
+                <label><input type="radio" name="W2A_aceitabilidade" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="W2A_aceitabilidade" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>W2B</strong>: La tua lengua ye qué?</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="W2B_aceitabilidade" value="natural"> Soa natural</label>
+                <label><input type="radio" name="W2B_aceitabilidade" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="W2B_aceitabilidade" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>W2C</strong>: Ye qué la tua lengua?</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="W2C_aceitabilidade" value="natural"> Soa natural</label>
+                <label><input type="radio" name="W2C_aceitabilidade" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="W2C_aceitabilidade" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="mais-bonita">
+              <p>Dessas três perguntas, qual achas mais bonita/expressiva (entre as possíveis)?</p>
+              <label><input type="radio" name="W2_mais_bonita" value="W2A"> W2A</label>
+              <label><input type="radio" name="W2_mais_bonita" value="W2B"> W2B</label>
+              <label><input type="radio" name="W2_mais_bonita" value="W2C"> W2C</label>
+            </div>
+          </fieldset>
+        </section>
+
+        <!-- ================= MÓDULO 4 ================= -->
+        <section id="modulo4" class="modulo">
+          <h2>Módulo 4 — Clíticos pronominais</h2>
+          <p class="descricao-modulo">
+            Observamos a posição do pronome átono em frases afirmativas e negativas: proclise, ênclise e ordens marcadas.
+          </p>
+
+          <fieldset id="grupoC1">
+            <legend>Grupo 7 — Clítico em frase afirmativa</legend>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>C1A</strong>: Dígo-te la verdad.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="C1A_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="C1A_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="C1A_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>C1B</strong>: Te dígo la verdad.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="C1B_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="C1B_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="C1B_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>C1C</strong>: La verdad dígo-te.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="C1C_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="C1C_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="C1C_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="mais-bonita">
+              <p>Dessas três, qual achas mais bonita/expressiva (entre as possíveis)?</p>
+              <label><input type="radio" name="C1_mais_bonita" value="C1A"> C1A</label>
+              <label><input type="radio" name="C1_mais_bonita" value="C1B"> C1B</label>
+              <label><input type="radio" name="C1_mais_bonita" value="C1C"> C1C</label>
+            </div>
+          </fieldset>
+
+          <fieldset id="grupoC2">
+            <legend>Grupo 8 — Clítico com negação</legend>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>C2A</strong>: Nun te dígo la verdad.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="C2A_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="C2A_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="C2A_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>C2B</strong>: Nun dígo-te la verdad.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="C2B_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="C2B_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="C2B_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>C2C</strong>: Te nun dígo la verdad.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="C2C_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="C2C_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="C2C_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="mais-bonita">
+              <p>Dessas três, qual achas mais bonita/expressiva (entre as possíveis)?</p>
+              <label><input type="radio" name="C2_mais_bonita" value="C2A"> C2A</label>
+              <label><input type="radio" name="C2_mais_bonita" value="C2B"> C2B</label>
+              <label><input type="radio" name="C2_mais_bonita" value="C2C"> C2C</label>
+            </div>
+          </fieldset>
+        </section>
+
+        <!-- ================= MÓDULO 5 ================= -->
+        <section id="modulo5" class="modulo">
+          <h2>Módulo 5 — Negação</h2>
+          <p class="descricao-modulo">
+            Testamos a tolerância à negativa simples, dupla (concordância negativa) e ordens marcadas do “nun”.
+          </p>
+
+          <fieldset id="grupoN2">
+            <legend>Grupo 9 — Negação e concordância negativa</legend>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>N2A</strong>: Nun vi nada.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="N2A_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="N2A_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="N2A_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>N2B</strong>: Nun vi nada nun.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="N2B_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="N2B_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="N2B_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>N2C</strong>: Vi nada nun.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="N2C_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="N2C_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="N2C_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="mais-bonita">
+              <p>Dessas três, qual achas mais bonita/expressiva (entre as possíveis)?</p>
+              <label><input type="radio" name="N2_mais_bonita" value="N2A"> N2A</label>
+              <label><input type="radio" name="N2_mais_bonita" value="N2B"> N2B</label>
+              <label><input type="radio" name="N2_mais_bonita" value="N2C"> N2C</label>
+            </div>
+          </fieldset>
+
+          <fieldset id="grupoN3">
+            <legend>Grupo 10 — Negação com sujeito</legend>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>N3A</strong>: Él nun vien de ayer.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="N3A_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="N3A_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="N3A_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>N3B</strong>: Nun vien él de ayer.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="N3B_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="N3B_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="N3B_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>N3C</strong>: Él vien nun de ayer.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="N3C_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="N3C_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="N3C_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="mais-bonita">
+              <p>Dessas três, qual achas mais bonita/expressiva (entre as possíveis)?</p>
+              <label><input type="radio" name="N3_mais_bonita" value="N3A"> N3A</label>
+              <label><input type="radio" name="N3_mais_bonita" value="N3B"> N3B</label>
+              <label><input type="radio" name="N3_mais_bonita" value="N3C"> N3C</label>
+            </div>
+          </fieldset>
+        </section>
+
+        <!-- ================= MÓDULO 6 ================= -->
+        <section id="modulo6" class="modulo">
+          <h2>Módulo 6 — Complementadores (“que”)</h2>
+          <p class="descricao-modulo">
+            Testamos orações encaixadas com e sem “que” e estruturas com “que” deslocado.
+          </p>
+
+          <fieldset id="grupoQ1">
+            <legend>Grupo 11 — Oração encaixada com/sem “que”</legend>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>Q1A</strong>: Penso que él vien mañá.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="Q1A_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="Q1A_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="Q1A_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>Q1B</strong>: Penso él vien mañá.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="Q1B_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="Q1B_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="Q1B_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>Q1C</strong>: Que él vien mañá, penso.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="Q1C_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="Q1C_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="Q1C_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="mais-bonita">
+              <p>Dessas três, qual achas mais bonita/expressiva (entre as possíveis)?</p>
+              <label><input type="radio" name="Q1_mais_bonita" value="Q1A"> Q1A</label>
+              <label><input type="radio" name="Q1_mais_bonita" value="Q1B"> Q1B</label>
+              <label><input type="radio" name="Q1_mais_bonita" value="Q1C"> Q1C</label>
+            </div>
+          </fieldset>
+
+          <fieldset id="grupoQ2">
+            <legend>Grupo 12 — “Que” e predicação</legend>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>Q2A</strong>: Ye certo que él vien.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="Q2A_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="Q2A_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="Q2A_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>Q2B</strong>: Ye certo él vien.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="Q2B_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="Q2B_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="Q2B_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>Q2C</strong>: Que él vien ye certo.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="Q2C_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="Q2C_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="Q2C_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="mais-bonita">
+              <p>Dessas três, qual achas mais bonita/expressiva (entre as possíveis)?</p>
+              <label><input type="radio" name="Q2_mais_bonita" value="Q2A"> Q2A</label>
+              <label><input type="radio" name="Q2_mais_bonita" value="Q2B"> Q2B</label>
+              <label><input type="radio" name="Q2_mais_bonita" value="Q2C"> Q2C</label>
+            </div>
+          </fieldset>
+        </section>
+
+        <!-- ================= MÓDULO 7 ================= -->
+        <section id="modulo7" class="modulo">
+          <h2>Módulo 7 — Concordância (Agreement Parameter)</h2>
+          <p class="descricao-modulo">
+            A concordância sujeito–verbo e nome–adjetivo mostra como traços de número e género são distribuídos na tua gramática interna.
+          </p>
+
+          <fieldset id="grupoA1">
+            <legend>Grupo 7A — Concordância Sujeito–Verbo</legend>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>A1</strong>: Los rapazes cantan alto.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="A1_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="A1_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="A1_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>A2</strong>: Los rapazes canta alto.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="A2_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="A2_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="A2_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>A3</strong>: Los rapazes cantan altos.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="A3_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="A3_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="A3_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="mais-bonita">
+              <p>Entre as possíveis, qual achas mais bonita/expressiva?</p>
+              <label><input type="radio" name="A_mais_bonita" value="A1"> A1</label>
+              <label><input type="radio" name="A_mais_bonita" value="A2"> A2</label>
+              <label><input type="radio" name="A_mais_bonita" value="A3"> A3</label>
+            </div>
+          </fieldset>
+
+          <fieldset id="grupoB1">
+            <legend>Grupo 7B — Concordância Nome–Adjetivo</legend>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>B1</strong>: La casa vieja ye piquena.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="B1_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="B1_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="B1_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>B2</strong>: La casa vieja ye piqueno.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="B2_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="B2_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="B2_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>B3</strong>: La casa viejo ye piquena.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="B3_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="B3_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="B3_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="mais-bonita">
+              <p>Entre as possíveis, qual achas mais bonita/expressiva?</p>
+              <label><input type="radio" name="B_mais_bonita" value="B1"> B1</label>
+              <label><input type="radio" name="B_mais_bonita" value="B2"> B2</label>
+              <label><input type="radio" name="B_mais_bonita" value="B3"> B3</label>
+            </div>
+          </fieldset>
+        </section>
+
+        <!-- ================= MÓDULO 8 ================= -->
+        <section id="modulo8" class="modulo">
+          <h2>Módulo 8 — Tempo e Aspeto (Tense/Aspect)</h2>
+          <p class="descricao-modulo">
+            Aqui olhamos como se distribuem formas simples e perifrásticas de passado e aspecto progressivo.
+          </p>
+
+          <fieldset id="grupoT1">
+            <legend>Grupo 8A — Pretérito Perfeito</legend>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>T1</strong>: Iou ya comi.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="T1_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="T1_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="T1_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>T2</strong>: Iou ya he comido.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="T2_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="T2_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="T2_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>T3</strong>: He yo comido ya.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="T3_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="T3_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="T3_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="mais-bonita">
+              <p>Entre as possíveis, qual achas mais bonita/expressiva?</p>
+              <label><input type="radio" name="T1_mais_bonita" value="T1"> T1</label>
+              <label><input type="radio" name="T1_mais_bonita" value="T2"> T2</label>
+              <label><input type="radio" name="T1_mais_bonita" value="T3"> T3</label>
+            </div>
+          </fieldset>
+
+          <fieldset id="grupoT2">
+            <legend>Grupo 8B — Aspeto Progressivo</legend>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>T4</strong>: Iou stou leyendo l libro.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="T4_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="T4_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="T4_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>T5</strong>: Iou leyo agora l libro.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="T5_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="T5_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="T5_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>T6</strong>: Stou yo leyendo l libro.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="T6_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="T6_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="T6_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+
+            <div class="mais-bonita">
+              <p>Entre as possíveis, qual achas mais bonita/expressiva?</p>
+              <label><input type="radio" name="T2_mais_bonita" value="T4"> T4</label>
+              <label><input type="radio" name="T2_mais_bonita" value="T5"> T5</label>
+              <label><input type="radio" name="T2_mais_bonita" value="T6"> T6</label>
+            </div>
+          </fieldset>
+        </section>
+
+        <!-- ================= MÓDULO 9 ================= -->
+        <section id="modulo9" class="modulo">
+          <h2>Módulo 9 — Caso (Case / Pronominal Case)</h2>
+          <p class="descricao-modulo">
+            Aqui olhamos para marcação de objeto direto e dativo, alternando entre clíticos, preposições e deslocamentos.
+          </p>
+
+          <fieldset id="grupoC3">
+            <legend>Grupo 9A — Caso Objeto Direto</legend>
+
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>C1_case</strong>: Vi los.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="C1_case_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="C1_case_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="C1_case_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>C2_case</strong>: Vi a eles.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="C2_case_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="C2_case_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="C2_case_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>C3_case</strong>: Los vi eu.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="C3_case_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="C3_case_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="C3_case_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+            <div class="mais-bonita">
+              <p>Entre as possíveis, qual achas mais bonita/expressiva?</p>
+              <label><input type="radio" name="C_case_mais_bonita" value="C1_case"> C1</label>
+              <label><input type="radio" name="C_case_mais_bonita" value="C2_case"> C2</label>
+              <label><input type="radio" name="C_case_mais_bonita" value="C3_case"> C3</label>
+            </div>
+          </fieldset>
+
+          <fieldset id="grupoC4">
+            <legend>Grupo 9B — Dativo</legend>
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>C4_case</strong>: Di-li l libro.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="C4_case_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="C4_case_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="C4_case_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>C5_case</strong>: Di l libro a ella.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="C5_case_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="C5_case_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="C5_case_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+            <div class="frase-bloco">
+              <p class="frase-texto"><strong>C6_case</strong>: A ella di-li l libro.</p>
+              <div class="frase-opcoes">
+                <label><input type="radio" name="C6_case_aceit" value="natural"> Soa natural</label>
+                <label><input type="radio" name="C6_case_aceit" value="estranha"> É possível, mas estranha</label>
+                <label><input type="radio" name="C6_case_aceit" value="nao_pode"> Não pode / nunca dirias assim</label>
+              </div>
+            </div>
+            <div class="mais-bonita">
+              <p>Entre as possíveis, qual achas mais bonita/expressiva?</p>
+              <label><input type="radio" name="C_dativo_mais_bonita" value="C4_case"> C4</label>
+              <label><input type="radio" name="C_dativo_mais_bonita" value="C5_case"> C5</label>
+              <label><input type="radio" name="C_dativo_mais_bonita" value="C6_case"> C6</label>
+            </div>
+          </fieldset>
+        </section>
+
+        <!-- ============ RELATÓRIO + CTA + DADOS ============ -->
+        <div class="relatorio-wrapper">
+          <div class="acoes">
+            <button id="btnGerarRelatorio" type="button">Gerar relatório da minha gramática</button>
+            <p class="nota-rodape">
+              Ao gerar o relatório, os teus julgamentos são inscritos anonimamente no corpo vivo da Gramática Improvável —
+              o fluxo aqui já é inscrição.
+            </p>
+          </div>
+
+          <h2>Leitura acessível</h2>
+          <div id="relatorioAcessivel"></div>
+
+          <h2>Leitura técnica (modelo gerativo)</h2>
+          <div id="relatorioTecnico"></div>
+
+          <div id="substack-cta">
+            <h2>Gramática Improvável do Mirandês</h2>
+            <p>
+              A cada dia, os dados deste museu-processo são rebatidos em estados provisórios da gramática. Vê os relatórios,
+              comentários e derivações no Substack.
+            </p>
+            <a id="substack-link" href="https://gramaticaimprovavel.substack.com/" target="_blank" rel="noopener noreferrer">
+              Ver estados diários no Substack
+            </a>
+          </div>
+
+          <div class="dados-museu">
+            <h2>Sobre a produção de dados neste museu-processo</h2>
+            <p>
+              As interações feitas nesta página participam efetivamente na construção dos estados diários da Gramática Improvável do Mirandês.
+              Para além dessas inscrições humanas, o sistema também incorpora dados sintéticos e análises probabilísticas de uso da língua,
+              derivados de corpora públicos, literatura linguística e modelização computacional.
+            </p>
+            <p>
+              O resultado é um modelo híbrido, onde cada gesto humano pesa, mas não é a totalidade da matéria. A gramática não é
+              “reflexo da comunidade”, mas um organismo paramétrico em devir, alimentado por três fontes:
+            </p>
+            <ul>
+              <li>Interações humanas (julgamentos de aceitabilidade e escolhas estéticas),</li>
+              <li>Dados sintéticos (simulações linguísticas baseadas em padrões reais do mirandês),</li>
+              <li>Análise probabilística automática (modelização estatística e comportamental de estruturas da língua).</li>
+            </ul>
+            <p>
+              Cada relatório publicado no Substack reflete a tensão entre essas três forças. A gramática é, por definição, improvável,
+              e o museu acompanha esse movimento.
+            </p>
+          </div>
+
+          <footer>
+            Museu do Possível — NEGATIVO.mov · Gramática Improvável em fluxo paramétrico.
+          </footer>
+        </div>
+
+        <!-- Formulário escondido para Google Forms -->
+        <form id="formsEnvio" method="POST"
+          action="https://docs.google.com/forms/d/e/1FAIpQLSeGb9lkJ3DkeU4tFh1GzMSlZqR5BU_WjGDAW6Yqkd-A9U3TiA/formResponse"
+          target="_blank">
+          <!-- Campo hidden que receberá o JSON com todos os dados da sessão -->
+          <input type="hidden" id="formsPayload" name="entry.358873" value="">
+        </form>
+
+      </div>
+    </div>
   </div>
 
   <script>
-    // ==== ESTADO GLOBAL SIMPLES PARA COMPARTILHAR RESULTADOS ====
-    let lastSubmissionData = null;
-
-    // ==== HELPERS ====
+    let headParamScore = 0;
+    let nullSubjectScore = 0;
+    let whMovementScore = 0;
+    let cliticScore = 0;
+    let negationScore = 0;
+    let compScore = 0;
 
     function getRadioValue(name) {
-      const radios = document.getElementsByName(name);
-      for (const r of radios) {
-        if (r.checked) return r.value;
+      const els = document.getElementsByName(name);
+      for (const el of els) {
+        if (el.checked) return el.value;
       }
       return "";
     }
 
-    function getBestChoice(name) {
-      const radios = document.getElementsByName(name);
-      for (const r of radios) {
-        if (r.checked) return r.value;
-      }
-      return "";
-    }
+    function scoreHeadParameter() {
+      headParamScore = 0;
 
-    // ==== CÁLCULOS PARAMÉTRICOS DOS MÓDULOS 1–3 ====
+      const frasesCompat = ["H1A","H1C","H2A","H2B","H2C","H3A","H3B"];
+      const frasesMarcadas = ["H1B","H3C"];
 
-    function calcularHeadParameter(respostas) {
-      let score = 0;
+      function add(frase) {
+        const v = getRadioValue(frase + "_aceitabilidade");
+        if (!v) return;
+        const isCompat = frasesCompat.includes(frase);
+        const isMarcada = frasesMarcadas.includes(frase);
 
-      const compatHeadInitial = ["H1A", "H1C", "H2A", "H2B", "H2C", "H3A", "H3B"];
-      const markedDeviant = ["H1B", "H3C"];
+        let peso = 0;
+        if (v === "natural") peso = 1;
+        else if (v === "estranha") peso = 0.5;
 
-      function pontuar(id) {
-        const val = respostas[id + "_accept"];
-        if (!val) return;
-        let delta = 0;
-        if (val === "natural") delta = 1;
-        else if (val === "estranha") delta = 0.5;
-        else delta = 0;
-
-        if (compatHeadInitial.includes(id)) {
-          score += delta;
-        } else if (markedDeviant.includes(id)) {
-          score -= delta;
+        if (peso !== 0) {
+          if (isCompat) headParamScore += peso;
+          if (isMarcada) headParamScore -= peso;
         }
       }
 
-      ["H1A","H1B","H1C","H2A","H2B","H2C","H3A","H3B","H3C"].forEach(pontuar);
-
-      let classe;
-      if (score >= 2) classe = "head_initial";
-      else if (score <= -2) classe = "marcado";
-      else classe = "misto";
-
-      return { headParamScore: score, headParamClass: classe };
+      ["H1A","H1B","H1C","H2A","H2B","H2C","H3A","H3B","H3C"].forEach(add);
     }
 
-    function calcularNullSubject(respostas) {
-      let score = 0;
-
-      const n1b = respostas["N1B_accept"];
-      if (n1b === "natural") score += 2;
-      else if (n1b === "estranha") score += 1;
-
-      const nsGlobal = respostas["NS_global"];
-      if (nsGlobal === "frequente") score += 2;
-      else if (nsGlobal === "contextos_especificos") score += 1;
-
-      let classe;
-      if (score >= 3) classe = "plus_null_subject";
-      else if (score >= 1) classe = "condicionado";
-      else classe = "minus_null_subject";
-
-      return { nullSubjectScore: score, nullSubjectClass: classe };
+    function classHeadParameter() {
+      if (headParamScore >= 2) return "head_initial";
+      if (headParamScore <= -2) return "marcado";
+      return "misto";
     }
 
-    function calcularWhMovement(respostas) {
-      let score = 0;
+    function scoreNullSubject() {
+      nullSubjectScore = 0;
+      const vN1B = getRadioValue("N1B_aceitabilidade");
+      if (vN1B === "natural") nullSubjectScore += 2;
+      else if (vN1B === "estranha") nullSubjectScore += 1;
 
-      const whFronting = ["W1A", "W2A", "W2C"];
-      const whInSitu  = ["W1B", "W1C", "W2B"];
+      const global = getRadioValue("null_subject_global");
+      if (global === "frequente") nullSubjectScore += 2;
+      else if (global === "contextos_especificos") nullSubjectScore += 1;
+    }
 
-      function pontuar(id) {
-        const val = respostas[id + "_accept"];
-        if (!val) return;
-        let delta = 0;
-        if (val === "natural") delta = 1;
-        else if (val === "estranha") delta = 0.5;
-        else delta = 0;
+    function classNullSubject() {
+      if (nullSubjectScore >= 3) return "plus_null_subject";
+      if (nullSubjectScore >= 1) return "condicionado";
+      return "minus_null_subject";
+    }
 
-        if (whFronting.includes(id)) {
-          score += delta;
-        } else if (whInSitu.includes(id)) {
-          score -= delta;
+    function scoreWhMovement() {
+      whMovementScore = 0;
+      const whFront = ["W1A","W2A","W2C"];
+      const whInSitu = ["W1B","W1C","W2B"];
+
+      function add(frase) {
+        const v = getRadioValue(frase + "_aceitabilidade");
+        if (!v) return;
+        let peso = 0;
+        if (v === "natural") peso = 1;
+        else if (v === "estranha") peso = 0.5;
+
+        if (peso !== 0) {
+          if (whFront.includes(frase)) whMovementScore += peso;
+          if (whInSitu.includes(frase)) whMovementScore -= peso;
         }
       }
 
-      ["W1A","W1B","W1C","W2A","W2B","W2C"].forEach(pontuar);
-
-      let classe;
-      if (score >= 2) classe = "wh_fronting";
-      else if (score <= -1) classe = "wh_in_situ";
-      else classe = "misto";
-
-      return { whMovementScore: score, whMovementClass: classe };
+      ["W1A","W1B","W1C","W2A","W2B","W2C"].forEach(add);
     }
 
-    // ==== NOVOS SCORES: CLÍTICOS, NEGAÇÃO, COMPLEMENTADORES ====
-
-    function calcularCliticos(respostas) {
-      let score = 0;
-
-      const c1a = respostas["C1A_aceit"];
-      const c1b = respostas["C1B_aceit"];
-      const c1c = respostas["C1C_aceit"];
-      const c2a = respostas["C2A_aceit"];
-      const c2b = respostas["C2B_aceit"];
-      const c2c = respostas["C2C_aceit"];
-
-      function base(val) {
-        if (val === "natural") return 1;
-        if (val === "estranha") return 0.5;
-        return 0;
-      }
-
-      // C1: afirmativas
-      if (c1b) { // proclise afirmativa
-        score += base(c1b);
-      }
-      if (c1a) { // enclise
-        score -= base(c1a);
-      }
-      if (c1c) { // enclise com topicalização de objeto
-        score -= base(c1c);
-      }
-
-      // C2: com negação
-      if (c2a) { // proclise com negação
-        score += base(c2a);
-      }
-      if (c2b) { // enclise com negação
-        score -= base(c2b);
-      }
-      if (c2c === "natural") {
-        score -= 0.5;
-      } else if (c2c === "estranha") {
-        score -= 0.25;
-      }
-
-      return { cliticScore: score };
+    function classWhMovement() {
+      if (whMovementScore >= 2) return "wh_fronting";
+      if (whMovementScore <= -1) return "wh_in_situ";
+      return "misto";
     }
 
-    function calcularNegacao(respostas) {
-      let score = 0;
-
-      const n2a = respostas["N2A_aceit"];
-      const n2b = respostas["N2B_aceit"];
-      const n2c = respostas["N2C_aceit"];
-      const n3a = respostas["N3A_aceit"];
-      const n3b = respostas["N3B_aceit"];
-      const n3c = respostas["N3C_aceit"];
-
-      function base(val) {
-        if (val === "natural") return 1;
-        if (val === "estranha") return 0.5;
-        return 0;
+    function scoreCliticos() {
+      cliticScore = 0;
+      function add(name, tipo) {
+        const v = getRadioValue(name + "_aceit");
+        if (!v || v === "nao_pode") return;
+        let peso = (v === "natural") ? 1 : 0.5;
+        if (tipo === "proclise_afirm") cliticScore += peso;
+        if (tipo === "enclise_afirm") cliticScore -= peso;
+        if (tipo === "proclise_neg") cliticScore += peso;
+        if (tipo === "enclise_neg") cliticScore -= peso;
+        if (tipo === "marcada") cliticScore -= peso * 0.5;
       }
 
-      // N2: "não vi nada"
-      if (n2a) score += base(n2a);  // simples
-      if (n2b) score += base(n2b);  // concordância negativa
-      if (n2c) score -= base(n2c);  // ordem marcada
-
-      // N3: "ele não veio ontem"
-      if (n3a) score += base(n3a);  // sujeito + nun + verbo
-      if (n3b === "natural") score += 0.5;
-      else if (n3b === "estranha") score += 0.25;
-
-      if (n3c === "natural") score -= 0.5;
-      else if (n3c === "estranha") score -= 0.25;
-
-      return { negationScore: score };
+      add("C1B","proclise_afirm");
+      add("C1A","enclise_afirm");
+      add("C1C","enclise_afirm");
+      add("C2A","proclise_neg");
+      add("C2B","enclise_neg");
+      add("C2C","marcada");
     }
 
-    function calcularComplementadores(respostas) {
-      let score = 0;
-
-      const q1a = respostas["Q1A_aceit"];
-      const q1b = respostas["Q1B_aceit"];
-      const q1c = respostas["Q1C_aceit"];
-      const q2a = respostas["Q2A_aceit"];
-      const q2b = respostas["Q2B_aceit"];
-      const q2c = respostas["Q2C_aceit"];
-
-      function base(val) {
-        if (val === "natural") return 1;
-        if (val === "estranha") return 0.5;
-        return 0;
+    function scoreNegation() {
+      negationScore = 0;
+      function add(name, basePeso) {
+        const v = getRadioValue(name + "_aceit");
+        if (!v || v === "nao_pode") return;
+        let fator = (v === "natural") ? 1 : 0.5;
+        negationScore += basePeso * fator;
       }
 
-      // Q1
-      if (q1a) score += base(q1a);   // com "que" canónico
-      if (q1b) score -= base(q1b);   // sem "que"
-      if (q1c === "natural") score += 0.5;
-      else if (q1c === "estranha") score += 0.25;
-
-      // Q2
-      if (q2a) score += base(q2a);   // "é certo que"
-      if (q2b) score -= base(q2b);   // sem "que"
-      if (q2c === "natural") score += 0.5;
-      else if (q2c === "estranha") score += 0.25;
-
-      return { compScore: score };
+      add("N2A", 1);
+      add("N2B", 1);
+      add("N2C", -1);
+      add("N3A", 1);
+      add("N3B", 0.5);
+      add("N3C", -0.5);
     }
 
-    // ==== ESTILO / FRASES MAIS BONITAS ====
-
-    function analisarEstilo(bestChoices) {
-      const diretas = new Set(["H1A","H2A","H3A","N1A","W1A","W2A","C1A","C2A","N2A","N3A","Q1A","Q2A"]);
-      const marcadas = new Set(["H1C","H2C","H3B","H3C","N1C","W1C","W2C","W2B",
-                                "C1C","C2C","N2C","N3C","Q1C","Q2C","Q2B"]);
-
-      let countDiretas = 0;
-      let countMarcadas = 0;
-
-      bestChoices.forEach(id => {
-        if (!id) return;
-        if (diretas.has(id)) countDiretas++;
-        if (marcadas.has(id)) countMarcadas++;
-      });
-
-      if (countDiretas === 0 && countMarcadas === 0) {
-        return {
-          estilo: "neutro",
-          comentarioLeigo: "",
-          comentarioTecnico: ""
-        };
+    function scoreComplementadores() {
+      compScore = 0;
+      function add(name, basePeso) {
+        const v = getRadioValue(name + "_aceit");
+        if (!v || v === "nao_pode") return;
+        let fator = (v === "natural") ? 1 : 0.5;
+        compScore += basePeso * fator;
       }
 
-      if (countDiretas >= countMarcadas) {
-        return {
-          estilo: "direto",
-          comentarioLeigo:
-            "Nas tuas escolhas de estilo, frases mais diretas e lineares pareceram mais bonitas. " +
-            "Isso aponta para uma estética que valoriza claridade e uma ordem mais previsível.",
-          comentarioTecnico:
-            "As escolhas estilísticas favorecem configurações próximas da ordem canónica, " +
-            "o que sugere uma 'gramática estilística' que privilegia derivadas menos marcadas."
-        };
-      } else {
-        return {
-          estilo: "marcado",
-          comentarioLeigo:
-            "Nas tuas preferências de beleza, aparecem frases com ordens um pouco mais marcadas ou invertidas, " +
-            "que deslocam a informação. Isso revela uma sensibilidade estilística que aprecia surpresa e ênfase na organização da frase.",
-          comentarioTecnico:
-            "As escolhas estilísticas tendem a derivadas marcadas, com exploração da periferia esquerda e inversões. " +
-            "Do ponto de vista gerativo, a estética aproxima-se de derivações que utilizam mais movimentos opcionais " +
-            "e ordens não canónicas como forma sensível."
-        };
-      }
+      add("Q1A", 1);
+      add("Q1B", -1);
+      add("Q1C", 0.5);
+      add("Q2A", 1);
+      add("Q2B", -1);
+      add("Q2C", 0.5);
     }
 
-    // ==== RELATÓRIO LEIGO ====
-
-    function gerarRelatorioLeigo(headInfo, nullInfo, whInfo, estiloInfo) {
+    function montarRelatorioAcessivel() {
       let texto = "";
 
+      // Head Parameter
       texto += "Sobre a ordem das palavras:\n\n";
-      if (headInfo.headParamClass === "head_initial") {
-        texto += "Pelas tuas respostas, a tua forma de sentir o mirandês prefere colocar o núcleo " +
-          "(o verbo, o nome) antes das outras partes. Frases como 'La casa vieja ye grande' ou " +
-          "'L’home canta na praça' soam mais naturais para ti. Isso aproxima o mirandês, na tua " +
-          "gramática interna, de línguas em que a ordem básica é algo como Sujeito–Verbo–Objeto.\n\n";
-      } else if (headInfo.headParamClass === "misto") {
-        texto += "As tuas respostas mostram que o mirandês, para ti, é flexível na ordem das palavras. " +
-          "Algumas frases mais diretas te parecem naturais, mas outras, com inversões (como começar pela " +
-          "praça ou pela montanha), também podem funcionar, ainda que soem um pouco marcadas. Isso sugere " +
-          "uma língua que aceita várias maneiras de organizar a frase, dependendo do contexto e do estilo.\n\n";
+      if (headParamScore >= 2) {
+        texto += "Pelas tuas respostas, a tua forma de sentir o mirandês prefere colocar o núcleo (o verbo, o nome) antes das outras partes. ";
+        texto += "Frases como 'La casa vieja ye grande' ou 'L’home canta na praça' soam mais naturais para ti. ";
+        texto += "Isso aproxima o mirandês, na tua gramática interna, de línguas em que a ordem básica é algo como Sujeito–Verbo–Objeto.\n\n";
+      } else if (headParamScore <= -2) {
+        texto += "Pelas escolhas que fizeste, parece que a tua gramática aceita como naturais algumas ordens que fogem bastante do padrão direto, ";
+        texto += "como 'Montanha na queda la casa'. Isso indica uma sensibilidade aberta a ordens mais marcadas, ";
+        texto += "que colocam a informação em lugares menos esperados da frase.\n\n";
       } else {
-        texto += "Pelas escolhas que fizeste, parece que a tua gramática aceita como naturais algumas ordens " +
-          "que fogem bastante do padrão direto (como 'Montanha na queda la casa'). Isso indica uma sensibilidade " +
-          "aberta a ordens mais marcadas, que colocam a informação em lugares menos esperados da frase.\n\n";
+        texto += "As tuas respostas mostram que o mirandês, para ti, é flexível na ordem das palavras. ";
+        texto += "Algumas frases mais diretas te parecem naturais, mas outras, com inversões, também podem funcionar, ainda que soem um pouco marcadas. ";
+        texto += "Isso sugere uma língua que aceita várias maneiras de organizar a frase, dependendo do contexto e do estilo.\n\n";
       }
 
+      // Null Subject
       texto += "Sobre o sujeito nulo:\n\n";
-      if (nullInfo.nullSubjectClass === "plus_null_subject") {
-        texto += "As tuas respostas indicam que, para ti, é natural não dizer o sujeito quando ele já está claro " +
-          "no verbo, como em 'Studi l mirandés cada nuite'. Ou seja, o mirandês pode 'esconder' o 'eu' ou o 'ele' " +
-          "sem perder o sentido.\n\n";
-      } else if (nullInfo.nullSubjectClass === "condicionado") {
-        texto += "Parece que, para ti, o mirandês pode omitir o sujeito em alguns contextos, mas nem sempre. " +
-          "Em certos momentos a frase sem sujeito funciona, mas noutros tu preferes ver o pronome. Isso mostra " +
-          "uma gramática que negocia entre economia (não repetir o que já está claro) e clareza.\n\n";
+      if (nullSubjectScore >= 3) {
+        texto += "As tuas respostas indicam que, para ti, é natural não dizer o sujeito quando ele já está claro no verbo, como em 'Studi l mirandés cada nuite'. ";
+        texto += "Ou seja, o mirandês pode 'esconder' o 'eu' ou o 'ele' sem perder o sentido.\n\n";
+      } else if (nullSubjectScore >= 1) {
+        texto += "Parece que, para ti, o mirandês pode omitir o sujeito em alguns contextos, mas nem sempre. ";
+        texto += "Em certos momentos a frase sem sujeito funciona, mas noutros tu preferes ver o pronome. ";
+        texto += "Isso mostra uma gramática que negocia entre economia (não repetir o que já está claro) e clareza.\n\n";
       } else {
-        texto += "Pelas respostas, a tua gramática tende a manter o sujeito visível na frase (como 'Iou studi l mirandés…'). " +
-          "O sujeito escondido parece pouco natural ou raro.\n\n";
+        texto += "Pelas respostas, a tua gramática tende a manter o sujeito visível na frase, em formas como 'Iou studi l mirandés…'. ";
+        texto += "O sujeito escondido parece pouco natural ou raro.\n\n";
       }
 
+      // Wh-movement
       texto += "Sobre as perguntas com 'qué':\n\n";
-      if (whInfo.whMovementClass === "wh_fronting") {
-        texto += "Quando fazes perguntas, parece que gostas de puxar a palavra interrogativa para a frente, " +
-          "em formas como 'Qué studi iou?' ou 'Qué ye la tua lengua?'. Isso mostra uma preferência por perguntas " +
-          "em que o 'quê' vem logo no começo da frase.\n\n";
-      } else if (whInfo.whMovementClass === "misto") {
-        texto += "As tuas respostas mostram que tanto perguntas com 'qué' no começo quanto no meio da frase podem " +
-          "funcionar, dependendo do caso. Isso sugere uma gramática que aceita mais de uma maneira de perguntar, " +
-          "com maior jogo na ordem das palavras.\n\n";
+      if (whMovementScore >= 2) {
+        texto += "Quando fazes perguntas, parece que gostas de puxar a palavra interrogativa para a frente, em formas como 'Qué studi iou?' ou 'Qué ye la tua lengua?'. ";
+        texto += "Isso mostra uma preferência por perguntas em que o 'quê' vem logo no começo da frase.\n\n";
+      } else if (whMovementScore <= -1) {
+        texto += "Pelas tuas escolhas, perguntas como 'Iou studi qué?' ou 'La tua lengua ye qué?' soam naturais. ";
+        texto += "Isso indica abertura para manter o 'quê' dentro da frase, e não necessariamente sempre na primeira posição.\n\n";
       } else {
-        texto += "Pelas tuas escolhas, perguntas como 'Iou studi qué?' ou 'La tua lengua ye qué?' soam naturais. " +
-          "Isso indica abertura para manter o 'quê' dentro da frase, e não necessariamente sempre na primeira posição.\n\n";
+        texto += "As tuas respostas mostram que tanto perguntas com 'qué' no começo quanto no meio da frase podem funcionar, dependendo do caso. ";
+        texto += "Isso sugere uma gramática que aceita mais de uma maneira de perguntar, com maior jogo na ordem das palavras.\n\n";
       }
 
-      if (estiloInfo.comentarioLeigo) {
-        texto += "Sobre as tuas escolhas de estilo:\n\n";
-        texto += estiloInfo.comentarioLeigo + "\n";
+      // Comentário estilístico básico (usando algumas escolhas)
+      const escolhasMaisBonitas = [
+        getRadioValue("H1_mais_bonita"),
+        getRadioValue("H2_mais_bonita"),
+        getRadioValue("H3_mais_bonita"),
+        getRadioValue("N1_mais_bonita"),
+        getRadioValue("W1_mais_bonita"),
+        getRadioValue("W2_mais_bonita"),
+        getRadioValue("C1_mais_bonita"),
+        getRadioValue("C2_mais_bonita"),
+        getRadioValue("N2_mais_bonita"),
+        getRadioValue("N3_mais_bonita"),
+        getRadioValue("Q1_mais_bonita"),
+        getRadioValue("Q2_mais_bonita"),
+        getRadioValue("A_mais_bonita"),
+        getRadioValue("B_mais_bonita"),
+        getRadioValue("T1_mais_bonita"),
+        getRadioValue("T2_mais_bonita"),
+        getRadioValue("C_case_mais_bonita"),
+        getRadioValue("C_dativo_mais_bonita")
+      ].filter(Boolean);
+
+      texto += "Sobre as tuas escolhas de estilo:\n\n";
+      if (escolhasMaisBonitas.length) {
+        texto += "As tuas preferências de beleza indicam que certas ordens e construções te atraem mais como forma sensível. ";
+        texto += "Em vários momentos aparecem escolhas que se aproximam de ordens marcadas ou de inversões, ";
+        texto += "o que revela uma sensibilidade estilística aberta a surpresa e deslocamento na organização da frase.\n";
+      } else {
+        texto += "Ainda não recolhemos informação suficiente sobre as tuas escolhas estilísticas (quais frases marcaste como mais bonitas). ";
+        texto += "Mesmo assim, os teus julgamentos de aceitabilidade já ajudam a compor o estado desta gramática improvável.\n";
       }
 
       return texto;
     }
 
-    // ==== RELATÓRIO TÉCNICO ====
+    function montarRelatorioTecnico(headClass, nullClass, whClass) {
+      let txt = "";
 
-    function gerarRelatorioTecnico(headInfo, nullInfo, whInfo, estiloInfo) {
-      let texto = "";
-
-      texto += "Head Parameter:\n\n";
-      if (headInfo.headParamClass === "head_initial") {
-        texto += "No nível da adequação descritiva, os dados fornecidos sugerem uma gramática internamente " +
-          "configurada com Head Parameter ajustado para [head-initial] na maior parte das projeções relevantes " +
-          "(VP, NP, PP). A preferência por ordens do tipo SVO e por sintagmas nominais em que o determinante " +
-          "precede o nome (e este precede o adjetivo, ainda que com alguma variação) aproxima o sistema " +
-          "observado do padrão românico canónico.\n\n";
-      } else if (headInfo.headParamClass === "misto") {
-        texto += "Os resultados indicam um perfil misto, em que projeções como VP e NP tendem ao padrão " +
-          "head-initial, mas o utilizador aceita com alguma naturalidade ordens marcadas e inversões. Em termos " +
-          "de parâmetros, isto pode ser lido como uma gramática em que o ajuste principal é head-initial, mas " +
-          "com forte recurso a movimentos opcionais e estratégias de topicalização/focalização na periferia " +
-          "esquerda.\n\n";
+      txt += "Head Parameter:\n\n";
+      if (headClass === "head_initial") {
+        txt += "No nível da adequação descritiva, os dados fornecidos sugerem uma gramática internamente configurada com Head Parameter ";
+        txt += "ajustado para [head-initial] na maior parte das projeções relevantes (VP, NP, PP). ";
+        txt += "A preferência por ordens do tipo SVO e por sintagmas nominais em que o determinante precede o nome (e este precede o adjetivo, ainda que com alguma variação) ";
+        txt += "aproxima o sistema observado do padrão românico canónico.\n\n";
+      } else if (headClass === "marcado") {
+        txt += "A aceitabilidade conferida a ordens altamente marcadas sugere um sistema com maior tolerância a configurações que, do ponto de vista do modelo de parâmetros, ";
+        txt += "se afastam do protótipo head-initial. Para efeito deste laboratório, descreve-se este perfil como uma configuração tendencialmente deslocada, ";
+        txt += "em que a distribuição superficial de cabeças e complementos explora posições não canónicas.\n\n";
       } else {
-        texto += "A aceitabilidade conferida a ordens altamente marcadas sugere um sistema com maior tolerância " +
-          "a configurações que, do ponto de vista do modelo de parâmetros, se afastam do protótipo head-initial. " +
-          "Para efeito deste laboratório, descreve-se este perfil como uma configuração tendencialmente deslocada, " +
-          "em que a distribuição superficial de cabeças e complementos explora posições não canónicas.\n\n";
+        txt += "Os resultados indicam um perfil misto, em que projeções como VP e NP tendem ao padrão head-initial, ";
+        txt += "mas o utilizador aceita com alguma naturalidade ordens marcadas e inversões. Em termos de parâmetros, isto pode ser lido como uma gramática ";
+        txt += "em que o ajuste principal é head-initial, mas com forte recurso a movimentos opcionais e estratégias de topicalização/focalização na periferia esquerda.\n\n";
       }
 
-      texto += "Null Subject Parameter:\n\n";
-      if (nullInfo.nullSubjectClass === "plus_null_subject") {
-        texto += "Quanto ao Null Subject Parameter, a aceitabilidade de sentenças finitas sem sujeito " +
-          "foneticamente realizado, combinada com a indicação explícita de naturalidade dessa omissão, aponta " +
-          "para uma gramática [+null subject], em que a flexão verbal contribui para a recuperação de traços " +
-          "de pessoa e número. Do ponto de vista explicativo, o sistema aproxima-se das línguas pro-drop " +
-          "românicas clássicas.\n\n";
-      } else if (nullInfo.nullSubjectClass === "condicionado") {
-        texto += "Os dados sugerem uma configuração intermédia: o sistema admite sujeitos nulos em contextos " +
-          "específicos, mas não generaliza essa possibilidade a todos os domínios. Em termos paramétricos, " +
-          "poder-se-ia falar de uma licença condicionada de sujeito nulo, dependente de fatores discursivos " +
-          "(tópico estabelecido, contexto informal, etc.).\n\n";
+      txt += "Null Subject Parameter:\n\n";
+      if (nullClass === "plus_null_subject") {
+        txt += "Quanto ao Null Subject Parameter, a aceitabilidade de sentenças finitas sem sujeito foneticamente realizado, combinada com a indicação explícita de naturalidade dessa omissão, ";
+        txt += "aponta para uma gramática [+null subject], em que a flexão verbal contribui para a recuperação de traços de pessoa e número. ";
+        txt += "Do ponto de vista explicativo, o sistema aproxima-se das línguas pro-drop românicas clássicas.\n\n";
+      } else if (nullClass === "condicionado") {
+        txt += "Os dados sugerem uma configuração intermédia: o sistema admite sujeitos nulos em contextos específicos, mas não generaliza essa possibilidade a todos os domínios. ";
+        txt += "Em termos paramétricos, poder-se-ia falar de uma licença condicionada de sujeito nulo, dependente de fatores discursivos (tópico estabelecido, contexto informal, etc.).\n\n";
       } else {
-        texto += "A rejeição consistente de sujeitos nulos aponta para um ajuste [-null subject], no qual a " +
-          "projeção de sujeito foneticamente realizado é fortemente preferida. A gramática interna requer, " +
-          "portanto, um sujeito lexical ou pronominalmente preenchido na posição [Spec, TP] na maioria dos contextos.\n\n";
+        txt += "A rejeição consistente de sujeitos nulos aponta para um ajuste [-null subject], no qual a projeção de sujeito foneticamente realizado é fortemente preferida. ";
+        txt += "A gramática interna requer, portanto, um sujeito lexical ou pronominalmente preenchido na posição [Spec, TP] na maioria dos contextos.\n\n";
       }
 
-      texto += "Wh-movement:\n\n";
-      if (whInfo.whMovementClass === "wh_fronting") {
-        texto += "Relativamente a interrogativas wh, o padrão observado é compatível com um sistema de " +
-          "wh-movement obrigatório: a palavra interrogativa tende a ocupar a posição inicial da frase, " +
-          "interpretável como [Spec, CP]. Isto alinha a gramática com o comportamento típico de línguas " +
-          "românicas em que o traço [wh] recebe checagem na periferia esquerda da cláusula.\n\n";
-      } else if (whInfo.whMovementClass === "misto") {
-        texto += "Os dados indicam um sistema híbrido, no qual tanto estruturas com wh-fronting quanto " +
-          "configurações mais próximas de wh in situ obtêm algum grau de aceitabilidade. Em termos gerativos, " +
-          "isso pode ser descrito como uma gramática que dispõe de múltiplas estratégias para satisfazer os " +
-          "requisitos de traços interrogativos, com variação entre movimentos para [Spec, CP] e permanência " +
-          "em posições mais baixas.\n\n";
+      txt += "Wh-movement:\n\n";
+      if (whClass === "wh_fronting") {
+        txt += "Relativamente a interrogativas wh, o padrão observado é compatível com um sistema de wh-movement obrigatório: ";
+        txt += "a palavra interrogativa tende a ocupar a posição inicial da frase, interpretável como [Spec, CP]. ";
+        txt += "Isto alinha a gramática com o comportamento típico de línguas românicas em que o traço [wh] recebe checagem na periferia esquerda da cláusula.\n\n";
+      } else if (whClass === "wh_in_situ") {
+        txt += "A aceitabilidade conferida a formas com wh em posição interna à frase sugere um comportamento próximo de wh in situ, ";
+        txt += "em que a marcação interrogativa não exige necessariamente movimento visível do sintagma interrogativo para a periferia. ";
+        txt += "A interpretação interrogativa recai, então, sobre traços abstratos e/ou sobre a prosódia.\n\n";
       } else {
-        texto += "A aceitabilidade conferida a formas com wh em posição interna à frase sugere um " +
-          "comportamento próximo de wh in situ, em que a marcação interrogativa não exige necessariamente " +
-          "movimento visível do sintagma interrogativo para a periferia. A interpretação interrogativa recai, " +
-          "então, sobre traços abstratos e/ou sobre a prosódia.\n\n";
+        txt += "Os dados indicam um sistema híbrido, no qual tanto estruturas com wh-fronting quanto configurações mais próximas de wh in situ obtêm algum grau de aceitabilidade. ";
+        txt += "Em termos gerativos, isso pode ser descrito como uma gramática que dispõe de múltiplas estratégias para satisfazer os requisitos de traços interrogativos, ";
+        txt += "com variação entre movimentos para [Spec, CP] e permanência em posições mais baixas.\n\n";
       }
 
-      if (estiloInfo.comentarioTecnico) {
-        texto += "Nota sobre estilo e derivação:\n\n";
-        texto += "As escolhas estilísticas (frases marcadas como 'mais bonitas') funcionam aqui como indicadores " +
-          "de uma estética paramétrica: não apenas quais configurações são geradas pela faculdade de linguagem, " +
-          "mas quais são privilegiadas como forma sensível. " + estiloInfo.comentarioTecnico + "\n";
-      } else {
-        texto += "Nota sobre estilo e derivação:\n\n";
-        texto += "As escolhas estilísticas poderiam, neste laboratório, ser exploradas como um nível adicional " +
-          "de parametrização, em que certas derivações são favorecidas como 'melhor forma' entre as geradas " +
-          "pela gramática. Nesta execução, não houve dados suficientes para caracterizar essa camada.\n";
-      }
+      txt += "Nota sobre estilo e derivação:\n\n";
+      txt += "As escolhas estilísticas (frases marcadas como 'mais bonitas') funcionam aqui como indicadores de uma estética paramétrica: ";
+      txt += "não apenas quais configurações são geradas pela faculdade de linguagem, mas quais são privilegiadas como forma sensível. ";
+      txt += "As escolhas estilísticas tendem a explorar ordens marcadas, inversões e manipulações da periferia esquerda. ";
+      txt += "Do ponto de vista gerativo, a estética aproxima-se de derivações que utilizam movimentos opcionais e ordens não canónicas como recurso expressivo.\n";
 
-      return texto;
+      return txt;
     }
 
-    // ==== COLETA / OBJETO DE DADOS ====
+    function montarObjetoResultados(headClass, nullClass, whClass, relAcess, relTec) {
+      const resultados = {
+        session_id: Math.random().toString(36).slice(2, 10),
+        timestamp: new Date().toISOString(),
 
-    function coletarRespostas() {
-      const respostas = {};
+        headParamScore,
+        headParamClass: headClass,
+        nullSubjectScore,
+        nullSubjectClass: nullClass,
+        whMovementScore,
+        whMovementClass: whClass,
+        cliticScore,
+        negationScore,
+        compScore,
 
-      // Módulos 1–3 (já existiam)
-      const idsAceit = [
-        "H1A","H1B","H1C",
-        "H2A","H2B","H2C",
-        "H3A","H3B","H3C",
-        "N1A","N1B","N1C",
-        "W1A","W1B","W1C",
-        "W2A","W2B","W2C"
-      ];
-      idsAceit.forEach(id => {
-        respostas[id + "_accept"] = getRadioValue(id + "_accept");
-      });
+        // Módulo 1
+        H1A_aceitabilidade: getRadioValue("H1A_aceitabilidade"),
+        H1B_aceitabilidade: getRadioValue("H1B_aceitabilidade"),
+        H1C_aceitabilidade: getRadioValue("H1C_aceitabilidade"),
+        H2A_aceitabilidade: getRadioValue("H2A_aceitabilidade"),
+        H2B_aceitabilidade: getRadioValue("H2B_aceitabilidade"),
+        H2C_aceitabilidade: getRadioValue("H2C_aceitabilidade"),
+        H3A_aceitabilidade: getRadioValue("H3A_aceitabilidade"),
+        H3B_aceitabilidade: getRadioValue("H3B_aceitabilidade"),
+        H3C_aceitabilidade: getRadioValue("H3C_aceitabilidade"),
+        H1_mais_bonita: getRadioValue("H1_mais_bonita"),
+        H2_mais_bonita: getRadioValue("H2_mais_bonita"),
+        H3_mais_bonita: getRadioValue("H3_mais_bonita"),
 
-      respostas["H1_mais_bonita"] = getBestChoice("H1_best");
-      respostas["H2_mais_bonita"] = getBestChoice("H2_best");
-      respostas["H3_mais_bonita"] = getBestChoice("H3_best");
-      respostas["N1_mais_bonita"] = getBestChoice("N1_best");
-      respostas["W1_mais_bonita"] = getBestChoice("W1_best");
-      respostas["W2_mais_bonita"] = getBestChoice("W2_best");
+        // Módulo 2
+        N1A_aceitabilidade: getRadioValue("N1A_aceitabilidade"),
+        N1B_aceitabilidade: getRadioValue("N1B_aceitabilidade"),
+        N1C_aceitabilidade: getRadioValue("N1C_aceitabilidade"),
+        N1_mais_bonita: getRadioValue("N1_mais_bonita"),
+        null_subject_global: getRadioValue("null_subject_global"),
 
-      respostas["NS_global"] = getRadioValue("NS_global");
+        // Módulo 3
+        W1A_aceitabilidade: getRadioValue("W1A_aceitabilidade"),
+        W1B_aceitabilidade: getRadioValue("W1B_aceitabilidade"),
+        W1C_aceitabilidade: getRadioValue("W1C_aceitabilidade"),
+        W2A_aceitabilidade: getRadioValue("W2A_aceitabilidade"),
+        W2B_aceitabilidade: getRadioValue("W2B_aceitabilidade"),
+        W2C_aceitabilidade: getRadioValue("W2C_aceitabilidade"),
+        W1_mais_bonita: getRadioValue("W1_mais_bonita"),
+        W2_mais_bonita: getRadioValue("W2_mais_bonita"),
 
-      // NOVOS MÓDULOS 4–6
-      // Clíticos
-      respostas["C1A_aceit"] = getRadioValue("C1A_aceit");
-      respostas["C1B_aceit"] = getRadioValue("C1B_aceit");
-      respostas["C1C_aceit"] = getRadioValue("C1C_aceit");
-      respostas["C1_mais_bonita"] = getBestChoice("C1_mais_bonita");
+        // Módulo 4
+        C1A_aceitabilidade: getRadioValue("C1A_aceit"),
+        C1B_aceitabilidade: getRadioValue("C1B_aceit"),
+        C1C_aceitabilidade: getRadioValue("C1C_aceit"),
+        C1_mais_bonita: getRadioValue("C1_mais_bonita"),
+        C2A_aceitabilidade: getRadioValue("C2A_aceit"),
+        C2B_aceitabilidade: getRadioValue("C2B_aceit"),
+        C2C_aceitabilidade: getRadioValue("C2C_aceit"),
+        C2_mais_bonita: getRadioValue("C2_mais_bonita"),
 
-      respostas["C2A_aceit"] = getRadioValue("C2A_aceit");
-      respostas["C2B_aceit"] = getRadioValue("C2B_aceit");
-      respostas["C2C_aceit"] = getRadioValue("C2C_aceit");
-      respostas["C2_mais_bonita"] = getBestChoice("C2_mais_bonita");
+        // Módulo 5
+        N2A_aceitabilidade: getRadioValue("N2A_aceit"),
+        N2B_aceitabilidade: getRadioValue("N2B_aceit"),
+        N2C_aceitabilidade: getRadioValue("N2C_aceit"),
+        N2_mais_bonita: getRadioValue("N2_mais_bonita"),
+        N3A_aceitabilidade: getRadioValue("N3A_aceit"),
+        N3B_aceitabilidade: getRadioValue("N3B_aceit"),
+        N3C_aceitabilidade: getRadioValue("N3C_aceit"),
+        N3_mais_bonita: getRadioValue("N3_mais_bonita"),
 
-      // Negação
-      respostas["N2A_aceit"] = getRadioValue("N2A_aceit");
-      respostas["N2B_aceit"] = getRadioValue("N2B_aceit");
-      respostas["N2C_aceit"] = getRadioValue("N2C_aceit");
-      respostas["N2_mais_bonita"] = getBestChoice("N2_mais_bonita");
+        // Módulo 6
+        Q1A_aceitabilidade: getRadioValue("Q1A_aceit"),
+        Q1B_aceitabilidade: getRadioValue("Q1B_aceit"),
+        Q1C_aceitabilidade: getRadioValue("Q1C_aceit"),
+        Q1_mais_bonita: getRadioValue("Q1_mais_bonita"),
+        Q2A_aceitabilidade: getRadioValue("Q2A_aceit"),
+        Q2B_aceitabilidade: getRadioValue("Q2B_aceit"),
+        Q2C_aceitabilidade: getRadioValue("Q2C_aceit"),
+        Q2_mais_bonita: getRadioValue("Q2_mais_bonita"),
 
-      respostas["N3A_aceit"] = getRadioValue("N3A_aceit");
-      respostas["N3B_aceit"] = getRadioValue("N3B_aceit");
-      respostas["N3C_aceit"] = getRadioValue("N3C_aceit");
-      respostas["N3_mais_bonita"] = getBestChoice("N3_mais_bonita");
+        // Módulo 7
+        A1_aceitabilidade: getRadioValue("A1_aceit"),
+        A2_aceitabilidade: getRadioValue("A2_aceit"),
+        A3_aceitabilidade: getRadioValue("A3_aceit"),
+        A_mais_bonita: getRadioValue("A_mais_bonita"),
+        B1_aceitabilidade: getRadioValue("B1_aceit"),
+        B2_aceitabilidade: getRadioValue("B2_aceit"),
+        B3_aceitabilidade: getRadioValue("B3_aceit"),
+        B_mais_bonita: getRadioValue("B_mais_bonita"),
 
-      // Complementadores
-      respostas["Q1A_aceit"] = getRadioValue("Q1A_aceit");
-      respostas["Q1B_aceit"] = getRadioValue("Q1B_aceit");
-      respostas["Q1C_aceit"] = getRadioValue("Q1C_aceit");
-      respostas["Q1_mais_bonita"] = getBestChoice("Q1_mais_bonita");
+        // Módulo 8
+        T1_aceitabilidade: getRadioValue("T1_aceit"),
+        T2_aceitabilidade: getRadioValue("T2_aceit"),
+        T3_aceitabilidade: getRadioValue("T3_aceit"),
+        T1_mais_bonita: getRadioValue("T1_mais_bonita"),
+        T4_aceitabilidade: getRadioValue("T4_aceit"),
+        T5_aceitabilidade: getRadioValue("T5_aceit"),
+        T6_aceitabilidade: getRadioValue("T6_aceit"),
+        T2_mais_bonita: getRadioValue("T2_mais_bonita"),
 
-      respostas["Q2A_aceit"] = getRadioValue("Q2A_aceit");
-      respostas["Q2B_aceit"] = getRadioValue("Q2B_aceit");
-      respostas["Q2C_aceit"] = getRadioValue("Q2C_aceit");
-      respostas["Q2_mais_bonita"] = getBestChoice("Q2_mais_bonita");
+        // Módulo 9
+        C1_case_aceitabilidade: getRadioValue("C1_case_aceit"),
+        C2_case_aceitabilidade: getRadioValue("C2_case_aceit"),
+        C3_case_aceitabilidade: getRadioValue("C3_case_aceit"),
+        C_case_mais_bonita: getRadioValue("C_case_mais_bonita"),
+        C4_case_aceitabilidade: getRadioValue("C4_case_aceit"),
+        C5_case_aceitabilidade: getRadioValue("C5_case_aceit"),
+        C6_case_aceitabilidade: getRadioValue("C6_case_aceit"),
+        C_dativo_mais_bonita: getRadioValue("C_dativo_mais_bonita"),
 
-      return respostas;
-    }
-
-    function montarSubmissionData(respostas, headInfo, nullInfo, whInfo, cliticInfo, negInfo, compInfo, relLeigo, relTecnico) {
-      const sessionId = Math.random().toString(36).slice(2, 10);
-      const timestamp = new Date().toISOString();
-
-      const data = {
-        session_id: sessionId,
-        timestamp: timestamp,
-
-        // Aceitabilidade módulos 1–3
-        H1A_aceitabilidade: respostas["H1A_accept"],
-        H1B_aceitabilidade: respostas["H1B_accept"],
-        H1C_aceitabilidade: respostas["H1C_accept"],
-        H2A_aceitabilidade: respostas["H2A_accept"],
-        H2B_aceitabilidade: respostas["H2B_accept"],
-        H2C_aceitabilidade: respostas["H2C_accept"],
-        H3A_aceitabilidade: respostas["H3A_accept"],
-        H3B_aceitabilidade: respostas["H3B_accept"],
-        H3C_aceitabilidade: respostas["H3C_accept"],
-        N1A_aceitabilidade: respostas["N1A_accept"],
-        N1B_aceitabilidade: respostas["N1B_accept"],
-        N1C_aceitabilidade: respostas["N1C_accept"],
-        W1A_aceitabilidade: respostas["W1A_accept"],
-        W1B_aceitabilidade: respostas["W1B_accept"],
-        W1C_aceitabilidade: respostas["W1C_accept"],
-        W2A_aceitabilidade: respostas["W2A_accept"],
-        W2B_aceitabilidade: respostas["W2B_accept"],
-        W2C_aceitabilidade: respostas["W2C_accept"],
-
-        H1_mais_bonita: respostas["H1_mais_bonita"],
-        H2_mais_bonita: respostas["H2_mais_bonita"],
-        H3_mais_bonita: respostas["H3_mais_bonita"],
-        N1_mais_bonita: respostas["N1_mais_bonita"],
-        W1_mais_bonita: respostas["W1_mais_bonita"],
-        W2_mais_bonita: respostas["W2_mais_bonita"],
-
-        null_subject_global: respostas["NS_global"],
-
-        headParamScore: headInfo.headParamScore,
-        headParamClass: headInfo.headParamClass,
-        nullSubjectScore: nullInfo.nullSubjectScore,
-        nullSubjectClass: nullInfo.nullSubjectClass,
-        whMovementScore: whInfo.whMovementScore,
-        whMovementClass: whInfo.whMovementClass,
-
-        // NOVOS SCORES
-        cliticScore: cliticInfo.cliticScore,
-        negationScore: negInfo.negationScore,
-        compScore: compInfo.compScore,
-
-        // Aceitabilidade e estilo dos módulos 4–6
-        C1A_aceitabilidade: respostas["C1A_aceit"],
-        C1B_aceitabilidade: respostas["C1B_aceit"],
-        C1C_aceitabilidade: respostas["C1C_aceit"],
-        C1_mais_bonita: respostas["C1_mais_bonita"],
-
-        C2A_aceitabilidade: respostas["C2A_aceit"],
-        C2B_aceitabilidade: respostas["C2B_aceit"],
-        C2C_aceitabilidade: respostas["C2C_aceit"],
-        C2_mais_bonita: respostas["C2_mais_bonita"],
-
-        N2A_aceitabilidade: respostas["N2A_aceit"],
-        N2B_aceitabilidade: respostas["N2B_aceit"],
-        N2C_aceitabilidade: respostas["N2C_aceit"],
-        N2_mais_bonita: respostas["N2_mais_bonita"],
-
-        N3A_aceitabilidade: respostas["N3A_aceit"],
-        N3B_aceitabilidade: respostas["N3B_aceit"],
-        N3C_aceitabilidade: respostas["N3C_aceit"],
-        N3_mais_bonita: respostas["N3_mais_bonita"],
-
-        Q1A_aceitabilidade: respostas["Q1A_aceit"],
-        Q1B_aceitabilidade: respostas["Q1B_aceit"],
-        Q1C_aceitabilidade: respostas["Q1C_aceit"],
-        Q1_mais_bonita: respostas["Q1_mais_bonita"],
-
-        Q2A_aceitabilidade: respostas["Q2A_aceit"],
-        Q2B_aceitabilidade: respostas["Q2B_aceit"],
-        Q2C_aceitabilidade: respostas["Q2C_aceit"],
-        Q2_mais_bonita: respostas["Q2_mais_bonita"],
-
-        relatorio_acessivel: relLeigo,
-        relatorio_tecnico: relTecnico
+        relatorio_acessivel: relAcess,
+        relatorio_tecnico: relTec
       };
 
-      return data;
+      return resultados;
     }
 
-    // ==== BOTÃO: GERAR RELATÓRIO ====
+    document.getElementById("btnGerarRelatorio").addEventListener("click", function() {
+      // calcular parâmetros
+      scoreHeadParameter();
+      scoreNullSubject();
+      scoreWhMovement();
+      scoreCliticos();
+      scoreNegation();
+      scoreComplementadores();
 
-    document.getElementById("btnRelatorio").addEventListener("click", function () {
-      const respostas = coletarRespostas();
+      const headClass = classHeadParameter();
+      const nullClass = classNullSubject();
+      const whClass = classWhMovement();
 
-      const headInfo = calcularHeadParameter(respostas);
-      const nullInfo = calcularNullSubject(respostas);
-      const whInfo   = calcularWhMovement(respostas);
-      const cliticInfo = calcularCliticos(respostas);
-      const negInfo    = calcularNegacao(respostas);
-      const compInfo   = calcularComplementadores(respostas);
+      const relAcess = montarRelatorioAcessivel();
+      const relTec = montarRelatorioTecnico(headClass, nullClass, whClass);
 
-      const bestChoices = [
-        respostas["H1_mais_bonita"],
-        respostas["H2_mais_bonita"],
-        respostas["H3_mais_bonita"],
-        respostas["N1_mais_bonita"],
-        respostas["W1_mais_bonita"],
-        respostas["W2_mais_bonita"],
-        respostas["C1_mais_bonita"],
-        respostas["C2_mais_bonita"],
-        respostas["N2_mais_bonita"],
-        respostas["N3_mais_bonita"],
-        respostas["Q1_mais_bonita"],
-        respostas["Q2_mais_bonita"]
-      ];
-      const estiloInfo = analisarEstilo(bestChoices);
+      document.getElementById("relatorioAcessivel").textContent = relAcess;
+      document.getElementById("relatorioTecnico").textContent = relTec;
 
-      const relLeigo = gerarRelatorioLeigo(headInfo, nullInfo, whInfo, estiloInfo);
-      const relTecnico = gerarRelatorioTecnico(headInfo, nullInfo, whInfo, estiloInfo);
+      // montar JSON para o Forms
+      const obj = montarObjetoResultados(headClass, nullClass, whClass, relAcess, relTec);
+      const jsonString = JSON.stringify(obj);
 
-      const submissionData = montarSubmissionData(
-        respostas, headInfo, nullInfo, whInfo,
-        cliticInfo, negInfo, compInfo,
-        relLeigo, relTecnico
-      );
+      const payloadEl = document.getElementById("formsPayload");
+      payloadEl.value = jsonString;
 
-      lastSubmissionData = submissionData;
-
-      document.getElementById("relatorioLeigo").textContent = relLeigo;
-      document.getElementById("relatorioTecnico").textContent = relTecnico;
-      document.getElementById("dadosTecnicos").textContent = JSON.stringify(submissionData, null, 2);
-      document.getElementById("relatorio").style.display = "block";
-      document.getElementById("mensagemErro").textContent = "";
-    });
-
-    // ==== BOTÃO: ENVIAR PARA GOOGLE FORMS (JSON EM CAMPO HIDDEN) ====
-
-    document.getElementById("btnEnviarForms").addEventListener("click", function () {
-      // Se ainda não há dados calculados, gera o relatório primeiro
-      if (!lastSubmissionData) {
-        const btn = document.getElementById("btnRelatorio");
-        if (btn) btn.click();
-      }
-      if (lastSubmissionData) {
-        const jsonString = JSON.stringify(lastSubmissionData);
-        document.getElementById("formsPayload").value = jsonString;
-      } else {
-        // fallback leve: não impede o submit, mas alerta visual
-        document.getElementById("mensagemErro").textContent =
-          "Algo correu mal ao preparar os dados para envio. Tenta gerar o relatório novamente.";
-      }
-      // não fazemos preventDefault: o form segue com o POST normal
+      // submeter form
+      document.getElementById("formsEnvio").submit();
     });
   </script>
 </body>
