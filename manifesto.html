@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <title>Manifesto NEGATIVO.mov — Cultura como fluxo vivo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Manifesto NEGATIVO.mov, por Caio Gabriel — cultura como fluxo vivo, museu-processo, cinema.triz, gramática improvável e máquinas culturais em Terra de Miranda.">
+  <meta name="robots" content="index,follow">
+
+  <style>
+    /* ============ PALETA NEGATIVO.mov ============ */
+    :root {
+      --bg: #050201;
+      --bg-alt: #1b0703;
+      --fg: #f9f8f4;
+      --muted: #d2c7c0;
+      --accent: #8ceb60;
+      --accent-2: #ff5a00;
+
+      --border: #3b1c10;
+      --shadow-soft: 0 18px 40px rgba(0,0,0,0.75);
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --max-width: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: var(--fg);
+      position: relative;
+      overflow-x: hidden;
+
+      background-image:
+        radial-gradient(circle at top, rgba(255,90,0,0.22) 0, transparent 55%),
+        radial-gradient(circle at bottom right, rgba(140,235,96,0.06) 0, transparent 55%),
+        url("film-strip.jpg");
+      background-size: 140% 140%, 120% 120%, cover;
+      background-position: top left, bottom right, center;
+      background-repeat: no-repeat, no-repeat, no-repeat;
+      background-attachment: scroll, scroll, fixed;
+      background-color: #140305;
+      background-blend-mode: normal, normal, soft-light;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 550;
+    }
+    a:hover { text-decoration: underline; }
+
+    /* ============ HEADER / NAV ============ */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(5,2,1,0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 0.6rem 1.2rem;
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo img {
+      height: 46px;
+      border-radius: 8px;
+      filter: drop-shadow(0 0 28px rgba(255,90,0,0.7));
+    }
+
+    .nav-toggle {
+      display: none;
+      background: var(--bg-alt);
+      color: var(--fg);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.78rem;
+      cursor: pointer;
+      box-shadow: 0 0 22px rgba(255,90,0,0.55);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.8rem;
+    }
+    nav li a {
+      color: var(--muted);
+      font-weight: 550;
+    }
+    nav li a:hover {
+      color: var(--fg);
+      text-decoration: none;
+    }
+
+    /* ============ LAYOUT GERAL ============ */
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.2rem 1.2rem 4rem;
+    }
+
+    /* ============ MANIFESTO PAGE ============ */
+    .manifesto-page {
+      max-width: 960px;
+    }
+
+    /* Cabeçalho do manifesto */
+    .manifesto-hero {
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .manifesto-hero-inner {
+      max-width: 800px;
+      width: 100%;
+      padding: 1.8rem 1.6rem;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: radial-gradient(circle at top, rgba(140,235,96,0.18), transparent 60%),
+                  rgba(16,6,3,0.9);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .manifesto-title {
+      margin: 0 0 0.3rem;
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--fg);
+      text-shadow: 0 0 18px rgba(0,0,0,0.8);
+    }
+
+    .manifesto-subtitle {
+      margin: 0 0 0.9rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .manifesto-intro {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    /* Corpo do manifesto */
+    .manifesto-container {
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      padding: 1.5rem 1.4rem 2.2rem;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255,255,255,0.09);
+      background:
+        linear-gradient(to bottom, rgba(5,2,1,0.96), rgba(27,7,3,0.98));
+      box-shadow: var(--shadow-soft);
+    }
+
+    .manifesto-section {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.9rem 1.1rem;
+      align-items: flex-start;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .manifesto-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .manifesto-number {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-2);
+      text-shadow: 0 0 14px rgba(255,90,0,0.8);
+      margin-top: 0.15rem;
+    }
+
+    .manifesto-body p {
+      margin: 0;
+      font-size: 0.94rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* Rodapé do manifesto */
+    .manifesto-footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 1.2rem 1rem 1.6rem;
+      background: rgba(0,0,0,0.6);
+      text-align: center;
+    }
+
+    .manifesto-footer-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .manifesto-footer-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 550;
+    }
+
+    .manifesto-footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* ============ RESPONSIVO ============ */
+    @media (max-width: 768px) {
+      .nav-toggle { display: inline-flex; }
+
+      nav ul {
+        display: none;
+        position: absolute;
+        right: 1.2rem;
+        top: 3rem;
+        flex-direction: column;
+        align-items: flex-end;
+        background: var(--bg-alt);
+        padding: 0.8rem 1rem;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-soft);
+      }
+      nav ul.nav-open { display: flex; }
+
+      .manifesto-container {
+        padding: 1.3rem 1.1rem 1.9rem;
+      }
+
+      .manifesto-section {
+        grid-template-columns: 1fr;
+      }
+
+      .manifesto-number {
+        margin-bottom: 0.1rem;
+      }
+
+      .manifesto-hero-inner {
+        padding: 1.5rem 1.3rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav-inner">
+    <div class="logo">
+      <a href="index.html">
+        <img src="logo.png" alt="NEGATIVO.mov — Hub mínimo nos meios">
+      </a>
+    </div>
+    <button class="nav-toggle" id="navToggle">menu</button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html">← Voltar à superfície principal</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="page manifesto-page">
+
+    <!-- Cabeçalho do manifesto -->
+    <section class="manifesto-hero">
+      <div class="manifesto-hero-inner">
+        <h1 class="manifesto-title">MANIFESTO NEGATIVO.mov</h1>
+        <p class="manifesto-subtitle">por Caio Gabriel</p>
+
+        <p class="manifesto-intro">
+          NEGATIVO.mov é uma máquina conceitual, estética e territorial. Esta página
+          recolhe o manifesto completo — em dez operações — para quem precisa ler
+          a forma teórica por trás do hub mínimo nos meios.
+        </p>
+      </div>
+    </section>
+
+    <!-- Corpo do manifesto -->
+    <section class="manifesto-container">
+
+      <!-- Bloco 1 -->
+      <article class="manifesto-section">
+        <div class="manifesto-number">1.</div>
+        <div class="manifesto-body">
+          <p>
+            NEGATIVO.mov nasce da convicção de que a cultura não pode mais ser tratada
+            como repertório morto, nem como espetáculo de circulação infinita.
+            A cultura, tal como a vivemos hoje, é um campo de forças onde fluxos
+            de matéria sensível, regimes de inscrição e dispositivos técnicos
+            competem pela possibilidade de produzir formas. Este manifesto apresenta
+            NEGATIVO.mov como uma máquina — conceitual, estética e territorial —
+            para operar essa disputa. Não se trata de representar o real, mas de
+            instaurar condições para que novas formas possam existir, ainda antes
+            de serem reconhecidas como arte, pensamento ou instituição.
+          </p>
+        </div>
+      </article>
+
+      <!-- Bloco 2 -->
+      <article class="manifesto-section">
+        <div class="manifesto-number">2.</div>
+        <div class="manifesto-body">
+          <p>
+            Toda forma que emerge é resultado de um encontro improvável entre fluxo
+            e repertório. O fluxo é a matéria indisciplinada, possibilidade bruta:
+            gestos, vozes, ruídos, timelines, neve digital, ziriguiduns, balacobacos,
+            frissons — uma turbulência anterior a qualquer inscrição. O repertório
+            é a fixação: arquivos, instituições, categorias, gramáticas, normas
+            culturais que tentam estabilizar o sensível. Da colisão entre esses dois
+            regimes surge o resto — não como sobra degradada, mas como aquilo que
+            resiste à captura, que insiste em não se inscrever, e que, por isso,
+            convoca novas operações estéticas; é desse ponto de resistência que se
+            supõem subjetividades. Nesse mesmo choque aparece também a formação
+            improvável — o Ser nascente — que, desde o seu primeiro instante,
+            começa a deslizar entropicamente para o repertório. NEGATIVO.mov opera
+            exatamente nesse intervalo: onde o resto se torna motor, e onde o que
+            a instituição vê como falha é justamente o índice do possível.
+          </p>
+        </div>
+      </article>
+
+      <!-- Bloco 3 -->
+      <article class="manifesto-section">
+        <div class="manifesto-number">3.</div>
+        <div class="manifesto-body">
+          <p>
+            Se o museu clássico foi uma máquina de estabilizar o tempo, o Museu do
+            Possível é uma máquina de o desestabilizar. É um museu-processo: um
+            ambiente que trata inscrições culturais como estados provisórios,
+            recombináveis, movidos por dados sintéticos, análises probabilísticas
+            e intervenções humanas mínimas. Em vez de conservar objetos, ele
+            conserva tensões. Em vez de propor narrativas lineares, ele expõe
+            zonas de indeterminação onde o visitante, o algoritmo e a língua
+            disputam lugares de fala. O museu deixa de ser caixa e torna-se campo.
+          </p>
+        </div>
+      </article>
+
+      <!-- Bloco 4 -->
+      <article class="manifesto-section">
+        <div class="manifesto-number">4.</div>
+        <div class="manifesto-body">
+          <p>
+            Cinema.triz expande essa operação para a dimensão audiovisual. Aqui, o
+            cinema não é a montagem de imagens, mas a fabricação de dispositivos
+            capazes de gerar estados. A câmera já não captura: ela inscreve.
+            O enredo já não narra: ele tensiona. A imagem já não representa: ela
+            media fluxos. O cineasta — figura aqui encarnada e deslocada por Manuel
+            Maninho — não dirige atores, mas aciona superfícies, espelhos, gestos,
+            interferências e mutações que permitem ao espectador sentir que o mundo
+            está sempre em risco de reorganização. Cinema.triz é cinema como máquina
+            de pensamento.
+          </p>
+        </div>
+      </article>
+
+      <!-- Bloco 5 -->
+      <article class="manifesto-section">
+        <div class="manifesto-number">5.</div>
+        <div class="manifesto-body">
+          <p>
+            Nesse ecossistema, a linguagem tem um papel duplo: é ferramenta e é
+            sintoma. A Gramática Improvável investiga como línguas minoritárias,
+            como o mirandês, podem criar novas formas de inscrição do mundo quando
+            submetidas a fluxos digitais, dados sintéticos e jogos combinatórios.
+            Não se trata de representar o mirandês, mas de ativar as condições para
+            que ele apareça de modos insuspeitos. Aqui, a língua não é patrimônio:
+            é laboratório. Cada estado gramatical é um ensaio ontológico.
+          </p>
+        </div>
+      </article>
+
+      <!-- Bloco 6 -->
+      <article class="manifesto-section">
+        <div class="manifesto-number">6.</div>
+        <div class="manifesto-body">
+          <p>
+            NEGATIVO.mov configura-se então como uma plataforma de máquinas culturais:
+            museus, cinemas, gramáticas, colunas, dispositivos que cruzam territórios,
+            técnicas e afetos. Cada máquina é autônoma, mas todas compartilham a
+            mesma força motora: produzir diferenças. A tarefa não é harmonizar o
+            mundo, mas amplificar o que nele insiste em não caber. Cada obra, cada
+            texto, cada algoritmo é tratado como superfície de inscrição parcial —
+            e é dessa parcialidade que emerge o possível.
+          </p>
+        </div>
+      </article>
+
+      <!-- Bloco 7 -->
+      <article class="manifesto-section">
+        <div class="manifesto-number">7.</div>
+        <div class="manifesto-body">
+          <p>
+            Essa operação exige uma estética materialista: não há ideias puras,
+            nem espírito fora da técnica. Toda forma é inseparável dos meios que
+            a tornam possível. As engrenagens do NEGATIVO.mov assumem esse vínculo
+            radical com a materialidade: o negativo fotográfico, os espelhos
+            distorcidos, os restos de pintura, o ruído digital, os arquivos
+            instáveis, as vozes que tremem, os dados que falham. Aqui, o erro não
+            corrige nada — ele abre caminho. A materialidade torna-se a primeira
+            filosofia.
+          </p>
+        </div>
+      </article>
+
+      <!-- Bloco 8 -->
+      <article class="manifesto-section">
+        <div class="manifesto-number">8.</div>
+        <div class="manifesto-body">
+          <p>
+            Ao mesmo tempo, NEGATIVO.mov é um gesto territorial. Nasce da Terra de
+            Miranda, não como folclore, mas como campo de experimentação. O território
+            é visto como uma mídia entre outras: uma superfície onde mitos, línguas,
+            políticas e técnicas se inscrevem. É dessa fricção entre local e global,
+            artesanal e sintético, campo e rede, que surgem subjetividades novas.
+            O projeto assume a responsabilidade de pensar o interior como laboratório
+            — e não como atraso.
+          </p>
+        </div>
+      </article>
+
+      <!-- Bloco 9 -->
+      <article class="manifesto-section">
+        <div class="manifesto-number">9.</div>
+        <div class="manifesto-body">
+          <p>
+            NEGATIVO.mov também é uma assinatura autoral. Como pensador, curador e
+            criador de dispositivos, assumo neste manifesto que a tarefa não é apenas
+            produzir obras, mas produzir condições para que outras obras possam existir.
+            O meu trabalho é maquínico: desenho sistemas, protocolos, gramáticas, modos
+            de ver e de escutar. O objetivo não é oferecer respostas, mas construir
+            aparatos que permitam que perguntas se transformem em formas sensíveis.
+            Ser autor, aqui, é ser engenheiro de possíveis.
+          </p>
+        </div>
+      </article>
+
+      <!-- Bloco 10 -->
+      <article class="manifesto-section">
+        <div class="manifesto-number">10.</div>
+        <div class="manifesto-body">
+          <p>
+            Por fim, NEGATIVO.mov apresenta-se como convite. A instituição cultural que
+            virá — seja museu, festival, arquivo, cinema ou escola — não será a repetição
+            do que conhecemos, mas a invenção de superfícies capazes de suportar a
+            instabilidade do presente. O possível não é futuro: é aquilo que insiste
+            agora, esperando forma. Este manifesto inaugura um campo. Quem entrar nele
+            não encontrará uma obra finalizada, mas uma máquina em movimento.
+            Uma máquina que cria mundos.
+          </p>
+        </div>
+      </article>
+
+    </section>
+
+  </div>
+</main>
+
+<footer class="manifesto-footer">
+  <div class="manifesto-footer-inner">
+    <p>Manifesto NEGATIVO.mov — por Caio Gabriel</p>
+    <p class="manifesto-footer-links">
+      <a href="index.html#museu-digital">Museu do Possível</a> ·
+      <a href="index.html#cinema-pobre">Cinema.triz</a> ·
+      <a href="index.html#ensaios">Gramática Improvável / Ensaios</a> ·
+      <a href="index.html">Superfície principal</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navList = document.getElementById('navList');
+
+  if (navToggle && navList) {
+    navToggle.addEventListener('click', () => {
+      navList.classList.toggle('nav-open');
+    });
+
+    navList.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navList.classList.remove('nav-open');
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
