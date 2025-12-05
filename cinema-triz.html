@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cinema.triz | repertório do pesadelo</title>
+
+  <style>
+    :root {
+      --bg: #050505;
+      --fg: #f5f5f5;
+      --accent: #f0b000;
+      --muted: #777777;
+      --border-soft: #222222;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    header {
+      margin-bottom: 1.5rem;
+    }
+
+    header h1 {
+      font-size: 1rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    header p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.35rem;
+      max-width: 32rem;
+      line-height: 1.4;
+    }
+
+    /* Grelha de vídeos */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-auto-rows: minmax(160px, 1fr);
+      gap: 0;
+      border: 1px solid var(--border-soft);
+      overflow: hidden;
+    }
+
+    .clip {
+      position: relative;
+      border-right: 1px solid var(--border-soft);
+      border-bottom: 1px solid var(--border-soft);
+      background: #000;
+      overflow: hidden;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(0.25) contrast(1.1);
+    }
+
+    .clip-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 15%, transparent 0%, rgba(0,0,0,0.25) 65%, rgba(0,0,0,0.85) 100%);
+      opacity: 0;
+      transition: opacity 0.25s ease-out;
+      pointer-events: none;
+    }
+
+    .clip:hover .clip-overlay {
+      opacity: 1;
+    }
+
+    .clip-label {
+      position: absolute;
+      left: 0.65rem;
+      bottom: 0.55rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(245, 245, 245, 0.78);
+      mix-blend-mode: screen;
+    }
+
+    .clip-label span {
+      padding: 0.15rem 0.4rem;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-block {
+      margin-top: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .playlist-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.65rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: linear-gradient(135deg, #111111, #060606);
+      color: var(--fg);
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-align: center;
+      gap: 0.4rem;
+    }
+
+    .playlist-btn::before {
+      content: "▶";
+      font-size: 0.75rem;
+      transform: translateY(1px);
+    }
+
+    .playlist-btn:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(240, 176, 0, 0.15);
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--muted);
+      max-width: 32rem;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding-inline: 0.75rem;
+      }
+
+      .grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        grid-auto-rows: minmax(120px, 1fr);
+      }
+
+      header p {
+        font-size: 0.78rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>cinema.triz</h1>
+      <p>repertório vivo de fragmentos — imagens que insistem em voltar antes de qualquer história.</p>
+    </header>
+
+    <section class="grid" aria-label="grelha de fragmentos em loop">
+      <!-- 01 – sono -->
+      <figure class="clip">
+        <video src="videos/cinema-triz/corte01.mp4"
+               autoplay
+               muted
+               loop
+               playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label">
+          <span>01 · sono</span>
+        </figcaption>
+      </figure>
+
+      <!-- 02 – silêncio -->
+      <figure class="clip">
+        <video src="videos/cinema-triz/corte02.mp4"
+               autoplay
+               muted
+               loop
+               playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label">
+          <span>02 · silêncio</span>
+        </figcaption>
+      </figure>
+
+      <!-- 03 – espanto -->
+      <figure class="clip">
+        <video src="videos/cinema-triz/corte03.mp4"
+               autoplay
+               muted
+               loop
+               playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label">
+          <span>03 · espanto</span>
+        </figcaption>
+      </figure>
+
+      <!-- 04 – trago -->
+      <figure class="clip">
+        <video src="videos/cinema-triz/corte04.mp4"
+               autoplay
+               muted
+               loop
+               playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label">
+          <span>04 · trago</span>
+        </figcaption>
+      </figure>
+
+      <!-- 05 – pílulas -->
+      <figure class="clip">
+        <video src="videos/cinema-triz/corte05.mp4"
+               autoplay
+               muted
+               loop
+               playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label">
+          <span>05 · pílulas</span>
+        </figcaption>
+      </figure>
+
+      <!-- 06 – injeção -->
+      <figure class="clip">
+        <video src="videos/cinema-triz/corte06.mp4"
+               autoplay
+               muted
+               loop
+               playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label">
+          <span>06 · injeção</span>
+        </figcaption>
+      </figure>
+
+      <!-- 07 – sinal -->
+      <figure class="clip">
+        <video src="videos/cinema-triz/corte07.mp4"
+               autoplay
+               muted
+               loop
+               playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label">
+          <span>07 · sinal</span>
+        </figcaption>
+      </figure>
+
+      <!-- 08 – atropelamento -->
+      <figure class="clip">
+        <video src="videos/cinema-triz/corte08.mp4"
+               autoplay
+               muted
+               loop
+               playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label">
+          <span>08 · atropelamento</span>
+        </figcaption>
+      </figure>
+
+      <!-- 09 – prisão -->
+      <figure class="clip">
+        <video src="videos/cinema-triz/corte09.mp4"
+               autoplay
+               muted
+               loop
+               playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label">
+          <span>09 · prisão</span>
+        </figcaption>
+      </figure>
+
+      <!-- 10 – facas -->
+      <figure class="clip">
+        <video src="videos/cinema-triz/corte10.mp4"
+               autoplay
+               muted
+               loop
+               playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label">
+          <span>10 · facas</span>
+        </figcaption>
+      </figure>
+
+      <!-- 11 – cornetas -->
+      <figure class="clip">
+        <video src="videos/cinema-triz/corte11.mp4"
+               autoplay
+               muted
+               loop
+               playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label">
+          <span>11 · cornetas</span>
+        </figcaption>
+      </figure>
+
+      <!-- 12 – tv -->
+      <figure class="clip">
+        <video src="videos/cinema-triz/corte12.mp4"
+               autoplay
+               muted
+               loop
+               playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label">
+          <span>12 · tv</span>
+        </figcaption>
+      </figure>
+
+      <!-- 13 – veia -->
+      <figure class="clip">
+        <video src="videos/cinema-triz/corte13.mp4"
+               autoplay
+               muted
+               loop
+               playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label">
+          <span>13 · veia</span>
+        </figcaption>
+      </figure>
+
+      <!-- 14 – sumo -->
+      <figure class="clip">
+        <video src="videos/cinema-triz/corte14.mp4"
+               autoplay
+               muted
+               loop
+               playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label">
+          <span>14 · sumo</span>
+        </figcaption>
+      </figure>
+
+      <!-- 15 – vidro (homem-espelho) -->
+      <figure class="clip">
+        <video src="videos/cinema-triz/corte15.mp4"
+               autoplay
+               muted
+               loop
+               playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label">
+          <span>15 · vidro</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="footer-block">
+      <a class="playlist-btn"
+         href="https://youtube.com/playlist?list=SEU_PLAYLIST_ID"
+         target="_blank"
+         rel="noopener noreferrer">
+        entrar no pesadelo em sequência
+      </a>
+
+      <p class="footer-copy">
+        <strong>cinema.triz</strong> é um arquivo de restos — fragmentos que
+        se repetem, falham, retornam. aqui só se vê o que insiste em aparecer,
+        antes de qualquer história. as histórias virão depois, nas legendas.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
