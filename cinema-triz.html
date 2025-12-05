@@ -21,13 +21,42 @@
     }
 
     body {
-      background: var(--bg);
-      color: var(--fg);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
+      position: relative;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      color: var(--fg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background:
+        radial-gradient(circle at top, #141414 0, #040404 40%, #000000 80%);
+      overflow-x: hidden;
+    }
+
+    /* textura negativa leve */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.04) 0,
+          rgba(255, 255, 255, 0.04) 1px,
+          transparent 1px,
+          transparent 3px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.25) 0,
+          rgba(0, 0, 0, 0.25) 2px,
+          transparent 2px,
+          transparent 4px
+        );
+      mix-blend-mode: soft-light;
+      opacity: 0.25;
+      z-index: -1;
     }
 
     main {
@@ -65,6 +94,7 @@
       gap: 0;
       border: 1px solid var(--border-soft);
       overflow: hidden;
+      background: #000;
     }
 
     .clip {
@@ -73,6 +103,7 @@
       border-bottom: 1px solid var(--border-soft);
       background: #000;
       overflow: hidden;
+      isolation: isolate;
     }
 
     video {
@@ -81,12 +112,33 @@
       object-fit: cover;
       display: block;
       filter: grayscale(0.25) contrast(1.1);
+      transition: filter 0.2s ease-out;
+    }
+
+    /* glitch no hover */
+    @keyframes glitchShift {
+      0%   { transform: translate(0, 0); }
+      20%  { transform: translate(-2px, 1px); }
+      40%  { transform: translate(2px, -1px); }
+      60%  { transform: translate(-1px, -2px); }
+      80%  { transform: translate(1px, 2px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    .clip:hover video {
+      animation: glitchShift 0.35s steps(2, end) infinite;
+      filter: grayscale(0.1) contrast(1.25);
     }
 
     .clip-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 15%, transparent 0%, rgba(0,0,0,0.25) 65%, rgba(0,0,0,0.85) 100%);
+      background: radial-gradient(
+        circle at 50% 15%,
+        transparent 0%,
+        rgba(0, 0, 0, 0.25) 65%,
+        rgba(0, 0, 0, 0.85) 100%
+      );
       opacity: 0;
       transition: opacity 0.25s ease-out;
       pointer-events: none;
@@ -112,6 +164,29 @@
       background: rgba(0, 0, 0, 0.6);
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* destaque do operador (vidro / Manuel Maninho) */
+    .clip--vidro {
+      outline: 1px solid rgba(240, 176, 0, 0.6);
+      box-shadow:
+        0 0 0 1px rgba(240, 176, 0, 0.35),
+        0 0 18px rgba(240, 176, 0, 0.18);
+    }
+
+    .clip--vidro::after {
+      content: "operador";
+      position: absolute;
+      top: 0.55rem;
+      right: 0.65rem;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 0.15rem 0.4rem;
+      background: rgba(0, 0, 0, 0.75);
+      border-radius: 999px;
+      border: 1px solid rgba(240, 176, 0, 0.7);
+      color: rgba(245, 245, 245, 0.9);
     }
 
     .footer-block {
@@ -182,37 +257,98 @@
 
     <section class="grid" aria-label="grelha de fragmentos em loop">
 
-      <!-- os 15 fragmentos -->
+      <!-- 15 fragmentos (a ordem inicial aqui é só base; o JS vai embaralhar) -->
 
-      <figure class="clip"><video src="videos/cinema-triz/sono.mp4" autoplay muted loop playsinline></video><div class="clip-overlay"></div><figcaption class="clip-label"><span>01 · sono</span></figcaption></figure>
+      <figure class="clip">
+        <video src="videos/cinema-triz/sono.mp4" autoplay muted loop playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label"><span>01 · sono</span></figcaption>
+      </figure>
 
-      <figure class="clip"><video src="videos/cinema-triz/silencio.mp4" autoplay muted loop playsinline></video><div class="clip-overlay"></div><figcaption class="clip-label"><span>02 · silêncio</span></figcaption></figure>
+      <figure class="clip">
+        <video src="videos/cinema-triz/silencio.mp4" autoplay muted loop playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label"><span>02 · silêncio</span></figcaption>
+      </figure>
 
-      <figure class="clip"><video src="videos/cinema-triz/espanto.mp4" autoplay muted loop playsinline></video><div class="clip-overlay"></div><figcaption class="clip-label"><span>03 · espanto</span></figcaption></figure>
+      <figure class="clip">
+        <video src="videos/cinema-triz/espanto.mp4" autoplay muted loop playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label"><span>03 · espanto</span></figcaption>
+      </figure>
 
-      <figure class="clip"><video src="videos/cinema-triz/trago.mp4" autoplay muted loop playsinline></video><div class="clip-overlay"></div><figcaption class="clip-label"><span>04 · trago</span></figcaption></figure>
+      <figure class="clip">
+        <video src="videos/cinema-triz/trago.mp4" autoplay muted loop playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label"><span>04 · trago</span></figcaption>
+      </figure>
 
-      <figure class="clip"><video src="videos/cinema-triz/pilulas.mp4" autoplay muted loop playsinline></video><div class="clip-overlay"></div><figcaption class="clip-label"><span>05 · pílulas</span></figcaption></figure>
+      <figure class="clip">
+        <video src="videos/cinema-triz/pilulas.mp4" autoplay muted loop playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label"><span>05 · pílulas</span></figcaption>
+      </figure>
 
-      <figure class="clip"><video src="videos/cinema-triz/injecao.mp4" autoplay muted loop playsinline></video><div class="clip-overlay"></div><figcaption class="clip-label"><span>06 · injeção</span></figcaption></figure>
+      <figure class="clip">
+        <video src="videos/cinema-triz/injecao.mp4" autoplay muted loop playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label"><span>06 · injeção</span></figcaption>
+      </figure>
 
-      <figure class="clip"><video src="videos/cinema-triz/sinal.mp4" autoplay muted loop playsinline></video><div class="clip-overlay"></div><figcaption class="clip-label"><span>07 · sinal</span></figcaption></figure>
+      <figure class="clip">
+        <video src="videos/cinema-triz/sinal.mp4" autoplay muted loop playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label"><span>07 · sinal</span></figcaption>
+      </figure>
 
-      <figure class="clip"><video src="videos/cinema-triz/atropelamento.mp4" autoplay muted loop playsinline></video><div class="clip-overlay"></div><figcaption class="clip-label"><span>08 · atropelamento</span></figcaption></figure>
+      <figure class="clip">
+        <video src="videos/cinema-triz/atropelamento.mp4" autoplay muted loop playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label"><span>08 · atropelamento</span></figcaption>
+      </figure>
 
-      <figure class="clip"><video src="videos/cinema-triz/prisao.mp4" autoplay muted loop playsinline></video><div class="clip-overlay"></div><figcaption class="clip-label"><span>09 · prisão</span></figcaption></figure>
+      <figure class="clip">
+        <video src="videos/cinema-triz/prisao.mp4" autoplay muted loop playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label"><span>09 · prisão</span></figcaption>
+      </figure>
 
-      <figure class="clip"><video src="videos/cinema-triz/facas.mp4" autoplay muted loop playsinline></video><div class="clip-overlay"></div><figcaption class="clip-label"><span>10 · facas</span></figcaption></figure>
+      <figure class="clip">
+        <video src="videos/cinema-triz/facas.mp4" autoplay muted loop playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label"><span>10 · facas</span></figcaption>
+      </figure>
 
-      <figure class="clip"><video src="videos/cinema-triz/cornetas.mp4" autoplay muted loop playsinline></video><div class="clip-overlay"></div><figcaption class="clip-label"><span>11 · cornetas</span></figcaption></figure>
+      <figure class="clip">
+        <video src="videos/cinema-triz/cornetas.mp4" autoplay muted loop playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label"><span>11 · cornetas</span></figcaption>
+      </figure>
 
-      <figure class="clip"><video src="videos/cinema-triz/tv.mp4" autoplay muted loop playsinline></video><div class="clip-overlay"></div><figcaption class="clip-label"><span>12 · tv</span></figcaption></figure>
+      <figure class="clip">
+        <video src="videos/cinema-triz/tv.mp4" autoplay muted loop playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label"><span>12 · tv</span></figcaption>
+      </figure>
 
-      <figure class="clip"><video src="videos/cinema-triz/veia.mp4" autoplay muted loop playsinline></video><div class="clip-overlay"></div><figcaption class="clip-label"><span>13 · veia</span></figcaption></figure>
+      <figure class="clip">
+        <video src="videos/cinema-triz/veia.mp4" autoplay muted loop playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label"><span>13 · veia</span></figcaption>
+      </figure>
 
-      <figure class="clip"><video src="videos/cinema-triz/sumo.mp4" autoplay muted loop playsinline></video><div class="clip-overlay"></div><figcaption class="clip-label"><span>14 · sumo</span></figcaption></figure>
+      <figure class="clip">
+        <video src="videos/cinema-triz/sumo.mp4" autoplay muted loop playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label"><span>14 · sumo</span></figcaption>
+      </figure>
 
-      <figure class="clip"><video src="videos/cinema-triz/vidro.mp4" autoplay muted loop playsinline></video><div class="clip-overlay"></div><figcaption class="clip-label"><span>15 · vidro</span></figcaption></figure>
+      <!-- operador (Manuel Maninho / vidro) -->
+      <figure class="clip clip--vidro">
+        <video src="videos/cinema-triz/vidro.mp4" autoplay muted loop playsinline></video>
+        <div class="clip-overlay"></div>
+        <figcaption class="clip-label"><span>15 · vidro</span></figcaption>
+      </figure>
 
     </section>
 
@@ -230,7 +366,22 @@
         antes de qualquer história. as histórias virão depois, nas legendas.
       </p>
     </section>
-
   </main>
+
+  <!-- embaralhar ordem dos fragmentos a cada reload -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const grid = document.querySelector(".grid");
+      if (!grid) return;
+
+      const clips = Array.from(grid.children);
+      const shuffled = clips
+        .map(el => ({ el, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(obj => obj.el);
+
+      shuffled.forEach(el => grid.appendChild(el));
+    });
+  </script>
 </body>
 </html>
