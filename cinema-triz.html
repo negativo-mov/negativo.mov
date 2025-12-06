@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt">
 <head>
   <meta charset="UTF-8" />
+  <title>cinema.triz — repertório do pesadelo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cinema.triz | repertório do pesadelo</title>
-
   <style>
     :root {
-      --bg: #050505;
+      --bg: #02040a;
       --fg: #f5f5f5;
-      --accent: #f0b000;
-      --muted: #777777;
-      --border-soft: #222222;
+      --accent: #ff3366;
+      --muted: #888;
+      --tile-border: #444;
+      --operator-border: #ffeb3b;
     }
 
     * {
@@ -20,393 +20,382 @@
       padding: 0;
     }
 
+    html, body {
+      height: 100%;
+    }
+
     body {
-      position: relative;
-      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, sans-serif;
+      background: radial-gradient(circle at top, #151515 0, #02040a 55%, #000 100%);
+      color: var(--fg);
       display: flex;
       flex-direction: column;
-      color: var(--fg);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-      background:
-        radial-gradient(circle at top, #141414 0, #040404 40%, #000000 80%);
+      min-height: 100vh;
+      position: relative;
       overflow-x: hidden;
     }
 
-    /* textura negativa leve */
+    /* textura de negativo suave */
     body::before {
       content: "";
       position: fixed;
-      inset: 0;
+      inset: -20px;
       pointer-events: none;
-      background:
+      background-image:
         repeating-linear-gradient(
           0deg,
-          rgba(255, 255, 255, 0.04) 0,
-          rgba(255, 255, 255, 0.04) 1px,
+          rgba(255, 255, 255, 0.03) 0px,
+          rgba(255, 255, 255, 0.03) 1px,
           transparent 1px,
           transparent 3px
-        ),
-        repeating-linear-gradient(
-          90deg,
-          rgba(0, 0, 0, 0.25) 0,
-          rgba(0, 0, 0, 0.25) 2px,
-          transparent 2px,
-          transparent 4px
         );
-      mix-blend-mode: soft-light;
-      opacity: 0.25;
-      z-index: -1;
+      mix-blend-mode: screen;
+      opacity: 0.5;
+      z-index: 0;
     }
 
-    /* --- CABEÇALHO --- */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      width: 100%;
-      padding: 0.5rem 1rem;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(6px);
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid #111;
-    }
-
-    .topbar-logo {
-      height: 28px;
-      opacity: 0.9;
-      transition: opacity 0.2s ease-out;
-    }
-
-    .topbar-logo:hover {
-      opacity: 1;
-    }
-
-    main {
-      width: 100%;
+    .page {
+      position: relative;
+      z-index: 1;
       max-width: 1200px;
+      width: 100%;
       margin: 0 auto;
-      padding: 1.5rem 1rem 3rem;
+      padding: 1.5rem 1.25rem 3rem;
     }
 
     header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
       margin-bottom: 1.5rem;
     }
 
-    header h1 {
-      font-size: 1rem;
-      letter-spacing: 0.18em;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--fg);
+    }
+
+    .brand img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-text span:first-child {
+      font-size: 0.8rem;
       text-transform: uppercase;
+      letter-spacing: 0.15em;
       color: var(--muted);
-      font-weight: 500;
     }
 
-    header p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-top: 0.35rem;
-      max-width: 32rem;
-      line-height: 1.4;
+    .brand-text span:last-child {
+      font-size: 1rem;
+      font-weight: 600;
     }
 
-    /* Grelha de vídeos */
+    .back-link {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      text-decoration: none;
+      color: var(--muted);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      transition: all 140ms ease-out;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(4px);
+    }
+
+    .back-link:hover {
+      color: var(--fg);
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-1px);
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .intro {
+      max-width: 720px;
+    }
+
+    .intro h1 {
+      font-size: 1.75rem;
+      text-transform: lowercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.35rem;
+    }
+
+    .intro h2 {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-bottom: 0.85rem;
+    }
+
+    .intro p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #d4d4d4;
+    }
+
+    .intro p + p {
+      margin-top: 0.4rem;
+    }
+
     .grid {
+      margin-top: 1.5rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      grid-auto-rows: minmax(160px, 1fr);
-      gap: 0;
-      border: 1px solid var(--border-soft);
-      overflow: hidden;
-      background: #000;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.25rem;
     }
 
-    .clip {
+    .tile {
       position: relative;
-      border-right: 1px solid var(--border-soft);
-      border-bottom: 1px solid var(--border-soft);
-      background: #000;
+      border-radius: 0.6rem;
       overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: radial-gradient(circle at 0 0, #333 0, #050505 40%, #000 100%);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.8),
+        0 18px 30px rgba(0, 0, 0, 0.75);
       isolation: isolate;
+      cursor: pointer;
+      transform: translateZ(0);
+      transition:
+        transform 120ms ease-out,
+        box-shadow 120ms ease-out,
+        border-color 120ms ease-out;
     }
 
-    video {
+    .tile--operator {
+      border-color: var(--operator-border);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.8),
+        0 0 18px rgba(255, 235, 59, 0.75);
+    }
+
+    .tile video {
       width: 100%;
-      height: 100%;
+      height: 160px;
       object-fit: cover;
       display: block;
-      filter: grayscale(0.25) contrast(1.1);
-      transition: filter 0.2s ease-out;
+      filter: contrast(1.15) brightness(0.96);
+      mix-blend-mode: screen;
+      transform-origin: center;
+      transition:
+        filter 120ms ease-out,
+        transform 120ms ease-out;
     }
 
-    /* glitch no hover */
-    @keyframes glitchShift {
-      0%   { transform: translate(0, 0); }
-      20%  { transform: translate(-2px, 1px); }
-      40%  { transform: translate(2px, -1px); }
-      60%  { transform: translate(-1px, -2px); }
-      80%  { transform: translate(1px, 2px); }
-      100% { transform: translate(0, 0); }
+    .tile figcaption {
+      position: absolute;
+      left: 0.55rem;
+      bottom: 0.4rem;
+      padding: 0.1rem 0.5rem 0.15rem;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
+      font-size: 0.72rem;
+      text-transform: lowercase;
+      letter-spacing: 0.16em;
+      color: var(--fg);
+      border: 1px solid rgba(255, 255, 255, 0.16);
     }
 
-    .clip:hover video {
-      animation: glitchShift 0.35s steps(2, end) infinite;
-      filter: grayscale(0.1) contrast(1.25);
+    .tile--operator figcaption {
+      border-color: var(--operator-border);
+      color: #fffde7;
     }
 
-    .clip-overlay {
+    .tile::after {
+      content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(
-        circle at 50% 15%,
-        transparent 0%,
-        rgba(0, 0, 0, 0.25) 65%,
-        rgba(0, 0, 0, 0.85) 100%
-      );
+      mix-blend-mode: screen;
+      background-image:
+        linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.16) 0,
+          transparent 40%,
+          transparent 60%,
+          rgba(255, 255, 255, 0.18) 100%
+        );
       opacity: 0;
-      transition: opacity 0.25s ease-out;
       pointer-events: none;
+      transition: opacity 160ms ease-out;
     }
 
-    .clip:hover .clip-overlay {
-      opacity: 1;
+    .tile:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.8),
+        0 24px 40px rgba(0, 0, 0, 0.95);
+      border-color: rgba(255, 255, 255, 0.3);
     }
 
-    .clip-label {
-      position: absolute;
-      left: 0.65rem;
-      bottom: 0.55rem;
+    .tile:hover::after {
+      opacity: 0.22;
+      animation: glitch-scan 420ms linear infinite alternate;
+    }
+
+    .tile:hover video {
+      filter: contrast(1.3) saturate(1.1);
+      transform: scale(1.03);
+    }
+
+    @keyframes glitch-scan {
+      0% {
+        clip-path: polygon(0 0, 100% 0, 100% 20%, 0 18%);
+      }
+      25% {
+        clip-path: polygon(0 40%, 100% 42%, 100% 70%, 0 68%);
+      }
+      50% {
+        clip-path: polygon(0 10%, 100% 12%, 100% 30%, 0 28%);
+      }
+      75% {
+        clip-path: polygon(0 60%, 100% 62%, 100% 100%, 0 100%);
+      }
+      100% {
+        clip-path: polygon(0 30%, 100% 30%, 100% 52%, 0 50%);
+      }
+    }
+
+    footer {
+      margin-top: 2.5rem;
       font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: rgba(245, 245, 245, 0.78);
-      mix-blend-mode: screen;
-    }
-
-    .clip-label span {
-      padding: 0.15rem 0.4rem;
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    /* destaque do operador (vidro / Manuel Maninho) */
-    .clip--vidro {
-      outline: 1px solid rgba(240, 176, 0, 0.6);
-      box-shadow:
-        0 0 0 1px rgba(240, 176, 0, 0.35),
-        0 0 18px rgba(240, 176, 0, 0.18);
-    }
-
-    .clip--vidro::after {
-      content: "operador";
-      position: absolute;
-      top: 0.55rem;
-      right: 0.65rem;
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      padding: 0.15rem 0.4rem;
-      background: rgba(0, 0, 0, 0.75);
-      border-radius: 999px;
-      border: 1px solid rgba(240, 176, 0, 0.7);
-      color: rgba(245, 245, 245, 0.9);
-    }
-
-    .footer-block {
-      margin-top: 1.75rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .playlist-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.65rem 1.4rem;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      background: linear-gradient(135deg, #111111, #060606);
-      color: var(--fg);
-      font-size: 0.8rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      text-decoration: none;
-      text-align: center;
-      gap: 0.4rem;
-    }
-
-    .playlist-btn::before {
-      content: "▶";
-      font-size: 0.75rem;
-      transform: translateY(1px);
-    }
-
-    .playlist-btn:hover {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(240, 176, 0, 0.15);
-    }
-
-    .footer-copy {
-      font-size: 0.75rem;
       color: var(--muted);
-      max-width: 32rem;
-      line-height: 1.4;
+      opacity: 0.85;
     }
 
-    @media (max-width: 768px) {
-      main {
-        padding-inline: 0.75rem;
-      }
+    footer span {
+      opacity: 0.9;
+    }
 
+    @media (max-width: 640px) {
+      .intro h1 {
+        font-size: 1.45rem;
+      }
+      .intro h2 {
+        font-size: 0.85rem;
+      }
       .grid {
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        grid-auto-rows: minmax(120px, 1fr);
+        gap: 1rem;
       }
-
-      header p {
-        font-size: 0.78rem;
+      .tile video {
+        height: 140px;
       }
     }
   </style>
 </head>
-
 <body>
-  <!-- CABEÇALHO -->
-  <div class="topbar">
-    <a href="index.html">
-      <img class="topbar-logo" src="logo.png" alt="NEGATIVO.mov" />
-    </a>
-  </div>
-
-  <main>
+  <div class="page">
     <header>
-      <h1>cinema.triz</h1>
-      <p>repertório vivo de fragmentos — imagens que insistem em voltar antes de qualquer história.</p>
+      <a class="brand" href="index.html">
+        <img src="negativo-logo-branco.png" alt="NEGATIVO.mov" />
+        <div class="brand-text">
+          <span>negativo.mov</span>
+          <span>cinema.triz</span>
+        </div>
+      </a>
+      <a class="back-link" href="index.html">← voltar ao negativo.mov</a>
     </header>
 
-    <section class="grid" aria-label="grelha de fragmentos em loop">
-      <figure class="clip">
-        <video src="videos/cinema-triz/sono.mp4" autoplay muted loop playsinline></video>
-        <div class="clip-overlay"></div>
-        <figcaption class="clip-label"><span>01 · sono</span></figcaption>
-      </figure>
+    <main>
+      <section class="intro">
+        <h1>cinema.triz</h1>
+        <h2>repertório de pesadelo em negativo permanente</h2>
+        <p>
+          fragmentos curtos, restos audiovisuais, recortes de arquivo e desastres
+          domésticos — um tabuleiro em que o pesadelo se embaralha a cada visita.
+        </p>
+        <p>
+          cada quadrado é uma letra em movimento: insiste, retorna, falha. aqui
+          não há filme pronto, só matéria para filmes que ainda não sabem que
+          existem.
+        </p>
+      </section>
 
-      <figure class="clip">
-        <video src="videos/cinema-triz/silencio.mp4" autoplay muted loop playsinline></video>
-        <div class="clip-overlay"></div>
-        <figcaption class="clip-label"><span>02 · silêncio</span></figcaption>
-      </figure>
+      <section class="grid" id="grid"></section>
 
-      <figure class="clip">
-        <video src="videos/cinema-triz/espanto.mp4" autoplay muted loop playsinline></video>
-        <div class="clip-overlay"></div>
-        <figcaption class="clip-label"><span>03 · espanto</span></figcaption>
-      </figure>
+      <footer>
+        <span>cinema.triz · dispositivo audiovisual do negativo.mov · grelha em fluxo aleatório</span>
+      </footer>
+    </main>
+  </div>
 
-      <figure class="clip">
-        <video src="videos/cinema-triz/trago.mp4" autoplay muted loop playsinline></video>
-        <div class="clip-overlay"></div>
-        <figcaption class="clip-label"><span>04 · trago</span></figcaption>
-      </figure>
-
-      <figure class="clip">
-        <video src="videos/cinema-triz/pilulas.mp4" autoplay muted loop playsinline></video>
-        <div class="clip-overlay"></div>
-        <figcaption class="clip-label"><span>05 · pílulas</span></figcaption>
-      </figure>
-
-      <figure class="clip">
-        <video src="videos/cinema-triz/injecao.mp4" autoplay muted loop playsinline></video>
-        <div class="clip-overlay"></div>
-        <figcaption class="clip-label"><span>06 · injeção</span></figcaption>
-      </figure>
-
-      <figure class="clip">
-        <video src="videos/cinema-triz/sinal.mp4" autoplay muted loop playsinline></video>
-        <div class="clip-overlay"></div>
-        <figcaption class="clip-label"><span>07 · sinal</span></figcaption>
-      </figure>
-
-      <figure class="clip">
-        <video src="videos/cinema-triz/atropelamento.mp4" autoplay muted loop playsinline></video>
-        <div class="clip-overlay"></div>
-        <figcaption class="clip-label"><span>08 · atropelamento</span></figcaption>
-      </figure>
-
-      <figure class="clip">
-        <video src="videos/cinema-triz/prisao.mp4" autoplay muted loop playsinline></video>
-        <div class="clip-overlay"></div>
-        <figcaption class="clip-label"><span>09 · prisão</span></figcaption>
-      </figure>
-
-      <figure class="clip">
-        <video src="videos/cinema-triz/facas.mp4" autoplay muted loop playsinline></video>
-        <div class="clip-overlay"></div>
-        <figcaption class="clip-label"><span>10 · facas</span></figcaption>
-      </figure>
-
-      <figure class="clip">
-        <video src="videos/cinema-triz/cornetas.mp4" autoplay muted loop playsinline></video>
-        <div class="clip-overlay"></div>
-        <figcaption class="clip-label"><span>11 · cornetas</span></figcaption>
-      </figure>
-
-      <figure class="clip">
-        <video src="videos/cinema-triz/tv.mp4" autoplay muted loop playsinline></video>
-        <div class="clip-overlay"></div>
-        <figcaption class="clip-label"><span>12 · tv</span></figcaption>
-      </figure>
-
-      <figure class="clip">
-        <video src="videos/cinema-triz/veia.mp4" autoplay muted loop playsinline></video>
-        <div class="clip-overlay"></div>
-        <figcaption class="clip-label"><span>13 · veia</span></figcaption>
-      </figure>
-
-      <figure class="clip">
-        <video src="videos/cinema-triz/sumo.mp4" autoplay muted loop playsinline></video>
-        <div class="clip-overlay"></div>
-        <figcaption class="clip-label"><span>14 · sumo</span></figcaption>
-      </figure>
-
-      <figure class="clip clip--vidro">
-        <video src="videos/cinema-triz/vidro.mp4" autoplay muted loop playsinline></video>
-        <div class="clip-overlay"></div>
-        <figcaption class="clip-label"><span>15 · vidro</span></figcaption>
-      </figure>
-    </section>
-
-    <section class="footer-block">
-      <a class="playlist-btn"
-         href="https://youtube.com/playlist?list=SEU_PLAYLIST_ID"
-         target="_blank"
-         rel="noopener noreferrer">
-        entrar no pesadelo em sequência
-      </a>
-
-      <p class="footer-copy">
-        <strong>cinema.triz</strong> é um arquivo de restos — fragmentos que
-        se repetem, falham, retornam. aqui só se vê o que insiste em aparecer,
-        antes de qualquer história. as histórias virão depois, nas legendas.
-      </p>
-    </section>
-  </main>
-
-  <!-- embaralhar ordem dos fragmentos a cada reload -->
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const grid = document.querySelector(".grid");
-      if (!grid) return;
+    const fragments = [
+      { id: "sono", file: "corte01.mp4", label: "sono" },
+      { id: "silencio", file: "corte02.mp4", label: "silêncio" },
+      { id: "espanto", file: "corte03.mp4", label: "espanto" },
+      { id: "trago", file: "corte04.mp4", label: "trago" },
+      { id: "pilulas", file: "corte05.mp4", label: "pílulas" },
+      { id: "injecao", file: "corte06.mp4", label: "injeção" },
+      { id: "sinal", file: "corte07.mp4", label: "sinal" },
+      { id: "atropelamento", file: "corte08.mp4", label: "atropelamento" },
+      { id: "prisao", file: "corte09.mp4", label: "prisão" },
+      { id: "facas", file: "corte10.mp4", label: "facas" },
+      { id: "cornetas", file: "corte11.mp4", label: "cornetas" },
+      { id: "tv", file: "corte12.mp4", label: "tv" },
+      { id: "veia", file: "corte13.mp4", label: "veia" },
+      { id: "sumo", file: "corte14.mp4", label: "sumo" },
+      { id: "vidro", file: "corte15.mp4", label: "vidro" },
 
-      const clips = Array.from(grid.children);
-      const shuffled = clips
-        .map(el => ({ el, sort: Math.random() }))
-        .sort((a, b) => a.sort - b.sort)
-        .map(obj => obj.el);
+      // novos 5 fragmentos
+      { id: "car-regar", file: "car-regar.mp4", label: "car-regar" },
+      { id: "car-tografar", file: "car-tografar.mp4", label: "car-tografar" },
+      { id: "a-cidade-e-ascetas", file: "a-cidade-e-ascetas.mp4", label: "a cidade e ascetas" },
+      { id: "ob-scedar", file: "ob-scedar.mp4", label: "ob-scedar" },
+      { id: "perra", file: "perra.mp4", label: "perra" }
+    ];
 
-      shuffled.forEach(el => grid.appendChild(el));
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    const grid = document.getElementById("grid");
+    const shuffled = shuffle([...fragments]);
+
+    shuffled.forEach((frag) => {
+      const figure = document.createElement("figure");
+      figure.className = "tile" + (frag.id === "vidro" ? " tile--operator" : "");
+
+      const video = document.createElement("video");
+      video.src = `videos/cinema-triz/${frag.file}`;
+      video.autoplay = true;
+      video.loop = true;
+      video.muted = true;
+      video.playsInline = true;
+
+      const caption = document.createElement("figcaption");
+      caption.textContent = frag.label;
+
+      figure.appendChild(video);
+      figure.appendChild(caption);
+      grid.appendChild(figure);
     });
   </script>
 </body>
