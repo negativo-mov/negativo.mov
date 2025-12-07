@@ -2,101 +2,92 @@
 <html lang="pt-PT">
 <head>
   <meta charset="UTF-8">
-  <title>NEGATIVO.mov — Hub mínimo nos meios</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="NEGATIVO.mov — projeto cultural transmontano-luso-brasileiro. Cultura inscrita como fluxo vivo. Obras existem antes do público, e o possível circula em Terra de Miranda.">
-  <meta name="robots" content="index,follow">
-  <meta name="keywords" content="NEGATIVO.mov, NEGATIVO mov, Terra de Miranda, Miranda do Douro, Trás-os-Montes, cinema pobre, cinema.triz, museu digital, museu do possível, hub cultural digital, MVP cultura fluxo vivo, projeto cultural transmontano, cultura como fluxo vivo, Caio Eduardo Gabriel, mediação cultural, ensaio filosófico, cinema experimental, ontologia estética materialista, fluxo e repertório, midialogia aplicada, midialogia territorial, polifonia midial, formas improváveis, estética do negativo, interior português em fluxo.">
+  <title>NEGATIVO.mov — Hub mínimo nos meios. Radical nas consequências.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Open Graph / Social -->
-  <meta property="og:locale" content="pt_PT">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="NEGATIVO.mov — Hub mínimo nos meios">
-  <meta property="og:description" content="Hub mínimo nos meios. Radical nas consequências. Cultura como fluxo vivo antes do público.">
-  <meta property="og:url" content="https://negativo-mov.github.io/negativo.mov/">
-  <meta property="og:site_name" content="NEGATIVO.mov">
-  <meta property="og:image" content="https://negativo-mov.github.io/negativo.mov/logo.png">
+  <!-- META DESCRIPTION PARA SEO -->
+  <meta name="description" content="NEGATIVO.mov — Hub mínimo nos meios, radical nas consequências. Superfície de inscrição do possível em Terra de Miranda: cinema.triz, museu digital, colunistas, ensaios e experimentos visuais em fluxo vivo.">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="NEGATIVO.mov — Hub mínimo nos meios">
-  <meta name="twitter:description" content="Hub mínimo nos meios. Radical nas consequências. Cultura como fluxo vivo antes do público.">
-  <meta name="twitter:image" content="https://negativo-mov.github.io/negativo.mov/logo.png">
-
-  <!-- Canonical & sitemap -->
-  <link rel="canonical" href="https://negativo-mov.github.io/negativo.mov/">
-  <link rel="sitemap" type="application/xml" href="https://negativo-mov.github.io/negativo.mov/sitemap.xml">
+  <!-- FAVICON BÁSICO (opcional, se tiveres o ficheiro) -->
+  <!-- <link rel="icon" href="favicon.png" type="image/png"> -->
 
   <style>
-    /* ============ PALETA NEGATIVO.mov ============ */
     :root {
-      --bg: #050201;
-      --bg-alt: #1b0703;
-      --fg: #f9f8f4;
-      --muted: #d2c7c0;
+      --bg: #050608;
+      --bg-alt: #0a0b0f;
+      --fg: #f7f7f7;
+      --muted: #a3a3a3;
       --accent: #8ceb60;
-      --accent-2: #ff5a00;
-
-      --border: #3b1c10;
-      --shadow-soft: 0 18px 40px rgba(0,0,0,0.75);
+      --accent-warm: #ff5a00;
+      --border: rgba(255,255,255,0.12);
       --radius-lg: 18px;
-      --radius-xl: 26px;
-      --max-width: 1080px;
+      --radius-xl: 22px;
+      --radius-pill: 999px;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
 
-    * { box-sizing: border-box; }
-
-    html, body {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      scroll-behavior: smooth;
     }
 
     body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      background: radial-gradient(circle at top, #101018 0%, #02030a 55%, #000000 100%);
       color: var(--fg);
-      position: relative;
-      overflow-x: hidden;
-
-      background-image:
-        radial-gradient(circle at top, rgba(255,90,0,0.22) 0, transparent 55%),
-        radial-gradient(circle at bottom right, rgba(140,235,96,0.06) 0, transparent 55%),
-        url("film-strip.jpg");
-      background-size: 140% 140%, 120% 120%, cover;
-      background-position: top left, bottom right, center;
-      background-repeat: no-repeat, no-repeat, no-repeat;
-      background-attachment: scroll, scroll, fixed;
-      background-color: #140305;
-      background-blend-mode: normal, normal, soft-light;
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+      line-height: 1.6;
     }
 
     a {
       color: var(--accent);
       text-decoration: none;
-      font-weight: 550;
     }
-    a:hover { text-decoration: underline; }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* LAYOUT PRINCIPAL */
+    .page {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 1.4rem 1.1rem 3rem;
+    }
+
+    @media (min-width: 900px) {
+      .page {
+        padding: 1.8rem 1.6rem 4rem;
+      }
+    }
 
     header {
       position: sticky;
       top: 0;
-      z-index: 50;
-      background: rgba(5,2,1,0.9);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      padding: 0.6rem 1.2rem;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(5,6,8,0.96), rgba(5,6,8,0.86), transparent);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    .nav-inner {
-      max-width: var(--max-width);
+    .header-inner {
+      max-width: 1140px;
       margin: 0 auto;
+      padding: 0.6rem 1.1rem 0.4rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 1rem;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
     }
 
     .logo img {
@@ -111,194 +102,331 @@
       color: var(--fg);
       border: 1px solid var(--border);
       border-radius: 999px;
-      padding: 0.35rem 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-size: 0.78rem;
+      padding: 0.35rem 0.7rem;
+      font-size: 0.85rem;
       cursor: pointer;
-      box-shadow: 0 0 22px rgba(255,90,0,0.55);
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 1rem;
-      margin: 0;
-      padding: 0;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+      gap: 0.8rem;
       font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
     }
-    nav li a {
+
+    nav a {
       color: var(--muted);
-      font-weight: 550;
-    }
-    nav li a:hover {
-      color: var(--fg);
+      padding: 0.15rem 0.35rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
       text-decoration: none;
     }
 
-    .page {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 1.2rem 1.2rem 4rem;
+    nav a:hover {
+      color: var(--accent);
+      border-color: rgba(140,235,96,0.4);
+      background: rgba(5,10,3,0.6);
     }
 
-    section {
-      margin-top: 2.4rem;
-    }
-
-    .section-header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-    }
-    .section-kicker {
-      text-transform: uppercase;
+    .logo-text-main {
+      font-size: 1rem;
       letter-spacing: 0.18em;
-      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .logo-text-sub {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       color: var(--muted);
     }
-    .section-title {
-      margin: 0.1rem 0;
-      font-size: 1.2rem;
-      color: var(--accent-2);
-      text-shadow: 0 0 14px rgba(255,90,0,0.7);
+
+    @media (max-width: 780px) {
+      nav ul {
+        display: none;
+        position: absolute;
+        right: 1.1rem;
+        top: 3.1rem;
+        background: rgba(3,4,8,0.97);
+        padding: 0.6rem 0.8rem;
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.12);
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow:
+          0 10px 30px rgba(0,0,0,0.7),
+          0 0 0 1px rgba(255,255,255,0.05);
+      }
+
+      nav ul.nav-open {
+        display: flex;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+      }
     }
 
-    /* ============ HERO ============ */
+    /* HERO */
     .hero {
       display: grid;
-      grid-template-columns: 2fr 1.2fr;
+      grid-template-columns: minmax(0,2.1fr) minmax(0,1.6fr);
       gap: 1.6rem;
-      padding: 2.1rem 0 0.8rem;
       margin-top: 1.4rem;
+      padding: 1.6rem 1.4rem;
+      background:
+        radial-gradient(circle at top left, rgba(140,235,96,0.15), transparent 58%),
+        radial-gradient(circle at top right, rgba(255,90,0,0.12), transparent 60%),
+        linear-gradient(135deg, rgba(5,6,10,0.98), rgba(4,5,12,0.98));
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow:
+        0 0 40px rgba(140,235,96,0.7),
+        0 0 60px rgba(255,90,0,0.5);
     }
 
-    .hero-left {
-      padding: 1.7rem 1.8rem;
-      background: rgba(16,6,3,0.72);
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .hero-title {
-      font-size: clamp(2rem,4vw,2.8rem);
-      line-height: 1.12;
-      margin: 0 0 0.7rem;
-      font-weight: 700;
-    }
-
-    .hero-title-main {
-      color: var(--fg);
-      text-shadow: 0 0 14px rgba(0,0,0,0.6);
-    }
-
-    .hero-mov-link a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-left: 0.4rem;
-      padding: 0.26rem 0.7rem;
-      border-radius: 999px;
-      background: var(--accent);
-      color: var(--bg);
-      font-size: 0.8rem;
-      letter-spacing: 0.18em;
+    .hero-main-title {
+      font-size: clamp(1.85rem, 2.4vw, 2.3rem);
+      line-height: 1.25;
       text-transform: uppercase;
-      text-decoration: none;
-      box-shadow:
-        0 0 22px rgba(140,235,96,0.95),
-        0 0 38px rgba(255,255,255,0.2);
-      border: 1px solid rgba(255,255,255,0.35);
+      letter-spacing: 0.16em;
+      margin-bottom: 0.7rem;
     }
 
-    .hero-mov-link a:hover {
-      box-shadow:
-        0 0 30px rgba(140,235,96,1),
-        0 0 46px rgba(255,255,255,0.3);
-      transform: translateY(-1px);
+    .hero-main-title span {
+      color: var(--accent);
+      text-shadow: 0 0 12px rgba(140,235,96,0.9);
     }
 
     .hero-subtitle {
-      font-size: 0.95rem;
-      max-width: 32rem;
+      font-size: 0.9rem;
+      max-width: 34rem;
       color: var(--muted);
-      margin-bottom: 1.4rem;
+      margin-bottom: 0.8rem;
     }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 0.4rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .btn {
+    .hero-badge {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 0.55rem 1.05rem;
-      border-radius: 999px;
-      font-size: 0.86rem;
+      gap: 0.3rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-weight: 650;
-      box-shadow:
-        0 0 28px rgba(140,235,96,0.7),
-        0 0 45px rgba(255,90,0,0.4);
-      border: 1px solid rgba(255,255,255,0.35);
-      cursor: pointer;
-      margin-right: 0.4rem;
-      margin-bottom: 0.6rem;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: var(--bg);
-      text-shadow: 0 0 12px rgba(0,0,0,0.7);
-    }
-    .btn-secondary {
-      background: var(--accent-2);
-      color: var(--bg);
-      text-shadow: 0 0 12px rgba(0,0,0,0.7);
+      letter-spacing: 0.14em;
+      padding: 0.16rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.26);
+      background: rgba(0,0,0,0.6);
+      margin-bottom: 0.9rem;
     }
 
-    .btn:hover {
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(140,235,96,0.9);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0,1.2fr) minmax(0,1.1fr);
+      gap: 0.9rem;
+      font-size: 0.84rem;
+    }
+
+    .hero-block {
+      background: rgba(4,5,12,0.96);
+      border-radius: 16px;
+      padding: 0.85rem 0.9rem;
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 0 26px rgba(0,0,0,0.8);
+    }
+
+    .hero-block h3 {
+      font-size: 0.83rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 0.3rem;
+      color: var(--muted);
+    }
+
+    .hero-block p {
+      color: #d5d5d5;
+    }
+
+    .hero-right {
+      display: grid;
+      grid-template-rows: auto auto;
+      gap: 0.9rem;
+    }
+
+    .hero-manifesto {
+      background:
+        radial-gradient(circle at top, rgba(140,235,96,0.4), transparent 60%),
+        linear-gradient(135deg, #050607, #02030a);
+      border-radius: 16px;
+      padding: 0.9rem 0.95rem;
+      border: 1px solid rgba(140,235,96,0.6);
       box-shadow:
-        0 0 32px rgba(140,235,96,0.9),
-        0 0 55px rgba(255,90,0,0.9);
-      transform: translateY(-1px);
+        0 0 30px rgba(140,235,96,0.8),
+        0 0 50px rgba(255,90,0,0.4);
+      font-size: 0.86rem;
+    }
+
+    .hero-manifesto-title {
+      font-size: 0.83rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 0.25rem;
+      color: #e6ffe0;
+    }
+
+    .hero-manifesto p {
+      color: #f5fff0;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-manifesto a {
+      font-weight: 500;
+    }
+
+    .hero-status {
+      background: rgba(3,4,10,0.96);
+      border-radius: 16px;
+      padding: 0.9rem 0.95rem;
+      border: 1px dashed rgba(255,255,255,0.22);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-status strong {
+      color: #f8f8f8;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.16rem 0.6rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(140,235,96,0.65);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      background: radial-gradient(circle at top, rgba(140,235,96,0.15), transparent 60%);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .status-pill::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(140,235,96,0.9);
+    }
+
+    /* SEÇÕES GENERAIS */
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 2.3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      color: var(--accent-warm);
+      margin-bottom: 0.25rem;
+    }
+
+    .section-title {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .section-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      max-width: 32rem;
     }
 
     .panel-grid {
-      margin-top: 1.4rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-      gap: 0.95rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 1rem;
+      margin-top: 0.6rem;
     }
 
     .card {
-      padding: 1.1rem 1.2rem;
-      background: var(--bg-alt);
-      border: 1px solid var(--border);
+      background: radial-gradient(circle at top, rgba(140,235,96,0.10), transparent 65%),
+        radial-gradient(circle at bottom right, rgba(255,90,0,0.12), transparent 60%),
+        linear-gradient(150deg, #06070c, #020308);
       border-radius: var(--radius-lg);
-      box-shadow: 0 22px 46px rgba(0,0,0,0.66);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      cursor: pointer;
+      padding: 0.85rem 0.9rem 0.95rem;
+      border: 1px solid var(--border);
+      box-shadow:
+        0 0 20px rgba(0,0,0,0.9),
+        0 0 30px rgba(0,0,0,0.9);
     }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 28px 54px rgba(0,0,0,0.85);
+
+    .card-label {
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .card-title {
+      font-size: 0.96rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.35rem;
+    }
+
+    .card-body {
+      font-size: 0.84rem;
+      color: #dfdfdf;
+      margin-bottom: 0.55rem;
+    }
+
+    .card-footer {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .card-footer a {
+      font-weight: 500;
+    }
+
+    /* PERSONAS (Colunistas) */
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
+      gap: 1rem;
+      margin-top: 0.7rem;
     }
 
     .card-link {
       display: block;
       color: inherit;
+      text-decoration: none;
+    }
+
+    .card-link:hover {
       text-decoration: none;
     }
 
@@ -311,103 +439,100 @@
       box-shadow: 0 0 18px rgba(140,235,96,0.5);
     }
 
-    .card-label {
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 0.66rem;
-      color: var(--muted);
-      margin-bottom: 0.25rem;
-    }
-
-    .card-title {
-      font-size: 1.06rem;
-      line-height: 1.2;
-      font-weight: 640;
-      margin: 0.1rem 0 0.35rem;
-      color: var(--fg);
-    }
-
-    .card-body {
-      font-size: 0.86rem;
-      line-height: 1.4;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .status-pill {
-      display: inline-block;
-      font-size: 0.62rem;
-      text-transform: uppercase;
-      letter-spacing: 0.13em;
-      border: 1px solid rgba(255,255,255,0.18);
-      padding: 0.18rem 0.6rem;
-      border-radius: 999px;
-      color: var(--accent);
-      box-shadow:
-        0 0 20px rgba(140,235,96,0.8),
-        0 0 30px rgba(255,90,0,0.4);
-      text-shadow: 0 0 10px rgba(0,0,0,0.7);
-    }
-
-    /* ============ PERSONAS (Colunistas) ============ */
-    .columns {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
-      gap: 1rem;
-    }
-
     .persona-name {
-      font-weight: 640;
-      color: var(--accent-2);
-      font-size: 1rem;
-      margin-bottom: 0.2rem;
-      text-shadow: 0 0 18px rgba(255,90,0,0.9);
+      font-size: 0.9rem;
+      font-weight: 600;
     }
 
     .persona-role {
-      font-size: 0.82rem;
+      font-size: 0.76rem;
       color: var(--muted);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
 
-    /* ============ GALERIA — Visual ============ */
+    /* ENSAIOS & MUSEU & EXPERIMENTOS */
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0,1.4fr) minmax(0,1.2fr);
+      gap: 1rem;
+      margin-top: 0.8rem;
+    }
+
+    .two-col > .card {
+      height: 100%;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.4rem;
+      font-size: 0.76rem;
+    }
+
+    .tag {
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.24);
+      padding: 0.12rem 0.55rem;
+      color: var(--muted);
+      background: rgba(0,0,0,0.6);
+    }
+
+    /* GALERIA DE EXPERIMENTOS */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
-      gap: 0.8rem;
+      gap: 0.7rem;
+      margin-top: 0.7rem;
     }
 
     .gallery-item {
-      background: var(--bg-alt);
-      border: 1px solid var(--border);
-      padding: 0.8rem;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-soft);
-      font-size: 0.82rem;
-      color: var(--muted);
+      border-radius: 14px;
+      padding: 0.8rem 0.85rem;
+      border: 1px dashed rgba(255,255,255,0.18);
+      background:
+        radial-gradient(circle at top, rgba(140,235,96,0.15), transparent 60%),
+        linear-gradient(150deg, #050608, #020309);
+      font-size: 0.8rem;
+      color: #e1e1e1;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
     }
 
-    /* ============ PITCH ============ */
+    /* PITCH LAYOUT */
     .pitch-layout {
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
+      grid-template-columns: minmax(0,1.3fr) minmax(0,1.1fr);
       gap: 1rem;
+      margin-top: 0.8rem;
     }
 
     .pitch-list {
-      padding-left: 1rem;
+      list-style: disc;
+      padding-left: 1.1rem;
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
       color: var(--muted);
-      font-size: 0.86rem;
     }
 
-    /* ============ MOVIMENTO / CTA ============ */
+    .pitch-list li + li {
+      margin-top: 0.1rem;
+    }
+
+    /* MOVIMENTO .mov */
     .mov-card {
-      background: radial-gradient(circle at top, rgba(140,235,96,0.22), transparent 60%), var(--bg-alt);
+      margin-top: 2.3rem;
+      margin-bottom: 1.4rem;
+      background:
+        radial-gradient(circle at top, rgba(140,235,96,0.35), transparent 60%),
+        radial-gradient(circle at bottom, rgba(255,90,0,0.35), transparent 65%),
+        linear-gradient(145deg, #030507, #020308);
       border-radius: var(--radius-xl);
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
       box-shadow:
-        0 0 32px rgba(140,235,96,0.9),
-        0 0 46px rgba(255,90,0,0.65);
+        0 0 44px rgba(140,235,96,0.9),
+        0 0 60px rgba(255,90,0,0.7);
       padding: 1.6rem 1.7rem;
       text-align: center;
     }
@@ -416,88 +541,109 @@
       font-size: 1.1rem;
       text-transform: uppercase;
       letter-spacing: 0.22em;
-      color: var(--bg);
-      background: var(--accent);
-      display: inline-block;
-      padding: 0.4rem 0.9rem;
-      border-radius: 999px;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 18px rgba(0,0,0,0.8);
-      box-shadow:
-        0 0 32px rgba(140,235,96,1),
-        0 0 52px rgba(255,255,255,0.4);
+      color: #fbfff6;
+      margin-bottom: 0.7rem;
     }
 
     .mov-text {
-      font-size: 0.92rem;
-      color: var(--muted);
-      margin-bottom: 1.2rem;
+      font-size: 0.86rem;
+      color: #f0f0f0;
+      max-width: 32rem;
+      margin: 0 auto 1rem;
     }
 
     .social-list {
       list-style: none;
-      padding: 0;
-      margin: 0;
-      font-size: 0.86rem;
-      color: var(--muted);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem 1.2rem;
+      font-size: 0.82rem;
+      color: #f1f1f1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 0.3rem 1rem;
       justify-content: center;
+      margin-top: 0.3rem;
     }
 
     .social-list li strong {
       color: var(--accent);
-      text-shadow: 0 0 12px rgba(140,235,96,0.9);
     }
 
-    footer {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding: 1rem;
-      text-align: center;
-      font-size: 0.78rem;
-      background: rgba(0,0,0,0.45);
+    /* FOOTER META */
+    .meta-footer {
+      margin-top: 2.3rem;
+      font-size: 0.72rem;
       color: var(--muted);
+      line-height: 1.5;
     }
 
-    @media (max-width: 768px) {
-      .nav-toggle { display: inline-flex; }
+    .meta-footer strong {
+      color: #dcdcdc;
+    }
 
-      nav ul {
-        display: none;
-        position: absolute;
-        right: 1.2rem;
-        top: 3rem;
-        flex-direction: column;
-        align-items: flex-end;
-        background: var(--bg-alt);
-        padding: 0.8rem 1rem;
-        border-radius: 16px;
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow-soft);
+    @media (max-width: 840px) {
+      .hero {
+        grid-template-columns: minmax(0,1fr);
       }
-      nav ul.nav-open { display: flex; }
 
-      .hero { grid-template-columns: 1fr; }
-      .pitch-layout { grid-template-columns: 1fr; }
+      .hero-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+
+      .hero-right {
+        grid-template-columns: minmax(0,1fr);
+      }
+
+      .two-col {
+        grid-template-columns: minmax(0,1fr);
+      }
+
+      .pitch-layout {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 1.2rem 1.1rem;
+      }
+
+      .mov-card {
+        padding: 1.3rem 1.2rem;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
   </style>
 </head>
-
 <body>
 
 <header>
-  <div class="nav-inner">
-    <div class="logo">
-      <img src="logo.png" alt="NEGATIVO.mov — Hub mínimo nos meios">
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="logo">
+        <!-- Usa o teu ficheiro de logo NEGATIVO.mov aqui -->
+        <img src="logo-negativo-mov.png" alt="NEGATIVO.mov">
+      </div>
+      <div>
+        <div class="logo-text-main">NEGATIVO.mov</div>
+        <div class="logo-text-sub">Hub mínimo nos meios · Radical nas consequências</div>
+      </div>
     </div>
-    <button class="nav-toggle" id="navToggle">menu</button>
+
+    <button class="nav-toggle" aria-label="Abrir menu de navegação">
+      ☰ menu
+    </button>
+
     <nav>
-      <ul id="navList">
-        <li><a href="#manifesto">Manifesto</a></li>
+      <ul id="nav-list">
         <li><a href="#frentes">Frentes</a></li>
-        <li><a href="#cinema-pobre">Cinema</a></li>
-        <li><a href="#colunistas">Personas</a></li>
+        <li><a href="#colunistas">Colunistas</a></li>
         <li><a href="#ensaios">Ensaios</a></li>
         <li><a href="#museu-digital">Museu</a></li>
         <li><a href="#experimentos">Visuais</a></li>
@@ -513,48 +659,73 @@
 
     <!-- HERO -->
     <section class="hero">
-      <div class="hero-left">
-        <h1 class="hero-title">
-          <span class="hero-title-main">NEGATIVO</span>
-          <span class="hero-mov-link"><a href="#mov">.mov</a></span>
+      <div>
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span>hub cultural em fluxo vivo</span>
+        </div>
+        <h1 class="hero-main-title">
+          NEGATIVO.<span>mov</span> — <br>
+          hub mínimo nos meios, radical nas consequências
         </h1>
         <p class="hero-subtitle">
-          Hub mínimo nos meios. Radical nas consequências.<br>
-          Superfície de inscrição do possível em Terra de Miranda — obras em fluxo, antes da instituição.
+          Superfície de inscrição do possível em Terra de Miranda: um dispositivo que
+          conecta cinema pobre, museus digitais, colunistas, ensaio filosófico e
+          experimentos visuais — sempre em fluxo, antes da instituição.
         </p>
-        <div class="hero-actions">
-          <a href="#frentes" class="btn btn-primary">explorar</a>
-          <a href="#pitch" class="btn btn-secondary">escala futura</a>
+
+        <div class="hero-grid">
+          <div class="hero-block">
+            <h3>O que é isto</h3>
+            <p>
+              <strong>NEGATIVO.mov</strong> é um hub de mediação cultural que trata
+              o território como fluxo, não como herança congelada. Um lugar onde formas
+              aparecem, testam-se e criam resto — antes de virarem repertório estável.
+            </p>
+          </div>
+          <div class="hero-block">
+            <h3>Como operamos</h3>
+            <p>
+              Cinema.triz, museus digitais, colunistas e ensaios funcionam como
+              <em>máquinas concretas</em> que reorganizam o sensível: frames pobres,
+              gramáticas improváveis, colunas ficcionais e experimentos negativos
+              em diálogo.
+            </p>
+          </div>
         </div>
       </div>
-    </section>
 
-    <!-- MANIFESTO -->
-    <section id="manifesto">
-      <div class="section-header">
-        <div>
-          <div class="section-kicker">manifesto</div>
-          <h2 class="section-title">Da cultura como fluxo, não vitrina</h2>
+      <div class="hero-right">
+        <div class="hero-manifesto">
+          <div class="hero-manifesto-title">Manifesto NEGATIVO.mov</div>
+          <p>
+            Cultura não espera audiência para existir — aparece como
+            <em>forma improvável</em> mesmo quando ninguém pediu, ninguém entendeu
+            e ninguém financiou.
+          </p>
+          <p>
+            O NEGATIVO.mov opera onde há resto e desejo: lugares onde o território
+            parece “pequeno demais” para caber futuro, mas é grande demais para caber
+            numa só narrativa.
+          </p>
+          <p>
+            Este hub é uma <strong>engenharia do resto</strong>: conecta o que já
+            existe, inventa o que não existe ainda e registra tudo como fluxo —
+            antes de virar dossiê, prémio ou regulamento.
+          </p>
+          <p>
+            <a href="manifesto.html" target="_blank" rel="noopener">Ler o manifesto completo</a>
+          </p>
         </div>
-      </div>
-      <div class="card" style="cursor:default;">
-        <div class="card-body">
-          <p><strong>NEGATIVO.mov</strong> prova que a cultura não precisa esperar
-          audiência para existir: ela pode aparecer como <em>fluxo vivo</em>, não como
-          catálogo nem feed ansioso.</p>
 
-          <p>Miranda do Douro entra como <strong>matéria a ser reorganizada</strong>,
-          não como filtro de identidade. A estética do negativo é um atrator —
-          mas o essencial é a <strong>forma funcionando</strong>: navegável,
-          indexável, escalável.</p>
-
-          <p>Por trás de cada texto, vídeo ou desenho, o que interessa é a operação:
-          cruzar <strong>fluxo</strong> e <strong>repertório</strong> em
-          <strong>mídias concretas</strong>, produzindo <strong>formas improváveis</strong>
-          que reencenam o território e abrem sempre resto e desejo.</p>
+        <div class="hero-status">
+          <p><strong>Estado atual do projeto:</strong></p>
+          <p>
+            Cinema.triz em prototipagem pública, primeiro museu digital em operação
+            (laboratório de língua mirandesa), colunas ficcionais em fase de
+            aparecimento e ontologia estética materialista em desenvolvimento.
+          </p>
         </div>
-        <!-- link pro manifesto longo -->
-        <a href="manifesto.html" class="status-pill">manifesto completo</a>
       </div>
     </section>
 
@@ -574,7 +745,7 @@
             Movimentos nascidos de desvios mínimos em matrizes sempre falhas:
             cinema como engenharia do resto – gravável com o que há.
           </div>
-          <span class="status-pill">ver frente</span>
+          <a href="cinema-triz.html" class="status-pill" target="_blank" rel="noopener">ver frente</a>
         </div>
         <div class="card" style="cursor:default;">
           <div class="card-label">frente</div>
@@ -583,7 +754,7 @@
             Polifonia midial: máquinas, astros e memes em disputa pela inscrição,
             de onde emergem novas subjetividades.
           </div>
-          <span class="status-pill">ver frente</span>
+          <a href="#colunistas" class="status-pill">ver frente</a>
         </div>
         <div class="card" style="cursor:default;">
           <div class="card-label">frente</div>
@@ -592,7 +763,7 @@
             Ontologia estética materialista aplicada ao (des)território:
             onde repertórios repetem, os ensaios perfuram e recompõem restos em fluxo.
           </div>
-          <span class="status-pill">ver frente</span>
+          <a href="https://substack.com/@negativomov" class="status-pill" target="_blank" rel="noopener">ver frente</a>
         </div>
         <div class="card" style="cursor:default;">
           <div class="card-label">frente</div>
@@ -611,7 +782,7 @@
             Sombras &amp; cegueiras visuais: força imagética do invisível
             que sustenta o que aparece.
           </div>
-          <span class="status-pill">ver frente</span>
+          <a href="#experimentos" class="status-pill">ver frente</a>
         </div>
         <div class="card" style="cursor:default;">
           <div class="card-label">frente</div>
@@ -620,7 +791,7 @@
             Para quem decide em 30 segundos porque reconhece a Forma,
             mesmo quando nunca verá o Todo.
           </div>
-          <span class="status-pill">ver pitch</span>
+          <a href="#pitch" class="status-pill">ver pitch</a>
         </div>
       </div>
     </section>
@@ -634,15 +805,35 @@
         </div>
       </div>
       <div class="card" style="cursor:default;">
+        <div class="card-label">frente em protótipo</div>
+        <div class="card-title">Formações provisórias de um cinema feito dos restos do improvável</div>
         <div class="card-body">
           <p>
-            Protótipos pobres de cinema e estudos de diferença mínima:
-            ônus na forma, não no meio. Frames e roteiros operam em matrizes
-            que nunca fecham — toda imagem produz resto, toda novidade é sintaxe
-            recombinada do que insiste em voltar.
+            O <strong>Cinema.triz</strong> é o dispositivo audiovisual do NEGATIVO.mov:
+            um cinema pobre em meios, rico em forma, que nasce de desvios mínimos
+            em matrizes sempre falhas. Em vez de “obra fechada”, trabalhamos com
+            <em>movimentos</em>: fragmentos de filme, storyboards, estudos de som e
+            imagem que se assumem como formação provisória.
+          </p>
+          <p>
+            Cada filme é um <em>frag-film-omento</em>: insiste na falha, no ruído, na
+            interferência entre território, corpos e equipamentos baratos. O que está
+            em jogo não é uma técnica perfeita, mas a capacidade de criar diferença
+            mínima — uma torção no que já se vê todos os dias.
+          </p>
+          <p>
+            O primeiro movimento público nasce em Miranda do Douro, com um cineasta
+            transmontano fictício, Manuel Maninho, que encarna o “corpo-reflexo”
+            do próprio NEGATIVO.mov: uma figura espelhada, sem rosto, que deforma
+            o ambiente e devolve o território como imagem instável.
           </p>
         </div>
-        <span class="status-pill">em fluxo</span>
+        <div class="card-footer">
+          <span class="status-pill">em fluxo</span>
+          <span style="margin-left:0.5rem; font-size:0.78rem; color:var(--muted);">
+            Ver protótipo em vídeo via Cinema.triz no YouTube.
+          </span>
+        </div>
       </div>
     </section>
 
@@ -662,20 +853,19 @@
             <div class="persona-name">José Nóbrega</div>
             <div class="persona-role">médico · comentarista</div>
             <div class="card-body">
-              Crónicas de desgaste, memória e saúde pública num território atravessado
-              por barragens, promessas e powerpoints políticos.
+              Crónicas sobre saúde pública, corpos em território e cura crítica em Terra de Miranda.
             </div>
           </a>
         </div>
 
         <div class="card">
           <a class="card-link" href="https://dianamoiraruis.substack.com" target="_blank">
-            <img src="diana-horoscopo.jpg" alt="Diana Moira Ruiz — Horóscopo da semana" class="cover-thumb">
+            <img src="diana-moiraruiz.jpg" alt="Diana Moira Ruiz — crítica &amp; teoria" class="cover-thumb">
             <div class="persona-name">Diana Moira Ruiz</div>
-            <div class="persona-role">enfermeira · astróloga · consultora sentimental</div>
+            <div class="persona-role">crítica · teoria &amp; forma</div>
             <div class="card-body">
-              Rotina astrológica processual, escrita entre turnos de enfermagem, afetos
-              precários e fronteiras ibéricas.
+              Leituras tensivas de cinema, arte contemporânea e cultura de massas
+              a partir de um interior que pensa o mundo.
             </div>
           </a>
         </div>
@@ -706,24 +896,23 @@
 
         <div class="card">
           <a class="card-link" href="https://alceudumont.substack.com" target="_blank">
-            <img src="alceu-sema-brega.jpg" alt="Alceu Dumont — Sêma i dýnamis de la brega" class="cover-thumb">
+            <img src="alceu-dumont.jpg" alt="Alceu Dumont — cronista &amp; agitador" class="cover-thumb">
             <div class="persona-name">Alceu Dumont</div>
-            <div class="persona-role">colunista · poeta</div>
+            <div class="persona-role">cronista · agitador</div>
             <div class="card-body">
-              Poemas e crónicas sobre o pendão-EDP, as barragens e os movimentos culturais
-              em Terra de Miranda.
+              Notas sobre política miúda, economia de aldeia e milagres administrativos improváveis.
             </div>
           </a>
         </div>
 
         <div class="card">
           <a class="card-link" href="https://cacagabrielmov.substack.com" target="_blank">
-            <img src="caca-metafisica.jpg" alt="Cacá Gabriel — Mais uma vez, o problema é a metafísica" class="cover-thumb">
+            <img src="caca-gabriel.jpg" alt="Cacá Gabriel — editor &amp; operador do NEGATIVO.mov" class="cover-thumb">
             <div class="persona-name">Cacá Gabriel</div>
-            <div class="persona-role">editor-chefe</div>
+            <div class="persona-role">editor · operador do hub</div>
             <div class="card-body">
-              Textos sobre infraestruturas metafísicas da política local, cruzes, barragens
-              e formas de governo do sensível.
+              Textos de bastidores, diários de produção e notas metodológicas sobre a
+              engenharia do resto em NEGATIVO.mov.
             </div>
           </a>
         </div>
@@ -734,20 +923,19 @@
             <div class="persona-name">Osíris de Rossio</div>
             <div class="persona-role">cronista · operador de ruído</div>
             <div class="card-body">
-              Notas sobre circulação de afetos, política miúda e mitologias de Rossio
-              e arredores – entre praça, bar e rede.
+              Notas sobre circulação de afetos, política miúda e mitologias de Rossio.
             </div>
           </a>
         </div>
 
         <div class="card">
           <a class="card-link" href="https://altinonovais.substack.com" target="_blank">
-            <img src="altino-novais.jpg" alt="Altino Novais — estudante de direito e meme crítico" class="cover-thumb">
+            <img src="altino-novais.jpg" alt="Altino Novais — colunista político-existencial" class="cover-thumb">
             <div class="persona-name">Altino Novais</div>
-            <div class="persona-role">estudante de direito · meme crítico</div>
+            <div class="persona-role">política · existência</div>
             <div class="card-body">
-              Comentários rápidos sobre leis, trending topics e Portugal jurídico,
-              cruzando gíria de faculdade, shitpost e teoria pesada.
+              Crónicas entre metafísica e política local: eleições, promessas e restos
+              de futuro em Terra de Miranda.
             </div>
           </a>
         </div>
@@ -763,15 +951,44 @@
           <h2 class="section-title">Ensaios &amp; Filosofia</h2>
         </div>
       </div>
-      <div class="card" style="cursor:default;">
-        <div class="card-label">capítulos</div>
-        <h3 class="card-title">Livro em produção</h3>
-        <div class="card-body">
-          Capítulos e séries da ontologia estética materialista em produção:
-          estética, midialogia, museus e território. Aparecem aqui como
-          hipóteses indexadas — rascunhos públicos de um livro em fluxo.
+      <div class="two-col">
+        <div class="card" style="cursor:default;">
+          <div class="card-label">ontologia estética materialista</div>
+          <h3 class="card-title">Fluxo, repertório, mídia</h3>
+          <div class="card-body">
+            Os ensaios do NEGATIVO.mov operam numa ontologia estética materialista:
+            em vez de “conteúdos” sobre cultura, trabalhamos com formas que expõem
+            os próprios mecanismos de mediação — como fluxo (movimento), repertório
+            (arquivo em disputa) e mídias concretas (cinema, texto, museu, coluna).
+          </div>
+          <div class="card-body">
+            O livro em produção acompanha este processo: uma escrita porosa às
+            experiências do hub, em que conceitos aparecem em fricção com filmes,
+            museus digitais, colunas ficcionais e decisões políticas locais.
+          </div>
+          <div class="card-footer">
+            Para acompanhar os ensaios em curso e o livro em produção, acede ao
+            Substack do NEGATIVO.mov.
+          </div>
         </div>
-        <span class="status-pill">em fluxo</span>
+
+        <div class="card" style="cursor:default;">
+          <div class="card-label">campos de atrito</div>
+          <h3 class="card-title">Alguns eixos recorrentes</h3>
+          <div class="card-body">
+            Os textos atravessam de forma recorrente:
+          </div>
+          <div class="tag-list">
+            <span class="tag">cultura como fluxo vivo</span>
+            <span class="tag">midialogia aplicada</span>
+            <span class="tag">território &amp; infraestruturas</span>
+            <span class="tag">política do sensível</span>
+            <span class="tag">cinema pobre &amp; diferença mínima</span>
+            <span class="tag">museus digitais como superfície</span>
+            <span class="tag">ficção como ferramenta crítica</span>
+            <span class="tag">Miranda do Douro em disputa</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -791,8 +1008,9 @@
           O MVP mostra o lugar antes da tecnologia pesada: um museu vivo em tempo real,
           onde as formas aparecem, circulam e são testadas antes de virarem repertório.
         </div>
-        <!-- LINK PARA O LABORATÓRIO MIRANDÊS -->
-        <a href="museumirandes.html" class="status-pill" target="_blank" rel="noopener">em fluxo</a>
+        <div class="card-footer">
+          <a href="museumirandes.html" target="_blank" rel="noopener">Aceder ao Laboratório Mirandês — Museu da Língua</a>
+        </div>
       </div>
     </section>
 
@@ -800,11 +1018,16 @@
     <section id="experimentos">
       <div class="section-header">
         <div>
-          <div class="section-kicker">visual</div>
+          <div class="section-kicker">imagem</div>
           <h2 class="section-title">Experimentos visuais &amp; negativos</h2>
         </div>
       </div>
       <div class="gallery-grid">
+        <div class="gallery-item">[Série de negativos em película — cartografia abstrata de Terra de Miranda]</div>
+        <div class="gallery-item">[Frames do Cinema.triz — Manuel Maninho como corpo-reflexo em interiores portugueses]</div>
+        <div class="gallery-item">[Mapa de ruídos luminosos — sobreposição de fotografias noturnas em Miranda]</div>
+        <div class="gallery-item">[Capa do hub NEGATIVO.mov — logo em negativo com mofo-neon]</div>
+        <div class="gallery-item">[Cenas de bastidor — montagem pobre em ecrãs pequenos, cabos e reflexos]</div>
         <div class="gallery-item">[Capa de colunista em negativo — teste de gramática visual]</div>
         <div class="gallery-item">[Série de negativos Fuji · mofo-neon · lugar em fluxo]</div>
         <div class="gallery-item">[Storyboard pobre · frames de filmes possíveis]</div>
@@ -819,6 +1042,7 @@
           <h2 class="section-title">Pitch &amp; parcerias</h2>
         </div>
       </div>
+
       <div class="pitch-layout">
         <div class="card" style="cursor:default;">
           <div class="card-label">para quem investe</div>
@@ -835,20 +1059,30 @@
             <li>Conteúdos reaproveitáveis em educação, inovação e comunicação.</li>
           </ul>
         </div>
+
         <div class="card" style="cursor:default;">
-          <div class="card-label">contacto institucional</div>
+          <div class="card-label">para quem coopera</div>
+          <h3 class="card-title">Como podemos ligar</h3>
           <div class="card-body">
-            <p><strong>Email:</strong> <a href="mailto:negativomov@gmail.com">negativomov@gmail.com</a><br>
-            <strong>Local:</strong> Miranda do Douro, Portugal</p>
-            <p>Ajustamos formatos a projetos específicos em cultura, inovação
-            digital, educação e desenvolvimento territorial.</p>
+            Negociações podem envolver:
+          </div>
+          <ul class="pitch-list">
+            <li>Coprodução de séries de vídeo ou cápsulas para plataformas digitais.</li>
+            <li>Criação de exposições digitais ou híbridas ligadas ao território.</li>
+            <li>Programas de educação estética envolvendo escolas e associações locais.</li>
+            <li>Desenvolvimento de interfaces experimentais para museus e arquivos.</li>
+          </ul>
+          <div class="card-footer">
+            Para conversar sobre formatos, escreva para
+            <a href="mailto:negativomov@gmail.com">negativomov@gmail.com</a>.
           </div>
         </div>
       </div>
     </section>
 
-    <!-- BLOCO DISCRETO DE PALAVRAS-CHAVE PARA SEO -->
-    <div aria-hidden="true" style="position:absolute; left:-9999px; height:0; overflow:hidden;">
+    <!-- META FOOTER / SEO INTERNO -->
+    <div class="meta-footer">
+      <strong>Palavras-chave internas (SEO &amp; contexto):</strong><br>
       NEGATIVO.mov, NEGATIVO mov, Terra de Miranda, Miranda do Douro, Trás-os-Montes,
       cinema pobre, cinema.triz, museu digital, museu do possível, hub cultural digital,
       MVP cultura fluxo vivo, projeto cultural transmontano, cultura como fluxo vivo,
@@ -861,7 +1095,7 @@
     <!-- MOVIMENTO .mov -->
     <section id="mov">
       <div class="mov-card">
-        <div class="mov-title">ENTRE NO MOVIMENTO · PARTICIPE DO FLUXO</div>
+        <div class="mov-title"><a href="https://substack.com/@negativomov" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">ENTRE NO MOVIMENTO · PARTICIPE DO FLUXO</a></div>
         <p class="mov-text">
           NEGATIVO.mov é um processo aberto. Abaixo estão os canais onde o fluxo
           segue rodando — textos, vídeos, crónicas, bastidores e experimentos.
@@ -869,11 +1103,11 @@
         </p>
         <ul class="social-list">
           <li><strong>Email</strong>: <a href="mailto:negativomov@gmail.com">negativomov@gmail.com</a></li>
-          <li><strong>Instagram</strong>: @negativo.mov</li>
-          <li><strong>TikTok</strong>: @negativo.mov</li>
-          <li><strong>Facebook</strong>: /negativo.mov</li>
-          <li><strong>Substack / newsletter</strong>: NEGATIVO.mov</li>
-          <li><strong>YouTube</strong>: canal NEGATIVO.mov</li>
+          <li><strong><a href="https://www.instagram.com/negativo.mov/" target="_blank" rel="noopener">Instagram</a></strong>: @negativo.mov</li>
+          <li><strong><a href="https://www.tiktok.com/@negativo.mov" target="_blank" rel="noopener">TikTok</a></strong>: @negativo.mov</li>
+          <li><strong><a href="https://www.facebook.com/profile.php?id=61583129870616" target="_blank" rel="noopener">Facebook</a></strong>: /negativo.mov</li>
+          <li><strong><a href="https://substack.com/@negativomov" target="_blank" rel="noopener">Substack / newsletter</a></strong>: NEGATIVO.mov</li>
+          <li><strong><a href="https://www.youtube.com/@negativomov" target="_blank" rel="noopener">YouTube</a></strong>: canal NEGATIVO.mov</li>
           <li><strong>Geografia</strong>: Miranda do Douro · Terra de Miranda</li>
         </ul>
       </div>
@@ -882,13 +1116,9 @@
   </div>
 </main>
 
-<footer>
-  &copy; 2025 NEGATIVO.mov · Hub MVP · forma demonstrável
-</footer>
-
 <script>
-  const navToggle = document.getElementById('navToggle');
-  const navList = document.getElementById('navList');
+  const navToggle = document.querySelector('.nav-toggle');
+  const navList = document.getElementById('nav-list');
 
   if (navToggle && navList) {
     navToggle.addEventListener('click', () => {
