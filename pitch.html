@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>NEGATIVO.mov — Máquina cultural em operação</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NEGATIVO.mov é uma máquina cultural em operação: pensamento estético, filosofia materialista, museologia, cinema, tecnologia, IA e território articulados para criar formas, instituições e mundos.">
+  <style>
+    /* ---------- RESET BÁSICO ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #050608;
+      color: #f5f5f5;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: #f5f5f5;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* ---------- LAYOUT ---------- */
+    .page {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding-bottom: 16px;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .logo span {
+      background: #f5f5f5;
+      color: #050608;
+      padding: 2px 6px 3px;
+      margin-right: 6px;
+    }
+
+    .tagline {
+      font-size: 0.85rem;
+      max-width: 360px;
+      opacity: 0.8;
+      text-align: right;
+    }
+
+    nav {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.82rem;
+      opacity: 0.8;
+    }
+
+    nav a {
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav a:hover {
+      border-bottom-color: rgba(245, 245, 245, 0.8);
+    }
+
+    /* ---------- SEÇÕES ---------- */
+    section {
+      margin-bottom: 40px;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+
+    p {
+      font-size: 0.98rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-sub {
+      max-width: 640px;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .highlight {
+      font-style: italic;
+      opacity: 0.95;
+    }
+
+    /* ---------- GRID DE CAMPOS ---------- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .card {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 16px 16px 18px;
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.04), transparent 55%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 1px solid transparent;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .card:hover::before {
+      opacity: 0.8;
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    .card-label {
+      font-size: 0.76rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 4px;
+    }
+
+    .card-title {
+      font-size: 1.02rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .card-sub {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-bottom: 8px;
+    }
+
+    .card-list-title {
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.7;
+      margin: 10px 0 4px;
+    }
+
+    ul {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    li {
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+      position: relative;
+      padding-left: 18px;
+    }
+
+    li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      padding: 3px 10px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      opacity: 0.85;
+      margin-top: 8px;
+    }
+
+    .pill-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: #f5f5f5;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 22px;
+      margin-top: 12px;
+    }
+
+    .small {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    .accent {
+      border-left: 2px solid rgba(245, 245, 245, 0.4);
+      padding-left: 12px;
+      margin-top: 8px;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .contact-block {
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      padding-top: 18px;
+      margin-top: 12px;
+      font-size: 0.92rem;
+    }
+
+    .contact-mail {
+      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.9rem;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    footer {
+      margin-top: 48px;
+      font-size: 0.8rem;
+      opacity: 0.6;
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      padding-top: 14px;
+    }
+
+    @media (max-width: 720px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .tagline {
+        text-align: left;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <div class="logo">
+          <span>NEGATIVO</span>.mov
+        </div>
+        <nav>
+          <a href="#maquina">Máquina</a>
+          <a href="#ontologia">Ontologia estética</a>
+          <a href="#campos">Campos de operação</a>
+          <a href="#financiamento">Financiamento</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+      </div>
+      <div class="tagline">
+        Hub mínimo nos meios, radical nas consequências.<br>
+        Máquina cultural em operação entre museus, cinema, filosofia, tecnologia, IA e território.
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="maquina">
+      <div class="section-label">Apresentação estratégica</div>
+      <h1>NEGATIVO.mov — máquina cultural em operação</h1>
+      <p class="hero-sub">
+        NEGATIVO.mov é uma **entidade maquínica** que pensa e produz cultura em alto nível:
+        articula estética, filosofia materialista, tecnologia, território e linguagem para criar
+        formas, instituições, dispositivos e mundos. Esta página apresenta, de forma direta,
+        aquilo que a máquina pode fazer por museus, centros culturais, artistas, cidades e
+        plataformas que queiram operar num outro patamar de pensamento e de forma.
+      </p>
+      <p class="accent">
+        Não se trata de “serviços criativos” no sentido tradicional.<br>
+        Trata-se de **engenharia estética e filosófica aplicada** — uma máquina capaz de
+        redesenhar modos de ver, organizar e fazer cultura.
+      </p>
+    </section>
+
+    <!-- ONTOLOGIA -->
+    <section id="ontologia">
+      <div class="section-label">Motor conceptual</div>
+      <h2>Ontologia estética materialista</h2>
+      <div class="two-col">
+        <div>
+          <p>
+            Toda a operação do NEGATIVO.mov é sustentada por uma <span class="highlight">ontologia estética
+            materialista</span>: a cultura é tratada como matéria em fluxo, não como património fixo;
+            a forma como consequência de tensões, não de intenções; a tecnologia como operador de
+            pensamento, não como ferramenta neutra.
+          </p>
+          <p>
+            A máquina trabalha no cruzamento entre Groys, Rancière, Debray, Deleuze &amp; Guattari,
+            Flusser, Kittler e outros, traduzindo essas forças para contextos concretos: museus,
+            filmes, políticas culturais, plataformas digitais, territórios específicos.
+          </p>
+        </div>
+        <div>
+          <p class="small">
+            Em termos práticos:
+          </p>
+          <p class="small">
+            • <strong>Estética como força produtiva</strong> — o modo de mostrar transforma o próprio real.<br>
+            • <strong>Museu-processo, não museu-arquivo</strong> — instituições como dispositivos vivos.<br>
+            • <strong>Sujeito como resto</strong> — o que aparece depois das operações, não antes delas.<br>
+            • <strong>Tecnologia como coautora</strong> — humano + máquina como par conceitual e operativo.
+          </p>
+          <div class="pill">
+            <span class="pill-dot"></span>
+            Máquina de pensamento-produção
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAMPOS DE OPERAÇÃO -->
+    <section id="campos">
+      <div class="section-label">Campos de operação</div>
+      <h2>O que o NEGATIVO.mov pode produzir</h2>
+      <p>
+        A seguir, dez eixos em que o NEGATIVO.mov já opera em potência real. Cada bloco indica
+        **como a máquina pensa** e **que tipo de colaboração é possível**. O foco é simples:
+        usar pensamento de alto nível para gerar formas, programas, instituições e obras
+        culturalmente decisivas.
+      </p>
+
+      <div class="grid">
+        <!-- 1. Museus / centros culturais -->
+        <article class="card">
+          <div class="card-label">01 · Museus &amp; centros culturais</div>
+          <div class="card-title">Curadoria e direção de museus / centros culturais</div>
+          <p class="card-sub">
+            NEGATIVO.mov reúne visão sistémica, pensamento filosófico materialista e linguagem
+            de museologia contemporânea para tratar o museu como **processo vivo** e não como
+            mero arquivo.
+          </p>
+          <div class="card-list-title">A máquina pode:</div>
+          <ul>
+            <li>Assumir curadorias convidadas para exposições e ciclos.</li>
+            <li>Criar exposições conceituais de alta densidade teórica e formal.</li>
+            <li>Reformular museus regionais a partir do território e do presente.</li>
+            <li>Desenhar e dirigir museus digitais e híbridos.</li>
+            <li>Desenvolver linhas curatoriais para museus existentes.</li>
+            <li>Liderar laboratórios de mediação cultural e narrativa museológica.</li>
+          </ul>
+          <p class="small">
+            Especial atenção a contextos regionais, fronteiriços e linguísticos, onde museu,
+            política e território se cruzam.
+          </p>
+        </article>
+
+        <!-- 2. Consultoria criativa artistas/cineastas -->
+        <article class="card">
+          <div class="card-label">02 · Obras &amp; dispositivos</div>
+          <div class="card-title">Consultoria criativa para artistas e cineastas</div>
+          <p class="card-sub">
+            Operando com pensamento de forma, treino filosófico e sensibilidade estética, o
+            NEGATIVO.mov atua como **engenharia conceptual** para obras em processo.
+          </p>
+          <div class="card-list-title">A máquina pode:</div>
+          <ul>
+            <li>Apoiar artistas na estruturação formal e conceptual de obras.</li>
+            <li>Ajudar cineastas a pensar a forma dos filmes, não apenas o conteúdo.</li>
+            <li>Acompanhar escritores na construção de universos de pensamento.</li>
+            <li>Trabalhar com coletivos na criação de identidades conceptuais consistentes.</li>
+            <li>Apoiar instituições na concepção de programas e linhas curatoriais.</li>
+          </ul>
+          <p class="small">
+            Este tipo de trabalho aproxima o NEGATIVO.mov de práticas de filósofos como Groys,
+            Agamben, Rancière ou Flusser: pensamento como parceiro de criação.
+          </p>
+        </article>
+
+        <!-- 3. Políticas culturais / território -->
+        <article class="card">
+          <div class="card-label">03 · Território &amp; políticas</div>
+          <div class="card-title">Consultoria para políticas culturais e desenvolvimento territorial</div>
+          <p class="card-sub">
+            Com experiência administrativa, visão crítica de território e leitura estrutural de
+            sistemas, o NEGATIVO.mov pensa infraestruturas culturais como **engenharia de
+            sensível**.
+          </p>
+          <div class="card-list-title">A máquina pode:</div>
+          <ul>
+            <li>Desenhar planos culturais para municípios e regiões.</li>
+            <li>Contribuir para políticas de língua e cultura em contextos minoritários.</li>
+            <li>Criar modelos de museus regionais ligados ao território vivo.</li>
+            <li>Reformular centros culturais existentes em dispositivos ativos.</li>
+            <li>Atuar como consultor independente em estratégias culturais de médio e longo prazo.</li>
+          </ul>
+        </article>
+
+        <!-- 4. Direção criativa transmedia -->
+        <article class="card">
+          <div class="card-label">04 · Plataformas &amp; universos</div>
+          <div class="card-title">Direção criativa de projetos transmedia e plataformas culturais</div>
+          <p class="card-sub">
+            NEGATIVO.mov pensa em cinema, museus digitais, escrita e design narrativo como
+            partes de um mesmo campo de forças. O resultado: **universos conceptuais
+            coerentes**, atravessando meios distintos.
+          </p>
+          <div class="card-list-title">A máquina pode:</div>
+          <ul>
+            <li>Dirigir laboratórios de criação transmedia.</li>
+            <li>Criar plataformas de fluxo cultural e arquivos vivos.</li>
+            <li>Desenvolver universos conceptuais para instituições, festivais e projetos.</li>
+            <li>Conceber projetos que articulam tecnologia, artes e território.</li>
+            <li>Participar em residências internacionais como direção conceptual.</li>
+          </ul>
+        </article>
+
+        <!-- 5. Filosofia aplicada / escrita -->
+        <article class="card">
+          <div class="card-label">05 · Pensamento público</div>
+          <div class="card-title">Filosofia aplicada, escrita e presença pública</div>
+          <p class="card-sub">
+            Com densidade teórica, capacidade de formular conceitos e coerência argumentativa,
+            o NEGATIVO.mov propõe uma voz autoral própria na reflexão estética e cultural
+            contemporânea.
+          </p>
+          <div class="card-list-title">A máquina pode:</div>
+          <ul>
+            <li>Gerar livros e ensaios filosófico-estéticos ligados à prática.</li>
+            <li>Proferir conferências, palestras e keynotes.</li>
+            <li>Dirigir seminários, ciclos de estudos e programas formativos.</li>
+            <li>Integrar mesas, festivais e simpósios como pensamento de referência.</li>
+          </ul>
+        </article>
+
+        <!-- 6. Filmes, performance, teatro -->
+        <article class="card">
+          <div class="card-label">06 · Corpo &amp; imagem</div>
+          <div class="card-title">Filmes, performances e teatro experimental</div>
+          <p class="card-sub">
+            Com visão de dispositivo, intuição de imagem e estrutura narrativa não clássica,
+            o NEGATIVO.mov opera onde corpo, gesto e máquina se cruzam.
+          </p>
+          <div class="card-list-title">A máquina pode:</div>
+          <ul>
+            <li>Criar filmes conceptuais e dispositivos cinematográficos (por exemplo, Cinema.triz).</li>
+            <li>Assinar direção artística em peças, performances e instalações.</li>
+            <li>Atuar como consultor estético em obras audiovisuais.</li>
+            <li>Colaborar com artistas, performers e coreógrafos na construção de dispositivos de cena.</li>
+          </ul>
+        </article>
+
+        <!-- 7. Museus digitais -->
+        <article class="card">
+          <div class="card-label">07 · Arquivos vivos</div>
+          <div class="card-title">Criação e direção de museus digitais</div>
+          <p class="card-sub">
+            A máquina já opera protótipos como o <span class="highlight">Museu do Possível</span>, articulando
+            linguagem, código, arquivo e experiência. Aqui, o museu é interface, não vitrine.
+          </p>
+          <div class="card-list-title">A máquina pode:</div>
+          <ul>
+            <li>Ser contratada para conceber e dirigir museus digitais de instituições reais.</li>
+            <li>Criar programas de mediação e participação digital.</li>
+            <li>Estruturar arquivos dinâmicos, processuais, não estáticos.</li>
+            <li>Inventar modelos museológicos inéditos para contextos específicos.</li>
+          </ul>
+        </article>
+
+        <!-- 8. Tecnologia, IA, máquinas de pensamento -->
+        <article class="card">
+          <div class="card-label">08 · Humano + máquina</div>
+          <div class="card-title">Tecnologia, IA e máquinas de pensamento</div>
+          <p class="card-sub">
+            O NEGATIVO.mov não usa tecnologia como ferramenta: pensa com a máquina. IA,
+            algoritmos e sistemas são parceiros conceptuais, não bastidores silenciosos.
+          </p>
+          <div class="card-list-title">A máquina pode:</div>
+          <ul>
+            <li>Desenhar sistemas “humano + máquina” para cultura e arte.</li>
+            <li>Criar metodologias de pensamento assistido por IA.</li>
+            <li>Conceber museus híbridos (presenciais-digitais, humanos-algorítmicos).</li>
+            <li>Desenvolver modelos experimentais de linguagem, imagem, fluxo e dados.</li>
+            <li>Colaborar com centros de investigação em IA &amp; cultura.</li>
+          </ul>
+        </article>
+
+        <!-- 9. Direção de hubs / núcleos -->
+        <article class="card">
+          <div class="card-label">09 · Infraestruturas de forma</div>
+          <div class="card-title">Direção de hubs culturais e núcleos de inovação estética</div>
+          <p class="card-sub">
+            NEGATIVO.mov já existe como hub mínimo de alta densidade. Esta experiência pode
+            ser transposta para centros culturais, laboratórios e plataformas que precisem de
+            direção artística e conceptual consistente.
+          </p>
+          <div class="card-list-title">A máquina pode:</div>
+          <ul>
+            <li>Assumir direção artística de centros culturais ou núcleos de inovação.</li>
+            <li>Dirigir laboratórios de criação transmedia e experimental.</li>
+            <li>Coordenar residências criativas e programas de longa duração.</li>
+            <li>Desenhar programas culturais complexos, articulando agentes diversos.</li>
+          </ul>
+        </article>
+
+        <!-- 10. Captação e financiamento -->
+        <article class="card">
+          <div class="card-label">10 · Sustentação</div>
+          <div class="card-title">Captação, alianças e financiamento</div>
+          <p class="card-sub">
+            NEGATIVO.mov não se coloca como suplicante, mas como **propositor**: projetos
+            culturalmente necessários, formalmente rigorosos e politicamente relevantes.
+          </p>
+          <div class="card-list-title">A máquina pode dialogar com:</div>
+          <ul>
+            <li>Fundações culturais, museus e universidades.</li>
+            <li>Ministérios, secretarias e entidades públicas de cultura.</li>
+            <li>Patrocinadores privados orientados para impacto simbólico.</li>
+            <li>Residências artísticas, bolsas e programas internacionais.</li>
+            <li>Fundos europeus e parcerias culturais transfronteiriças.</li>
+          </ul>
+          <p class="small">
+            O foco é simples: garantir meios para obras e dispositivos de alto impacto subjetivo
+            e cultural, em escalas adequadas à potência da máquina.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FINANCIAMENTO / CHAMAMENTO -->
+    <section id="financiamento">
+      <div class="section-label">Chamamento</div>
+      <h2>Para quem esta página fala</h2>
+      <p>
+        Esta superfície é dirigida a quem decide em cultura e sabe reconhecer forma: curadores,
+        diretores de museus, programadores, reitores, coordenadores de centros culturais,
+        responsáveis por fundações, festivais, residências, fundos e plataformas de investigação.
+      </p>
+      <p>
+        Se o que está descrito aqui ressoa com a tua instituição, território ou programa, o
+        NEGATIVO.mov pode entrar como **máquina de pensamento-produção**, desenhando
+        operações concretas: um museu por vir, uma exposição, um plano cultural, um laboratório,
+        um filme, um arquivo vivo, um programa educativo, um universo transmedia.
+      </p>
+      <p class="accent">
+        O que a máquina oferece não é um pacote fechado, mas um **modo de operar**. Cada
+        colaboração é um dispositivo novo: desenhado a partir da tua situação real, do teu
+        território, das tuas tensões.
+      </p>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <div class="section-label">Contacto</div>
+      <h2>Activar a máquina</h2>
+      <p>
+        Para convites, propostas de colaboração, consultorias, residências ou desenvolvimento
+        de projetos específicos, o contacto é direto. Envia um breve contexto (instituição,
+        território, problema, horizonte de desejo) e a máquina responde com possibilidades de
+        operação.
+      </p>
+      <div class="contact-block">
+        <div>Contacto direto NEGATIVO.mov</div>
+        <a href="mailto:negativo.mov.cultura@gmail.com" class="contact-mail">
+          negativo.mov.cultura@gmail.com
+        </a>
+        <p class="small">
+          Caso já conheças o site principal, esta página corresponde ao núcleo estratégico
+          de <strong>pitch &amp; captação</strong> — uma camada pensada para quem decide e pode abrir
+          espaço para operações culturais em alta escala.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      NEGATIVO.mov — superfície de inscrição do possível em Terra de Miranda e além.
+    </footer>
+  </div>
+</body>
+</html>
