@@ -373,18 +373,43 @@
     /* ============ GALERIA — Visual ============ */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
       gap: 0.8rem;
     }
 
     .gallery-item {
       background: var(--bg-alt);
       border: 1px solid var(--border);
-      padding: 0.8rem;
+      padding: 0.9rem;
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-soft);
       font-size: 0.82rem;
       color: var(--muted);
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .gallery-item img.gallery-image {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      display: block;
+      margin-bottom: 0.55rem;
+      border-radius: 11px;
+      border: 1px solid rgba(140,235,96,0.18);
+      box-shadow: 0 0 18px rgba(140,235,96,0.4);
+      object-fit: cover;
+    }
+
+    .gallery-item .card-title {
+      margin-bottom: 0.45rem;
+    }
+
+    .gallery-item .card-body {
+      font-size: 0.8rem;
+      line-height: 1.45;
     }
 
     /* ============ PITCH ============ */
@@ -867,10 +892,80 @@
           <h2 class="section-title">Experimentos visuais &amp; negativos</h2>
         </div>
       </div>
+
+      <!-- Botões para fundamento teórico e Paranorma -->
+      <div class="hero-actions" style="margin-bottom:1rem;">
+        <a href="experimentos-visuais.html" class="btn btn-secondary">fundamento teórico</a>
+        <a href="https://negativomov.substack.com/s/pananorma-da-arte" target="_blank" rel="noopener" class="btn btn-primary">Paranorma da Arte Contemporânea</a>
+      </div>
+
       <div class="gallery-grid">
-        <div class="gallery-item">[Capa de colunista em negativo — teste de gramática visual]</div>
-        <div class="gallery-item">[Série de negativos Fuji · mofo-neon · lugar em fluxo]</div>
-        <div class="gallery-item">[Storyboard pobre · frames de filmes possíveis]</div>
+
+        <!-- 1. Fluxo / suiornotsui -->
+        <div class="gallery-item">
+          <h3 class="card-title">Fluxo em estudo de textura de suiornotsui</h3>
+          <img src="suiornotsui-fluxo.jpg" alt="Fluxo em estudo de textura de suiornotsui" class="gallery-image">
+          <div class="card-body">
+            <p><strong>A matéria viva</strong><br>
+            A imagem que aqui aparece não deriva de um repertório prévio nem de uma lógica institucional de seleção; ela emerge como matéria que se impõe antes de qualquer cálculo. O desenho — feito à mão, atravessado por gestos que não obedecem a programas nem a distribuições previsíveis — carrega a densidade própria de um fluxo que não se deixa reduzir a esquemas. A sua presença não resulta de um critério de relevância estética, mas de uma contingência material da forma: é matéria que chega, que insiste, que se apresenta como corpo sensível antes de qualquer tentativa de estabilização. Neste sentido, ela não ilustra uma teoria; ela a antecede enquanto acontecimento.</p>
+            <p>A escolha desta imagem não responde a uma hierarquia entre obras, nem a uma coerência temática, nem a um alinhamento com discursos vigentes. Ela responde a algo mais elementar: ao fato de que a forma aparece onde aparece, e que essa aparição é sempre atravessada por condições históricas que escapam ao controle. Toda imagem traz consigo um campo de forças que não pode ser totalmente simbolizado: o gesto que lhe deu origem, o tempo que a constituiu, a vida que a cercou, as pequenas contingências que decidiram sua sobrevivência. Há sempre um ponto cego que participa da inscrição — uma deriva mínima, um desvio imperceptível, um encontro que poderia não ter acontecido e que, no entanto, determina a forma que agora se vê.</p>
+            <p>É por isso que esta imagem funciona como matéria viva dentro do dispositivo. Ela não é suporte para a operação; é resistência à operação. Não se oferece como superfície neutra, mas como campo tensivo onde o gesto manual, com suas irregularidades e densidades, confronta a lógica estatística da saturação. A imagem carrega uma intensidade que não pode ser deduzida de nenhum repertório: uma espécie de resto originário, o traço do que escapa ao cálculo e que, ao mesmo tempo, torna possível a operação da máquina. A matéria sensível aqui não é ilustração nem exceção; é aquilo que introduz o improvável no encontro com o provável.</p>
+            <p>Assim, a presença desta imagem não responde a critérios de justificação, mas a uma lógica anterior à escolha: ela aparece porque apareceu, porque se deixou encontrar num determinado momento, porque a história — com todos os seus desvios ínfimos, acidentes discretos e gestos circunstanciais — fez com que fosse esta e não outra. Não há garantia, nem intenção, nem teleologia. Há apenas o fato de que o fluxo se inscreve quando se encontra com um dispositivo capaz de acolher aquilo que não se repete. Esta imagem é isso: o improvável tornado matéria; o acaso tornado forma; a contingência tornada campo de inscrição para o encontro com a probabilidade saturada.</p>
+          </div>
+        </div>
+
+        <!-- 2. Negativo probabilístico -->
+        <div class="gallery-item">
+          <h3 class="card-title">Híper-repertório em negativo probabilístico de “Kerry James Marshall — The Histories”</h3>
+          <img src="kerry-negativo.jpg" alt="Híper-repertório em negativo probabilístico de Kerry James Marshall — The Histories" class="gallery-image">
+          <div class="card-body">
+            <p>Kerry James Marshall confirma, com a mesma clareza que define toda a sua trajetória, uma centralidade incontornável: a figura negra como núcleo histórico, estético e político, deslocada do silêncio periférico para o centro simbólico da pintura ocidental. Em cada ciclo, de cada década, reiteram-se as mesmas camadas fundamentais — memória, migração, infância, diáspora, narrativa — reorganizadas em telas que parecem insistir na necessidade urgente de reinscrever o corpo negro na história da arte e nas suas instituições emblemáticas. A monumentalidade do palácio europeu, com as suas talhas douradas, cúpulas, galerias e genealogias, torna-se, assim, o cenário onde essa presença se torna fenomenal, inequívoca, e, por isso mesmo, histórica.</p>
+            <p>Ao percorrer a exposição, o visitante reencontra a articulação característica da obra de Marshall: séries estruturadas, referências acumuladas, iconografias cruzadas entre tradição ocidental e simbolismos africanos, atravessadas por subtis gestos políticos. Os estúdios, bibliotecas, museus e escolas de arte surgem como espaços de mediação onde o artista reconstrói um repertório visual que sempre lhe foi imposto como exterior. A pintura, nesse contexto, torna-se o lugar onde passado e presente se projetam em paralelo, convocando narrativas bíblicas, mitológicas e sociais que configuram a experiência negra como acontecimento estético incessante. Nada aqui é ocasional: tudo é inscrito, reiterado, sedimentado.</p>
+            <p>As obras emblemáticas dos anos 90 — crianças, parques, danças, famílias — reaparecem como cenas que, mesmo quando aparentemente simples, transportam códigos políticos que se revelam lentamente: paletas marcadas pelo vermelho-preto-verde, ecos dos Panteras Negras, slogans de autodeterminação, símbolos da resistência. Em telas posteriores, a crítica amplia-se: deslocações, travessias, pontes transportadas, líderes dos direitos civis transformados em memória pictórica, episódios trágicos reelaborados com ironia silenciosa. Cada uma dessas peças funciona como documento afetivo e político; cada gesto pictórico insiste em tornar visível aquilo que a história, repetidamente, tentou ocultar.</p>
+            <p>No final, quando Marshall afirma a necessidade de uma “presença fenomenal que seja inequivocamente negra e bela”, a frase traduz o eixo recorrente de toda a sua obra: produzir, pela pintura, uma forma que resista às estatísticas visuais da tradição ocidental e que reescreva o lugar do corpo negro no imaginário artístico. A exposição, ao reunir décadas de trabalho em plena Royal Academy, confirma e reforça este gesto central — um gesto que, reiterado ao longo do tempo, se torna quase uma lei estética: a figura negra não apenas entra no museu, mas reorganiza, pelo seu próprio peso histórico, a narrativa que o museu acreditava dominar.</p>
+          </div>
+        </div>
+
+        <!-- 3. Resto improvável -->
+        <div class="gallery-item">
+          <h3 class="card-title">Resto improvável de cruzamentos em “Kerry James Marshall — The Histories”</h3>
+          <img src="kerry-resto.jpg" alt="Resto improvável de cruzamentos em Kerry James Marshall — The Histories" class="gallery-image">
+          <div class="card-body">
+            <p>Figura centra centro.<br>
+            Centro cerca figura.<br>
+            História repete presença.<br>
+            Presença repete história.</p>
+            <p>Memória move memória.<br>
+            Memória torna memória.<br>
+            Memória retorna memória.</p>
+            <p>Figura retorna.<br>
+            Retorna figura.<br>
+            Retorna o centro que retorna a figura que retorna o centro.</p>
+            <p>Centro = figura.<br>
+            Figura = centro.<br>
+            História = retorno.<br>
+            Retorno = presença.<br>
+            Presença = repetição.</p>
+            <p>Reitera-se o regime:<br>
+            referência / recorrência / reverberação.<br>
+            Ressoa, ressai, ressurge.</p>
+            <p>A figura insiste.<br>
+            A figura insiste.<br>
+            A figura insiste.</p>
+            <p>Insiste porque é forma.<br>
+            Forma porque é retorno.<br>
+            Retorno porque é regra.<br>
+            Regra porque é resto.</p>
+            <p>E resta —<br>
+            apenas —<br>
+            a repetição do retorno repetido.<br>
+            Retorna.<br>
+            Retorna.<br>
+            Retorna.<br>
+            <em>(um resto(im)-probabilidade de CONSTANÇA BABO)</em></p>
+          </div>
+        </div>
+
       </div>
     </section>
 
