@@ -592,7 +592,7 @@
         <div class="card-body">
           <p><strong>Conheça a máquina cultural NEGATIVO.mov</strong></p>
           <p>Para instituições, museus, centros culturais, artistas, municípios, programas e plataformas que precisam de pensamento e forma em alto nível.</p>
-          <p>→ Página estratégica completa: <a href="pitch.html">pitch.html</a></p>
+          <p>→ Página estratégica completa: <a href="pitch.html">Pitch &amp; Captação — NEGATIVO.mov</a></p>
         </div>
       </div>
     </section>
@@ -858,7 +858,7 @@
           hipóteses indexadas — rascunhos públicos de um livro em fluxo.
         </div>
         <div id="ensaios-feed" class="feed-snippet"></div>
-        <span class="status-pill">em fluxo</span>
+        <a href="https://negativomov.substack.com/s/ser-improvavel" class="status-pill" target="_blank" rel="noopener">EM FLUXO</a>
       </div>
     </section>
 
@@ -981,7 +981,7 @@
       <p class="card-body" style="max-width: 48rem; margin-bottom:1.2rem;">
         NEGATIVO.mov é uma máquina cultural que articula estética, filosofia materialista, tecnologia, território e linguagem para criar formas, instituições e dispositivos por vir.<br>
         A página estratégica detalha o que essa máquina pode fazer por museus, centros culturais, políticas culturais, artistas, cineastas, plataformas digitais e programas que precisem operar num outro patamar de forma e pensamento.<br>
-        → Ler a página completa de Pitch Estratégico: <a href="pitch.html">pitch.html</a>
+        → Ler a página completa de Pitch Estratégico: <a href="pitch.html">Pitch &amp; Captação — NEGATIVO.mov</a>
       </p>
 
       <div class="pitch-layout">
@@ -1006,7 +1006,7 @@
             <strong>Local:</strong> Miranda do Douro, Portugal</p>
             <p>Ajustamos formatos a projetos específicos em cultura, inovação
             digital, educação e desenvolvimento territorial.</p>
-            <p>Para propostas estruturadas ou colaborações institucionais, leia primeiro a página de operação cultural → <a href="pitch.html">pitch.html</a></p>
+            <p>Para propostas estruturadas ou colaborações institucionais, leia primeiro a página de operação cultural → <a href="pitch.html">Pitch &amp; Captação — NEGATIVO.mov</a></p>
           </div>
         </div>
       </div>
@@ -1052,6 +1052,23 @@
 
   </div>
 </main>
+
+  <!-- AUTOR -->
+  <section id="autor">
+    <div class="section-header">
+      <div>
+        <div class="section-kicker">autor</div>
+        <h2 class="section-title">Caio Gabriel</h2>
+      </div>
+    </div>
+    <div class="card" style="cursor:default;">
+      <div class="card-body">
+        <p>Pensador, criador e operador do dispositivo NEGATIVO.mov. Trabalho com filosofia estética materialista, midialogia, museologia, curadoria e engenharia de dispositivos culturais. O NEGATIVO.mov é a superfície onde essas forças se cruzam.</p>
+      </div>
+    </div>
+  </section>
+
+
 
 <footer>
   NEGATIVO.mov — máquina cultural em operação · superfície de inscrição do possível
@@ -1169,11 +1186,32 @@
     const rssUrl = 'https://www.youtube.com/feeds/videos.xml?playlist_id=PL39_wg5gv6Rjd24MpY9rArysKc4_uGlcZ';
     fetchRSSFeed(rssUrl, (item) => {
       if (!item || !item.title || !item.link) return;
-      box.innerHTML = ''
-        + '<div class="feed-snippet-meta">Último movimento na playlist Cinema.triz</div>'
-        + '<div class="feed-snippet-title"><a href="' + item.link + '" target="_blank" rel="noopener">' + item.title + '</a></div>';
+      let link = item.link;
+      let videoId = '';
+      try {
+        const url = new URL(link);
+        if (url.searchParams && url.searchParams.get('v')) {
+          videoId = url.searchParams.get('v');
+        } else if (url.pathname && url.pathname.startsWith('/embed/')) {
+          videoId = url.pathname.split('/embed/')[1];
+        }
+      } catch (e) {
+        // se não conseguir extrair o ID, segue só com o título
+      }
+      const thumb = videoId
+        ? 'https://img.youtube.com/vi/' + videoId + '/hqdefault.jpg'
+        : '';
+      let html = '<div class="feed-snippet-meta">Último movimento na playlist Cinema.triz</div>';
+      html += '<div class="card" style="max-width:340px;margin-top:0.5rem;cursor:pointer;">';
+      html += '<a class="card-link" href="' + link + '" target="_blank" rel="noopener">';
+      if (thumb) {
+        html += '<img src="' + thumb + '" alt="Cinema.triz — último vídeo" class="cover-thumb">';
+      }
+      html += '<div class="card-body"><div class="feed-snippet-title">' + item.title + '</div></div>';
+      html += '</a></div>';
+      box.innerHTML = html;
     });
-  })();
+  })();;
 </script>
 
 </body>
