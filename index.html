@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-  <meta charset="UTF-8" />
-  <title>NEGATIVO.mov — Hub cultural em fluxo vivo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="NEGATIVO.mov — hub mínimo nos meios, radical nas consequências. Cinema.triz, museus digitais, colunistas ficcionais, gramáticas improváveis e ontologia estética materialista em operação a partir da Terra de Miranda." />
-  <meta name="keywords" content="NEGATIVO.mov, Terra de Miranda, Mirandês, cinema pobre, cinema.triz, museu digital, museu do possível, hub cultural digital, MVP cultura fluxo vivo, projeto cultural transmontano, cultura como fluxo vivo, Caio Eduardo Gabriel, mediação cultural, ensaio filosófico, cinema experimental, ontologia estética materialista, fluxo e repertório, midialogia aplicada, midialogia territorial, polifonia midial, formas improváveis, estética do negativo, interior português em fluxo.">
+  <meta charset="UTF-8">
+  <title>NEGATIVO.mov — Hub mínimo nos meios</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="NEGATIVO.mov — projeto cultural transmontano-luso-brasileiro. Cultura inscrita como fluxo vivo. Obras existem antes do público, e o possível circula em Terra de Miranda.">
+  <meta name="robots" content="index,follow">
+  <meta name="keywords" content="NEGATIVO.mov, NEGATIVO mov, Terra de Miranda, Miranda do Douro, Trás-os-Montes, cinema pobre, cinema.triz, museu digital, museu do possível, hub cultural digital, MVP cultura fluxo vivo, projeto cultural transmontano, cultura como fluxo vivo, Caio Eduardo Gabriel, mediação cultural, ensaio filosófico, cinema experimental, ontologia estética materialista, fluxo e repertório, midialogia aplicada, midialogia territorial, polifonia midial, formas improváveis, estética do negativo, interior português em fluxo.">
 
   <!-- Open Graph / Social -->
-  <meta property="og:title" content="NEGATIVO.mov — Hub mínimo nos meios, radical nas consequências">
-  <meta property="og:description" content="Superfície de inscrição do possível em Terra de Miranda: cinema.triz, museus digitais, colunistas, gramáticas improváveis e experimentos visuais em fluxo vivo.">
+  <meta property="og:locale" content="pt_PT">
   <meta property="og:type" content="website">
+  <meta property="og:title" content="NEGATIVO.mov — Hub mínimo nos meios">
+  <meta property="og:description" content="Hub mínimo nos meios. Radical nas consequências. Cultura como fluxo vivo antes do público.">
   <meta property="og:url" content="https://negativo-mov.github.io/negativo.mov/">
+  <meta property="og:site_name" content="NEGATIVO.mov">
   <meta property="og:image" content="https://negativo-mov.github.io/negativo.mov/logo.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NEGATIVO.mov — Hub mínimo nos meios">
+  <meta name="twitter:description" content="Hub mínimo nos meios. Radical nas consequências. Cultura como fluxo vivo antes do público.">
+  <meta name="twitter:image" content="https://negativo-mov.github.io/negativo.mov/logo.png">
+
+  <!-- Canonical & sitemap -->
+  <link rel="canonical" href="https://negativo-mov.github.io/negativo.mov/">
+  <link rel="sitemap" type="application/xml" href="https://negativo-mov.github.io/negativo.mov/sitemap.xml">
 
   <style>
     /* ============ PALETA NEGATIVO.mov ============ */
@@ -86,36 +99,10 @@
       gap: 1rem;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
     .logo img {
       height: 46px;
       border-radius: 8px;
       filter: drop-shadow(0 0 28px rgba(255,90,0,0.7));
-    }
-
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
-    }
-
-    .logo-title {
-      font-size: 0.95rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      font-weight: 650;
-    }
-
-    .logo-subtitle {
-      font-size: 0.68rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
     }
 
     .nav-toggle {
@@ -199,32 +186,6 @@
       box-shadow: var(--shadow-soft);
     }
 
-    .hero-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.16rem 0.65rem;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.82);
-      border: 1px solid rgba(255,255,255,0.10);
-      font-size: 0.66rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--accent);
-      margin-bottom: 0.55rem;
-      box-shadow:
-        0 0 18px rgba(140,235,96,0.8),
-        0 0 38px rgba(255,90,0,0.7);
-    }
-
-    .hero-kicker-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 16px rgba(140,235,96,1);
-    }
-
     .hero-title {
       font-size: clamp(2rem,4vw,2.8rem);
       line-height: 1.12;
@@ -270,18 +231,6 @@
       margin-bottom: 1.4rem;
     }
 
-    .hero-meta {
-      font-size: 0.78rem;
-      color: var(--muted);
-      opacity: 0.95;
-      margin-bottom: 0.7rem;
-    }
-
-    .hero-meta strong {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
@@ -324,55 +273,6 @@
         0 0 32px rgba(140,235,96,0.9),
         0 0 55px rgba(255,90,0,0.9);
       transform: translateY(-1px);
-    }
-
-    .hero-footnote {
-      font-size: 0.76rem;
-      color: var(--muted);
-      opacity: 0.9;
-      margin-top: 0.6rem;
-    }
-
-    .hero-right {
-      padding: 1.4rem 1.5rem;
-      background: radial-gradient(circle at top, rgba(140,235,96,0.16), transparent 65%), rgba(15,5,3,0.92);
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: var(--shadow-soft);
-      font-size: 0.88rem;
-    }
-
-    .hero-right h3 {
-      margin-top: 0;
-      font-size: 0.98rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--accent);
-    }
-
-    .hero-right p {
-      margin: 0.2rem 0 0.6rem;
-      color: var(--muted);
-    }
-
-    .pill-list {
-      list-style: none;
-      padding: 0;
-      margin: 0.2rem 0 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-    }
-
-    .pill-list li {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.15);
-      padding: 0.16rem 0.6rem;
-      color: var(--muted);
-      background: rgba(0,0,0,0.55);
     }
 
     .panel-grid {
@@ -449,107 +349,11 @@
       text-shadow: 0 0 10px rgba(0,0,0,0.7);
     }
 
-    /* ============ BLOCO MÁQUINA CULTURAL ============ */
-    .machine-card {
-      margin-top: 1.8rem;
-      padding: 1.1rem 1.25rem;
-      background: rgba(12,4,2,0.9);
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(255,255,255,0.10);
-      box-shadow: 0 20px 45px rgba(0,0,0,0.75);
-      font-size: 0.88rem;
-      color: var(--muted);
-      display: grid;
-      grid-template-columns: minmax(0,2.1fr) minmax(0,1.3fr);
-      gap: 1.1rem;
-    }
-
-    .machine-card h3 {
-      font-size: 0.98rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--accent);
-      margin-top: 0;
-      margin-bottom: 0.4rem;
-    }
-
-    .machine-card p {
-      margin: 0.3rem 0;
-    }
-
-    .machine-card a {
-      font-weight: 600;
-      color: var(--accent);
-    }
-
-    .machine-list {
-      list-style: none;
-      padding: 0;
-      margin: 0.4rem 0 0;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-    .machine-list li::before {
-      content: "• ";
-      color: var(--accent);
-    }
-
-    /* ============ MANIFESTO CARD ============ */
-    .manifesto-card {
-      padding: 1.2rem 1.3rem;
-      background: radial-gradient(circle at top, rgba(140,235,96,0.18), transparent 60%), rgba(15,6,3,0.97);
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow:
-        0 0 28px rgba(140,235,96,0.8),
-        0 0 44px rgba(0,0,0,0.9);
-      font-size: 0.9rem;
-    }
-
-    .manifesto-card h3 {
-      margin-top: 0;
-      font-size: 0.98rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .manifesto-card p {
-      margin: 0.35rem 0;
-      color: var(--muted);
-    }
-
-    .manifesto-card a {
-      font-weight: 600;
-      color: var(--accent);
-    }
-
     /* ============ PERSONAS (Colunistas) ============ */
     .columns {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
       gap: 1rem;
-    }
-
-    .persona {
-      padding: 1rem 1.1rem;
-      background: rgba(12,4,2,0.92);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-soft);
-      display: grid;
-      grid-template-columns: 82px 1fr;
-      gap: 0.75rem;
-      align-items: flex-start;
-    }
-
-    .persona img {
-      width: 82px;
-      height: 82px;
-      border-radius: 12px;
-      object-fit: cover;
-      border: 1px solid rgba(140,235,96,0.24);
-      box-shadow: 0 0 16px rgba(140,235,96,0.7);
     }
 
     .persona-name {
@@ -564,12 +368,6 @@
       font-size: 0.82rem;
       color: var(--muted);
       margin-bottom: 0.5rem;
-    }
-
-    .persona-text {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin: 0;
     }
 
     /* ============ GALERIA — Visual ============ */
@@ -587,19 +385,15 @@
       box-shadow: var(--shadow-soft);
       font-size: 0.82rem;
       color: var(--muted);
-      overflow: hidden;
     }
 
     .gallery-item img {
       width: 100%;
       height: auto;
-      max-height: 260px;
-      object-fit: cover;
       display: block;
-      border-radius: 11px;
-      border: 1px solid rgba(140,235,96,0.18);
-      box-shadow: 0 0 18px rgba(140,235,96,0.5);
-      margin-bottom: 0.55rem;
+      border-radius: 10px;
+      margin-bottom: 0.6rem;
+      object-fit: cover;
     }
 
     /* ============ PITCH ============ */
@@ -696,10 +490,6 @@
 
       .hero { grid-template-columns: 1fr; }
       .pitch-layout { grid-template-columns: 1fr; }
-
-      .machine-card {
-        grid-template-columns: 1fr;
-      }
     }
 
     /* ============ FEEDS DINÂMICOS (Substack, YouTube) ============ */
@@ -740,103 +530,61 @@
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="nav-inner">
-      <div class="logo">
-        <img src="logo.png" alt="NEGATIVO.mov logo">
-        <div class="logo-text">
-          <div class="logo-title">NEGATIVO.mov</div>
-          <div class="logo-subtitle">Hub mínimo nos meios · radical nas consequências</div>
-        </div>
-      </div>
-      <button class="nav-toggle" onclick="document.querySelector('nav ul').classList.toggle('nav-open')">
-        menu
-      </button>
-      <nav>
-        <ul>
-          <li><a href="#manifesto">Manifesto</a></li>
-          <li><a href="#frentes">Frentes</a></li>
-          <li><a href="#cinema">Cinema</a></li>
-          <li><a href="#personas">Colunistas</a></li>
-          <li><a href="#ensaios">Ensaios</a></li>
-          <li><a href="#museu">Museu</a></li>
-          <li><a href="#visuais">Visuais</a></li>
-          <li><a href="#pitch">Pitch</a></li>
-          <li><a href="#mov">.mov</a></li>
-        </ul>
-      </nav>
+
+<header>
+  <div class="nav-inner">
+    <div class="logo">
+      <img src="logo.png" alt="NEGATIVO.mov — Hub mínimo nos meios">
     </div>
-  </header>
+    <button class="nav-toggle" id="navToggle">menu</button>
+    <nav>
+      <ul id="navList">
+        <li><a href="#manifesto">Manifesto</a></li>
+        <li><a href="#frentes">Frentes</a></li>
+        <li><a href="#cinema-pobre">Cinema</a></li>
+        <li><a href="#colunistas">Personas</a></li>
+        <li><a href="#ensaios">Ensaios</a></li>
+        <li><a href="#museu-digital">Museu</a></li>
+        <li><a href="#experimentos">Visuais</a></li>
+        <li><a href="pitch.html">Operação</a></li>
+        <li><a href="#pitch">Pitch</a></li>
+        <li><a href="#mov">.mov</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-  <main class="page">
+<main>
+  <div class="page">
+
     <!-- HERO -->
-    <section id="topo">
-      <div class="hero">
-        <div class="hero-left">
-          <div class="hero-kicker">
-            <span class="hero-kicker-dot"></span>
-            Hub cultural em fluxo vivo
-          </div>
-          <h1 class="hero-title">
-            <span class="hero-title-main">NEGATIVO.<strong style="color: var(--accent)">MOV</strong> — hub mínimo nos meios, radical nas consequências</span>
-          </h1>
-          <p class="hero-subtitle">
-            Superfície de inscrição do possível em Terra de Miranda: um dispositivo que conecta cinema pobre, museus digitais, colunistas, ensaio filosófico e experimentos visuais — sempre em fluxo, antes da instituição.
-          </p>
-          <p class="hero-meta">
-            <strong>NEGATIVO.mov</strong> opera onde há resto e desejo: lugares onde o território parece “pequeno demais” para caber futuro, mas é grande demais para caber numa só narrativa.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#manifesto">Ler o manifesto</a>
-            <a class="btn btn-secondary" href="#pitch">Ver pitch & operação</a>
-          </div>
-          <p class="hero-footnote">
-            Cinema.triz em prototipagem pública, primeiro museu digital em operação (laboratório de língua mirandesa), colunas ficcionais em fase de aparecimento e ontologia estética materialista em desenvolvimento.
-          </p>
+    <section class="hero">
+      <div class="hero-left">
+        <h1 class="hero-title">
+          <span class="hero-title-main">NEGATIVO</span>
+          <span class="hero-mov-link"><a href="#mov">.mov</a></span>
+        </h1>
+        <p class="hero-subtitle">
+          Hub mínimo nos meios. Radical nas consequências.<br>
+          NEGATIVO.mov é uma máquina cultural que pensa e produz formas em Terra de Miranda.<br>
+          Cinema, museologia, filosofia aplicada, IA, território e linguagens híbridas — obras em fluxo, antes da instituição.
+        </p>
+        <div class="hero-actions">
+          <a href="#frentes" class="btn btn-primary">explorar</a>
+          <a href="#pitch" class="btn btn-secondary">escala futura</a>
         </div>
-
-        <aside class="hero-right">
-          <h3>Máquina cultural em operação</h3>
-          <p>
-            NEGATIVO.mov articula filosofia, tecnologia e território como <strong>máquina de forma</strong>:
-            produzindo dispositivos para museus, cinema, linguagem, plataformas digitais e políticas culturais.
-          </p>
-          <ul class="pill-list">
-            <li>Cinema.triz</li>
-            <li>Museus do possível</li>
-            <li>Gramática improvável</li>
-            <li>Colunistas-personas</li>
-            <li>Ontologia estética materialista</li>
-          </ul>
-        </aside>
       </div>
+    </section>
 
-      <!-- Bloco "Conheça a máquina cultural" -->
-      <div class="machine-card">
-        <div>
-          <h3>Conheça a máquina cultural NEGATIVO.mov</h3>
-          <p>
-            Para instituições, museus, centros culturais, artistas, municípios, programas e plataformas que precisam
-            de pensamento e forma em alto nível.
-          </p>
-          <p>
-            A página estratégica mostra o NEGATIVO.mov como <strong>engenharia estética e filosófica aplicada</strong>:
-            curadoria, reformulação de museus, planos culturais, direção criativa, museus digitais, laboratórios,
-            arquivos vivos e sistemas humano+máquina para cultura.
-          </p>
-        </div>
-        <div>
-          <ul class="machine-list">
-            <li>Museus e centros culturais em busca de reposicionamento.</li>
-            <li>Projetos audiovisuais que precisam de direção estética e conceitual.</li>
-            <li>Programas de língua, território e cultura em escala local ou transfronteiriça.</li>
-            <li>Plataformas digitais que querem operar cultura como fluxo, não só como arquivo.</li>
-          </ul>
-          <p style="margin-top:0.7rem;">
-            → Ler a página completa de Pitch Estratégico:
-            <a href="pitch.html">pitch.html</a>
-          </p>
+    <!-- CHAMADA PARA PÁGINA ESTRATÉGICA -->
+    <section>
+      <div class="card" style="cursor:default;">
+        <div class="card-body">
+          <p><strong>Conheça a máquina cultural NEGATIVO.mov</strong></p>
+          <p>Para instituições, museus, centros culturais, artistas, municípios, programas e plataformas que precisam de pensamento e forma em alto nível.</p>
+          <p>→ Página estratégica completa: <a href="pitch.html">pitch.html</a></p>
         </div>
       </div>
     </section>
@@ -845,34 +593,39 @@
     <section id="manifesto">
       <div class="section-header">
         <div>
-          <div class="section-kicker">Manifesto NEGATIVO.mov</div>
-          <h2 class="section-title">Cultura como máquina do resto</h2>
+          <div class="section-kicker">manifesto</div>
+          <h2 class="section-title">Da cultura como fluxo, não vitrina</h2>
         </div>
       </div>
+      <div class="card" style="cursor:default;">
+        <div class="card-body">
+          <p><strong>NEGATIVO.mov</strong> prova que a cultura não precisa esperar
+          audiência para existir: ela pode aparecer como <em>fluxo vivo</em>, não como
+          catálogo nem feed ansioso.</p>
 
-      <div class="manifesto-card">
-        <h3>Manifesto NEGATIVO.mov</h3>
-        <p>
-          Cultura não espera audiência para existir — aparece como <em>forma improvável</em> mesmo quando ninguém pediu,
-          ninguém entendeu e ninguém financiou.
-        </p>
-        <p>
-          O NEGATIVO.mov opera onde há resto e desejo: lugares onde o território parece “pequeno demais” para caber
-          futuro, mas é grande demais para caber numa só narrativa.
-        </p>
-        <p>
-          Este hub é uma <strong>engenharia do resto</strong>: conecta o que já existe, inventa o que não existe ainda
-          e registra tudo como fluxo — antes de virar dossiê, prémio ou regulamento.
-        </p>
-        <p>
-          O manifesto completo apresenta o NEGATIVO.mov como máquina conceitual, estética e territorial, em dez
-          operações:
-          fluxo, repertório, mídia, resto, desejo, museu do possível, cinema.triz, gramática improvável,
-          máquina cultural e território como mídia.
-        </p>
-        <p>
-          → <a href="manifesto.html">Ler o manifesto completo</a>
-        </p>
+          <p>Miranda do Douro entra como <strong>matéria a ser reorganizada</strong>,
+          não como filtro de identidade. A estética do negativo é um atrator — 
+          mas o essencial é a <strong>forma funcionando</strong>: navegável,
+          indexável, escalável.</p>
+
+          <p>Por trás de cada texto, vídeo ou desenho, o que interessa é a operação:
+          cruzar <strong>fluxo</strong> e <strong>repertório</strong> em
+          <strong>mídias concretas</strong>, produzindo <strong>formas improváveis</strong>
+          que reencenam o território e abrem sempre resto e desejo.</p>
+
+          <p><strong>O manifesto completo recolhe essa máquina em dez operações:</strong>
+          fluxo &amp; repertório, resto, Museu do Possível, Cinema.triz, Gramática
+          Improvável, máquinas culturais, estética materialista, território, assinatura
+          autoral e convite à instituição que ainda não existe.</p>
+
+          <p>
+            <a href="manifesto.html"
+               class="btn btn-secondary"
+               style="margin-top:0.4rem; display:inline-flex; align-items:center;">
+              Ler o manifesto completo
+            </a>
+          </p>
+        </div>
       </div>
     </section>
 
@@ -880,235 +633,203 @@
     <section id="frentes">
       <div class="section-header">
         <div>
-          <div class="section-kicker">Frentes em operação</div>
-          <h2 class="section-title">O que está em movimento agora</h2>
+          <div class="section-kicker">hub</div>
+          <h2 class="section-title">Frentes em operação</h2>
         </div>
       </div>
-
       <div class="panel-grid">
-        <article class="card">
-          <a href="#cinema" class="card-link">
-            <div class="card-label">Cinema.triz</div>
-            <h3 class="card-title">Formações provisórias de um cinema feito dos restos do improvável</h3>
-            <p class="card-body">
-              Dispositivo audiovisual que opera com negativos, espelhos, aparições e pequenas formas que não cabem
-              no cinema institucional. O primeiro ciclo acompanha o cineasta fictício Manuel Maninho e os estados
-              de imagem que ele aciona.
-            </p>
-            <span class="status-pill">Em prototipagem pública</span>
-          </a>
-        </article>
-
-        <article class="card">
-          <a href="#museu" class="card-link">
-            <div class="card-label">Museu do possível</div>
-            <h3 class="card-title">Museus-processo em vez de museus-caixa</h3>
-            <p class="card-body">
-              Experimentos de museologia digital e territorial onde o acervo não é conjunto de objetos, mas
-              <em>estados de inscrição</em> ativados por pessoas, dados sintéticos e máquinas de escrita.
-              O primeiro protótipo opera sobre a língua mirandesa.
-            </p>
-            <span class="status-pill">Primeiro museu digital em operação</span>
-          </a>
-        </article>
-
-        <article class="card">
-          <a href="#personas" class="card-link">
-            <div class="card-label">Colunistas-personas</div>
-            <h3 class="card-title">Falares ficcionais que pensam o território</h3>
-            <p class="card-body">
-              Um conjunto de personas — José Nóbrega, Diana Moira Ruiz, Nero Ventura,
-              Ícaro Ventura, Alceu Dumont, Cacá Gabriel, Osíris de Rossio, Altino Novais —
-              que escrevem, observam e deformam o interior português a partir de posições
-              improváveis.
-            </p>
-            <span class="status-pill">Colunas em aparecimento</span>
-          </a>
-        </article>
-
-        <article class="card">
-          <a href="#visuais" class="card-link">
-            <div class="card-label">Experimentos visuais & negativos</div>
-            <h3 class="card-title">Imagens como campo de probabilidade e resto</h3>
-            <p class="card-body">
-              Negativos probabilísticos, cruzamentos com desenhos de suiornotsui,
-              saturações de crítica institucional e aparições de matéria viva:
-              a máquina estética de segunda ordem em operação visual.
-            </p>
-            <span class="status-pill">Primeiro ciclo em curso</span>
-          </a>
-        </article>
-      </div>
-    </section>
-
-    <!-- CINEMA -->
-    <section id="cinema">
-      <div class="section-header">
-        <div>
-          <div class="section-kicker">Cinema.triz</div>
-          <h2 class="section-title">Dispositivo audiovisual do NEGATIVO.mov</h2>
-        </div>
-      </div>
-
-      <div class="panel-grid">
-        <article class="card">
-          <div class="card-label">Cinema pobre & máquina de estados</div>
-          <h3 class="card-title">Cinema feito de restos, espelhos e aparições</h3>
-          <p class="card-body">
-            O CINEMA.triz não é um “projeto de filmes”, mas uma máquina para gerar estados audiovisuais.
-            O foco não é a narrativa clássica, mas as operações tensivas entre imagem, som, corpo e território.
-            Cada filme é um <em>mov.triz</em>: um fragmento de um cinema em formação.
-          </p>
-          <p class="card-body">
-            O primeiro ciclo acompanha o cineasta fictício <strong>Manuel Maninho</strong>, figura espelhada
-            que desestabiliza o dispositivo cinematográfico tradicional. O que se filma não é a personagem,
-            mas as deformações que ela provoca no campo audiovisual.
-          </p>
-          <div class="feed-snippet">
-            <div class="feed-snippet-meta">Último mov.triz publicado</div>
-            <div class="feed-snippet-title">
-              <a href="https://www.youtube.com/playlist?list=PLk7iC33Uru1–w7RUTpujISiFDUFxIr05" target="_blank" rel="noopener">
-                Ver a playlist Cinema.triz no YouTube
-              </a>
-            </div>
-            <img src="cinema-triz-thumb.jpg" alt="Thumbnail do Cinema.triz" class="cinema-thumb">
+        <div class="card" style="cursor:default;">
+          <div class="card-label">frente</div>
+          <h3 class="card-title">Cinema.triz</h3>
+          <div class="card-body">
+            Movimentos nascidos de desvios mínimos em matrizes sempre falhas:
+            cinema como engenharia do resto – gravável com o que há.
           </div>
-        </article>
-
-        <article class="card">
-          <div class="card-label">Teoria em movimento</div>
-          <h3 class="card-title">Ontologia estética materialista em estado de filme</h3>
-          <p class="card-body">
-            Cada experimento do CINEMA.triz testa, na prática, o que a teoria formula como
-            <strong>ontologia estética materialista</strong>: forma como operação entre fluxo, repertório,
-            mídia e resto, sempre atravessada por máquinas (câmeras, algoritmos, interfaces).
-          </p>
-          <p class="card-body">
-            O cinema funciona como laboratório para pensar relação entre sujeito, técnica e território:
-            um cinema que se faz com o que há — espelhos, casas, ruídos, telemóveis — e que insiste em
-            tratar cada pequeno gesto como superfície de inscrição do possível.
-          </p>
-          <p class="card-body">
-            → Ler mais e acompanhar o processo em texto no Substack:
-            <a href="https://substack.com/@negativomov" target="_blank" rel="noopener">NEGATIVO.mov no Substack</a>.
-          </p>
-        </article>
+          <!-- AGORA LINKA PARA A PÁGINA DO CINEMA -->
+          <a href="cinema-triz.html" class="status-pill" target="_blank" rel="noopener">ver frente</a>
+        </div>
+        <div class="card" style="cursor:default;">
+          <div class="card-label">frente</div>
+          <h3 class="card-title">Colunistas</h3>
+          <div class="card-body">
+            Polifonia midial: máquinas, astros e memes em disputa pela inscrição,
+            de onde emergem novas subjetividades.
+          </div>
+          <!-- ROLA ATÉ A SECÇÃO DE COLUNISTAS -->
+          <a href="#colunistas" class="status-pill">ver frente</a>
+        </div>
+        <div class="card" style="cursor:default;">
+          <div class="card-label">frente</div>
+          <h3 class="card-title">Ensaios</h3>
+          <div class="card-body">
+            Ontologia estética materialista aplicada ao (des)território:
+            onde repertórios repetem, os ensaios perfuram e recompõem restos em fluxo.
+          </div>
+          <!-- ABRE O SUBSTACK PRINCIPAL DO NEGATIVO.mov -->
+          <a href="https://substack.com/@negativomov" class="status-pill" target="_blank" rel="noopener">ver frente</a>
+        </div>
+        <div class="card" style="cursor:default;">
+          <div class="card-label">frente</div>
+          <h3 class="card-title">Museu Digital</h3>
+          <div class="card-body">
+            Prototipagem do possível, não herança fóssil: um museu que nasce
+            primeiro como superfície, nunca como arquivo.
+          </div>
+          <!-- LINK PARA O LABORATÓRIO MIRANDÊS -->
+          <a href="museumirandes.html" class="status-pill" target="_blank" rel="noopener">ver frente</a>
+        </div>
+        <div class="card" style="cursor:default;">
+          <div class="card-label">frente</div>
+          <h3 class="card-title">Experimentos Visuais</h3>
+          <div class="card-body">
+            Sombras &amp; cegueiras visuais: força imagética do invisível
+            que sustenta o que aparece.
+          </div>
+          <!-- ROLA ATÉ A SECÇÃO DE EXPERIMENTOS VISUAIS -->
+          <a href="#experimentos" class="status-pill">ver frente</a>
+        </div>
+        <div class="card" style="cursor:default;">
+          <div class="card-label">frente</div>
+          <h3 class="card-title">Pitch &amp; Captação</h3>
+          <div class="card-body">
+            A máquina NEGATIVO.mov opera como engenharia estética e filosófica aplicada.
+            Não vendemos serviços — operamos forma, pensamento e dispositivo.
+            Para quem decide em 30 segundos porque reconhece a Forma.
+          </div>
+          <!-- ROLA ATÉ A SECÇÃO PITCH -->
+          <a href="#pitch" class="status-pill">ver pitch</a>
+        </div>
       </div>
     </section>
 
-    <!-- PERSONAS / COLUNISTAS -->
-    <section id="personas">
+    <!-- CINEMA.triz -->
+    <section id="cinema-pobre">
       <div class="section-header">
         <div>
-          <div class="section-kicker">Colunistas & personas</div>
-          <h2 class="section-title">Polifonia em fluxo</h2>
+          <div class="section-kicker">cinema</div>
+          <h2 class="section-title">Cinema.triz</h2>
         </div>
       </div>
+      <div class="card" style="cursor:default;">
+        <div class="card-body">
+          <p>
+            Protótipos pobres de cinema e estudos de diferença mínima:
+            ônus na forma, não no meio. Frames e roteiros operam em matrizes
+            que nunca fecham — toda imagem produz resto, toda novidade é sintaxe
+            recombinada do que insiste em voltar.
+          </p>
+        </div>
+        <div id="cinema-feed" class="feed-snippet"></div>
+        <span class="status-pill">em fluxo</span>
+      </div>
+    </section>
 
+    <!-- COLUNISTAS -->
+    <section id="colunistas">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">personas</div>
+          <h2 class="section-title">Personas &amp; colunistas NEGATIVO.mov</h2>
+        </div>
+      </div>
       <div class="columns">
-        <article class="persona">
-          <img src="nobrega-aguas.jpg" alt="José Nóbrega">
-          <div>
+
+        <div class="card">
+          <a class="card-link" href="https://josenobrega.substack.com" target="_blank">
+            <img src="nobrega-aguas.jpg" alt="José Nóbrega — Cura crítica em Terra de Miranda" class="cover-thumb">
             <div class="persona-name">José Nóbrega</div>
-            <div class="persona-role">Cronista do interior em estado de assombro</div>
-            <p class="persona-text">
-              Escreve a partir das margens do interior profundo, observando pequenos acontecimentos,
-              microdramaturgias de aldeia e fricções entre memória, política local e o que chega pelas telas.
-              A sua coluna opera como sismógrafo do que vibra onde “nunca acontece nada”.
-            </p>
-          </div>
-        </article>
+            <div class="persona-role">médico · comentarista</div>
+            <div class="card-body">
+              Crónicas de desgaste, memória e saúde pública num território atravessado
+              por barragens, promessas e powerpoints políticos.
+            </div>
+          </a>
+        </div>
 
-        <article class="persona">
-          <img src="diana-horoscopo.jpg" alt="Diana Moira Ruiz">
-          <div>
+        <div class="card">
+          <a class="card-link" href="https://dianamoiraruis.substack.com" target="_blank">
+            <img src="diana-horoscopo.jpg" alt="Diana Moira Ruiz — Horóscopo da semana" class="cover-thumb">
             <div class="persona-name">Diana Moira Ruiz</div>
-            <div class="persona-role">Astrologia de infraestruturas e ruínas</div>
-            <p class="persona-text">
-              Lê mapas astrais de linhas de comboio abandonadas, barragens, arquivos públicos,
-              projectos culturais que nunca arrancaram e cidades em obras eternas. A astrologia
-              aparece como ferramenta para ler infraestruturas e políticas culturais enterradas.
-            </p>
-          </div>
-        </article>
+            <div class="persona-role">enfermeira · astróloga · consultora sentimental</div>
+            <div class="card-body">
+              Rotina astrológica processual, escrita entre turnos de enfermagem, afetos
+              precários e fronteiras ibéricas.
+            </div>
+          </a>
+        </div>
 
-        <article class="persona">
-          <img src="nero-edp-sigma.jpg" alt="Nero Ventura">
-          <div>
+        <div class="card">
+          <a class="card-link" href="https://neroventura.substack.com" target="_blank">
+            <img src="nero-edp-sigma.jpg" alt="Nero Ventura — EDP SIGMA" class="cover-thumb">
             <div class="persona-name">Nero Ventura</div>
-            <div class="persona-role">Correspondente eletromagnético</div>
-            <p class="persona-text">
-              Acompanha o comportamento da luz artificial, dos cabos, da energia elétrica e das
-              plataformas digitais nas suas tentativas de colonizar o interior. Escreve como se
-              fosse um técnico de eletricidade a fazer crítica de cultura.
-            </p>
-          </div>
-        </article>
+            <div class="persona-role">empreendedor · coach · finanças</div>
+            <div class="card-body">
+              Coluna sobre teatro da vitória fácil, finanças de fachada e economia dos
+              “machos beta do interior”.
+            </div>
+          </a>
+        </div>
 
-        <article class="persona">
-          <img src="icaro-dsa.jpg" alt="Ícaro Ventura">
-          <div>
+        <div class="card">
+          <a class="card-link" href="https://icaroventura.substack.com" target="_blank">
+            <img src="icaro-dsa.jpg" alt="Ícaro Ventura — Dynamic Substrate Architectures" class="cover-thumb">
             <div class="persona-name">Ícaro Ventura</div>
-            <div class="persona-role">Relatos de queda controlada</div>
-            <p class="persona-text">
-              Observa a relação entre risco, desejo de ascensão e pequenos desastres quotidianos.
-              A sua escrita atravessa aviação, estradas de montanha, seguros, endividamento e
-              projetos que nunca chegam ao céu prometido.
-            </p>
-          </div>
-        </article>
+            <div class="persona-role">programador nómada · ensaísta</div>
+            <div class="card-body">
+              Ensaios sobre infraestruturas culturais em tempo real, algoritmos,
+              “cloudflare cultural” e museus não-deterministas.
+            </div>
+          </a>
+        </div>
 
-        <article class="persona">
-          <img src="alceu-sema-brega.jpg" alt="Alceu Dumont">
-          <div>
+        <div class="card">
+          <a class="card-link" href="https://alceudumont.substack.com" target="_blank">
+            <img src="alceu-sema-brega.jpg" alt="Alceu Dumont — Sêma i dýnamis de la brega" class="cover-thumb">
             <div class="persona-name">Alceu Dumont</div>
-            <div class="persona-role">Consultor sentimental de infraestruturas</div>
-            <p class="persona-text">
-              Fala de pontes, rotundas, parques de estacionamento e pavilhões multiusos como se fossem
-              personagens de novela. A sua coluna mede o estado emocional das obras públicas e dos
-              projetos que “modernizam” o interior.
-            </p>
-          </div>
-        </article>
+            <div class="persona-role">colunista · poeta</div>
+            <div class="card-body">
+              Poemas e crónicas sobre o pendão-EDP, as barragens e os movimentos culturais
+              em Terra de Miranda.
+            </div>
+          </a>
+        </div>
 
-        <article class="persona">
-          <img src="caca-metafisica.jpg" alt="Cacá Gabriel">
-          <div>
+        <div class="card">
+          <a class="card-link" href="https://cacagabrielmov.substack.com" target="_blank">
+            <img src="caca-metafisica.jpg" alt="Cacá Gabriel — Mais uma vez, o problema é a metafísica" class="cover-thumb">
             <div class="persona-name">Cacá Gabriel</div>
-            <div class="persona-role">Anotador de metafísicas diárias</div>
-            <p class="persona-text">
-              Escreve microensaios sobre objetos ordinários — fotocopiadoras, sacos de supermercado,
-              cadeiras de plástico, antenas — como se fossem problemas de ontologia. É o ponto em que
-              a filosofia entra na mercearia.
-            </p>
-          </div>
-        </article>
+            <div class="persona-role">editor-chefe</div>
+            <div class="card-body">
+              Textos sobre infraestruturas metafísicas da política local, cruzes, barragens
+              e formas de governo do sensível.
+            </div>
+          </a>
+        </div>
 
-        <article class="persona">
-          <img src="osiris-rossio.jpg" alt="Osíris de Rossio">
-          <div>
+        <div class="card">
+          <a class="card-link" href="https://osirisderossio.substack.com" target="_blank">
+            <img src="osiris-rossio.jpg" alt="Osíris de Rossio — cronista e operador de ruído" class="cover-thumb">
             <div class="persona-name">Osíris de Rossio</div>
-            <div class="persona-role">Correspondente entre Lisboa e Miranda</div>
-            <p class="persona-text">
-              Observa a fricção entre capital e interior, comboios que chegam vazios, autocarros que
-              partem cheios, e a sensação de que a vida cultural está sempre “noutro lado”.
-              A sua coluna é um vaivém permanente entre Rossio e planalto.
-            </p>
-          </div>
-        </article>
+            <div class="persona-role">cronista · operador de ruído</div>
+            <div class="card-body">
+              Notas sobre circulação de afetos, política miúda e mitologias de Rossio
+              e arredores – entre praça, bar e rede.
+            </div>
+          </a>
+        </div>
 
-        <article class="persona">
-          <img src="altino-novais.jpg" alt="Altino Novais">
-          <div>
+        <div class="card">
+          <a class="card-link" href="https://altinonovais.substack.com" target="_blank">
+            <img src="altino-novais.jpg" alt="Altino Novais — estudante de direito e meme crítico" class="cover-thumb">
             <div class="persona-name">Altino Novais</div>
-            <div class="persona-role">Apontamentos para uma política do resto</div>
-            <p class="persona-text">
-              Escreve sobre políticas culturais, orçamentos mínimos, editais mal desenhados e
-              instituições que só sabem falar em “públicos”. A sua escrita acende, com ironia dura,
-              os pontos cegos da gestão cultural contemporânea.
-            </p>
-          </div>
-        </article>
+            <div class="persona-role">estudante de direito · meme crítico</div>
+            <div class="card-body">
+              Comentários rápidos sobre leis, trending topics e Portugal jurídico,
+              cruzando gíria de faculdade, shitpost e teoria pesada.
+            </div>
+          </a>
+        </div>
+
       </div>
     </section>
 
@@ -1116,182 +837,136 @@
     <section id="ensaios">
       <div class="section-header">
         <div>
-          <div class="section-kicker">Ensaios & pensamento</div>
-          <h2 class="section-title">Ontologia estética materialista em construção</h2>
+          <div class="section-kicker">teoria</div>
+          <h2 class="section-title">Ensaios &amp; Filosofia</h2>
         </div>
       </div>
-
-      <div class="panel-grid">
-        <article class="card">
-          <div class="card-label">Livro em processo</div>
-          <h3 class="card-title">Ontologia estética materialista</h3>
-          <p class="card-body">
-            Um livro em composição que pensa forma como operação entre fluxo, repertório, mídia e resto.
-            A ontologia emerge a partir da prática do próprio NEGATIVO.mov: cinema.triz, museus digitais,
-            gramática improvável, colunistas e experimentos visuais funcionam como laboratório.
-          </p>
-          <p class="card-body">
-            O processo de escrita é publicado em partes, em regime de ensaio contínuo, no Substack do
-            NEGATIVO.mov — para que a filosofia circule em fluxo, antes da forma final do livro.
-          </p>
-          <div class="feed-snippet">
-            <div class="feed-snippet-meta">Atualizações em fluxo</div>
-            <div class="feed-snippet-title">
-              <a href="https://substack.com/@negativomov" target="_blank" rel="noopener">
-                Ler os ensaios no Substack NEGATIVO.mov
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-label">Paranorma da arte contemporânea</div>
-          <h3 class="card-title">Negativos probabilísticos de crítica e curadoria</h3>
-          <p class="card-body">
-            A partir de textos críticos reais, o NEGATIVO.mov extrai distribuições de probabilidade —
-            léxicos recorrentes, isotopias, estruturas argumentativas — e devolve ao sistema os seus
-            próprios padrões em estado de saturação.
-          </p>
-          <p class="card-body">
-            Essa operação gera a <em>Paranorma da Arte Contemporânea</em>: uma superfície onde o provável
-            se torna forma explícita, expondo o modo como a crítica e a curadoria organizam visibilidade
-            e valor. O resultado não é comentário, mas dispositivo.
-          </p>
-          <p class="card-body">
-            Parte desses movimentos aparece em texto no Substack, em articulação com os negativos
-            visuais e com o trabalho sobre a Artecapital.
-          </p>
-        </article>
+      <div class="card" style="cursor:default;">
+        <div class="card-label">capítulos</div>
+        <h3 class="card-title">Livro em produção</h3>
+        <div class="card-body">
+          Capítulos e séries da ontologia estética materialista em produção:
+          estética, midialogia, museus e território. Aparecem aqui como
+          hipóteses indexadas — rascunhos públicos de um livro em fluxo.
+        </div>
+        <div id="ensaios-feed" class="feed-snippet"></div>
+        <span class="status-pill">em fluxo</span>
       </div>
     </section>
 
-    <!-- MUSEU -->
-    <section id="museu">
+    <!-- MUSEU DIGITAL -->
+    <section id="museu-digital">
       <div class="section-header">
         <div>
-          <div class="section-kicker">Museu do possível</div>
-          <h2 class="section-title">Museu-processo de língua mirandesa</h2>
+          <div class="section-kicker">museu digital</div>
+          <h2 class="section-title">Museu do Possível</h2>
         </div>
       </div>
-
-      <div class="panel-grid">
-        <article class="card">
-          <div class="card-label">Primeiro protótipo</div>
-          <h3 class="card-title">Museu digital da língua mirandesa</h3>
-          <p class="card-body">
-            Um museu que não conserva objetos, mas estados de língua: frases, julgamentos, escolhas
-            sintáticas e pequenas decisões de quem fala ou intui o mirandês. O acervo é um campo de
-            dados sintéticos, respostas humanas e análise probabilística.
-          </p>
-          <p class="card-body">
-            O visitante é convidado a produzir inscrições improváveis em modelos linguísticos, ajudando
-            a construir uma gramática que não congela a língua, mas a observa em fricção com máquinas
-            e algoritmos.
-          </p>
-          <p class="card-body">
-            → Visitar o protótipo do museu:
-            <a href="museumirandes.html">museumirandes.html</a>
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="card-label">Gramática improvável</div>
-          <h3 class="card-title">Modelos tensivos para uma língua em risco</h3>
-          <p class="card-body">
-            A Gramática Improvável parte de modelos de linguística formal, estatística e semiótica tensiva
-            para criar visualizações de estados gramaticais do mirandês. Em vez de descrever regras fixas,
-            mostra campos de possibilidade — o que a língua pode vir a fazer.
-          </p>
-          <p class="card-body">
-            Cada visita ao museu gera dados que alimentam um laboratório gramatical em fluxo, com estados
-            publicados em forma de texto, gráficos e pequenos relatos no Substack.
-          </p>
-        </article>
+      <div class="card" style="cursor:default;">
+        <div class="card-label">protótipo</div>
+        <h3 class="card-title">Superfície em tempo real</h3>
+        <div class="card-body">
+          Espaço para exposições mínimas, mapas de dados e futuras interfaces interativas.
+          O MVP mostra o lugar antes da tecnologia pesada: um museu vivo em tempo real,
+          onde as formas aparecem, circulam e são testadas antes de virarem repertório.
+        </div>
+        <div id="gramatica-feed" class="feed-snippet"></div>
+        <!-- LINK PARA O LABORATÓRIO MIRANDÊS -->
+        <a href="museumirandes.html" class="status-pill" target="_blank" rel="noopener">em fluxo</a>
       </div>
     </section>
 
-    <!-- VISUAIS -->
-    <section id="visuais">
+    <!-- EXPERIMENTOS VISUAIS -->
+    <section id="experimentos">
       <div class="section-header">
         <div>
-          <div class="section-kicker">Visual</div>
-          <h2 class="section-title">Experimentos visuais & negativos</h2>
-        </div>
-        <div class="section-kicker">
-          → Leitura teórica completa em:
-          <a href="experimentos-visuais.html">A Máquina Estética de Segunda Ordem</a>
+          <div class="section-kicker">visual</div>
+          <h2 class="section-title">Experimentos visuais &amp; negativos</h2>
         </div>
       </div>
 
       <div class="gallery-grid">
-        <article class="gallery-item">
-          <h3>Fluxo em estudo de textura de suiornotsui</h3>
-          <img src="fluxo-suiornotsui.jpg" alt="Fluxo em estudo de textura de suiornotsui">
-          <p>
-            A matéria viva<br>
-            A imagem que aqui aparece não deriva de um repertório prévio nem de uma lógica institucional de seleção; ela emerge como matéria que se impõe antes de qualquer cálculo. O desenho — feito à mão, atravessado por gestos que não obedecem a programas nem a distribuições previsíveis — carrega a densidade própria de um fluxo que não se deixa reduzir a esquemas. A sua presença não resulta de um critério de relevância estética, mas de uma contingência material da forma: é matéria que chega, que insiste, que se apresenta como corpo sensível antes de qualquer tentativa de estabilização. Neste sentido, ela não ilustra uma teoria; ela a antecede enquanto acontecimento.<br><br>
-            A escolha desta imagem não responde a uma hierarquia entre obras, nem a uma coerência temática, nem a um alinhamento com discursos vigentes. Ela responde a algo mais elementar: ao fato de que a forma aparece onde aparece, e que essa aparição é sempre atravessada por condições históricas que escapam ao controle. Toda imagem traz consigo um campo de forças que não pode ser totalmente simbolizado: o gesto que lhe deu origem, o tempo que a constituiu, a vida que a cercou, as pequenas contingências que decidiram sua sobrevivência. Há sempre um ponto cego que participa da inscrição — uma deriva mínima, um desvio imperceptível, um encontro que poderia não ter acontecido e que, no entanto, determina a forma que agora se vê.<br><br>
-            É por isso que esta imagem funciona como matéria viva dentro do dispositivo. Ela não é suporte para a operação; é resistência à operação. Não se oferece como superfície neutra, mas como campo tensivo onde o gesto manual, com suas irregularidades e densidades, confronta a lógica estatística da saturação. A imagem carrega uma intensidade que não pode ser deduzida de nenhum repertório: uma espécie de resto originário, o traço do que escapa ao cálculo e que, ao mesmo tempo, torna possível a operação da máquina. A matéria sensível aqui não é ilustração nem exceção; é aquilo que introduz o improvável no encontro com o provável.<br><br>
-            Assim, a presença desta imagem não responde a critérios de justificação, mas a uma lógica anterior à escolha: ela aparece porque apareceu, porque se deixou encontrar num determinado momento, porque a história — com todos os seus desvios ínfimos, acidentes discretos e gestos circunstanciais — fez com que fosse esta e não outra. Não há garantia, nem intenção, nem teleologia. Há apenas o fato de que o fluxo se inscreve quando se encontra com um dispositivo capaz de acolher aquilo que não se repete. Esta imagem é isso: o improvável tornado matéria; o acaso tornado forma; a contingência tornada campo de inscrição para o encontro com a probabilidade saturada.
-          </p>
-        </article>
 
-        <article class="gallery-item">
-          <h3>Hiper-repertório em negativo probabilístico de “Kerry James Marshall — The Histories”</h3>
-          <img src="hiperprob-kjm.jpg" alt="Hiper-repertório em negativo probabilístico de Kerry James Marshall">
-          <p>
-            Kerry James Marshall confirma, com a mesma clareza que define toda a sua trajetória, uma centralidade incontornável: a figura negra como núcleo histórico, estético e político, deslocada do silêncio periférico para o centro simbólico da pintura ocidental. Em cada ciclo, de cada década, reiteram-se as mesmas camadas fundamentais — memória, migração, infância, diáspora, narrativa — reorganizadas em telas que parecem insistir na necessidade urgente de reinscrever o corpo negro na história da arte e nas suas instituições emblemáticas. A monumentalidade do palácio europeu, com as suas talhas douradas, cúpulas, galerias e genealogias, torna-se, assim, o cenário onde essa presença se torna fenomenal, inequívoca, e, por isso mesmo, histórica.<br><br>
-            Ao percorrer a exposição, o visitante reencontra a articulação característica da obra de Marshall: séries estruturadas, referências acumuladas, iconografias cruzadas entre tradição ocidental e simbolismos africanos, atravessadas por subtis gestos políticos. Os estúdios, bibliotecas, museus e escolas de arte surgem como espaços de mediação onde o artista reconstrói um repertório visual que sempre lhe foi imposto como exterior. A pintura, nesse contexto, torna-se o lugar onde passado e presente se projetam em paralelo, convocando narrativas bíblicas, mitológicas e sociais que configuram a experiência negra como acontecimento estético incessante. Nada aqui é ocasional: tudo é inscrito, reiterado, sedimentado.<br><br>
-            As obras emblemáticas dos anos 90 — crianças, parques, danças, famílias — reaparecem como cenas que, mesmo quando aparentemente simples, transportam códigos políticos que se revelam lentamente: paletas marcadas pelo vermelho-preto-verde, ecos dos Panteras Negras, slogans de autodeterminação, símbolos da resistência. Em telas posteriores, a crítica amplia-se: deslocações, travessias, pontes transportadas, líderes dos direitos civis transformados em memória pictórica, episódios trágicos reelaborados com ironia silenciosa. Cada uma dessas peças funciona como documento afetivo e político; cada gesto pictórico insiste em tornar visível aquilo que a história, repetidamente, tentou ocultar.<br><br>
-            No final, quando Marshall afirma a necessidade de uma “presença fenomenal que seja inequivocamente negra e bela”, a frase traduz o eixo recorrente de toda a sua obra: produzir, pela pintura, uma forma que resista às estatísticas visuais da tradição ocidental e que reescreva o lugar do corpo negro no imaginário artístico. A exposição, ao reunir décadas de trabalho em plena Royal Academy, confirma e reforça este gesto central — um gesto que, reiterado ao longo do tempo, se torna quase uma lei estética: a figura negra não apenas entra no museu, mas reorganiza, pelo seu próprio peso histórico, a narrativa que o museu acreditava dominar.
-          </p>
-        </article>
+        <!-- 1. Fluxo em estudo de textura de suiornotsui -->
+        <div class="gallery-item">
+          <h3 class="card-title">Fluxo em estudo de textura de suiornotsui</h3>
+          <div class="card-body">
+            <p><strong>A matéria viva</strong><br>
+            A imagem que aqui aparece não deriva de um repertório prévio nem de uma lógica institucional de seleção; ela emerge como matéria que se impõe antes de qualquer cálculo. O desenho — feito à mão, atravessado por gestos que não obedecem a programas nem a distribuições previsíveis — carrega a densidade própria de um fluxo que não se deixa reduzir a esquemas. A sua presença não resulta de um critério de relevância estética, mas de uma contingência material da forma: é matéria que chega, que insiste, que se apresenta como corpo sensível antes de qualquer tentativa de estabilização. Neste sentido, ela não ilustra uma teoria; ela a antecede enquanto acontecimento.</p>
 
-        <article class="gallery-item">
-          <h3>Resto improvável de cruzamentos em “Kerry James Marshall — The Histories”</h3>
-          <img src="resto-kjm.jpg" alt="Resto improvável de cruzamentos em Kerry James Marshall">
-          <p>
-            Figura centra centro.<br>
+            <p>A escolha desta imagem não responde a uma hierarquia entre obras, nem a uma coerência temática, nem a um alinhamento com discursos vigentes. Ela responde a algo mais elementar: ao fato de que a forma aparece onde aparece, e que essa aparição é sempre atravessada por condições históricas que escapam ao controle. Toda imagem traz consigo um campo de forças que não pode ser totalmente simbolizado: o gesto que lhe deu origem, o tempo que a constituiu, a vida que a cercou, as pequenas contingências que decidiram sua sobrevivência. Há sempre um ponto cego que participa da inscrição — uma deriva mínima, um desvio imperceptível, um encontro que poderia não ter acontecido e que, no entanto, determina a forma que agora se vê.</p>
+
+            <p>É por isso que esta imagem funciona como matéria viva dentro do dispositivo. Ela não é suporte para a operação; é resistência à operação. Não se oferece como superfície neutra, mas como campo tensivo onde o gesto manual, com suas irregularidades e densidades, confronta a lógica estatística da saturação. A imagem carrega uma intensidade que não pode ser deduzida de nenhum repertório: uma espécie de resto originário, o traço do que escapa ao cálculo e que, ao mesmo tempo, torna possível a operação da máquina. A matéria sensível aqui não é ilustração nem exceção; é aquilo que introduz o improvável no encontro com o provável.</p>
+
+            <p>Assim, a presença desta imagem não responde a critérios de justificação, mas a uma lógica anterior à escolha: ela aparece porque apareceu, porque se deixou encontrar num determinado momento, porque a história — com todos os seus desvios ínfimos, acidentes discretos e gestos circunstanciais — fez com que fosse esta e não outra. Não há garantia, nem intenção, nem teleologia. Há apenas o fato de que o fluxo se inscreve quando se encontra com um dispositivo capaz de acolher aquilo que não se repete. Esta imagem é isso: o improvável tornado matéria; o acaso tornado forma; a contingência tornada campo de inscrição para o encontro com a probabilidade saturada.</p>
+          </div>
+        </div>
+
+        <!-- 2. Hiper-repertório em negativo probabilístico -->
+        <div class="gallery-item">
+          <h3 class="card-title">Hiper-repertório em negativo probabilístico de “Kerry James Marshall — The Histories”</h3>
+          <div class="card-body">
+            <p>Kerry James Marshall confirma, com a mesma clareza que define toda a sua trajetória, uma centralidade incontornável: a figura negra como núcleo histórico, estético e político, deslocada do silêncio periférico para o centro simbólico da pintura ocidental. Em cada ciclo, de cada década, reiteram-se as mesmas camadas fundamentais — memória, migração, infância, diáspora, narrativa — reorganizadas em telas que parecem insistir na necessidade urgente de reinscrever o corpo negro na história da arte e nas suas instituições emblemáticas. A monumentalidade do palácio europeu, com as suas talhas douradas, cúpulas, galerias e genealogias, torna-se, assim, o cenário onde essa presença se torna fenomenal, inequívoca, e, por isso mesmo, histórica.</p>
+
+            <p>Ao percorrer a exposição, o visitante reencontra a articulação característica da obra de Marshall: séries estruturadas, referências acumuladas, iconografias cruzadas entre tradição ocidental e simbolismos africanos, atravessadas por subtis gestos políticos. Os estúdios, bibliotecas, museus e escolas de arte surgem como espaços de mediação onde o artista reconstrói um repertório visual que sempre lhe foi imposto como exterior. A pintura, nesse contexto, torna-se o lugar onde passado e presente se projetam em paralelo, convocando narrativas bíblicas, mitológicas e sociais que configuram a experiência negra como acontecimento estético incessante. Nada aqui é ocasional: tudo é inscrito, reiterado, sedimentado.</p>
+
+            <p>As obras emblemáticas dos anos 90 — crianças, parques, danças, famílias — reaparecem como cenas que, mesmo quando aparentemente simples, transportam códigos políticos que se revelam lentamente: paletas marcadas pelo vermelho-preto-verde, ecos dos Panteras Negras, slogans de autodeterminação, símbolos da resistência. Em telas posteriores, a crítica amplia-se: deslocações, travessias, pontes transportadas, líderes dos direitos civis transformados em memória pictórica, episódios trágicos reelaborados com ironia silenciosa. Cada uma dessas peças funciona como documento afetivo e político; cada gesto pictórico insiste em tornar visível aquilo que a história, repetidamente, tentou ocultar.</p>
+
+            <p>No final, quando Marshall afirma a necessidade de uma “presença fenomenal que seja inequivocamente negra e bela”, a frase traduz o eixo recorrente de toda a sua obra: produzir, pela pintura, uma forma que resista às estatísticas visuais da tradição ocidental e que reescreva o lugar do corpo negro no imaginário artístico. A exposição, ao reunir décadas de trabalho em plena Royal Academy, confirma e reforça este gesto central — um gesto que, reiterado ao longo do tempo, se torna quase uma lei estética: a figura negra não apenas entra no museu, mas reorganiza, pelo seu próprio peso histórico, a narrativa que o museu acreditava dominar.</p>
+          </div>
+        </div>
+
+        <!-- 3. Resto improvável de cruzamentos -->
+        <div class="gallery-item">
+          <h3 class="card-title">Resto improvável de cruzamentos em “Kerry James Marshall — The Histories”</h3>
+          <div class="card-body">
+            <p>Figura centra centro.<br>
             Centro cerca figura.<br>
             História repete presença.<br>
-            Presença repete história.<br>
-            Memória move memória.<br>
+            Presença repete história.</p>
+
+            <p>Memória move memória.<br>
             Memória torna memória.<br>
             Memória retorna memória.<br>
             Figura retorna.<br>
             Retorna figura.<br>
-            Retorna o centro que retorna a figura que retorna o centro.<br>
-            Centro = figura.<br>
+            Retorna o centro que retorna a figura que retorna o centro.</p>
+
+            <p>Centro = figura.<br>
             Figura = centro.<br>
             História = retorno.<br>
             Retorno = presença.<br>
-            Presença = repetição.<br>
-            Reitera-se o regime:<br>
+            Presença = repetição.</p>
+
+            <p>Reitera-se o regime:<br>
             referência / recorrência / reverberação.<br>
-            Ressoa, ressai, ressurge.<br>
-            A figura insiste.<br>
+            Ressoa, ressai, ressurge.</p>
+
+            <p>A figura insiste.<br>
             A figura insiste.<br>
             A figura insiste.<br>
             Insiste porque é forma.<br>
             Forma porque é retorno.<br>
             Retorno porque é regra.<br>
-            Regra porque é resto.<br>
-            E resta —<br>
+            Regra porque é resto.</p>
+
+            <p>E resta —<br>
             apenas —<br>
             a repetição do retorno repetido.<br>
             Retorna.<br>
             Retorna.<br>
             Retorna.<br>
-            (um resto(im)-probabilidade de CONSTANÇA BABO)
-          </p>
-        </article>
+            (um resto(im)-probabilidade de CONSTANÇA BABO)</p>
+          </div>
+        </div>
+
       </div>
 
-      <p style="margin-top:1.4rem; font-size:0.82rem; color:var(--muted);">
-        → Leitura teórica completa e contexto destes experimentos:
+      <p class="card-body" style="margin-top:1.1rem;">
+        <strong>Fundamento teórico da máquina de imagem:</strong>
         <a href="experimentos-visuais.html">A Máquina Estética de Segunda Ordem: Probabilidade, Resto e Forma no NEGATIVO.mov</a><br>
-        → Acompanhar a Paranorma da Arte Contemporânea em texto:
-        <a href="https://substack.com/@negativomov" target="_blank" rel="noopener">Substack NEGATIVO.mov</a>
+        <strong>Atualizações e desdobramentos semanais:</strong>
+        <a href="PARANORMA_URL_AQUI" target="_blank" rel="noopener">Paranorma da Arte Contemporânea</a>
       </p>
     </section>
 
@@ -1299,102 +974,234 @@
     <section id="pitch">
       <div class="section-header">
         <div>
-          <div class="section-kicker">Pitch & captação</div>
-          <h2 class="section-title">NEGATIVO.mov como máquina cultural aplicável</h2>
+          <div class="section-kicker">captação</div>
+          <h2 class="section-title">Pitch &amp; parcerias</h2>
         </div>
       </div>
 
-      <p style="font-size:0.9rem; color:var(--muted); margin-bottom:1.2rem;">
-        NEGATIVO.mov é uma máquina cultural que articula estética, filosofia materialista,
-        tecnologia, território e linguagem para criar formas, instituições e dispositivos por vir.
-        A página estratégica detalha o que essa máquina pode fazer por museus, centros culturais,
-        políticas culturais, artistas, cineastas, plataformas digitais e programas que precisem
-        operar num outro patamar de forma e pensamento.<br>
-        → Ler a página completa de Pitch Estratégico:
-        <a href="pitch.html">pitch.html</a>
+      <p class="card-body" style="max-width: 48rem; margin-bottom:1.2rem;">
+        NEGATIVO.mov é uma máquina cultural que articula estética, filosofia materialista, tecnologia, território e linguagem para criar formas, instituições e dispositivos por vir.<br>
+        A página estratégica detalha o que essa máquina pode fazer por museus, centros culturais, políticas culturais, artistas, cineastas, plataformas digitais e programas que precisem operar num outro patamar de forma e pensamento.<br>
+        → Ler a página completa de Pitch Estratégico: <a href="pitch.html">pitch.html</a>
       </p>
 
       <div class="pitch-layout">
-        <article class="card">
-          <div class="card-label">O que é a máquina</div>
-          <h3 class="card-title">Engenharia estética e filosófica aplicada</h3>
-          <p class="card-body">
-            A máquina NEGATIVO.mov opera como <strong>engenharia estética e filosófica aplicada</strong>.
-            Não vendemos serviços — operamos forma, pensamento e dispositivo. Para quem decide em 30 segundos
-            porque reconhece a Forma.
-          </p>
+        <div class="card" style="cursor:default;">
+          <div class="card-label">para quem investe</div>
+          <h3 class="card-title">O que é o projeto</h3>
+          <div class="card-body">
+            NEGATIVO.mov é uma máquina cultural que conecta cinema.triz, museus digitais,
+            ensaio filosófico, território e tecnologia. Produção contínua, baixa infraestrutura
+            e alto impacto simbólico: uma engenharia estética e filosófica aplicada.
+          </div>
           <ul class="pitch-list">
-            <li>Curadoria e reformulação de museus e centros culturais.</li>
-            <li>Direção criativa de projetos audiovisuais e transmedia.</li>
-            <li>Laboratórios de museologia digital e arquivos vivos.</li>
-            <li>Consultoria conceitual para artistas, cineastas e instituições.</li>
-            <li>Programas de língua, território e cultura em escala local e transfronteiriça.</li>
+            <li>Possível enquadramento em incentivos fiscais à cultura.</li>
+            <li>Associação a uma estética singular e reconhecível.</li>
+            <li>Conteúdos reaproveitáveis em educação, inovação e comunicação.</li>
           </ul>
-        </article>
-
-        <article class="card">
-          <div class="card-label">Como contactar & para quê</div>
-          <h3 class="card-title">Conversas para projetos concretos</h3>
-          <p class="card-body">
-            O NEGATIVO.mov está aberto a convites para:
-          </p>
-          <ul class="pitch-list">
-            <li>Desenhar ou acompanhar a transformação de um museu ou centro cultural.</li>
-            <li>Criar dispositivos audiovisuais, exposições, plataformas ou laboratórios.</li>
-            <li>Pensar políticas culturais, programas de língua e projetos territoriais.</li>
-            <li>Residências, parcerias académicas e colaborações institucionais.</li>
-          </ul>
-          <p class="card-body">
-            Para propostas estruturadas ou colaborações institucionais, leia primeiro a página de operação cultural:
-            <a href="pitch.html">pitch.html</a>
-          </p>
-          <p class="card-body">
-            Para conversar sobre formatos, escopo ou possibilidades, escreva para
-            <strong><a href="mailto:negativomov@gmail.com">negativomov@gmail.com</a></strong>.
-          </p>
-        </article>
+        </div>
+        <div class="card" style="cursor:default;">
+          <div class="card-label">contacto institucional</div>
+          <div class="card-body">
+            <p><strong>Email:</strong> <a href="mailto:negativomov@gmail.com">negativomov@gmail.com</a><br>
+            <strong>Local:</strong> Miranda do Douro, Portugal</p>
+            <p>Ajustamos formatos a projetos específicos em cultura, inovação
+            digital, educação e desenvolvimento territorial.</p>
+            <p>Para propostas estruturadas ou colaborações institucionais, leia primeiro a página de operação cultural → <a href="pitch.html">pitch.html</a></p>
+          </div>
+        </div>
       </div>
-
-      <p style="margin-top:1.4rem; font-size:0.8rem; color:var(--muted);">
-        Palavras-chave internas (SEO & contexto):
-        NEGATIVO.mov, NEGATIVO mov, Terra de Miranda, Miranda do Douro, Trás-os-Montes,
-        cinema pobre, cinema.triz, museu digital, museu do possível, hub cultural digital,
-        MVP cultura fluxo vivo, projeto cultural transmontano, cultura como fluxo vivo,
-        Caio Eduardo Gabriel, mediação cultural, ensaio filosófico, cinema experimental,
-        ontologia estética materialista, fluxo e repertório, midialogia aplicada,
-        midialogia territorial, polifonia midial, formas improváveis, estética do negativo,
-        interior português em fluxo.
-      </p>
     </section>
 
-    <!-- MOVIMENTO / REDES -->
+    <!-- BLOCO DISCRETO DE PALAVRAS-CHAVE PARA SEO -->
+    <div aria-hidden="true" style="position:absolute; left:-9999px; height:0; overflow:hidden;">
+      NEGATIVO.mov, NEGATIVO mov, Terra de Miranda, Miranda do Douro, Trás-os-Montes,
+      cinema pobre, cinema.triz, museu digital, museu do possível, hub cultural digital,
+      MVP cultura fluxo vivo, projeto cultural transmontano, cultura como fluxo vivo,
+      Caio Eduardo Gabriel, mediação cultural, ensaio filosófico, cinema experimental,
+      ontologia estética materialista, fluxo e repertório, midialogia aplicada,
+      midialogia territorial, polifonia midial, formas improváveis, estética do negativo,
+      interior português em fluxo.
+    </div>
+
+    <!-- MOVIMENTO .mov -->
     <section id="mov">
       <div class="mov-card">
-        <div class="mov-title">Entre no movimento · participe do fluxo</div>
+        <div class="mov-title">
+          <a href="https://substack.com/@negativomov"
+             target="_blank" rel="noopener"
+             style="color:inherit; text-decoration:none; display:block;">
+            ENTRE NO MOVIMENTO · PARTICIPE DO FLUXO
+          </a>
+        </div>
         <p class="mov-text">
-          NEGATIVO.mov é um processo aberto. Abaixo estão os canais onde o fluxo segue rodando —
-          textos, vídeos, crónicas, bastidores e experimentos. É aqui que se acompanha a vida do
-          projeto em tempo real, não só o portfólio.
+          NEGATIVO.mov é um processo aberto. Abaixo estão os canais onde o fluxo
+          segue rodando — textos, vídeos, crónicas, bastidores e experimentos.
+          É aqui que se acompanha a vida do projeto em tempo real, não só o portfólio.
         </p>
         <ul class="social-list">
-          <li><strong>Email:</strong> negativomov@gmail.com</li>
-          <li><strong>Substack / newsletter:</strong> NEGATIVO.mov</li>
-          <li><strong>Instagram:</strong> @negativo.mov</li>
-          <li><strong>YouTube:</strong> canal NEGATIVO.mov</li>
-          <li><strong>TikTok:</strong> @negativo.mov</li>
-          <li><strong>Facebook:</strong> /negativo.mov</li>
-          <li><strong>Geografia:</strong> Miranda do Douro · Terra de Miranda</li>
+          <li><strong>Email</strong>: <a href="mailto:negativomov@gmail.com">negativomov@gmail.com</a></li>
+          <li><strong><a href="https://www.instagram.com/negativo.mov/" target="_blank" rel="noopener">Instagram</a></strong>: @negativo.mov</li>
+          <li><strong><a href="https://www.tiktok.com/@negativo.mov" target="_blank" rel="noopener">TikTok</a></strong>: @negativo.mov</li>
+          <li><strong><a href="https://www.facebook.com/profile.php?id=61583129870616" target="_blank" rel="noopener">Facebook</a></strong>: /negativo.mov</li>
+          <li><strong><a href="https://substack.com/@negativomov" target="_blank" rel="noopener">Substack / newsletter</a></strong>: NEGATIVO.mov</li>
+          <li><strong><a href="https://www.youtube.com/@negativomov" target="_blank" rel="noopener">YouTube</a></strong>: canal NEGATIVO.mov</li>
+          <li><strong>Geografia</strong>: Miranda do Douro · Terra de Miranda</li>
         </ul>
       </div>
     </section>
-  </main>
 
-  <footer>
-    NEGATIVO.mov — máquina cultural em operação · superfície de inscrição do possível
-  </footer>
+  </div>
+</main>
 
-  <script>
-    // Placeholder para futura integração dinâmica (Substack, YouTube, etc.)
-  </script>
+<footer>
+  NEGATIVO.mov — máquina cultural em operação · superfície de inscrição do possível
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navList = document.getElementById('navList');
+
+  if (navToggle && navList) {
+    navToggle.addEventListener('click', () => {
+      navList.classList.toggle('nav-open');
+    });
+
+    navList.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navList.classList.remove('nav-open');
+      });
+    });
+  }
+</script>
+
+<script>
+  // Utilitário genérico para ler RSS via proxy (evita CORS)
+  function fetchRSSFeed(rssUrl, onItem) {
+    fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(rssUrl))
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.text();
+      })
+      .then(text => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'application/xml');
+        const entry = doc.querySelector('item') || doc.querySelector('entry');
+        if (!entry) return;
+
+        const getText = (selector) => {
+          const el = entry.querySelector(selector);
+          return el ? (el.textContent || '').trim() : '';
+        };
+
+        const title = getText('title');
+
+        let link = '';
+        const linkEl = entry.querySelector('link');
+        if (linkEl) {
+          link = (linkEl.getAttribute('href') || linkEl.textContent || '').trim();
+        }
+
+        const pubDate = getText('pubDate') || getText('published');
+
+        let description = getText('description') || getText('content') || '';
+        const mediaDescEls = entry.getElementsByTagName('media:description');
+        if (!description && mediaDescEls && mediaDescEls.length > 0) {
+          description = (mediaDescEls[0].textContent || '').trim();
+        }
+
+        onItem({ title, link, pubDate, description });
+      })
+      .catch(err => {
+        console.error('Erro ao carregar feed:', rssUrl, err);
+      });
+  }
+
+  function stripHTML(str) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = str || '';
+    return (tmp.textContent || tmp.innerText || '').trim();
+  }
+
+  function truncate(str, maxLen) {
+    if (!str) return '';
+    if (str.length <= maxLen) return str;
+    const shortened = str.slice(0, maxLen);
+    const lastSpace = shortened.lastIndexOf(' ');
+    return (lastSpace > 0 ? shortened.slice(0, lastSpace) : shortened) + '…';
+  }
+
+  // Último texto do NEGATIVO.mov (onde estará o livro / ensaios)
+  (function () {
+    const box = document.getElementById('ensaios-feed');
+    if (!box) return;
+    const rssUrl = 'https://negativomov.substack.com/feed';
+    fetchRSSFeed(rssUrl, (item) => {
+      if (!item || !item.title || !item.link) return;
+      const snippet = truncate(stripHTML(item.description), 200);
+      box.innerHTML = ''
+        + '<div class="feed-snippet-meta">Último texto publicado</div>'
+        + '<div class="feed-snippet-title"><a href="' + item.link + '" target="_blank" rel="noopener">' + item.title + '</a></div>'
+        + (snippet ? '<div>' + snippet + '</div>' : '');
+    });
+  })();
+
+  // Último estado da Gramática Improvável
+  (function () {
+    const box = document.getElementById('gramatica-feed');
+    if (!box) return;
+    const rssUrl = 'https://gramaticaimprovavel.substack.com/feed';
+    fetchRSSFeed(rssUrl, (item) => {
+      if (!item || !item.title || !item.link) return;
+      const snippet = truncate(stripHTML(item.description), 180);
+      box.innerHTML = ''
+        + '<div class="feed-snippet-meta">Último estado da Gramática Improvável</div>'
+        + '<div class="feed-snippet-title"><a href="' + item.link + '" target="_blank" rel="noopener">' + item.title + '</a></div>'
+        + (snippet ? '<div>' + snippet + '</div>' : '')
+        + '<div style="margin-top:0.35rem;">→ Contribuir com inscrições: '
+        + '<a href="museumirandes.html" target="_blank" rel="noopener">responder no laboratório mirandês</a></div>';
+    });
+  })();
+
+  // Último vídeo da playlist do Cinema.triz (com thumbnail)
+  (function () {
+    const box = document.getElementById('cinema-feed');
+    if (!box) return;
+    const rssUrl = 'https://www.youtube.com/feeds/videos.xml?playlist_id=PL39_wg5gv6Rjd24MpY9rArysKc4_uGlcZ';
+    fetchRSSFeed(rssUrl, (item) => {
+      if (!item || !item.title || !item.link) return;
+
+      let videoId = '';
+      try {
+        const urlObj = new URL(item.link);
+        videoId = urlObj.searchParams.get('v') || '';
+      } catch (e) {
+        console.warn('URL inválida do vídeo:', item.link);
+      }
+
+      if (!videoId && item.link.indexOf('youtu.be/') !== -1) {
+        videoId = item.link.split('youtu.be/')[1].split(/[?&]/)[0];
+      }
+
+      let thumbHtml = '';
+      if (videoId) {
+        const thumbUrl = 'https://img.youtube.com/vi/' + videoId + '/hqdefault.jpg';
+        thumbHtml =
+          '<a href="' + item.link + '" target="_blank" rel="noopener">'
+          + '<img src="' + thumbUrl + '" class="cinema-thumb" alt="' + (item.title || 'Cinema.triz') + '">'
+          + '<div class="feed-snippet-title">' + item.title + '</div>'
+          + '</a>';
+      } else {
+        thumbHtml =
+          '<div class="feed-snippet-title"><a href="' + item.link + '" target="_blank" rel="noopener">' + item.title + '</a></div>';
+      }
+
+      box.innerHTML = ''
+        + '<div class="feed-snippet-meta">Último movimento na playlist Cinema.triz</div>'
+        + thumbHtml;
+    });
+  })();
+</script>
+
 </body>
 </html>
