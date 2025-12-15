@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <title>Trabalhar com o NEGATIVO.mov</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Trabalhar com o NEGATIVO.mov — intervenções pontuais de concepção cultural e tecnocognitiva, dispositivos e formação estratégica." />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:locale" content="pt_PT" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Trabalhar com o NEGATIVO.mov" />
+  <meta property="og:description" content="Intervenções pontuais, dispositivos culturais e formação estratégica. Primeiro contacto direto." />
+  <meta property="og:site_name" content="NEGATIVO.mov" />
+  <meta property="og:image" content="https://negativo-mov.github.io/negativo.mov/logo.png" />
+
+  <style>
+    :root{
+      --bg:#050201;
+      --bg-alt:#1b0703;
+      --fg:#f9f8f4;
+      --muted:#d2c7c0;
+      --accent:#8ceb60;
+      --accent-2:#ff5a00;
+      --border:#3b1c10;
+      --shadow-soft:0 18px 40px rgba(0,0,0,.75);
+      --radius-lg:18px;
+      --radius-xl:26px;
+      --max-width:980px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--fg);scroll-behavior:smooth;}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .page{max-width:var(--max-width);margin:0 auto;padding:0 1.2rem 3rem;}
+    header{
+      position:sticky;top:0;z-index:50;
+      background:rgba(5,2,1,.88);
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav-inner{max-width:var(--max-width);margin:0 auto;padding:.8rem 1.2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+    .logo img{height:34px;display:block}
+    .nav-toggle{display:none;background:transparent;border:1px solid rgba(255,255,255,.18);color:var(--fg);padding:.45rem .65rem;border-radius:12px;cursor:pointer}
+    nav ul{list-style:none;margin:0;padding:0;display:flex;gap:.9rem;align-items:center}
+    nav a{color:var(--fg);opacity:.88}
+    nav a:hover{opacity:1}
+    .pill{
+      display:inline-flex;align-items:center;gap:.4rem;
+      font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--muted);border:1px solid rgba(255,255,255,.14);
+      padding:.35rem .55rem;border-radius:999px;
+    }
+
+    .hero{padding:2.2rem 0 1.2rem;}
+    .hero h1{margin:.45rem 0 0;font-size:2rem;line-height:1.1}
+    .hero p{margin:.9rem 0 0;color:var(--muted);max-width:52rem;font-size:1.02rem;line-height:1.5}
+    .accent-block{
+      margin:1rem 0 0;
+      padding:1rem 1rem;
+      background:linear-gradient(180deg, rgba(27,7,3,.9), rgba(0,0,0,.35));
+      border:1px solid rgba(255,255,255,.10);
+      border-left:3px solid var(--accent);
+      border-radius:var(--radius-lg);
+      box-shadow:var(--shadow-soft);
+      color:var(--fg);
+    }
+
+    .section{margin-top:1.2rem;}
+    .section-header{margin:1.6rem 0 .6rem;display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;}
+    .kicker{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);opacity:.9}
+    .title{margin:.2rem 0 0;font-size:1.25rem}
+    .card{
+      background:rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:var(--radius-xl);
+      padding:1rem 1rem;
+      box-shadow:var(--shadow-soft);
+    }
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .card h3{margin:.1rem 0 .45rem;font-size:1.02rem}
+    .card p{margin:.35rem 0;color:var(--muted);line-height:1.45}
+    .list{margin:.55rem 0 0;padding-left:1.1rem;color:var(--muted)}
+    .list li{margin:.25rem 0}
+    .btnrow{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:.65rem .9rem;border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.25);
+      color:var(--fg);
+      text-decoration:none;
+    }
+    .btn.primary{border-color:rgba(140,235,96,.45); box-shadow:0 0 0 1px rgba(140,235,96,.15) inset;}
+    .btn.secondary{border-color:rgba(255,90,0,.35);}
+
+    .note{font-size:.86rem;color:var(--muted);opacity:.92}
+    footer{border-top:1px solid rgba(255,255,255,.08);padding:1rem;text-align:center;font-size:.78rem;color:var(--muted);background:rgba(0,0,0,.45);}
+
+    @media (max-width: 860px){
+      .grid{grid-template-columns:1fr}
+      .nav-toggle{display:inline-flex}
+      nav ul{
+        display:none; position:absolute; right:1.2rem; top:3rem;
+        flex-direction:column; align-items:flex-end;
+        background:var(--bg-alt); padding:.8rem 1rem;
+        border-radius:16px; border:1px solid var(--border);
+      }
+      nav ul.nav-open{display:flex}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="nav-inner">
+    <div class="logo">
+      <a href="index.html" aria-label="NEGATIVO.mov — Início">
+        <img src="logo.png" alt="NEGATIVO.mov — Hub mínimo nos meios" />
+      </a>
+    </div>
+    <button class="nav-toggle" id="navToggle">menu</button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="pitch.html">Operação</a></li>
+        <li><a href="trabalhar-com.html">Trabalhar com</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="page">
+
+    <section class="hero">
+      <span class="pill">contacto qualificado</span>
+      <h1>Trabalhar com o NEGATIVO.mov</h1>
+      <p>
+        NEGATIVO.mov é um laboratório de dispositivos culturais e tecnocognitivos aplicados:
+        intervenções pontuais que reconfiguram linguagem, mídia e modo de operação — quando um projeto
+        perdeu potência de forma e precisa voltar a produzir experiência viva no presente.
+      </p>
+
+      <div class="accent-block">
+        <strong>Em 30 segundos:</strong><br>
+        Trabalho com instituições, projetos e criadores que sentem que perderam capacidade de dialogar
+        com o presente. Entro para repensar formas, mídias e modos de pensar, criando dispositivos culturais
+        que abrem novas possibilidades de experiência, participação e circulação — com autonomia conceitual
+        e foco em impacto real.
+      </div>
+
+      <div class="btnrow">
+        <a class="btn primary" href="mailto:negativomov@gmail.com?subject=Trabalhar%20com%20NEGATIVO.mov&body=Olá%2C%0A%0A1)%20Instituição%20ou%20projeto%3A%0A2)%20Problema%20de%20forma%20(1-2%20frases)%3A%0A3)%20Território%20e%20escala%3A%0A4)%20Horizonte%20de%20desejo%20(o%20que%20precisam%20que%20mude)%3A%0A%0AObrigado%2C">Enviar primeiro contacto</a>
+        <a class="btn secondary" href="pitch.html">Ler “Operação”</a>
+        <a class="btn" href="index.html#mov">Ver o fluxo vivo</a>
+      </div>
+
+      <p class="note" style="margin-top:.85rem;">
+        Se preferires, escreve só 6–10 linhas: <strong>quem és</strong>, <strong>qual é o problema</strong>,
+        <strong>o que precisa mudar</strong>, <strong>prazo</strong> e <strong>recursos</strong>.
+      </p>
+    </section>
+
+    <section class="section" id="formatos">
+      <div class="section-header">
+        <div>
+          <div class="kicker">formatos de entrada</div>
+          <h2 class="title">Três formas de intervenção</h2>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>1) Diagnóstico e proposta de operação</h3>
+          <p>
+            Uma conversa inicial + leitura do contexto. Em seguida, uma proposta curta
+            com escopo, horizonte, modos de presença e outputs possíveis.
+          </p>
+          <ul class="list">
+            <li>ideal para direções e equipas em impasse</li>
+            <li>clareza rápida sem “rebranding” vazio</li>
+            <li>serve como base para decisão interna</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>2) Intervenção pontual (protótipo)</h3>
+          <p>
+            Concepção e montagem de um dispositivo específico: ciclo, exposição-processo,
+            museu digital mínimo, programa transmedia, peça/dispositivo de cena, laboratório.
+          </p>
+          <ul class="list">
+            <li>pouca infraestrutura</li>
+            <li>resultado demonstrável</li>
+            <li>abre caminho para escala</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>3) Formação estratégica de equipa</h3>
+          <p>
+            Workshops e laboratórios de pensamento-aplicação para equipas que precisam
+            aprender a operar novas mídias sem cair em gimmick ou “inovação cringe”.
+          </p>
+          <ul class="list">
+            <li>não é formação escolar</li>
+            <li>é ativação de linguagem e método</li>
+            <li>termina em plano ou protótipo</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="primeiro-passo">
+      <div class="section-header">
+        <div>
+          <div class="kicker">como começar</div>
+          <h2 class="title">O primeiro passo é simples</h2>
+        </div>
+      </div>
+
+      <div class="card">
+        <p>
+          O NEGATIVO.mov não opera por pacotes genéricos. Cada colaboração nasce do contexto:
+          instituição, território, escala, recursos e horizonte de desejo.
+        </p>
+        <p>
+          Para começar, envia um email com:
+        </p>
+        <ul class="list">
+          <li><strong>instituição/projeto</strong> e quem decide</li>
+          <li><strong>o problema de forma</strong> (o que está morto, bloqueado ou esgotado)</li>
+          <li><strong>o que precisa mudar</strong> (em termos de linguagem, mídia, operação)</li>
+          <li><strong>prazo</strong> e <strong>condições</strong> (recursos, equipa, limites)</li>
+        </ul>
+        <p class="note">
+          Se fizer sentido, a resposta vem como possibilidades de operação (1–2 opções), e daí definimos o formato.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="limites">
+      <div class="section-header">
+        <div>
+          <div class="kicker">regra</div>
+          <h2 class="title">Limite profissional</h2>
+        </div>
+      </div>
+
+      <div class="card">
+        <p>
+          Uma condição é fixa: <strong>autonomia conceitual</strong>.
+          O NEGATIVO.mov só entra onde há espaço para decisão de forma, método e linguagem.
+        </p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 NEGATIVO.mov · superfície de inscrição do possível
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navList = document.getElementById('navList');
+  if (navToggle && navList) {
+    navToggle.addEventListener('click', () => navList.classList.toggle('nav-open'));
+    navList.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navList.classList.remove('nav-open'));
+    });
+  }
+</script>
+</body>
+</html>
