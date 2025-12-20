@@ -2,18 +2,23 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8" />
-  <title>Condição de Emergência — sessão fechada (31 Jan 2026)</title>
+  <title>Sessões — Condição de Emergência (31 jan 2026)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!--
-    EDITA AQUI (opcional, mas recomendado):
-    1) Troca CONTACT_EMAIL pelo teu email.
-    2) Se preferires inscrição por formulário, coloca FORM_URL.
-  -->
   <meta name="description" content="Sessão fechada (máx. 5 participantes): Condição de Emergência — formas de presença da cultura e a transformação da inteligência das formas. 31 de janeiro de 2026, 15h–17h." />
 
   <style>
-    :root{
+    
+    html, body{
+      height:auto;
+      min-height:100%;
+      overflow-x:hidden;
+      overflow-y:auto;
+      scroll-behavior:smooth;
+    }
+    :target{ scroll-margin-top: 96px; }
+
+:root{
       --bg:#050608;
       --card-bg: rgba(10, 12, 16, 0.96);
 
@@ -38,11 +43,9 @@
       background: radial-gradient(circle at top, #1b1320 0, #050608 46%, #000000 100%);
       color: var(--text-main);
       min-height:100vh;
-      display:flex;
-      flex-direction:column;
     }
 
-    a{ color: var(--accent); text-decoration:none; }
+a{ color: var(--accent); text-decoration:none; }
     a:hover{ text-decoration:underline; }
 
     .top-bar{
@@ -448,7 +451,7 @@
           <div class="meta">
             <div class="chip"><b>Data</b> 31 jan 2026 (sábado)</div>
             <div class="chip"><b>Hora</b> 15h–17h (Portugal)</div>
-            <div class="chip"><b>Formato</b> sessão online (link após inscrição)</div>
+            <div class="chip"><b>Formato</b> sessão online (link após confirmação)</div>
             <div class="chip"><b>Vagas</b> 5 participantes (máximo)</div>
             <div class="chip"><b>Valor</b> 270€</div>
           </div>
@@ -562,21 +565,15 @@ sem nunca chegar a acontecer.
           </p>
 
           <div class="cta" style="margin-top:12px;">
-            <a id="btnEmail" class="btn btn-primary" href="#">Pedir inscrição por email</a>
-            <a id="btnForm" class="btn btn-ghost" href="#" target="_blank" rel="noopener noreferrer">Inscrição por formulário</a>
-          </div>
+            <a class="btn btn-primary" href="mailto:negativomov@gmail.com?subject=Inscri%C3%A7%C3%A3o%20%E2%80%94%20Condi%C3%A7%C3%A3o%20de%20Emerg%C3%AAncia%20(31%20jan%202026)&body=Ol%C3%A1%20Caio%2C%0A%0AQuero%20pedir%20inscri%C3%A7%C3%A3o%20na%20sess%C3%A3o%20fechada%3A%0ACondi%C3%A7%C3%A3o%20de%20Emerg%C3%AAncia%20%E2%80%94%2031%20jan%202026%20(15h%E2%80%9317h)%2C%20270%E2%82%AC%2C%205%20vagas.%0A%0ANome%3A%0ACidade%2FPa%C3%ADs%3A%0A%C3%81rea%2FInstitui%C3%A7%C3%A3o%20(opcional)%3A%0ATelefone%20(opcional)%3A%0APreciso%20de%20fatura%3F%20(sim%2Fn%C3%A3o)%20%2B%20NIF%20(se%20sim)%3A%0A%0AObrigado(a)!">Pedir inscrição por email</a>
+</div>
 
           <p class="note">
             <b>Como funciona:</b> tu envias um pedido (email ou formulário). Eu respondo confirmando a vaga
             e enviando as instruções de pagamento e acesso (link da sessão).<br/>
             <span style="opacity:0.9;">Se as vagas estiverem completas, podes pedir lista de espera.</span>
           </p>
-
-          <p class="note" style="margin-top:8px;">
-            <b>EDITA AQUI:</b> abre o ficheiro HTML e coloca o teu email em <code>CONTACT_EMAIL</code> (logo abaixo, no script).
-            Se não quiseres formulário, apaga o botão (ou deixa o link vazio).
-          </p>
-        </section>
+</section>
 
         <section id="faq" class="panel" style="margin-top:14px;">
           <h3>Dúvidas rápidas</h3>
@@ -622,47 +619,5 @@ sem nunca chegar a acontecer.
       </div>
     </div>
   </div>
-
-  <script>
-    // ====== EDITA AQUI ======
-    const CONTACT_EMAIL = "negativomov@gmail.com"; // Ex.: "teunome@dominio.com"
-    const FORM_URL = "";      // Ex.: "https://forms.gle/...." (deixa vazio se não tiver)
-
-    // ====== Monta mailto com texto pronto ======
-    const subject = encodeURIComponent("Inscrição — Condição de Emergência (31 jan 2026)");
-    const body = encodeURIComponent(
-`Olá Caio,
-
-Quero pedir inscrição na sessão fechada:
-Condição de Emergência — 31 jan 2026 (15h–17h), 270€, 5 vagas.
-
-Nome:
-Cidade/País:
-Área/Instituição (opcional):
-Telefone (opcional):
-Preciso de fatura? (sim/não) + NIF (se sim):
-
-Obrigado(a)!`
-    );
-
-    const btnEmail = document.getElementById("btnEmail");
-    const btnForm = document.getElementById("btnForm");
-
-    if (CONTACT_EMAIL && CONTACT_EMAIL.includes("@")) {
-      btnEmail.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    } else {
-      btnEmail.href = "#";
-      btnEmail.addEventListener("click", (e) => {
-        e.preventDefault();
-        alert("EDITA O HTML e coloca o teu email em CONTACT_EMAIL (no final do ficheiro).");
-      });
-    }
-
-    if (FORM_URL && FORM_URL.startsWith("http")) {
-      btnForm.href = FORM_URL;
-    } else {
-      btnForm.style.display = "none";
-    }
-  </script>
 </body>
 </html>
