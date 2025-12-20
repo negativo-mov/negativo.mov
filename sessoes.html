@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <title>Condição de Emergência — sessão fechada (31 Jan 2026)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--
+    EDITA AQUI (opcional, mas recomendado):
+    1) Troca CONTACT_EMAIL pelo teu email.
+    2) Se preferires inscrição por formulário, coloca FORM_URL.
+  -->
+  <meta name="description" content="Sessão fechada (máx. 5 participantes): Condição de Emergência — formas de presença da cultura e a transformação da inteligência das formas. 31 de janeiro de 2026, 15h–17h." />
+
+  <style>
+    :root{
+      --bg:#050608;
+      --card-bg: rgba(10, 12, 16, 0.96);
+
+      /* Accent (bordô / vinho neon) */
+      --accent:#FF2D6D;
+      --accent-soft: rgba(255,45,109,0.14);
+      --accent-strong:#FF7AA6;
+
+      --border-soft: rgba(255,255,255,0.06);
+      --text-main:#F5F7FA;
+      --text-muted:#A3ADB8;
+
+      --shadow-soft: 0 18px 45px rgba(0,0,0,0.65);
+      --danger:#FF5577;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1b1320 0, #050608 46%, #000000 100%);
+      color: var(--text-main);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    a{ color: var(--accent); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .top-bar{
+      width:100%;
+      padding: 12px 5vw;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-bottom: 1px solid var(--border-soft);
+      background: radial-gradient(circle at top left, rgba(255,45,109,0.12), transparent 55%);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top:0;
+      z-index:20;
+    }
+
+    .brand-block{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      max-width: 58%;
+    }
+
+    .brand-link{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .brand-block img{
+      height:40px;
+      width:auto;
+      border-radius:999px;
+      border:1px solid var(--border-soft);
+      box-shadow: 0 0 18px rgba(255,45,109,0.35);
+      background: rgba(0,0,0,0.65);
+    }
+
+    .brand-text{
+      font-size:0.82rem;
+      line-height:1.3;
+      color: var(--text-muted);
+    }
+
+    .brand-text strong{
+      display:block;
+      color: var(--accent);
+      letter-spacing:0.03em;
+      text-transform: uppercase;
+      font-size:0.78rem;
+    }
+
+    .icon-dot{
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(255,45,109,0.9);
+    }
+
+    .main-wrapper{
+      flex:1;
+      display:flex;
+      justify-content:center;
+      padding: 24px 5vw 56px;
+    }
+
+    .card{
+      width:100%;
+      max-width: 1024px;
+      background: var(--card-bg);
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+      padding: 28px 22px 32px;
+      border: 1px solid var(--border-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-60%;
+      background-image:
+        linear-gradient(120deg, rgba(255,45,109,0.08) 0, transparent 42%, transparent 60%, rgba(255,122,166,0.07) 100%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 3px);
+      mix-blend-mode: soft-light;
+      opacity: 0.55;
+      pointer-events:none;
+    }
+
+    .card-inner{ position:relative; z-index:2; }
+
+    header.hero{
+      margin-bottom: 18px;
+      border-bottom: 1px dashed rgba(255,255,255,0.10);
+      padding-bottom: 16px;
+    }
+
+    .hero-highlight{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding: 3px 8px;
+      border-radius:999px;
+      background: rgba(255,45,109,0.09);
+      border: 1px solid rgba(255,45,109,0.55);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .hero-highlight .dot{
+      width:7px;
+      height:7px;
+      border-radius:999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(255,45,109,0.8);
+    }
+
+    header.hero h1{
+      font-size: 1.75rem;
+      margin: 0 0 6px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+    }
+
+    header.hero h2{
+      font-size: 1.02rem;
+      margin: 0 0 12px;
+      color: var(--text-main);
+      font-weight: 500;
+      max-width: 860px;
+    }
+
+    header.hero p{
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      max-width: 920px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .panel{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(4,6,10,0.78);
+      padding: 16px 14px 16px;
+    }
+
+    .panel.glow{
+      background: radial-gradient(circle at top left, rgba(255,45,109,0.14), rgba(2,3,6,0.9));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .panel h3{
+      margin: 0 0 8px;
+      font-size: 0.98rem;
+      color: var(--accent-strong);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .panel p{
+      margin: 0 0 10px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .panel p:last-child{ margin-bottom:0; }
+
+    .question{
+      margin: 12px 0 10px;
+      font-size: 1.02rem;
+      color: var(--text-main);
+      line-height: 1.45;
+    }
+
+    .question strong{
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    .text-block{
+      margin-top: 18px;
+      padding: 16px 14px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: radial-gradient(circle at top right, rgba(255,122,166,0.12), rgba(0,0,0,0.86));
+    }
+
+    .text-block pre{
+      margin: 0;
+      white-space: pre-wrap;
+      font-family: inherit;
+      font-size: 0.92rem;
+      line-height: 1.62;
+      color: rgba(245,247,250,0.92);
+    }
+
+    .meta{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      align-items: center;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.45);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+    }
+
+    .chip b{ color: var(--text-main); font-weight: 650; }
+
+    .cta{
+      margin-top: 16px;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      font-weight: 650;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor:pointer;
+      text-decoration:none;
+      user-select:none;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary{
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #07040a;
+      box-shadow: 0 12px 30px rgba(255,45,109,0.38);
+    }
+    .btn-primary:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 16px 36px rgba(255,45,109,0.55);
+      text-decoration:none;
+    }
+
+    .btn-ghost{
+      background: rgba(255,45,109,0.10);
+      border: 1px solid rgba(255,45,109,0.55);
+      color: var(--accent-strong);
+    }
+    .btn-ghost:hover{
+      background: rgba(255,45,109,0.16);
+      text-decoration:none;
+      transform: translateY(-1px);
+    }
+
+    .note{
+      margin-top: 10px;
+      font-size: 0.80rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.45;
+      max-width: 920px;
+    }
+
+    .hr{
+      margin: 18px 0 0;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(255,255,255,0.16);
+    }
+
+    ul.clean{
+      margin: 8px 0 0 18px;
+      padding: 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+    ul.clean li{ margin-bottom: 6px; }
+
+    .faq{
+      margin-top: 14px;
+      display:grid;
+      gap: 10px;
+    }
+
+    details{
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      background: rgba(0,0,0,0.42);
+      padding: 10px 12px;
+    }
+    summary{
+      cursor:pointer;
+      color: var(--text-main);
+      font-weight: 650;
+      letter-spacing: 0.02em;
+    }
+    details p{
+      margin: 10px 0 0;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    footer{
+      margin-top: 16px;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.45);
+      text-align: right;
+    }
+
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+      .brand-block{ max-width: 100%; }
+      header.hero h1{ font-size: 1.55rem; }
+    }
+    @media (max-width: 768px){
+      .top-bar{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .card{
+        padding: 20px 14px 26px;
+        border-radius: 18px;
+      }
+      .brand-block img{ height: 36px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top-bar">
+    <div class="brand-block">
+      <a class="brand-link" href="https://negativo-mov.github.io/negativo.mov/" target="_blank" rel="noopener noreferrer">
+        <img src="logo.png" alt="NEGATIVO.mov" />
+        <div class="brand-text">
+          <strong>NEGATIVO.mov</strong>
+          <span>hub mínimo nos meios, radical nas consequências.</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="brand-block" style="justify-content:flex-end;">
+      <a class="brand-link" href="https://negativomov.substack.com/" target="_blank" rel="noopener noreferrer">
+        <div class="brand-text" style="text-align:right;">
+          <strong>Substack</strong>
+          <span>textos, colunistas e estados de máquina.</span>
+        </div>
+        <span class="icon-dot"></span>
+        <img src="improvavel-logo.png" alt="Substack / projetos" />
+      </a>
+    </div>
+  </div>
+
+  <div class="main-wrapper">
+    <div class="card">
+      <div class="card-inner">
+        <header class="hero">
+          <div class="hero-highlight">
+            <span class="dot"></span>
+            <span>Sessão fechada · 5 vagas · 2h</span>
+          </div>
+
+          <h1>Condição de Emergência</h1>
+          <h2>formas de presença da cultura e a transformação da inteligência das formas</h2>
+
+          <p class="question">
+            <strong>Por que</strong> a intensificação da circulação produziu uma falência das formas culturais?<br/>
+            <strong>Como</strong> algo pode ainda emergir em meio ao fluxo?
+          </p>
+
+          <p>
+            Uma fala única, de alta pressão retórica e densidade real, para quem trabalha com cultura e sente que
+            a questão já não é “produzir mais”, mas compreender <em>por que tantas coisas aparecem sem nunca chegar a acontecer</em>.
+          </p>
+
+          <div class="meta">
+            <div class="chip"><b>Data</b> 31 jan 2026 (sábado)</div>
+            <div class="chip"><b>Hora</b> 15h–17h (Portugal)</div>
+            <div class="chip"><b>Formato</b> sessão online (link após inscrição)</div>
+            <div class="chip"><b>Vagas</b> 5 participantes (máximo)</div>
+            <div class="chip"><b>Valor</b> 270€</div>
+          </div>
+
+          <div class="cta">
+            <a id="btnInscricao" class="btn btn-primary" href="#inscricao">Reservar vaga</a>
+            <a class="btn btn-ghost" href="#texto">Ler o texto-base</a>
+            <a class="btn btn-ghost" href="#faq">Dúvidas</a>
+          </div>
+
+          <p class="note">
+            Nota: esta sessão é deliberadamente pequena. Se a proposta te chama, é porque o teu trabalho já está no ponto
+            em que a forma importa mais do que a opinião.
+          </p>
+        </header>
+
+        <div class="grid">
+          <section class="panel glow">
+            <h3>O que acontece aqui</h3>
+            <p>
+              A cultura continua a operar. Instituições funcionam. Obras circulam. Discursos multiplicam-se.
+              E, ainda assim, algo deixou de acontecer.
+            </p>
+            <p>
+              Nesta sessão, não te dou “ferramentas”, nem “tendências”. Eu te coloco diante de uma pergunta
+              (e de um campo de forças): <em>o que, hoje, permite que algo ganhe presença — e o que faz o novo
+              nascer neutralizado?</em>
+            </p>
+            <p>
+              A cultura é matéria em tensão. A inteligência distribui-se entre corpos, dispositivos e máquinas.
+              A técnica não é “externa”: ela já está a decidir o que pode, e o que não pode, tomar forma.
+            </p>
+          </section>
+
+          <aside class="panel">
+            <h3>Para quem</h3>
+            <p>Para quem:</p>
+            <ul class="clean">
+              <li>trabalha em cultura, arte, mediação, curadoria, programação, educação;</li>
+              <li>não quer “conteúdo”, quer critério, forma e potência de intervenção;</li>
+              <li>tem trabalho real em curso e sente que o problema não é esforço — é regime de forma;</li>
+              <li>precisa reconfigurar presença (instituição, obra, discurso, projeto) sem cair em “inovação cringe”.</li>
+            </ul>
+
+            <div class="hr"></div>
+            <h3>O que levas</h3>
+            <ul class="clean">
+              <li>um mapa de leitura: circulação, presença, neutralização, emergência;</li>
+              <li>um conjunto de teses operatórias (para aplicar no teu contexto);</li>
+              <li>um “ponto de viragem” para pensar técnica e cultura sem moralismo;</li>
+              <li>um gesto de reposicionamento: não “mais produção”, mas outra inteligibilidade das formas.</li>
+            </ul>
+          </aside>
+        </div>
+
+        <section id="texto" class="text-block">
+          <h3 style="margin:0 0 10px; color: var(--accent-strong); text-transform:uppercase; letter-spacing:0.02em;">
+            Texto-base da sessão
+          </h3>
+
+          <pre>
+Condição de Emergência
+formas de presença da cultura e a transformação da inteligência das formas
+
+Por que a intensificação da circulação produziu uma falência das formas culturais?
+Como algo pode ainda emergir em meio ao fluxo?
+
+A cultura continua a operar.
+Instituições funcionam.
+Obras circulam.
+Discursos multiplicam-se.
+
+E, ainda assim, algo deixou de acontecer.
+
+Persiste um mal-estar difícil de localizar:
+uma sensação de que a presença foi substituída por gestão,
+de que a inteligência passou a repetir-se em repertórios cada vez mais fechados,
+operando muito — e significando pouco.
+
+Esta fala parte desse ponto de fricção.
+
+Não para propor soluções,
+mas para interrogar as condições sob as quais algo pode hoje aparecer —
+e as condições sob as quais o novo já nasce neutralizado, absorvido, administrado.
+
+O problema não é a ausência de inovação.
+É o modo como as próprias formas passaram a pensar.
+É a forma como a técnica reorganizou silenciosamente o campo do sensível.
+É a redistribuição do que pode — e do que já não pode — ganhar presença.
+
+Aqui, a cultura é tratada como matéria em tensão.
+A inteligência, como algo que se distribui entre corpos, dispositivos e máquinas.
+E a tecnologia, não como instrumento externo,
+mas como operador silencioso das possibilidades de forma.
+
+Esta não é uma fala para adquirir conhecimento.
+É uma fala para perder o chão da evidência.
+
+Dirige-se a quem trabalha com cultura, arte, pensamento ou mediação
+e sente que o problema já não é produzir mais,
+mas compreender por que tantas coisas aparecem
+sem nunca chegar a acontecer.
+          </pre>
+        </section>
+
+        <section id="inscricao" class="panel" style="margin-top:16px;">
+          <h3>Inscrição</h3>
+          <p>
+            <b>270€ · 5 vagas · 31 jan 2026 · 15h–17h (Portugal)</b><br/>
+            Para manter a sessão pequena, a inscrição é por confirmação.
+          </p>
+
+          <div class="cta" style="margin-top:12px;">
+            <a id="btnEmail" class="btn btn-primary" href="#">Pedir inscrição por email</a>
+            <a id="btnForm" class="btn btn-ghost" href="#" target="_blank" rel="noopener noreferrer">Inscrição por formulário</a>
+          </div>
+
+          <p class="note">
+            <b>Como funciona:</b> tu envias um pedido (email ou formulário). Eu respondo confirmando a vaga
+            e enviando as instruções de pagamento e acesso (link da sessão).<br/>
+            <span style="opacity:0.9;">Se as vagas estiverem completas, podes pedir lista de espera.</span>
+          </p>
+
+          <p class="note" style="margin-top:8px;">
+            <b>EDITA AQUI:</b> abre o ficheiro HTML e coloca o teu email em <code>CONTACT_EMAIL</code> (logo abaixo, no script).
+            Se não quiseres formulário, apaga o botão (ou deixa o link vazio).
+          </p>
+        </section>
+
+        <section id="faq" class="panel" style="margin-top:14px;">
+          <h3>Dúvidas rápidas</h3>
+
+          <div class="faq">
+            <details>
+              <summary>Vai haver gravação?</summary>
+              <p>
+                Por padrão, esta sessão é pensada como presença ao vivo. Se houver gravação (total ou parcial),
+                isso será comunicado aos participantes. O objetivo aqui é produzir deslocamento real, não “conteúdo”.
+              </p>
+            </details>
+
+            <details>
+              <summary>Preciso saber “IA” para participar?</summary>
+              <p>
+                Não. Falamos de técnica e de máquinas no nível em que elas reorganizam presença e sensível.
+                Se “IA” aparecer, ela aparece como parte do regime — não como tutorial.
+              </p>
+            </details>
+
+            <details>
+              <summary>Serve para museus / teatros / galerias?</summary>
+              <p>
+                Sim — desde que o teu problema seja forma e circulação, e não “marketing”.
+                A sessão é transversal: trabalha com presença cultural como problema material.
+              </p>
+            </details>
+
+            <details>
+              <summary>E se eu tiver uma questão muito específica?</summary>
+              <p>
+                A fala é contínua (c. 1h30) e densa. No final, abrimos um bloco curto para perguntas.
+                Se quiseres um trabalho aplicado ao teu caso, isso é outra modalidade (consultoria).
+              </p>
+            </details>
+          </div>
+
+          <footer>
+            NEGATIVO.mov · Condição de Emergência · sessão fechada
+          </footer>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ====== EDITA AQUI ======
+    const CONTACT_EMAIL = "negativomov@gmail.com"; // Ex.: "teunome@dominio.com"
+    const FORM_URL = "";      // Ex.: "https://forms.gle/...." (deixa vazio se não tiver)
+
+    // ====== Monta mailto com texto pronto ======
+    const subject = encodeURIComponent("Inscrição — Condição de Emergência (31 jan 2026)");
+    const body = encodeURIComponent(
+`Olá Caio,
+
+Quero pedir inscrição na sessão fechada:
+Condição de Emergência — 31 jan 2026 (15h–17h), 270€, 5 vagas.
+
+Nome:
+Cidade/País:
+Área/Instituição (opcional):
+Telefone (opcional):
+Preciso de fatura? (sim/não) + NIF (se sim):
+
+Obrigado(a)!`
+    );
+
+    const btnEmail = document.getElementById("btnEmail");
+    const btnForm = document.getElementById("btnForm");
+
+    if (CONTACT_EMAIL && CONTACT_EMAIL.includes("@")) {
+      btnEmail.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    } else {
+      btnEmail.href = "#";
+      btnEmail.addEventListener("click", (e) => {
+        e.preventDefault();
+        alert("EDITA O HTML e coloca o teu email em CONTACT_EMAIL (no final do ficheiro).");
+      });
+    }
+
+    if (FORM_URL && FORM_URL.startsWith("http")) {
+      btnForm.href = FORM_URL;
+    } else {
+      btnForm.style.display = "none";
+    }
+  </script>
+</body>
+</html>
