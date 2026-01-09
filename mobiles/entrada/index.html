@@ -670,7 +670,7 @@ function drawFragment(ctx, slot, x,y,w,h, alpha=1){
   ctx.save();
   ctx.globalAlpha = alpha;
   // fundo do fragmento
-  ctx.fillStyle = "rgba(255,255,255,0.70)";
+  ctx.fillStyle = "rgba(255,255,255,0.82)";
   ctx.fillRect(x,y,w,h);
 
   // Se houver imagem Sui, desenhar cover + margem mínima
@@ -705,10 +705,11 @@ function drawFragment(ctx, slot, x,y,w,h, alpha=1){
   const fam = slot.fam;
   const v = slot.v;
 
-  // paleta mínima (acinzentado frio)
-  const cold = "rgba(70,90,110,.22)";
-  const cold2= "rgba(70,90,110,.14)";
-  const ink = "rgba(0,0,0,.22)";
+  // paleta mínima (acinzentado frio) — mais legível
+  const cold = "rgba(70,90,110,.38)";
+  const cold2= "rgba(70,90,110,.24)";
+  const ink = "rgba(0,0,0,.38)";
+
 
   function line(x1,y1,x2,y2, st=ink, lw=1){
     ctx.strokeStyle=st; ctx.lineWidth=lw;
