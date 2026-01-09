@@ -570,7 +570,7 @@ function mutateVerbIfSaturated(state, verb){
 ------------------------------------------------------- */
 const FIELD = { slots: [] }; // 120 slots
 let SUI_MAP = null; // opcional
-const SUI_BASE_PATH = "../../assets/sui/"; // como no teu repo
+const SUI_BASE_PATH = "../assets/sui/"; // 
 
 function slotId(i){ return "slot_" + String(i).padStart(3,"0"); }
 
@@ -621,9 +621,9 @@ async function tryLoadSui(){
     if(!res.ok) throw new Error("no sui.json");
     const data = await res.json();
     SUI_MAP = data;
-    // mapear nos slots
+
     for(const s of FIELD.slots){
-      const key = s.id; // slot_053 etc.
+      const key = s.id; // "slot_053"
       if(SUI_MAP && SUI_MAP[key] && SUI_MAP[key].file){
         s.sui = {
           file: SUI_MAP[key].file,
@@ -649,7 +649,12 @@ function slotScore(slot, state){
   const phBonus = (state.ph.dry * (-slot.axes.cont))*0.25 + (state.ph.open * (slot.axes.cont))*0.18;
 
   // baixa distância é bom → score alto
-  return -(dx) + phBonus + rnd(-0.05,0.05);
+    let score = -(dx) + phBonus + rnd(-0.05,0.05);
+
+  // bônus simples para slots preenchidos pela Sui
+  if(slot.sui) score += 1.10;
+
+  return score;
 }
 
 function sampleSlots(n, state){
