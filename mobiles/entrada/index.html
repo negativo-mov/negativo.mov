@@ -32,12 +32,8 @@
       border-bottom:1px solid var(--line);
     }
     .wrap{max-width:1200px; margin:0 auto; padding:12px 14px;}
-    .top{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
-    .brand{
-      display:flex; flex-direction:column; gap:2px;
-    }
+    .top{display:flex; align-items:center; justify-content:space-between; gap:10px;}
+    .brand{display:flex; flex-direction:column; gap:2px;}
     .brand b{font-size:14px; letter-spacing:.6px}
     .brand small{color:var(--muted); font-size:12px}
     .actions{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end}
@@ -63,11 +59,7 @@
       user-select:none;
     }
     main{max-width:1200px; margin:0 auto; padding:16px 14px 40px;}
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap:12px;
-    }
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:12px;}
     .card{
       grid-column: span 6;
       background:var(--card);
@@ -83,20 +75,11 @@
       border-bottom:1px solid rgba(0,0,0,.06);
       background:rgba(255,255,255,.35);
     }
-    .card .head .t{
-      display:flex; flex-direction:column; gap:3px;
-    }
+    .card .head .t{display:flex; flex-direction:column; gap:3px;}
     .card .head b{font-size:13px}
     .card .head small{font-size:11px; color:var(--muted); line-height:1.2}
-    .card .head .mini{
-      display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;
-    }
-    .stage{
-      padding:12px;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:10px;
-    }
+    .card .head .mini{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;}
+    .stage{padding:12px; display:grid; grid-template-columns: 1fr; gap:10px;}
     canvas{
       width:100%;
       height:auto;
@@ -104,20 +87,8 @@
       background:rgba(255,255,255,.40);
       border:1px solid rgba(0,0,0,.08);
     }
-    .text{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      padding:2px 2px 10px;
-    }
-    .line{
-      display:flex;
-      gap:6px;
-      flex-wrap:wrap;
-      align-items:center;
-      line-height:1.25;
-      font-size:14px;
-    }
+    .text{display:flex; flex-direction:column; gap:6px; padding:2px 2px 10px;}
+    .line{display:flex; gap:6px; flex-wrap:wrap; align-items:center; line-height:1.25; font-size:14px;}
     .word{
       display:inline-flex;
       padding:6px 10px;
@@ -130,13 +101,8 @@
     }
     .word:hover{background:rgba(255,255,255,.70)}
     .word:active{transform:scale(.98)}
-    .hint{
-      font-size:11px; color:var(--muted);
-      margin-top:2px;
-    }
-    .chips{
-      display:flex; flex-wrap:wrap; gap:6px;
-    }
+    .hint{font-size:11px; color:var(--muted); margin-top:2px;}
+    .chips{display:flex; flex-wrap:wrap; gap:6px;}
     .chip{
       font-size:11px;
       padding:6px 10px;
@@ -148,25 +114,11 @@
       transition:.12s ease;
     }
     .chip:hover{background:var(--chip2)}
-    .chip.on{
-      background:rgba(0,0,0,.10);
-      border-color:rgba(0,0,0,.18);
-    }
-    .final{
-      grid-column: 1 / -1;
-      background:rgba(255,255,255,.60);
-    }
-    .final .stage{
-      grid-template-columns: 1.2fr .8fr;
-      align-items:start;
-    }
-    .final .side{
-      display:flex; flex-direction:column; gap:10px;
-      padding:6px 2px 0;
-    }
-    .kpi{
-      display:grid; grid-template-columns:1fr 1fr; gap:8px;
-    }
+    .chip.on{background:rgba(0,0,0,.10); border-color:rgba(0,0,0,.18);}
+    .final{grid-column: 1 / -1; background:rgba(255,255,255,.60);}
+    .final .stage{grid-template-columns: 1.2fr .8fr; align-items:start;}
+    .final .side{display:flex; flex-direction:column; gap:10px; padding:6px 2px 0;}
+    .kpi{display:grid; grid-template-columns:1fr 1fr; gap:8px;}
     .kpi .box{
       border:1px solid rgba(0,0,0,.10);
       background:rgba(255,255,255,.40);
@@ -181,7 +133,6 @@
       color:var(--muted); font-size:12px;
     }
 
-    /* --- Share modal (fallback desktop) --- */
     dialog{
       border:none;
       border-radius:18px;
@@ -210,11 +161,7 @@
     }
     .dlgBtns{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;}
     .miniNote{font-size:11px; color:var(--muted); line-height:1.35}
-    .xbtn{
-      border-radius:999px;
-      padding:7px 10px;
-      font-size:12px;
-    }
+    .xbtn{border-radius:999px; padding:7px 10px; font-size:12px;}
 
     @media (max-width: 980px){
       .card{grid-column: span 12;}
@@ -242,7 +189,6 @@
 
 <main>
   <section class="grid">
-    <!-- M1 -->
     <article class="card" id="cardM1">
       <div class="head">
         <div class="t">
@@ -261,7 +207,6 @@
       </div>
     </article>
 
-    <!-- M2 -->
     <article class="card" id="cardM2">
       <div class="head">
         <div class="t">
@@ -280,7 +225,6 @@
       </div>
     </article>
 
-    <!-- M3 -->
     <article class="card" id="cardM3">
       <div class="head">
         <div class="t">
@@ -299,7 +243,6 @@
       </div>
     </article>
 
-    <!-- M4 -->
     <article class="card" id="cardM4">
       <div class="head">
         <div class="t">
@@ -318,7 +261,6 @@
       </div>
     </article>
 
-    <!-- FINAL -->
     <article class="card final" id="cardFinal">
       <div class="head">
         <div class="t">
@@ -355,7 +297,6 @@
         </div>
       </div>
     </article>
-
   </section>
 </main>
 
@@ -363,7 +304,6 @@
   MÓBILES · entrada v1 — dispositivo de perturbação, espraiamento e cessação · (front-end, custo zero)
 </footer>
 
-<!-- Share modal (fallback) -->
 <dialog id="shareDlg">
   <div class="dlgHead">
     <b id="shareTitle">Partilhar</b>
@@ -425,7 +365,24 @@ function nowISO(){
 function slotId(i){ return "slot_" + String(i).padStart(3,"0"); }
 
 /* -------------------------------------------------------
-   1) Léxico (verbo / advérbio / substantivos mínimos)
+   0.1) Base URL robusta (para GitHub Pages)
+   - Encontra o prefixo real até "/mobiles/"
+   - Ex: https://.../negativo.mov/mobiles/entrada/  -> baseMobiles = https://.../negativo.mov/mobiles/
+------------------------------------------------------- */
+function getBaseMobilesURL(){
+  const u = new URL(window.location.href);
+  const idx = u.pathname.indexOf("/mobiles/");
+  if(idx >= 0){
+    const basePath = u.pathname.slice(0, idx + "/mobiles/".length);
+    return new URL(basePath, u.origin).toString();
+  }
+  // fallback: assume que estamos dentro de /mobiles/...
+  return new URL("./", window.location.href).toString();
+}
+const BASE_MOBILES = getBaseMobilesURL(); // termina com /mobiles/
+
+/* -------------------------------------------------------
+   1) Léxico
 ------------------------------------------------------- */
 const VERBS = [
   {id:"sustentar", label:"sustentar", axis:{front:+0.2, dense:+0.3, cont:+0.6}},
@@ -436,9 +393,7 @@ const VERBS = [
   {id:"estancar",  label:"estancar",  axis:{front:-0.1, dense:+0.2, cont:-0.6}},
   {id:"desviar",   label:"desviar",   axis:{front:-0.2, dense:-0.1, cont:+0.2}},
 ];
-
 const ADVS = ["mais", "menos", "quase", "ainda"];
-
 const NOUNS = [
   {id:"fundo",  w:{front:-0.8, dense:0.2, cont:0.2}},
   {id:"frente", w:{front:+0.8, dense:0.2, cont:0.2}},
@@ -452,13 +407,9 @@ const NOUNS = [
 ];
 
 /* -------------------------------------------------------
-   2) Fonografia (regime gráfico-sonoro inferido, sem áudio)
+   2) Fonografia
 ------------------------------------------------------- */
-const PHONO = {
-  mode: "neutro",
-  vector: {dry:0, voiced:0, open:0}
-};
-
+const PHONO = { mode: "neutro", vector: {dry:0, voiced:0, open:0} };
 const PHONO_PRESETS = [
   {key:"plosiva_surda",  label:"p/t/k (seco)", vec:{dry:+0.8, voiced:-0.6, open:0}},
   {key:"plosiva_sonora", label:"b/d/g (massa)",vec:{dry:+0.4, voiced:+0.8, open:0}},
@@ -469,19 +420,16 @@ const PHONO_PRESETS = [
 ];
 
 /* -------------------------------------------------------
-   3) Campo global + campo local (por móbile)
+   3) Campo
 ------------------------------------------------------- */
 const Global = {
-  front: 0,
-  dense: 0,
-  cont:  0,
+  front: 0, dense: 0, cont: 0,
   phono: {dry:0, voiced:0, open:0},
   verbW: VERBS.map(()=>0),
   pressure: 0,
   decay: 0.92,
   steps: 0,
 };
-
 function resetGlobal(){
   Global.front=0; Global.dense=0; Global.cont=0;
   Global.phono={dry:0, voiced:0, open:0};
@@ -489,7 +437,6 @@ function resetGlobal(){
   Global.pressure=0; Global.steps=0;
   PHONO.mode="neutro"; PHONO.vector={dry:0, voiced:0, open:0};
 }
-
 const Mobiles = {
   m1:{id:"m1", local:{front:0,dense:0,cont:0,ph:{dry:0,voiced:0,open:0}, verb:VERBS.map(()=>0), pressure:0}, clicks:0, config:null},
   m2:{id:"m2", local:{front:0,dense:0,cont:0,ph:{dry:0,voiced:0,open:0}, verb:VERBS.map(()=>0), pressure:0}, clicks:0, config:null},
@@ -497,28 +444,21 @@ const Mobiles = {
   m4:{id:"m4", local:{front:0,dense:0,cont:0,ph:{dry:0,voiced:0,open:0}, verb:VERBS.map(()=>0), pressure:0}, clicks:0, config:null},
   final:{id:"final", local:{front:0,dense:0,cont:0,ph:{dry:0,voiced:0,open:0}, verb:VERBS.map(()=>0), pressure:0}, clicks:0, config:null},
 };
-
 const SPREAD = {
   m1:{m1:1.0,m2:0.6,m3:0.3,m4:0.1},
   m2:{m2:1.0,m1:0.6,m3:0.3,m4:0.2},
   m3:{m3:1.0,m2:0.6,m4:0.3,m1:0.2},
   m4:{m4:1.0,m3:0.6,m2:0.3,m1:0.1},
 };
-
 function decayLocal(){
   for(const k of ["m1","m2","m3","m4"]){
     const L = Mobiles[k].local;
-    L.front *= 0.88;
-    L.dense *= 0.88;
-    L.cont  *= 0.88;
-    L.ph.dry *= 0.88;
-    L.ph.voiced *= 0.88;
-    L.ph.open *= 0.88;
+    L.front *= 0.88; L.dense *= 0.88; L.cont  *= 0.88;
+    L.ph.dry *= 0.88; L.ph.voiced *= 0.88; L.ph.open *= 0.88;
     for(let i=0;i<L.verb.length;i++) L.verb[i] *= 0.88;
     L.pressure *= 0.86;
   }
 }
-
 function combinedState(mKey){
   const L = Mobiles[mKey].local;
   return {
@@ -536,7 +476,7 @@ function combinedState(mKey){
 }
 
 /* -------------------------------------------------------
-   4) Campo → verbo / advérbios / mutação
+   4) Campo → verbo
 ------------------------------------------------------- */
 function fieldVerbWeights(state){
   const base = state.verbW.slice();
@@ -559,19 +499,16 @@ function fieldVerbWeights(state){
   }
   return base;
 }
-
 function chooseVerb(state){
   const w = fieldVerbWeights(state);
   return weightedPick(VERBS, w);
 }
-
 function chooseNoun(state){
   const weights = NOUNS.map(n =>
     n.w.front*state.front + n.w.dense*state.dense + n.w.cont*state.cont
   );
   return weightedPick(NOUNS, weights).id;
 }
-
 function advStackFromPressure(pressure){
   const stack = [];
   if(pressure < 0.9){
@@ -589,7 +526,6 @@ function advStackFromPressure(pressure){
   if(Math.random() < 0.5) stack.push("ainda");
   return stack;
 }
-
 function mutateVerbIfSaturated(state, verb){
   if(state.pressure < 2.2) return verb;
   const id = verb.id;
@@ -608,72 +544,11 @@ function mutateVerbIfSaturated(state, verb){
 }
 
 /* -------------------------------------------------------
-   5) Slots / fragmentos (gerados) + overlay Sui (opcional)
-   - SUI.JSON FIXO (como você exigiu):
-     { "53": "assets/sui/slot_053.jpg" }
+   5) Slots / fragmentos + Sui
 ------------------------------------------------------- */
 const FIELD = { slots: [] };
 let HAS_SUI = false;
 
-function buildField(){
-  FIELD.slots = [];
-  for(let i=1;i<=120;i++){
-    const fam = FAMS[(i-1)%12];
-    const v = Math.floor((i-1)/12) % 10;
-    const t = (v-4.5)/4.5;
-    const axes = {
-      front: clamp(fam.axes.front + 0.18*t + rnd(-0.03,0.03), -1, 1),
-      dense: clamp(fam.axes.dense + 0.22*t + rnd(-0.03,0.03), -1, 1),
-      cont:  clamp(fam.axes.cont  - 0.20*t + rnd(-0.03,0.03), -1, 1),
-    };
-    FIELD.slots.push({
-      id: slotId(i),
-      idx: i,
-      fam: fam.id,
-      famName: fam.name,
-      v,
-      axes,
-      sui: null,
-    });
-  }
-}
-
-async function tryLoadSui(){
-  // esta página está em /mobiles/entrada/ -> sui.json está em /mobiles/sui.json
-  // então o fetch correto é ../sui.json
-  HAS_SUI = false;
-  try{
-    const res = await fetch("../sui.json?cache=" + Date.now());
-    if(!res.ok) throw new Error("no sui.json");
-    const data = await res.json();
-
-    // data precisa ser exatamente:
-    // { "53": "assets/sui/slot_053.jpg" }
-    // Vamos mapear chaves numéricas -> slot_### correspondente.
-    for(const k of Object.keys(data || {})){
-      const n = parseInt(k, 10);
-      const rel = data[k];
-      if(!Number.isFinite(n) || !rel || typeof rel !== "string") continue;
-
-      const slot = FIELD.slots[n-1];
-      if(!slot) continue;
-
-      // rel é relativo ao /mobiles/, então daqui (/mobiles/entrada/) precisa de ../ + rel
-      const path = "../" + rel.replace(/^(\.\/)+/,"");
-      slot.sui = { path, src: rel };
-      HAS_SUI = true;
-
-      // pré-carrega
-      ImageCache.load(path);
-    }
-  }catch(e){
-    HAS_SUI = false;
-  }
-}
-
-/* -------------------------------------------------------
-   6) Famílias (12)
-------------------------------------------------------- */
 const FAMS = [
   {id:"F1", name:"linhas verticais",    axes:{front:+0.1,dense:-0.2,cont:+0.6}},
   {id:"F2", name:"linhas horizontais",  axes:{front:-0.1,dense:-0.2,cont:+0.6}},
@@ -689,60 +564,22 @@ const FAMS = [
   {id:"F12",name:"vazios amplos",       axes:{front:-0.3,dense:-0.8,cont:+0.4}},
 ];
 
-/* -------------------------------------------------------
-   7) Seleção de fragmentos (campo → amostra enviesada)
-   - Sui aparece quase sempre (mas não sempre).
-------------------------------------------------------- */
-function slotScore(slot, state){
-  const dx =
-    Math.abs(slot.axes.front - state.front) * 0.9 +
-    Math.abs(slot.axes.dense - state.dense) * 0.7 +
-    Math.abs(slot.axes.cont  - state.cont ) * 1.0;
-
-  const phBonus = (state.ph.dry * (-slot.axes.cont))*0.25 + (state.ph.open * (slot.axes.cont))*0.18;
-
-  let score = -(dx) + phBonus + rnd(-0.04,0.04);
-
-  // BÔNUS FORTE para Sui (para ela entrar no top-K quase sempre)
-  if(slot.sui) score += 4.2;
-
-  return score;
-}
-
-function sampleSlots(n, state, mKey){
-  const pool = FIELD.slots.slice();
-  pool.sort((a,b)=> slotScore(b,state) - slotScore(a,state));
-
-  const K = Math.min(40, pool.length);
-  const top = pool.slice(0,K);
-  shuffle(top);
-
-  const picked = top.slice(0,n);
-
-  // Probabilidade-alvo de incluir Sui:
-  // - móbiles: 0.85
-  // - final: 0.92
-  const pSui = (mKey==="final") ? 0.92 : 0.85;
-
-  if(HAS_SUI && Math.random() < pSui){
-    const bestSui = pool.find(s=>s.sui);
-    if(bestSui){
-      // se já está, ok; se não, substitui o último
-      const already = picked.some(s=>s.sui);
-      if(!already){
-        picked[picked.length - 1] = bestSui;
-      }
-    }
+function buildField(){
+  FIELD.slots = [];
+  for(let i=1;i<=120;i++){
+    const fam = FAMS[(i-1)%12];
+    const v = Math.floor((i-1)/12) % 10;
+    const t = (v-4.5)/4.5;
+    const axes = {
+      front: clamp(fam.axes.front + 0.18*t + rnd(-0.03,0.03), -1, 1),
+      dense: clamp(fam.axes.dense + 0.22*t + rnd(-0.03,0.03), -1, 1),
+      cont:  clamp(fam.axes.cont  - 0.20*t + rnd(-0.03,0.03), -1, 1),
+    };
+    FIELD.slots.push({ id: slotId(i), idx: i, fam: fam.id, famName: fam.name, v, axes, sui: null });
   }
-
-  // ainda assim, se por algum acaso não veio Sui, deixa como está (conceito: não 100%)
-  return picked;
 }
 
-/* -------------------------------------------------------
-   8) Render (canvas)
-   - AUMENTO DE NITIDEZ nos fragmentos gerados (não-Sui).
-------------------------------------------------------- */
+/* --- image cache --- */
 const ImageCache = {
   _map: new Map(),
   get(src){ return this._map.get(src); },
@@ -756,6 +593,112 @@ const ImageCache = {
   }
 };
 
+/* -------------------------------------------------------
+   5.1) Loader robusto do sui.json
+   - tenta múltiplos caminhos
+   - resolve imagens via BASE_MOBILES (absoluto)
+------------------------------------------------------- */
+async function fetchFirstJSON(urls){
+  for(const url of urls){
+    try{
+      const res = await fetch(url, { cache: "no-store" });
+      if(!res.ok) throw new Error("HTTP " + res.status);
+      const data = await res.json();
+      return { url, data };
+    }catch(e){
+      // tenta o próximo
+    }
+  }
+  return null;
+}
+
+async function tryLoadSui(){
+  HAS_SUI = false;
+
+  // candidatos (alguns redundantes de propósito)
+  const candidates = [
+    // absoluto baseado em BASE_MOBILES (robusto)
+    new URL("sui.json?cache="+Date.now(), BASE_MOBILES).toString(),
+
+    // relativos clássicos
+    "../sui.json?cache="+Date.now(),
+    "./sui.json?cache="+Date.now(),
+
+    // fallback absoluto pela origem (se BASE_MOBILES não detectou)
+    (window.location.origin + "/negativo.mov/mobiles/sui.json?cache="+Date.now()),
+  ];
+
+  const found = await fetchFirstJSON(candidates);
+  if(!found){
+    console.warn("[MÓBILES] Não consegui carregar sui.json. Verifica /mobiles/sui.json");
+    return;
+  }
+
+  const data = found.data;
+  // esperado: { "53": "assets/sui/slot_053.jpg" }
+  for(const k of Object.keys(data || {})){
+    const n = parseInt(k, 10);
+    const rel = data[k];
+    if(!Number.isFinite(n) || !rel || typeof rel !== "string") continue;
+    const slot = FIELD.slots[n-1];
+    if(!slot) continue;
+
+    // rel é relativo ao /mobiles/
+    const abs = new URL(rel.replace(/^(\.\/)+/,""), BASE_MOBILES).toString();
+    slot.sui = { path: abs, src: rel };
+    ImageCache.load(abs);
+    HAS_SUI = true;
+  }
+
+  if(!HAS_SUI){
+    console.warn("[MÓBILES] sui.json carregou mas não mapeou nenhum slot.");
+  }else{
+    console.info("[MÓBILES] Sui OK via:", found.url);
+  }
+}
+
+/* -------------------------------------------------------
+   6) Seleção de fragmentos (com viés Sui)
+------------------------------------------------------- */
+function slotScore(slot, state){
+  const dx =
+    Math.abs(slot.axes.front - state.front) * 0.9 +
+    Math.abs(slot.axes.dense - state.dense) * 0.7 +
+    Math.abs(slot.axes.cont  - state.cont ) * 1.0;
+
+  const phBonus = (state.ph.dry * (-slot.axes.cont))*0.25 + (state.ph.open * (slot.axes.cont))*0.18;
+
+  let score = -(dx) + phBonus + rnd(-0.04,0.04);
+  if(slot.sui) score += 4.2; // bónus forte
+  return score;
+}
+
+function sampleSlots(n, state, mKey){
+  const pool = FIELD.slots.slice();
+  pool.sort((a,b)=> slotScore(b,state) - slotScore(a,state));
+
+  const K = Math.min(40, pool.length);
+  const top = pool.slice(0,K);
+  shuffle(top);
+
+  const picked = top.slice(0,n);
+
+  const pSui = (mKey==="final") ? 0.92 : 0.85;
+  if(HAS_SUI && Math.random() < pSui){
+    const bestSui = pool.find(s=>s.sui);
+    if(bestSui){
+      const already = picked.some(s=>s.sui);
+      if(!already){
+        picked[picked.length - 1] = bestSui;
+      }
+    }
+  }
+  return picked;
+}
+
+/* -------------------------------------------------------
+   7) Render (canvas) — nitidez aumentada
+------------------------------------------------------- */
 function clearCanvas(c){
   const ctx = c.getContext("2d");
   ctx.clearRect(0,0,c.width,c.height);
@@ -771,11 +714,9 @@ function drawFragment(ctx, slot, x,y,w,h, alpha=1){
   ctx.save();
   ctx.globalAlpha = alpha;
 
-  // fundo mais "branco" para dar contraste (nítido)
   ctx.fillStyle = "rgba(255,255,255,0.90)";
   ctx.fillRect(x,y,w,h);
 
-  // Sui (imagem real)
   if(slot.sui && slot.sui.path){
     const img = ImageCache.get(slot.sui.path);
     if(img && img.complete){
@@ -797,10 +738,7 @@ function drawFragment(ctx, slot, x,y,w,h, alpha=1){
     return;
   }
 
-  // gerado: mais contraste/definição
   ctx.lineWidth = 1.3;
-
-  // paleta mais forte (menos apagada)
   const cold  = "rgba(25,45,65,.80)";
   const cold2 = "rgba(25,45,65,.60)";
   const ink   = "rgba(0,0,0,.78)";
@@ -898,16 +836,14 @@ function drawFragment(ctx, slot, x,y,w,h, alpha=1){
     if(v>6) line(x+12, y+h-14, x+w-12, y+h-14, "rgba(0,0,0,.18)", 1.2);
   }
 
-  // contorno final mais definido
   ctx.strokeStyle="rgba(0,0,0,.18)";
   ctx.lineWidth=1.15;
   ctx.strokeRect(x+0.6,y+0.6,w-1.2,h-1.2);
-
   ctx.restore();
 }
 
 /* -------------------------------------------------------
-   9) Config de cada móbile (seleção + layout)
+   8) Config de móbile + layout
 ------------------------------------------------------- */
 function buildConfig(mKey){
   const state = combinedState(mKey);
@@ -930,7 +866,6 @@ function buildConfig(mKey){
     [verb.label],
     [noun, (Math.random()<0.35 ? "ainda" : ""), (Math.random()<0.25 ? "resto" : "")].filter(Boolean)
   ];
-
   return {state, fragments, verb, noun, advs, lines};
 }
 
@@ -1022,7 +957,7 @@ function renderText(container, lines, onWord){
 }
 
 /* -------------------------------------------------------
-   10) Interação → delta (campo) + espraiamento
+   9) Interação → delta
 ------------------------------------------------------- */
 function applyDelta(fromKey, delta){
   const spread = SPREAD[fromKey] || { [fromKey]: 1.0 };
@@ -1112,20 +1047,6 @@ function deltaFromWordClick(word){
   const vi = VERBS.findIndex(v=>v.label===word);
   if(vi>=0){
     d.verb[vi] += 1.0;
-    const neigh = {
-      sustentar:["estancar","arrastar"],
-      arrastar:["desviar","sustentar"],
-      passar:["virar","cortar"],
-      virar:["passar","desviar"],
-      cortar:["estancar","passar"],
-      estancar:["cortar","sustentar"],
-      desviar:["virar","arrastar"],
-    };
-    const ids = neigh[VERBS[vi].id] || [];
-    for(const id of ids){
-      const j = VERBS.findIndex(v=>v.id===id);
-      if(j>=0) d.verb[j] += 0.35;
-    }
     d.front += 0.12;
     d.cont  += 0.05;
     return d;
@@ -1152,12 +1073,11 @@ function updatePill(){
   const pos = signLabel(s.front, "fundo", "frente");
   const den = signLabel(s.dense, "rare", "denso");
   const con = signLabel(s.cont, "corte", "contínuo");
-  const pill = document.getElementById("pillState");
-  pill.textContent = `campo: ${pos} · ${den} · ${con}`;
+  document.getElementById("pillState").textContent = `campo: ${pos} · ${den} · ${con}`;
 }
 
 /* -------------------------------------------------------
-   11) Render total
+   10) Render total
 ------------------------------------------------------- */
 function hitTest(cfg, x,y){
   const boxes = cfg._boxes || [];
@@ -1169,7 +1089,6 @@ function hitTest(cfg, x,y){
   }
   return null;
 }
-
 function reorderTextLine(container, word){
   const lines = Array.from(container.querySelectorAll(".line"));
   for(const ln of lines){
@@ -1181,7 +1100,6 @@ function reorderTextLine(container, word){
     }
   }
 }
-
 function renderMobile(mKey, canvasId, textId){
   const c = document.getElementById(canvasId);
   const ctx = c.getContext("2d");
@@ -1214,7 +1132,6 @@ function renderMobile(mKey, canvasId, textId){
     }
   };
 }
-
 function renderFinal(){
   const c = document.getElementById("finalCanvas");
   const ctx = c.getContext("2d");
@@ -1246,7 +1163,6 @@ function renderFinal(){
     }
   };
 }
-
 function rerenderAll(){
   renderMobile("m1","m1Canvas","m1Text");
   renderMobile("m2","m2Canvas","m2Text");
@@ -1258,17 +1174,31 @@ function rerenderAll(){
 }
 
 /* -------------------------------------------------------
-   12) Share (imagem + texto) — download + Web Share API
+   11) Share (mantido igual ao que já estava)
 ------------------------------------------------------- */
 function configToText(cfg){
-  // texto curto, direto, igual ao que aparece
   const a = (cfg.lines?.[0] || []).join(" ");
   const b = (cfg.lines?.[1] || []).join(" ");
   const c = (cfg.lines?.[2] || []).join(" ");
   return `${a}\n${b}\n${c}`.trim();
 }
-
-function exportCompositePNG(canvas, cfg, title="mobiles"){
+function roundRect(ctx, x, y, w, h, r, fill, stroke){
+  if(typeof r === 'number') r = {tl:r,tr:r,br:r,bl:r};
+  ctx.beginPath();
+  ctx.moveTo(x + r.tl, y);
+  ctx.lineTo(x + w - r.tr, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r.tr);
+  ctx.lineTo(x + w, y + h - r.br);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r.br, y + h);
+  ctx.lineTo(x + r.bl, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r.bl);
+  ctx.lineTo(x, y + r.tl);
+  ctx.quadraticCurveTo(x, y, x + r.tl, y);
+  ctx.closePath();
+  if(fill) ctx.fill();
+  if(stroke) ctx.stroke();
+}
+function exportCompositePNG(canvas, cfg){
   const out = document.createElement("canvas");
   const W = 1200, H = 1200;
   out.width = W; out.height = H;
@@ -1286,7 +1216,6 @@ function exportCompositePNG(canvas, cfg, title="mobiles"){
   const dy = 90;
   ctx.drawImage(canvas, dx, dy, targetW, targetH);
 
-  // header
   ctx.fillStyle = "rgba(0,0,0,.82)";
   ctx.font = "600 20px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
   ctx.fillText("MÓBILES — configuração", pad, 50);
@@ -1295,11 +1224,9 @@ function exportCompositePNG(canvas, cfg, title="mobiles"){
   ctx.font = "14px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
   ctx.fillText(nowISO(), pad, 72);
 
-  // texto do móbile (impresso na imagem)
   const text = configToText(cfg);
   const lines = text.split("\n").slice(0,3);
 
-  // bloco de texto
   const blockTop = dy + targetH + 56;
   ctx.fillStyle = "rgba(255,255,255,.60)";
   ctx.strokeStyle = "rgba(0,0,0,.10)";
@@ -1310,45 +1237,20 @@ function exportCompositePNG(canvas, cfg, title="mobiles"){
   ctx.fillStyle = "rgba(0,0,0,.84)";
   ctx.font = "600 28px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
   ctx.fillText(lines[0] || "", pad+22, blockTop+10);
-
-  ctx.font = "600 28px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
   ctx.fillText(lines[1] || "", pad+22, blockTop+54);
-
-  ctx.font = "600 28px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
   ctx.fillText(lines[2] || "", pad+22, blockTop+98);
 
-  // rodapé curto
   ctx.fillStyle = "rgba(0,0,0,.52)";
   ctx.font = "12px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
   ctx.fillText("negativo.mov · MÓBILES", pad+22, by+bh-18);
 
   return out;
 }
-
-function roundRect(ctx, x, y, w, h, r, fill, stroke){
-  if(typeof r === 'number') r = {tl:r,tr:r,br:r,bl:r};
-  ctx.beginPath();
-  ctx.moveTo(x + r.tl, y);
-  ctx.lineTo(x + w - r.tr, y);
-  ctx.quadraticCurveTo(x + w, y, x + w, y + r.tr);
-  ctx.lineTo(x + w, y + h - r.br);
-  ctx.quadraticCurveTo(x + w, y + h, x + w - r.br, y + h);
-  ctx.lineTo(x + r.bl, y + h);
-  ctx.quadraticCurveTo(x, y + h, x, y + h - r.bl);
-  ctx.lineTo(x, y + r.tl);
-  ctx.quadraticCurveTo(x, y, x + r.tl, y);
-  ctx.closePath();
-  if(fill) ctx.fill();
-  if(stroke) ctx.stroke();
-}
-
 async function canvasToPngFile(outCanvas, filename){
   const blob = await new Promise(res => outCanvas.toBlob(res, "image/png", 0.95));
   const file = new File([blob], filename, { type: "image/png" });
   return { blob, file };
 }
-
-/* --- Share dialog (fallback) --- */
 const ShareUI = (function(){
   const dlg = document.getElementById("shareDlg");
   const title = document.getElementById("shareTitle");
@@ -1361,7 +1263,7 @@ const ShareUI = (function(){
 
   btnClose.onclick = ()=> dlg.close();
 
-  let _payload = null; // { text, outCanvas, file, blob, filename }
+  let _payload = null;
 
   btnCopy.onclick = async ()=>{
     if(!_payload) return;
@@ -1393,13 +1295,11 @@ const ShareUI = (function(){
           await navigator.share({ text, title: "MÓBILES" });
         }
       }
-    }catch(e){
-      // usuário cancelou ou falhou: fica tudo bem, o fallback já existe
-    }
+    }catch(e){}
   };
 
-  function open({label, text, outCanvas, file, blob, filename, canNativeFileShare}){
-    _payload = { label, text, outCanvas, file, blob, filename };
+  function open({label, text, outCanvas, file, filename, canNativeFileShare}){
+    _payload = { label, text, outCanvas, file, filename };
     title.textContent = label;
     textBox.textContent = text;
     note.textContent = navigator.share
@@ -1410,7 +1310,6 @@ const ShareUI = (function(){
     btnShare.style.display = navigator.share ? "inline-flex" : "none";
     dlg.showModal();
   }
-
   return { open };
 })();
 
@@ -1420,42 +1319,35 @@ async function shareMobile(mKey){
   if(!cfg || !canvas) return;
 
   const text = configToText(cfg);
-  const out = exportCompositePNG(canvas, cfg, "mobiles");
+  const out = exportCompositePNG(canvas, cfg);
   const filename = `mobiles_${mKey}_${Date.now()}.png`;
-  const { blob, file } = await canvasToPngFile(out, filename);
+  const { file } = await canvasToPngFile(out, filename);
 
   const canNativeFileShare = !!(navigator.canShare && navigator.canShare({ files:[file] }));
 
-  // tenta partilha nativa primeiro (se existir)
   if(navigator.share){
     try{
       if(canNativeFileShare){
         await navigator.share({ title: "MÓBILES", text, files:[file] });
         return;
       }else{
-        // pelo menos o texto
         await navigator.share({ title: "MÓBILES", text });
-        // depois abre modal para baixar imagem se quiser
       }
-    }catch(e){
-      // cancelamento/erro -> abre modal
-    }
+    }catch(e){}
   }
 
-  // fallback modal (desktop / sem share / ou cancelou)
   ShareUI.open({
     label: (mKey==="final") ? "Partilhar estado alcançado" : `Partilhar ${mKey.toUpperCase()}`,
     text,
     outCanvas: out,
     file,
-    blob,
     filename,
     canNativeFileShare
   });
 }
 
 /* -------------------------------------------------------
-   13) Chips fonográficos
+   12) Chips fonográficos
 ------------------------------------------------------- */
 function initChips(){
   const box = document.getElementById("m4Chips");
@@ -1500,7 +1392,7 @@ function renderChipsState(){
 }
 
 /* -------------------------------------------------------
-   14) Botões
+   13) Botões
 ------------------------------------------------------- */
 function initButtons(){
   document.getElementById("btnReset").onclick = ()=>{
@@ -1547,11 +1439,8 @@ function initButtons(){
     rerenderAll();
   };
 
-  document.getElementById("btnFinalize").onclick = ()=>{
-    renderFinal();
-  };
+  document.getElementById("btnFinalize").onclick = ()=> renderFinal();
 
-  // share buttons (agora: imagem + texto + opção de partilha)
   document.getElementById("m1Share").onclick = ()=> shareMobile("m1");
   document.getElementById("m2Share").onclick = ()=> shareMobile("m2");
   document.getElementById("m3Share").onclick = ()=> shareMobile("m3");
@@ -1563,7 +1452,7 @@ function initButtons(){
 }
 
 /* -------------------------------------------------------
-   15) Boot
+   14) Boot
 ------------------------------------------------------- */
 (async function boot(){
   buildField();
