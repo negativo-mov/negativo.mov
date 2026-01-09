@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MÓBILES — Página-Base</title>
+  <style>
+    :root{
+      /* Paleta mínima: preto (corpo), off-white, cinza, cinza frio (inflexão) */
+      --ink: #111315;
+      --paper: #F5F2EE;
+      --mid: #8C9096;
+      --cold: #75859B; /* acinzentado frio */
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
+    }
+
+    /* Barra mínima (quase invisível) */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: rgba(245,242,238,0.88);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(17,19,21,0.08);
+    }
+    .topbar .left{
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      min-width: 0;
+    }
+    .brand{
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .subtitle{
+      font-size: 12px;
+      color: rgba(17,19,21,0.65);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 60vw;
+    }
+    .btn{
+      border: 1px solid rgba(17,19,21,0.15);
+      background: transparent;
+      color: var(--ink);
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .btn:hover{ border-color: rgba(17,19,21,0.28); }
+
+    /* GRID base: 12x10 em desktop, 6x20 em mobile */
+    .grid{
+      display: grid;
+      gap: 0;                 /* sem respiro */
+      width: 100vw;
+      min-height: calc(100vh - 48px);
+      grid-template-columns: repeat(12, 1fr);
+      background: var(--paper);
+    }
+    @media (max-width: 860px){
+      .grid{ grid-template-columns: repeat(6, 1fr); }
+      /* em 6 colunas, 120 vira 20 linhas automaticamente */
+    }
+
+    .slot{
+      position: relative;
+      aspect-ratio: 1 / 1;    /* quadrado perfeito */
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    /* Conteúdo gerado: ocupa tudo */
+    .slot svg, .slot img{
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Emergência: quando for override da Sui, micro-sombra quase imperceptível */
+    .slot.is-sui img{
+      filter: saturate(1.02) contrast(1.02);
+    }
+    .slot.is-sui::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      box-shadow: 0 0 0 1px rgba(17,19,21,0.06) inset, 0 6px 18px rgba(17,19,21,0.06);
+      opacity: 0.55;
+    }
+
+    /* Debug opcional: descomente no JS para ver IDs */
+    .slot .idtag{
+      position:absolute;
+      right:6px;
+      bottom:6px;
+      font-size:10px;
+      padding:2px 6px;
+      border-radius:999px;
+      background: rgba(245,242,238,0.70);
+      border: 1px solid rgba(17,19,21,0.08);
+      color: rgba(17,19,21,0.55);
+      display:none;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="left">
+      <div class="brand">MÓBILES</div>
+      <div class="subtitle">Página-Base — campo latente (120 slots)</div>
+    </div>
+    <div class="right">
+      <button class="btn" id="reshuffleBtn" title="Reembaralha apenas os fragmentos gerados (preserva Sui)">Reembaralhar campo</button>
+    </div>
+  </div>
+
+  <main class="grid" id="grid" aria-label="Página-base: reserva operatória"></main>
+
+<script>
+/**
+ * MÓBILES — Página-Base (Nível 3)
+ * - 120 slots (12 famílias x 10 variações)
+ * - Gerador SVG procedural (leve)
+ * - Overrides via sui.json (opcional)
+ * - Sem backend
+ */
+
+/* =========================
+   0) Utilitários
+========================= */
+function mulberry32(seed){
+  let t = seed >>> 0;
+  return function(){
+    t += 0x6D2B79F5;
+    let x = Math.imul(t ^ (t >>> 15), 1 | t);
+    x ^= x + Math.imul(x ^ (x >>> 7), 61 | x);
+    return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function clamp01(x){ return Math.max(0, Math.min(1, x)); }
+function lerp(a,b,t){ return a + (b-a)*t; }
+function pick(rng, arr){ return arr[Math.floor(rng()*arr.length)]; }
+
+/* =========================
+   1) Paleta (mínima)
+========================= */
+const PALETTE = {
+  ink: getComputedStyle(document.documentElement).getPropertyValue('--ink').trim(),
+  paper: getComputedStyle(document.documentElement).getPropertyValue('--paper').trim(),
+  mid: getComputedStyle(document.documentElement).getPropertyValue('--mid').trim(),
+  cold: getComputedStyle(document.documentElement).getPropertyValue('--cold').trim()
+};
+
+/* =========================
+   2) Definição dos 12 regimes (famílias)
+   (cada uma é um "regime formal mínimo")
+========================= */
+const FAMILIES = [
+  { key:'F1', name:'Continuidade linear', gen: gen_F1 },
+  { key:'F2', name:'Corte vertical',       gen: gen_F2 },
+  { key:'F3', name:'Deslocamento oblíquo', gen: gen_F3 },
+  { key:'F4', name:'Ritmo repetitivo',     gen: gen_F4 },
+  { key:'F5', name:'Ruptura',              gen: gen_F5 },
+  { key:'F6', name:'Densidade',            gen: gen_F6 },
+  { key:'F7', name:'Rarefação',            gen: gen_F7 },
+  { key:'F8', name:'Centro instável',      gen: gen_F8 },
+  { key:'F9', name:'Campo homogêneo',      gen: gen_F9 },
+  { key:'F10',name:'Direção múltipla',     gen: gen_F10 },
+  { key:'F11',name:'Contorno s/ preench.', gen: gen_F11 },
+  { key:'F12',name:'Massa',                gen: gen_F12 },
+];
+
+/* =========================
+   3) Modelo por slot (120)
+   - familyIndex: 0..11
+   - variant: 0..9
+   - seed: int
+   - semas (3 eixos): densidade, direcionalidade, corte (0..1)
+========================= */
+
+/**
+ * Geramos um "mapeamento tensivo" simples:
+ * - cada família tem uma tendência nos 3 eixos
+ * - cada variante perturba levemente (sem mudar o regime)
+ */
+const FAMILY_TENDENCY = [
+  // densidade, direcionalidade, corte
+  [0.25, 0.30, 0.20], // F1
+  [0.30, 0.55, 0.75], // F2
+  [0.35, 0.70, 0.45], // F3
+  [0.45, 0.45, 0.35], // F4
+  [0.45, 0.60, 0.85], // F5
+  [0.80, 0.55, 0.45], // F6
+  [0.15, 0.35, 0.25], // F7
+  [0.35, 0.40, 0.45], // F8
+  [0.30, 0.40, 0.20], // F9
+  [0.55, 0.65, 0.55], // F10
+  [0.35, 0.50, 0.55], // F11
+  [0.90, 0.55, 0.70], // F12
+];
+
+function slotSemas(familyIndex, variant, rng){
+  const [d0, v0, c0] = FAMILY_TENDENCY[familyIndex];
+  // perturbação controlada por variante (pequena)
+  const amp = 0.10; // amplitude máxima por variante
+  const t = (variant - 4.5) / 9; // -0.5..0.5
+  const jitter = () => (rng()*2 - 1) * amp;
+
+  const densidade     = clamp01(d0 + t*0.08 + jitter()*0.30);
+  const direcionalidade= clamp01(v0 + t*0.06 + jitter()*0.25);
+  const corte         = clamp01(c0 + t*0.07 + jitter()*0.25);
+  return { densidade, direcionalidade, corte };
+}
+
+/* =========================
+   4) Construção do grid
+========================= */
+const GRID_EL = document.getElementById('grid');
+const TOTAL = 120;
+
+/**
+ * Layout lógico:
+ * 12 famílias x 10 variações = 120
+ * A distribuição no grid é embaralhada (para não “denunciar” famílias).
+ */
+function buildSlots(baseSeed){
+  GRID_EL.innerHTML = '';
+  const rng = mulberry32(baseSeed);
+
+  // Lista de "slots teóricos": cada um tem family + variant
+  const slots = [];
+  for(let f=0; f<12; f++){
+    for(let v=0; v<10; v++){
+      // seed por slot: depende do baseSeed e de (f,v)
+      const s = (baseSeed ^ (f*10007) ^ (v*7919)) >>> 0;
+      slots.push({ id: slots.length+1, familyIndex: f, variant: v, seed: s });
+    }
+  }
+
+  // Embaralha para distribuição não-serial
+  for(let i=slots.length-1; i>0; i--){
+    const j = Math.floor(rng() * (i+1));
+    [slots[i], slots[j]] = [slots[j], slots[i]];
+  }
+
+  return slots;
+}
+
+/* =========================
+   5) Overrides da Sui (opcional)
+   - esperado: /sui.json no mesmo diretório
+========================= */
+async function loadOverrides(){
+  try{
+    const res = await fetch('sui.json', { cache: 'no-store' });
+    if(!res.ok) return {};
+    const data = await res.json();
+    return data || {};
+  }catch(e){
+    return {};
+  }
+}
+
+/* =========================
+   6) Render de um slot (SVG ou imagem)
+========================= */
+function renderSlot(slot, overrides, baseSeed){
+  const el = document.createElement('div');
+  el.className = 'slot';
+  el.dataset.id = slot.id;
+
+  // Debug ID (se quiser ativar)
+  // const tag = document.createElement('div');
+  // tag.className = 'idtag';
+  // tag.textContent = String(slot.id).padStart(3,'0');
+  // tag.style.display = 'block';
+  // el.appendChild(tag);
+
+  const overrideUrl = overrides[String(slot.id)];
+  if(overrideUrl){
+    el.classList.add('is-sui');
+    const img = document.createElement('img');
+    img.loading = 'lazy';
+    img.alt = 'fragmento (Sui)';
+    img.src = overrideUrl;
+    el.appendChild(img);
+    return el;
+  }
+
+  // Caso gerado
+  const rng = mulberry32(slot.seed);
+  const semas = slotSemas(slot.familyIndex, slot.variant, rng);
+  const svg = FAMILIES[slot.familyIndex].gen({
+    size: 200,
+    seed: slot.seed,
+    variant: slot.variant,
+    semas,
+    palette: PALETTE
+  });
+  el.appendChild(svg);
+  return el;
+}
+
+/* =========================
+   7) Pipeline
+========================= */
+let BASE_SEED = 123456789; // muda no reshuffle
+let OVERRIDES = {};
+
+async function renderAll(){
+  const slots = buildSlots(BASE_SEED);
+  const frag = document.createDocumentFragment();
+  for(const slot of slots){
+    frag.appendChild(renderSlot(slot, OVERRIDES, BASE_SEED));
+  }
+  GRID_EL.appendChild(frag);
+}
+
+document.getElementById('reshuffleBtn').addEventListener('click', async () => {
+  // preserva overrides da Sui; só muda o campo gerado
+  BASE_SEED = (BASE_SEED + 0x9E3779B9) >>> 0;
+  await renderAll();
+});
+
+/* =========================
+   8) Geradores SVG (12 famílias)
+   - leves, mínimos
+   - cada um respeita: densidade, direcionalidade, corte
+========================= */
+
+function svgRoot(size){
+  const ns = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(ns,'svg');
+  svg.setAttribute('viewBox', `0 0 ${size} ${size}`);
+  svg.setAttribute('width', size);
+  svg.setAttribute('height', size);
+  return svg;
+}
+function line(ns, x1,y1,x2,y2, stroke, w, op){
+  const el = document.createElementNS(ns,'line');
+  el.setAttribute('x1',x1); el.setAttribute('y1',y1);
+  el.setAttribute('x2',x2); el.setAttribute('y2',y2);
+  el.setAttribute('stroke',stroke);
+  el.setAttribute('stroke-width',w);
+  el.setAttribute('stroke-linecap','round');
+  if(op != null) el.setAttribute('opacity', op);
+  return el;
+}
+function rect(ns,x,y,w,h,fill,op){
+  const el = document.createElementNS(ns,'rect');
+  el.setAttribute('x',x); el.setAttribute('y',y);
+  el.setAttribute('width',w); el.setAttribute('height',h);
+  el.setAttribute('fill',fill);
+  if(op != null) el.setAttribute('opacity', op);
+  return el;
+}
+
+function genCommon({size, seed, variant, semas, palette}){
+  const ns = "http://www.w3.org/2000/svg";
+  const rng = mulberry32(seed ^ (variant*2654435761));
+  const svg = svgRoot(size);
+  // fundo
+  svg.appendChild(rect(ns,0,0,size,size,palette.paper,1));
+  return { svg, ns, rng };
+}
+
+/** F1 Continuidade linear (linhas horizontais contínuas) */
+function gen_F1(ctx){
+  const {size, semas, palette} = ctx;
+  const { svg, ns, rng } = genCommon(ctx);
+  const n = Math.floor(lerp(6, 22, semas.densidade));
+  const w = lerp(0.6, 1.6, semas.corte*0.4 + semas.densidade*0.3);
+  const col = pick(rng, [palette.ink, palette.mid, palette.cold]);
+  for(let i=0;i<n;i++){
+    const y = rng()*size;
+    const x1 = -size*0.1;
+    const x2 = size*1.1;
+    const jitter = lerp(0, 8, 1-semas.corte); // mais contínuo = menos jitter
+    svg.appendChild(line(ns, x1, y + (rng()*2-1)*jitter, x2, y + (rng()*2-1)*jitter, col, w, lerp(0.15,0.45,1-semas.densidade)));
+  }
+  return svg;
+}
+
+/** F2 Corte vertical */
+function gen_F2(ctx){
+  const {size, semas, palette} = ctx;
+  const { svg, ns, rng } = genCommon(ctx);
+  const cuts = Math.floor(lerp(1, 4, semas.corte));
+  const w = lerp(1.0, 3.5, semas.corte);
+  for(let i=0;i<cuts;i++){
+    const x = lerp(size*0.2, size*0.8, rng());
+    const col = pick(rng,[palette.ink, palette.ink, palette.cold]);
+    svg.appendChild(line(ns, x, -size*0.1, x, size*1.1, col, w, lerp(0.25,0.60,semas.corte)));
+  }
+  return svg;
+}
+
+/** F3 Deslocamento oblíquo (diagonais) */
+function gen_F3(ctx){
+  const {size, semas, palette} = ctx;
+  const { svg, ns, rng } = genCommon(ctx);
+  const n = Math.floor(lerp(3, 14, semas.densidade));
+  const ang = lerp(-55, -20, semas.direcionalidade); // mais empurrado = mais inclinado
+  const w = lerp(0.8, 2.4, semas.corte*0.6);
+  const col = pick(rng,[palette.mid, palette.cold, palette.ink]);
+  const rad = ang * Math.PI/180;
+  for(let i=0;i<n;i++){
+    const cx = rng()*size;
+    const cy = rng()*size;
+    const len = lerp(size*0.35, size*1.1, rng());
+    const dx = Math.cos(rad)*len;
+    const dy = Math.sin(rad)*len;
+    svg.appendChild(line(ns, cx-dx, cy-dy, cx+dx, cy+dy, col, w, lerp(0.18,0.55,semas.corte)));
+  }
+  return svg;
+}
+
+/** F4 Ritmo repetitivo (quase padrão) */
+function gen_F4(ctx){
+  const {size, semas, palette} = ctx;
+  const { svg, ns, rng } = genCommon(ctx);
+  const step = Math.floor(lerp(18, 10, semas.densidade)); // mais denso = passo menor
+  const w = lerp(0.6, 1.4, semas.corte*0.5);
+  const col = pick(rng,[palette.mid, palette.cold]);
+  for(let y=0; y<=size; y+=step){
+    svg.appendChild(line(ns, 0, y, size, y, col, w, 0.25));
+  }
+  // pequena falha controlada por corte
+  if(semas.corte > 0.4){
+    const ns2 = "http://www.w3.org/2000/svg";
+    const x = lerp(size*0.2, size*0.8, rng());
+    svg.appendChild(rect(ns2, x, size*0.1, size*0.08, size*0.8, palette.paper, 1));
+  }
+  return svg;
+}
+
+/** F5 Ruptura (padrão interrompido) */
+function gen_F5(ctx){
+  const {size, semas, palette} = ctx;
+  const { svg, ns, rng } = genCommon(ctx);
+  const n = Math.floor(lerp(10, 28, semas.densidade));
+  const w = lerp(0.8, 2.2, semas.corte);
+  const col = pick(rng,[palette.ink, palette.cold, palette.mid]);
+  for(let i=0;i<n;i++){
+    const y = rng()*size;
+    const x1 = 0;
+    const x2 = size;
+    // ruptura: remove um trecho do meio
+    const gapW = lerp(size*0.08, size*0.35, semas.corte);
+    const gapX = lerp(size*0.2, size*0.8-gapW, rng());
+    svg.appendChild(line(ns, x1, y, gapX, y, col, w, 0.35));
+    svg.appendChild(line(ns, gapX+gapW, y, x2, y, col, w, 0.35));
+  }
+  return svg;
+}
+
+/** F6 Densidade (muitos elementos pequenos) */
+function gen_F6(ctx){
+  const {size, semas, palette} = ctx;
+  const { svg, ns, rng } = genCommon(ctx);
+  const n = Math.floor(lerp(40, 160, semas.densidade));
+  const col = pick(rng,[palette.mid, palette.cold, palette.ink]);
+  for(let i=0;i<n;i++){
+    const x = rng()*size;
+    const y = rng()*size;
+    const w = lerp(0.8, 2.6, rng());
+    const h = lerp(0.8, 2.6, rng());
+    const op = lerp(0.12, 0.35, semas.densidade);
+    svg.appendChild(rect(ns, x, y, w, h, col, op));
+  }
+  return svg;
+}
+
+/** F7 Rarefação (poucos elementos, muito vazio) */
+function gen_F7(ctx){
+  const {size, semas, palette} = ctx;
+  const { svg, ns, rng } = genCommon(ctx);
+  const n = Math.floor(lerp(2, 10, semas.densidade)); // ainda assim pouco
+  const col = pick(rng,[palette.mid, palette.cold]);
+  for(let i=0;i<n;i++){
+    const x = rng()*size;
+    const y = rng()*size;
+    const len = lerp(size*0.10, size*0.35, rng());
+    const w = lerp(0.7, 1.6, 1-semas.corte);
+    svg.appendChild(line(ns, x-len, y, x+len, y, col, w, 0.25));
+  }
+  return svg;
+}
+
+/** F8 Centro instável (elemento central deslocado) */
+function gen_F8(ctx){
+  const {size, semas, palette} = ctx;
+  const { svg, ns, rng } = genCommon(ctx);
+  const cx = lerp(size*0.35, size*0.65, rng());
+  const cy = lerp(size*0.35, size*0.65, rng());
+  const w = lerp(size*0.08, size*0.22, semas.densidade);
+  const h = lerp(size*0.08, size*0.22, semas.densidade);
+  const col = pick(rng,[palette.cold, palette.mid, palette.ink]);
+  svg.appendChild(rect(ns, cx-w/2, cy-h/2, w, h, col, lerp(0.10,0.30,semas.corte)));
+  // linhas “puxando” sem fechar
+  const pulls = Math.floor(lerp(2, 6, semas.direcionalidade));
+  for(let i=0;i<pulls;i++){
+    const x2 = rng()*size;
+    const y2 = rng()*size;
+    svg.appendChild(line(ns, cx, cy, x2, y2, col, lerp(0.6,1.4,semas.corte), 0.18));
+  }
+  return svg;
+}
+
+/** F9 Campo homogêneo (textura neutra) */
+function gen_F9(ctx){
+  const {size, semas, palette} = ctx;
+  const { svg, ns, rng } = genCommon(ctx);
+  // “névoa” de micro-retângulos quase uniformes
+  const n = Math.floor(lerp(80, 140, 0.6 + semas.densidade*0.4));
+  const col = pick(rng,[palette.mid, palette.cold]);
+  for(let i=0;i<n;i++){
+    const x = rng()*size;
+    const y = rng()*size;
+    const s = lerp(0.6, 1.8, rng());
+    svg.appendChild(rect(ns,x,y,s,s,col,lerp(0.05,0.12,1-semas.corte)));
+  }
+  return svg;
+}
+
+/** F10 Direção múltipla (vetores conflitantes) */
+function gen_F10(ctx){
+  const {size, semas, palette} = ctx;
+  const { svg, ns, rng } = genCommon(ctx);
+  const n = Math.floor(lerp(6, 20, semas.densidade));
+  const w = lerp(0.8, 2.0, semas.corte);
+  const col = pick(rng,[palette.ink, palette.cold, palette.mid]);
+  for(let i=0;i<n;i++){
+    const x1 = rng()*size;
+    const y1 = rng()*size;
+    const x2 = rng()*size;
+    const y2 = rng()*size;
+    svg.appendChild(line(ns, x1,y1,x2,y2, col, w, 0.22));
+  }
+  return svg;
+}
+
+/** F11 Contorno sem preenchimento (bordas e vazios internos) */
+function gen_F11(ctx){
+  const {size, semas, palette} = ctx;
+  const { svg, ns, rng } = genCommon(ctx);
+  // retângulos sem fill (stroke) — mas em SVG simples, simulamos com 4 linhas
+  const boxes = Math.floor(lerp(1, 4, semas.densidade));
+  const col = pick(rng,[palette.mid, palette.cold, palette.ink]);
+  for(let i=0;i<boxes;i++){
+    const x = lerp(size*0.1, size*0.6, rng());
+    const y = lerp(size*0.1, size*0.6, rng());
+    const w = lerp(size*0.20, size*0.75, rng());
+    const h = lerp(size*0.20, size*0.75, rng());
+    const sw = lerp(0.8, 2.4, semas.corte);
+    const op = lerp(0.12,0.35,semas.corte);
+    svg.appendChild(line(ns, x,y, x+w,y, col, sw, op));
+    svg.appendChild(line(ns, x+w,y, x+w,y+h, col, sw, op));
+    svg.appendChild(line(ns, x+w,y+h, x,y+h, col, sw, op));
+    svg.appendChild(line(ns, x,y+h, x,y, col, sw, op));
+  }
+  return svg;
+}
+
+/** F12 Massa (bloco compacto/peso) */
+function gen_F12(ctx){
+  const {size, semas, palette} = ctx;
+  const { svg, ns, rng } = genCommon(ctx);
+  const blocks = Math.floor(lerp(1, 5, 0.4 + semas.densidade*0.6));
+  for(let i=0;i<blocks;i++){
+    const x = lerp(0, size*0.5, rng());
+    const y = lerp(0, size*0.5, rng());
+    const w = lerp(size*0.35, size*1.0, rng());
+    const h = lerp(size*0.35, size*1.0, rng());
+    const col = pick(rng,[palette.ink, palette.ink, palette.cold]);
+    svg.appendChild(rect(ns, x,y,w,h, col, lerp(0.08,0.28,semas.corte)));
+  }
+  return svg;
+}
+
+/* =========================
+   9) Boot
+========================= */
+(async function(){
+  OVERRIDES = await loadOverrides();
+  await renderAll();
+})();
+</script>
+</body>
+</html>
