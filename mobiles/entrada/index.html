@@ -674,7 +674,7 @@ function sampleSlots(n, state){
   const hasAnySui = FIELD.slots.some(s => s.sui);
   const hasSuiInPicked = picked.some(s => s.sui);
 
-  if(hasAnySui && !hasSuiInPicked && Math.random() < 0.75){
+  if(hasAnySui && !hasSuiInPicked && Math.random() < 0.90){
     // pega algumas Sui melhor ranqueadas (entre as primeiras do pool)
     const suiCandidates = pool.filter(s => s.sui).slice(0, 12);
     if(suiCandidates.length){
