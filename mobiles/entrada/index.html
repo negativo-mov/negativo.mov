@@ -197,4 +197,1383 @@
       display:flex; align-items:center; justify-content:space-between; gap:10px;
     }
     .dlgHead b{font-size:13px}
-    .dlgBody{padding:12px 14px 14px; display:flex; flex-direction:c
+    .dlgBody{padding:12px 14px 14px; display:flex; flex-direction:column; gap:10px;}
+    .dlgText{
+      border:1px solid rgba(0,0,0,.10);
+      background:rgba(255,255,255,.55);
+      border-radius:14px;
+      padding:10px;
+      font-size:12px;
+      color:rgba(0,0,0,.78);
+      line-height:1.35;
+      white-space:pre-wrap;
+    }
+    .dlgBtns{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;}
+    .miniNote{font-size:11px; color:var(--muted); line-height:1.35}
+    .xbtn{
+      border-radius:999px;
+      padding:7px 10px;
+      font-size:12px;
+    }
+
+    @media (max-width: 980px){
+      .card{grid-column: span 12;}
+      .final .stage{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <b>MÓBILES</b>
+        <small>Entrada — interações (4 móbiles) · perturbação, espraiamento, cessação</small>
+      </div>
+      <div class="actions">
+        <span class="pill" id="pillState">campo: neutro</span>
+        <button id="btnReset" title="recomeçar (sem apagar o mundo: reinicializa o campo local)">Reiniciar campo</button>
+        <a class="btn" href="../" title="voltar à página-base">Repertório</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="grid">
+    <!-- M1 -->
+    <article class="card" id="cardM1">
+      <div class="head">
+        <div class="t">
+          <b>Móbile 1 — Perturbação</b>
+          <small>3 fragmentos · botão tensiona novamente (não é reset)</small>
+        </div>
+        <div class="mini">
+          <button id="m1Tension">Tensionar novamente</button>
+          <button id="m1Share">Partilhar</button>
+        </div>
+      </div>
+      <div class="stage">
+        <canvas id="m1Canvas" width="980" height="520"></canvas>
+        <div class="text" id="m1Text"></div>
+        <div class="hint">Clique nos fragmentos ou nas palavras: você não escolhe — você desloca.</div>
+      </div>
+    </article>
+
+    <!-- M2 -->
+    <article class="card" id="cardM2">
+      <div class="head">
+        <div class="t">
+          <b>Móbile 2 — Frente ↔ fundo</b>
+          <small>2 fragmentos · troca espacial e troca sintática</small>
+        </div>
+        <div class="mini">
+          <button id="m2Swap">Trocar frente/fundo</button>
+          <button id="m2Share">Partilhar</button>
+        </div>
+      </div>
+      <div class="stage">
+        <canvas id="m2Canvas" width="980" height="520"></canvas>
+        <div class="text" id="m2Text"></div>
+        <div class="hint">Clique nas palavras para reordenar: posição espacial = posição textual.</div>
+      </div>
+    </article>
+
+    <!-- M3 -->
+    <article class="card" id="cardM3">
+      <div class="head">
+        <div class="t">
+          <b>Móbile 3 — Intensificação</b>
+          <small>7 fragmentos · repetição → saturação → mutação</small>
+        </div>
+        <div class="mini">
+          <button id="m3Jolt">Micro-choque</button>
+          <button id="m3Share">Partilhar</button>
+        </div>
+      </div>
+      <div class="stage">
+        <canvas id="m3Canvas" width="980" height="520"></canvas>
+        <div class="text" id="m3Text"></div>
+        <div class="hint">Cada clique aumenta pressão: quando satura, o verbo muda (não “mais mais mais” infinito).</div>
+      </div>
+    </article>
+
+    <!-- M4 -->
+    <article class="card" id="cardM4">
+      <div class="head">
+        <div class="t">
+          <b>Móbile 4 — Grafema / fonografia</b>
+          <small>5 fragmentos · inclina regimes gráficos (sem áudio)</small>
+        </div>
+        <div class="mini">
+          <button id="m4Share">Partilhar</button>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="chips" id="m4Chips"></div>
+        <canvas id="m4Canvas" width="980" height="520"></canvas>
+        <div class="text" id="m4Text"></div>
+        <div class="hint">Clique num regime fonográfico: isso inclina léxico, ritmo e cortes visuais.</div>
+      </div>
+    </article>
+
+    <!-- FINAL -->
+    <article class="card final" id="cardFinal">
+      <div class="head">
+        <div class="t">
+          <b>Estado alcançado — configuração atual</b>
+          <small>10 fragmentos · condensação do campo (provisória)</small>
+        </div>
+        <div class="mini">
+          <button id="btnFinalize">Gerar estado alcançado</button>
+          <button id="finalShare">Partilhar estado</button>
+          <a class="btn" id="goState" href="../estado/" title="Página 3 (estado expositivo)">Ver estado expositivo</a>
+        </div>
+      </div>
+      <div class="stage">
+        <div>
+          <canvas id="finalCanvas" width="980" height="620"></canvas>
+          <div class="text" id="finalText"></div>
+          <div class="hint">O que aparece aqui não é “resultado pessoal”: é cessação + campo + resto.</div>
+        </div>
+        <div class="side">
+          <div class="kpi">
+            <div class="box"><b>Posição</b><span id="kFront">—</span></div>
+            <div class="box"><b>Densidade</b><span id="kDense">—</span></div>
+            <div class="box"><b>Continuidade</b><span id="kCont">—</span></div>
+            <div class="box"><b>Regime</b><span id="kVerb">—</span></div>
+          </div>
+          <div class="box" style="border-radius:18px">
+            <b>Notas</b>
+            <div style="color:var(--muted); font-size:12px; line-height:1.35">
+              • Interações locais espraiam com decaimento.<br>
+              • O campo decai ao neutro (sem memória longa).<br>
+              • Saturação força mutação (pressão → regime).
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </section>
+</main>
+
+<footer>
+  MÓBILES · entrada v1 — dispositivo de perturbação, espraiamento e cessação · (front-end, custo zero)
+</footer>
+
+<!-- Share modal (fallback) -->
+<dialog id="shareDlg">
+  <div class="dlgHead">
+    <b id="shareTitle">Partilhar</b>
+    <button class="xbtn" id="shareClose" aria-label="Fechar">Fechar</button>
+  </div>
+  <div class="dlgBody">
+    <div class="miniNote" id="shareNote"></div>
+    <div class="dlgText" id="shareTextBox"></div>
+    <div class="dlgBtns">
+      <button id="btnCopyText">Copiar texto</button>
+      <button id="btnDownloadImg">Baixar imagem (PNG)</button>
+      <button id="btnNativeShare">Partilhar…</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+/* -------------------------------------------------------
+   0) Utilitários
+------------------------------------------------------- */
+function clamp(x,min,max){ return Math.max(min, Math.min(max, x)); }
+function lerp(a,b,t){ return a + (b-a)*t; }
+function rnd(a=1,b=null){
+  if(b===null){ b=a; a=0; }
+  return a + Math.random()*(b-a);
+}
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function shuffle(a){
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function softmax(weights){
+  const m = Math.max(...weights);
+  const exps = weights.map(w => Math.exp(w-m));
+  const s = exps.reduce((acc,v)=>acc+v,0) || 1;
+  return exps.map(v=>v/s);
+}
+function weightedPick(items, weights){
+  const p = softmax(weights);
+  let r = Math.random();
+  for(let i=0;i<items.length;i++){
+    r -= p[i];
+    if(r<=0) return items[i];
+  }
+  return items[items.length-1];
+}
+function signLabel(v,neg,pos){
+  if(v < -0.25) return neg;
+  if(v >  0.25) return pos;
+  return "médio";
+}
+function nowISO(){
+  const d = new Date();
+  return d.toISOString().replace("T"," ").slice(0,19);
+}
+function slotId(i){ return "slot_" + String(i).padStart(3,"0"); }
+
+/* -------------------------------------------------------
+   1) Léxico (verbo / advérbio / substantivos mínimos)
+------------------------------------------------------- */
+const VERBS = [
+  {id:"sustentar", label:"sustentar", axis:{front:+0.2, dense:+0.3, cont:+0.6}},
+  {id:"arrastar",  label:"arrastar",  axis:{front:+0.1, dense:+0.4, cont:+0.4}},
+  {id:"passar",    label:"passar",    axis:{front:+0.2, dense:-0.1, cont:+0.3}},
+  {id:"virar",     label:"virar",     axis:{front:+0.4, dense:+0.0, cont:-0.1}},
+  {id:"cortar",    label:"cortar",    axis:{front:+0.3, dense:+0.1, cont:-0.7}},
+  {id:"estancar",  label:"estancar",  axis:{front:-0.1, dense:+0.2, cont:-0.6}},
+  {id:"desviar",   label:"desviar",   axis:{front:-0.2, dense:-0.1, cont:+0.2}},
+];
+
+const ADVS = ["mais", "menos", "quase", "ainda"];
+
+const NOUNS = [
+  {id:"fundo",  w:{front:-0.8, dense:0.2, cont:0.2}},
+  {id:"frente", w:{front:+0.8, dense:0.2, cont:0.2}},
+  {id:"campo",  w:{front:0.0, dense:0.4, cont:0.4}},
+  {id:"corte",  w:{front:0.2, dense:0.2, cont:-0.8}},
+  {id:"resto",  w:{front:-0.1, dense:-0.2, cont:0.6}},
+  {id:"retorno",w:{front:-0.2, dense:0.1, cont:0.3}},
+  {id:"ritmo",  w:{front:0.0, dense:0.0, cont:0.7}},
+  {id:"peso",   w:{front:0.2, dense:0.7, cont:-0.1}},
+  {id:"linha",  w:{front:0.0, dense:-0.2, cont:0.5}},
+];
+
+/* -------------------------------------------------------
+   2) Fonografia (regime gráfico-sonoro inferido, sem áudio)
+------------------------------------------------------- */
+const PHONO = {
+  mode: "neutro",
+  vector: {dry:0, voiced:0, open:0}
+};
+
+const PHONO_PRESETS = [
+  {key:"plosiva_surda",  label:"p/t/k (seco)", vec:{dry:+0.8, voiced:-0.6, open:0}},
+  {key:"plosiva_sonora", label:"b/d/g (massa)",vec:{dry:+0.4, voiced:+0.8, open:0}},
+  {key:"fricativa_surda",label:"f/s/x (arranho)",vec:{dry:+0.2, voiced:-0.4, open:+0.2}},
+  {key:"fricativa_sonora",label:"v/z/j (desgaste)",vec:{dry:-0.1, voiced:+0.3, open:+0.3}},
+  {key:"aberto",         label:"vogais abertas", vec:{dry:-0.2, voiced:+0.1, open:+0.9}},
+  {key:"fechado",        label:"vogais fechadas",vec:{dry:+0.2, voiced:+0.1, open:-0.9}},
+];
+
+/* -------------------------------------------------------
+   3) Campo global + campo local (por móbile)
+------------------------------------------------------- */
+const Global = {
+  front: 0,
+  dense: 0,
+  cont:  0,
+  phono: {dry:0, voiced:0, open:0},
+  verbW: VERBS.map(()=>0),
+  pressure: 0,
+  decay: 0.92,
+  steps: 0,
+};
+
+function resetGlobal(){
+  Global.front=0; Global.dense=0; Global.cont=0;
+  Global.phono={dry:0, voiced:0, open:0};
+  Global.verbW = VERBS.map(()=>0);
+  Global.pressure=0; Global.steps=0;
+  PHONO.mode="neutro"; PHONO.vector={dry:0, voiced:0, open:0};
+}
+
+const Mobiles = {
+  m1:{id:"m1", local:{front:0,dense:0,cont:0,ph:{dry:0,voiced:0,open:0}, verb:VERBS.map(()=>0), pressure:0}, clicks:0, config:null},
+  m2:{id:"m2", local:{front:0,dense:0,cont:0,ph:{dry:0,voiced:0,open:0}, verb:VERBS.map(()=>0), pressure:0}, clicks:0, config:null},
+  m3:{id:"m3", local:{front:0,dense:0,cont:0,ph:{dry:0,voiced:0,open:0}, verb:VERBS.map(()=>0), pressure:0}, clicks:0, config:null},
+  m4:{id:"m4", local:{front:0,dense:0,cont:0,ph:{dry:0,voiced:0,open:0}, verb:VERBS.map(()=>0), pressure:0}, clicks:0, config:null},
+  final:{id:"final", local:{front:0,dense:0,cont:0,ph:{dry:0,voiced:0,open:0}, verb:VERBS.map(()=>0), pressure:0}, clicks:0, config:null},
+};
+
+const SPREAD = {
+  m1:{m1:1.0,m2:0.6,m3:0.3,m4:0.1},
+  m2:{m2:1.0,m1:0.6,m3:0.3,m4:0.2},
+  m3:{m3:1.0,m2:0.6,m4:0.3,m1:0.2},
+  m4:{m4:1.0,m3:0.6,m2:0.3,m1:0.1},
+};
+
+function decayLocal(){
+  for(const k of ["m1","m2","m3","m4"]){
+    const L = Mobiles[k].local;
+    L.front *= 0.88;
+    L.dense *= 0.88;
+    L.cont  *= 0.88;
+    L.ph.dry *= 0.88;
+    L.ph.voiced *= 0.88;
+    L.ph.open *= 0.88;
+    for(let i=0;i<L.verb.length;i++) L.verb[i] *= 0.88;
+    L.pressure *= 0.86;
+  }
+}
+
+function combinedState(mKey){
+  const L = Mobiles[mKey].local;
+  return {
+    front: clamp(Global.front + L.front, -1, 1),
+    dense: clamp(Global.dense + L.dense, -1, 1),
+    cont:  clamp(Global.cont  + L.cont,  -1, 1),
+    ph: {
+      dry: clamp(Global.phono.dry + L.ph.dry, -1, 1),
+      voiced: clamp(Global.phono.voiced + L.ph.voiced, -1, 1),
+      open: clamp(Global.phono.open + L.ph.open, -1, 1),
+    },
+    verbW: Global.verbW.map((w,i)=> w + L.verb[i]),
+    pressure: Global.pressure + L.pressure,
+  };
+}
+
+/* -------------------------------------------------------
+   4) Campo → verbo / advérbios / mutação
+------------------------------------------------------- */
+function fieldVerbWeights(state){
+  const base = state.verbW.slice();
+  for(let i=0;i<VERBS.length;i++){
+    const v = VERBS[i].axis;
+    const aff = (v.front*state.front + v.dense*state.dense + v.cont*state.cont);
+    base[i] += 0.9*aff;
+
+    const dry = state.ph.dry;
+    const open = state.ph.open;
+    const voiced = state.ph.voiced;
+
+    if(VERBS[i].id==="cortar")   base[i] += 0.7*dry + 0.15*voiced;
+    if(VERBS[i].id==="estancar") base[i] += 0.6*dry + 0.10*voiced;
+    if(VERBS[i].id==="passar")   base[i] += 0.25*dry + 0.20*open;
+    if(VERBS[i].id==="virar")    base[i] += 0.15*dry + 0.25*voiced;
+    if(VERBS[i].id==="arrastar") base[i] += 0.40*open + 0.15*voiced;
+    if(VERBS[i].id==="sustentar")base[i] += 0.45*open + 0.10*voiced;
+    if(VERBS[i].id==="desviar")  base[i] += 0.25*open - 0.05*dry;
+  }
+  return base;
+}
+
+function chooseVerb(state){
+  const w = fieldVerbWeights(state);
+  return weightedPick(VERBS, w);
+}
+
+function chooseNoun(state){
+  const weights = NOUNS.map(n =>
+    n.w.front*state.front + n.w.dense*state.dense + n.w.cont*state.cont
+  );
+  return weightedPick(NOUNS, weights).id;
+}
+
+function advStackFromPressure(pressure){
+  const stack = [];
+  if(pressure < 0.9){
+    if(Math.random() < 0.45) stack.push("quase");
+    if(Math.random() < 0.55) stack.push(pick(["mais","ainda","menos"]));
+    return stack;
+  }
+  if(pressure < 2.2){
+    stack.push("mais");
+    if(Math.random() < 0.65) stack.push("mais");
+    if(Math.random() < 0.35) stack.push("ainda");
+    return stack;
+  }
+  stack.push("mais","mais","mais");
+  if(Math.random() < 0.5) stack.push("ainda");
+  return stack;
+}
+
+function mutateVerbIfSaturated(state, verb){
+  if(state.pressure < 2.2) return verb;
+  const id = verb.id;
+  const map = {
+    sustentar:["estancar","virar","arrastar"],
+    arrastar:["desviar","sustentar","passar"],
+    passar:["cortar","virar","desviar"],
+    virar:["passar","cortar","sustentar"],
+    cortar:["estancar","passar","desviar"],
+    estancar:["cortar","sustentar","passar"],
+    desviar:["virar","arrastar","sustentar"],
+  };
+  const choices = map[id] || VERBS.map(v=>v.id);
+  const nextId = pick(choices);
+  return VERBS.find(v=>v.id===nextId) || verb;
+}
+
+/* -------------------------------------------------------
+   5) Slots / fragmentos (gerados) + overlay Sui (opcional)
+   - SUI.JSON FIXO (como você exigiu):
+     { "53": "assets/sui/slot_053.jpg" }
+------------------------------------------------------- */
+const FIELD = { slots: [] };
+let HAS_SUI = false;
+
+function buildField(){
+  FIELD.slots = [];
+  for(let i=1;i<=120;i++){
+    const fam = FAMS[(i-1)%12];
+    const v = Math.floor((i-1)/12) % 10;
+    const t = (v-4.5)/4.5;
+    const axes = {
+      front: clamp(fam.axes.front + 0.18*t + rnd(-0.03,0.03), -1, 1),
+      dense: clamp(fam.axes.dense + 0.22*t + rnd(-0.03,0.03), -1, 1),
+      cont:  clamp(fam.axes.cont  - 0.20*t + rnd(-0.03,0.03), -1, 1),
+    };
+    FIELD.slots.push({
+      id: slotId(i),
+      idx: i,
+      fam: fam.id,
+      famName: fam.name,
+      v,
+      axes,
+      sui: null,
+    });
+  }
+}
+
+async function tryLoadSui(){
+  // esta página está em /mobiles/entrada/ -> sui.json está em /mobiles/sui.json
+  // então o fetch correto é ../sui.json
+  HAS_SUI = false;
+  try{
+    const res = await fetch("../sui.json?cache=" + Date.now());
+    if(!res.ok) throw new Error("no sui.json");
+    const data = await res.json();
+
+    // data precisa ser exatamente:
+    // { "53": "assets/sui/slot_053.jpg" }
+    // Vamos mapear chaves numéricas -> slot_### correspondente.
+    for(const k of Object.keys(data || {})){
+      const n = parseInt(k, 10);
+      const rel = data[k];
+      if(!Number.isFinite(n) || !rel || typeof rel !== "string") continue;
+
+      const slot = FIELD.slots[n-1];
+      if(!slot) continue;
+
+      // rel é relativo ao /mobiles/, então daqui (/mobiles/entrada/) precisa de ../ + rel
+      const path = "../" + rel.replace(/^(\.\/)+/,"");
+      slot.sui = { path, src: rel };
+      HAS_SUI = true;
+
+      // pré-carrega
+      ImageCache.load(path);
+    }
+  }catch(e){
+    HAS_SUI = false;
+  }
+}
+
+/* -------------------------------------------------------
+   6) Famílias (12)
+------------------------------------------------------- */
+const FAMS = [
+  {id:"F1", name:"linhas verticais",    axes:{front:+0.1,dense:-0.2,cont:+0.6}},
+  {id:"F2", name:"linhas horizontais",  axes:{front:-0.1,dense:-0.2,cont:+0.6}},
+  {id:"F3", name:"diagonais longas",    axes:{front:+0.2,dense:-0.1,cont:+0.4}},
+  {id:"F4", name:"pontos / poeira",     axes:{front:-0.2,dense:+0.1,cont:-0.1}},
+  {id:"F5", name:"quadros vazados",     axes:{front:+0.0,dense:-0.3,cont:+0.2}},
+  {id:"F6", name:"blocos densos",       axes:{front:+0.3,dense:+0.8,cont:-0.2}},
+  {id:"F7", name:"tramas finas",        axes:{front:-0.1,dense:+0.2,cont:+0.7}},
+  {id:"F8", name:"descentrado",         axes:{front:+0.2,dense:+0.5,cont:+0.1}},
+  {id:"F9", name:"cortes curtos",       axes:{front:+0.4,dense:+0.1,cont:-0.8}},
+  {id:"F10",name:"risco agudo",         axes:{front:+0.4,dense:-0.2,cont:-0.6}},
+  {id:"F11",name:"camadas translúcidas",axes:{front:-0.1,dense:+0.6,cont:+0.2}},
+  {id:"F12",name:"vazios amplos",       axes:{front:-0.3,dense:-0.8,cont:+0.4}},
+];
+
+/* -------------------------------------------------------
+   7) Seleção de fragmentos (campo → amostra enviesada)
+   - Sui aparece quase sempre (mas não sempre).
+------------------------------------------------------- */
+function slotScore(slot, state){
+  const dx =
+    Math.abs(slot.axes.front - state.front) * 0.9 +
+    Math.abs(slot.axes.dense - state.dense) * 0.7 +
+    Math.abs(slot.axes.cont  - state.cont ) * 1.0;
+
+  const phBonus = (state.ph.dry * (-slot.axes.cont))*0.25 + (state.ph.open * (slot.axes.cont))*0.18;
+
+  let score = -(dx) + phBonus + rnd(-0.04,0.04);
+
+  // BÔNUS FORTE para Sui (para ela entrar no top-K quase sempre)
+  if(slot.sui) score += 4.2;
+
+  return score;
+}
+
+function sampleSlots(n, state, mKey){
+  const pool = FIELD.slots.slice();
+  pool.sort((a,b)=> slotScore(b,state) - slotScore(a,state));
+
+  const K = Math.min(40, pool.length);
+  const top = pool.slice(0,K);
+  shuffle(top);
+
+  const picked = top.slice(0,n);
+
+  // Probabilidade-alvo de incluir Sui:
+  // - móbiles: 0.85
+  // - final: 0.92
+  const pSui = (mKey==="final") ? 0.92 : 0.85;
+
+  if(HAS_SUI && Math.random() < pSui){
+    const bestSui = pool.find(s=>s.sui);
+    if(bestSui){
+      // se já está, ok; se não, substitui o último
+      const already = picked.some(s=>s.sui);
+      if(!already){
+        picked[picked.length - 1] = bestSui;
+      }
+    }
+  }
+
+  // ainda assim, se por algum acaso não veio Sui, deixa como está (conceito: não 100%)
+  return picked;
+}
+
+/* -------------------------------------------------------
+   8) Render (canvas)
+   - AUMENTO DE NITIDEZ nos fragmentos gerados (não-Sui).
+------------------------------------------------------- */
+const ImageCache = {
+  _map: new Map(),
+  get(src){ return this._map.get(src); },
+  load(src){
+    if(this._map.has(src)) return;
+    const img = new Image();
+    img.decoding = "async";
+    img.loading = "lazy";
+    img.src = src;
+    this._map.set(src, img);
+  }
+};
+
+function clearCanvas(c){
+  const ctx = c.getContext("2d");
+  ctx.clearRect(0,0,c.width,c.height);
+  ctx.fillStyle = "rgba(255,255,255,.40)";
+  ctx.fillRect(0,0,c.width,c.height);
+  ctx.fillStyle="rgba(0,0,0,.08)";
+  for(let i=0;i<220;i++){
+    ctx.fillRect(rnd(0,c.width), rnd(0,c.height), 1, 1);
+  }
+}
+
+function drawFragment(ctx, slot, x,y,w,h, alpha=1){
+  ctx.save();
+  ctx.globalAlpha = alpha;
+
+  // fundo mais "branco" para dar contraste (nítido)
+  ctx.fillStyle = "rgba(255,255,255,0.90)";
+  ctx.fillRect(x,y,w,h);
+
+  // Sui (imagem real)
+  if(slot.sui && slot.sui.path){
+    const img = ImageCache.get(slot.sui.path);
+    if(img && img.complete){
+      const iw = img.naturalWidth || 1, ih = img.naturalHeight || 1;
+      const r = Math.max(w/iw, h/ih);
+      const dw = iw*r, dh = ih*r;
+      const dx = x + (w-dw)/2;
+      const dy = y + (h-dh)/2;
+      ctx.drawImage(img, dx, dy, dw, dh);
+    }else{
+      ImageCache.load(slot.sui.path);
+      ctx.fillStyle="rgba(0,0,0,.08)";
+      ctx.fillRect(x+6,y+6,w-12,h-12);
+    }
+    ctx.strokeStyle="rgba(0,0,0,.18)";
+    ctx.lineWidth=1.2;
+    ctx.strokeRect(x+0.6,y+0.6,w-1.2,h-1.2);
+    ctx.restore();
+    return;
+  }
+
+  // gerado: mais contraste/definição
+  ctx.lineWidth = 1.3;
+
+  // paleta mais forte (menos apagada)
+  const cold  = "rgba(25,45,65,.80)";
+  const cold2 = "rgba(25,45,65,.60)";
+  const ink   = "rgba(0,0,0,.78)";
+  const ink2  = "rgba(0,0,0,.62)";
+
+  function line(x1,y1,x2,y2, st=ink, lw=1.3){
+    ctx.strokeStyle=st; ctx.lineWidth=lw;
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+  }
+
+  const fam = slot.fam;
+  const v = slot.v;
+  const k = 3 + Math.floor((v/9)*7);
+
+  if(fam==="F1"){
+    for(let i=0;i<k;i++){
+      const px = x + (w*(0.18 + i*(0.64/(k-1||1)))) + rnd(-1.5,1.5);
+      line(px,y+10, px,y+h-10, ink, 1.35);
+    }
+  } else if(fam==="F2"){
+    for(let i=0;i<k;i++){
+      const py = y + (h*(0.18 + i*(0.64/(k-1||1)))) + rnd(-1.5,1.5);
+      line(x+10,py, x+w-10,py, ink, 1.35);
+    }
+  } else if(fam==="F3"){
+    for(let i=0;i<k;i++){
+      const ox = rnd(-w*0.08,w*0.08);
+      line(x+10+ox, y+h-10, x+w-10+ox, y+10, cold, 1.25);
+    }
+  } else if(fam==="F4"){
+    ctx.fillStyle = "rgba(0,0,0,.24)";
+    const dots = 70 + v*12;
+    for(let i=0;i<dots;i++){
+      const px = x + rnd(4,w-4);
+      const py = y + rnd(4,h-4);
+      ctx.fillRect(px,py,1,1);
+    }
+  } else if(fam==="F5"){
+    ctx.strokeStyle="rgba(0,0,0,.22)";
+    const n = 2 + Math.floor(v/4);
+    for(let i=0;i<n;i++){
+      const rw = w*(0.34 + i*0.13);
+      const rh = h*(0.34 + i*0.11);
+      ctx.lineWidth = 1.2;
+      ctx.strokeRect(x + (w-rw)/2 + rnd(-2.5,2.5), y + (h-rh)/2 + rnd(-2.5,2.5), rw, rh);
+    }
+  } else if(fam==="F6"){
+    const n = 2 + Math.floor(v/3);
+    for(let i=0;i<n;i++){
+      const rw = w*(0.34 + rnd(0,0.28));
+      const rh = h*(0.34 + rnd(0,0.28));
+      ctx.fillStyle = "rgba(0,0,0," + (0.20 + rnd(0,0.14)) + ")";
+      ctx.fillRect(x + rnd(0,w-rw), y + rnd(0,h-rh), rw, rh);
+    }
+    line(x+12,y+12, x+w-12,y+12, ink2, 1.1);
+  } else if(fam==="F7"){
+    for(let i=0;i<k*3;i++){
+      const py = y + (i*(h/(k*3))) + rnd(-1,1);
+      line(x+8,py, x+w-8,py, cold2, 1.05);
+    }
+    line(x+10,y+h-10, x+w-10,y+h-10, ink2, 1.1);
+  } else if(fam==="F8"){
+    ctx.fillStyle="rgba(0,0,0,.10)";
+    const rw = w*(0.48 + rnd(-0.1,0.1));
+    const rh = h*(0.30 + rnd(-0.08,0.08));
+    ctx.fillRect(x + rnd(0,w-rw), y + rnd(0,h-rh), rw, rh);
+    line(x+10,y+h*0.72, x+w-10,y+h*0.30, cold2, 1.2);
+  } else if(fam==="F9"){
+    for(let i=0;i<10+v;i++){
+      const px = x + rnd(10,w-10);
+      const py = y + rnd(10,h-10);
+      line(px-10,py, px+10,py, ink, 1.3);
+    }
+  } else if(fam==="F10"){
+    for(let i=0;i<3+Math.floor(v/2);i++){
+      const px1 = x + rnd(10,w-10);
+      const py1 = y + rnd(10,h-10);
+      const px2 = px1 + rnd(-46,46);
+      const py2 = py1 + rnd(-46,46);
+      line(px1,py1,px2,py2, cold, 1.25);
+    }
+  } else if(fam==="F11"){
+    const n = 3 + Math.floor(v/3);
+    for(let i=0;i<n;i++){
+      ctx.fillStyle = "rgba(25,45,65," + (0.14 + rnd(0,0.14)) + ")";
+      const rw = w*(0.32 + rnd(0,0.40));
+      const rh = h*(0.22 + rnd(0,0.40));
+      ctx.fillRect(x + rnd(0,w-rw), y + rnd(0,h-rh), rw, rh);
+    }
+    line(x+12,y+12, x+w-12,y+12, ink2, 1.05);
+  } else if(fam==="F12"){
+    ctx.strokeStyle="rgba(0,0,0,.18)";
+    ctx.lineWidth=1.2;
+    ctx.strokeRect(x+8,y+8,w-16,h-16);
+    if(v>6) line(x+12, y+h-14, x+w-12, y+h-14, "rgba(0,0,0,.18)", 1.2);
+  }
+
+  // contorno final mais definido
+  ctx.strokeStyle="rgba(0,0,0,.18)";
+  ctx.lineWidth=1.15;
+  ctx.strokeRect(x+0.6,y+0.6,w-1.2,h-1.2);
+
+  ctx.restore();
+}
+
+/* -------------------------------------------------------
+   9) Config de cada móbile (seleção + layout)
+------------------------------------------------------- */
+function buildConfig(mKey){
+  const state = combinedState(mKey);
+  let n = 3;
+  if(mKey==="m2") n = 2;
+  if(mKey==="m3") n = 7;
+  if(mKey==="m4") n = 5;
+  if(mKey==="final") n = 10;
+
+  const fragments = sampleSlots(n, state, mKey);
+
+  let verb = chooseVerb(state);
+  verb = mutateVerbIfSaturated(state, verb);
+
+  const noun = chooseNoun(state);
+  const advs = advStackFromPressure(state.pressure);
+
+  const lines = [
+    advs.length ? advs : [pick(ADVS)],
+    [verb.label],
+    [noun, (Math.random()<0.35 ? "ainda" : ""), (Math.random()<0.25 ? "resto" : "")].filter(Boolean)
+  ];
+
+  return {state, fragments, verb, noun, advs, lines};
+}
+
+function layoutMobile(ctx, config, mKey){
+  const c = ctx.canvas;
+  clearCanvas(c);
+
+  const baseDepth = (config.state.front + 1) / 2;
+  const scene = (mKey==="m2" || mKey==="m1") ? "móbile" : (Math.random()<0.45 ? "paisagem" : "móbile");
+
+  ctx.save();
+  ctx.strokeStyle="rgba(0,0,0,.22)";
+  ctx.lineWidth=2.2;
+  ctx.beginPath();
+  ctx.moveTo(c.width*0.5, 30);
+  ctx.lineTo(c.width*0.5, 88);
+  ctx.stroke();
+  ctx.restore();
+
+  if(scene==="paisagem"){
+    ctx.save();
+    ctx.strokeStyle="rgba(0,0,0,.14)";
+    ctx.lineWidth=2;
+    ctx.beginPath();
+    ctx.moveTo(30, c.height*0.72);
+    ctx.lineTo(c.width-30, c.height*0.72);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  const frs = config.fragments.map(s=>{
+    const z = clamp((s.axes.front + 1)/2 + rnd(-0.06,0.06), 0, 1);
+    return {slot:s, z};
+  }).sort((a,b)=>a.z-b.z);
+
+  const pad = 34;
+  for(let i=0;i<frs.length;i++){
+    const {slot,z} = frs[i];
+    const scale = lerp(0.42, 1.05, (z*0.85 + baseDepth*0.15));
+    let w = (c.width*0.22) * scale;
+    let h = (c.height*0.26)* scale;
+
+    if(mKey==="final"){
+      w = (c.width*0.18)*scale;
+      h = (c.height*0.20)*scale;
+    }
+
+    let x, y;
+    if(scene==="móbile"){
+      const bandX = lerp(pad, c.width-pad, (i+1)/(frs.length+1));
+      x = bandX + rnd(-60,60) - w/2;
+      y = lerp(110, c.height-120, z) + rnd(-28,28) - h/2;
+
+      ctx.save();
+      ctx.strokeStyle="rgba(0,0,0,.22)";
+      ctx.lineWidth=1.3;
+      ctx.beginPath();
+      ctx.moveTo(bandX, 88);
+      ctx.lineTo(x + w/2, y);
+      ctx.stroke();
+      ctx.restore();
+    } else {
+      x = lerp(pad, c.width-pad, (i+1)/(frs.length+1)) + rnd(-80,80) - w/2;
+      y = lerp(c.height*0.25, c.height*0.78, z) + rnd(-18,18) - h/2;
+    }
+
+    const a = lerp(0.64, 1.0, z);
+    drawFragment(ctx, slot, x, y, w, h, a);
+    frs[i].box = {x,y,w,h};
+  }
+
+  config._boxes = frs.map(o=>({slot:o.slot, z:o.z, box:o.box}));
+}
+
+function renderText(container, lines, onWord){
+  container.innerHTML = "";
+  for(const lineWords of lines){
+    const div = document.createElement("div");
+    div.className = "line";
+    for(const w of lineWords){
+      const span = document.createElement("span");
+      span.className = "word";
+      span.textContent = w;
+      span.addEventListener("click", ()=> onWord(w));
+      div.appendChild(span);
+    }
+    container.appendChild(div);
+  }
+}
+
+/* -------------------------------------------------------
+   10) Interação → delta (campo) + espraiamento
+------------------------------------------------------- */
+function applyDelta(fromKey, delta){
+  const spread = SPREAD[fromKey] || { [fromKey]: 1.0 };
+
+  Global.front = clamp(Global.front + (delta.front||0)*0.18, -1, 1);
+  Global.dense = clamp(Global.dense + (delta.dense||0)*0.18, -1, 1);
+  Global.cont  = clamp(Global.cont  + (delta.cont ||0)*0.18, -1, 1);
+
+  if(delta.ph){
+    Global.phono.dry    = clamp(Global.phono.dry    + (delta.ph.dry||0)*0.16, -1, 1);
+    Global.phono.voiced = clamp(Global.phono.voiced + (delta.ph.voiced||0)*0.16, -1, 1);
+    Global.phono.open   = clamp(Global.phono.open   + (delta.ph.open||0)*0.16, -1, 1);
+  }
+  if(delta.verb){
+    for(let i=0;i<Global.verbW.length;i++){
+      Global.verbW[i] += (delta.verb[i]||0)*0.12;
+    }
+  }
+  Global.pressure = clamp(Global.pressure + (delta.pressure||0)*0.20, 0, 4.5);
+  Global.steps++;
+
+  for(const key of ["m1","m2","m3","m4"]){
+    const k = spread[key] || 0.08;
+    const L = Mobiles[key].local;
+
+    L.front = clamp(L.front + (delta.front||0)*0.55*k, -1, 1);
+    L.dense = clamp(L.dense + (delta.dense||0)*0.55*k, -1, 1);
+    L.cont  = clamp(L.cont  + (delta.cont ||0)*0.55*k, -1, 1);
+
+    if(delta.ph){
+      L.ph.dry    = clamp(L.ph.dry    + (delta.ph.dry||0)*0.45*k, -1, 1);
+      L.ph.voiced = clamp(L.ph.voiced + (delta.ph.voiced||0)*0.45*k, -1, 1);
+      L.ph.open   = clamp(L.ph.open   + (delta.ph.open||0)*0.45*k, -1, 1);
+    }
+
+    if(delta.verb){
+      for(let i=0;i<L.verb.length;i++){
+        L.verb[i] += (delta.verb[i]||0)*0.40*k;
+      }
+    }
+
+    L.pressure = clamp(L.pressure + (delta.pressure||0)*0.65*k, 0, 4.5);
+  }
+
+  Global.front *= Global.decay;
+  Global.dense *= Global.decay;
+  Global.cont  *= Global.decay;
+  Global.phono.dry *= 0.94;
+  Global.phono.voiced *= 0.94;
+  Global.phono.open *= 0.94;
+  Global.verbW = Global.verbW.map(v=>v*0.96);
+  Global.pressure *= 0.90;
+
+  decayLocal();
+  updatePill();
+}
+
+function deltaFromSlotClick(slot){
+  return {
+    front: +0.55,
+    dense: slot.axes.dense * 0.12,
+    cont:  slot.axes.cont  * 0.10,
+    ph: {
+      dry: (-slot.axes.cont) * 0.25,
+      open:( slot.axes.cont) * 0.18,
+      voiced: slot.axes.dense * 0.10
+    },
+    verb: VERBS.map(v=>{
+      const a = v.axis;
+      return (a.front*slot.axes.front + a.dense*slot.axes.dense + a.cont*slot.axes.cont)*0.25;
+    }),
+    pressure: +0.30,
+  };
+}
+
+function deltaFromWordClick(word){
+  const d = { front:0, dense:0, cont:0, ph:{dry:0,voiced:0,open:0}, verb:VERBS.map(()=>0), pressure:+0.22 };
+
+  if(ADVS.includes(word)){
+    if(word==="mais"){ d.pressure += 0.25; d.dense += 0.10; }
+    if(word==="menos"){ d.pressure += 0.10; d.dense -= 0.12; }
+    if(word==="quase"){ d.cont += 0.15; d.front -= 0.10; }
+    if(word==="ainda"){ d.cont += 0.20; d.dense += 0.05; }
+    return d;
+  }
+
+  const vi = VERBS.findIndex(v=>v.label===word);
+  if(vi>=0){
+    d.verb[vi] += 1.0;
+    const neigh = {
+      sustentar:["estancar","arrastar"],
+      arrastar:["desviar","sustentar"],
+      passar:["virar","cortar"],
+      virar:["passar","desviar"],
+      cortar:["estancar","passar"],
+      estancar:["cortar","sustentar"],
+      desviar:["virar","arrastar"],
+    };
+    const ids = neigh[VERBS[vi].id] || [];
+    for(const id of ids){
+      const j = VERBS.findIndex(v=>v.id===id);
+      if(j>=0) d.verb[j] += 0.35;
+    }
+    d.front += 0.12;
+    d.cont  += 0.05;
+    return d;
+  }
+
+  const n = NOUNS.find(n=>n.id===word);
+  if(n){
+    d.front += 0.25*n.w.front;
+    d.dense += 0.25*n.w.dense;
+    d.cont  += 0.25*n.w.cont;
+    return d;
+  }
+
+  if(word==="resto"){ d.cont += 0.22; d.front -= 0.10; d.pressure += 0.15; }
+  if(word==="retorno"){ d.cont += 0.18; d.front -= 0.08; }
+  if(word==="corte"){ d.cont -= 0.28; d.ph.dry += 0.30; }
+  if(word==="campo"){ d.dense += 0.10; d.cont += 0.10; }
+
+  return d;
+}
+
+function updatePill(){
+  const s = combinedState("m1");
+  const pos = signLabel(s.front, "fundo", "frente");
+  const den = signLabel(s.dense, "rare", "denso");
+  const con = signLabel(s.cont, "corte", "contínuo");
+  const pill = document.getElementById("pillState");
+  pill.textContent = `campo: ${pos} · ${den} · ${con}`;
+}
+
+/* -------------------------------------------------------
+   11) Render total
+------------------------------------------------------- */
+function hitTest(cfg, x,y){
+  const boxes = cfg._boxes || [];
+  for(let i=boxes.length-1;i>=0;i--){
+    const b = boxes[i].box;
+    if(x>=b.x && x<=b.x+b.w && y>=b.y && y<=b.y+b.h){
+      return boxes[i];
+    }
+  }
+  return null;
+}
+
+function reorderTextLine(container, word){
+  const lines = Array.from(container.querySelectorAll(".line"));
+  for(const ln of lines){
+    const ws = Array.from(ln.querySelectorAll(".word"));
+    const idx = ws.findIndex(x=>x.textContent===word);
+    if(idx>=0 && ws.length>1){
+      ln.appendChild(ws[idx]);
+      return;
+    }
+  }
+}
+
+function renderMobile(mKey, canvasId, textId){
+  const c = document.getElementById(canvasId);
+  const ctx = c.getContext("2d");
+
+  const cfg = buildConfig(mKey);
+  Mobiles[mKey].config = cfg;
+
+  layoutMobile(ctx, cfg, mKey);
+
+  const t = document.getElementById(textId);
+  renderText(t, cfg.lines, (w)=>{
+    applyDelta(mKey, deltaFromWordClick(w));
+    rerenderAll();
+    if(mKey==="m2"){
+      reorderTextLine(t, w);
+      applyDelta("m2", {front:+0.10, cont:+0.05, pressure:+0.10, verb:VERBS.map(()=>0)});
+      rerenderAll();
+    }
+  });
+
+  c.onclick = (ev)=>{
+    const rect = c.getBoundingClientRect();
+    const x = (ev.clientX - rect.left) * (c.width / rect.width);
+    const y = (ev.clientY - rect.top)  * (c.height/ rect.height);
+    const hit = hitTest(cfg, x,y);
+    if(hit){
+      applyDelta(mKey, deltaFromSlotClick(hit.slot));
+      Mobiles[mKey].clicks++;
+      rerenderAll();
+    }
+  };
+}
+
+function renderFinal(){
+  const c = document.getElementById("finalCanvas");
+  const ctx = c.getContext("2d");
+  const cfg = buildConfig("final");
+  Mobiles.final.config = cfg;
+
+  layoutMobile(ctx, cfg, "final");
+
+  const t = document.getElementById("finalText");
+  renderText(t, cfg.lines, (w)=>{
+    applyDelta("m3", deltaFromWordClick(w));
+    rerenderAll();
+  });
+
+  const st = cfg.state;
+  document.getElementById("kFront").textContent = signLabel(st.front, "fundo", "frente");
+  document.getElementById("kDense").textContent = signLabel(st.dense, "rare", "denso");
+  document.getElementById("kCont").textContent  = signLabel(st.cont, "corte", "contínuo");
+  document.getElementById("kVerb").textContent  = cfg.verb.label + (st.pressure>2.2 ? " (mutação)" : "");
+
+  c.onclick = (ev)=>{
+    const rect = c.getBoundingClientRect();
+    const x = (ev.clientX - rect.left) * (c.width / rect.width);
+    const y = (ev.clientY - rect.top)  * (c.height/ rect.height);
+    const hit = hitTest(cfg, x,y);
+    if(hit){
+      applyDelta("m3", deltaFromSlotClick(hit.slot));
+      rerenderAll();
+    }
+  };
+}
+
+function rerenderAll(){
+  renderMobile("m1","m1Canvas","m1Text");
+  renderMobile("m2","m2Canvas","m2Text");
+  renderMobile("m3","m3Canvas","m3Text");
+  renderMobile("m4","m4Canvas","m4Text");
+  if(Mobiles.final.config){
+    renderFinal();
+  }
+}
+
+/* -------------------------------------------------------
+   12) Share (imagem + texto) — download + Web Share API
+------------------------------------------------------- */
+function configToText(cfg){
+  // texto curto, direto, igual ao que aparece
+  const a = (cfg.lines?.[0] || []).join(" ");
+  const b = (cfg.lines?.[1] || []).join(" ");
+  const c = (cfg.lines?.[2] || []).join(" ");
+  return `${a}\n${b}\n${c}`.trim();
+}
+
+function exportCompositePNG(canvas, cfg, title="mobiles"){
+  const out = document.createElement("canvas");
+  const W = 1200, H = 1200;
+  out.width = W; out.height = H;
+  const ctx = out.getContext("2d");
+
+  const bg = (getComputedStyle(document.documentElement).getPropertyValue("--bg") || "#f4f2ee").trim();
+  ctx.fillStyle = bg;
+  ctx.fillRect(0,0,W,H);
+
+  const pad = 80;
+  const targetW = W - pad*2;
+  const ratio = canvas.height / canvas.width;
+  const targetH = Math.min(H*0.62, targetW*ratio);
+  const dx = (W-targetW)/2;
+  const dy = 90;
+  ctx.drawImage(canvas, dx, dy, targetW, targetH);
+
+  // header
+  ctx.fillStyle = "rgba(0,0,0,.82)";
+  ctx.font = "600 20px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+  ctx.fillText("MÓBILES — configuração", pad, 50);
+
+  ctx.fillStyle = "rgba(0,0,0,.60)";
+  ctx.font = "14px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+  ctx.fillText(nowISO(), pad, 72);
+
+  // texto do móbile (impresso na imagem)
+  const text = configToText(cfg);
+  const lines = text.split("\n").slice(0,3);
+
+  // bloco de texto
+  const blockTop = dy + targetH + 56;
+  ctx.fillStyle = "rgba(255,255,255,.60)";
+  ctx.strokeStyle = "rgba(0,0,0,.10)";
+  ctx.lineWidth = 1;
+  const bx = pad, by = blockTop - 34, bw = W - pad*2, bh = 170;
+  roundRect(ctx, bx, by, bw, bh, 18, true, true);
+
+  ctx.fillStyle = "rgba(0,0,0,.84)";
+  ctx.font = "600 28px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+  ctx.fillText(lines[0] || "", pad+22, blockTop+10);
+
+  ctx.font = "600 28px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+  ctx.fillText(lines[1] || "", pad+22, blockTop+54);
+
+  ctx.font = "600 28px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+  ctx.fillText(lines[2] || "", pad+22, blockTop+98);
+
+  // rodapé curto
+  ctx.fillStyle = "rgba(0,0,0,.52)";
+  ctx.font = "12px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+  ctx.fillText("negativo.mov · MÓBILES", pad+22, by+bh-18);
+
+  return out;
+}
+
+function roundRect(ctx, x, y, w, h, r, fill, stroke){
+  if(typeof r === 'number') r = {tl:r,tr:r,br:r,bl:r};
+  ctx.beginPath();
+  ctx.moveTo(x + r.tl, y);
+  ctx.lineTo(x + w - r.tr, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r.tr);
+  ctx.lineTo(x + w, y + h - r.br);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r.br, y + h);
+  ctx.lineTo(x + r.bl, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r.bl);
+  ctx.lineTo(x, y + r.tl);
+  ctx.quadraticCurveTo(x, y, x + r.tl, y);
+  ctx.closePath();
+  if(fill) ctx.fill();
+  if(stroke) ctx.stroke();
+}
+
+async function canvasToPngFile(outCanvas, filename){
+  const blob = await new Promise(res => outCanvas.toBlob(res, "image/png", 0.95));
+  const file = new File([blob], filename, { type: "image/png" });
+  return { blob, file };
+}
+
+/* --- Share dialog (fallback) --- */
+const ShareUI = (function(){
+  const dlg = document.getElementById("shareDlg");
+  const title = document.getElementById("shareTitle");
+  const note = document.getElementById("shareNote");
+  const textBox = document.getElementById("shareTextBox");
+  const btnClose = document.getElementById("shareClose");
+  const btnCopy = document.getElementById("btnCopyText");
+  const btnDown = document.getElementById("btnDownloadImg");
+  const btnShare = document.getElementById("btnNativeShare");
+
+  btnClose.onclick = ()=> dlg.close();
+
+  let _payload = null; // { text, outCanvas, file, blob, filename }
+
+  btnCopy.onclick = async ()=>{
+    if(!_payload) return;
+    try{
+      await navigator.clipboard.writeText(_payload.text);
+      btnCopy.textContent = "Copiado ✔";
+      setTimeout(()=> btnCopy.textContent = "Copiar texto", 900);
+    }catch(e){
+      alert("Não consegui copiar automaticamente. Copie manualmente do bloco de texto.");
+    }
+  };
+
+  btnDown.onclick = async ()=>{
+    if(!_payload) return;
+    const a = document.createElement("a");
+    a.download = _payload.filename;
+    a.href = _payload.outCanvas.toDataURL("image/png");
+    a.click();
+  };
+
+  btnShare.onclick = async ()=>{
+    if(!_payload) return;
+    const { text, file } = _payload;
+    try{
+      if(navigator.share){
+        if(navigator.canShare && navigator.canShare({ files:[file] })){
+          await navigator.share({ text, files:[file], title: "MÓBILES" });
+        }else{
+          await navigator.share({ text, title: "MÓBILES" });
+        }
+      }
+    }catch(e){
+      // usuário cancelou ou falhou: fica tudo bem, o fallback já existe
+    }
+  };
+
+  function open({label, text, outCanvas, file, blob, filename, canNativeFileShare}){
+    _payload = { label, text, outCanvas, file, blob, filename };
+    title.textContent = label;
+    textBox.textContent = text;
+    note.textContent = navigator.share
+      ? (canNativeFileShare
+          ? "O teu dispositivo suporta partilha nativa com imagem + texto."
+          : "Partilha nativa disponível (pode limitar anexos). Fallback: baixar imagem / copiar texto.")
+      : "Este navegador não oferece partilha nativa. Use baixar imagem + copiar texto.";
+    btnShare.style.display = navigator.share ? "inline-flex" : "none";
+    dlg.showModal();
+  }
+
+  return { open };
+})();
+
+async function shareMobile(mKey){
+  const cfg = (mKey==="final") ? (Mobiles.final.config || null) : (Mobiles[mKey].config || null);
+  const canvas = document.getElementById(mKey==="final" ? "finalCanvas" : (mKey+"Canvas"));
+  if(!cfg || !canvas) return;
+
+  const text = configToText(cfg);
+  const out = exportCompositePNG(canvas, cfg, "mobiles");
+  const filename = `mobiles_${mKey}_${Date.now()}.png`;
+  const { blob, file } = await canvasToPngFile(out, filename);
+
+  const canNativeFileShare = !!(navigator.canShare && navigator.canShare({ files:[file] }));
+
+  // tenta partilha nativa primeiro (se existir)
+  if(navigator.share){
+    try{
+      if(canNativeFileShare){
+        await navigator.share({ title: "MÓBILES", text, files:[file] });
+        return;
+      }else{
+        // pelo menos o texto
+        await navigator.share({ title: "MÓBILES", text });
+        // depois abre modal para baixar imagem se quiser
+      }
+    }catch(e){
+      // cancelamento/erro -> abre modal
+    }
+  }
+
+  // fallback modal (desktop / sem share / ou cancelou)
+  ShareUI.open({
+    label: (mKey==="final") ? "Partilhar estado alcançado" : `Partilhar ${mKey.toUpperCase()}`,
+    text,
+    outCanvas: out,
+    file,
+    blob,
+    filename,
+    canNativeFileShare
+  });
+}
+
+/* -------------------------------------------------------
+   13) Chips fonográficos
+------------------------------------------------------- */
+function initChips(){
+  const box = document.getElementById("m4Chips");
+  box.innerHTML = "";
+  for(const p of PHONO_PRESETS){
+    const el = document.createElement("span");
+    el.className = "chip";
+    el.textContent = p.label;
+    el.onclick = ()=>{
+      const on = (PHONO.mode === p.key);
+      PHONO.mode = on ? "neutro" : p.key;
+      PHONO.vector = on ? {dry:0,voiced:0,open:0} : {...p.vec};
+
+      const d = {
+        ph: {...PHONO.vector},
+        cont: -0.20*PHONO.vector.dry + 0.15*PHONO.vector.open,
+        dense: 0.10*PHONO.vector.voiced,
+        front: 0.05*(PHONO.vector.voiced - PHONO.vector.dry),
+        verb: VERBS.map(v=>{
+          if(v.id==="cortar"||v.id==="estancar") return +0.6*PHONO.vector.dry;
+          if(v.id==="sustentar"||v.id==="arrastar") return +0.5*PHONO.vector.open;
+          if(v.id==="virar") return +0.25*PHONO.vector.voiced;
+          if(v.id==="desviar") return +0.20*PHONO.vector.open;
+          return 0;
+        }),
+        pressure: 0.25
+      };
+      applyDelta("m4", d);
+      renderChipsState();
+      rerenderAll();
+    };
+    box.appendChild(el);
+  }
+  renderChipsState();
+}
+function renderChipsState(){
+  const chips = Array.from(document.querySelectorAll("#m4Chips .chip"));
+  chips.forEach((c,i)=>{
+    const key = PHONO_PRESETS[i].key;
+    c.classList.toggle("on", PHONO.mode===key);
+  });
+}
+
+/* -------------------------------------------------------
+   14) Botões
+------------------------------------------------------- */
+function initButtons(){
+  document.getElementById("btnReset").onclick = ()=>{
+    resetGlobal();
+    for(const k of ["m1","m2","m3","m4","final"]){
+      Mobiles[k].local = {front:0,dense:0,cont:0,ph:{dry:0,voiced:0,open:0}, verb:VERBS.map(()=>0), pressure:0};
+      Mobiles[k].clicks = 0;
+      Mobiles[k].config = null;
+    }
+    updatePill();
+    rerenderAll();
+  };
+
+  document.getElementById("m1Tension").onclick = ()=>{
+    applyDelta("m1", {
+      front:rnd(-0.2,0.5),
+      dense:rnd(-0.2,0.3),
+      cont: rnd(-0.3,0.2),
+      ph:{dry:rnd(-0.2,0.3), voiced:rnd(-0.1,0.2), open:rnd(-0.2,0.3)},
+      verb: VERBS.map(()=>rnd(-0.2,0.3)),
+      pressure: 0.35
+    });
+    rerenderAll();
+  };
+
+  document.getElementById("m2Swap").onclick = ()=>{
+    applyDelta("m2", {front: -0.55, cont: -0.10, pressure:0.25, verb:VERBS.map(()=>0)});
+    rerenderAll();
+  };
+
+  document.getElementById("m3Jolt").onclick = ()=>{
+    applyDelta("m3", {
+      dense:rnd(-0.15,0.45),
+      cont:rnd(-0.35,0.25),
+      pressure:0.55,
+      verb: VERBS.map(v=>{
+        if(v.id==="cortar") return rnd(-0.1,0.6);
+        if(v.id==="arrastar") return rnd(-0.1,0.5);
+        if(v.id==="desviar") return rnd(-0.1,0.5);
+        return rnd(-0.1,0.2);
+      }),
+      ph:{dry:rnd(-0.1,0.5), voiced:rnd(-0.2,0.3), open:rnd(-0.2,0.3)}
+    });
+    rerenderAll();
+  };
+
+  document.getElementById("btnFinalize").onclick = ()=>{
+    renderFinal();
+  };
+
+  // share buttons (agora: imagem + texto + opção de partilha)
+  document.getElementById("m1Share").onclick = ()=> shareMobile("m1");
+  document.getElementById("m2Share").onclick = ()=> shareMobile("m2");
+  document.getElementById("m3Share").onclick = ()=> shareMobile("m3");
+  document.getElementById("m4Share").onclick = ()=> shareMobile("m4");
+  document.getElementById("finalShare").onclick = ()=>{
+    if(!Mobiles.final.config) renderFinal();
+    shareMobile("final");
+  };
+}
+
+/* -------------------------------------------------------
+   15) Boot
+------------------------------------------------------- */
+(async function boot(){
+  buildField();
+  await tryLoadSui();
+  initChips();
+  initButtons();
+  updatePill();
+  rerenderAll();
+})();
+</script>
+
+</body>
+</html>
