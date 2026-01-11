@@ -1210,7 +1210,16 @@ function drawSlot(ctx, slot, x,y,w,h){
     ctx.beginPath();
     ctx.rect(x+3,y+3,w-6,h-6);
     ctx.clip();
-    ctx.drawImage(slot._img, x+3, y+3, w-6, h-6);
+    // draw as "cover" (preserve aspect ratio, no squish)
+    const iw = slot._img.naturalWidth;
+    const ih = slot._img.naturalHeight;
+    const tw = (w-6), th = (h-6);
+    const scale = Math.max(tw/iw, th/ih);
+    const dw = iw * scale;
+    const dh = ih * scale;
+    const dx = (x+3) + (tw - dw)/2;
+    const dy = (y+3) + (th - dh)/2;
+    ctx.drawImage(slot._img, dx, dy, dw, dh);
     ctx.restore();
   } else {
     drawProcedural(ctx, slot, x+3,y+3,w-6,h-6);
@@ -1286,23 +1295,34 @@ async function drawMobile(canvas, key, count){
     }
   } else if(key==="m4"){
     const baseW=W*0.20, baseH=H*0.22;
+    const pad = W*0.06;
+    const gap = (W - 2*pad - 5*baseW) / 4;
     for(let i=0;i<5;i++){
       const s=slots[i];
-      const x = W*(0.12 + i*0.17) + rnd(-10,10);
-      const y = H*(0.22 + (i%2)*0.22) + rnd(-10,10);
+      let x = pad + i*(baseW+gap) + rnd(-8,8);
+      let y = H*(0.22 + (i%2)*0.22) + rnd(-8,8);
       const w = baseW * (0.92 + (s.axes.front+1)*0.12);
       const h = baseH * (0.92 + (s.axes.dense+1)*0.10);
+      // clamp to avoid cutting on the right
+      x = clamp(x, pad*0.6, W - w - pad*0.6);
+      y = clamp(y, H*0.10, H - h - H*0.08);
       drawSlot(ctx, s, x, y, w, h);
       hits.push({x,y,w,h,slot:s});
     }
   } else if(key==="final"){
     const baseW=W*0.19, baseH=H*0.22;
+    const pad = W*0.06;
+    const gap = (W - 2*pad - 5*baseW) / 4;
     for(let i=0;i<10;i++){
       const s=slots[i];
-      const x = W*(0.08 + (i%5)*0.18) + rnd(-10,10);
-      const y = H*(0.16 + Math.floor(i/5)*0.34) + rnd(-10,10);
+      const col = (i%5);
+      const row = Math.floor(i/5);
+      let x = pad + col*(baseW+gap) + rnd(-8,8);
+      let y = H*(0.16 + row*0.34) + rnd(-8,8);
       const w = baseW * (0.92 + (s.axes.front+1)*0.14);
       const h = baseH * (0.92 + (s.axes.dense+1)*0.12);
+      x = clamp(x, pad*0.6, W - w - pad*0.6);
+      y = clamp(y, H*0.06, H - h - H*0.06);
       drawSlot(ctx, s, x, y, w, h);
       hits.push({x,y,w,h,slot:s});
     }
@@ -1363,11 +1383,12 @@ async function rerenderM4(){
 async function rerenderFinal(){
   await drawMobile(document.getElementById("finalCanvas"), "final", 10);
 
-  const seed = Mob.final.seed ?? finalSeed();
-  const A = Mob.final.textA ?? buildFinalA(seed);
-  const B = Mob.final.textB ?? buildFinalB(seed);
+  try{
+    const seed = Mob.final.seed ?? finalSeed();
+    const A = Mob.final.textA ?? buildFinalA(seed);
+    const B = Mob.final.textB ?? buildFinalB(seed);
 
-  const shareInvite =
+    const shareInvite =
 `Partilha a tua exposição.
 Cada percurso faz emergir obras diferentes.
 Outras pessoas verão imagens que talvez nunca tenhas conseguido alcançar.
@@ -1375,8 +1396,25 @@ Outras pessoas verão imagens que talvez nunca tenhas conseguido alcançar.
 E você — o que montaria aqui?
 ${location.href}`;
 
-  const full = `${A}\n\n${B}\n\n${TEXT_FINAL_CLOSING}\n\n${shareInvite}`;
-  document.getElementById("finalText").textContent = full;
+    const full = `${A}
+
+${B}
+
+${TEXT_FINAL_CLOSING}
+
+${shareInvite}`;
+    const el = document.getElementById("finalText");
+    el.textContent = full;
+
+    // garante visibilidade (alguns browsers/mobiles podem colapsar o bloco)
+    document.getElementById("finalShare").style.display = "inline-flex";
+    el.style.display = "block";
+  }catch(e){
+    console.error(e);
+    const el = document.getElementById("finalText");
+    el.style.display = "block";
+    el.textContent = "Houve um erro ao gerar o texto da exposição — mas a constelação visual foi gerada. (Abre a consola para detalhes.)";
+  }
 
   document.getElementById("weeklyGate").textContent =
 `Para ver os demais estados expositivos da semana, faz primeiro a tua curadoria (gera a tua expo).`;
