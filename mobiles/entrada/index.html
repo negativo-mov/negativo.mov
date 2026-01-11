@@ -1,2049 +1,1268 @@
 <!doctype html>
 <html lang="pt">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MÓBILES — suiornotsui (NEGATIVO.mov)</title>
-  <meta name="description" content="Opera aqui a tua própria curadoria. MÓBILES — máquina curatorial-semântica." />
-  <style>
-    :root{
-      /* docilidade pastel */
-      --bg: #fbfaf8;
-      --paper: rgba(255,255,255,.62);
-      --ink: #141416;
-      --muted: rgba(20,20,22,.68);
-      --hair: rgba(20,20,22,.14);
-
-      /* bizarria doce (resto) */
-      --bruise: rgba(120,90,150,.18);
-      --mold: rgba(90,140,110,.18);
-      --acid: rgba(140,170,90,.14);
-      --ash: rgba(80,80,90,.10);
-
-      --shadow: 0 10px 30px rgba(0,0,0,.08);
-      --shadow2: 0 18px 50px rgba(0,0,0,.10);
-      --radius: 22px;
-      --radius2: 28px;
-      --pad: 18px;
-      --pad2: 26px;
-
-      --serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, "Cormorant Garamond", Georgia, serif;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    }
-
-    html,body{
-      height:100%;
-      background:
-        radial-gradient(1200px 800px at 18% 8%, var(--bruise), transparent 60%),
-        radial-gradient(900px 600px at 82% 16%, var(--mold), transparent 55%),
-        radial-gradient(1100px 820px at 64% 86%, var(--acid), transparent 60%),
-        linear-gradient(180deg, var(--bg), #f7f6f2 55%, #f8f6f4);
-      color: var(--ink);
-      margin:0;
-      font-family: var(--sans);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    .wrap{
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 28px 18px 84px;
-    }
-
-    header{
-      padding: 10px 6px 18px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .brand h1{
-      margin:0;
-      font-family: var(--serif);
-      font-weight: 650;
-      letter-spacing:.2px;
-      font-size: clamp(28px, 3vw, 38px);
-      line-height:1.08;
-    }
-    .brand .sub{
-      color: var(--muted);
-      font-size: 13px;
-      letter-spacing: .3px;
-      padding-top: 4px;
-    }
-
-    .intro{
-      margin-top: 18px;
-      padding: 18px 18px 10px;
-      border-radius: var(--radius2);
-      background: linear-gradient(180deg, rgba(255,255,255,.68), rgba(255,255,255,.38));
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(0,0,0,.06);
-      position:relative;
-      overflow:hidden;
-    }
-
-    .intro:before{
-      content:"";
-      position:absolute;
-      inset:-1px;
-      background:
-        radial-gradient(800px 520px at 10% 10%, rgba(255,220,235,.35), transparent 65%),
-        radial-gradient(780px 520px at 80% 30%, rgba(200,240,220,.30), transparent 62%),
-        radial-gradient(900px 680px at 50% 95%, rgba(210,210,230,.25), transparent 60%);
-      pointer-events:none;
-      mix-blend-mode:multiply;
-      opacity:.65;
-    }
-
-    .prose{
-      position:relative;
-      z-index:1;
-      font-family: var(--serif);
-      font-size: clamp(16px, 1.55vw, 18px);
-      line-height: 1.6;
-      letter-spacing:.08px;
-      margin: 0;
-      white-space: pre-wrap;
-    }
-
-    section{
-      margin-top: 34px;
-      padding: 16px 6px 0;
-    }
-
-    .mob{
-      position:relative;
-      padding: 18px 0 6px;
-    }
-
-    .mob .lead{
-      margin: 0 0 14px;
-      padding: 0 6px;
-      font-family: var(--serif);
-      font-size: clamp(18px, 1.85vw, 20px);
-      line-height: 1.55;
-      color: rgba(10,10,12,.92);
-      white-space: pre-wrap;
-    }
-
-    .scene{
-      position:relative;
-      border-radius: var(--radius2);
-      background: linear-gradient(180deg, rgba(255,255,255,.56), rgba(255,255,255,.26));
-      border: 1px solid rgba(0,0,0,.06);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-    }
-
-    .scene .bgsvg{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      opacity:.72;
-      pointer-events:none;
-      filter: blur(.0px);
-    }
-
-    .scene-inner{
-      position:relative;
-      z-index:1;
-      padding: 18px 18px 14px;
-    }
-
-    .controls{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      margin: 8px 0 6px;
-      padding: 0 2px;
-    }
-
-    button, .btn{
-      appearance:none;
-      border: 1px solid rgba(0,0,0,.14);
-      background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.45));
-      color: rgba(10,10,12,.92);
-      padding: 10px 12px;
-      border-radius: 999px;
-      font-size: 13px;
-      letter-spacing:.25px;
-      cursor:pointer;
-      transition: transform .12s ease, border-color .12s ease, background .12s ease;
-      user-select:none;
-    }
-    button:hover{
-      transform: translateY(-1px);
-      border-color: rgba(0,0,0,.22);
-    }
-    button:active{ transform: translateY(0px) scale(.99); }
-    button[disabled]{ opacity:.55; cursor:not-allowed; transform:none; }
-
-    .hint{
-      color: var(--muted);
-      font-size: 12px;
-      letter-spacing:.15px;
-      margin: 0;
-    }
-
-    .frags{
-      display:flex;
-      gap: 12px;
-      flex-wrap:wrap;
-      align-items:flex-end;
-      justify-content:flex-start;
-      padding: 8px 2px 12px;
-    }
-
-    .frag{
-      position:relative;
-      width: 160px;
-      max-width: 46vw;
-      aspect-ratio: 4/5;
-      border-radius: 16px;
-      overflow:hidden;
-      border: 1px solid rgba(0,0,0,.12);
-      box-shadow: 0 10px 26px rgba(0,0,0,.10);
-      background: rgba(255,255,255,.45);
-      cursor:pointer;
-      transition: transform .18s ease, filter .18s ease, opacity .18s ease;
-      user-select:none;
-    }
-    .frag:hover{ transform: translateY(-2px); }
-    .frag:active{ transform: translateY(0px) scale(.99); }
-
-    .frag img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      transform: scale(1.02);
-      filter: saturate(1.02) contrast(1.02);
-    }
-
-    .frag .tag{
-      position:absolute;
-      left:10px;
-      bottom:10px;
-      font-size: 11px;
-      letter-spacing:.35px;
-      padding: 7px 9px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(0,0,0,.12);
-      color: rgba(10,10,12,.86);
-      backdrop-filter: blur(6px);
-      max-width: calc(100% - 22px);
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-    }
-
-    /* profundidade perceptiva (M2, frente/fundo) */
-    .frags.depth{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      align-items:start;
-    }
-    .frags.depth .frag.back{
-      width: 132px;
-      opacity:.88;
-      filter: blur(.2px) saturate(.95);
-    }
-    .frags.depth .frag.front{
-      width: 190px;
-    }
-
-    /* intensificação (M3) */
-    .faded{
-      opacity: .58 !important;
-      filter: saturate(.92) contrast(.95) blur(.2px) !important;
-    }
-    .focused{
-      opacity: 1 !important;
-      filter: saturate(1.10) contrast(1.10) blur(0px) !important;
-      box-shadow: 0 16px 40px rgba(0,0,0,.14) !important;
-    }
-
-    .textline{
-      padding: 8px 2px 4px;
-      font-family: var(--serif);
-      font-size: clamp(16px, 1.7vw, 18px);
-      line-height: 1.65;
-      white-space: pre-wrap;
-    }
-
-    .word{
-      cursor:pointer;
-      border-bottom: 1px dashed rgba(0,0,0,.22);
-      text-decoration:none;
-      color: rgba(10,10,12,.92);
-      transition: background .12s ease, border-color .12s ease, color .12s ease;
-      border-radius: 8px;
-      padding: 0 2px;
-      user-select:none;
-    }
-    .word:hover{
-      background: rgba(255,255,255,.55);
-      border-bottom-color: rgba(0,0,0,.34);
-    }
-    .word:active{
-      background: rgba(210,240,220,.40);
-    }
-    .word.locked{
-      cursor: default;
-      border-bottom-color: transparent;
-    }
-    .word.locked:hover{ background: transparent; }
-
-    .small-note{
-      font-size: 12px;
-      color: var(--muted);
-      margin: 6px 2px 0;
-      line-height:1.5;
-    }
-
-    hr.sep{
-      border:0;
-      border-top: 1px solid rgba(0,0,0,.10);
-      margin: 24px 0 14px;
-    }
-
-    /* Resultado final */
-    .final{
-      margin-top: 26px;
-      padding-top: 8px;
-    }
-    .final .panel{
-      border-radius: var(--radius2);
-      background: linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.30));
-      border: 1px solid rgba(0,0,0,.07);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-    }
-    .final .panel-inner{
-      padding: 18px 18px 14px;
-    }
-    .grid10{
-      display:grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-      margin-top: 10px;
-    }
-    @media (max-width: 720px){
-      .grid10{ grid-template-columns: repeat(3, 1fr); }
-    }
-    .grid10 .thumb{
-      aspect-ratio: 1/1;
-      border-radius: 14px;
-      overflow:hidden;
-      border: 1px solid rgba(0,0,0,.12);
-      background: rgba(255,255,255,.45);
-      box-shadow: 0 10px 26px rgba(0,0,0,.10);
-    }
-    .grid10 .thumb img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
-    .pill{
-      display:inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(0,0,0,.12);
-      background: rgba(255,255,255,.65);
-      font-size: 12px;
-      color: rgba(10,10,12,.84);
-      margin-right: 6px;
-      margin-top: 6px;
-    }
-
-    .toast{
-      position: fixed;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      background: rgba(10,10,12,.86);
-      color: rgba(255,255,255,.92);
-      padding: 10px 12px;
-      border-radius: 999px;
-      font-size: 13px;
-      letter-spacing:.2px;
-      opacity:0;
-      pointer-events:none;
-      transition: opacity .18s ease, transform .18s ease;
-      z-index: 9999;
-    }
-    .toast.show{
-      opacity:1;
-      transform: translateX(-50%) translateY(-2px);
-    }
-
-    footer{
-      margin-top: 44px;
-      padding: 18px 6px 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.6;
-    }
-    footer a{ color: rgba(20,20,22,.78); }
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>MÓBILES — Entrada</title>
+<style>
+  :root{
+    --bg:#f4f2ee;
+    --ink:rgba(10,10,12,.92);
+    --muted:rgba(10,10,12,.60);
+    --card:rgba(255,255,255,.62);
+    --line:rgba(10,10,12,.14);
+    --chip:rgba(10,10,12,.08);
+    --chipOn:rgba(10,10,12,.18);
+    --shadow: 0 10px 40px rgba(0,0,0,.08);
+  }
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    background: var(--bg);
+    color: var(--ink);
+  }
+  .topbar{
+    position: sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 16px;
+    background: rgba(244,242,238,.78);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{font-weight:800; letter-spacing:.02em}
+  .subtitle{font-size:12px; color:var(--muted); margin-top:2px}
+  .left{display:flex; flex-direction:column}
+  .right{display:flex; gap:10px; align-items:center}
+  .pill{
+    font-size:12px;
+    padding:6px 10px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    color:var(--muted);
+    background:rgba(255,255,255,.35);
+  }
+  .btn{
+    appearance:none; border:1px solid var(--line);
+    background:rgba(255,255,255,.55);
+    padding:8px 10px; border-radius:12px;
+    cursor:pointer;
+    font-weight:650;
+  }
+  .btn:hover{ filter:brightness(.98) }
+  main{ max-width: 1040px; margin: 16px auto 80px; padding: 0 14px; }
+  .flow{ display:flex; flex-direction:column; gap: 18px; }
+  .card{
+    background: var(--card);
+    border:1px solid var(--line);
+    border-radius:22px;
+    box-shadow: var(--shadow);
+    overflow:hidden;
+  }
+  .head{
+    display:flex; justify-content:space-between; gap:10px;
+    padding:14px 14px 12px;
+    border-bottom:1px solid var(--line);
+  }
+  .t b{display:block; font-size:14px}
+  .t small{display:block; font-size:12px; color:var(--muted); margin-top:2px; line-height:1.25}
+  .mini{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+  .mini button{ font-size:12px; padding:7px 10px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.55); cursor:pointer; }
+  .stage{ padding: 12px 14px 16px; }
+  canvas{ width:100%; height:auto; display:block; border-radius:18px; background: rgba(255,255,255,.28); border:1px solid var(--line); }
+  .text{ margin-top:10px; font-size:14px; line-height:1.45; }
+  .line{ margin: 4px 0; }
+  .word{
+    cursor:pointer;
+    display:inline-block;
+    padding:2px 5px;
+    border-radius:10px;
+    margin: 0 1px;
+  }
+  .word:hover{ background: rgba(0,0,0,.06); }
+  .hint{ margin-top:10px; font-size:12px; color:var(--muted); }
+  .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px }
+  .chip{
+    font-size:12px;
+    padding:7px 10px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background: var(--chip);
+    cursor:pointer;
+    user-select:none;
+  }
+  .chip.on{ background: var(--chipOn); font-weight:700; }
+  .final .stage{ display:grid; grid-template-columns: 1.5fr .8fr; gap:12px; }
+  .kpi{ display:grid; grid-template-columns: 1fr; gap:10px; }
+  .box{
+    padding:12px;
+    border:1px solid var(--line);
+    border-radius:18px;
+    background: rgba(255,255,255,.42);
+  }
+  .box b{ display:block; font-size:12px }
+  .box span{ display:block; margin-top:6px; color:var(--muted); font-size:12px }
+  footer{ max-width:1040px; margin: 0 auto; padding: 0 14px 26px; color:var(--muted); font-size:12px; }
+  dialog{
+    border:none; border-radius:18px; padding:0;
+    width:min(560px, 92vw);
+    box-shadow: 0 20px 70px rgba(0,0,0,.22);
+  }
+  dialog::backdrop{ background: rgba(0,0,0,.35); }
+  .dlgHead{ padding:14px 14px 12px; border-bottom:1px solid var(--line); background: rgba(244,242,238,.9); }
+  .dlgBody{ padding:14px; background: rgba(255,255,255,.72); }
+  .dlgBody pre{ white-space:pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:12px; color:rgba(0,0,0,.75); }
+  .dlgBtns{ display:flex; gap:10px; justify-content:flex-end; padding: 0 14px 14px; background: rgba(255,255,255,.72); }
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <h1>MÓBILES</h1>
-        <div class="sub">NEGATIVO.mov · máquina curatorial-semântica · suiornotsui</div>
-      </div>
 
-      <div class="intro" aria-label="Introdução">
-        <p id="openingText" class="prose"></p>
-      </div>
-    </header>
-
-    <!-- MÓBILE 1 -->
-    <section class="mob" id="mob1">
-      <p class="lead" id="mob1Lead"></p>
-      <div class="scene" aria-label="Móbile 1 — nascimento do campo">
-        <svg class="bgsvg" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
-          <!-- berço / móbile: linhas finas e suspensão -->
-          <defs>
-            <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="rgba(255,255,255,.35)"/>
-              <stop offset="1" stop-color="rgba(255,255,255,0)"/>
-            </linearGradient>
-          </defs>
-          <rect x="0" y="0" width="1000" height="520" fill="url(#g1)"/>
-          <path d="M90,90 C240,40 360,40 500,90 C640,140 760,140 910,90" fill="none" stroke="rgba(20,20,22,.12)" stroke-width="2"/>
-          <path d="M120,95 L120,250" stroke="rgba(20,20,22,.10)" stroke-width="2"/>
-          <path d="M500,90 L500,265" stroke="rgba(20,20,22,.10)" stroke-width="2"/>
-          <path d="M880,95 L880,240" stroke="rgba(20,20,22,.10)" stroke-width="2"/>
-          <circle cx="120" cy="255" r="10" fill="rgba(255,255,255,.55)" stroke="rgba(20,20,22,.10)"/>
-          <circle cx="500" cy="270" r="12" fill="rgba(255,255,255,.55)" stroke="rgba(20,20,22,.10)"/>
-          <circle cx="880" cy="245" r="10" fill="rgba(255,255,255,.55)" stroke="rgba(20,20,22,.10)"/>
-          <!-- restos -->
-          <path d="M40,420 C220,380 340,480 520,438 C700,396 820,510 980,445"
-                fill="none" stroke="rgba(120,90,150,.16)" stroke-width="2"/>
-        </svg>
-
-        <div class="scene-inner">
-          <div class="controls">
-            <button id="btnBirth">Tensionar o início</button>
-            <button id="btnShareM1" title="Partilhar este móbile">Partilhar este móbile</button>
-            <span class="hint" id="mob1Hint"></span>
-          </div>
-
-          <div class="frags" id="mob1Frags"></div>
-          <div class="textline" id="mob1Text"></div>
-          <div class="small-note" id="mob1Note"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MÓBILE 2 -->
-    <section class="mob" id="mob2">
-      <p class="lead" id="mob2Lead"></p>
-      <div class="scene" aria-label="Móbile 2 — estrutura e posição">
-        <svg class="bgsvg" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
-          <!-- montanhas + pasto minimal -->
-          <rect x="0" y="0" width="1000" height="520" fill="rgba(255,255,255,.10)"/>
-          <path d="M0,360 C120,330 210,280 330,300 C420,315 520,250 610,275 C730,308 820,250 1000,290 L1000,520 L0,520 Z"
-                fill="rgba(200,240,220,.22)"/>
-          <path d="M40,340 L160,210 L280,340 Z" fill="rgba(220,220,235,.30)" stroke="rgba(20,20,22,.08)"/>
-          <path d="M220,360 L430,170 L630,360 Z" fill="rgba(255,220,235,.22)" stroke="rgba(20,20,22,.08)"/>
-          <path d="M560,360 L760,190 L960,360 Z" fill="rgba(210,240,220,.18)" stroke="rgba(20,20,22,.08)"/>
-          <!-- animais: traços mínimos -->
-          <path d="M180,408 h30 m-18,0 v-8 m6,8 v-6" stroke="rgba(20,20,22,.10)" stroke-width="2" fill="none"/>
-          <path d="M700,420 h28 m-16,0 v-7 m6,7 v-5" stroke="rgba(20,20,22,.10)" stroke-width="2" fill="none"/>
-          <path d="M430,430 h26 m-14,0 v-7 m6,7 v-5" stroke="rgba(20,20,22,.10)" stroke-width="2" fill="none"/>
-          <path d="M0,430 C180,410 340,450 500,430 C660,410 820,455 1000,430"
-                fill="none" stroke="rgba(120,90,150,.14)" stroke-width="2"/>
-        </svg>
-
-        <div class="scene-inner">
-          <div class="controls">
-            <button id="btnSwapM2">Trocar frente ↔ fundo</button>
-            <button id="btnShareM2">Partilhar este móbile</button>
-            <span class="hint" id="mob2Hint"></span>
-          </div>
-
-          <div class="frags depth" id="mob2Frags"></div>
-          <div class="textline" id="mob2Text"></div>
-          <div class="small-note" id="mob2Note"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MÓBILE 3 -->
-    <section class="mob" id="mob3">
-      <p class="lead" id="mob3Lead"></p>
-      <div class="scene" aria-label="Móbile 3 — gesto e estilo">
-        <svg class="bgsvg" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
-          <!-- labirinto -->
-          <rect x="0" y="0" width="1000" height="520" fill="rgba(255,255,255,.08)"/>
-          <g stroke="rgba(20,20,22,.09)" stroke-width="3" fill="none">
-            <path d="M80,90 h840 v340 h-840 z"/>
-            <path d="M140,150 h720"/>
-            <path d="M140,210 h420 v160 h-420"/>
-            <path d="M620,210 h240 v220 h-240"/>
-            <path d="M200,150 v120"/>
-            <path d="M260,210 v200"/>
-            <path d="M380,210 v120"/>
-            <path d="M440,330 h120"/>
-            <path d="M740,150 v140"/>
-            <path d="M680,290 h180"/>
-            <path d="M560,150 v60"/>
-          </g>
-          <path d="M40,470 C260,430 350,520 560,468 C760,418 850,520 980,470"
-                fill="none" stroke="rgba(90,140,110,.14)" stroke-width="2"/>
-        </svg>
-
-        <div class="scene-inner">
-          <div class="controls">
-            <button id="btnShareM3">Partilhar este móbile</button>
-            <span class="hint" id="mob3Hint"></span>
-          </div>
-
-          <div class="frags" id="mob3Frags"></div>
-          <div class="textline" id="mob3Text"></div>
-          <div class="small-note" id="mob3Note"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MÓBILE 4 -->
-    <section class="mob" id="mob4">
-      <p class="lead" id="mob4Lead"></p>
-      <div class="scene" aria-label="Móbile 4 — corpo da linguagem e colapso">
-        <svg class="bgsvg" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
-          <!-- escadas escherianas (sensação) -->
-          <rect x="0" y="0" width="1000" height="520" fill="rgba(255,255,255,.06)"/>
-          <g stroke="rgba(20,20,22,.10)" stroke-width="3" fill="none">
-            <path d="M140,400 L360,260 L580,400 L360,520 Z" />
-            <path d="M360,260 L360,140 L520,80 L520,220 Z" />
-            <path d="M580,400 L760,300 L900,380 L720,500 Z" />
-            <!-- degraus -->
-            <path d="M180,380 L360,270" />
-            <path d="M220,400 L400,290" />
-            <path d="M260,420 L440,310" />
-            <path d="M300,440 L480,330" />
-            <path d="M340,460 L520,350" />
-            <path d="M380,480 L560,370" />
-            <path d="M620,410 L760,330" />
-            <path d="M660,430 L800,350" />
-            <path d="M700,450 L840,370" />
-          </g>
-          <path d="M60,120 C220,90 330,160 510,130 C700,98 820,170 950,140"
-                fill="none" stroke="rgba(120,90,150,.16)" stroke-width="2"/>
-        </svg>
-
-        <div class="scene-inner">
-          <div class="controls">
-            <button id="btnShareM4">Partilhar este móbile</button>
-            <span class="hint" id="mob4Hint"></span>
-          </div>
-
-          <div class="frags" id="mob4Frags"></div>
-          <div class="textline" id="mob4Text"></div>
-          <div class="small-note" id="mob4Note"></div>
-        </div>
-      </div>
-    </section>
-
-    <hr class="sep" />
-
-    <!-- RESULTADO FINAL -->
-    <section class="final" id="final">
-      <div class="panel" aria-label="Resultado final">
-        <div class="panel-inner">
-          <div class="controls">
-            <button id="btnGenerateExpo">Gerar a minha exposição</button>
-            <button id="btnShareFinal" disabled>Partilhar a minha exposição</button>
-            <button id="btnCopyFinal" disabled>Copiar texto</button>
-            <span class="hint" id="finalHint"></span>
-          </div>
-
-          <div id="finalBlock" style="display:none">
-            <div id="finalBadges"></div>
-            <div class="grid10" id="finalGrid"></div>
-
-            <div class="textline" id="finalGeneratedText" style="margin-top:10px"></div>
-
-            <div class="textline" id="finalClosingText" style="margin-top:12px"></div>
-
-            <div class="textline" id="finalShareInvite" style="margin-top:10px"></div>
-
-            <p class="small-note" id="weeklyGate" style="margin-top:12px"></p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div>Assinatura: <strong>suiornotsui</strong> · Dispositivo: <strong>NEGATIVO.mov / MÓBILES</strong></div>
-      <div style="margin-top:6px">
-        Dica: se algo não aparecer imediatamente, não é erro — é resto. Mas se <em>nunca</em> aparecer, é regra (e é disso que a máquina vive).
-      </div>
-    </footer>
+<div class="topbar">
+  <div class="left">
+    <div class="brand">MÓBILES</div>
+    <div class="subtitle">Entrada — operar curadoria como máquina (semântica + imagem + fonografia)</div>
   </div>
+  <div class="right">
+    <div class="pill" id="pillState">campo: —</div>
+    <button class="btn" id="btnReset">Reset</button>
+  </div>
+</div>
 
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+<main>
+  <section class="flow">
 
-  <script>
-    /*********************
-     * CONFIG / PATHS
-     *********************/
-    // Você está em: https://negativo-mov.github.io/negativo.mov/mobiles/entrada/
-    // Então o sui.json está em: ../sui.json
-    const SUI_JSON_URL = "../sui.json";
-    const SUI_BASE_PREFIX = "../"; // para resolver "assets/sui/slot_053.jpg" -> "../assets/sui/slot_053.jpg"
+    <article class="card" id="cardM1">
+      <div class="head">
+        <div class="t">
+          <b>Móbile 1 — Nascimento do campo</b>
+          <small>3 fragmentos · o ponto de partida regula tudo o que poderá emergir depois</small>
+        </div>
+        <div class="mini">
+          <button id="m1Tension">Tensionar nascimento</button>
+          <button id="m1Share">Partilhar</button>
+        </div>
+      </div>
+      <div class="stage">
+        <canvas id="m1Canvas" width="980" height="520"></canvas>
+        <div class="text" id="m1Text"></div>
+        <div class="hint">Aqui você decide “de onde nasce”: a máquina vai resistir/ceder conforme esse começo.</div>
+      </div>
+    </article>
 
-    // Endpoint opcional para recolha (trocar depois por teu form/back-end):
-    // Ex.: const FORM_ENDPOINT = "https://example.com/collect";
-    const FORM_ENDPOINT = "";
+    <article class="card" id="cardM2">
+      <div class="head">
+        <div class="t">
+          <b>Móbile 2 — Sintaxe (sujeito ↔ objeto)</b>
+          <small>2 fragmentos · inverter frente/fundo inverte sujeito/objeto; clicar no verbo abre fuga</small>
+        </div>
+        <div class="mini">
+          <button id="m2Swap">Inverter</button>
+          <button id="m2Share">Partilhar</button>
+        </div>
+      </div>
+      <div class="stage">
+        <canvas id="m2Canvas" width="980" height="520"></canvas>
+        <div class="text" id="m2Text"></div>
+        <div class="hint">Duas posições fechadas. Uma fenda: agir no verbo para deslizar o sentido.</div>
+      </div>
+    </article>
 
-    /*********************
-     * TEXTOS FIXOS (EXATOS)
-     *********************/
-    const TEXT_OPENING =
-`Operas aqui a tua própria curadoria.
+    <article class="card" id="cardM3">
+      <div class="head">
+        <div class="t">
+          <b>Móbile 3 — Foco / intensificação</b>
+          <small>7 fragmentos · clique em palavras e fragmentos para reforçar um traço predominante</small>
+        </div>
+        <div class="mini">
+          <button id="m3Share">Partilhar</button>
+        </div>
+      </div>
+      <div class="stage">
+        <canvas id="m3Canvas" width="980" height="520"></canvas>
+        <div class="text" id="m3Text"></div>
+        <div class="hint">O que você insiste em clicar vira estilo: o mundo começa a obedecer ao teu foco.</div>
+      </div>
+    </article>
 
-A artista é suiornotsui.
-Mas as obras que vês nunca são todas.
+    <article class="card" id="cardM4">
+      <div class="head">
+        <div class="t">
+          <b>Móbile 4 — Fonografia (plosivas / fricativas)</b>
+          <small>5 fragmentos · clique num regime: isso inclina som, cortes e continuidade</small>
+        </div>
+        <div class="mini">
+          <button id="m4Share">Partilhar</button>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="chips" id="m4Chips"></div>
+        <canvas id="m4Canvas" width="980" height="520"></canvas>
+        <div class="text" id="m4Text"></div>
+        <div class="hint">Aqui a palavra vira corpo: seco/massa/arranho — e isso volta pro visual.</div>
+      </div>
+    </article>
 
-O que aparece depende do modo como entras,
-de onde começas,
-do gesto que insistes em repetir,
-do que escolhes tocar
-e do que deixas passar.
+    <article class="card final" id="cardFinal">
+      <div class="head">
+        <div class="t">
+          <b>Estado alcançado — tua exposição provisória</b>
+          <small>10 fragmentos · gera texto (estilo curatorial + crítica), pronto pra partilhar</small>
+        </div>
+        <div class="mini">
+          <button id="btnFinalize">Gerar a minha expo</button>
+          <button id="finalShare">Partilhar estado</button>
+        </div>
+      </div>
+      <div class="stage">
+        <div>
+          <canvas id="finalCanvas" width="980" height="620"></canvas>
+          <div class="text" id="finalText"></div>
+          <div class="hint">Cessar aqui não é “fim”: é um recorte que deixa resto — e o resto chama reencenação.</div>
+        </div>
+        <div class="side">
+          <div class="kpi">
+            <div class="box"><b>Posição</b><span id="kFront">—</span></div>
+            <div class="box"><b>Densidade</b><span id="kDense">—</span></div>
+            <div class="box"><b>Continuidade</b><span id="kCont">—</span></div>
+            <div class="box"><b>Regime fonográfico</b><span id="kPh">—</span></div>
+          </div>
+          <div class="box">
+            <b>Assinatura</b>
+            <span>suiornotsui</span>
+          </div>
+        </div>
+      </div>
+    </article>
 
-Por trás do que vês, há sempre mais.
-Algumas imagens só surgem sob certas tensões.
-Outras resistem, permanecem ausentes,
-como se aguardassem um olhar que ainda não chegou.
+  </section>
+</main>
 
-Esse resto —
-aquilo que nunca aparece —
-sustenta o desejo de continuar.`;
+<footer>
+  MÓBILES · entrada — máquina curatorial-semântica (front-end) · suiornotsui
+</footer>
 
-    const LEAD_1 =
-`Tudo começa aqui.
+<dialog id="shareDlg">
+  <div class="dlgHead">
+    <b id="shareTitle">Partilhar</b>
+    <div style="font-size:12px;color:var(--muted);margin-top:4px" id="shareNote"></div>
+  </div>
+  <div class="dlgBody">
+    <canvas id="shareCanvas" width="1200" height="1200" style="width:100%;height:auto;border-radius:14px;border:1px solid var(--line);background:#fff"></canvas>
+    <div style="height:10px"></div>
+    <pre id="shareText"></pre>
+  </div>
+  <div class="dlgBtns">
+    <button class="btn" id="copyText">Copiar texto</button>
+    <button class="btn" id="downloadImg">Baixar imagem</button>
+    <button class="btn" id="nativeShare">Partilhar (nativo)</button>
+    <button class="btn" id="closeDlg">Fechar</button>
+  </div>
+</dialog>
 
-Três formas pendem no campo,
-leves, ainda indecisas.
+<script>
+/* =======================================================
+   0) Base URL robusta (GitHub Pages)
+======================================================= */
+function getBaseMobilesURL(){
+  const u = new URL(window.location.href);
+  const idx = u.pathname.indexOf("/mobiles/");
+  if(idx >= 0){
+    const basePath = u.pathname.slice(0, idx + "/mobiles/".length);
+    return new URL(basePath, u.origin).toString();
+  }
+  return new URL("./", window.location.href).toString();
+}
+const BASE_MOBILES = getBaseMobilesURL();
 
-Cada tensão desloca o lugar de onde partes.
+/* =======================================================
+   1) Utilitários
+======================================================= */
+function clamp(x,min,max){ return Math.max(min, Math.min(max, x)); }
+function lerp(a,b,t){ return a + (b-a)*t; }
+function rnd(a,b){ return a + Math.random()*(b-a); }
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function nowISO(){ return new Date().toISOString().slice(0,19).replace("T"," "); }
+function signLabel(v, neg, pos){ return v< -0.2 ? neg : (v>0.2?pos:"entre"); }
 
-Não é escolha de imagens.
-É escolha de posição.
+/* =======================================================
+   2) Léxico COMPLETO (70 operadores × 3 realizações)
+   - variante: "surda" | "sonora" | "fricativa"
+======================================================= */
+const LEX = {
+  nouns: [
+    {k:"vestigio", surda:"traço", sonora:"marca", fricativa:"sombra"},
+    {k:"sopro", surda:"pingo", sonora:"bafo", fricativa:"suspiro"},
+    {k:"dobra", surda:"prega", sonora:"curva", fricativa:"flexão"},
+    {k:"canto", surda:"quina", sonora:"beira", fricativa:"franja"},
+    {k:"margem", surda:"limite", sonora:"borda", fricativa:"fronteira"},
+    {k:"poeira", surda:"pó", sonora:"bruma", fricativa:"cinza"},
+    {k:"silencio", surda:"pausa", sonora:"calma", fricativa:"sussurro"},
+    {k:"rastro", surda:"pegada", sonora:"vesta", fricativa:"resíduo"},
+    {k:"fragmento", surda:"cortezinho", sonora:"bordado", fricativa:"desfiado"},
+    {k:"detalhe", surda:"ponto", sonora:"miolo", fricativa:"nuança"},
+    {k:"lembranca", surda:"nota", sonora:"memória", fricativa:"recordação"},
+    {k:"demora", surda:"pausa", sonora:"espera", fricativa:"suspensão"},
+    {k:"intervalo", surda:"corte", sonora:"entre", fricativa:"fresta"},
+    {k:"eco", surda:"toque", sonora:"resposta", fricativa:"ressonância"},
+    {k:"resto", surda:"ruga", sonora:"sobra", fricativa:"resíduo"},
+    {k:"plano", surda:"linha", sonora:"base", fricativa:"superfície"},
+    {k:"camada", surda:"capa", sonora:"nível", fricativa:"espessura"},
+    {k:"textura", surda:"trama", sonora:"tecido", fricativa:"fibra"},
+    {k:"superficie", surda:"pele", sonora:"face", fricativa:"película"},
+    {k:"escala", surda:"passo", sonora:"medida", fricativa:"proporção"},
+    {k:"ritmo", surda:"pulso", sonora:"cadência", fricativa:"fluência"},
+    {k:"materia", surda:"corpo", sonora:"substância", fricativa:"massa"},
+    {k:"presenca", surda:"toque", sonora:"vulto", fricativa:"sombra"},
+    {k:"tensao", surda:"nó", sonora:"peso", fricativa:"pressão"},
+    {k:"campo", surda:"plano", sonora:"território", fricativa:"ambiente"},
+    {k:"emergencia", surda:"salto", sonora:"aparição", fricativa:"insurgência"},
+    {k:"configuracao", surda:"forma", sonora:"estrutura", fricativa:"composição"},
+    {k:"cessacao", surda:"corte", sonora:"encerramento", fricativa:"silenciamento"},
+  ],
+  verbs: [
+    {k:"aproximar", surda:"chegar", sonora:"beirar", fricativa:"esfumar"},
+    {k:"reparar", surda:"notar", sonora:"observar", fricativa:"esmiuçar"},
+    {k:"tocar", surda:"tatear", sonora:"roçar", fricativa:"aflorar"},
+    {k:"escutar", surda:"ouvir", sonora:"acolher", fricativa:"sintonizar"},
+    {k:"demorar", surda:"parar", sonora:"permanecer", fricativa:"alongar-se"},
+    {k:"pousar", surda:"cair", sonora:"assentar", fricativa:"deslizar"},
+    {k:"acompanhar", surda:"seguir", sonora:"amparar", fricativa:"entrelaçar"},
+    {k:"cuidar", surda:"zelar", sonora:"nutrir", fricativa:"suavizar"},
+    {k:"recortar", surda:"cortar", sonora:"delimitar", fricativa:"fissurar"},
+    {k:"deslocar", surda:"mover", sonora:"transferir", fricativa:"deslizar"},
+    {k:"sustentar", surda:"segurar", sonora:"manter", fricativa:"suspender"},
+    {k:"distribuir", surda:"partir", sonora:"organizar", fricativa:"espalhar"},
+    {k:"sobrepor", surda:"cobrir", sonora:"acumular", fricativa:"sobrefluir"},
+    {k:"atravessar", surda:"passar", sonora:"cruzar", fricativa:"permeiar"},
+    {k:"insinuar", surda:"sugerir", sonora:"indicar", fricativa:"sussurrar"},
+    {k:"insistir", surda:"bater", sonora:"persistir", fricativa:"ressoar"},
+    {k:"interromper", surda:"cortar", sonora:"cessar", fricativa:"esvair-se"},
+    {k:"fixar", surda:"marcar", sonora:"estabelecer", fricativa:"sedimentar"},
+    {k:"suspender", surda:"parar", sonora:"reter", fricativa:"flutuar"},
+    {k:"reter", surda:"prender", sonora:"guardar", fricativa:"conservar"},
+    {k:"abandonar", surda:"largar", sonora:"deixar", fricativa:"dissolver"},
+    {k:"transformar", surda:"romper", sonora:"converter", fricativa:"transfigurar"},
+  ],
+  adjs: [
+    {k:"leve", surda:"claro", sonora:"brando", fricativa:"suave"},
+    {k:"minimo", surda:"curto", sonora:"pequeno", fricativa:"sutil"},
+    {k:"fragil", surda:"ténue", sonora:"delicado", fricativa:"sensível"},
+    {k:"tenue", surda:"fino", sonora:"delgado", fricativa:"esfumado"},
+    {k:"quase", surda:"breve", sonora:"próximo", fricativa:"difuso"},
+    {k:"opaco", surda:"denso", sonora:"turvo", fricativa:"fosco"},
+    {k:"poroso", surda:"aberto", sonora:"vazado", fricativa:"permeável"},
+    {k:"irregular", surda:"torto", sonora:"oscilante", fricativa:"assimétrico"},
+    {k:"difuso", surda:"solto", sonora:"amplo", fricativa:"disperso"},
+    {k:"latente", surda:"oculto", sonora:"presente", fricativa:"subjacente"},
+    {k:"instavel", surda:"quebrado", sonora:"oscilante", fricativa:"flutuante"},
+    {k:"provisorio", surda:"breve", sonora:"mutável", fricativa:"transitório"},
+  ],
+  advs: [
+    {k:"ainda", surda:"já", sonora:"agora", fricativa:"sempre"},
+    {k:"quase", surda:"logo", sonora:"perto", fricativa:"talvez"},
+    {k:"lentamente", surda:"aos poucos", sonora:"com calma", fricativa:"suavemente"},
+    {k:"por_vezes", surda:"às vezes", sonora:"frequentemente", fricativa:"ocasionalmente"},
+    {k:"sempre", surda:"toda vez", sonora:"continuamente", fricativa:"infinitamente"},
+    {k:"raramente", surda:"quase nunca", sonora:"poucas vezes", fricativa:"esporadicamente"},
+    {k:"talvez", surda:"quem sabe", sonora:"possivelmente", fricativa:"eventualmente"},
+    {k:"agora", surda:"já", sonora:"neste momento", fricativa:"presentemente"},
+  ]
+};
 
-E o modo como começas
-inclina todo o percurso.`;
+function realize(entry, variant){
+  return entry[variant] || entry.sonora || entry.surda || entry.fricativa;
+}
 
-    const LEAD_2 =
-`Agora há relação.
+/* =======================================================
+   3) Fonografia (sem áudio) → variante lexical
+======================================================= */
+const PHONO = { mode:"neutro", vector:{dry:0, voiced:0, open:0} };
+const PHONO_PRESETS = [
+  {key:"plosiva_surda",  label:"p/t/k (seco)",    vec:{dry:+0.8, voiced:-0.6, open:0}},
+  {key:"plosiva_sonora", label:"b/d/g (massa)",   vec:{dry:+0.4, voiced:+0.8, open:0}},
+  {key:"fricativa_surda",label:"f/s/x (arranho)", vec:{dry:+0.2, voiced:-0.4, open:+0.2}},
+  {key:"fricativa_sonora",label:"v/z/j (desgaste)",vec:{dry:-0.1, voiced:+0.3, open:+0.3}},
+  {key:"aberto",         label:"vogais abertas",  vec:{dry:-0.2, voiced:+0.1, open:+0.9}},
+  {key:"fechado",        label:"vogais fechadas", vec:{dry:+0.2, voiced:+0.1, open:-0.9}},
+];
 
-Algo ocupa a frente.
-Algo permanece no fundo.
+function currentVariant(){
+  // regra simples e sensível:
+  // - dry alto puxa "surda" (corte seco)
+  // - voiced alto puxa "sonora" (massa)
+  // - open alto puxa "fricativa" (passagem/aresta)
+  const d = PHONO.vector.dry, v = PHONO.vector.voiced, o = PHONO.vector.open;
+  const ad = Math.abs(d), av = Math.abs(v), ao = Math.abs(o);
+  if(ad >= av && ad >= ao) return "surda";
+  if(av >= ad && av >= ao) return "sonora";
+  return "fricativa";
+}
 
-Trocar de lugar muda o sentido,
-mas não liberta da forma.
+/* =======================================================
+   4) Estado (campo) + espraiamento
+======================================================= */
+const Global = {
+  front:0, dense:0, cont:0,
+  pressure:0,
+};
+const Mobiles = {
+  m1:{local:{front:0,dense:0,cont:0}, clicks:0, config:null},
+  m2:{local:{front:0,dense:0,cont:0}, clicks:0, config:null, flip:false},
+  m3:{local:{front:0,dense:0,cont:0}, clicks:0, config:null},
+  m4:{local:{front:0,dense:0,cont:0}, clicks:0, config:null},
+  final:{local:{front:0,dense:0,cont:0}, clicks:0, config:null},
+};
+const SPREAD = {
+  m1:{m1:1.0,m2:0.62,m3:0.36,m4:0.18},
+  m2:{m2:1.0,m1:0.50,m3:0.40,m4:0.20},
+  m3:{m3:1.0,m2:0.55,m4:0.40,m1:0.20},
+  m4:{m4:1.0,m3:0.62,m2:0.30,m1:0.18},
+};
 
-Há posições que se repetem.
+function resetAll(){
+  Global.front=0; Global.dense=0; Global.cont=0; Global.pressure=0;
+  PHONO.mode="neutro"; PHONO.vector={dry:0, voiced:0, open:0};
+  for(const k of ["m1","m2","m3","m4","final"]){
+    Mobiles[k].local={front:0,dense:0,cont:0};
+    Mobiles[k].clicks=0;
+    Mobiles[k].config=null;
+  }
+  Mobiles.m2.flip=false;
+  updatePill();
+}
 
-Só o gesto —
-o que fazes —
-abre outra possibilidade.`;
+function applyDelta(fromKey, d){
+  const spread = SPREAD[fromKey] || {[fromKey]:1.0};
+  for(const k in spread){
+    const s = spread[k];
+    Mobiles[k].local.front = clamp(Mobiles[k].local.front + (d.front||0)*s, -1, 1);
+    Mobiles[k].local.dense = clamp(Mobiles[k].local.dense + (d.dense||0)*s, -1, 1);
+    Mobiles[k].local.cont  = clamp(Mobiles[k].local.cont  + (d.cont ||0)*s, -1, 1);
+  }
+  Global.front = clamp(Global.front + (d.front||0)*0.12, -1, 1);
+  Global.dense = clamp(Global.dense + (d.dense||0)*0.12, -1, 1);
+  Global.cont  = clamp(Global.cont  + (d.cont ||0)*0.12, -1, 1);
+  Global.pressure = clamp(Global.pressure + (d.pressure||0)*0.08, 0, 3);
+  updatePill();
+}
 
-    const LEAD_3 =
-`O campo começa a responder ao teu gesto.
+function combinedState(mKey){
+  const L = Mobiles[mKey].local;
+  return {
+    front: clamp(L.front + Global.front*0.25, -1, 1),
+    dense: clamp(L.dense + Global.dense*0.25, -1, 1),
+    cont:  clamp(L.cont  + Global.cont *0.25, -1, 1),
+  };
+}
 
-Onde insistes, algo cresce.
+function updatePill(){
+  const s = combinedState("m1");
+  const pill = document.getElementById("pillState");
+  pill.textContent = `campo: ${signLabel(s.front,"fundo","frente")} · ${signLabel(s.dense,"rarefeito","denso")} · ${signLabel(s.cont,"corte","contínuo")}`;
+}
 
-O que tocas torna-se mais visível.
+/* =======================================================
+   5) Campo visual (slots 120) + Sui override (sui.json)
+   - mantém slot 53 como assets/sui/slot_053.jpg (via JSON)
+======================================================= */
+let SUI_MAP = null;
 
-O que ignoras afasta-se.
+function slotId(i){ return `slot_${String(i).padStart(3,"0")}`; }
 
-Sem perceber, vais formando um modo de ver.
-Um estilo.
-Uma inclinação do mundo.`;
+const FAMS = [
+  {id:"F1", name:"continuidade linear", axes:{front:-0.2,dense:-0.1,cont:+0.8}},
+  {id:"F2", name:"corte vertical",      axes:{front:+0.3,dense:+0.2,cont:-0.8}},
+  {id:"F3", name:"deslocamento oblíquo",axes:{front:+0.5,dense:-0.1,cont:+0.2}},
+  {id:"F4", name:"ritmo repetitivo",    axes:{front:0.0,dense:+0.2,cont:+0.6}},
+  {id:"F5", name:"ruptura",             axes:{front:+0.2,dense:+0.3,cont:-0.9}},
+  {id:"F6", name:"densidade",           axes:{front:+0.1,dense:+0.9,cont:-0.2}},
+  {id:"F7", name:"rarefação",           axes:{front:-0.3,dense:-0.9,cont:+0.4}},
+  {id:"F8", name:"centro instável",     axes:{front:+0.2,dense:+0.5,cont:+0.1}},
+  {id:"F9", name:"campo homogêneo",     axes:{front:+0.1,dense:-0.2,cont:-0.5}},
+  {id:"F10",name:"direção múltipla",    axes:{front:+0.4,dense:-0.2,cont:-0.6}},
+  {id:"F11",name:"contorno",            axes:{front:-0.1,dense:+0.6,cont:+0.2}},
+  {id:"F12",name:"massa",               axes:{front:-0.1,dense:+0.8,cont:-0.4}},
+];
 
-    const LEAD_4 =
-`Agora já não operas imagens.
+const FIELD = { slots:[] };
 
-Operas a própria linguagem.
-
-Cada palavra carrega um corpo.
-Um peso.
-Um som.
-Uma força.
-
-Insistir numa forma faz o campo inteiro ceder.
-
-Até que, em excesso,
-algo colapsa
-e o regime muda.`;
-
-    const TEXT_FINAL_CLOSING =
-`O que construíste aqui não é um resultado neutro.
-
-Revela algo do teu modo de ver,
-do teu modo de escolher,
-do teu modo de insistir.
-
-Esta é a tua curadoria possível —
-não a melhor,
-não a definitiva,
-mas a que emergiu das tuas decisões.
-
-Outras teriam produzido outras constelações.
-
-E ainda assim,
-algo ficou sempre de fora.
-
-Esse resto —
-o que não conseguiste alcançar —
-é o que mantém o desejo vivo.
-
-Partilha o teu percurso.
-Não como resposta,
-mas como pergunta aberta aos outros.`;
-
-    const TEXT_FINAL_INVITE =
-`Partilha a tua exposição.
-
-Cada percurso faz emergir obras diferentes.
-
-Outras pessoas verão imagens que talvez nunca tenhas conseguido alcançar.
-
-Para descobrir outras constelações expositivas, é preciso antes arriscar a tua própria curadoria.`;
-
-    /*********************
-     * LÉXICO — operadores com 3 corpos fonéticos
-     * (surda / sonora / fricativa)
-     *********************/
-    const LEX = {
-      nouns: [
-        {k:"vestigio", base:"vestígio", s:"traço", so:"marca", f:"sombra"},
-        {k:"sopro", base:"sopro", s:"pingo", so:"bafo", f:"suspiro"},
-        {k:"dobra", base:"dobra", s:"prega", so:"curva", f:"flexão"},
-        {k:"canto", base:"canto", s:"quina", so:"beira", f:"franja"},
-        {k:"margem", base:"margem", s:"limite", so:"borda", f:"fronteira"},
-        {k:"poeira", base:"poeira", s:"pó", so:"bruma", f:"cinza"},
-        {k:"silencio", base:"silêncio", s:"pausa", so:"calma", f:"sussurro"},
-        {k:"rastro", base:"rastro", s:"pegada", so:"vesta", f:"resíduo"},
-        {k:"fragmento", base:"fragmento", s:"cortezinho", so:"bordado", f:"desfiado"},
-        {k:"detalhe", base:"detalhe", s:"ponto", so:"miolo", f:"nuança"},
-        {k:"lembranca", base:"lembrança", s:"nota", so:"memória", f:"recordação"},
-        {k:"demora", base:"demora", s:"pausa", so:"espera", f:"suspensão"},
-        {k:"intervalo", base:"intervalo", s:"corte", so:"entre", f:"fresta"},
-        {k:"eco", base:"eco", s:"toque", so:"resposta", f:"ressonância"},
-        {k:"resto", base:"resto", s:"ruga", so:"sobra", f:"resíduo"},
-        {k:"plano", base:"plano", s:"linha", so:"base", f:"superfície"},
-        {k:"camada", base:"camada", s:"capa", so:"nível", f:"espessura"},
-        {k:"textura", base:"textura", s:"trama", so:"tecido", f:"fibra"},
-        {k:"superficie", base:"superfície", s:"pele", so:"face", f:"película"},
-        {k:"escala", base:"escala", s:"passo", so:"medida", f:"proporção"},
-        {k:"ritmo", base:"ritmo", s:"pulso", so:"cadência", f:"fluência"},
-        {k:"materia", base:"matéria", s:"corpo", so:"substância", f:"massa"},
-        {k:"presenca", base:"presença", s:"toque", so:"vulto", f:"sombra"},
-        {k:"tensao", base:"tensão", s:"nó", so:"peso", f:"pressão"},
-        {k:"campo", base:"campo", s:"plano", so:"território", f:"ambiente"},
-        {k:"emergencia", base:"emergência", s:"salto", so:"aparição", f:"insurgência"},
-        {k:"configuracao", base:"configuração", s:"forma", so:"estrutura", f:"composição"},
-        {k:"cessacao", base:"cessação", s:"corte", so:"encerramento", f:"silenciamento"},
-      ],
-      verbs: [
-        {k:"aproximar", base:"aproximar", s:"chegar", so:"beirar", f:"esfumar"},
-        {k:"reparar", base:"reparar", s:"notar", so:"observar", f:"esmiuçar"},
-        {k:"tocar", base:"tocar", s:"tatear", so:"roçar", f:"aflorar"},
-        {k:"escutar", base:"escutar", s:"ouvir", so:"acolher", f:"sintonizar"},
-        {k:"demorar", base:"demorar", s:"parar", so:"permanecer", f:"alongar-se"},
-        {k:"pousar", base:"pousar", s:"cair", so:"assentar", f:"deslizar"},
-        {k:"acompanhar", base:"acompanhar", s:"seguir", so:"amparar", f:"entrelaçar"},
-        {k:"cuidar", base:"cuidar", s:"zelar", so:"nutrir", f:"suavizar"},
-        {k:"recortar", base:"recortar", s:"cortar", so:"delimitar", f:"fissurar"},
-        {k:"deslocar", base:"deslocar", s:"mover", so:"transferir", f:"deslizar"},
-        {k:"sustentar", base:"sustentar", s:"segurar", so:"manter", f:"suspender"},
-        {k:"distribuir", base:"distribuir", s:"partir", so:"organizar", f:"espalhar"},
-        {k:"sobrepor", base:"sobrepor", s:"cobrir", so:"acumular", f:"sobrefluir"},
-        {k:"atravessar", base:"atravessar", s:"passar", so:"cruzar", f:"permeiar"},
-        {k:"insinuar", base:"insinuar", s:"sugerir", so:"indicar", f:"sussurrar"},
-        {k:"insistir", base:"insistir", s:"bater", so:"persistir", f:"ressoar"},
-        {k:"interromper", base:"interromper", s:"cortar", so:"cessar", f:"esvair-se"},
-        {k:"fixar", base:"fixar", s:"marcar", so:"estabelecer", f:"sedimentar"},
-        {k:"suspender", base:"suspender", s:"parar", so:"reter", f:"flutuar"},
-        {k:"reter", base:"reter", s:"prender", so:"guardar", f:"conservar"},
-        {k:"abandonar", base:"abandonar", s:"largar", so:"deixar", f:"dissolver"},
-        {k:"transformar", base:"transformar", s:"romper", so:"converter", f:"transfigurar"},
-      ],
-      adjs: [
-        {k:"leve", base:"leve", s:"claro", so:"brando", f:"suave"},
-        {k:"minimo", base:"mínimo", s:"curto", so:"pequeno", f:"sutil"},
-        {k:"fragil", base:"frágil", s:"ténue", so:"delicado", f:"sensível"},
-        {k:"tenue", base:"tênue", s:"fino", so:"delgado", f:"esfumado"},
-        {k:"quase", base:"quase", s:"breve", so:"próximo", f:"difuso"},
-        {k:"opaco", base:"opaco", s:"denso", so:"turvo", f:"fosco"},
-        {k:"poroso", base:"poroso", s:"aberto", so:"vazado", f:"permeável"},
-        {k:"irregular", base:"irregular", s:"torto", so:"instável", f:"assimétrico"},
-        {k:"difuso", base:"difuso", s:"solto", so:"amplo", f:"disperso"},
-        {k:"latente", base:"latente", s:"oculto", so:"presente", f:"subjacente"},
-        {k:"instavel", base:"instável", s:"quebrado", so:"oscilante", f:"flutuante"},
-        {k:"provisorio", base:"provisório", s:"breve", so:"mutável", f:"transitório"},
-      ],
-      advs: [
-        {k:"ainda", base:"ainda", s:"já", so:"agora", f:"sempre"},
-        {k:"quase", base:"quase", s:"logo", so:"perto", f:"talvez"},
-        {k:"lentamente", base:"lentamente", s:"aos poucos", so:"com calma", f:"suavemente"},
-        {k:"porVezes", base:"por vezes", s:"às vezes", so:"frequentemente", f:"ocasionalmente"},
-        {k:"sempre", base:"sempre", s:"toda vez", so:"continuamente", f:"infinitamente"},
-        {k:"raramente", base:"raramente", s:"quase nunca", so:"poucas vezes", f:"esporadicamente"},
-        {k:"talvez", base:"talvez", s:"quem sabe", so:"possivelmente", f:"eventualmente"},
-        {k:"agora", base:"agora", s:"já", so:"neste momento", f:"presentemente"},
-      ]
+function buildField(){
+  FIELD.slots = [];
+  for(let i=1;i<=120;i++){
+    const fam = FAMS[(i-1)%12];
+    const v = Math.floor((i-1)/12) % 10;
+    const t = (v-4.5)/4.5;
+    const axes = {
+      front: clamp(fam.axes.front + 0.18*t + rnd(-0.03,0.03), -1, 1),
+      dense: clamp(fam.axes.dense + 0.22*t + rnd(-0.03,0.03), -1, 1),
+      cont:  clamp(fam.axes.cont  - 0.20*t + rnd(-0.03,0.03), -1, 1),
     };
+    FIELD.slots.push({ id: slotId(i), idx:i, fam:fam.id, famName:fam.name, v, axes, sui:null });
+  }
+}
 
-    /*********************
-     * ESTADO GLOBAL
-     *********************/
-    const state = {
-      // vetores tensivos globais (0..1)
-      cut: 0.33,
-      flow: 0.33,
-      weight: 0.34,
+async function tryLoadSui(){
+  try{
+    const url = new URL("sui.json", BASE_MOBILES + "entrada/");
+    // se tua entrada estiver em /mobiles/entrada/, isso bate certo.
+    const res = await fetch(url.toString() + "?cache=" + Date.now());
+    if(!res.ok) throw new Error("no sui.json");
+    const data = await res.json();
+    SUI_MAP = data;
 
-      // fonética (0..1)
-      voiceless: 0.34, // plosivas surdas
-      voiced: 0.33,    // plosivas sonoras
-      fric: 0.33,      // fricativas
-
-      // regimes / colapsos
-      collapseLevel: 0, // 0..2
-      collapseMeter: 0, // 0..1
-
-      // trilha de interação (para texto final)
-      clicks: {
-        m1: 0,
-        m2swap: 0,
-        m2verb: 0,
-        m3frag: 0,
-        m3word: 0,
-        m4word: 0
-      },
-
-      // memória de escolhas
-      birthMode: 0, // 0..2 (pai/filho/mãe — sem nomear)
-      m2: { frontIndex: 0, backIndex: 1, verbIndex: 0, subject: null, object: null },
-      m3: { focus: { cut:0, flow:0, weight:0 }, phon: { voiceless:0, voiced:0, fric:0 } },
-      m4: { phon: { voiceless:0, voiced:0, fric:0 } },
-
-      // biblioteca de fragmentos
-      suis: [],     // lista de urls suiornotsui
-      pool: [],     // pool geral (sui + placeholders)
-      poolMeta: new Map(), // url -> {cut,flow,weight, label}
-      ready: false,
-
-      // final expo
-      final: { generated:false, frags:[], meta:null, text:"", shareText:"" }
-    };
-
-    /*********************
-     * UTIL
-     *********************/
-    const $ = (id) => document.getElementById(id);
-    const toast = (msg) => {
-      const el = $("toast");
-      el.textContent = msg;
-      el.classList.add("show");
-      setTimeout(()=>el.classList.remove("show"), 1600);
-    };
-
-    const clamp01 = (x) => Math.max(0, Math.min(1, x));
-    const rnd = (a,b) => a + Math.random()*(b-a);
-    const pick = (arr) => arr[Math.floor(Math.random()*arr.length)];
-    const shuffle = (arr) => arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
-
-    // mistura vetores com leve inércia
-    function nudgeVector(vec, delta, amt=0.12){
-      // vec e delta têm chaves iguais
-      for(const k of Object.keys(delta)){
-        vec[k] = clamp01(vec[k] + delta[k]*amt);
-      }
-      // normaliza aproximado (evitar soma > 1)
-      const sum = Object.values(vec).reduce((a,b)=>a+b,0) || 1;
-      for(const k of Object.keys(vec)) vec[k] = vec[k]/sum;
-    }
-
-    function dominantPhon(){
-      const a = state.voiceless, b = state.voiced, c = state.fric;
-      if(a>=b && a>=c) return "s";
-      if(b>=a && b>=c) return "so";
-      return "f";
-    }
-
-    function phonLabel(){
-      const d = dominantPhon();
-      if(d==="s") return "corte (surdas)";
-      if(d==="so") return "peso (sonoras)";
-      return "fluxo (fricativas)";
-    }
-
-    function dominantAspect(){
-      const a = state.cut, b = state.flow, c = state.weight;
-      if(a>=b && a>=c) return "cut";
-      if(b>=a && b>=c) return "flow";
-      return "weight";
-    }
-
-    function aspectLabel(k){
-      if(k==="cut") return "corte";
-      if(k==="flow") return "passagem";
-      return "peso";
-    }
-
-    function wordFrom(op){
-      const d = dominantPhon();
-      return op[d];
-    }
-
-    function weightedPick(ops, weightsFn){
-      const weights = ops.map(o=>Math.max(0.0001, weightsFn(o)));
-      const sum = weights.reduce((a,b)=>a+b,0);
-      let r = Math.random()*sum;
-      for(let i=0;i<ops.length;i++){
-        r -= weights[i];
-        if(r<=0) return ops[i];
-      }
-      return ops[ops.length-1];
-    }
-
-    /*********************
-     * FRAGMENTOS: carregar Sui + construir pool
-     *********************/
-    async function loadSui(){
-      // cache-busting hard
-      const bust = `v=${Date.now()}`;
-      const url = `${SUI_JSON_URL}?${bust}`;
-
-      try{
-        const res = await fetch(url, { cache: "no-store" });
-        if(!res.ok) throw new Error("Falha ao buscar sui.json");
-        const json = await res.json();
-
-        // json esperado: { "53": "assets/sui/slot_053.jpg" }
-        const entries = Object.entries(json || {});
-        const urls = entries.map(([k,path]) => `${SUI_BASE_PREFIX}${path}?${bust}`);
-
-        state.suis = urls;
-
-        toast("suiornotsui carregado.");
-      }catch(err){
-        console.warn(err);
-        state.suis = []; // continua com placeholders
-        toast("Não consegui carregar suiornotsui agora — continuo com resto.");
+    for(const s of FIELD.slots){
+      const key = String(s.idx); // "53"
+      if(SUI_MAP && SUI_MAP[key]){
+        const rel = SUI_MAP[key]; // "assets/sui/slot_053.jpg"
+        s.sui = { path: (BASE_MOBILES + rel.replace(/^\.?\/*/, "")) };
       }
     }
+  }catch(e){
+    SUI_MAP = null;
+  }
+}
 
-    function makePlaceholders(n=40){
-      // placeholders suaves e estranhos (SVG data URL)
-      const out = [];
-      for(let i=0;i<n;i++){
-        const hue1 = Math.floor(rnd(290, 330));   // bruise
-        const hue2 = Math.floor(rnd(90, 140));    // mold
-        const hue3 = Math.floor(rnd(20, 60));     // warm pastel
-        const a1 = rnd(.08,.18), a2 = rnd(.08,.18), a3 = rnd(.05,.14);
+function slotScore(slot, state){
+  const dx =
+    Math.abs(slot.axes.front - state.front) * 0.9 +
+    Math.abs(slot.axes.dense - state.dense) * 0.7 +
+    Math.abs(slot.axes.cont  - state.cont ) * 1.0;
 
-        const svg =
-`<svg xmlns="http://www.w3.org/2000/svg" width="600" height="750" viewBox="0 0 600 750">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="hsla(${hue3},65%,92%,.95)"/>
-      <stop offset="1" stop-color="hsla(${hue2},35%,92%,.95)"/>
-    </linearGradient>
-    <radialGradient id="r1" cx="20%" cy="20%" r="70%">
-      <stop offset="0" stop-color="hsla(${hue1},55%,65%,${a1})"/>
-      <stop offset="1" stop-color="hsla(${hue1},55%,65%,0)"/>
-    </radialGradient>
-    <radialGradient id="r2" cx="80%" cy="30%" r="60%">
-      <stop offset="0" stop-color="hsla(${hue2},45%,55%,${a2})"/>
-      <stop offset="1" stop-color="hsla(${hue2},45%,55%,0)"/>
-    </radialGradient>
-    <radialGradient id="r3" cx="55%" cy="86%" r="70%">
-      <stop offset="0" stop-color="hsla(${hue3},45%,60%,${a3})"/>
-      <stop offset="1" stop-color="hsla(${hue3},45%,60%,0)"/>
-    </radialGradient>
-    <filter id="grain">
-      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
-      <feColorMatrix type="matrix" values="
-        1 0 0 0 0
-        0 1 0 0 0
-        0 0 1 0 0
-        0 0 0 .18 0"/>
-    </filter>
-  </defs>
-  <rect width="600" height="750" fill="url(#g)"/>
-  <rect width="600" height="750" fill="url(#r1)"/>
-  <rect width="600" height="750" fill="url(#r2)"/>
-  <rect width="600" height="750" fill="url(#r3)"/>
-  <path d="M40 540 C160 470, 250 650, 420 560 S560 520, 590 610"
-        fill="none" stroke="rgba(20,20,22,.12)" stroke-width="3"/>
-  <path d="M50 210 C180 150, 240 250, 360 190 S520 160, 585 240"
-        fill="none" stroke="rgba(20,20,22,.10)" stroke-width="3"/>
-  <path d="M90 680 C190 640, 280 720, 410 690 S530 670, 580 720"
-        fill="none" stroke="rgba(120,90,150,.16)" stroke-width="3"/>
-  <rect width="600" height="750" filter="url(#grain)" opacity=".35"/>
-</svg>`;
-        out.push("data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg));
-      }
-      return out;
+  let score = -(dx) + rnd(-0.05,0.05);
+
+  // tendência para Sui aparecer mais (mas não sempre)
+  if(slot.sui) score += 1.80;
+
+  return score;
+}
+
+function sampleSlots(n, state){
+  const pool = FIELD.slots.slice();
+  pool.sort((a,b)=> slotScore(b,state) - slotScore(a,state));
+  const K = Math.min(36, pool.length);
+  const top = pool.slice(0,K);
+  // shuffle leve
+  for(let i=top.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [top[i],top[j]] = [top[j],top[i]];
+  }
+  const picked = top.slice(0,n);
+
+  const hasAnySui = FIELD.slots.some(s=>s.sui);
+  const hasSuiInPicked = picked.some(s=>s.sui);
+
+  // garantia suave: 90% de puxar 1 Sui se nenhum veio
+  if(hasAnySui && !hasSuiInPicked && Math.random() < 0.90){
+    const suiCandidates = pool.filter(s=>s.sui).slice(0, 12);
+    if(suiCandidates.length){
+      picked[picked.length-1] = pick(suiCandidates);
     }
+  }
+  return picked;
+}
 
-    function tagFragment(url){
-      // cria aspectos: corte/fluxo/peso (0..1) + label mínimo
-      // se for Sui, puxa para fluxo+leveza, mas deixa resto
-      const isSui = state.suis.includes(url.split("?")[0]) || url.includes("assets/sui/");
-      let cut = Math.random(), flow = Math.random(), weight = Math.random();
-      const sum = cut+flow+weight;
+/* =======================================================
+   6) Desenho: fragmentos NÃO-Sui com gramática (12 famílias)
+======================================================= */
+function clearCanvas(c){
+  const ctx = c.getContext("2d");
+  ctx.clearRect(0,0,c.width,c.height);
+  ctx.fillStyle = "rgba(255,255,255,0.35)";
+  ctx.fillRect(0,0,c.width,c.height);
+  ctx.fillStyle="rgba(0,0,0,0.05)";
+  for(let i=0;i<240;i++) ctx.fillRect(rnd(0,c.width), rnd(0,c.height), 1, 1);
+}
 
-      cut/=sum; flow/=sum; weight/=sum;
+function line(ctx,x1,y1,x2,y2,col,w){
+  ctx.strokeStyle=col; ctx.lineWidth=w; ctx.beginPath();
+  ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+}
 
-      if(isSui){
-        // inclinação suave (mas não total)
-        flow = clamp01(flow + 0.18);
-        cut = clamp01(cut - 0.08);
-        weight = clamp01(weight - 0.06);
-        const s2 = cut+flow+weight;
-        cut/=s2; flow/=s2; weight/=s2;
-      }
+function drawFamily(ctx, fam, v, x,y,w,h){
+  const ink="rgba(0,0,0,0.22)";
+  const cold="rgba(35,55,85,0.18)";
+  const k = 1 + Math.floor(v/2);
 
-      const dom = (cut>=flow && cut>=weight) ? "cut" : (flow>=cut && flow>=weight) ? "flow" : "weight";
-      const label = isSui ? "suiornotsui" : aspectLabel(dom);
+  ctx.save();
+  ctx.translate(x,y);
 
-      state.poolMeta.set(url, {cut,flow,weight,label});
+  if(fam==="F1"){
+    for(let i=0;i<2+k;i++){
+      const yy = (i+1)*(h/(3+k)) + rnd(-2,2);
+      line(ctx, 10,yy, w-10,yy, cold, 1.2);
     }
-
-    function buildPool(){
-      // Pool inclui Sui com prioridade (aparecer mais do que não aparecer).
-      // Mantemos placeholders como resto e variação.
-      const ph = makePlaceholders(52);
-
-      // se houver só 1 imagem Sui, ainda assim ela precisa aparecer com alta frequência
-      const su = state.suis.length ? state.suis : [];
-
-      // Pool final: replicar Sui para aumentar probabilidade sem “fixar sempre”
-      const suRep = [];
-      const reps = su.length ? 18 : 0; // força para “quase sempre” enquanto houver poucas
-      for(let i=0;i<reps;i++) for(const u of su) suRep.push(u);
-
-      state.pool = [...suRep, ...su, ...ph];
-
-      // tag meta
-      for(const u of state.pool){
-        if(!state.poolMeta.has(u)) tagFragment(u);
-      }
+  } else if(fam==="F2"){
+    for(let i=0;i<2+k;i++){
+      const xx = (i+1)*(w/(3+k)) + rnd(-2,2);
+      line(ctx, xx,10, xx,h-10, ink, 1.5);
     }
-
-    function pickFragments(n){
-      // escolhe N fragmentos com viés para Sui (mas não 100%)
-      // e também guiado pelos vetores atuais (cut/flow/weight)
-      const want = dominantAspect();
-      const biasSui = state.suis.length ? 0.68 : 0.0;
-
-      const candidates = shuffle(state.pool);
-      const selected = [];
-
-      for(const url of candidates){
-        if(selected.length>=n) break;
-
-        // prob base: se Sui, alta chance; senão, menor
-        const isSui = url.includes("assets/sui/") || url.includes("slot_");
-        let p = isSui ? biasSui : 0.38;
-
-        // ajuste pelo aspecto dominante do fragmento vs estado
-        const m = state.poolMeta.get(url);
-        const score = (want==="cut") ? m.cut : (want==="flow") ? m.flow : m.weight;
-        p += (score - 0.33) * 0.65;
-
-        // ajuste leve pelo regime fonético (som sugere corte/fluxo/peso)
-        const domP = dominantPhon();
-        if(domP==="s") p += (m.cut - 0.33)*0.25;
-        if(domP==="f") p += (m.flow - 0.33)*0.25;
-        if(domP==="so") p += (m.weight - 0.33)*0.25;
-
-        p = clamp01(p);
-
-        if(Math.random() < p){
-          selected.push(url);
-        }
-      }
-
-      // fallback: se não deu, completa aleatório
-      while(selected.length<n){
-        selected.push(pick(state.pool));
-      }
-
-      return selected;
+  } else if(fam==="F3"){
+    for(let i=0;i<3+k;i++){
+      const x1 = rnd(10,w-10), y1=rnd(10,h-10);
+      line(ctx, x1,y1, x1+rnd(-60,60), y1+rnd(-60,60), cold, 1.2);
     }
-
-    /*********************
-     * TEXTO: geradores por móbile
-     *********************/
-    function makeSentence({minWords=8, maxWords=14, clickable=true, allowAdvs=true, allowAdjs=true, lockMode=false, modeName=""}){
-      // constrói frase curatorial curta em texto corrido com palavras clicáveis
-      const dphon = dominantPhon();
-
-      // pesos por estado (influência)
-      const cutW = state.cut, flowW = state.flow, weightW = state.weight;
-
-      const noun = () => weightedPick(LEX.nouns, o => {
-        // aproximação de aspectos pelo nome (heurística simples)
-        const k = o.k;
-        let s = 0.33;
-        if(["cortezinho","corte","limite","corte","cessacao"].includes(k)) s += 0.28;
-        if(["sopro","silencio","poeira","vestigio","nuanca","pelicula","fresta"].includes(k)) s += 0.18;
-        // peso
-        if(["materia","tensao","campo","configuracao","ritmo"].includes(k)) s += 0.16;
-        // mistura global
-        s += cutW*0.12 + flowW*0.12 + weightW*0.12;
-        return s;
-      });
-
-      const verb = () => weightedPick(LEX.verbs, o => {
-        // alinhamento com dominância (cut -> recortar/interromper/fixar, flow -> atravessar/permeiar/sussurrar, weight -> sustentar/manter/organizar)
-        let s = 0.33;
-        if(state.cut>0.40 && ["recortar","interromper","fixar","insistir"].includes(o.k)) s += 0.32;
-        if(state.flow>0.40 && ["atravessar","insinuar","acompanhar","suavizar","esfumar"].includes(o.k)) s += 0.28;
-        if(state.weight>0.40 && ["sustentar","distribuir","sobrepor","reter"].includes(o.k)) s += 0.24;
-        s += state.cut*0.10 + state.flow*0.10 + state.weight*0.10;
-        return s;
-      });
-
-      const adj = () => weightedPick(LEX.adjs, o => {
-        let s = 0.33;
-        if(state.flow>0.40 && ["leve","tenue","difuso","poroso"].includes(o.k)) s += 0.30;
-        if(state.cut>0.40 && ["irregular","instavel"].includes(o.k)) s += 0.20;
-        if(state.weight>0.40 && ["opaco","latente"].includes(o.k)) s += 0.18;
-        s += state.flow*0.10 + state.cut*0.08 + state.weight*0.08;
-        return s;
-      });
-
-      const adv = () => weightedPick(LEX.advs, o => {
-        let s = 0.33;
-        if(state.flow>0.40 && ["lentamente","quase"].includes(o.k)) s += 0.28;
-        if(state.cut>0.40 && ["agora","ainda"].includes(o.k)) s += 0.18;
-        if(state.weight>0.40 && ["sempre","raramente"].includes(o.k)) s += 0.16;
-        s += state.flow*0.08 + state.cut*0.06 + state.weight*0.06;
-        return s;
-      });
-
-      const n1 = noun();
-      const v1 = verb();
-      const n2 = noun();
-
-      const a1 = allowAdjs && Math.random()<0.65 ? adj() : null;
-      const a2 = allowAdjs && Math.random()<0.55 ? adj() : null;
-      const ad = allowAdvs && Math.random()<0.55 ? adv() : null;
-
-      // frase base S V O com variação mínima
-      const parts = [];
-      parts.push({t: wordFrom(n1), type:"noun"});
-      if(a1) parts.push({t: wordFrom(a1), type:"adj"});
-      parts.push({t: wordFrom(v1), type:"verb", verbKey: v1.k});
-      if(ad) parts.push({t: wordFrom(ad), type:"adv"});
-      parts.push({t: wordFrom(n2), type:"noun"});
-      if(a2) parts.push({t: wordFrom(a2), type:"adj"});
-
-      // expande levemente com 1-2 frases curtas em modo 3/4
-      const extra = [];
-      if(maxWords>=12 && Math.random()<0.70){
-        const n3 = noun();
-        const v2 = verb();
-        const ad2 = allowAdvs && Math.random()<0.45 ? adv() : null;
-        extra.push({t: " — ", type:"sep"});
-        extra.push({t: wordFrom(n3), type:"noun"});
-        extra.push({t: wordFrom(v2), type:"verb", verbKey: v2.k});
-        if(ad2) extra.push({t: wordFrom(ad2), type:"adv"});
-      }
-
-      const all = parts.concat(extra);
-
-      // render em spans clicáveis (ou travados)
-      const html = all.map((p,i)=>{
-        if(p.type==="sep") return p.t;
-        const cls = clickable && !lockMode ? "word" : "word locked";
-        const data = [
-          `data-type="${p.type}"`,
-          `data-text="${encodeURIComponent(p.t)}"`,
-        ];
-        if(p.verbKey) data.push(`data-verb="${p.verbKey}"`);
-        return `<span class="${cls}" ${data.join(" ")}>${p.t}</span>`;
-      }).join(" ");
-
-      return html.replace(/\s+—\s+/g, " — ");
+  } else if(fam==="F4"){
+    ctx.fillStyle="rgba(0,0,0,0.16)";
+    const dots = 70 + v*12;
+    for(let i=0;i<dots;i++) ctx.fillRect(rnd(6,w-6), rnd(6,h-6), 1, 1);
+  } else if(fam==="F5"){
+    ctx.strokeStyle="rgba(0,0,0,0.18)";
+    ctx.lineWidth=1.2;
+    const n = 2 + Math.floor(v/4);
+    for(let i=0;i<n;i++){
+      const rw = w*(0.34 + i*0.13);
+      const rh = h*(0.34 + i*0.11);
+      ctx.strokeRect((w-rw)/2 + rnd(-2.5,2.5), (h-rh)/2 + rnd(-2.5,2.5), rw, rh);
     }
-
-    /*********************
-     * MÓBILE 1
-     *********************/
-    function applyBirthMode(mode){
-      // 0: corte/decisão; 1: fluxo/quase; 2: peso/sustentação (sem nomear pai/mãe/filho)
-      state.birthMode = mode;
-      state.clicks.m1++;
-
-      if(mode===0){
-        state.cut = 0.46; state.flow = 0.28; state.weight = 0.26;
-        state.voiceless = 0.52; state.voiced = 0.26; state.fric = 0.22;
-      } else if(mode===1){
-        state.cut = 0.26; state.flow = 0.52; state.weight = 0.22;
-        state.voiceless = 0.22; state.voiced = 0.26; state.fric = 0.52;
-      } else {
-        state.cut = 0.26; state.flow = 0.24; state.weight = 0.50;
-        state.voiceless = 0.22; state.voiced = 0.56; state.fric = 0.22;
-      }
-      // reset colapso (o colapso pertence ao M4)
-      state.collapseMeter = 0;
-
-      renderAll();
+  } else if(fam==="F6"){
+    const n = 2 + Math.floor(v/3);
+    for(let i=0;i<n;i++){
+      const rw = w*(0.34 + rnd(0,0.28));
+      const rh = h*(0.34 + rnd(0,0.28));
+      ctx.fillStyle="rgba(0,0,0,"+(0.18+rnd(0,0.18))+")";
+      ctx.fillRect(rnd(0,w-rw), rnd(0,h-rh), rw, rh);
     }
-
-    function renderMob1(){
-      const fr = pickFragments(3);
-      const wrap = $("mob1Frags");
-      wrap.innerHTML = "";
-
-      fr.forEach((url, idx)=>{
-        const meta = state.poolMeta.get(url);
-        const el = document.createElement("div");
-        el.className = "frag";
-        el.title = "Fragmento";
-        el.innerHTML = `<img src="${url}" alt="fragmento" loading="eager"/><div class="tag">${meta?.label || "fragmento"}</div>`;
-        wrap.appendChild(el);
-      });
-
-      // Texto curto, inaugurador
-      $("mob1Text").innerHTML = makeSentence({minWords:6, maxWords:10, clickable:false, allowAdvs:true, allowAdjs:true, lockMode:true});
-
-      const m = dominantAspect();
-      $("mob1Hint").textContent = `posição inicial: ${aspectLabel(m)} · voz: ${phonLabel()}`;
-      $("mob1Note").textContent =
-        "Aqui você define o campo de partida. Depois, o percurso resiste — e revela.";
+  } else if(fam==="F7"){
+    for(let i=0;i<k*3;i++){
+      const yy = (i*(h/(k*3))) + rnd(-1,1);
+      line(ctx, 8,yy, w-8,yy, cold, 1.0);
     }
-
-    /*********************
-     * MÓBILE 2
-     *********************/
-    function ensureMob2State(){
-      if(!state.m2.subject){
-        // Escolha inicial condicionada
-        state.m2.subject = weightedPick(LEX.nouns, o=>1);
-        state.m2.object  = weightedPick(LEX.nouns, o=>1);
-        state.m2.verbIndex = Math.floor(Math.random()*LEX.verbs.length);
-      }
+  } else if(fam==="F8"){
+    ctx.fillStyle="rgba(0,0,0,0.08)";
+    const rw = w*(0.48 + rnd(-0.1,0.1));
+    const rh = h*(0.30 + rnd(-0.08,0.08));
+    ctx.fillRect(rnd(0,w-rw), rnd(0,h-rh), rw, rh);
+    line(ctx, 10,h*0.72, w-10,h*0.30, cold, 1.2);
+  } else if(fam==="F9"){
+    for(let i=0;i<10+v;i++){
+      const px=rnd(10,w-10), py=rnd(10,h-10);
+      line(ctx, px-10,py, px+10,py, ink, 1.2);
     }
-
-    function tenseFitVerb(sub, obj){
-      // escolhe verbo coerente com “distância” do par: se corte alto -> recortar/interromper; se fluxo -> atravessar/insinuar; se peso -> sustentar/reter
-      return weightedPick(LEX.verbs, (v)=>{
-        let s = 0.33;
-        if(state.cut>state.flow && state.cut>state.weight){
-          if(["recortar","interromper","fixar","insistir"].includes(v.k)) s += 0.40;
-        } else if(state.flow>state.cut && state.flow>state.weight){
-          if(["atravessar","insinuar","acompanhar","cuidar","suavizar"].includes(v.k)) s += 0.34;
-        } else {
-          if(["sustentar","reter","distribuir","sobrepor"].includes(v.k)) s += 0.32;
-        }
-        // leve ajuste: sujeito/objeto “macios” favorecem fluxo
-        const sTxt = wordFrom(sub);
-        const oTxt = wordFrom(obj);
-        if(/[fszv]/i.test(sTxt+oTxt)) s += 0.08*state.flow;
-        if(/[ptk]/i.test(sTxt+oTxt)) s += 0.08*state.cut;
-        if(/[bdg]/i.test(sTxt+oTxt)) s += 0.08*state.weight;
-        return s;
-      });
+  } else if(fam==="F10"){
+    for(let i=0;i<3+Math.floor(v/2);i++){
+      const px1=rnd(10,w-10), py1=rnd(10,h-10);
+      line(ctx, px1,py1, px1+rnd(-40,40), py1+rnd(-40,40), cold, 1.0);
     }
-
-    function renderMob2(){
-      ensureMob2State();
-
-      // dois fragmentos, com profundidade (frente/fundo)
-      const fr = pickFragments(2);
-      const wrap = $("mob2Frags");
-      wrap.innerHTML = "";
-
-      // se houver swap anterior, troca ordem
-      const frontUrl = (state.m2.frontIndex % 2 === 0) ? fr[0] : fr[1];
-      const backUrl  = (state.m2.frontIndex % 2 === 0) ? fr[1] : fr[0];
-
-      const frontMeta = state.poolMeta.get(frontUrl);
-      const backMeta  = state.poolMeta.get(backUrl);
-
-      const backEl = document.createElement("div");
-      backEl.className = "frag back";
-      backEl.innerHTML = `<img src="${backUrl}" alt="fragmento fundo"/><div class="tag">${backMeta?.label || "fundo"}</div>`;
-
-      const frontEl = document.createElement("div");
-      frontEl.className = "frag front";
-      frontEl.innerHTML = `<img src="${frontUrl}" alt="fragmento frente"/><div class="tag">${frontMeta?.label || "frente"}</div>`;
-
-      // swap por clique nos próprios fragmentos também? ESPEC diz só botão swap.
-      // Aqui: clique nos fragmentos NÃO faz nada (para manter restrição). Mantém acessibilidade:
-      backEl.style.cursor = "default";
-      frontEl.style.cursor = "default";
-
-      wrap.appendChild(backEl);
-      wrap.appendChild(frontEl);
-
-      // Texto em 3 blocos: sujeito verbo objeto
-      // sujeito = frente, objeto = fundo (por posição)
-      const subject = (state.m2.frontIndex % 2 === 0) ? state.m2.subject : state.m2.object;
-      const object  = (state.m2.frontIndex % 2 === 0) ? state.m2.object : state.m2.subject;
-
-      const fittedVerb = tenseFitVerb(subject, object);
-
-      // frase curta e clara
-      const sTxt = wordFrom(subject);
-      const vTxt = wordFrom(fittedVerb);
-      const oTxt = wordFrom(object);
-
-      // verbo clicável (único escape)
-      const verbSpan = `<span class="word" data-type="verb" data-verb="${fittedVerb.k}">${vTxt}</span>`;
-
-      $("mob2Text").innerHTML =
-        `<span class="word locked" data-type="noun">${sTxt}</span> ${verbSpan} <span class="word locked" data-type="noun">${oTxt}</span>.`;
-
-      $("mob2Hint").textContent = `troca posição (binário) · verbo abre fuga`;
-      $("mob2Note").textContent =
-        "Trocar frente e fundo muda o lugar — mas repetir lugar não basta. Só o gesto abre outra possibilidade.";
-
-      // evento: clicar no verbo
-      $("mob2Text").querySelectorAll(".word").forEach(w=>{
-        if(w.dataset.type==="verb"){
-          w.addEventListener("click", ()=>{
-            state.clicks.m2verb++;
-
-            // muda o verbo para fora do “binário”, e muda o objeto junto
-            // (simples: escolher verbo aleatório distante + novo objeto)
-            const currentK = w.dataset.verb;
-            const candidates = LEX.verbs.filter(v=>v.k !== currentK);
-            const newVerb = weightedPick(candidates, v=>{
-              // “fora da lista restrita binária” => puxa para o oposto do dominante
-              let s = 0.33;
-              const dom = dominantAspect();
-              if(dom==="cut"){
-                if(["atravessar","insinuar","acompanhar","cuidar","suavizar"].includes(v.k)) s += 0.35;
-              } else if(dom==="flow"){
-                if(["fixar","interromper","recortar","insistir"].includes(v.k)) s += 0.35;
-              } else {
-                if(["atravessar","insinuar","recortar","interromper"].includes(v.k)) s += 0.26;
-              }
-              return s;
-            });
-
-            // novo objeto “emergente”
-            const newObj = weightedPick(LEX.nouns, n=>{
-              let s = 0.33;
-              // favorece resto/emergência em modo de fuga
-              if(["resto","emergencia","configuracao","campo","tensao"].includes(n.k)) s += 0.28;
-              if(["poeira","vestigio","silencio","fresta","nuanca"].includes(n.k)) s += 0.18;
-              return s;
-            });
-
-            // fixa nova configuração interna (troca objeto base)
-            // (mantém sujeito, altera objeto para escapar)
-            if(state.m2.frontIndex % 2 === 0){
-              state.m2.object = newObj;
-            } else {
-              state.m2.subject = newObj;
-            }
-
-            // leve fricção: a escolha inicial pesa (inércia)
-            state.cut = clamp01(state.cut*0.92 + (dominantAspect()==="cut"?0.06:0.02));
-            state.flow = clamp01(state.flow*0.92 + (dominantAspect()==="flow"?0.06:0.02));
-            state.weight = clamp01(state.weight*0.92 + (dominantAspect()==="weight"?0.06:0.02));
-            const ssum = state.cut+state.flow+state.weight;
-            state.cut/=ssum; state.flow/=ssum; state.weight/=ssum;
-
-            renderAll();
-          });
-        }
-      });
+  } else if(fam==="F11"){
+    const n = 3 + Math.floor(v/3);
+    for(let i=0;i<n;i++){
+      ctx.fillStyle="rgba(55,75,95,"+(0.10+rnd(0,0.10))+")";
+      const rw = w*(0.30+rnd(0,0.35));
+      const rh = h*(0.20+rnd(0,0.35));
+      ctx.fillRect(rnd(0,w-rw), rnd(0,h-rh), rw, rh);
     }
+  } else if(fam==="F12"){
+    ctx.strokeStyle="rgba(0,0,0,0.10)";
+    ctx.strokeRect(8,8,w-16,h-16);
+    if(v>6) line(ctx, 12,h-14, w-12,h-14, "rgba(0,0,0,0.10)", 1);
+  }
 
-    function swapMob2(){
-      state.clicks.m2swap++;
-      state.m2.frontIndex++;
-      // troca sujeito/objeto implicitamente pelo render
-      // verbo se ajusta automaticamente no render
-      renderAll();
+  ctx.strokeStyle="rgba(0,0,0,0.10)";
+  ctx.lineWidth=1;
+  ctx.strokeRect(0.5,0.5,w-1,h-1);
+  ctx.restore();
+}
+
+const ImageCache = new Map();
+function loadImg(src){
+  if(ImageCache.has(src)) return ImageCache.get(src);
+  const img = new Image();
+  img.decoding="async";
+  img.loading="lazy";
+  img.src = src;
+  ImageCache.set(src,img);
+  return img;
+}
+
+function drawFragment(ctx, slot, x,y,w,h, alpha){
+  ctx.save();
+  ctx.globalAlpha = alpha;
+
+  // Sui override: desenha imagem
+  if(slot.sui){
+    const img = loadImg(slot.sui.path);
+    ctx.fillStyle="rgba(255,255,255,0.62)";
+    ctx.fillRect(x,y,w,h);
+    if(img.complete && img.naturalWidth){
+      const r = Math.min(w/img.naturalWidth, h/img.naturalHeight);
+      const dw = img.naturalWidth*r;
+      const dh = img.naturalHeight*r;
+      ctx.drawImage(img, x+(w-dw)/2, y+(h-dh)/2, dw, dh);
+    }else{
+      ctx.fillStyle="rgba(0,0,0,0.08)";
+      ctx.fillRect(x+12,y+12,w-24,h-24);
     }
+    ctx.strokeStyle="rgba(0,0,0,0.12)";
+    ctx.strokeRect(x+0.5,y+0.5,w-1,h-1);
+    ctx.restore();
+    return;
+  }
 
-    /*********************
-     * MÓBILE 3 — intensificação por clique em fragmentos e palavras
-     *********************/
-    function renderMob3(){
-      const fr = pickFragments(7);
-      const wrap = $("mob3Frags");
-      wrap.innerHTML = "";
+  // NÃO-Sui: gramática por família
+  ctx.fillStyle="rgba(255,255,255,0.48)";
+  ctx.fillRect(x,y,w,h);
+  drawFamily(ctx, slot.fam, slot.v, x,y,w,h);
+  ctx.restore();
+}
 
-      // define meta “fixa” para os 7 desta renderização
-      const locals = fr.map(url=>{
-        const m = state.poolMeta.get(url);
-        return {url, m};
-      });
+/* =======================================================
+   7) Layout por móbile (paisagens mínimas)
+   - m1: móbile de berço
+   - m2: montanhas + bichinhos mínimos
+   - m3: labirinto
+   - m4: escadas (Escher leve)
+======================================================= */
+function drawScene(ctx, key, W,H){
+  ctx.save();
+  ctx.fillStyle="rgba(255,255,255,0.12)";
+  ctx.fillRect(0,0,W,H);
 
-      // texto: mais aberto, clicável
-      $("mob3Text").innerHTML = makeSentence({minWords:10, maxWords:16, clickable:true, allowAdvs:true, allowAdjs:true});
+  const ink="rgba(0,0,0,0.12)";
+  const cold="rgba(35,55,85,0.10)";
 
-      locals.forEach(({url,m}, idx)=>{
-        const el = document.createElement("div");
-        el.className = "frag";
-        el.innerHTML = `<img src="${url}" alt="fragmento"/><div class="tag">${m?.label || "fragmento"}</div>`;
-        el.addEventListener("click", ()=>{
-          state.clicks.m3frag++;
-          // intensifica aspecto dominante do fragmento clicado
-          const dom = (m.cut>=m.flow && m.cut>=m.weight) ? "cut" : (m.flow>=m.cut && m.flow>=m.weight) ? "flow" : "weight";
-          const delta = {cut:0, flow:0, weight:0};
-          delta[dom] = 1;
-          nudgeVector(state, delta, 0.18); // ajusta cut/flow/weight
-          // acopla fonética levemente
-          if(dom==="cut"){ nudgeVector(state, {voiceless:1, voiced:0, fric:0}, 0.12); }
-          if(dom==="flow"){ nudgeVector(state, {voiceless:0, voiced:0, fric:1}, 0.12); }
-          if(dom==="weight"){ nudgeVector(state, {voiceless:0, voiced:1, fric:0}, 0.12); }
-
-          renderAll();
-        });
-        wrap.appendChild(el);
-      });
-
-      // clique em palavras
-      $("mob3Text").querySelectorAll(".word").forEach(w=>{
-        w.addEventListener("click", ()=>{
-          state.clicks.m3word++;
-          const t = decodeURIComponent(w.dataset.text || "");
-          // heurística: se palavra tiver muitas fricativas, puxa fluxo; se muitas surdas, puxa corte; se sonoras, puxa peso
-          const sCount = (t.match(/[ptk]/gi)||[]).length;
-          const soCount = (t.match(/[bdg]/gi)||[]).length;
-          const fCount = (t.match(/[fszvjçh]/gi)||[]).length;
-
-          const total = Math.max(1, sCount+soCount+fCount);
-          const bias = {voiceless: sCount/total, voiced: soCount/total, fric: fCount/total};
-
-          nudgeVector(state, bias, 0.20);
-
-          // e isso volta para as imagens via aspecto
-          if(bias.fric >= bias.voiceless && bias.fric >= bias.voiced){
-            nudgeVector(state, {cut:0, flow:1, weight:0}, 0.12);
-          } else if(bias.voiceless >= bias.fric && bias.voiceless >= bias.voiced){
-            nudgeVector(state, {cut:1, flow:0, weight:0}, 0.12);
-          } else {
-            nudgeVector(state, {cut:0, flow:0, weight:1}, 0.12);
-          }
-
-          renderAll();
-        });
-      });
-
-      $("mob3Hint").textContent = `clique em fragmentos e palavras → intensifica · estado: ${aspectLabel(dominantAspect())} / ${phonLabel()}`;
-      $("mob3Note").textContent =
-        "Aqui o campo responde ao teu gesto. Insistir faz crescer — e afasta o resto.";
-    }
-
-    /*********************
-     * MÓBILE 4 — palavras (fonética) + colapso
-     *********************/
-    function renderMob4(){
-      const fr = pickFragments(5);
-      const wrap = $("mob4Frags");
-      wrap.innerHTML = "";
-      fr.forEach(url=>{
-        const m = state.poolMeta.get(url);
-        const el = document.createElement("div");
-        el.className = "frag";
-        el.style.cursor = "default"; // aqui NÃO se clica em fragmentos
-        el.innerHTML = `<img src="${url}" alt="fragmento"/><div class="tag">${m?.label || "fragmento"}</div>`;
-        wrap.appendChild(el);
-      });
-
-      // texto clicável — e só isso
-      // aqui fazemos um texto mais “homogéneo” guiado pelo regime fonético atual
-      const html = makeSentence({minWords:12, maxWords:18, clickable:true, allowAdvs:true, allowAdjs:true});
-
-      $("mob4Text").innerHTML = html;
-
-      // travar qualquer clique que não seja palavra (já ok)
-      $("mob4Text").querySelectorAll(".word").forEach(w=>{
-        w.addEventListener("click", ()=>{
-          state.clicks.m4word++;
-
-          const t = decodeURIComponent(w.dataset.text || "");
-          // detecta tipo dominante (surda/sonora/fricativa)
-          const sCount = (t.match(/[ptk]/gi)||[]).length;
-          const soCount = (t.match(/[bdg]/gi)||[]).length;
-          const fCount = (t.match(/[fszvjçh]/gi)||[]).length;
-
-          let kind = "fric";
-          if(sCount>=soCount && sCount>=fCount) kind = "voiceless";
-          else if(soCount>=sCount && soCount>=fCount) kind = "voiced";
-          else kind = "fric";
-
-          // reforça tipo fonético clicado
-          const delta = {voiceless:0, voiced:0, fric:0};
-          delta[kind] = 1;
-          nudgeVector(state, delta, 0.26);
-
-          // colapso por saturação:
-          // cada clique aumenta o medidor conforme a dominância do tipo clicado
-          const dom = dominantPhon();
-          const domKey = dom==="s" ? "voiceless" : dom==="so" ? "voiced" : "fric";
-          const pressure = (kind === domKey) ? 0.14 : 0.09;
-          state.collapseMeter = clamp01(state.collapseMeter + pressure);
-
-          if(state.collapseMeter >= 0.98){
-            collapse();
-          } else {
-            // acopla visual/semântico: voiceless -> corte, fric -> fluxo, voiced -> peso
-            if(kind==="voiceless") nudgeVector(state, {cut:1, flow:0, weight:0}, 0.12);
-            if(kind==="fric") nudgeVector(state, {cut:0, flow:1, weight:0}, 0.12);
-            if(kind==="voiced") nudgeVector(state, {cut:0, flow:0, weight:1}, 0.12);
-
-            renderAll();
-          }
-        });
-      });
-
-      $("mob4Hint").textContent = `clique nas palavras → reforça som · saturação: ${Math.round(state.collapseMeter*100)}%`;
-      $("mob4Note").textContent =
-        "Insistir numa forma faz o campo ceder. Em excesso, o regime muda.";
-    }
-
-    function collapse(){
-      // colapso catastrófico: muda regime (0->1->2->0), reseta meter, inverte tendência
-      state.collapseLevel = (state.collapseLevel + 1) % 3;
-      state.collapseMeter = 0;
-
-      // giro: empurra para o “próximo” dominante (surda->sonora->fric->surda)
-      const d = dominantPhon();
-      if(d==="s"){ state.voiceless=0.18; state.voiced=0.64; state.fric=0.18; }
-      else if(d==="so"){ state.voiceless=0.18; state.voiced=0.18; state.fric=0.64; }
-      else { state.voiceless=0.64; state.voiced=0.18; state.fric=0.18; }
-
-      // acopla semântica ao regime
-      if(state.collapseLevel===0){
-        state.cut=0.46; state.flow=0.30; state.weight=0.24;
-      } else if(state.collapseLevel===1){
-        state.cut=0.26; state.flow=0.52; state.weight=0.22;
-      } else {
-        state.cut=0.25; state.flow=0.25; state.weight=0.50;
-      }
-
-      toast("colapso: o regime mudou.");
-      renderAll();
-    }
-
-    /*********************
-     * REALCE perceptivo M3
-     * (aplica classes focused/faded conforme o dominante)
-     *********************/
-    function applyPerceptualEmphasis(){
-      // Em M3, “o que combina com dominante” fica mais presente.
-      const mob3 = $("mob3Frags");
-      if(!mob3) return;
-      const dom = dominantAspect();
-      mob3.querySelectorAll(".frag").forEach(f=>{
-        const img = f.querySelector("img");
-        if(!img) return;
-        const url = img.getAttribute("src");
-        const m = state.poolMeta.get(url);
-        if(!m) return;
-        const score = (dom==="cut") ? m.cut : (dom==="flow") ? m.flow : m.weight;
-
-        f.classList.remove("focused","faded");
-        if(score >= 0.40) f.classList.add("focused");
-        else if(score <= 0.28) f.classList.add("faded");
-      });
-    }
-
-    /*********************
-     * PARTILHA (móbile e final)
-     *********************/
-    function buildShareText({title, body}){
-      const base = [
-        title,
-        "",
-        body,
-        "",
-        "E tu? Faz a tua curadoria aqui:",
-        window.location.href
-      ].join("\n");
-      return base;
-    }
-
-    async function renderNodeToCanvas(node, width=1200){
-      // Render simples sem libs: cria uma captura “composicional”:
-      // - desenha um fundo pastel
-      // - desenha thumbnails dos fragmentos que estiverem em node
-      // - desenha trechos de texto do node (sem layout perfeito, mas legível)
-      const imgs = Array.from(node.querySelectorAll("img")).slice(0, 12);
-      const texts = Array.from(node.querySelectorAll(".textline")).map(el=>el.textContent.trim()).filter(Boolean);
-
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-
-      const pad = 60;
-      const cols = Math.min(5, Math.max(3, Math.ceil(Math.sqrt(imgs.length || 1))));
-      const thumb = Math.floor((width - pad*2 - (cols-1)*22) / cols);
-      const rows = Math.ceil((imgs.length || 1) / cols);
-      const hImgs = rows * thumb + (rows-1)*22;
-
-      const height = pad*2 + hImgs + 240 + texts.length*34;
-      canvas.width = width;
-      canvas.height = height;
-
-      // fundo
-      ctx.fillStyle = "#fbfaf8";
-      ctx.fillRect(0,0,canvas.width,canvas.height);
-
-      // manchas suaves (bizarria doce)
-      function blob(x,y,r,rgba){
-        const g = ctx.createRadialGradient(x,y,0,x,y,r);
-        g.addColorStop(0, rgba);
-        g.addColorStop(1, "rgba(0,0,0,0)");
-        ctx.fillStyle = g;
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-      }
-      blob(width*0.18, 120, 420, "rgba(120,90,150,.14)");
-      blob(width*0.78, 180, 420, "rgba(90,140,110,.14)");
-      blob(width*0.56, height*0.78, 520, "rgba(140,170,90,.10)");
-
-      // título
-      ctx.fillStyle = "rgba(20,20,22,.92)";
-      ctx.font = "700 40px ui-serif, Georgia, serif";
-      ctx.fillText("MÓBILES — suiornotsui", pad, 70);
-
-      ctx.fillStyle = "rgba(20,20,22,.55)";
-      ctx.font = "14px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
-      ctx.fillText(`regime: ${phonLabel()} · campo: ${aspectLabel(dominantAspect())}`, pad, 96);
-
-      // thumbs
-      const loaded = await Promise.all(imgs.map(img => new Promise(resolve=>{
-        const im = new Image();
-        im.crossOrigin = "anonymous";
-        im.onload = ()=>resolve({ok:true, im, src: img.src});
-        im.onerror = ()=>resolve({ok:false, im:null, src: img.src});
-        im.src = img.src;
-      })));
-
-      let idx=0;
-      for(let r=0;r<rows;r++){
-        for(let c=0;c<cols;c++){
-          if(idx>=loaded.length) break;
-          const x = pad + c*(thumb+22);
-          const y = 120 + r*(thumb+22);
-          // moldura
-          ctx.fillStyle = "rgba(255,255,255,.72)";
-          roundRect(ctx, x-2, y-2, thumb+4, thumb+4, 18, true, false);
-          ctx.strokeStyle = "rgba(0,0,0,.10)";
-          roundRect(ctx, x-2, y-2, thumb+4, thumb+4, 18, false, true);
-
-          const item = loaded[idx];
-          if(item.ok){
-            // crop
-            drawCover(ctx, item.im, x, y, thumb, thumb);
-          }else{
-            // fallback
-            ctx.fillStyle = "rgba(0,0,0,.06)";
-            roundRect(ctx, x, y, thumb, thumb, 16, true, false);
-            ctx.fillStyle = "rgba(0,0,0,.35)";
-            ctx.font = "12px ui-sans-serif";
-            ctx.fillText("fragmento", x+12, y+22);
-          }
-          idx++;
-        }
-      }
-
-      // texto
-      let ty = 120 + hImgs + 34;
-      ctx.fillStyle = "rgba(20,20,22,.88)";
-      ctx.font = "20px ui-serif, Georgia, serif";
-      for(const t of texts.slice(0, 4)){
-        const lines = wrapText(ctx, t, width - pad*2, 24);
-        for(const ln of lines){
-          ctx.fillText(ln, pad, ty);
-          ty += 28;
-        }
-        ty += 10;
-      }
-
-      // footer link
-      ctx.fillStyle = "rgba(20,20,22,.55)";
-      ctx.font = "14px ui-sans-serif, system-ui";
-      ctx.fillText(window.location.href, pad, height - 40);
-
-      return canvas;
-    }
-
-    function roundRect(ctx, x, y, w, h, r, fill, stroke) {
-      if (w < 2*r) r = w/2;
-      if (h < 2*r) r = h/2;
+  if(key==="m1"){
+    // arco do móbile
+    ctx.strokeStyle=ink; ctx.lineWidth=2;
+    ctx.beginPath();
+    ctx.arc(W/2, 70, 150, Math.PI, 2*Math.PI);
+    ctx.stroke();
+    // haste
+    ctx.beginPath(); ctx.moveTo(W/2, 70); ctx.lineTo(W/2, 20); ctx.stroke();
+  }
+  if(key==="m2"){
+    // montanhas
+    ctx.strokeStyle=cold; ctx.lineWidth=2;
+    for(let i=0;i<3;i++){
+      const x = 120 + i*260;
       ctx.beginPath();
-      ctx.moveTo(x+r, y);
-      ctx.arcTo(x+w, y,   x+w, y+h, r);
-      ctx.arcTo(x+w, y+h, x,   y+h, r);
-      ctx.arcTo(x,   y+h, x,   y,   r);
-      ctx.arcTo(x,   y,   x+w, y,   r);
-      ctx.closePath();
-      if (fill) ctx.fill();
-      if (stroke) ctx.stroke();
+      ctx.moveTo(x, H-120);
+      ctx.lineTo(x+140, H-320 + rnd(-18,18));
+      ctx.lineTo(x+280, H-120);
+      ctx.stroke();
     }
-
-    function drawCover(ctx, img, x, y, w, h){
-      const iw = img.naturalWidth || img.width;
-      const ih = img.naturalHeight || img.height;
-      const ir = iw/ih;
-      const r = w/h;
-      let sx=0, sy=0, sw=iw, sh=ih;
-      if(ir > r){
-        sw = ih * r;
-        sx = (iw - sw)/2;
-      } else {
-        sh = iw / r;
-        sy = (ih - sh)/2;
+    // bichinhos mínimos (pastando)
+    ctx.strokeStyle="rgba(0,0,0,0.14)";
+    for(let i=0;i<5;i++){
+      const bx = 140 + i*150 + rnd(-10,10);
+      const by = H-140 + rnd(-6,6);
+      ctx.beginPath();
+      ctx.moveTo(bx,by);
+      ctx.lineTo(bx+18,by);
+      ctx.lineTo(bx+22,by-8);
+      ctx.stroke();
+    }
+  }
+  if(key==="m3"){
+    // labirinto
+    ctx.strokeStyle="rgba(0,0,0,0.10)";
+    ctx.lineWidth=1.6;
+    const step=48;
+    for(let y=90;y<H-60;y+=step){
+      for(let x=70;x<W-70;x+=step){
+        if(Math.random()<0.35){
+          ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+step,y); ctx.stroke();
+        }
+        if(Math.random()<0.35){
+          ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x,y+step); ctx.stroke();
+        }
       }
+    }
+  }
+  if(key==="m4"){
+    // escadas leves
+    ctx.strokeStyle="rgba(0,0,0,0.10)";
+    ctx.lineWidth=1.6;
+    for(let i=0;i<7;i++){
+      const x = 90 + i*120 + rnd(-12,12);
+      const y = 110 + rnd(-8,8);
+      const w = 80, h = 220;
+      ctx.strokeRect(x,y,w,h);
+      for(let s=0;s<7;s++){
+        const yy = y + (s+1)*(h/8);
+        ctx.beginPath(); ctx.moveTo(x,yy); ctx.lineTo(x+w,yy); ctx.stroke();
+      }
+      // “quebra” escher
+      ctx.beginPath(); ctx.moveTo(x+w, y+h*0.5); ctx.lineTo(x+w+60, y+h*0.35); ctx.stroke();
+    }
+  }
+
+  ctx.restore();
+}
+
+function layoutMobile(ctx, cfg, key){
+  const c = ctx.canvas;
+  clearCanvas(c);
+  drawScene(ctx, key, c.width, c.height);
+
+  const pad = 40;
+  const frs = cfg.fragments;
+  const scene = (key==="m1") ? "móbile" : "campo";
+  const boxes = [];
+
+  for(let i=0;i<frs.length;i++){
+    const z = i/(frs.length-1 || 1); // 0..1
+    const slot = frs[i];
+
+    const w = lerp(210, 340, z) * (key==="final"?0.88:1);
+    const h = lerp(150, 250, z) * (key==="final"?0.90:1);
+
+    let bandX = lerp(pad, c.width-pad, (i+1)/(frs.length+1));
+    let x = bandX + rnd(-60,60) - w/2;
+    let y = lerp(c.height*0.22, c.height*0.78, z) + rnd(-18,18) - h/2;
+
+    if(scene==="móbile"){
+      y = lerp(160, c.height-120, z) + rnd(-28,28) - h/2;
+      // fio
       ctx.save();
-      roundRect(ctx, x, y, w, h, 16, false, false);
-      ctx.clip();
-      ctx.drawImage(img, sx, sy, sw, sh, x, y, w, h);
+      ctx.strokeStyle="rgba(0,0,0,0.18)";
+      ctx.lineWidth=1.3;
+      ctx.beginPath();
+      ctx.moveTo(bandX, 88);
+      ctx.lineTo(x + w/2, y);
+      ctx.stroke();
       ctx.restore();
     }
 
-    function wrapText(ctx, text, maxWidth, lineHeight){
-      const words = text.split(/\s+/);
-      const lines = [];
-      let line = "";
-      for(const w of words){
-        const test = line ? (line + " " + w) : w;
-        const m = ctx.measureText(test).width;
-        if(m > maxWidth && line){
-          lines.push(line);
-          line = w;
-        } else {
-          line = test;
+    const a = lerp(0.62, 1.0, z);
+    drawFragment(ctx, slot, x,y,w,h, a);
+    boxes.push({slot, x,y,w,h, z});
+  }
+  cfg._boxes = boxes;
+}
+
+function hitTest(cfg, x,y){
+  const boxes = cfg._boxes || [];
+  // prioriza topo (z maior)
+  for(let i=boxes.length-1;i>=0;i--){
+    const b = boxes[i];
+    if(x>=b.x && x<=b.x+b.w && y>=b.y && y<=b.y+b.h) return b;
+  }
+  return null;
+}
+
+/* =======================================================
+   8) Texto: moldes “curatoriais”, sempre gramaticais
+======================================================= */
+function pickByState(arr, s, axis){
+  // escolhe índice enviesado por eixo (-1..1)
+  const t = (axis==="front") ? s.front : (axis==="dense"?s.dense:s.cont);
+  const bias = clamp((t+1)/2, 0, 1);
+  const idx = Math.floor(bias*(arr.length-1) + rnd(-0.7,0.7));
+  return arr[clamp(idx,0,arr.length-1)];
+}
+
+function curatorialLines(mKey, s, variant){
+  const N = (a)=> realize(pick(a), variant);
+  const n1 = realize(pickByState(LEX.nouns, s, "front"), variant);
+  const n2 = realize(pickByState(LEX.nouns, s, "cont"), variant);
+  const n3 = realize(pickByState(LEX.nouns, s, "dense"), variant);
+
+  const v1 = realize(pickByState(LEX.verbs, s, "cont"), variant);
+  const v2 = realize(pickByState(LEX.verbs, s, "front"), variant);
+
+  const a1 = realize(pickByState(LEX.adjs, s, "dense"), variant);
+  const a2 = realize(pickByState(LEX.adjs, s, "cont"), variant);
+
+  const adv1 = realize(pickByState(LEX.advs, s, "cont"), variant);
+  const adv2 = realize(pickByState(LEX.advs, s, "front"), variant);
+
+  // conectivos fixos (para “voz”)
+  const C = {
+    onde: pick(["onde","quando","enquanto"]),
+    como: pick(["como","quase como","como se"]),
+    por:  pick(["por isso","por fim","por vezes"]),
+  };
+
+  if(mKey==="m1"){
+    return [
+      ["Aqui", "nasce", "um", n1, a1 + ",", C.como, "um", n2, "que", adv1, "insiste."],
+      ["O", n3, "não", "explica:", "ele", "pede", "que", "você", v1, "o", n2 + "."],
+      ["E", C.por + ",", "o", "resto", "fica", "de", "fora", "—", "para", "voltar", adv2 + "."],
+    ];
+  }
+
+  if(mKey==="m2"){
+    // sintaxe: sujeito/objeto
+    const subj = Mobiles.m2.flip ? n2 : n1;
+    const obj  = Mobiles.m2.flip ? n1 : n2;
+    return [
+      ["O", subj, "toma", "a", "frente;", "o", obj, "fica", "em", "fundo."],
+      ["Se", "você", "só", "inverte,", "repete", "a", "mesma", "lei."],
+      ["A", "fuga", "é", "agir:", "é", "preciso", v2, "o", obj, adv1 + "."],
+    ];
+  }
+
+  if(mKey==="m3"){
+    return [
+      ["Você", "repara", "no", n1, "e", "o", n1, "cresce."],
+      ["Clique", "vira", "foco:", "o", a2, "ganha", "peso", "no", n3 + "."],
+      ["Assim", "o", "mundo", "aprende", "a", "te", v1, adv2 + "."],
+    ];
+  }
+
+  if(mKey==="m4"){
+    return [
+      ["Som", "vira", "corte:", "um", n2, a2, "pede", "outro", "ritmo."],
+      ["Se", "você", "reforça", "aresta,", "a", "imagem", "fica", adv1 + "."],
+      ["Se", "você", "abre", "passagem,", "o", n1, "começa", "a", v2, adv2 + "."],
+    ];
+  }
+
+  // final
+  return [
+    ["A", "tua", "curadoria", "fixa", "um", n1, a1, "como", "eixo."],
+    ["O", "estilo", "prefere", n3, "e", "evita", n2, "—", "e", "isso", "aparece."],
+    ["Partilha", "e", "reencena:", "alguém", "vai", "achar", "o", "fragmento", "que", "te", "faltou."],
+  ];
+}
+
+function renderText(container, lines, onWord){
+  container.innerHTML = "";
+  for(const words of lines){
+    const div = document.createElement("div");
+    div.className = "line";
+    for(const w of words){
+      const span = document.createElement("span");
+      span.className = "word";
+      span.textContent = w;
+      span.addEventListener("click", ()=> onWord(w));
+      div.appendChild(span);
+      div.appendChild(document.createTextNode(" "));
+    }
+    container.appendChild(div);
+  }
+}
+
+/* =======================================================
+   9) Config de cada móbile
+======================================================= */
+function buildConfig(mKey){
+  const s = combinedState(mKey);
+  let n = 3;
+  if(mKey==="m2") n = 2;
+  if(mKey==="m3") n = 7;
+  if(mKey==="m4") n = 5;
+  if(mKey==="final") n = 10;
+
+  const fragments = sampleSlots(n, s);
+  const variant = currentVariant();
+  const lines = curatorialLines(mKey, s, variant);
+
+  return { state:s, fragments, variant, lines, _boxes:[] };
+}
+
+function deltaFromSlotClick(slot){
+  // clique em fragmento intensifica eixos do slot
+  return {
+    front: 0.22 * slot.axes.front,
+    dense: 0.22 * slot.axes.dense,
+    cont:  0.22 * slot.axes.cont,
+    pressure: 0.12,
+  };
+}
+
+function deltaFromWordClick(word){
+  // simples: “palavras” puxam traços por heurística
+  const w = (word||"").toLowerCase();
+  const d = {front:0, dense:0, cont:0, pressure:0.08};
+
+  if(w.includes("corte") || w.includes("quebra") || w.includes("nó") || w.includes("peso")){
+    d.cont -= 0.22; d.dense += 0.10;
+  }
+  if(w.includes("suave") || w.includes("sutil") || w.includes("esfum") || w.includes("sus")){
+    d.cont += 0.18; d.front -= 0.08;
+  }
+  if(w.includes("frente") || w.includes("vulto") || w.includes("apari")){
+    d.front += 0.18;
+  }
+  if(w.includes("campo") || w.includes("massa") || w.includes("subst")){
+    d.dense += 0.18;
+  }
+  return d;
+}
+
+/* =======================================================
+   10) Render e interação
+======================================================= */
+function renderMobile(mKey, canvasId, textId){
+  const c = document.getElementById(canvasId);
+  const ctx = c.getContext("2d");
+
+  const cfg = buildConfig(mKey);
+  Mobiles[mKey].config = cfg;
+
+  layoutMobile(ctx, cfg, mKey);
+
+  const t = document.getElementById(textId);
+  renderText(t, cfg.lines, (w)=>{
+    applyDelta(mKey, deltaFromWordClick(w));
+    rerenderAll();
+  });
+
+  c.onclick = (ev)=>{
+    const r = c.getBoundingClientRect();
+    const x = (ev.clientX - r.left) * (c.width / r.width);
+    const y = (ev.clientY - r.top)  * (c.height/ r.height);
+    const hit = hitTest(cfg, x,y);
+    if(hit){
+      applyDelta(mKey, deltaFromSlotClick(hit.slot));
+      Mobiles[mKey].clicks++;
+      rerenderAll();
+    }
+  };
+}
+
+function renderFinal(){
+  const c = document.getElementById("finalCanvas");
+  const ctx = c.getContext("2d");
+  const cfg = buildConfig("final");
+  Mobiles.final.config = cfg;
+  layoutMobile(ctx, cfg, "final");
+
+  const t = document.getElementById("finalText");
+  renderText(t, cfg.lines, (w)=>{
+    applyDelta("m3", deltaFromWordClick(w));
+    rerenderAll();
+  });
+
+  const s = cfg.state;
+  document.getElementById("kFront").textContent = signLabel(s.front,"fundo","frente");
+  document.getElementById("kDense").textContent = signLabel(s.dense,"rarefeito","denso");
+  document.getElementById("kCont").textContent  = signLabel(s.cont,"corte","contínuo");
+  document.getElementById("kPh").textContent    = currentVariant();
+}
+
+function rerenderAll(){
+  renderMobile("m1","m1Canvas","m1Text");
+  renderMobile("m2","m2Canvas","m2Text");
+  renderMobile("m3","m3Canvas","m3Text");
+  renderMobile("m4","m4Canvas","m4Text");
+  if(Mobiles.final.config) renderFinal();
+}
+
+/* =======================================================
+   11) Share (imagem + texto) — com fallback
+======================================================= */
+function configToText(cfg){
+  const a = (cfg.lines?.[0]||[]).join(" ");
+  const b = (cfg.lines?.[1]||[]).join(" ");
+  const c = (cfg.lines?.[2]||[]).join(" ");
+  return [a,b,c].filter(Boolean).join("\n");
+}
+function exportCompositePNG(srcCanvas, cfg){
+  const out = document.getElementById("shareCanvas");
+  const ctx = out.getContext("2d");
+  const W=out.width, H=out.height;
+
+  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim() || "#f4f2ee";
+  ctx.fillRect(0,0,W,H);
+
+  // imagem
+  const pad=80;
+  const targetW=W-pad*2;
+  const ratio = srcCanvas.height/srcCanvas.width;
+  const targetH=Math.min(H*0.62, targetW*ratio);
+  const dx=(W-targetW)/2;
+  const dy=90;
+  ctx.drawImage(srcCanvas, dx, dy, targetW, targetH);
+
+  // texto
+  ctx.fillStyle="rgba(0,0,0,0.80)";
+  ctx.font="700 20px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+  ctx.fillText("MÓBILES — suiornotsui", pad, 50);
+
+  ctx.fillStyle="rgba(0,0,0,0.55)";
+  ctx.font="14px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+  ctx.fillText(nowISO(), pad, 72);
+
+  ctx.fillStyle="rgba(0,0,0,0.70)";
+  ctx.font="16px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+  const text = configToText(cfg);
+  const lines = text.split("\n").slice(0,6);
+  let ty = dy + targetH + 46;
+  for(const ln of lines){
+    ctx.fillText(ln, pad, ty);
+    ty += 22;
+  }
+
+  return out;
+}
+async function canvasToPngFile(canvas, filename){
+  return new Promise((resolve)=>{
+    canvas.toBlob((blob)=>{
+      resolve({ file: new File([blob], filename, {type:"image/png"}), blob });
+    }, "image/png");
+  });
+}
+
+const ShareUI = (function(){
+  const dlg = document.getElementById("shareDlg");
+  const title = document.getElementById("shareTitle");
+  const note = document.getElementById("shareNote");
+  const textBox = document.getElementById("shareText");
+  const btnCopy = document.getElementById("copyText");
+  const btnDl = document.getElementById("downloadImg");
+  const btnShare = document.getElementById("nativeShare");
+  const btnClose = document.getElementById("closeDlg");
+
+  let payload = null;
+
+  btnClose.onclick = ()=> dlg.close();
+  btnCopy.onclick = async ()=>{
+    if(!payload) return;
+    await navigator.clipboard.writeText(payload.text);
+  };
+  btnDl.onclick = ()=>{
+    if(!payload) return;
+    const a = document.createElement("a");
+    a.download = payload.filename;
+    a.href = payload.outCanvas.toDataURL("image/png");
+    a.click();
+  };
+  btnShare.onclick = async ()=>{
+    if(!payload) return;
+    try{
+      if(navigator.share){
+        if(navigator.canShare && navigator.canShare({ files:[payload.file] })){
+          await navigator.share({ title:"MÓBILES", text: payload.text, files:[payload.file] });
+        }else{
+          await navigator.share({ title:"MÓBILES", text: payload.text });
         }
       }
-      if(line) lines.push(line);
-      return lines;
-    }
+    }catch(e){}
+  };
 
-    async function shareFromNode(node, title){
-      const text = buildShareText({
-        title,
-        body: "Uma curadoria possível — e um resto que insiste."
-      });
+  function open({label, text, outCanvas, file, filename, canNativeFileShare}){
+    payload = {label, text, outCanvas, file, filename};
+    title.textContent = label;
+    textBox.textContent = text;
+    note.textContent = navigator.share
+      ? (canNativeFileShare ? "Partilha nativa: imagem + texto disponíveis." : "Partilha nativa pode limitar anexos; fallback: baixar imagem / copiar texto.")
+      : "Este navegador não oferece partilha nativa. Use baixar imagem + copiar texto.";
+    btnShare.style.display = navigator.share ? "inline-flex" : "none";
+    dlg.showModal();
+  }
+  return { open };
+})();
 
-      // tenta Web Share com arquivo (se suportado)
-      try{
-        const canvas = await renderNodeToCanvas(node, 1200);
-        const blob = await new Promise(res=>canvas.toBlob(res, "image/png", 0.92));
-        const file = new File([blob], "mobiles.png", { type: "image/png" });
+async function shareMobile(mKey){
+  const cfg = (mKey==="final") ? Mobiles.final.config : Mobiles[mKey].config;
+  const canvas = document.getElementById(mKey==="final" ? "finalCanvas" : (mKey+"Canvas"));
+  if(!cfg || !canvas) return;
 
-        if(navigator.canShare && navigator.canShare({ files: [file] })){
-          await navigator.share({ title, text, files: [file] });
-          return;
-        }
-      }catch(e){
-        // segue fallback
+  const text = configToText(cfg) + "\n\n" +
+    "Faz a tua curadoria aqui: " + (BASE_MOBILES + "entrada/");
+
+  const out = exportCompositePNG(canvas, cfg);
+  const filename = `mobiles_${mKey}_${Date.now()}.png`;
+  const { file } = await canvasToPngFile(out, filename);
+  const canNativeFileShare = !!(navigator.canShare && navigator.canShare({ files:[file] }));
+
+  if(navigator.share){
+    try{
+      if(canNativeFileShare){
+        await navigator.share({ title:"MÓBILES", text, files:[file] });
+        return;
+      }else{
+        await navigator.share({ title:"MÓBILES", text });
       }
+    }catch(e){}
+  }
 
-      // fallback: copia texto + baixa imagem
-      try{
-        const canvas = await renderNodeToCanvas(node, 1200);
-        const a = document.createElement("a");
-        a.href = canvas.toDataURL("image/png");
-        a.download = "mobiles.png";
-        a.click();
-        await navigator.clipboard.writeText(text);
-        toast("Imagem baixada + texto copiado.");
-      }catch(e){
-        // último fallback: só texto
-        try{
-          await navigator.clipboard.writeText(text);
-          toast("Texto copiado.");
-        }catch(_){
-          toast("Não consegui partilhar agora.");
-        }
-      }
-    }
+  ShareUI.open({
+    label: (mKey==="final") ? "Partilhar estado alcançado" : `Partilhar ${mKey.toUpperCase()}`,
+    text, outCanvas: out, file, filename, canNativeFileShare
+  });
+}
 
-    /*********************
-     * FINAL: gerar expo + texto (estilo + crítica)
-     *********************/
-    function classifyStyle(){
-      // constrói etiquetas simples para “estilo curatorial”
-      const domA = dominantAspect();
-      const domP = dominantPhon();
+/* =======================================================
+   12) Chips fonográficos (CORRIGIDO: sem syntax error!)
+======================================================= */
+function initChips(){
+  const box = document.getElementById("m4Chips");
+  box.innerHTML = "";
+  for(const p of PHONO_PRESETS){
+    const el = document.createElement("span");
+    el.className = "chip";
+    el.textContent = p.label;
 
-      const tilt = {
-        corte: state.cut,
-        passagem: state.flow,
-        peso: state.weight,
-        surdas: state.voiceless,
-        sonoras: state.voiced,
-        fricativas: state.fric
-      };
+    el.onclick = ()=>{
+      const on = (PHONO.mode === p.key);
+      PHONO.mode = on ? "neutro" : p.key;
 
-      // descrição
-      const prefA =
-        domA==="cut" ? "decisão e recorte"
-        : domA==="flow" ? "transição e aproximação"
-        : "sustentação e densidade";
+      // ✅ CORREÇÃO CRÍTICA (era {.p.vec})
+      PHONO.vector = on ? {dry:0,voiced:0,open:0} : { ...p.vec };
 
-      const prefP =
-        domP==="s" ? "cortes secos (surdas)"
-        : domP==="so" ? "presença de peso (sonoras)"
-        : "passagens suaves (fricativas)";
-
-      const tags = [];
-      if(state.flow > 0.42) tags.push("aproximação");
-      if(state.cut > 0.42) tags.push("recorte");
-      if(state.weight > 0.42) tags.push("sustentação");
-      if(state.fric > 0.42) tags.push("sopro");
-      if(state.voiceless > 0.42) tags.push("corte");
-      if(state.voiced > 0.42) tags.push("corpo");
-      if(tags.length<3) tags.push("resto");
-
-      return { prefA, prefP, tags: Array.from(new Set(tags)).slice(0,5), tilt };
-    }
-
-    function generateFinalText(frags){
-      const style = classifyStyle();
-
-      // Parte 1: estilo curatorial da pessoa
-      const part1 =
-`O teu percurso revela um estilo curatorial que dá predominância a ${style.prefA}, com uma escuta marcada por ${style.prefP}.
-A tua curadoria insiste no modo como o detalhe se organiza como campo: o que vem à frente, o que recua, o que permanece latente e o que se torna presente por repetição do gesto.`;
-
-      // Parte 2: texto crítico da exposição (jargão curatorial legível)
-      const part2 =
-`A exposição resultante articula um espaço de relações tensivas entre fragmento e continuidade, onde a presença não se estabiliza como totalidade.
-Os trabalhos emergem como constelação provisória — uma montagem que não explica, mas sustenta: a superfície como lugar de espessura, o vestígio como operador, o ritmo como forma de atenção.
-O conjunto produz uma experiência em que o sentido se aproxima e recua, deixando um resto operável que convoca retorno.`;
-
-      const outro =
-`Divulga a tua exposição e vê o que os outros compõem: que obras emergem para eles que tu não conseguiste alcançar? O que o teu percurso tornou invisível?`;
-
-      return `${part1}\n\n${part2}\n\n${outro}`;
-    }
-
-    async function submitToForm(payload){
-      if(!FORM_ENDPOINT) return { ok:false, skipped:true };
-
-      try{
-        const res = await fetch(FORM_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type":"application/json" },
-          body: JSON.stringify(payload)
-        });
-        return { ok: res.ok };
-      }catch(e){
-        return { ok:false, error: String(e) };
-      }
-    }
-
-    async function generateExpo(){
-      // 10 fragmentos finais, com forte acoplamento ao estado
-      const fr = pickFragments(10);
-
-      state.final.generated = true;
-      state.final.frags = fr;
-
-      const style = classifyStyle();
-      const genText = generateFinalText(fr);
-
-      state.final.text = genText;
-
-      // shareText: texto final fixo + expo + texto gerado + convite + link
-      const shareText =
-        `${TEXT_FINAL_CLOSING}\n\n—\n\n${genText}\n\n—\n\n${TEXT_FINAL_INVITE}\n\n${window.location.href}`;
-      state.final.shareText = shareText;
-
-      // render na UI
-      $("finalBlock").style.display = "block";
-      $("btnShareFinal").disabled = false;
-      $("btnCopyFinal").disabled = false;
-
-      // badges
-      const badges = $("finalBadges");
-      badges.innerHTML = "";
-      style.tags.forEach(t=>{
-        const s = document.createElement("span");
-        s.className = "pill";
-        s.textContent = t;
-        badges.appendChild(s);
-      });
-      const s1 = document.createElement("span");
-      s1.className = "pill";
-      s1.textContent = `campo: ${aspectLabel(dominantAspect())}`;
-      badges.appendChild(s1);
-
-      const s2 = document.createElement("span");
-      s2.className = "pill";
-      s2.textContent = `voz: ${phonLabel()}`;
-      badges.appendChild(s2);
-
-      // grid
-      const grid = $("finalGrid");
-      grid.innerHTML = "";
-      fr.forEach(url=>{
-        const d = document.createElement("div");
-        d.className = "thumb";
-        d.innerHTML = `<img src="${url}" alt="fragmento final" loading="lazy" />`;
-        grid.appendChild(d);
+      // inclina campo pelo modo fonográfico
+      applyDelta("m4", {
+        cont: -0.20*PHONO.vector.dry + 0.15*PHONO.vector.open,
+        dense: 0.10*PHONO.vector.voiced,
+        front: 0.05*(PHONO.vector.voiced - PHONO.vector.dry),
+        pressure: 0.25,
       });
 
-      $("finalGeneratedText").textContent = genText;
-      $("finalClosingText").textContent = TEXT_FINAL_CLOSING;
-      $("finalShareInvite").textContent = TEXT_FINAL_INVITE;
+      renderChipsState();
+      rerenderAll();
+    };
+    box.appendChild(el);
+  }
+  renderChipsState();
+}
+function renderChipsState(){
+  const chips = Array.from(document.querySelectorAll("#m4Chips .chip"));
+  chips.forEach((c,i)=>{
+    const key = PHONO_PRESETS[i].key;
+    c.classList.toggle("on", PHONO.mode===key);
+  });
+}
 
-      // gate semanal
-      $("weeklyGate").textContent =
-        "Para ver os demais estados expositivos (semanais), faz antes a tua curadoria. Depois que geras a tua exposição, o acesso abre aqui. (Em breve: link.)";
+/* =======================================================
+   13) Botões (M3/M4/FINAL voltam porque JS não quebra)
+======================================================= */
+function initButtons(){
+  document.getElementById("btnReset").onclick = ()=>{
+    resetAll();
+    rerenderAll();
+  };
 
-      // submissão (se endpoint existir)
-      const payload = {
-        ts: new Date().toISOString(),
-        page: window.location.href,
-        frags: fr.map(u=>u.split("?")[0]),
-        vectors: {
-          cut: state.cut, flow: state.flow, weight: state.weight,
-          voiceless: state.voiceless, voiced: state.voiced, fric: state.fric,
-          collapseLevel: state.collapseLevel,
-          clicks: state.clicks
-        }
-      };
-      const r = await submitToForm(payload);
-      if(r.skipped){
-        $("finalHint").textContent = "Exposição gerada. (Coleta semanal: configurar endpoint.)";
-      } else if(r.ok){
-        $("finalHint").textContent = "Exposição gerada e inscrita (coleta semanal).";
-      } else {
-        $("finalHint").textContent = "Exposição gerada. (Falha ao enviar dados semanais.)";
-      }
+  document.getElementById("m1Tension").onclick = ()=>{
+    applyDelta("m1", {
+      front:rnd(-0.45,0.55),
+      dense:rnd(-0.35,0.45),
+      cont:rnd(-0.55,0.55),
+      pressure:0.35
+    });
+    rerenderAll();
+  };
 
-      toast("Exposição gerada.");
-    }
+  document.getElementById("m2Swap").onclick = ()=>{
+    Mobiles.m2.flip = !Mobiles.m2.flip;
+    applyDelta("m2", { front: Mobiles.m2.flip ? -0.55 : +0.55, cont: 0.10, pressure:0.18 });
+    rerenderAll();
+  };
 
-    /*********************
-     * RENDER ALL
-     *********************/
-    function renderTexts(){
-      $("openingText").textContent = TEXT_OPENING;
-      $("mob1Lead").textContent = LEAD_1;
-      $("mob2Lead").textContent = LEAD_2;
-      $("mob3Lead").textContent = LEAD_3;
-      $("mob4Lead").textContent = LEAD_4;
-    }
+  document.getElementById("btnFinalize").onclick = ()=>{
+    renderFinal();
+  };
 
-    function renderAll(){
-      renderTexts();
-      renderMob1();
-      renderMob2();
-      renderMob3();
-      renderMob4();
-      applyPerceptualEmphasis();
-    }
+  document.getElementById("m1Share").onclick = ()=> shareMobile("m1");
+  document.getElementById("m2Share").onclick = ()=> shareMobile("m2");
+  document.getElementById("m3Share").onclick = ()=> shareMobile("m3");
+  document.getElementById("m4Share").onclick = ()=> shareMobile("m4");
+  document.getElementById("finalShare").onclick = ()=> shareMobile("final");
+}
 
-    /*********************
-     * INIT + EVENTS
-     *********************/
-    async function init(){
-      renderTexts();
-
-      await loadSui();
-      buildPool();
-      state.ready = true;
-
-      // Eventos
-      $("btnBirth").addEventListener("click", ()=>{
-        // alterna 0->1->2
-        const next = (state.birthMode + 1) % 3;
-        applyBirthMode(next);
-      });
-
-      $("btnSwapM2").addEventListener("click", swapMob2);
-
-      $("btnGenerateExpo").addEventListener("click", generateExpo);
-
-      $("btnCopyFinal").addEventListener("click", async ()=>{
-        try{
-          await navigator.clipboard.writeText(state.final.shareText || "");
-          toast("Texto copiado.");
-        }catch(e){
-          toast("Não consegui copiar.");
-        }
-      });
-
-      $("btnShareM1").addEventListener("click", ()=>shareFromNode($("mob1"), "MÓBILES — Móbile 1"));
-      $("btnShareM2").addEventListener("click", ()=>shareFromNode($("mob2"), "MÓBILES — Móbile 2"));
-      $("btnShareM3").addEventListener("click", ()=>shareFromNode($("mob3"), "MÓBILES — Móbile 3"));
-      $("btnShareM4").addEventListener("click", ()=>shareFromNode($("mob4"), "MÓBILES — Móbile 4"));
-
-      $("btnShareFinal").addEventListener("click", async ()=>{
-        if(!state.final.generated) return;
-
-        const node = $("final");
-        const title = "A minha exposição — MÓBILES (suiornotsui)";
-        const text = state.final.shareText || buildShareText({title, body:"Curadoria possível + resto operável."});
-
-        // tenta Web Share com arquivo + texto
-        try{
-          const canvas = await renderNodeToCanvas(node, 1200);
-          const blob = await new Promise(res=>canvas.toBlob(res, "image/png", 0.92));
-          const file = new File([blob], "exposicao.png", { type: "image/png" });
-
-          if(navigator.canShare && navigator.canShare({ files: [file] })){
-            await navigator.share({ title, text, files: [file] });
-            return;
-          }
-        }catch(e){}
-
-        // fallback: baixa + copia
-        try{
-          const canvas = await renderNodeToCanvas(node, 1200);
-          const a = document.createElement("a");
-          a.href = canvas.toDataURL("image/png");
-          a.download = "exposicao.png";
-          a.click();
-          await navigator.clipboard.writeText(text);
-          toast("Imagem baixada + texto copiado.");
-        }catch(e){
-          try{
-            await navigator.clipboard.writeText(text);
-            toast("Texto copiado.");
-          }catch(_){
-            toast("Não consegui partilhar agora.");
-          }
-        }
-      });
-
-      // primeira posição (modo 0 como default)
-      applyBirthMode(0);
-      renderAll();
-    }
-
-    init();
-  </script>
+/* =======================================================
+   14) Boot
+======================================================= */
+(async function boot(){
+  buildField();
+  await tryLoadSui();
+  resetAll();
+  initChips();
+  initButtons();
+  rerenderAll();
+})();
+</script>
 </body>
 </html>
