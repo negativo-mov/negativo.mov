@@ -1,137 +1,308 @@
 <!doctype html>
 <html lang="pt">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>MÓBILES — Entrada</title>
-<style>
-  :root{
-    --bg:#f4f2ee;
-    --ink:rgba(10,10,12,.92);
-    --muted:rgba(10,10,12,.60);
-    --card:rgba(255,255,255,.62);
-    --line:rgba(10,10,12,.14);
-    --chip:rgba(10,10,12,.08);
-    --chipOn:rgba(10,10,12,.18);
-    --shadow: 0 10px 40px rgba(0,0,0,.08);
-  }
-  html,body{height:100%}
-  body{
-    margin:0;
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-    background: var(--bg);
-    color: var(--ink);
-  }
-  .topbar{
-    position: sticky; top:0; z-index:50;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:14px 16px;
-    background: rgba(244,242,238,.78);
-    backdrop-filter: blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  .brand{font-weight:800; letter-spacing:.02em}
-  .subtitle{font-size:12px; color:var(--muted); margin-top:2px}
-  .left{display:flex; flex-direction:column}
-  .right{display:flex; gap:10px; align-items:center}
-  .pill{
-    font-size:12px;
-    padding:6px 10px;
-    border:1px solid var(--line);
-    border-radius:999px;
-    color:var(--muted);
-    background:rgba(255,255,255,.35);
-  }
-  .btn{
-    appearance:none; border:1px solid var(--line);
-    background:rgba(255,255,255,.55);
-    padding:8px 10px; border-radius:12px;
-    cursor:pointer;
-    font-weight:650;
-  }
-  .btn:hover{ filter:brightness(.98) }
-  main{ max-width: 1040px; margin: 16px auto 80px; padding: 0 14px; }
-  .flow{ display:flex; flex-direction:column; gap: 18px; }
-  .card{
-    background: var(--card);
-    border:1px solid var(--line);
-    border-radius:22px;
-    box-shadow: var(--shadow);
-    overflow:hidden;
-  }
-  .head{
-    display:flex; justify-content:space-between; gap:10px;
-    padding:14px 14px 12px;
-    border-bottom:1px solid var(--line);
-  }
-  .t b{display:block; font-size:14px}
-  .t small{display:block; font-size:12px; color:var(--muted); margin-top:2px; line-height:1.25}
-  .mini{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
-  .mini button{ font-size:12px; padding:7px 10px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.55); cursor:pointer; }
-  .stage{ padding: 12px 14px 16px; }
-  canvas{ width:100%; height:auto; display:block; border-radius:18px; background: rgba(255,255,255,.28); border:1px solid var(--line); }
-  .text{ margin-top:10px; font-size:14px; line-height:1.45; }
-  .line{ margin: 4px 0; }
-  .word{
-    cursor:pointer;
-    display:inline-block;
-    padding:2px 5px;
-    border-radius:10px;
-    margin: 0 1px;
-  }
-  .word:hover{ background: rgba(0,0,0,.06); }
-  .hint{ margin-top:10px; font-size:12px; color:var(--muted); }
-  .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px }
-  .chip{
-    font-size:12px;
-    padding:7px 10px;
-    border-radius:999px;
-    border:1px solid var(--line);
-    background: var(--chip);
-    cursor:pointer;
-    user-select:none;
-  }
-  .chip.on{ background: var(--chipOn); font-weight:700; }
-  .final .stage{ display:grid; grid-template-columns: 1.5fr .8fr; gap:12px; }
-  .kpi{ display:grid; grid-template-columns: 1fr; gap:10px; }
-  .box{
-    padding:12px;
-    border:1px solid var(--line);
-    border-radius:18px;
-    background: rgba(255,255,255,.42);
-  }
-  .box b{ display:block; font-size:12px }
-  .box span{ display:block; margin-top:6px; color:var(--muted); font-size:12px }
-  footer{ max-width:1040px; margin: 0 auto; padding: 0 14px 26px; color:var(--muted); font-size:12px; }
-  dialog{
-    border:none; border-radius:18px; padding:0;
-    width:min(560px, 92vw);
-    box-shadow: 0 20px 70px rgba(0,0,0,.22);
-  }
-  dialog::backdrop{ background: rgba(0,0,0,.35); }
-  .dlgHead{ padding:14px 14px 12px; border-bottom:1px solid var(--line); background: rgba(244,242,238,.9); }
-  .dlgBody{ padding:14px; background: rgba(255,255,255,.72); }
-  .dlgBody pre{ white-space:pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:12px; color:rgba(0,0,0,.75); }
-  .dlgBtns{ display:flex; gap:10px; justify-content:flex-end; padding: 0 14px 14px; background: rgba(255,255,255,.72); }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MÓBILES — suiornotsui (NEGATIVO.mov)</title>
+  <meta name="description" content="Opera aqui a tua própria curadoria. MÓBILES — máquina curatorial-semântica." />
+
+  <style>
+    :root{
+      /* docilidade pastel + resto mórbido */
+      --bg0:#fbfaf8;
+      --bg1:#f6f4ef;
+      --ink:#141416;
+      --muted:rgba(20,20,22,.68);
+      --hair:rgba(20,20,22,.16);
+
+      --bruise: rgba(140,90,160,.22);
+      --mold:   rgba(80,150,115,.22);
+      --acid:   rgba(165,185,90,.16);
+      --ash:    rgba(90,90,105,.10);
+
+      --card: rgba(255,255,255,.62);
+      --card2: rgba(255,255,255,.72);
+
+      --line: rgba(20,20,22,.14);
+      --line2: rgba(20,20,22,.22);
+
+      --shadow: 0 14px 46px rgba(0,0,0,.10);
+      --radius: 26px;
+
+      --serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, "Cormorant Garamond", Georgia, serif;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      color:var(--ink);
+      font-family:var(--sans);
+      background:
+        radial-gradient(1200px 820px at 16% 8%, var(--bruise), transparent 60%),
+        radial-gradient(900px 620px at 84% 18%, var(--mold), transparent 55%),
+        radial-gradient(1000px 820px at 60% 86%, var(--acid), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1) 55%, #f7f3f6);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+    }
+
+    .wrap{
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 22px 16px 84px;
+    }
+
+    header{
+      padding: 8px 6px 14px;
+    }
+    .brand{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    h1{
+      margin:0;
+      font-family:var(--serif);
+      font-weight:700;
+      letter-spacing:.2px;
+      font-size:clamp(28px, 3vw, 40px);
+      line-height:1.06;
+    }
+    .sub{
+      color:var(--muted);
+      font-size:13px;
+      max-width: 52ch;
+    }
+
+    .lead{
+      margin: 14px 6px 0;
+      white-space:pre-wrap;
+      font-size:15px;
+      line-height:1.55;
+      color:rgba(20,20,22,.78);
+      max-width: 86ch;
+    }
+
+    /* fluxo contínuo, sem “saletinhas” duras */
+    .card{
+      margin: 20px 0;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--card), rgba(255,255,255,.44));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .head{
+      padding: 14px 16px 10px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      border-bottom: 1px solid rgba(20,20,22,.08);
+      background: rgba(255,255,255,.35);
+    }
+    .head .t b{
+      display:block;
+      font-family:var(--serif);
+      font-weight: 720;
+      letter-spacing:.2px;
+      font-size: 18px;
+    }
+    .head .t small{
+      display:block;
+      color:var(--muted);
+      font-size: 12.5px;
+      margin-top: 3px;
+      max-width: 68ch;
+    }
+
+    .mini{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    button, .btn{
+      appearance:none;
+      border: 1px solid var(--line2);
+      background: rgba(255,255,255,.72);
+      color: rgba(20,20,22,.86);
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-size: 13px;
+      cursor:pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,.06);
+      transition: transform .06s ease;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    button:hover, .btn:hover{ transform: translateY(-1px); }
+    button:active, .btn:active{ transform: translateY(0px); }
+
+    .stage{
+      position:relative;
+      padding: 14px 14px 16px;
+    }
+
+    canvas{
+      width:100%;
+      height:auto;
+      border-radius: 18px;
+      display:block;
+      background:
+        radial-gradient(900px 520px at 20% 20%, rgba(255,255,255,.55), rgba(255,255,255,.16) 58%, rgba(255,255,255,.08)),
+        linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.06));
+      border: 1px solid rgba(20,20,22,.18);
+    }
+
+    .txt{
+      margin-top: 10px;
+      padding: 10px 10px 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.44);
+      border: 1px solid rgba(20,20,22,.10);
+      white-space:pre-wrap;
+      font-size: 14px;
+      line-height: 1.55;
+      color: rgba(20,20,22,.84);
+    }
+
+    .txt .w{
+      cursor:pointer;
+      border-bottom: 1px dotted rgba(20,20,22,.20);
+      padding-bottom: 1px;
+    }
+    .txt .w:hover{
+      background: rgba(140,90,160,.12);
+      border-bottom-color: rgba(20,20,22,.36);
+      border-radius: 6px;
+    }
+
+    .hint{
+      margin-top: 10px;
+      color: rgba(20,20,22,.66);
+      font-size: 12.5px;
+      line-height:1.35;
+      padding: 0 2px;
+    }
+
+    .finalGridNote{
+      margin-top:10px;
+      color:rgba(20,20,22,.70);
+      font-size:12.5px;
+      line-height:1.35;
+    }
+
+    footer{
+      padding: 18px 6px 0;
+      color: rgba(20,20,22,.58);
+      font-size: 12px;
+      line-height:1.35;
+    }
+
+    /* toast */
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(20,20,22,.88);
+      color: rgba(255,255,255,.92);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      box-shadow: 0 18px 70px rgba(0,0,0,.22);
+      opacity: 0;
+      pointer-events:none;
+      transition: opacity .18s ease;
+      z-index: 9999;
+      max-width: min(92vw, 720px);
+      text-align:center;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .toast.on{ opacity: 1; }
+
+    /* modal fallback */
+    .overlay{
+      position:fixed;
+      inset:0;
+      display:none;
+      z-index: 9998;
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      align-items:center;
+      justify-content:center;
+      padding: 16px;
+    }
+    .overlay.on{ display:flex; }
+    .modal{
+      width: min(620px, 96vw);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.78);
+      box-shadow: 0 26px 90px rgba(0,0,0,.28);
+      overflow:hidden;
+    }
+    .modal .mhead{
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(20,20,22,.12);
+      background: rgba(255,255,255,.65);
+    }
+    .modal .mbody{
+      padding: 12px 14px;
+    }
+    .modal pre{
+      margin:10px 0 0;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(20,20,22,.12);
+      border-radius: 14px;
+      padding: 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(20,20,22,.80);
+      white-space: pre-wrap;
+      line-height: 1.45;
+    }
+    .modal .mbtns{
+      display:flex;
+      gap:10px;
+      justify-content:flex-end;
+      padding: 0 14px 14px;
+    }
+
+    @media (max-width:720px){
+      .head{ align-items:flex-start; }
+      .mini{ justify-content:flex-start; }
+      .sub{ max-width: 100%; }
+      .lead{ font-size:14px; }
+    }
+  </style>
 </head>
+
 <body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <h1>MÓBILES</h1>
+        <div class="sub">Entrada — operar curadoria como máquina (semântica + imagem + fonografia) · assinatura: <b>suiornotsui</b></div>
+      </div>
 
-<div class="topbar">
-  <div class="left">
-    <div class="brand">MÓBILES</div>
-    <div class="subtitle">Entrada — operar curadoria como máquina (semântica + imagem + fonografia)</div>
-  </div>
-  <div class="right">
-    <div class="pill" id="pillState">campo: —</div>
-    <button class="btn" id="btnReset">Reset</button>
-  </div>
-</div>
+      <div class="lead" id="openingText"></div>
+    </header>
 
-<main>
-  <section class="flow">
-
-    <article class="card" id="cardM1">
+    <section class="card" id="m1">
       <div class="head">
         <div class="t">
           <b>Móbile 1 — Nascimento do campo</b>
@@ -143,17 +314,17 @@
         </div>
       </div>
       <div class="stage">
-        <canvas id="m1Canvas" width="980" height="520"></canvas>
-        <div class="text" id="m1Text"></div>
+        <canvas id="m1Canvas" width="1000" height="560"></canvas>
+        <div class="txt" id="m1Text"></div>
         <div class="hint">Aqui você decide “de onde nasce”: a máquina vai resistir/ceder conforme esse começo.</div>
       </div>
-    </article>
+    </section>
 
-    <article class="card" id="cardM2">
+    <section class="card" id="m2">
       <div class="head">
         <div class="t">
-          <b>Móbile 2 — Sintaxe (sujeito ↔ objeto)</b>
-          <small>2 fragmentos · inverter frente/fundo inverte sujeito/objeto; clicar no verbo abre fuga</small>
+          <b>Móbile 2 — Estrutura e posição</b>
+          <small>2 fragmentos · frente/fundo = sujeito/objeto; clicar no verbo abre fuga</small>
         </div>
         <div class="mini">
           <button id="m2Swap">Inverter</button>
@@ -161,16 +332,16 @@
         </div>
       </div>
       <div class="stage">
-        <canvas id="m2Canvas" width="980" height="520"></canvas>
-        <div class="text" id="m2Text"></div>
+        <canvas id="m2Canvas" width="1000" height="560"></canvas>
+        <div class="txt" id="m2Text"></div>
         <div class="hint">Duas posições fechadas. Uma fenda: agir no verbo para deslizar o sentido.</div>
       </div>
-    </article>
+    </section>
 
-    <article class="card" id="cardM3">
+    <section class="card" id="m3">
       <div class="head">
         <div class="t">
-          <b>Móbile 3 — Foco / intensificação</b>
+          <b>Móbile 3 — Formação do gesto (foco / estilo)</b>
           <small>7 fragmentos · clique em palavras e fragmentos para reforçar um traço predominante</small>
         </div>
         <div class="mini">
@@ -178,31 +349,30 @@
         </div>
       </div>
       <div class="stage">
-        <canvas id="m3Canvas" width="980" height="520"></canvas>
-        <div class="text" id="m3Text"></div>
+        <canvas id="m3Canvas" width="1000" height="560"></canvas>
+        <div class="txt" id="m3Text"></div>
         <div class="hint">O que você insiste em clicar vira estilo: o mundo começa a obedecer ao teu foco.</div>
       </div>
-    </article>
+    </section>
 
-    <article class="card" id="cardM4">
+    <section class="card" id="m4">
       <div class="head">
         <div class="t">
-          <b>Móbile 4 — Fonografia (plosivas / fricativas)</b>
-          <small>5 fragmentos · clique num regime: isso inclina som, cortes e continuidade</small>
+          <b>Móbile 4 — Corpo da linguagem (fonografia) + colapso</b>
+          <small>5 fragmentos · só as palavras são clicáveis: insistir num corpo sonoro inclina tudo até saturar</small>
         </div>
         <div class="mini">
           <button id="m4Share">Partilhar</button>
         </div>
       </div>
       <div class="stage">
-        <div class="chips" id="m4Chips"></div>
-        <canvas id="m4Canvas" width="980" height="520"></canvas>
-        <div class="text" id="m4Text"></div>
-        <div class="hint">Aqui a palavra vira corpo: seco/massa/arranho — e isso volta pro visual.</div>
+        <canvas id="m4Canvas" width="1000" height="560"></canvas>
+        <div class="txt" id="m4Text"></div>
+        <div class="hint">Agora a palavra vira corpo: seco/sonoro/arranhado — e isso volta pro visual. Excesso: colapso.</div>
       </div>
-    </article>
+    </section>
 
-    <article class="card final" id="cardFinal">
+    <section class="card" id="final">
       <div class="head">
         <div class="t">
           <b>Estado alcançado — tua exposição provisória</b>
@@ -210,265 +380,276 @@
         </div>
         <div class="mini">
           <button id="btnFinalize">Gerar a minha expo</button>
-          <button id="finalShare">Partilhar estado</button>
+          <button id="finalShare">Partilhar</button>
         </div>
       </div>
       <div class="stage">
-        <div>
-          <canvas id="finalCanvas" width="980" height="620"></canvas>
-          <div class="text" id="finalText"></div>
-          <div class="hint">Cessar aqui não é “fim”: é um recorte que deixa resto — e o resto chama reencenação.</div>
-        </div>
-        <div class="side">
-          <div class="kpi">
-            <div class="box"><b>Posição</b><span id="kFront">—</span></div>
-            <div class="box"><b>Densidade</b><span id="kDense">—</span></div>
-            <div class="box"><b>Continuidade</b><span id="kCont">—</span></div>
-            <div class="box"><b>Regime fonográfico</b><span id="kPh">—</span></div>
-          </div>
-          <div class="box">
-            <b>Assinatura</b>
-            <span>suiornotsui</span>
-          </div>
-        </div>
+        <canvas id="finalCanvas" width="1000" height="640"></canvas>
+        <div class="txt" id="finalText"></div>
+        <div class="finalGridNote" id="weeklyGate"></div>
+        <div class="hint">Cessar aqui não é “fim”: é um recorte que deixa resto — e o resto chama reencenação.</div>
       </div>
-    </article>
+    </section>
 
-  </section>
-</main>
+    <footer>
+      MÓBILES · entrada — dispositivo tensivo de emergência, espraiamento e circulação do improvável · NEGATIVO.mov
+    </footer>
+  </div>
 
-<footer>
-  MÓBILES · entrada — máquina curatorial-semântica (front-end) · suiornotsui
-</footer>
+  <div class="toast" id="toast"></div>
 
-<dialog id="shareDlg">
-  <div class="dlgHead">
-    <b id="shareTitle">Partilhar</b>
-    <div style="font-size:12px;color:var(--muted);margin-top:4px" id="shareNote"></div>
+  <div class="overlay" id="overlay">
+    <div class="modal">
+      <div class="mhead">
+        <b id="shareTitle">Partilhar</b>
+        <div style="margin-top:4px;color:var(--muted);font-size:12px" id="shareNote"></div>
+      </div>
+      <div class="mbody">
+        <canvas id="shareCanvas" width="1200" height="1200" style="width:100%;height:auto;border-radius:14px;border:1px solid rgba(20,20,22,.14)"></canvas>
+        <pre id="shareText"></pre>
+      </div>
+      <div class="mbtns">
+        <button id="copyText">Copiar texto</button>
+        <button id="downloadImg">Baixar imagem</button>
+        <button id="nativeShare">Partilhar</button>
+        <button id="closeDlg">Fechar</button>
+      </div>
+    </div>
   </div>
-  <div class="dlgBody">
-    <canvas id="shareCanvas" width="1200" height="1200" style="width:100%;height:auto;border-radius:14px;border:1px solid var(--line);background:#fff"></canvas>
-    <div style="height:10px"></div>
-    <pre id="shareText"></pre>
-  </div>
-  <div class="dlgBtns">
-    <button class="btn" id="copyText">Copiar texto</button>
-    <button class="btn" id="downloadImg">Baixar imagem</button>
-    <button class="btn" id="nativeShare">Partilhar (nativo)</button>
-    <button class="btn" id="closeDlg">Fechar</button>
-  </div>
-</dialog>
 
 <script>
-/* =======================================================
-   0) Base URL robusta (GitHub Pages)
-======================================================= */
-function getBaseMobilesURL(){
-  const u = new URL(window.location.href);
-  const idx = u.pathname.indexOf("/mobiles/");
-  if(idx >= 0){
-    const basePath = u.pathname.slice(0, idx + "/mobiles/".length);
-    return new URL(basePath, u.origin).toString();
-  }
-  return new URL("./", window.location.href).toString();
-}
-const BASE_MOBILES = getBaseMobilesURL();
+/* ======================================================
+   0) PATHS (CORRIGIDO)
+   - Você está em: /mobiles/entrada/
+   - sui.json está em: /mobiles/sui.json
+   - assets/sui/slot_053.jpg está em: /mobiles/assets/sui/slot_053.jpg
+====================================================== */
+const BASE_MOBILES = "https://negativo-mov.github.io/negativo.mov/mobiles/";
+const SUI_JSON_URL = BASE_MOBILES + "sui.json"; // <- CERTO
 
-/* =======================================================
-   1) Utilitários
-======================================================= */
-function clamp(x,min,max){ return Math.max(min, Math.min(max, x)); }
-function lerp(a,b,t){ return a + (b-a)*t; }
-function rnd(a,b){ return a + Math.random()*(b-a); }
+/* ======================================================
+   1) util
+====================================================== */
+function clamp(x,min,max){ return Math.max(min, Math.min(max,x)); }
+function lerp(a,b,t){ return a+(b-a)*t; }
+function rnd(a=1,b=null){ if(b===null){ b=a; a=0; } return a + Math.random()*(b-a); }
 function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-function nowISO(){ return new Date().toISOString().slice(0,19).replace("T"," "); }
-function signLabel(v, neg, pos){ return v< -0.2 ? neg : (v>0.2?pos:"entre"); }
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function nowISO(){ const d=new Date(); return d.toISOString().replace("T"," ").slice(0,19); }
 
-/* =======================================================
-   2) Léxico COMPLETO (70 operadores × 3 realizações)
-   - variante: "surda" | "sonora" | "fricativa"
-======================================================= */
+function toast(msg){
+  const el=document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("on");
+  clearTimeout(toast._t);
+  toast._t=setTimeout(()=>el.classList.remove("on"), 2400);
+}
+
+/* segurança: se algo quebrar, você vê */
+window.addEventListener("error", (e)=>{
+  toast("Erro no script: " + (e?.message || "ver consola"));
+});
+
+/* ======================================================
+   2) TEXTOS FIXOS (APROVADOS)
+====================================================== */
+const TEXT_OPENING =
+`Operas aqui a tua própria curadoria.
+
+A artista é suiornotsui.
+Mas as obras que vês nunca são todas.
+
+O que aparece depende do modo como entras,
+de onde começas,
+do gesto que insistes em repetir,
+do que escolhes tocar
+e do que deixas passar.
+
+Por trás do que vês, há sempre mais.
+Algumas imagens só surgem sob certas tensões.
+Outras resistem, permanecem ausentes,
+como se aguardassem um olhar que ainda não chegou.
+
+Esse resto —
+aquilo que nunca aparece —
+sustenta o desejo de continuar.`;
+
+const INTRO_M1 =
+`Tudo começa aqui.
+Três formas pendem no campo,
+leves, ainda indecisas.
+Cada tensão desloca o lugar de onde partes.
+Não é escolha de imagens.
+É escolha de posição.
+E o modo como começas
+inclina todo o percurso.`;
+
+const INTRO_M2 =
+`Agora há relação.
+Algo ocupa a frente.
+Algo permanece no fundo.
+Trocar de lugar muda o sentido,
+mas não liberta da forma.
+Há posições que se repetem.
+Só o gesto —
+o que fazes —
+abre outra possibilidade.`;
+
+const INTRO_M3 =
+`O campo começa a responder ao teu gesto.
+Onde insistes, algo cresce.
+O que tocas torna-se mais visível.
+O que ignoras afasta-se.
+Sem perceber, vais formando um modo de ver.
+Um estilo.
+Uma inclinação do mundo.`;
+
+const INTRO_M4 =
+`Agora já não operas imagens.
+Operas a própria linguagem.
+Cada palavra carrega um corpo.
+Um peso.
+Um som.
+Uma força.
+Insistir numa forma faz o campo inteiro ceder.
+Até que, em excesso,
+algo colapsa
+e o regime muda.`;
+
+const TEXT_FINAL_CLOSING =
+`O que construíste aqui não é um resultado neutro.
+Revela algo do teu modo de ver,
+do teu modo de escolher,
+do teu modo de insistir.
+
+Esta é a tua curadoria possível —
+não a melhor,
+não a definitiva,
+mas a que emergiu das tuas decisões.
+
+Outras teriam produzido outras constelações.
+E ainda assim,
+algo ficou sempre de fora.
+
+Esse resto —
+o que não conseguiste alcançar —
+é o que mantém o desejo vivo.
+
+Partilha o teu percurso.
+Não como resposta,
+mas como pergunta aberta aos outros.`;
+
+/* ======================================================
+   3) LÉXICO (EXATAMENTE o teu) — 70 operadores × 3
+====================================================== */
 const LEX = {
-  nouns: [
-    {k:"vestigio", surda:"traço", sonora:"marca", fricativa:"sombra"},
-    {k:"sopro", surda:"pingo", sonora:"bafo", fricativa:"suspiro"},
-    {k:"dobra", surda:"prega", sonora:"curva", fricativa:"flexão"},
-    {k:"canto", surda:"quina", sonora:"beira", fricativa:"franja"},
-    {k:"margem", surda:"limite", sonora:"borda", fricativa:"fronteira"},
-    {k:"poeira", surda:"pó", sonora:"bruma", fricativa:"cinza"},
-    {k:"silencio", surda:"pausa", sonora:"calma", fricativa:"sussurro"},
-    {k:"rastro", surda:"pegada", sonora:"vesta", fricativa:"resíduo"},
-    {k:"fragmento", surda:"cortezinho", sonora:"bordado", fricativa:"desfiado"},
-    {k:"detalhe", surda:"ponto", sonora:"miolo", fricativa:"nuança"},
-    {k:"lembranca", surda:"nota", sonora:"memória", fricativa:"recordação"},
-    {k:"demora", surda:"pausa", sonora:"espera", fricativa:"suspensão"},
-    {k:"intervalo", surda:"corte", sonora:"entre", fricativa:"fresta"},
-    {k:"eco", surda:"toque", sonora:"resposta", fricativa:"ressonância"},
-    {k:"resto", surda:"ruga", sonora:"sobra", fricativa:"resíduo"},
-    {k:"plano", surda:"linha", sonora:"base", fricativa:"superfície"},
-    {k:"camada", surda:"capa", sonora:"nível", fricativa:"espessura"},
-    {k:"textura", surda:"trama", sonora:"tecido", fricativa:"fibra"},
-    {k:"superficie", surda:"pele", sonora:"face", fricativa:"película"},
-    {k:"escala", surda:"passo", sonora:"medida", fricativa:"proporção"},
-    {k:"ritmo", surda:"pulso", sonora:"cadência", fricativa:"fluência"},
-    {k:"materia", surda:"corpo", sonora:"substância", fricativa:"massa"},
-    {k:"presenca", surda:"toque", sonora:"vulto", fricativa:"sombra"},
-    {k:"tensao", surda:"nó", sonora:"peso", fricativa:"pressão"},
-    {k:"campo", surda:"plano", sonora:"território", fricativa:"ambiente"},
-    {k:"emergencia", surda:"salto", sonora:"aparição", fricativa:"insurgência"},
-    {k:"configuracao", surda:"forma", sonora:"estrutura", fricativa:"composição"},
-    {k:"cessacao", surda:"corte", sonora:"encerramento", fricativa:"silenciamento"},
-  ],
-  verbs: [
-    {k:"aproximar", surda:"chegar", sonora:"beirar", fricativa:"esfumar"},
-    {k:"reparar", surda:"notar", sonora:"observar", fricativa:"esmiuçar"},
-    {k:"tocar", surda:"tatear", sonora:"roçar", fricativa:"aflorar"},
-    {k:"escutar", surda:"ouvir", sonora:"acolher", fricativa:"sintonizar"},
-    {k:"demorar", surda:"parar", sonora:"permanecer", fricativa:"alongar-se"},
-    {k:"pousar", surda:"cair", sonora:"assentar", fricativa:"deslizar"},
-    {k:"acompanhar", surda:"seguir", sonora:"amparar", fricativa:"entrelaçar"},
-    {k:"cuidar", surda:"zelar", sonora:"nutrir", fricativa:"suavizar"},
-    {k:"recortar", surda:"cortar", sonora:"delimitar", fricativa:"fissurar"},
-    {k:"deslocar", surda:"mover", sonora:"transferir", fricativa:"deslizar"},
-    {k:"sustentar", surda:"segurar", sonora:"manter", fricativa:"suspender"},
-    {k:"distribuir", surda:"partir", sonora:"organizar", fricativa:"espalhar"},
-    {k:"sobrepor", surda:"cobrir", sonora:"acumular", fricativa:"sobrefluir"},
-    {k:"atravessar", surda:"passar", sonora:"cruzar", fricativa:"permeiar"},
-    {k:"insinuar", surda:"sugerir", sonora:"indicar", fricativa:"sussurrar"},
-    {k:"insistir", surda:"bater", sonora:"persistir", fricativa:"ressoar"},
-    {k:"interromper", surda:"cortar", sonora:"cessar", fricativa:"esvair-se"},
-    {k:"fixar", surda:"marcar", sonora:"estabelecer", fricativa:"sedimentar"},
-    {k:"suspender", surda:"parar", sonora:"reter", fricativa:"flutuar"},
-    {k:"reter", surda:"prender", sonora:"guardar", fricativa:"conservar"},
-    {k:"abandonar", surda:"largar", sonora:"deixar", fricativa:"dissolver"},
-    {k:"transformar", surda:"romper", sonora:"converter", fricativa:"transfigurar"},
-  ],
-  adjs: [
-    {k:"leve", surda:"claro", sonora:"brando", fricativa:"suave"},
-    {k:"minimo", surda:"curto", sonora:"pequeno", fricativa:"sutil"},
-    {k:"fragil", surda:"ténue", sonora:"delicado", fricativa:"sensível"},
-    {k:"tenue", surda:"fino", sonora:"delgado", fricativa:"esfumado"},
-    {k:"quase", surda:"breve", sonora:"próximo", fricativa:"difuso"},
-    {k:"opaco", surda:"denso", sonora:"turvo", fricativa:"fosco"},
-    {k:"poroso", surda:"aberto", sonora:"vazado", fricativa:"permeável"},
-    {k:"irregular", surda:"torto", sonora:"oscilante", fricativa:"assimétrico"},
-    {k:"difuso", surda:"solto", sonora:"amplo", fricativa:"disperso"},
-    {k:"latente", surda:"oculto", sonora:"presente", fricativa:"subjacente"},
-    {k:"instavel", surda:"quebrado", sonora:"oscilante", fricativa:"flutuante"},
-    {k:"provisorio", surda:"breve", sonora:"mutável", fricativa:"transitório"},
-  ],
-  advs: [
-    {k:"ainda", surda:"já", sonora:"agora", fricativa:"sempre"},
-    {k:"quase", surda:"logo", sonora:"perto", fricativa:"talvez"},
-    {k:"lentamente", surda:"aos poucos", sonora:"com calma", fricativa:"suavemente"},
-    {k:"por_vezes", surda:"às vezes", sonora:"frequentemente", fricativa:"ocasionalmente"},
-    {k:"sempre", surda:"toda vez", sonora:"continuamente", fricativa:"infinitamente"},
-    {k:"raramente", surda:"quase nunca", sonora:"poucas vezes", fricativa:"esporadicamente"},
-    {k:"talvez", surda:"quem sabe", sonora:"possivelmente", fricativa:"eventualmente"},
-    {k:"agora", surda:"já", sonora:"neste momento", fricativa:"presentemente"},
-  ]
+  /* SUBSTANTIVOS (1–28) */
+  vestigio:{ surda:"traço", sonora:"marca", fricativa:"sombra" },
+  sopro:{ surda:"pingo", sonora:"bafo", fricativa:"suspiro" },
+  dobra:{ surda:"prega", sonora:"curva", fricativa:"flexão" },
+  canto:{ surda:"quina", sonora:"beira", fricativa:"franja" },
+  margem:{ surda:"limite", sonora:"borda", fricativa:"fronteira" },
+  poeira:{ surda:"pó", sonora:"bruma", fricativa:"cinza" },
+  silencio:{ surda:"pausa", sonora:"calma", fricativa:"sussurro" },
+  rastro:{ surda:"pegada", sonora:"vesta", fricativa:"resíduo" },
+  fragmento:{ surda:"cortezinho", sonora:"bordado", fricativa:"desfiado" },
+  detalhe:{ surda:"ponto", sonora:"miolo", fricativa:"nuança" },
+  lembranca:{ surda:"nota", sonora:"memória", fricativa:"recordação" },
+  demora:{ surda:"pausa", sonora:"espera", fricativa:"suspensão" },
+  intervalo:{ surda:"corte", sonora:"entre", fricativa:"fresta" },
+  eco:{ surda:"toque", sonora:"resposta", fricativa:"ressonância" },
+  resto:{ surda:"ruga", sonora:"sobra", fricativa:"resíduo" },
+  plano:{ surda:"linha", sonora:"base", fricativa:"superfície" },
+  camada:{ surda:"capa", sonora:"nível", fricativa:"espessura" },
+  textura:{ surda:"trama", sonora:"tecido", fricativa:"fibra" },
+  superficie:{ surda:"pele", sonora:"face", fricativa:"película" },
+  escala:{ surda:"passo", sonora:"medida", fricativa:"proporção" },
+  ritmo:{ surda:"pulso", sonora:"cadência", fricativa:"fluência" },
+  materia:{ surda:"corpo", sonora:"substância", fricativa:"massa" },
+  presenca:{ surda:"toque", sonora:"vulto", fricativa:"sombra" },
+  tensao:{ surda:"nó", sonora:"peso", fricativa:"pressão" },
+  campo:{ surda:"plano", sonora:"território", fricativa:"ambiente" },
+  emergencia:{ surda:"salto", sonora:"aparição", fricativa:"insurgência" },
+  configuracao:{ surda:"forma", sonora:"estrutura", fricativa:"composição" },
+  cessacao:{ surda:"corte", sonora:"encerramento", fricativa:"silenciamento" },
+
+  /* VERBOS (29–50) */
+  aproximar:{ surda:"chegar", sonora:"beirar", fricativa:"esfumar" },
+  reparar:{ surda:"notar", sonora:"observar", fricativa:"esmiuçar" },
+  tocar:{ surda:"tatear", sonora:"roçar", fricativa:"aflorar" },
+  escutar:{ surda:"ouvir", sonora:"acolher", fricativa:"sintonizar" },
+  demorar_v:{ surda:"parar", sonora:"permanecer", fricativa:"alongar-se" },
+  pousar:{ surda:"cair", sonora:"assentar", fricativa:"deslizar" },
+  acompanhar:{ surda:"seguir", sonora:"amparar", fricativa:"entrelaçar" },
+  cuidar:{ surda:"zelar", sonora:"nutrir", fricativa:"suavizar" },
+
+  recortar:{ surda:"cortar", sonora:"delimitar", fricativa:"fissurar" },
+  deslocar:{ surda:"mover", sonora:"transferir", fricativa:"deslizar" },
+  sustentar:{ surda:"segurar", sonora:"manter", fricativa:"suspender" },
+  distribuir:{ surda:"partir", sonora:"organizar", fricativa:"espalhar" },
+  sobrepor:{ surda:"cobrir", sonora:"acumular", fricativa:"sobrefluir" },
+  atravessar:{ surda:"passar", sonora:"cruzar", fricativa:"permeiar" },
+  insinuar:{ surda:"sugerir", sonora:"indicar", fricativa:"sussurrar" },
+
+  insistir:{ surda:"bater", sonora:"persistir", fricativa:"ressoar" },
+  interromper:{ surda:"cortar", sonora:"cessar", fricativa:"esvair-se" },
+  fixar:{ surda:"marcar", sonora:"estabelecer", fricativa:"sedimentar" },
+  suspender:{ surda:"parar", sonora:"reter", fricativa:"flutuar" },
+  reter:{ surda:"prender", sonora:"guardar", fricativa:"conservar" },
+  abandonar:{ surda:"largar", sonora:"deixar", fricativa:"dissolver" },
+  transformar:{ surda:"romper", sonora:"converter", fricativa:"transfigurar" },
+
+  /* ADJETIVOS (51–62) */
+  leve:{ surda:"claro", sonora:"brando", fricativa:"suave" },
+  minimo:{ surda:"curto", sonora:"pequeno", fricativa:"sutil" },
+  fragil:{ surda:"ténue", sonora:"delicado", fricativa:"sensível" },
+  tenue:{ surda:"fino", sonora:"delgado", fricativa:"esfumado" },
+  quase_adj:{ surda:"breve", sonora:"próximo", fricativa:"difuso" },
+
+  opaco:{ surda:"denso", sonora:"turvo", fricativa:"fosco" },
+  poroso:{ surda:"aberto", sonora:"vazado", fricativa:"permeável" },
+  irregular:{ surda:"torto", sonora:"instável", fricativa:"assimétrico" },
+  difuso:{ surda:"solto", sonora:"amplo", fricativa:"disperso" },
+
+  latente:{ surda:"oculto", sonora:"presente", fricativa:"subjacente" },
+  instavel:{ surda:"quebrado", sonora:"oscilante", fricativa:"flutuante" },
+  provisorio:{ surda:"breve", sonora:"mutável", fricativa:"transitório" },
+
+  /* ADVÉRBIOS (63–70) */
+  ainda:{ surda:"já", sonora:"agora", fricativa:"sempre" },
+  quase_adv:{ surda:"logo", sonora:"perto", fricativa:"talvez" },
+  lentamente:{ surda:"aos poucos", sonora:"com calma", fricativa:"suavemente" },
+  por_vezes:{ surda:"às vezes", sonora:"frequentemente", fricativa:"ocasionalmente" },
+  sempre:{ surda:"toda vez", sonora:"continuamente", fricativa:"infinitamente" },
+  raramente:{ surda:"quase nunca", sonora:"poucas vezes", fricativa:"esporadicamente" },
+  talvez:{ surda:"quem sabe", sonora:"possivelmente", fricativa:"eventualmente" },
+  agora:{ surda:"já", sonora:"neste momento", fricativa:"presentemente" },
 };
 
-function realize(entry, variant){
-  return entry[variant] || entry.sonora || entry.surda || entry.fricativa;
-}
+const OPS = [
+  /* substantivos */
+  ["vestigio","N"],["sopro","N"],["dobra","N"],["canto","N"],["margem","N"],["poeira","N"],["silencio","N"],["rastro","N"],["fragmento","N"],["detalhe","N"],
+  ["lembranca","N"],["demora","N"],["intervalo","N"],["eco","N"],["resto","N"],
+  ["plano","N"],["camada","N"],["textura","N"],["superficie","N"],["escala","N"],["ritmo","N"],["materia","N"],
+  ["presenca","N"],["tensao","N"],["campo","N"],["emergencia","N"],["configuracao","N"],["cessacao","N"],
 
-/* =======================================================
-   3) Fonografia (sem áudio) → variante lexical
-======================================================= */
-const PHONO = { mode:"neutro", vector:{dry:0, voiced:0, open:0} };
-const PHONO_PRESETS = [
-  {key:"plosiva_surda",  label:"p/t/k (seco)",    vec:{dry:+0.8, voiced:-0.6, open:0}},
-  {key:"plosiva_sonora", label:"b/d/g (massa)",   vec:{dry:+0.4, voiced:+0.8, open:0}},
-  {key:"fricativa_surda",label:"f/s/x (arranho)", vec:{dry:+0.2, voiced:-0.4, open:+0.2}},
-  {key:"fricativa_sonora",label:"v/z/j (desgaste)",vec:{dry:-0.1, voiced:+0.3, open:+0.3}},
-  {key:"aberto",         label:"vogais abertas",  vec:{dry:-0.2, voiced:+0.1, open:+0.9}},
-  {key:"fechado",        label:"vogais fechadas", vec:{dry:+0.2, voiced:+0.1, open:-0.9}},
+  /* verbos */
+  ["aproximar","V"],["reparar","V"],["tocar","V"],["escutar","V"],["demorar_v","V"],["pousar","V"],["acompanhar","V"],["cuidar","V"],
+  ["recortar","V"],["deslocar","V"],["sustentar","V"],["distribuir","V"],["sobrepor","V"],["atravessar","V"],["insinuar","V"],
+  ["insistir","V"],["interromper","V"],["fixar","V"],["suspender","V"],["reter","V"],["abandonar","V"],["transformar","V"],
+
+  /* adjetivos */
+  ["leve","ADJ"],["minimo","ADJ"],["fragil","ADJ"],["tenue","ADJ"],["quase_adj","ADJ"],
+  ["opaco","ADJ"],["poroso","ADJ"],["irregular","ADJ"],["difuso","ADJ"],
+  ["latente","ADJ"],["instavel","ADJ"],["provisorio","ADJ"],
+
+  /* advérbios */
+  ["ainda","ADV"],["quase_adv","ADV"],["lentamente","ADV"],["por_vezes","ADV"],["sempre","ADV"],["raramente","ADV"],["talvez","ADV"],["agora","ADV"],
 ];
 
-function currentVariant(){
-  // regra simples e sensível:
-  // - dry alto puxa "surda" (corte seco)
-  // - voiced alto puxa "sonora" (massa)
-  // - open alto puxa "fricativa" (passagem/aresta)
-  const d = PHONO.vector.dry, v = PHONO.vector.voiced, o = PHONO.vector.open;
-  const ad = Math.abs(d), av = Math.abs(v), ao = Math.abs(o);
-  if(ad >= av && ad >= ao) return "surda";
-  if(av >= ad && av >= ao) return "sonora";
-  return "fricativa";
-}
-
-/* =======================================================
-   4) Estado (campo) + espraiamento
-======================================================= */
-const Global = {
-  front:0, dense:0, cont:0,
-  pressure:0,
-};
-const Mobiles = {
-  m1:{local:{front:0,dense:0,cont:0}, clicks:0, config:null},
-  m2:{local:{front:0,dense:0,cont:0}, clicks:0, config:null, flip:false},
-  m3:{local:{front:0,dense:0,cont:0}, clicks:0, config:null},
-  m4:{local:{front:0,dense:0,cont:0}, clicks:0, config:null},
-  final:{local:{front:0,dense:0,cont:0}, clicks:0, config:null},
-};
-const SPREAD = {
-  m1:{m1:1.0,m2:0.62,m3:0.36,m4:0.18},
-  m2:{m2:1.0,m1:0.50,m3:0.40,m4:0.20},
-  m3:{m3:1.0,m2:0.55,m4:0.40,m1:0.20},
-  m4:{m4:1.0,m3:0.62,m2:0.30,m1:0.18},
-};
-
-function resetAll(){
-  Global.front=0; Global.dense=0; Global.cont=0; Global.pressure=0;
-  PHONO.mode="neutro"; PHONO.vector={dry:0, voiced:0, open:0};
-  for(const k of ["m1","m2","m3","m4","final"]){
-    Mobiles[k].local={front:0,dense:0,cont:0};
-    Mobiles[k].clicks=0;
-    Mobiles[k].config=null;
-  }
-  Mobiles.m2.flip=false;
-  updatePill();
-}
-
-function applyDelta(fromKey, d){
-  const spread = SPREAD[fromKey] || {[fromKey]:1.0};
-  for(const k in spread){
-    const s = spread[k];
-    Mobiles[k].local.front = clamp(Mobiles[k].local.front + (d.front||0)*s, -1, 1);
-    Mobiles[k].local.dense = clamp(Mobiles[k].local.dense + (d.dense||0)*s, -1, 1);
-    Mobiles[k].local.cont  = clamp(Mobiles[k].local.cont  + (d.cont ||0)*s, -1, 1);
-  }
-  Global.front = clamp(Global.front + (d.front||0)*0.12, -1, 1);
-  Global.dense = clamp(Global.dense + (d.dense||0)*0.12, -1, 1);
-  Global.cont  = clamp(Global.cont  + (d.cont ||0)*0.12, -1, 1);
-  Global.pressure = clamp(Global.pressure + (d.pressure||0)*0.08, 0, 3);
-  updatePill();
-}
-
-function combinedState(mKey){
-  const L = Mobiles[mKey].local;
-  return {
-    front: clamp(L.front + Global.front*0.25, -1, 1),
-    dense: clamp(L.dense + Global.dense*0.25, -1, 1),
-    cont:  clamp(L.cont  + Global.cont *0.25, -1, 1),
-  };
-}
-
-function updatePill(){
-  const s = combinedState("m1");
-  const pill = document.getElementById("pillState");
-  pill.textContent = `campo: ${signLabel(s.front,"fundo","frente")} · ${signLabel(s.dense,"rarefeito","denso")} · ${signLabel(s.cont,"corte","contínuo")}`;
-}
-
-/* =======================================================
-   5) Campo visual (slots 120) + Sui override (sui.json)
-   - mantém slot 53 como assets/sui/slot_053.jpg (via JSON)
-======================================================= */
-let SUI_MAP = null;
-
-function slotId(i){ return `slot_${String(i).padStart(3,"0")}`; }
-
+/* ======================================================
+   4) Gramática visual (12 famílias) — “langue” do campo
+====================================================== */
 const FAMS = [
   {id:"F1", name:"continuidade linear", axes:{front:-0.2,dense:-0.1,cont:+0.8}},
   {id:"F2", name:"corte vertical",      axes:{front:+0.3,dense:+0.2,cont:-0.8}},
@@ -484,7 +665,10 @@ const FAMS = [
   {id:"F12",name:"massa",               axes:{front:-0.1,dense:+0.8,cont:-0.4}},
 ];
 
+function slotId(i){ return "slot_" + String(i).padStart(3,"0"); }
+
 const FIELD = { slots:[] };
+let SUI_MAP = null;
 
 function buildField(){
   FIELD.slots = [];
@@ -497,21 +681,19 @@ function buildField(){
       dense: clamp(fam.axes.dense + 0.22*t + rnd(-0.03,0.03), -1, 1),
       cont:  clamp(fam.axes.cont  - 0.20*t + rnd(-0.03,0.03), -1, 1),
     };
-    FIELD.slots.push({ id: slotId(i), idx:i, fam:fam.id, famName:fam.name, v, axes, sui:null });
+    FIELD.slots.push({ id:slotId(i), idx:i, fam:fam.id, famName:fam.name, v, axes, sui:null });
   }
 }
 
 async function tryLoadSui(){
   try{
-    const url = new URL("sui.json", BASE_MOBILES + "entrada/");
-    // se tua entrada estiver em /mobiles/entrada/, isso bate certo.
-    const res = await fetch(url.toString() + "?cache=" + Date.now());
-    if(!res.ok) throw new Error("no sui.json");
-    const data = await res.json();
+    const res = await fetch(SUI_JSON_URL + "?cache=" + Date.now());
+    if(!res.ok) throw new Error("sui.json não carregou");
+    const data = await res.json(); // ex: { "53": "assets/sui/slot_053.jpg" }
     SUI_MAP = data;
 
     for(const s of FIELD.slots){
-      const key = String(s.idx); // "53"
+      const key = String(s.idx);
       if(SUI_MAP && SUI_MAP[key]){
         const rel = SUI_MAP[key]; // "assets/sui/slot_053.jpg"
         s.sui = { path: (BASE_MOBILES + rel.replace(/^\.?\/*/, "")) };
@@ -522,746 +704,1185 @@ async function tryLoadSui(){
   }
 }
 
-function slotScore(slot, state){
+/* ======================================================
+   5) Estado global (tensivo + fonográfico)
+====================================================== */
+const G = {
+  front: 0.0,   // -1 fundo / +1 frente
+  dense: 0.0,   // -1 rarefeito / +1 denso
+  cont:  0.0,   // -1 corte / +1 continuidade
+  ph: { dry:0, voiced:0, open:0 }, // surdas / sonoras / fricativas
+  pressure: 0.0,
+  birthMode: 0,  // 0/1/2
+  collapse: 0,   // saturação em M4
+};
+
+const Mob = {
+  m2:{ flip:false, verbBias:0 },
+  m3:{ focus:{front:0,dense:0,cont:0}, clicks:0 },
+  m4:{ clicks:0 },
+  final:{ ready:false, cfg:null }
+};
+
+function applyDelta(src, d){
+  G.front = clamp(G.front + (d.front||0), -1, 1);
+  G.dense = clamp(G.dense + (d.dense||0), -1, 1);
+  G.cont  = clamp(G.cont  + (d.cont ||0), -1, 1);
+  if(d.ph){
+    G.ph.dry   = clamp(G.ph.dry   + (d.ph.dry||0),   -1, 1);
+    G.ph.voiced= clamp(G.ph.voiced+ (d.ph.voiced||0),-1, 1);
+    G.ph.open  = clamp(G.ph.open  + (d.ph.open||0),  -1, 1);
+  }
+  G.pressure = clamp(G.pressure + (d.pressure||0), 0, 1.25);
+}
+
+/* ======================================================
+   6) seleção de slots (com Sui “quase sempre”, mas não sempre)
+   - regra: tenta garantir 1 Sui quando existir, com prob. alta
+====================================================== */
+function slotScore(slot){
   const dx =
-    Math.abs(slot.axes.front - state.front) * 0.9 +
-    Math.abs(slot.axes.dense - state.dense) * 0.7 +
-    Math.abs(slot.axes.cont  - state.cont ) * 1.0;
+    Math.abs(slot.axes.front - G.front) * 0.9 +
+    Math.abs(slot.axes.dense - G.dense) * 0.7 +
+    Math.abs(slot.axes.cont  - G.cont ) * 1.0;
 
   let score = -(dx) + rnd(-0.05,0.05);
 
-  // tendência para Sui aparecer mais (mas não sempre)
-  if(slot.sui) score += 1.80;
+  // favorecer Sui (slot 53), mas não cravar 100%
+  if(slot.sui) score += 1.90;
+
+  // leve acento por “pressão”
+  score += (G.pressure-0.2) * 0.15;
 
   return score;
 }
 
-function sampleSlots(n, state){
+function sampleSlots(n){
   const pool = FIELD.slots.slice();
-  pool.sort((a,b)=> slotScore(b,state) - slotScore(a,state));
-  const K = Math.min(36, pool.length);
-  const top = pool.slice(0,K);
-  // shuffle leve
-  for(let i=top.length-1;i>0;i--){
-    const j = Math.floor(Math.random()*(i+1));
-    [top[i],top[j]] = [top[j],top[i]];
-  }
-  const picked = top.slice(0,n);
+  pool.sort((a,b)=> slotScore(b)-slotScore(a));
+  const top = pool.slice(0, Math.min(42, pool.length));
 
-  const hasAnySui = FIELD.slots.some(s=>s.sui);
-  const hasSuiInPicked = picked.some(s=>s.sui);
+  // embaralhamento leve
+  shuffle(top);
 
-  // garantia suave: 90% de puxar 1 Sui se nenhum veio
-  if(hasAnySui && !hasSuiInPicked && Math.random() < 0.90){
-    const suiCandidates = pool.filter(s=>s.sui).slice(0, 12);
-    if(suiCandidates.length){
-      picked[picked.length-1] = pick(suiCandidates);
+  let chosen = top.slice(0, n);
+
+  // garantir 1 Sui (quando existe) com prob ~0.9
+  const suiSlot = FIELD.slots.find(s=>s.sui);
+  if(suiSlot){
+    const hasSui = chosen.some(s=>s.sui);
+    if(!hasSui && Math.random() < 0.90){
+      chosen[0] = suiSlot;
     }
   }
-  return picked;
+  return chosen;
 }
 
-/* =======================================================
-   6) Desenho: fragmentos NÃO-Sui com gramática (12 famílias)
-======================================================= */
-function clearCanvas(c){
-  const ctx = c.getContext("2d");
-  ctx.clearRect(0,0,c.width,c.height);
-  ctx.fillStyle = "rgba(255,255,255,0.35)";
-  ctx.fillRect(0,0,c.width,c.height);
-  ctx.fillStyle="rgba(0,0,0,0.05)";
-  for(let i=0;i<240;i++) ctx.fillRect(rnd(0,c.width), rnd(0,c.height), 1, 1);
+/* ======================================================
+   7) desenho dos fragmentos
+   - “langue” das 12 famílias (procedural)
+   - contornos fortes (bem demarcados)
+====================================================== */
+function palBase(){
+  // mais “horror-pastel”: pequenas variações por estado
+  const bru = `rgba(140,90,160,${lerp(.10,.28, (G.dense+1)/2).toFixed(2)})`;
+  const mol = `rgba(80,150,115,${lerp(.10,.26, (G.cont+1)/2).toFixed(2)})`;
+  const acd = `rgba(165,185,90,${lerp(.06,.22, (G.pressure)).toFixed(2)})`;
+  return {bru,mol,acd};
 }
 
-function line(ctx,x1,y1,x2,y2,col,w){
-  ctx.strokeStyle=col; ctx.lineWidth=w; ctx.beginPath();
-  ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
-}
-
-function drawFamily(ctx, fam, v, x,y,w,h){
-  const ink="rgba(0,0,0,0.22)";
-  const cold="rgba(35,55,85,0.18)";
-  const k = 1 + Math.floor(v/2);
-
+function drawScene(ctx, key, W, H){
+  const {bru,mol,acd} = palBase();
   ctx.save();
-  ctx.translate(x,y);
+  ctx.clearRect(0,0,W,H);
 
-  if(fam==="F1"){
-    for(let i=0;i<2+k;i++){
-      const yy = (i+1)*(h/(3+k)) + rnd(-2,2);
-      line(ctx, 10,yy, w-10,yy, cold, 1.2);
-    }
-  } else if(fam==="F2"){
-    for(let i=0;i<2+k;i++){
-      const xx = (i+1)*(w/(3+k)) + rnd(-2,2);
-      line(ctx, xx,10, xx,h-10, ink, 1.5);
-    }
-  } else if(fam==="F3"){
-    for(let i=0;i<3+k;i++){
-      const x1 = rnd(10,w-10), y1=rnd(10,h-10);
-      line(ctx, x1,y1, x1+rnd(-60,60), y1+rnd(-60,60), cold, 1.2);
-    }
-  } else if(fam==="F4"){
-    ctx.fillStyle="rgba(0,0,0,0.16)";
-    const dots = 70 + v*12;
-    for(let i=0;i<dots;i++) ctx.fillRect(rnd(6,w-6), rnd(6,h-6), 1, 1);
-  } else if(fam==="F5"){
-    ctx.strokeStyle="rgba(0,0,0,0.18)";
-    ctx.lineWidth=1.2;
-    const n = 2 + Math.floor(v/4);
-    for(let i=0;i<n;i++){
-      const rw = w*(0.34 + i*0.13);
-      const rh = h*(0.34 + i*0.11);
-      ctx.strokeRect((w-rw)/2 + rnd(-2.5,2.5), (h-rh)/2 + rnd(-2.5,2.5), rw, rh);
-    }
-  } else if(fam==="F6"){
-    const n = 2 + Math.floor(v/3);
-    for(let i=0;i<n;i++){
-      const rw = w*(0.34 + rnd(0,0.28));
-      const rh = h*(0.34 + rnd(0,0.28));
-      ctx.fillStyle="rgba(0,0,0,"+(0.18+rnd(0,0.18))+")";
-      ctx.fillRect(rnd(0,w-rw), rnd(0,h-rh), rw, rh);
-    }
-  } else if(fam==="F7"){
-    for(let i=0;i<k*3;i++){
-      const yy = (i*(h/(k*3))) + rnd(-1,1);
-      line(ctx, 8,yy, w-8,yy, cold, 1.0);
-    }
-  } else if(fam==="F8"){
-    ctx.fillStyle="rgba(0,0,0,0.08)";
-    const rw = w*(0.48 + rnd(-0.1,0.1));
-    const rh = h*(0.30 + rnd(-0.08,0.08));
-    ctx.fillRect(rnd(0,w-rw), rnd(0,h-rh), rw, rh);
-    line(ctx, 10,h*0.72, w-10,h*0.30, cold, 1.2);
-  } else if(fam==="F9"){
-    for(let i=0;i<10+v;i++){
-      const px=rnd(10,w-10), py=rnd(10,h-10);
-      line(ctx, px-10,py, px+10,py, ink, 1.2);
-    }
-  } else if(fam==="F10"){
-    for(let i=0;i<3+Math.floor(v/2);i++){
-      const px1=rnd(10,w-10), py1=rnd(10,h-10);
-      line(ctx, px1,py1, px1+rnd(-40,40), py1+rnd(-40,40), cold, 1.0);
-    }
-  } else if(fam==="F11"){
-    const n = 3 + Math.floor(v/3);
-    for(let i=0;i<n;i++){
-      ctx.fillStyle="rgba(55,75,95,"+(0.10+rnd(0,0.10))+")";
-      const rw = w*(0.30+rnd(0,0.35));
-      const rh = h*(0.20+rnd(0,0.35));
-      ctx.fillRect(rnd(0,w-rw), rnd(0,h-rh), rw, rh);
-    }
-  } else if(fam==="F12"){
-    ctx.strokeStyle="rgba(0,0,0,0.10)";
-    ctx.strokeRect(8,8,w-16,h-16);
-    if(v>6) line(ctx, 12,h-14, w-12,h-14, "rgba(0,0,0,0.10)", 1);
-  }
-
-  ctx.strokeStyle="rgba(0,0,0,0.10)";
-  ctx.lineWidth=1;
-  ctx.strokeRect(0.5,0.5,w-1,h-1);
-  ctx.restore();
-}
-
-const ImageCache = new Map();
-function loadImg(src){
-  if(ImageCache.has(src)) return ImageCache.get(src);
-  const img = new Image();
-  img.decoding="async";
-  img.loading="lazy";
-  img.src = src;
-  ImageCache.set(src,img);
-  return img;
-}
-
-function drawFragment(ctx, slot, x,y,w,h, alpha){
-  ctx.save();
-  ctx.globalAlpha = alpha;
-
-  // Sui override: desenha imagem
-  if(slot.sui){
-    const img = loadImg(slot.sui.path);
-    ctx.fillStyle="rgba(255,255,255,0.62)";
-    ctx.fillRect(x,y,w,h);
-    if(img.complete && img.naturalWidth){
-      const r = Math.min(w/img.naturalWidth, h/img.naturalHeight);
-      const dw = img.naturalWidth*r;
-      const dh = img.naturalHeight*r;
-      ctx.drawImage(img, x+(w-dw)/2, y+(h-dh)/2, dw, dh);
-    }else{
-      ctx.fillStyle="rgba(0,0,0,0.08)";
-      ctx.fillRect(x+12,y+12,w-24,h-24);
-    }
-    ctx.strokeStyle="rgba(0,0,0,0.12)";
-    ctx.strokeRect(x+0.5,y+0.5,w-1,h-1);
-    ctx.restore();
-    return;
-  }
-
-  // NÃO-Sui: gramática por família
-  ctx.fillStyle="rgba(255,255,255,0.48)";
-  ctx.fillRect(x,y,w,h);
-  drawFamily(ctx, slot.fam, slot.v, x,y,w,h);
-  ctx.restore();
-}
-
-/* =======================================================
-   7) Layout por móbile (paisagens mínimas)
-   - m1: móbile de berço
-   - m2: montanhas + bichinhos mínimos
-   - m3: labirinto
-   - m4: escadas (Escher leve)
-======================================================= */
-function drawScene(ctx, key, W,H){
-  ctx.save();
-  ctx.fillStyle="rgba(255,255,255,0.12)";
+  // base wash
+  const g = ctx.createLinearGradient(0,0,0,H);
+  g.addColorStop(0, "rgba(255,255,255,0.22)");
+  g.addColorStop(1, "rgba(255,255,255,0.06)");
+  ctx.fillStyle = g;
   ctx.fillRect(0,0,W,H);
 
-  const ink="rgba(0,0,0,0.12)";
-  const cold="rgba(35,55,85,0.10)";
+  // “restos” atmosféricos
+  ctx.fillStyle = bru;
+  ctx.beginPath(); ctx.ellipse(W*0.18, H*0.20, W*0.22, H*0.18, 0,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle = mol;
+  ctx.beginPath(); ctx.ellipse(W*0.82, H*0.22, W*0.20, H*0.16, 0,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle = acd;
+  ctx.beginPath(); ctx.ellipse(W*0.58, H*0.86, W*0.30, H*0.18, 0,0,Math.PI*2); ctx.fill();
+
+  ctx.globalAlpha = 1;
+
+  // cenários mais “visíveis”
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "rgba(20,20,22,0.16)";
 
   if(key==="m1"){
+    // berço / móbile
+    ctx.strokeStyle = "rgba(20,20,22,0.18)";
+    ctx.lineWidth = 2.2;
+
     // arco do móbile
-    ctx.strokeStyle=ink; ctx.lineWidth=2;
     ctx.beginPath();
-    ctx.arc(W/2, 70, 150, Math.PI, 2*Math.PI);
+    ctx.moveTo(W*0.10, H*0.18);
+    ctx.bezierCurveTo(W*0.32, H*0.08, W*0.68, H*0.08, W*0.90, H*0.18);
     ctx.stroke();
-    // haste
-    ctx.beginPath(); ctx.moveTo(W/2, 70); ctx.lineTo(W/2, 20); ctx.stroke();
+
+    // fios
+    for(const x of [0.22,0.50,0.78]){
+      ctx.beginPath();
+      ctx.moveTo(W*x, H*0.18);
+      ctx.lineTo(W*x, H*0.42);
+      ctx.stroke();
+      ctx.fillStyle="rgba(255,255,255,0.45)";
+      ctx.beginPath(); ctx.arc(W*x, H*0.42, 8, 0, Math.PI*2); ctx.fill();
+      ctx.strokeStyle="rgba(20,20,22,0.14)";
+      ctx.stroke();
+      ctx.strokeStyle = "rgba(20,20,22,0.18)";
+    }
+
+    // “colchão” leve
+    ctx.strokeStyle = "rgba(20,20,22,0.14)";
+    ctx.beginPath();
+    ctx.moveTo(W*0.06, H*0.86);
+    ctx.quadraticCurveTo(W*0.50, H*0.78, W*0.94, H*0.86);
+    ctx.stroke();
   }
+
   if(key==="m2"){
+    // montanhas + pasto + animais minimal
+    ctx.lineWidth = 2.2;
+    ctx.strokeStyle = "rgba(20,20,22,0.18)";
+
     // montanhas
-    ctx.strokeStyle=cold; ctx.lineWidth=2;
-    for(let i=0;i<3;i++){
-      const x = 120 + i*260;
+    ctx.beginPath();
+    ctx.moveTo(W*0.06, H*0.62);
+    ctx.lineTo(W*0.22, H*0.34);
+    ctx.lineTo(W*0.36, H*0.62);
+    ctx.lineTo(W*0.52, H*0.30);
+    ctx.lineTo(W*0.68, H*0.62);
+    ctx.lineTo(W*0.82, H*0.38);
+    ctx.lineTo(W*0.94, H*0.62);
+    ctx.stroke();
+
+    // linha do chão
+    ctx.strokeStyle = "rgba(90,140,110,0.22)";
+    ctx.beginPath();
+    ctx.moveTo(W*0.04, H*0.74);
+    ctx.quadraticCurveTo(W*0.50, H*0.68, W*0.96, H*0.74);
+    ctx.stroke();
+
+    // bichos (só sugestão)
+    ctx.strokeStyle = "rgba(20,20,22,0.14)";
+    ctx.lineWidth = 2;
+    for(const x of [0.24,0.40,0.58,0.78]){
       ctx.beginPath();
-      ctx.moveTo(x, H-120);
-      ctx.lineTo(x+140, H-320 + rnd(-18,18));
-      ctx.lineTo(x+280, H-120);
+      ctx.moveTo(W*x, H*0.71);
+      ctx.quadraticCurveTo(W*(x+0.018), H*0.69, W*(x+0.036), H*0.71);
       ctx.stroke();
-    }
-    // bichinhos mínimos (pastando)
-    ctx.strokeStyle="rgba(0,0,0,0.14)";
-    for(let i=0;i<5;i++){
-      const bx = 140 + i*150 + rnd(-10,10);
-      const by = H-140 + rnd(-6,6);
       ctx.beginPath();
-      ctx.moveTo(bx,by);
-      ctx.lineTo(bx+18,by);
-      ctx.lineTo(bx+22,by-8);
+      ctx.moveTo(W*(x+0.010), H*0.71);
+      ctx.lineTo(W*(x+0.010), H*0.73);
+      ctx.moveTo(W*(x+0.026), H*0.71);
+      ctx.lineTo(W*(x+0.026), H*0.73);
       ctx.stroke();
     }
   }
+
   if(key==="m3"){
     // labirinto
-    ctx.strokeStyle="rgba(0,0,0,0.10)";
-    ctx.lineWidth=1.6;
-    const step=48;
-    for(let y=90;y<H-60;y+=step){
-      for(let x=70;x<W-70;x+=step){
-        if(Math.random()<0.35){
-          ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+step,y); ctx.stroke();
-        }
-        if(Math.random()<0.35){
-          ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x,y+step); ctx.stroke();
-        }
-      }
+    ctx.lineWidth = 3.0;
+    ctx.strokeStyle = "rgba(20,20,22,0.16)";
+    const pad= Math.min(W,H)*0.08;
+    const x0=pad, y0=pad, x1=W-pad, y1=H-pad*1.1;
+
+    ctx.strokeRect(x0,y0,x1-x0,y1-y0);
+
+    ctx.lineWidth = 2.6;
+    const lines = [
+      [x0+pad*0.8, y0+pad*1.2, x1-pad*0.6, y0+pad*1.2],
+      [x0+pad*0.8, y0+pad*2.4, x0+pad*5.2, y0+pad*2.4],
+      [x0+pad*5.2, y0+pad*2.4, x0+pad*5.2, y0+pad*4.6],
+      [x0+pad*2.4, y0+pad*3.6, x1-pad*2.0, y0+pad*3.6],
+      [x1-pad*2.0, y0+pad*3.6, x1-pad*2.0, y1-pad*2.0],
+      [x0+pad*1.6, y0+pad*4.6, x0+pad*1.6, y1-pad*1.2],
+    ];
+    for(const L of lines){
+      ctx.beginPath(); ctx.moveTo(L[0],L[1]); ctx.lineTo(L[2],L[3]); ctx.stroke();
     }
+    ctx.strokeStyle="rgba(90,140,110,0.20)";
+    ctx.lineWidth=2;
+    ctx.beginPath();
+    ctx.moveTo(W*0.06, H*0.92);
+    ctx.quadraticCurveTo(W*0.50, H*0.86, W*0.94, H*0.92);
+    ctx.stroke();
   }
+
   if(key==="m4"){
-    // escadas leves
-    ctx.strokeStyle="rgba(0,0,0,0.10)";
-    ctx.lineWidth=1.6;
-    for(let i=0;i<7;i++){
-      const x = 90 + i*120 + rnd(-12,12);
-      const y = 110 + rnd(-8,8);
-      const w = 80, h = 220;
-      ctx.strokeRect(x,y,w,h);
-      for(let s=0;s<7;s++){
-        const yy = y + (s+1)*(h/8);
-        ctx.beginPath(); ctx.moveTo(x,yy); ctx.lineTo(x+w,yy); ctx.stroke();
-      }
-      // “quebra” escher
-      ctx.beginPath(); ctx.moveTo(x+w, y+h*0.5); ctx.lineTo(x+w+60, y+h*0.35); ctx.stroke();
+    // escadas “Escher” (mais marcadas)
+    ctx.lineWidth = 3.2;
+    ctx.strokeStyle="rgba(20,20,22,0.18)";
+
+    const steps = [
+      [[.12,.80],[.40,.58],[.72,.80],[.44,1.02]],
+      [[.18,.48],[.44,.30],[.68,.48],[.42,.66]],
+      [[.28,.70],[.52,.50],[.76,.70],[.52,.90]],
+      [[.54,.62],[.78,.40],[.92,.54],[.68,.76]],
+    ];
+    for(const p of steps){
+      ctx.beginPath();
+      ctx.moveTo(W*p[0][0], H*p[0][1]);
+      ctx.lineTo(W*p[1][0], H*p[1][1]);
+      ctx.lineTo(W*p[2][0], H*p[2][1]);
+      ctx.lineTo(W*p[3][0], H*p[3][1]);
+      ctx.closePath();
+      ctx.stroke();
     }
+
+    // linha “resto”
+    ctx.strokeStyle="rgba(140,90,160,0.20)";
+    ctx.lineWidth=2;
+    ctx.beginPath();
+    ctx.moveTo(W*0.08, H*0.18);
+    ctx.bezierCurveTo(W*0.34, H*0.08, W*0.62, H*0.26, W*0.92, H*0.12);
+    ctx.stroke();
   }
 
   ctx.restore();
 }
 
-function layoutMobile(ctx, cfg, key){
-  const c = ctx.canvas;
-  clearCanvas(c);
-  drawScene(ctx, key, c.width, c.height);
+function drawSlot(ctx, slot, x,y,w,h){
+  // frame forte (demarcado)
+  ctx.save();
 
-  const pad = 40;
-  const frs = cfg.fragments;
-  const scene = (key==="m1") ? "móbile" : "campo";
-  const boxes = [];
+  // variação leve de altura (valência)
+  const dy = rnd(-10, 10) * (0.35 + (G.pressure*0.6));
+  y += dy;
 
-  for(let i=0;i<frs.length;i++){
-    const z = i/(frs.length-1 || 1); // 0..1
-    const slot = frs[i];
+  // fundo
+  ctx.fillStyle = "rgba(255,255,255,0.42)";
+  ctx.fillRect(x,y,w,h);
 
-    const w = lerp(210, 340, z) * (key==="final"?0.88:1);
-    const h = lerp(150, 250, z) * (key==="final"?0.90:1);
+  // borda dupla (mais contraste)
+  ctx.lineWidth = 3.2;
+  ctx.strokeStyle = "rgba(20,20,22,0.34)";
+  ctx.strokeRect(x,y,w,h);
+  ctx.lineWidth = 1.4;
+  ctx.strokeStyle = "rgba(255,255,255,0.55)";
+  ctx.strokeRect(x+1.5,y+1.5,w-3,h-3);
 
-    let bandX = lerp(pad, c.width-pad, (i+1)/(frs.length+1));
-    let x = bandX + rnd(-60,60) - w/2;
-    let y = lerp(c.height*0.22, c.height*0.78, z) + rnd(-18,18) - h/2;
+  // conteúdo
+  if(slot.sui){
+    // desenhar a imagem
+    const img = slot._img;
+    if(img && img.complete){
+      // crop “bonito” (cover)
+      const ir = img.width / img.height;
+      const tr = w / h;
+      let sx=0, sy=0, sw=img.width, sh=img.height;
+      if(ir > tr){
+        sw = img.height * tr;
+        sx = (img.width - sw)/2;
+      }else{
+        sh = img.width / tr;
+        sy = (img.height - sh)/2;
+      }
+      ctx.drawImage(img, sx,sy,sw,sh, x+3, y+3, w-6, h-6);
 
-    if(scene==="móbile"){
-      y = lerp(160, c.height-120, z) + rnd(-28,28) - h/2;
-      // fio
-      ctx.save();
-      ctx.strokeStyle="rgba(0,0,0,0.18)";
-      ctx.lineWidth=1.3;
+      // leve véu “mórbido”
+      ctx.fillStyle = "rgba(140,90,160,0.10)";
+      ctx.fillRect(x+3,y+3,w-6,h-6);
+    }else{
+      ctx.fillStyle="rgba(140,90,160,0.18)";
+      ctx.fillRect(x+3,y+3,w-6,h-6);
+      ctx.fillStyle="rgba(20,20,22,0.55)";
+      ctx.font="12px " + getComputedStyle(document.documentElement).getPropertyValue("--mono");
+      ctx.fillText("suiornotsui", x+10, y+h/2);
+    }
+  }else{
+    // procedural — remete às 12 famílias (langue)
+    const fam = slot.fam;
+    const innerX=x+6, innerY=y+6, innerW=w-12, innerH=h-12;
+
+    // tinta conforme densidade/cont
+    const inkA = lerp(0.14, 0.36, (G.dense+1)/2);
+    ctx.strokeStyle = `rgba(20,20,22,${inkA.toFixed(2)})`;
+    ctx.fillStyle = `rgba(255,255,255,${lerp(0.18,0.52,(G.cont+1)/2).toFixed(2)})`;
+
+    // pequenos motivos por família
+    if(fam==="F1"){
+      // continuidade: linhas suaves
+      ctx.lineWidth = 2.2;
+      for(let i=0;i<5;i++){
+        const yy = innerY + innerH*(i/4);
+        ctx.beginPath();
+        ctx.moveTo(innerX, yy);
+        ctx.bezierCurveTo(innerX+innerW*0.35, yy-12, innerX+innerW*0.65, yy+12, innerX+innerW, yy);
+        ctx.stroke();
+      }
+    }else if(fam==="F2"){
+      // corte vertical
+      ctx.lineWidth=3.2;
+      for(let i=0;i<4;i++){
+        const xx = innerX + innerW*(i/3);
+        ctx.beginPath();
+        ctx.moveTo(xx, innerY);
+        ctx.lineTo(xx, innerY+innerH);
+        ctx.stroke();
+      }
+    }else if(fam==="F3"){
+      // oblíquo
+      ctx.lineWidth=2.8;
+      for(let i=0;i<6;i++){
+        const yy = innerY + innerH*(i/5);
+        ctx.beginPath();
+        ctx.moveTo(innerX, yy);
+        ctx.lineTo(innerX+innerW, yy - innerH*0.22);
+        ctx.stroke();
+      }
+    }else if(fam==="F4"){
+      // ritmo repetitivo
+      ctx.lineWidth=2.6;
+      for(let i=0;i<8;i++){
+        const xx = innerX + innerW*(i/8);
+        ctx.beginPath();
+        ctx.arc(xx, innerY+innerH*0.55, 10, 0, Math.PI*2);
+        ctx.stroke();
+      }
+    }else if(fam==="F5"){
+      // ruptura: rachaduras
+      ctx.lineWidth=2.6;
       ctx.beginPath();
-      ctx.moveTo(bandX, 88);
-      ctx.lineTo(x + w/2, y);
+      ctx.moveTo(innerX+innerW*0.10, innerY+innerH*0.20);
+      ctx.lineTo(innerX+innerW*0.40, innerY+innerH*0.45);
+      ctx.lineTo(innerX+innerW*0.28, innerY+innerH*0.62);
+      ctx.lineTo(innerX+innerW*0.62, innerY+innerH*0.86);
       ctx.stroke();
-      ctx.restore();
+      ctx.beginPath();
+      ctx.moveTo(innerX+innerW*0.64, innerY+innerH*0.12);
+      ctx.lineTo(innerX+innerW*0.52, innerY+innerH*0.34);
+      ctx.lineTo(innerX+innerW*0.78, innerY+innerH*0.56);
+      ctx.stroke();
+    }else if(fam==="F6"){
+      // densidade: massa de traços
+      ctx.lineWidth=2;
+      for(let i=0;i<42;i++){
+        const xx = innerX + rnd(innerW);
+        const yy = innerY + rnd(innerH);
+        ctx.beginPath();
+        ctx.moveTo(xx,yy);
+        ctx.lineTo(xx+rnd(-22,22), yy+rnd(-22,22));
+        ctx.stroke();
+      }
+    }else if(fam==="F7"){
+      // rarefação: quase nada
+      ctx.lineWidth=2.4;
+      ctx.beginPath();
+      ctx.arc(innerX+innerW*0.52, innerY+innerH*0.52, innerW*0.18, 0, Math.PI*2);
+      ctx.stroke();
+    }else if(fam==="F8"){
+      // centro instável
+      ctx.lineWidth=2.8;
+      const cx = innerX+innerW*0.55 + rnd(-14,14);
+      const cy = innerY+innerH*0.50 + rnd(-14,14);
+      ctx.beginPath();
+      ctx.rect(cx-innerW*0.22, cy-innerH*0.18, innerW*0.44, innerH*0.36);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(innerX, cy);
+      ctx.lineTo(innerX+innerW, cy+rnd(-10,10));
+      ctx.stroke();
+    }else if(fam==="F9"){
+      // campo homogêneo: textura quase
+      ctx.globalAlpha = 0.8;
+      ctx.fillStyle = "rgba(20,20,22,0.06)";
+      for(let i=0;i<120;i++){
+        ctx.fillRect(innerX+rnd(innerW), innerY+rnd(innerH), 2,2);
+      }
+      ctx.globalAlpha = 1;
+    }else if(fam==="F10"){
+      // direção múltipla
+      ctx.lineWidth=2.6;
+      for(let i=0;i<10;i++){
+        const xx = innerX + innerW*0.5;
+        const yy = innerY + innerH*0.5;
+        ctx.beginPath();
+        ctx.moveTo(xx,yy);
+        ctx.lineTo(innerX+rnd(innerW), innerY+rnd(innerH));
+        ctx.stroke();
+      }
+    }else if(fam==="F11"){
+      // contorno
+      ctx.lineWidth=3.0;
+      ctx.beginPath();
+      ctx.roundRect(innerX+innerW*0.12, innerY+innerH*0.18, innerW*0.76, innerH*0.64, 14);
+      ctx.stroke();
+    }else if(fam==="F12"){
+      // massa
+      ctx.fillStyle = "rgba(20,20,22,0.18)";
+      ctx.fillRect(innerX+innerW*0.12, innerY+innerH*0.16, innerW*0.76, innerH*0.68);
+      ctx.strokeStyle="rgba(20,20,22,0.28)";
+      ctx.lineWidth=2.6;
+      ctx.strokeRect(innerX+innerW*0.12, innerY+innerH*0.16, innerW*0.76, innerH*0.68);
     }
 
-    const a = lerp(0.62, 1.0, z);
-    drawFragment(ctx, slot, x,y,w,h, a);
-    boxes.push({slot, x,y,w,h, z});
+    // leve “neon mofo” como resto
+    ctx.strokeStyle = `rgba(90,140,110,${lerp(0.06,0.18,(G.pressure)).toFixed(2)})`;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(innerX, innerY+innerH*0.86);
+    ctx.quadraticCurveTo(innerX+innerW*0.5, innerY+innerH*0.74, innerX+innerW, innerY+innerH*0.86);
+    ctx.stroke();
   }
-  cfg._boxes = boxes;
+
+  ctx.restore();
 }
 
-function hitTest(cfg, x,y){
-  const boxes = cfg._boxes || [];
-  // prioriza topo (z maior)
-  for(let i=boxes.length-1;i>=0;i--){
-    const b = boxes[i];
-    if(x>=b.x && x<=b.x+b.w && y>=b.y && y<=b.y+b.h) return b;
-  }
-  return null;
+/* ======================================================
+   8) Texto gerado (voz curatorial, sempre “bom na língua”)
+   - usa operadores + regime fonográfico (surda/sonora/fricativa)
+====================================================== */
+function phMode(){
+  // dominante pelo vetor atual
+  const d = G.ph.dry, v = G.ph.voiced, o = G.ph.open;
+  // regra simples: maior valor define modo, neutro se tudo baixo
+  const m = Math.max(Math.abs(d), Math.abs(v), Math.abs(o));
+  if(m < 0.18) return "neutro";
+  if(Math.abs(d)===m) return "surda";
+  if(Math.abs(v)===m) return "sonora";
+  return "fricativa";
 }
 
-/* =======================================================
-   8) Texto: moldes “curatoriais”, sempre gramaticais
-======================================================= */
-function pickByState(arr, s, axis){
-  // escolhe índice enviesado por eixo (-1..1)
-  const t = (axis==="front") ? s.front : (axis==="dense"?s.dense:s.cont);
-  const bias = clamp((t+1)/2, 0, 1);
-  const idx = Math.floor(bias*(arr.length-1) + rnd(-0.7,0.7));
-  return arr[clamp(idx,0,arr.length-1)];
+function realize(opKey){
+  const mode = phMode();
+  if(mode==="neutro"){
+    // neutro: escolhe “sonora” como base (mais “catálogo”)
+    return LEX[opKey]?.sonora || opKey;
+  }
+  if(mode==="surda") return LEX[opKey]?.surda || opKey;
+  if(mode==="sonora") return LEX[opKey]?.sonora || opKey;
+  return LEX[opKey]?.fricativa || opKey;
 }
 
-function curatorialLines(mKey, s, variant){
-  const N = (a)=> realize(pick(a), variant);
-  const n1 = realize(pickByState(LEX.nouns, s, "front"), variant);
-  const n2 = realize(pickByState(LEX.nouns, s, "cont"), variant);
-  const n3 = realize(pickByState(LEX.nouns, s, "dense"), variant);
-
-  const v1 = realize(pickByState(LEX.verbs, s, "cont"), variant);
-  const v2 = realize(pickByState(LEX.verbs, s, "front"), variant);
-
-  const a1 = realize(pickByState(LEX.adjs, s, "dense"), variant);
-  const a2 = realize(pickByState(LEX.adjs, s, "cont"), variant);
-
-  const adv1 = realize(pickByState(LEX.advs, s, "cont"), variant);
-  const adv2 = realize(pickByState(LEX.advs, s, "front"), variant);
-
-  // conectivos fixos (para “voz”)
-  const C = {
-    onde: pick(["onde","quando","enquanto"]),
-    como: pick(["como","quase como","como se"]),
-    por:  pick(["por isso","por fim","por vezes"]),
-  };
-
-  if(mKey==="m1"){
-    return [
-      ["Aqui", "nasce", "um", n1, a1 + ",", C.como, "um", n2, "que", adv1, "insiste."],
-      ["O", n3, "não", "explica:", "ele", "pede", "que", "você", v1, "o", n2 + "."],
-      ["E", C.por + ",", "o", "resto", "fica", "de", "fora", "—", "para", "voltar", adv2 + "."],
-    ];
-  }
-
-  if(mKey==="m2"){
-    // sintaxe: sujeito/objeto
-    const subj = Mobiles.m2.flip ? n2 : n1;
-    const obj  = Mobiles.m2.flip ? n1 : n2;
-    return [
-      ["O", subj, "toma", "a", "frente;", "o", obj, "fica", "em", "fundo."],
-      ["Se", "você", "só", "inverte,", "repete", "a", "mesma", "lei."],
-      ["A", "fuga", "é", "agir:", "é", "preciso", v2, "o", obj, adv1 + "."],
-    ];
-  }
-
-  if(mKey==="m3"){
-    return [
-      ["Você", "repara", "no", n1, "e", "o", n1, "cresce."],
-      ["Clique", "vira", "foco:", "o", a2, "ganha", "peso", "no", n3 + "."],
-      ["Assim", "o", "mundo", "aprende", "a", "te", v1, adv2 + "."],
-    ];
-  }
-
-  if(mKey==="m4"){
-    return [
-      ["Som", "vira", "corte:", "um", n2, a2, "pede", "outro", "ritmo."],
-      ["Se", "você", "reforça", "aresta,", "a", "imagem", "fica", adv1 + "."],
-      ["Se", "você", "abre", "passagem,", "o", n1, "começa", "a", v2, adv2 + "."],
-    ];
-  }
-
-  // final
-  return [
-    ["A", "tua", "curadoria", "fixa", "um", n1, a1, "como", "eixo."],
-    ["O", "estilo", "prefere", n3, "e", "evita", n2, "—", "e", "isso", "aparece."],
-    ["Partilha", "e", "reencena:", "alguém", "vai", "achar", "o", "fragmento", "que", "te", "faltou."],
-  ];
+function maybeAdj(){
+  // probabilidade varia com densidade
+  const p = lerp(0.30, 0.72, (G.dense+1)/2);
+  if(Math.random() > p) return null;
+  const keys = ["leve","minimo","fragil","tenue","quase_adj","opaco","poroso","irregular","difuso","latente","instavel","provisorio"];
+  return realize(pick(keys));
+}
+function maybeAdv(){
+  const p = lerp(0.28, 0.65, (G.cont+1)/2);
+  if(Math.random() > p) return null;
+  const keys = ["ainda","quase_adv","lentamente","por_vezes","sempre","raramente","talvez","agora"];
+  return realize(pick(keys));
 }
 
-function renderText(container, lines, onWord){
-  container.innerHTML = "";
-  for(const words of lines){
-    const div = document.createElement("div");
-    div.className = "line";
-    for(const w of words){
-      const span = document.createElement("span");
-      span.className = "word";
-      span.textContent = w;
-      span.addEventListener("click", ()=> onWord(w));
-      div.appendChild(span);
-      div.appendChild(document.createTextNode(" "));
+function pickN(keys){
+  return realize(pick(keys));
+}
+function pickV(keys){
+  return realize(pick(keys));
+}
+
+const N_SENS = ["vestigio","sopro","dobra","canto","margem","poeira","silencio","rastro","fragmento","detalhe"];
+const N_MEM  = ["lembranca","demora","intervalo","eco","resto"];
+const N_PLAS = ["plano","camada","textura","superficie","escala","ritmo","materia"];
+const N_CUR  = ["presenca","tensao","campo","emergencia","configuracao","cessacao"];
+
+const V_SENS = ["aproximar","reparar","tocar","escutar","demorar_v","pousar","acompanhar","cuidar"];
+const V_COMP = ["recortar","deslocar","sustentar","distribuir","sobrepor","atravessar","insinuar"];
+const V_DEC  = ["insistir","interromper","fixar","suspender","reter","abandonar","transformar"];
+
+function genCuratorialLine(kind){
+  // kind: "m1" "m2" "m3" "m4" "finalA" "finalB"
+  const adj1 = maybeAdj();
+  const adv1 = maybeAdv();
+
+  // seleção de léxico por eixo
+  const nA = (G.front>0.25) ? pickN(N_CUR) : pickN(N_SENS);
+  const nB = (G.dense>0.25) ? pickN(N_PLAS) : pickN(N_MEM);
+  const nC = (G.cont>0.20) ? pickN(N_SENS) : pickN(N_CUR);
+
+  const vA = (G.cont>0.15) ? pickV(V_SENS) : pickV(V_COMP);
+  const vB = (G.pressure>0.55) ? pickV(V_DEC) : pickV(V_COMP);
+
+  // templates “catálogo”, não “oráculo”
+  const T = [];
+
+  if(kind==="m1"){
+    T.push(`${INTRO_M1}\n`);
+    T.push(`No começo, ${nA} aparece como ${adj1||pickN(N_PLAS)} — e isso já inclina o campo.`);
+    T.push(`O que nasce aqui ${vA} ${nB}${adv1?(", "+adv1):""}.`);
+    T.push(`O resto não some: ele fica como ${pickN(N_MEM)} à espera de outra tensão.`);
+  }
+
+  if(kind==="m2"){
+    T.push(`${INTRO_M2}\n`);
+    // S–V–O com coerência
+    const subj = (Mob.m2.flip) ? nB : nA;
+    const obj  = (Mob.m2.flip) ? nA : nB;
+    const verb = (Math.abs(G.front) > 0.35) ? vB : vA;
+
+    const adv2 = maybeAdv();
+    const adj2 = maybeAdj();
+
+    const s = `${subj}${adj2?(" "+adj2):""} ${verb} ${obj}${adv2?(" "+adv2):""}.`;
+    T.push(s);
+
+    T.push(`Trocar frente e fundo muda a leitura — mas não dissolve a forma.`);
+    T.push(`Só quando mudas o verbo, o objeto deixa de ser destino e vira passagem.`);
+  }
+
+  if(kind==="m3"){
+    T.push(`${INTRO_M3}\n`);
+    T.push(`Onde tocas, ${nC} ganha relevo; onde evitas, ${pickN(N_CUR)} recua.`);
+    T.push(`Insistir em ${pickN(N_PLAS)} faz ${pickN(N_SENS)} responder como estilo.`);
+    T.push(`Aos poucos, a tua curadoria deixa de “escolher imagens” e começa a formar campo.`);
+  }
+
+  if(kind==="m4"){
+    T.push(`${INTRO_M4}\n`);
+    const mode = phMode();
+    const label = (mode==="surda") ? "plosivas surdas (corte seco)" :
+                  (mode==="sonora") ? "plosivas sonoras (massa e peso)" :
+                  (mode==="fricativa") ? "fricativas (passagem e arranho)" :
+                  "neutro (equilíbrio provisório)";
+    T.push(`O regime atual: ${label}.`);
+    T.push(`Quando repetes um corpo, o resto do campo se reescreve junto — até ceder.`);
+    T.push(`Se satura, não é bug: é cessação como evento. E o evento deixa resto.`);
+  }
+
+  if(kind==="finalA"){
+    // estilo curatorial do utilizador
+    const pFront = (G.front>0.25) ? "frente / figura" : (G.front<-0.25) ? "fundo / distância" : "meio-termo";
+    const pDense = (G.dense>0.25) ? "densidade / matéria" : (G.dense<-0.25) ? "rarefação / silêncio" : "medida";
+    const pCont  = (G.cont>0.25) ? "continuidade / fluxo" : (G.cont<-0.25) ? "corte / decisão" : "oscilação";
+    T.push(`**Estilo curatorial (o teu percurso):**`);
+    T.push(`Tendência a ${pFront}, com ${pDense} e ${pCont}.`);
+    T.push(`Tu privilegias ${pickN(N_PLAS)} como estrutura, e deixas ${pickN(N_MEM)} operar como resto.`);
+  }
+
+  if(kind==="finalB"){
+    // texto crítico da exposição (tom catálogo)
+    T.push(`**Texto crítico (da exposição):**`);
+    T.push(`Esta constelação organiza ${pickN(N_PLAS)} como ${pickN(N_CUR)}, fazendo ${pickN(N_SENS)} aparecer sem se fechar em tema.`);
+    T.push(`Há um trabalho de ${pickN(N_MEM)}: o que falta não é ausência — é motor.`);
+    T.push(`O conjunto mantém ${pickN(N_CUR)} em estado ${maybeAdj()||pickN(["instavel","provisorio","latente"])}${maybeAdv()?(" "+maybeAdv()):""}, como quem recusa a última palavra.`);
+  }
+
+  // junta e limpa
+  return T.join("\n");
+}
+
+/* texto com spans clicáveis (delegação) */
+function setRichText(el, text, clickable){
+  // quebra por palavras, preserva quebras de linha
+  const parts = text.split(/(\s+)/);
+  el.innerHTML = "";
+  for(const p of parts){
+    if(p.trim()===""){
+      el.appendChild(document.createTextNode(p));
+      continue;
     }
-    container.appendChild(div);
+    if(!clickable){
+      el.appendChild(document.createTextNode(p));
+      continue;
+    }
+    // palavras clicáveis: escolhemos “alvos” por heurística: substantivos/verbos/adjs/adv
+    // aqui: qualquer token que não seja só pontuação vira clicável, e decide um “traço” por proximidade do vocabulário.
+    const span = document.createElement("span");
+    span.className = "w";
+    span.textContent = p;
+    span.dataset.token = p.toLowerCase();
+    el.appendChild(span);
   }
 }
 
-/* =======================================================
-   9) Config de cada móbile
-======================================================= */
-function buildConfig(mKey){
-  const s = combinedState(mKey);
-  let n = 3;
-  if(mKey==="m2") n = 2;
-  if(mKey==="m3") n = 7;
-  if(mKey==="m4") n = 5;
-  if(mKey==="final") n = 10;
+/* ======================================================
+   9) Interações por móbile
+====================================================== */
+const HITS = { m1:[], m2:[], m3:[], m4:[], final:[] };
 
-  const fragments = sampleSlots(n, s);
-  const variant = currentVariant();
-  const lines = curatorialLines(mKey, s, variant);
+function bindCanvasClicks(key, canvas){
+  canvas.addEventListener("click", (ev)=>{
+    const r = canvas.getBoundingClientRect();
+    const x = (ev.clientX - r.left) * (canvas.width / r.width);
+    const y = (ev.clientY - r.top)  * (canvas.height/ r.height);
+    const hits = HITS[key] || [];
+    const hit = hits.find(h => x>=h.x && x<=h.x+h.w && y>=h.y && y<=h.y+h.h);
+    if(!hit) return;
 
-  return { state:s, fragments, variant, lines, _boxes:[] };
-}
-
-function deltaFromSlotClick(slot){
-  // clique em fragmento intensifica eixos do slot
-  return {
-    front: 0.22 * slot.axes.front,
-    dense: 0.22 * slot.axes.dense,
-    cont:  0.22 * slot.axes.cont,
-    pressure: 0.12,
-  };
-}
-
-function deltaFromWordClick(word){
-  // simples: “palavras” puxam traços por heurística
-  const w = (word||"").toLowerCase();
-  const d = {front:0, dense:0, cont:0, pressure:0.08};
-
-  if(w.includes("corte") || w.includes("quebra") || w.includes("nó") || w.includes("peso")){
-    d.cont -= 0.22; d.dense += 0.10;
-  }
-  if(w.includes("suave") || w.includes("sutil") || w.includes("esfum") || w.includes("sus")){
-    d.cont += 0.18; d.front -= 0.08;
-  }
-  if(w.includes("frente") || w.includes("vulto") || w.includes("apari")){
-    d.front += 0.18;
-  }
-  if(w.includes("campo") || w.includes("massa") || w.includes("subst")){
-    d.dense += 0.18;
-  }
-  return d;
-}
-
-/* =======================================================
-   10) Render e interação
-======================================================= */
-function renderMobile(mKey, canvasId, textId){
-  const c = document.getElementById(canvasId);
-  const ctx = c.getContext("2d");
-
-  const cfg = buildConfig(mKey);
-  Mobiles[mKey].config = cfg;
-
-  layoutMobile(ctx, cfg, mKey);
-
-  const t = document.getElementById(textId);
-  renderText(t, cfg.lines, (w)=>{
-    applyDelta(mKey, deltaFromWordClick(w));
-    rerenderAll();
+    try{
+      if(key==="m2"){
+        // clicar em fragmento também inverte (mesma regra do botão)
+        doM2Swap();
+        return;
+      }
+      if(key==="m3"){
+        // intensifica o traço do slot clicado
+        Mob.m3.clicks++;
+        const s = hit.slot;
+        // foco puxa pro eixo do slot
+        applyDelta("m3", {
+          front: (s.axes.front - G.front) * 0.22,
+          dense: (s.axes.dense - G.dense) * 0.20,
+          cont:  (s.axes.cont  - G.cont ) * 0.22,
+          pressure: 0.06
+        });
+        rerenderAll();
+        return;
+      }
+      if(key==="m4"){
+        // no M4: fragmentos NÃO clicáveis (só palavras). Ignora.
+        toast("No Móbile 4, clica nas palavras.");
+        return;
+      }
+      if(key==="final"){
+        // nada
+        return;
+      }
+      if(key==="m1"){
+        // opcional: clicar nos 3 como “tensão” também
+        doM1Tension();
+      }
+    }catch(e){
+      toast("Erro no clique: ver consola");
+      console.error(e);
+    }
   });
+}
 
-  c.onclick = (ev)=>{
-    const r = c.getBoundingClientRect();
-    const x = (ev.clientX - r.left) * (c.width / r.width);
-    const y = (ev.clientY - r.top)  * (c.height/ r.height);
-    const hit = hitTest(cfg, x,y);
-    if(hit){
-      applyDelta(mKey, deltaFromSlotClick(hit.slot));
-      Mobiles[mKey].clicks++;
-      rerenderAll();
+function bindTextClicks(key, textEl){
+  // delegação: clique em palavra -> inclina estado
+  textEl.addEventListener("click", (ev)=>{
+    const t = ev.target;
+    if(!t || !t.classList || !t.classList.contains("w")) return;
+
+    try{
+      if(key==="m4"){
+        // M4: corpo da linguagem. Clique reforça regime por “forma sonora” atual do campo
+        // regra: token clicado reforça o regime dominante atual (surda/sonora/fricativa) e empurra o colapso
+        const mode = phMode();
+        if(mode==="neutro"){
+          // se neutro, alterna para o que o usuário “puxa” pelo gesto: escolhemos por random ponderado
+          const r = Math.random();
+          if(r<0.34) applyDelta("m4",{ph:{dry:+0.28}, cont:-0.06, pressure:+0.06});
+          else if(r<0.67) applyDelta("m4",{ph:{voiced:+0.28}, dense:+0.06, pressure:+0.06});
+          else applyDelta("m4",{ph:{open:+0.28}, cont:+0.06, pressure:+0.06});
+        }else if(mode==="surda"){
+          applyDelta("m4",{ph:{dry:+0.22}, cont:-0.08, pressure:+0.06});
+        }else if(mode==="sonora"){
+          applyDelta("m4",{ph:{voiced:+0.22}, dense:+0.08, pressure:+0.06});
+        }else{
+          applyDelta("m4",{ph:{open:+0.22}, cont:+0.08, pressure:+0.06});
+        }
+
+        Mob.m4.clicks++;
+        G.collapse = clamp(G.collapse + 0.14, 0, 1.4);
+
+        // colapso catastrófico: muda regime
+        if(G.collapse >= 1.0){
+          G.collapse = 0.0;
+          // troca brusca: inverte tendência de continuidade / corte e mexe no eixo
+          applyDelta("m4", {
+            front: rnd(-0.35,0.35),
+            dense: rnd(-0.35,0.35),
+            cont:  (G.cont>0? -0.55 : +0.55),
+            ph: { dry:rnd(-0.35,0.35), voiced:rnd(-0.35,0.35), open:rnd(-0.35,0.35) },
+            pressure: 0.18
+          });
+          toast("Colapso: o regime mudou.");
+        }
+
+        rerenderAll();
+        return;
+      }
+
+      if(key==="m3"){
+        // M3: foco; clique em palavra puxa um eixo
+        Mob.m3.clicks++;
+        // simples: alterna micro-pressões conforme o estado atual
+        applyDelta("m3", {
+          front: rnd(-0.10,0.10) * (G.front>=0? 1 : -1),
+          dense: rnd(-0.10,0.10) * (G.dense>=0? 1 : -1),
+          cont:  rnd(-0.12,0.12) * (G.cont>=0? 1 : -1),
+          pressure: 0.05
+        });
+        rerenderAll();
+        return;
+      }
+
+      if(key==="m2"){
+        // clicar no texto do M2: se cair perto de verbo (heurística: qualquer palavra clique abre “fuga”)
+        // “fuga”: muda verbBias, altera parâmetros
+        Mob.m2.verbBias += 1;
+        applyDelta("m2", { front:rnd(-0.10,0.10), cont:rnd(-0.10,0.10), pressure:0.06 });
+        rerenderAll();
+        return;
+      }
+
+      if(key==="m1"){
+        // m1: palavra = tensão
+        doM1Tension();
+      }
+    }catch(e){
+      toast("Erro no texto: ver consola");
+      console.error(e);
     }
-  };
+  });
+}
+
+/* ======================================================
+   10) ações dos botões (sem quebrar)
+====================================================== */
+function doM1Tension(){
+  // 3 modos de nascimento (0/1/2) com inclinações distintas
+  G.birthMode = (G.birthMode + 1) % 3;
+
+  if(G.birthMode===0){
+    applyDelta("m1",{ front:rnd(-0.25,0.25), dense:rnd(-0.15,0.15), cont:+0.20, ph:{open:+0.12}, pressure:0.10 });
+  }else if(G.birthMode===1){
+    applyDelta("m1",{ front:+0.28, dense:+0.10, cont:-0.25, ph:{dry:+0.16}, pressure:0.12 });
+  }else{
+    applyDelta("m1",{ front:-0.28, dense:-0.10, cont:+0.05, ph:{voiced:+0.16}, pressure:0.12 });
+  }
+
+  rerenderAll();
+}
+
+function doM2Swap(){
+  Mob.m2.flip = !Mob.m2.flip;
+  applyDelta("m2", { front: Mob.m2.flip ? -0.55 : +0.55, cont: 0.10, pressure:0.14 });
+  rerenderAll();
 }
 
 function renderFinal(){
-  const c = document.getElementById("finalCanvas");
-  const ctx = c.getContext("2d");
-  const cfg = buildConfig("final");
-  Mobiles.final.config = cfg;
-  layoutMobile(ctx, cfg, "final");
+  // gera 10 slots + texto (duas partes + encerramento + convite)
+  const slots = sampleSlots(10);
+  Mob.final.cfg = { slots };
+  Mob.final.ready = true;
 
-  const t = document.getElementById("finalText");
-  renderText(t, cfg.lines, (w)=>{
-    applyDelta("m3", deltaFromWordClick(w));
-    rerenderAll();
-  });
+  rerenderFinal();
+  toast("Exposição gerada.");
+}
 
-  const s = cfg.state;
-  document.getElementById("kFront").textContent = signLabel(s.front,"fundo","frente");
-  document.getElementById("kDense").textContent = signLabel(s.dense,"rarefeito","denso");
-  document.getElementById("kCont").textContent  = signLabel(s.cont,"corte","contínuo");
-  document.getElementById("kPh").textContent    = currentVariant();
+function resetAll(){
+  G.front=0; G.dense=0; G.cont=0; G.pressure=0;
+  G.ph={dry:0,voiced:0,open:0};
+  G.birthMode=0; G.collapse=0;
+  Mob.m2={ flip:false, verbBias:0 };
+  Mob.m3={ focus:{front:0,dense:0,cont:0}, clicks:0 };
+  Mob.m4={ clicks:0 };
+  Mob.final={ ready:false, cfg:null };
+}
+
+/* ======================================================
+   11) Render geral (m1..final)
+====================================================== */
+function drawMobile(canvas, key, count){
+  const ctx=canvas.getContext("2d");
+  const W=canvas.width, H=canvas.height;
+
+  drawScene(ctx, key, W, H);
+
+  const slots = sampleSlots(count);
+
+  // pré-carregar imagem sui (slot 53)
+  for(const s of slots){
+    if(s.sui && !s._img){
+      const img = new Image();
+      img.crossOrigin="anonymous";
+      img.src = s.sui.path + "?cache=" + Date.now();
+      s._img = img;
+      img.onload = ()=> rerenderAll();
+    }
+  }
+
+  // layout por key (com perspectiva)
+  const hits = [];
+  if(key==="m1"){
+    // 3 pendurados
+    const w = W*0.22;
+    const h = H*0.30;
+    const xs = [W*0.18, W*0.50, W*0.82];
+    const ys = [H*0.40, H*0.40, H*0.40];
+    for(let i=0;i<3;i++){
+      const x = xs[i]-w/2;
+      const y = ys[i]-h/2;
+      drawSlot(ctx, slots[i], x,y,w,h);
+      hits.push({x,y,w,h,slot:slots[i]});
+    }
+  }else if(key==="m2"){
+    // 2 com profundidade
+    const bigW=W*0.36, bigH=H*0.42;
+    const smallW=W*0.26, smallH=H*0.30;
+
+    const frontSlot = Mob.m2.flip ? slots[1] : slots[0];
+    const backSlot  = Mob.m2.flip ? slots[0] : slots[1];
+
+    // fundo
+    let xB=W*0.62 - smallW/2;
+    let yB=H*0.48 - smallH/2;
+    drawSlot(ctx, backSlot, xB,yB,smallW,smallH);
+    hits.push({x:xB,y:yB,w:smallW,h:smallH,slot:backSlot});
+
+    // frente
+    let xF=W*0.32 - bigW/2;
+    let yF=H*0.58 - bigH/2;
+    drawSlot(ctx, frontSlot, xF,yF,bigW,bigH);
+    hits.push({x:xF,y:yF,w:bigW,h:bigH,slot:frontSlot});
+  }else if(key==="m3"){
+    // 7 espalhados no labirinto
+    const baseW=W*0.20, baseH=H*0.26;
+    for(let i=0;i<7;i++){
+      const s=slots[i];
+      const x = W*(0.16 + (i%4)*0.22) + rnd(-18,18);
+      const y = H*(0.26 + Math.floor(i/4)*0.34) + rnd(-18,18);
+      const w = baseW * lerp(0.88, 1.18, (s.axes.front+1)/2);
+      const h = baseH * lerp(0.88, 1.15, (s.axes.dense+1)/2);
+      drawSlot(ctx, s, x, y, w, h);
+      hits.push({x,y,w,h,slot:s});
+    }
+  }else if(key==="m4"){
+    // 5 nas escadas
+    const baseW=W*0.22, baseH=H*0.28;
+    const pos = [
+      [0.18,0.70],[0.36,0.46],[0.56,0.70],[0.72,0.44],[0.46,0.30]
+    ];
+    for(let i=0;i<5;i++){
+      const s=slots[i];
+      const x = W*pos[i][0];
+      const y = H*pos[i][1];
+      const w = baseW * lerp(0.90,1.10,(s.axes.front+1)/2);
+      const h = baseH * lerp(0.90,1.10,(s.axes.dense+1)/2);
+      drawSlot(ctx, s, x, y, w, h);
+      hits.push({x,y,w,h,slot:s});
+    }
+  }else if(key==="final"){
+    // 10 em constelação
+    const baseW=W*0.19, baseH=H*0.24;
+    for(let i=0;i<10;i++){
+      const s=slots[i];
+      const x = W*(0.10 + (i%5)*0.18) + rnd(-10,10);
+      const y = H*(0.18 + Math.floor(i/5)*0.34) + rnd(-10,10);
+      const w = baseW * lerp(0.92,1.18,(s.axes.front+1)/2);
+      const h = baseH * lerp(0.92,1.16,(s.axes.dense+1)/2);
+      drawSlot(ctx, s, x, y, w, h);
+      hits.push({x,y,w,h,slot:s});
+    }
+  }
+
+  HITS[key] = hits;
+}
+
+function rerenderM1(){
+  const c=document.getElementById("m1Canvas");
+  drawMobile(c,"m1",3);
+  const text = genCuratorialLine("m1");
+  setRichText(document.getElementById("m1Text"), text, true);
+}
+function rerenderM2(){
+  const c=document.getElementById("m2Canvas");
+  drawMobile(c,"m2",2);
+  const text = genCuratorialLine("m2");
+  setRichText(document.getElementById("m2Text"), text, true);
+}
+function rerenderM3(){
+  const c=document.getElementById("m3Canvas");
+  drawMobile(c,"m3",7);
+  const text = genCuratorialLine("m3");
+  setRichText(document.getElementById("m3Text"), text, true);
+}
+function rerenderM4(){
+  const c=document.getElementById("m4Canvas");
+  drawMobile(c,"m4",5);
+  const text = genCuratorialLine("m4");
+  // M4: só palavras clicáveis (ok)
+  setRichText(document.getElementById("m4Text"), text, true);
+}
+
+function rerenderFinal(){
+  const c=document.getElementById("finalCanvas");
+  const ctx=c.getContext("2d");
+  const W=c.width,H=c.height;
+
+  drawScene(ctx,"final",W,H);
+
+  const slots = (Mob.final.cfg?.slots) ? Mob.final.cfg.slots : sampleSlots(10);
+  // pré-carrega sui se vier
+  for(const s of slots){
+    if(s.sui && !s._img){
+      const img=new Image(); img.crossOrigin="anonymous";
+      img.src=s.sui.path + "?cache=" + Date.now();
+      s._img=img;
+      img.onload=()=>rerenderFinal();
+    }
+  }
+
+  // desenha constelação
+  HITS.final = [];
+  const baseW=W*0.19, baseH=H*0.22;
+  for(let i=0;i<10;i++){
+    const s=slots[i];
+    const x = W*(0.08 + (i%5)*0.18) + rnd(-10,10);
+    const y = H*(0.16 + Math.floor(i/5)*0.34) + rnd(-10,10);
+    const w = baseW * lerp(0.92,1.18,(s.axes.front+1)/2);
+    const h = baseH * lerp(0.92,1.16,(s.axes.dense+1)/2);
+    drawSlot(ctx, s, x, y, w, h);
+    HITS.final.push({x,y,w,h,slot:s});
+  }
+
+  // texto final
+  const A = genCuratorialLine("finalA");
+  const B = genCuratorialLine("finalB");
+  const shareInvite =
+`Partilha a tua exposição.
+Cada percurso faz emergir obras diferentes.
+Outras pessoas verão imagens que talvez nunca tenhas conseguido alcançar.
+
+E você — o que montaria aqui?
+https://negativo-mov.github.io/negativo.mov/mobiles/entrada/`;
+
+  const full =
+`${A}\n\n${B}\n\n${TEXT_FINAL_CLOSING}\n\n${shareInvite}`;
+
+  setRichText(document.getElementById("finalText"), full, false);
+
+  document.getElementById("weeklyGate").textContent =
+`Para ver os demais estados expositivos da semana, faz primeiro a tua curadoria (gera a tua expo).`;
 }
 
 function rerenderAll(){
-  renderMobile("m1","m1Canvas","m1Text");
-  renderMobile("m2","m2Canvas","m2Text");
-  renderMobile("m3","m3Canvas","m3Text");
-  renderMobile("m4","m4Canvas","m4Text");
-  if(Mobiles.final.config) renderFinal();
+  rerenderM1();
+  rerenderM2();
+  rerenderM3();
+  rerenderM4();
+  if(Mob.final.ready) rerenderFinal();
 }
 
-/* =======================================================
-   11) Share (imagem + texto) — com fallback
-======================================================= */
-function configToText(cfg){
-  const a = (cfg.lines?.[0]||[]).join(" ");
-  const b = (cfg.lines?.[1]||[]).join(" ");
-  const c = (cfg.lines?.[2]||[]).join(" ");
-  return [a,b,c].filter(Boolean).join("\n");
-}
-function exportCompositePNG(srcCanvas, cfg){
-  const out = document.getElementById("shareCanvas");
+/* ======================================================
+   12) Partilha (imagem + texto + link)
+====================================================== */
+const ShareUI = (function(){
+  const overlay = document.getElementById("overlay");
+  const titleEl = document.getElementById("shareTitle");
+  const noteEl  = document.getElementById("shareNote");
+  const canvas  = document.getElementById("shareCanvas");
+  const pre     = document.getElementById("shareText");
+  const btnCopy = document.getElementById("copyText");
+  const btnDl   = document.getElementById("downloadImg");
+  const btnShare= document.getElementById("nativeShare");
+  const btnClose= document.getElementById("closeDlg");
+
+  let payload=null;
+
+  btnClose.onclick = ()=> overlay.classList.remove("on");
+  overlay.addEventListener("click",(e)=>{ if(e.target===overlay) overlay.classList.remove("on"); });
+
+  btnCopy.onclick = async ()=>{
+    if(!payload) return;
+    try{
+      await navigator.clipboard.writeText(payload.text);
+      toast("Texto copiado.");
+    }catch(e){ toast("Não consegui copiar."); }
+  };
+
+  btnDl.onclick = ()=>{
+    if(!payload) return;
+    const a=document.createElement("a");
+    a.download = payload.filename;
+    a.href = canvas.toDataURL("image/png");
+    a.click();
+    toast("Imagem baixada.");
+  };
+
+  btnShare.onclick = async ()=>{
+    if(!payload) return;
+    if(!navigator.share){
+      toast("Partilha nativa não disponível aqui.");
+      return;
+    }
+    try{
+      if(payload.file && navigator.canShare && navigator.canShare({files:[payload.file]})){
+        await navigator.share({ title:payload.title, text:payload.text, files:[payload.file] });
+      }else{
+        await navigator.share({ title:payload.title, text:payload.text });
+      }
+      toast("Partilhado.");
+    }catch(e){
+      // usuário cancelou etc.
+      toast("Partilha cancelada.");
+    }
+  };
+
+  function open(p){
+    payload=p;
+    titleEl.textContent = p.title;
+    noteEl.textContent  = p.note || "";
+    pre.textContent = p.text;
+    // já desenhado no canvas externo
+    overlay.classList.add("on");
+  }
+
+  return { open, canvas };
+})();
+
+function exportCompositePNG(srcCanvas, label, text){
+  const out = ShareUI.canvas;
   const ctx = out.getContext("2d");
   const W=out.width, H=out.height;
+  ctx.clearRect(0,0,W,H);
 
-  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim() || "#f4f2ee";
+  // fundo
+  ctx.fillStyle="#fbfaf8";
   ctx.fillRect(0,0,W,H);
 
+  // cabeçalho
+  ctx.fillStyle="rgba(20,20,22,0.82)";
+  ctx.font="700 22px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+  ctx.fillText("MÓBILES — suiornotsui", 70, 56);
+
+  ctx.fillStyle="rgba(20,20,22,0.56)";
+  ctx.font="14px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+  ctx.fillText(label, 70, 78);
+  ctx.fillText(nowISO(), 70, 98);
+
   // imagem
-  const pad=80;
-  const targetW=W-pad*2;
+  const pad=70;
+  const targetW = W - pad*2;
   const ratio = srcCanvas.height/srcCanvas.width;
-  const targetH=Math.min(H*0.62, targetW*ratio);
+  const targetH = Math.min(H*0.60, targetW*ratio);
   const dx=(W-targetW)/2;
-  const dy=90;
+  const dy=130;
   ctx.drawImage(srcCanvas, dx, dy, targetW, targetH);
 
   // texto
-  ctx.fillStyle="rgba(0,0,0,0.80)";
-  ctx.font="700 20px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
-  ctx.fillText("MÓBILES — suiornotsui", pad, 50);
-
-  ctx.fillStyle="rgba(0,0,0,0.55)";
-  ctx.font="14px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
-  ctx.fillText(nowISO(), pad, 72);
-
-  ctx.fillStyle="rgba(0,0,0,0.70)";
+  ctx.fillStyle="rgba(20,20,22,0.78)";
   ctx.font="16px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
-  const text = configToText(cfg);
-  const lines = text.split("\n").slice(0,6);
+
+  const lines = text.split("\n").slice(0,10);
   let ty = dy + targetH + 46;
   for(const ln of lines){
     ctx.fillText(ln, pad, ty);
-    ty += 22;
+    ty += 24;
+    if(ty > H-60) break;
   }
+
+  // rodapé/link
+  ctx.fillStyle="rgba(20,20,22,0.55)";
+  ctx.font="13px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+  ctx.fillText("Faz a tua curadoria: https://negativo-mov.github.io/negativo.mov/mobiles/entrada/", pad, H-34);
 
   return out;
 }
-async function canvasToPngFile(canvas, filename){
+
+async function canvasToFile(canvas, filename){
   return new Promise((resolve)=>{
     canvas.toBlob((blob)=>{
+      if(!blob) return resolve({file:null,blob:null});
       resolve({ file: new File([blob], filename, {type:"image/png"}), blob });
-    }, "image/png");
+    },"image/png",0.92);
   });
 }
 
-const ShareUI = (function(){
-  const dlg = document.getElementById("shareDlg");
-  const title = document.getElementById("shareTitle");
-  const note = document.getElementById("shareNote");
-  const textBox = document.getElementById("shareText");
-  const btnCopy = document.getElementById("copyText");
-  const btnDl = document.getElementById("downloadImg");
-  const btnShare = document.getElementById("nativeShare");
-  const btnClose = document.getElementById("closeDlg");
+async function shareFrom(key){
+  const map = {
+    m1:{ canvasId:"m1Canvas", label:"Móbile 1 — Nascimento do campo", textId:"m1Text" },
+    m2:{ canvasId:"m2Canvas", label:"Móbile 2 — Estrutura e posição", textId:"m2Text" },
+    m3:{ canvasId:"m3Canvas", label:"Móbile 3 — Formação do gesto", textId:"m3Text" },
+    m4:{ canvasId:"m4Canvas", label:"Móbile 4 — Corpo da linguagem", textId:"m4Text" },
+    final:{ canvasId:"finalCanvas", label:"Estado alcançado — Exposição provisória", textId:"finalText" },
+  }[key];
 
-  let payload = null;
+  const c = document.getElementById(map.canvasId);
+  const t = document.getElementById(map.textId).innerText || "";
 
-  btnClose.onclick = ()=> dlg.close();
-  btnCopy.onclick = async ()=>{
-    if(!payload) return;
-    await navigator.clipboard.writeText(payload.text);
-  };
-  btnDl.onclick = ()=>{
-    if(!payload) return;
-    const a = document.createElement("a");
-    a.download = payload.filename;
-    a.href = payload.outCanvas.toDataURL("image/png");
-    a.click();
-  };
-  btnShare.onclick = async ()=>{
-    if(!payload) return;
-    try{
-      if(navigator.share){
-        if(navigator.canShare && navigator.canShare({ files:[payload.file] })){
-          await navigator.share({ title:"MÓBILES", text: payload.text, files:[payload.file] });
-        }else{
-          await navigator.share({ title:"MÓBILES", text: payload.text });
-        }
-      }
-    }catch(e){}
-  };
+  const shareText =
+`${map.label}
 
-  function open({label, text, outCanvas, file, filename, canNativeFileShare}){
-    payload = {label, text, outCanvas, file, filename};
-    title.textContent = label;
-    textBox.textContent = text;
-    note.textContent = navigator.share
-      ? (canNativeFileShare ? "Partilha nativa: imagem + texto disponíveis." : "Partilha nativa pode limitar anexos; fallback: baixar imagem / copiar texto.")
-      : "Este navegador não oferece partilha nativa. Use baixar imagem + copiar texto.";
-    btnShare.style.display = navigator.share ? "inline-flex" : "none";
-    dlg.showModal();
-  }
-  return { open };
-})();
+${t}
 
-async function shareMobile(mKey){
-  const cfg = (mKey==="final") ? Mobiles.final.config : Mobiles[mKey].config;
-  const canvas = document.getElementById(mKey==="final" ? "finalCanvas" : (mKey+"Canvas"));
-  if(!cfg || !canvas) return;
+E você?
+Faz a tua curadoria:
+https://negativo-mov.github.io/negativo.mov/mobiles/entrada/`;
 
-  const text = configToText(cfg) + "\n\n" +
-    "Faz a tua curadoria aqui: " + (BASE_MOBILES + "entrada/");
+  const out = exportCompositePNG(c, map.label, shareText);
+  const {file} = await canvasToFile(out, `mobiles_${key}.png`);
 
-  const out = exportCompositePNG(canvas, cfg);
-  const filename = `mobiles_${mKey}_${Date.now()}.png`;
-  const { file } = await canvasToPngFile(out, filename);
-  const canNativeFileShare = !!(navigator.canShare && navigator.canShare({ files:[file] }));
+  // tenta share direto
+  const canNativeFileShare = !!(navigator.share && navigator.canShare && file && navigator.canShare({files:[file]}));
 
   if(navigator.share){
     try{
       if(canNativeFileShare){
-        await navigator.share({ title:"MÓBILES", text, files:[file] });
+        await navigator.share({ title:"MÓBILES — suiornotsui", text:shareText, files:[file] });
+        toast("Partilhado.");
         return;
       }else{
-        await navigator.share({ title:"MÓBILES", text });
+        // share só texto
+        await navigator.share({ title:"MÓBILES — suiornotsui", text:shareText });
+        toast("Partilhado.");
+        return;
       }
-    }catch(e){}
+    }catch(e){
+      // cai pro modal
+    }
   }
 
   ShareUI.open({
-    label: (mKey==="final") ? "Partilhar estado alcançado" : `Partilhar ${mKey.toUpperCase()}`,
-    text, outCanvas: out, file, filename, canNativeFileShare
+    title:`Partilhar — ${map.label}`,
+    note: canNativeFileShare ? "Partilha nativa com imagem + texto disponível." : "Se a partilha nativa não aceitar ficheiros, baixa a imagem e copia o texto.",
+    text: shareText,
+    filename: `mobiles_${key}.png`,
+    file
   });
 }
 
-/* =======================================================
-   12) Chips fonográficos (CORRIGIDO: sem syntax error!)
-======================================================= */
-function initChips(){
-  const box = document.getElementById("m4Chips");
-  box.innerHTML = "";
-  for(const p of PHONO_PRESETS){
-    const el = document.createElement("span");
-    el.className = "chip";
-    el.textContent = p.label;
+/* ======================================================
+   13) BOOT + binds
+====================================================== */
+function bindAll(){
+  // textos
+  document.getElementById("openingText").textContent = TEXT_OPENING;
 
-    el.onclick = ()=>{
-      const on = (PHONO.mode === p.key);
-      PHONO.mode = on ? "neutro" : p.key;
+  // botões
+  document.getElementById("m1Tension").onclick = ()=>{ try{ doM1Tension(); }catch(e){ console.error(e); toast("Erro no M1"); } };
+  document.getElementById("m2Swap").onclick    = ()=>{ try{ doM2Swap(); }catch(e){ console.error(e); toast("Erro no M2"); } };
+  document.getElementById("btnFinalize").onclick = ()=>{ try{ renderFinal(); }catch(e){ console.error(e); toast("Erro ao gerar expo"); } };
 
-      // ✅ CORREÇÃO CRÍTICA (era {.p.vec})
-      PHONO.vector = on ? {dry:0,voiced:0,open:0} : { ...p.vec };
+  document.getElementById("m1Share").onclick = ()=>shareFrom("m1");
+  document.getElementById("m2Share").onclick = ()=>shareFrom("m2");
+  document.getElementById("m3Share").onclick = ()=>shareFrom("m3");
+  document.getElementById("m4Share").onclick = ()=>shareFrom("m4");
+  document.getElementById("finalShare").onclick = ()=>shareFrom("final");
 
-      // inclina campo pelo modo fonográfico
-      applyDelta("m4", {
-        cont: -0.20*PHONO.vector.dry + 0.15*PHONO.vector.open,
-        dense: 0.10*PHONO.vector.voiced,
-        front: 0.05*(PHONO.vector.voiced - PHONO.vector.dry),
-        pressure: 0.25,
-      });
+  // cliques canvas
+  bindCanvasClicks("m1", document.getElementById("m1Canvas"));
+  bindCanvasClicks("m2", document.getElementById("m2Canvas"));
+  bindCanvasClicks("m3", document.getElementById("m3Canvas"));
+  bindCanvasClicks("m4", document.getElementById("m4Canvas"));
+  bindCanvasClicks("final", document.getElementById("finalCanvas"));
 
-      renderChipsState();
-      rerenderAll();
-    };
-    box.appendChild(el);
-  }
-  renderChipsState();
-}
-function renderChipsState(){
-  const chips = Array.from(document.querySelectorAll("#m4Chips .chip"));
-  chips.forEach((c,i)=>{
-    const key = PHONO_PRESETS[i].key;
-    c.classList.toggle("on", PHONO.mode===key);
-  });
+  // cliques texto
+  bindTextClicks("m1", document.getElementById("m1Text"));
+  bindTextClicks("m2", document.getElementById("m2Text"));
+  bindTextClicks("m3", document.getElementById("m3Text"));
+  bindTextClicks("m4", document.getElementById("m4Text"));
 }
 
-/* =======================================================
-   13) Botões (M3/M4/FINAL voltam porque JS não quebra)
-======================================================= */
-function initButtons(){
-  document.getElementById("btnReset").onclick = ()=>{
-    resetAll();
-    rerenderAll();
-  };
-
-  document.getElementById("m1Tension").onclick = ()=>{
-    applyDelta("m1", {
-      front:rnd(-0.45,0.55),
-      dense:rnd(-0.35,0.45),
-      cont:rnd(-0.55,0.55),
-      pressure:0.35
-    });
-    rerenderAll();
-  };
-
-  document.getElementById("m2Swap").onclick = ()=>{
-    Mobiles.m2.flip = !Mobiles.m2.flip;
-    applyDelta("m2", { front: Mobiles.m2.flip ? -0.55 : +0.55, cont: 0.10, pressure:0.18 });
-    rerenderAll();
-  };
-
-  document.getElementById("btnFinalize").onclick = ()=>{
-    renderFinal();
-  };
-
-  document.getElementById("m1Share").onclick = ()=> shareMobile("m1");
-  document.getElementById("m2Share").onclick = ()=> shareMobile("m2");
-  document.getElementById("m3Share").onclick = ()=> shareMobile("m3");
-  document.getElementById("m4Share").onclick = ()=> shareMobile("m4");
-  document.getElementById("finalShare").onclick = ()=> shareMobile("final");
-}
-
-/* =======================================================
-   14) Boot
-======================================================= */
 (async function boot(){
-  buildField();
-  await tryLoadSui();
-  resetAll();
-  initChips();
-  initButtons();
-  rerenderAll();
+  try{
+    buildField();
+    await tryLoadSui();
+    resetAll();
+    bindAll();
+    rerenderAll();
+    toast(SUI_MAP ? "sui.json carregado." : "sui.json não carregou (sem override Sui).");
+  }catch(e){
+    console.error(e);
+    toast("Boot falhou: ver consola.");
+  }
 })();
 </script>
 </body>
