@@ -11,15 +11,12 @@
       --muted:rgba(20,20,22,.68);
       --hair:rgba(20,20,22,.14);
 
-      /* “horror-pastel” */
       --p1:#ffe1ea;
       --p2:#dff3ff;
       --p3:#e7ffe8;
       --p4:#fff2d6;
       --acid:#a7ffb2;
       --bruise:#c9b2ff;
-      --soot:rgba(12,12,14,.78);
-      --ghost:rgba(255,255,255,.86);
 
       --card:rgba(255,255,255,.66);
       --shadow:0 18px 60px rgba(10,10,14,.09);
@@ -46,9 +43,7 @@
       margin: 22px auto 56px;
     }
 
-    header{
-      padding: 16px 2px 10px;
-    }
+    header{ padding: 16px 2px 10px; }
     header h1{
       margin:0 0 8px;
       font-size: 22px;
@@ -95,8 +90,7 @@
       align-items:flex-start;
       padding: 14px 16px;
       border-bottom:1px solid rgba(20,20,22,.10);
-      background:
-        linear-gradient(90deg, rgba(255,255,255,.66), rgba(255,255,255,.36));
+      background: linear-gradient(90deg, rgba(255,255,255,.66), rgba(255,255,255,.36));
     }
     .t b{
       display:block;
@@ -133,11 +127,16 @@
     button:hover{transform: translateY(-1px)}
     button:active{transform: translateY(0px); opacity:.88}
 
-    .stage{
-      padding: 14px 16px 18px;
+    .stage{ padding: 14px 16px 18px; }
+
+    .fixedIntro{
+      font-size:14px;
+      line-height:1.35;
+      color:var(--ink);
+      margin:2px 0 14px 0;
+      opacity:.92
     }
 
-    .fixedIntro{font-size:14px;line-height:1.35;color:var(--ink);margin:2px 0 14px 0;opacity:.92}
     canvas{
       width:100%;
       height:auto;
@@ -154,6 +153,7 @@
       line-height: 1.55;
       color: rgba(20,20,22,.86);
       letter-spacing:.1px;
+      max-width: 90ch;
     }
     .w{
       cursor:pointer;
@@ -168,9 +168,7 @@
       background: rgba(201,178,255,.18);
       outline: 1px dashed rgba(20,20,22,.18);
     }
-    .lock{
-      opacity:.92;
-    }
+    .lock{ opacity:.92; }
 
     .hint{
       margin-top:10px;
@@ -227,7 +225,7 @@
     }
     .mcontent textarea{
       width:100%;
-      min-height: 160px;
+      min-height: 180px;
       border-radius: 14px;
       padding: 10px;
       border: 1px solid rgba(20,20,22,.18);
@@ -314,7 +312,7 @@
         <div class="fixedIntro" id="m1Fixed">Tudo começa aqui.<br>Três formas pendem no campo,<br>leves, ainda indecisas.<br>Cada tensão desloca o lugar de onde partes.<br>Não é escolha de imagens.<br>É escolha de posição.<br>E o modo como começas<br>inclina todo o percurso.</div>
         <canvas id="m1Canvas" width="1000" height="560"></canvas>
         <div class="txt" id="m1Text"></div>
-        <div class="hint">M1: <b>só</b> o botão tensiona. O texto aqui é voz do campo, não interface.</div>
+        <div class="hint">M1: <b>só</b> o botão tensiona. O campo muda de regime, mas não vira embaralho a cada clique menor.</div>
       </div>
     </section>
 
@@ -322,7 +320,7 @@
       <div class="head">
         <div class="t">
           <b>Móbile 2 — Posição e estrutura (S–V–O)</b>
-          <small>2 fragmentos · frente/fundo = sujeito/objeto; <b>verbo</b> é a única saída do binário</small>
+          <small>2 fragmentos · frente/fundo = sujeito/objeto; <b>verbo</b> altera verbo + objeto (e só isso)</small>
         </div>
         <div class="mini">
           <button id="m2Swap">Inverter</button>
@@ -333,7 +331,7 @@
         <div class="fixedIntro" id="m2Fixed">Agora há relação.<br>Algo ocupa a frente.<br>Algo permanece no fundo.<br>Trocar de lugar muda o sentido,<br>mas não liberta da forma.<br>Há posições que se repetem.<br>Só o gesto —<br>o que fazes —<br>abre outra possibilidade.</div>
         <canvas id="m2Canvas" width="1000" height="560"></canvas>
         <div class="txt" id="m2Text"></div>
-        <div class="hint">M2: você só pode (1) inverter frente↔fundo, e (2) clicar no <b>verbo</b>.</div>
+        <div class="hint">M2: botão/canvas só <b>inverte</b>. Clique no <b>verbo</b> muda verbo + objeto (sujeito fica).</div>
       </div>
     </section>
 
@@ -341,7 +339,7 @@
       <div class="head">
         <div class="t">
           <b>Móbile 3 — Formação do gesto (estilo)</b>
-          <small>7 fragmentos · clique em fragmentos/palavras intensifica traços e inclina o campo</small>
+          <small>7 fragmentos · clique em fragmentos/palavras intensifica traços (visível) até colapsar</small>
         </div>
         <div class="mini">
           <button id="m3Share">Partilhar</button>
@@ -351,7 +349,7 @@
         <div class="fixedIntro" id="m3Fixed">O campo começa a responder ao teu gesto.<br>Onde insistes, algo cresce.<br>O que tocas torna-se mais visível.<br>O que ignoras afasta-se.<br>Sem perceber, vais formando um modo de ver.<br>Um estilo.<br>Uma inclinação do mundo.</div>
         <canvas id="m3Canvas" width="1000" height="560"></canvas>
         <div class="txt" id="m3Text"></div>
-        <div class="hint">M3: <b>sem botões</b> além de partilhar. Só clicar em fragmentos/palavras.</div>
+        <div class="hint">M3: sem botões além de partilhar. Clique = <b>intensificar</b> (não “trocar tudo”).</div>
       </div>
     </section>
 
@@ -359,7 +357,7 @@
       <div class="head">
         <div class="t">
           <b>Móbile 4 — Corpo da linguagem (fonografia) + colapso</b>
-          <small>5 fragmentos · <b>só as palavras</b> são clicáveis: insistir num corpo sonoro inclina tudo até saturar</small>
+          <small>5 fragmentos · <b>só palavras</b>: plosiva surda / plosiva sonora / fricativa — insistir satura</small>
         </div>
         <div class="mini">
           <button id="m4Share">Partilhar</button>
@@ -369,7 +367,7 @@
         <div class="fixedIntro" id="m4Fixed">Agora já não operas imagens.<br>Operas a própria linguagem.<br>Cada palavra carrega um corpo.<br>Um peso.<br>Um som.<br>Uma força.<br>Insistir numa forma faz o campo inteiro ceder.<br>Até que, em excesso,<br>algo colapsa<br>e o regime muda.</div>
         <canvas id="m4Canvas" width="1000" height="560"></canvas>
         <div class="txt" id="m4Text"></div>
-        <div class="hint">M4: clique apenas nas palavras. O canvas é <b>mudo</b> aqui.</div>
+        <div class="hint">M4: clique apenas nas palavras. Você deve <b>ouvir</b> o regime no texto (e ver o campo “ceder”).</div>
       </div>
     </section>
 
@@ -377,7 +375,7 @@
       <div class="head">
         <div class="t">
           <b>Estado alcançado — tua exposição provisória</b>
-          <small>10 fragmentos · gera texto (estilo curatorial + crítica), pronto pra partilhar</small>
+          <small>10 fragmentos · texto (estilo curatorial + crítica), pronto pra partilhar</small>
         </div>
         <div class="mini">
           <button id="btnFinalize">Gerar a minha expo</button>
@@ -389,7 +387,7 @@
         <canvas id="finalCanvas" width="1000" height="640"></canvas>
         <div class="txt" id="finalText"></div>
         <div class="finalGridNote" id="weeklyGate"></div>
-        <div class="hint">Depois a gente liga aqui o forms/endpoint: “para ver semanal, faz antes a tua curadoria”.</div>
+        <div class="hint">Depois a gente liga aqui o forms/endpoint semanal (bloqueado até gerar tua expo).</div>
       </div>
     </section>
 
@@ -411,7 +409,7 @@
         <div>
           <textarea id="shareText"></textarea>
           <div style="margin-top:10px;color:var(--muted);font-size:12px">
-            Dica: em desktop, você pode copiar texto + baixar imagem. Em mobile, salvar a imagem e colar o texto funciona bem.
+            Dica: em desktop, copie o texto + baixe a imagem. Em mobile, salvar a imagem e colar o texto funciona bem.
           </div>
         </div>
         <div class="imgbox">
@@ -427,11 +425,9 @@
 
 <script>
 /* ============================================================
-   LÉXICO COMPLETO — 70 operadores × 3 realizações (surda/sonora/fricativa)
-   (exatamente o que você colou; sem faltar nenhum)
+   LÉXICO COMPLETO — 70 operadores × 3 realizações
 ============================================================ */
 const LEX = {
-  /* SUBSTANTIVOS (1–28) */
   vestigio:{ surda:"traço", sonora:"marca", fricativa:"sombra" },
   sopro:{ surda:"pingo", sonora:"bafo", fricativa:"suspiro" },
   dobra:{ surda:"prega", sonora:"curva", fricativa:"flexão" },
@@ -464,7 +460,6 @@ const LEX = {
   configuracao:{ surda:"forma", sonora:"estrutura", fricativa:"composição" },
   cessacao:{ surda:"corte", sonora:"encerramento", fricativa:"silenciamento" },
 
-  /* VERBOS (29–50) */
   aproximar:{ surda:"chegar", sonora:"beirar", fricativa:"esfumar" },
   reparar:{ surda:"notar", sonora:"observar", fricativa:"esmiuçar" },
   tocar:{ surda:"tatear", sonora:"roçar", fricativa:"aflorar" },
@@ -490,7 +485,6 @@ const LEX = {
   abandonar:{ surda:"largar", sonora:"deixar", fricativa:"dissolver" },
   transformar:{ surda:"romper", sonora:"converter", fricativa:"transfigurar" },
 
-  /* ADJETIVOS (51–62) */
   leve:{ surda:"claro", sonora:"brando", fricativa:"suave" },
   minimo:{ surda:"curto", sonora:"pequeno", fricativa:"sutil" },
   fragil:{ surda:"ténue", sonora:"delicado", fricativa:"sensível" },
@@ -506,7 +500,6 @@ const LEX = {
   instavel:{ surda:"quebrado", sonora:"oscilante", fricativa:"flutuante" },
   provisorio:{ surda:"breve", sonora:"mutável", fricativa:"transitório" },
 
-  /* ADVÉRBIOS (63–70) */
   ainda:{ surda:"já", sonora:"agora", fricativa:"sempre" },
   quase:{ surda:"logo", sonora:"perto", fricativa:"talvez" },
   lentamente:{ surda:"aos poucos", sonora:"com calma", fricativa:"suavemente" },
@@ -536,7 +529,7 @@ const A_CRIT = ["latente","instavel","provisorio"];
 const ADV    = ["ainda","quase","lentamente","por_vezes","sempre","raramente","talvez","agora"];
 
 /* ============================================================
-   ESTADO GLOBAL (campo)
+   ESTADO GLOBAL (campo) — agora menos “embaralho”, mais “inclinação”
 ============================================================ */
 const G = {
   front: 0.0,
@@ -548,11 +541,11 @@ const G = {
 };
 
 const Mob = {
-  m1:{ seed:1 },
-  m2:{ flip:false, verbBias:0 },
-  m3:{ clicks:0 },
-  m4:{ clicks:0 },
-  final:{ ready:false, cfg:null },
+  m1:{ slots:null, focusFam:null },
+  m2:{ slots:null, flip:false, verbIx:0, subjKey:null, objKey:null, verbKey:null },
+  m3:{ slots:null, focusFam: null, intensity:0, clicks:0 },
+  m4:{ slots:null, focusPh: null, intensity:0, clicks:0 },
+  final:{ ready:false, slots:null },
 };
 
 /* ============================================================
@@ -560,6 +553,7 @@ const Mob = {
 ============================================================ */
 const clamp = (v,a,b)=>Math.max(a,Math.min(b,v));
 const rnd   = (a,b)=>a + Math.random()*(b-a);
+function pick(arr){ return arr[(Math.random()*arr.length)|0]; }
 
 function toast(msg){
   const t=document.getElementById("toast");
@@ -567,29 +561,6 @@ function toast(msg){
   t.classList.add("on");
   clearTimeout(toast._t);
   toast._t=setTimeout(()=>t.classList.remove("on"), 1200);
-}
-
-function pick(arr){
-  return arr[(Math.random()*arr.length)|0];
-}
-
-function realize(key){
-  // realiza segundo o regime fonográfico predominante atual (surda/sonora/fricativa)
-  const o = LEX[key];
-  if(!o) return key;
-  const mode = phMode();
-  if(mode==="surda") return o.surda || o.sonora || o.fricativa;
-  if(mode==="sonora") return o.sonora || o.surda || o.fricativa;
-  if(mode==="fricativa") return o.fricativa || o.sonora || o.surda;
-  // neutro: escolhe ponderado pelo estado
-  const wDry = Math.max(0.01, 0.34 + G.ph.dry*0.18);
-  const wVoi = Math.max(0.01, 0.34 + G.ph.voiced*0.18);
-  const wOpn = Math.max(0.01, 0.34 + G.ph.open*0.18);
-  const s = wDry+wVoi+wOpn;
-  const r = Math.random()*s;
-  if(r<wDry) return o.surda;
-  if(r<wDry+wVoi) return o.sonora;
-  return o.fricativa;
 }
 
 function phMode(){
@@ -601,12 +572,30 @@ function phMode(){
   return "fricativa";
 }
 
-function applyDelta(src, delta){
+function realize(key){
+  const o = LEX[key];
+  if(!o) return key;
+  const mode = phMode();
+  if(mode==="surda") return o.surda || o.sonora || o.fricativa;
+  if(mode==="sonora") return o.sonora || o.surda || o.fricativa;
+  if(mode==="fricativa") return o.fricativa || o.sonora || o.surda;
+
+  // neutro: mistura com leve viés pelos acumuladores
+  const wDry = Math.max(0.01, 0.34 + G.ph.dry*0.16);
+  const wVoi = Math.max(0.01, 0.34 + G.ph.voiced*0.16);
+  const wOpn = Math.max(0.01, 0.34 + G.ph.open*0.16);
+  const s = wDry+wVoi+wOpn;
+  const r = Math.random()*s;
+  if(r<wDry) return o.surda;
+  if(r<wDry+wVoi) return o.sonora;
+  return o.fricativa;
+}
+
+function applyDelta(delta){
   if(typeof delta.front==="number") G.front = clamp(G.front + delta.front, -1, 1);
   if(typeof delta.dense==="number") G.dense = clamp(G.dense + delta.dense, -1, 1);
   if(typeof delta.cont ==="number") G.cont  = clamp(G.cont  + delta.cont,  -1, 1);
   if(typeof delta.pressure==="number") G.pressure = clamp(G.pressure + delta.pressure, 0, 1);
-
   if(delta.ph){
     if(typeof delta.ph.dry==="number") G.ph.dry = clamp(G.ph.dry + delta.ph.dry, -1, 1);
     if(typeof delta.ph.voiced==="number") G.ph.voiced = clamp(G.ph.voiced + delta.ph.voiced, -1, 1);
@@ -615,91 +604,103 @@ function applyDelta(src, delta){
 }
 
 /* ============================================================
-   TEXTO (voz curatorial) — sem intro fixo embutido
+   FRASES — “voz curatorial” mais longa (exceto M2)
+   (coerência: repete termos, abre intervalo/resto, fecha com tese)
 ============================================================ */
-function maybeAdj(){
-  if(Math.random() < 0.48) return null;
-  const key = pick(A_SENS.concat(A_VIS).concat(A_CRIT));
-  return realize(key);
+function pickAdjByState(){
+  // escolhe adjetivo conforme inclinação do campo (mais consistente)
+  if(G.dense>0.22) return realize(pick(A_VIS));
+  if(G.front>0.22) return realize(pick(A_CRIT));
+  return realize(pick(A_SENS));
 }
-function maybeAdv(){
-  if(Math.random() < 0.60) return null;
+function maybeAdj(prob=0.72){
+  if(Math.random() > prob) return null;
+  return pickAdjByState();
+}
+function maybeAdv(prob=0.62){
+  if(Math.random() > prob) return null;
   return realize(pick(ADV));
 }
-function pickN(group){ return pick(group); }
-function pickV(group){ return pick(group); }
-function pickA(group){ return realize(pick(group)); }
+function phraseN(group){
+  const key = pick(group);
+  const n = realize(key);
+  const adj = maybeAdj(0.60);
+  if(adj) return `${n} ${adj}`;
+  return n;
+}
+function phraseNCore(group){
+  // só núcleo (para M2)
+  const key = pick(group);
+  return { key, surf: realize(key) };
+}
+function phraseAdvTail(){
+  const adv = maybeAdv(0.70);
+  return adv ? ` ${adv}` : "";
+}
+function phraseV(group){
+  const key = pick(group);
+  return { key, surf: realize(key) };
+}
 
-function genCuratorialLine(kind){
-  // kind: "m1Body" "m3Body" "m4Body" "finalA" "finalB"
-  const adj1 = maybeAdj();
-  const adv1 = maybeAdv();
+function genCuratorialParagraph(kind){
+  // kind: m1 / m3 / m4 / finalA / finalB
+  const n1 = phraseN(N_PLAS);
+  const n2 = phraseN(N_SENS);
+  const n3 = phraseN(N_CUR);
+  const n4 = phraseN(N_MEM);
+  const v1 = realize(pick(V_COMP));
+  const v2 = realize(pick(V_SENS));
+  const v3 = realize(pick(V_DEC));
+  const adv = phraseAdvTail();
 
-  const nA = (G.front>0.25) ? pickN(N_CUR) : pickN(N_SENS);
-  const nB = (G.dense>0.25) ? pickN(N_PLAS) : pickN(N_MEM);
-  const nC = (G.cont>0.20) ? pickN(N_SENS) : pickN(N_CUR);
-
-  const vA = (G.cont>0.15) ? pickV(V_SENS) : pickV(V_COMP);
-
-  const T = [];
-
-  if(kind==="m1Body"){
-    T.push(`Entre ${realize(nA)} e ${realize(nB)}, o campo começa a ${realize(vA)}${adv1?(" "+adv1):""}.`);
-    T.push(`A ${realize(nC)}${adj1?(" "+adj1):""} não explica: ela inclina.`);
-    if(G.pressure>0.35) T.push(`Há um ${realize(pickN(N_MEM))} que insiste como condição de partida.`);
+  if(kind==="m1"){
+    return [
+      `A ${n1} não é decoração: é o plano onde o teu olhar aprende a ${v2}${adv}.`,
+      `Quando tensionas o início, a ${n2} muda de lugar e a ${n3} ganha outra medida — como se o campo escolhesse, contigo, o que pode virar forma.`,
+      `O que ainda não aparece permanece como ${n4}: não é falha, é reserva. É isso que mantém a curadoria viva.`
+    ].join(" ");
   }
 
-  if(kind==="m3Body"){
-    T.push(`${realize(pickN(N_CUR))}${maybeAdj()?(" "+maybeAdj()):""} ${realize(pickV(V_COMP))} ${realize(pickN(N_PLAS))}${maybeAdv()?(" "+maybeAdv()):""}.`);
-    T.push(`O que ganhaste de ${realize(pickN(N_SENS))} vira ${realize(pickN(N_CUR))} — e o resto muda de lugar.`);
-    if(G.dense>0.25) T.push(`A ${realize(pickN(N_PLAS))} torna-se ${pickA(A_VIS)}: o teu foco tem peso.`);
+  if(kind==="m3"){
+    return [
+      `Aqui a máquina deixa de “mostrar” e começa a responder. Onde tocas, a ${n3} se ${v1}${adv}; onde repetes, a ${n1} adensa e o resto se desloca.`,
+      `O teu gesto cria um estilo: uma forma de ${v2} o mundo por ${n2}, sem precisar de tema.`,
+      `Insistir não é teimosia: é método. A cada insistência, algo se revela — e algo se perde como ${n4}.`
+    ].join(" ");
   }
 
-  if(kind==="m4Body"){
+  if(kind==="m4"){
     const mode = phMode();
-    const tag = (mode==="surda") ? "seco" : (mode==="sonora" ? "sonoro" : (mode==="fricativa" ? "arranhado" : "neutro"));
-    T.push(`A frase começa a soar ${tag}: corpo da palavra como operador do campo.`);
-    T.push(`Insistir numa forma muda ${realize(pickN(N_CUR))} e reorganiza ${realize(pickN(N_PLAS))}.`);
-    if(G.collapse>0) T.push(`Há ${realize(pickN(N_MEM))} depois do colapso: não é fim, é resto operável.`);
+    const label = (mode==="surda") ? "corte seco" : (mode==="sonora" ? "ruptura estrondosa" : (mode==="fricativa" ? "passagem fluida" : "corpo indeciso"));
+    return [
+      `Agora o operador é a própria matéria sonora. Cada palavra traz ${label}: o som arrasta consigo um modo de recortar o campo.`,
+      `Ao insistires, a frase se reorganiza e a ${n1} se deixa ${v1}${adv} — como se a língua fosse um dispositivo de montagem.`,
+      `No limite, há colapso: não para terminar, mas para ${v3} o regime e devolver ${n4} como resto operável.`
+    ].join(" ");
   }
 
   if(kind==="finalA"){
-    T.push(`O teu estilo curatorial tende a ${realize(pickV(V_COMP))} ${realize(pickN(N_PLAS))} com ${realize(pickN(N_CUR))}${maybeAdv()?(" "+maybeAdv()):""}.`);
-    T.push(`Há preferência por ${pickA(A_SENS)} e por ${realize(pickN(N_SENS))} — e isso produz ${realize(pickN(N_CUR))}.`);
+    return [
+      `O teu estilo curatorial tende a ${v1}${adv} — preferindo ${n1} e ${n3} em vez de enunciados fechados.`,
+      `Atenção ao que foi ficando mais nítido: o teu gesto valoriza ${n2} e aceita ${n4} como condição de trabalho.`,
+      `Em termos de campo, isso produz uma curadoria que não prova “tema”: prova posição.`
+    ].join(" ");
   }
 
   if(kind==="finalB"){
-    T.push(`A exposição monta uma ${realize(pickN(N_CUR))} ${pickA(A_CRIT)}: entre ${realize(pickN(N_PLAS))} e ${realize(pickN(N_MEM))}, o campo não se fecha.`);
-    T.push(`O que aparece se sustenta como ${realize(pickN(N_SENS))}, mas deixa ${realize(pickN(N_MEM))} como pergunta.`);
+    return [
+      `A exposição montada aqui aparece como ${n3}: uma constelação onde a ${n1} não fecha o sentido, apenas o sustenta.`,
+      `Entre ${n2} e ${n4}, o percurso mantém uma pergunta no lugar certo — o lugar onde o olhar volta.`,
+      `Partilhar não é exibir resultado: é reencenar o dispositivo, para ver que outras obras emergem onde tu não conseguiste chegar.`
+    ].join(" ");
   }
 
-  return T.join(" ");
+  return "";
 }
 
 /* ============================================================
-   RICH TEXT (m3/m4 com metadata)
+   TEXTO RICO (clique em palavras) — M3/M4
 ============================================================ */
-function setRichText(el, text, clickable){
-  const parts = text.split(/(\s+)/);
-  el.innerHTML = "";
-  for(const p of parts){
-    if(p.trim()===""){
-      el.appendChild(document.createTextNode(p));
-      continue;
-    }
-    if(!clickable){
-      el.appendChild(document.createTextNode(p));
-      continue;
-    }
-    const span = document.createElement("span");
-    span.className = "w";
-    span.textContent = p;
-    span.dataset.token = p.toLowerCase();
-    el.appendChild(span);
-  }
-}
-
-/* --- Rich text com metadados (restrições por móbile) --- */
 let SURFACE_PH = null;
 function buildSurfacePhMap(){
   const m = new Map();
@@ -717,6 +718,9 @@ function inferPh(token){
   const t = String(token||"").toLowerCase().replace(/[.,;:!?]/g,"");
   return SURFACE_PH.get(t) || null;
 }
+function setRichTextPlain(el, text){
+  el.textContent = text;
+}
 function setRichTextWithMeta(el, text, key){
   const parts = text.split(/(\s+)/);
   el.innerHTML = "";
@@ -732,73 +736,35 @@ function setRichTextWithMeta(el, text, key){
     span.dataset.token = clean;
 
     if(key==="m3"){
+      // palavra tende a reforçar eixo conforme classe (heurística simples porém estável)
       let axe = "front";
-      if(surfaceInGroups(clean, GROUP_SURF.dense)) axe="dense";
-      else if(surfaceInGroups(clean, GROUP_SURF.cont)) axe="cont";
-      else if(surfaceInGroups(clean, GROUP_SURF.front)) axe="front";
-      else axe = (Math.random()<0.34) ? "front" : (Math.random()<0.5 ? "dense" : "cont");
+      if(tokIsFromSets(clean, SETS.dense)) axe="dense";
+      else if(tokIsFromSets(clean, SETS.cont)) axe="cont";
+      else if(tokIsFromSets(clean, SETS.front)) axe="front";
       span.dataset.axe = axe;
-      span.dataset.dir = (Math.random()<0.5) ? "pos" : "neg";
     }
-
     if(key==="m4"){
-      const ph = inferPh(clean) || (Math.random()<0.34 ? "surda" : (Math.random()<0.5 ? "sonora" : "fricativa"));
-      span.dataset.ph = ph;
+      span.dataset.ph = inferPh(clean) || (Math.random()<0.34 ? "surda" : (Math.random()<0.5 ? "sonora" : "fricativa"));
     }
-
     el.appendChild(span);
   }
 }
-
-// grupos de superfície (para heurística do m3)
-const GROUP_SURF = { front:new Set(), dense:new Set(), cont:new Set() };
-function addAllVariantsToSet(set, obj){
+const SETS = { front:new Set(), dense:new Set(), cont:new Set() };
+function addVar(set, obj){
   if(!obj) return;
   if(obj.surda) set.add(String(obj.surda).toLowerCase());
   if(obj.sonora) set.add(String(obj.sonora).toLowerCase());
   if(obj.fricativa) set.add(String(obj.fricativa).toLowerCase());
 }
-function surfaceInGroups(tok, set){
-  return set.has(tok);
-}
-function buildGroupSurface(){
-  for(const k of N_CUR.concat(N_MEM)){ addAllVariantsToSet(GROUP_SURF.front, LEX[k]); }
-  for(const k of N_PLAS){ addAllVariantsToSet(GROUP_SURF.dense, LEX[k]); }
-  for(const k of N_SENS){ addAllVariantsToSet(GROUP_SURF.cont, LEX[k]); }
-  for(const k of V_DEC){ addAllVariantsToSet(GROUP_SURF.front, LEX[k]); }
-  for(const k of V_COMP){ addAllVariantsToSet(GROUP_SURF.dense, LEX[k]); }
-  for(const k of V_SENS){ addAllVariantsToSet(GROUP_SURF.cont, LEX[k]); }
-}
-buildGroupSurface();
-
-/* ============================================================
-   M2 S–V–O (curto) + verbo como única saída
-============================================================ */
-function genM2SVO(){
-  const subjKeyA = (G.front>0.25) ? pickN(N_CUR) : pickN(N_SENS);
-  const objKeyB  = (G.dense>0.25) ? pickN(N_PLAS) : pickN(N_MEM);
-
-  const subj = Mob.m2.flip ? objKeyB : subjKeyA;
-  const obj  = Mob.m2.flip ? subjKeyA : objKeyB;
-
-  const baseV1 = pickV(V_COMP);
-  const baseV2 = pickV(V_SENS);
-  let verb = (Mob.m2.verbBias%3===0) ? baseV1 : baseV2;
-
-  if(Mob.m2.verbBias>0 && (Mob.m2.verbBias%2===1)){
-    verb = pickV(V_DEC);
-  }
-
-  return { subj: realize(subj), verb: realize(verb), obj: realize(obj) };
-}
-
-function renderM2Text(el, m2){
-  el.innerHTML = "";
-  const s1 = document.createElement("span"); s1.textContent = m2.subj+" "; s1.className="lock";
-  const sv = document.createElement("span"); sv.textContent = m2.verb+" "; sv.className="w verb";
-  const s2 = document.createElement("span"); s2.textContent = m2.obj+"."; s2.className="lock";
-  el.appendChild(s1); el.appendChild(sv); el.appendChild(s2);
-}
+function tokIsFromSets(tok, set){ return set.has(tok); }
+(function buildSets(){
+  for(const k of N_CUR.concat(N_MEM)) addVar(SETS.front, LEX[k]);
+  for(const k of N_PLAS) addVar(SETS.dense, LEX[k]);
+  for(const k of N_SENS) addVar(SETS.cont, LEX[k]);
+  for(const k of V_DEC) addVar(SETS.front, LEX[k]);
+  for(const k of V_COMP) addVar(SETS.dense, LEX[k]);
+  for(const k of V_SENS) addVar(SETS.cont, LEX[k]);
+})();
 
 /* ============================================================
    IMAGENS / FRAGMENTOS (slots 1..120) + Sui (53)
@@ -820,38 +786,31 @@ function slotFamily(slot){
   if(slot<=110) return 11;
   return 12;
 }
-
-// probabilidade “aparecer Sui quase sempre” (mas não sempre)
-function shouldForceSui(){
-  // 90% de chance de forçar ao menos 1 slot com Sui na composição de cada móbile (quando disponível)
-  return Math.random() < 0.90;
-}
+function shouldForceSui(){ return Math.random() < 0.90; }
 
 function pickSlotWeighted(count){
   const arr=[];
   for(let i=1;i<=BASE_SLOTS;i++){
     let w=1;
-
-    // peso tensivo por estado global (simplificado)
     const fam = slotFamily(i);
-    if(G.cont>0.20 && fam===1) w+=1.6;
-    if(G.pressure>0.55 && (fam===2||fam===5)) w+=1.7;
-    if(Math.abs(G.front)>0.35 && fam===3) w+=1.2;
-    if(G.dense>0.25 && fam===6) w+=1.5;
-    if(G.dense<-0.15 && fam===7) w+=1.2;
-    if(G.front<-0.25 && fam===8) w+=1.0;
-    if(G.cont<-0.15 && fam===12) w+=1.0;
 
-    // paleta / “docemente mórbido”: tende a empurrar para famílias 4/10/11 também
-    if(fam===4 || fam===10 || fam===11) w+=0.35;
+    // inclinações globais (estáveis)
+    if(G.cont>0.20 && fam===1) w+=1.3;
+    if(G.pressure>0.55 && (fam===2||fam===5)) w+=1.35;
+    if(Math.abs(G.front)>0.35 && fam===3) w+=1.05;
+    if(G.dense>0.25 && fam===6) w+=1.25;
+    if(G.dense<-0.15 && fam===7) w+=1.05;
+    if(G.front<-0.25 && fam===8) w+=0.90;
+    if(G.cont<-0.15 && fam===12) w+=0.90;
 
-    // pequena penalidade para a própria Sui NÃO dominar tudo
+    if(fam===4 || fam===10 || fam===11) w+=0.25;
+
     if(i===SUI_SLOT) w+=0.35;
 
     const k=Math.max(1, Math.floor(w*6));
     for(let j=0;j<k;j++) arr.push(i);
   }
-  // sample sem reposição
+
   const out=[];
   const pool=[...arr];
   while(out.length<count && pool.length){
@@ -859,25 +818,21 @@ function pickSlotWeighted(count){
     out.push(pool[idx]);
     pool.splice(idx,1);
   }
-  // fallback
   while(out.length<count) out.push( ((Math.random()*BASE_SLOTS)|0)+1 );
   return out;
 }
 
 function slotUrl(slot){
-  // imagens genéricas: usa placeholders gerados no próprio canvas (não dependem do repo)
-  // mas o slot 53 usa o caminho real de Sui (sui.json -> assets/sui/slot_053.jpg)
   if(slot===SUI_SLOT){
     return "assets/sui/slot_053.jpg";
   }
-  return null; // será desenhado procedimentalmente
+  return null;
 }
 
 /* ============================================================
-   DESENHO (cenários visíveis + contornos fortes dos fragmentos)
+   DESENHO (cenários visíveis + contornos fortes + INTENSIFICAÇÃO PERCEPTÍVEL)
 ============================================================ */
 const HITS = { m1:[], m2:[], m3:[], m4:[], final:[] };
-
 function clearHits(key){ HITS[key]=[]; }
 
 function drawFrame(ctx, x,y,w,h, style){
@@ -906,7 +861,6 @@ function drawHorrorPastelBG(ctx, W,H, mood){
   ctx.save();
   ctx.clearRect(0,0,W,H);
 
-  // fundo “mórbido-doce”
   const g=ctx.createLinearGradient(0,0,W,H);
   g.addColorStop(0, "rgba(255,225,234,.62)");
   g.addColorStop(0.45, "rgba(223,243,255,.55)");
@@ -914,7 +868,6 @@ function drawHorrorPastelBG(ctx, W,H, mood){
   ctx.fillStyle=g;
   ctx.fillRect(0,0,W,H);
 
-  // manchas “bruise/acid”
   for(let i=0;i<10;i++){
     const x=rnd(0,W), y=rnd(0,H), r=rnd(90,220);
     const gg=ctx.createRadialGradient(x,y,0,x,y,r);
@@ -924,7 +877,6 @@ function drawHorrorPastelBG(ctx, W,H, mood){
     ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill();
   }
 
-  // “fiapos” leves
   ctx.strokeStyle="rgba(20,20,22,.08)";
   ctx.lineWidth=1;
   for(let i=0;i<14;i++){
@@ -934,15 +886,12 @@ function drawHorrorPastelBG(ctx, W,H, mood){
     ctx.stroke();
   }
 
-  // cenário específico
   if(mood==="crib"){
-    ctx.strokeStyle="rgba(20,20,22,.10)";
+    ctx.strokeStyle="rgba(20,20,22,.12)";
     ctx.lineWidth=3;
-    // arco do berço
     ctx.beginPath();
     ctx.arc(W*0.5, H*0.04, W*0.55, Math.PI*0.08, Math.PI*0.92);
     ctx.stroke();
-    // cordas
     for(const k of [0.33,0.5,0.67]){
       ctx.beginPath();
       ctx.moveTo(W*0.5, H*0.06);
@@ -952,7 +901,6 @@ function drawHorrorPastelBG(ctx, W,H, mood){
   }
   if(mood==="mountains"){
     ctx.fillStyle="rgba(20,20,22,.06)";
-    // montanhas
     ctx.beginPath();
     ctx.moveTo(0,H*0.70);
     ctx.lineTo(W*0.18,H*0.52);
@@ -966,7 +914,6 @@ function drawHorrorPastelBG(ctx, W,H, mood){
     ctx.closePath();
     ctx.fill();
 
-    // “animais” minimalistas
     ctx.strokeStyle="rgba(20,20,22,.16)";
     ctx.lineWidth=2;
     for(const px of [0.22,0.42,0.62,0.78]){
@@ -1018,11 +965,29 @@ function drawHorrorPastelBG(ctx, W,H, mood){
   ctx.restore();
 }
 
-function drawProceduralFragment(ctx, x,y,w,h, slot){
-  // forma “mais nítida” (contrastada) + variação por família
+// intensidade perceptível: realça família focada, desbota demais
+function applyVisualIntensityForSlot(ctx, slot, key){
+  if(key==="m3" && Mob.m3.focusFam!=null){
+    const fam = slotFamily(slot);
+    const t = clamp(Mob.m3.intensity, 0, 1);
+    if(fam === Mob.m3.focusFam){
+      // realce
+      ctx.globalAlpha = 1.0;
+      ctx.filter = `contrast(${1.0 + 0.75*t}) saturate(${1.0 + 0.45*t})`;
+    }else{
+      // desbote
+      ctx.globalAlpha = 1.0 - 0.55*t;
+      ctx.filter = `grayscale(${0.22 + 0.55*t}) contrast(${1.0 - 0.12*t})`;
+    }
+  } else {
+    ctx.globalAlpha = 1.0;
+    ctx.filter = "none";
+  }
+}
+
+function drawProceduralFragment(ctx, x,y,w,h, slot, key){
   const fam = slotFamily(slot);
 
-  // cores por família (horror pastel)
   const pals = [
     ["rgba(255,225,234,.80)","rgba(20,20,22,.55)"],
     ["rgba(223,243,255,.78)","rgba(20,20,22,.58)"],
@@ -1033,10 +998,18 @@ function drawProceduralFragment(ctx, x,y,w,h, slot){
   ];
   const [fillBase, ink] = pals[(fam-1)%pals.length];
 
+  // borda mais “viva” quando focado
+  let stroke = "rgba(20,20,22,.55)";
+  let line = 3.2;
+  if(key==="m3" && Mob.m3.focusFam!=null && fam===Mob.m3.focusFam){
+    line = 4.4;
+    stroke = "rgba(20,20,22,.78)";
+  }
+
   drawFrame(ctx, x,y,w,h, {
     fill: fillBase,
-    stroke: "rgba(20,20,22,.55)",
-    line: 3.2,
+    stroke,
+    line,
     shadow: "rgba(0,0,0,.16)",
     blur: 20,
     offy: 10
@@ -1053,13 +1026,11 @@ function drawProceduralFragment(ctx, x,y,w,h, slot){
   ctx.closePath();
   ctx.clip();
 
-  // padrões por família (nítidos, não apagados)
   ctx.strokeStyle = ink;
   ctx.fillStyle = ink;
   ctx.lineWidth = 2.4;
 
   if(fam===1){
-    // continuidade linear
     for(let i=0;i<9;i++){
       const yy = y + (i+1)*(h/10);
       ctx.beginPath();
@@ -1068,7 +1039,6 @@ function drawProceduralFragment(ctx, x,y,w,h, slot){
       ctx.stroke();
     }
   }else if(fam===2){
-    // corte vertical
     for(let i=0;i<5;i++){
       const xx = x + (i+2)*(w/7);
       ctx.beginPath();
@@ -1077,7 +1047,6 @@ function drawProceduralFragment(ctx, x,y,w,h, slot){
       ctx.stroke();
     }
   }else if(fam===3){
-    // oblíquo
     for(let i=0;i<6;i++){
       ctx.beginPath();
       ctx.moveTo(x-20, y + i*(h/5));
@@ -1085,7 +1054,6 @@ function drawProceduralFragment(ctx, x,y,w,h, slot){
       ctx.stroke();
     }
   }else if(fam===4){
-    // ritmo repetitivo
     for(let i=0;i<8;i++){
       const cx = x + (i+1)*(w/9);
       ctx.beginPath();
@@ -1093,7 +1061,6 @@ function drawProceduralFragment(ctx, x,y,w,h, slot){
       ctx.stroke();
     }
   }else if(fam===5){
-    // ruptura
     for(let i=0;i<8;i++){
       ctx.beginPath();
       ctx.moveTo(x+rnd(0,w), y+rnd(0,h));
@@ -1101,14 +1068,12 @@ function drawProceduralFragment(ctx, x,y,w,h, slot){
       ctx.stroke();
     }
   }else if(fam===6){
-    // densidade
     for(let i=0;i<30;i++){
       ctx.globalAlpha = 0.55;
       ctx.fillRect(x+rnd(0,w), y+rnd(0,h), rnd(4,10), rnd(4,10));
     }
     ctx.globalAlpha = 1;
   }else if(fam===7){
-    // rarefação
     ctx.strokeStyle="rgba(20,20,22,.22)";
     for(let i=0;i<4;i++){
       ctx.beginPath();
@@ -1116,7 +1081,6 @@ function drawProceduralFragment(ctx, x,y,w,h, slot){
       ctx.stroke();
     }
   }else if(fam===8){
-    // centro instável
     ctx.beginPath();
     ctx.arc(x+w*0.55, y+h*0.48, 46, 0, Math.PI*2);
     ctx.stroke();
@@ -1124,12 +1088,10 @@ function drawProceduralFragment(ctx, x,y,w,h, slot){
     ctx.arc(x+w*0.42, y+h*0.58, 28, 0, Math.PI*2);
     ctx.stroke();
   }else if(fam===9){
-    // homogêneo
     ctx.globalAlpha=0.18;
     ctx.fillRect(x+10,y+10,w-20,h-20);
     ctx.globalAlpha=1;
   }else if(fam===10){
-    // direção múltipla
     for(let i=0;i<10;i++){
       ctx.beginPath();
       ctx.moveTo(x+w*0.5, y+h*0.5);
@@ -1137,7 +1099,6 @@ function drawProceduralFragment(ctx, x,y,w,h, slot){
       ctx.stroke();
     }
   }else if(fam===11){
-    // contorno
     ctx.lineWidth=3;
     ctx.beginPath();
     ctx.rect(x+18,y+18,w-36,h-36);
@@ -1146,14 +1107,12 @@ function drawProceduralFragment(ctx, x,y,w,h, slot){
     ctx.rect(x+32,y+32,w-64,h-64);
     ctx.stroke();
   }else{
-    // massa
     ctx.fillStyle="rgba(20,20,22,.32)";
     ctx.fillRect(x+18, y+18, w-36, h-36);
   }
 
   ctx.restore();
 
-  // etiqueta mínima (só como resto)
   ctx.save();
   ctx.fillStyle="rgba(20,20,22,.50)";
   ctx.font="12px ui-sans-serif";
@@ -1161,13 +1120,19 @@ function drawProceduralFragment(ctx, x,y,w,h, slot){
   ctx.restore();
 }
 
-async function drawImageInto(ctx, imgUrl, x,y,w,h){
+async function drawImageInto(ctx, imgUrl, x,y,w,h, slot, key){
   return new Promise((resolve)=>{
     const im = new Image();
     im.crossOrigin="anonymous";
     im.onload=()=>{
       ctx.save();
-      drawFrame(ctx,x,y,w,h,{ fill:"rgba(255,255,255,.86)", stroke:"rgba(20,20,22,.65)", line:3.2, shadow:"rgba(0,0,0,.16)", blur:22, offy:10 });
+      let stroke = "rgba(20,20,22,.65)";
+      let line = 3.2;
+      if(key==="m3" && Mob.m3.focusFam!=null && slotFamily(slot)===Mob.m3.focusFam){
+        line = 4.4;
+        stroke = "rgba(20,20,22,.82)";
+      }
+      drawFrame(ctx,x,y,w,h,{ fill:"rgba(255,255,255,.86)", stroke, line, shadow:"rgba(0,0,0,.16)", blur:22, offy:10 });
       ctx.beginPath();
       const r=14;
       ctx.moveTo(x+r,y);
@@ -1181,26 +1146,19 @@ async function drawImageInto(ctx, imgUrl, x,y,w,h){
       ctx.restore();
       resolve(true);
     };
-    im.onerror=()=>{
-      resolve(false);
-    };
+    im.onerror=()=>resolve(false);
     im.src=imgUrl + (imgUrl.includes("?") ? "" : ("?v="+Date.now()));
   });
 }
 
 /* ============================================================
-   COMPOSIÇÕES (móbiles) — cenários e hits
+   COMPOSIÇÕES — agora NÃO re-sorteia a cada clique (só em eventos maiores)
 ============================================================ */
 function sampleSlots(n){
   let slots = pickSlotWeighted(n);
-
-  // força 1 Sui em 90% dos casos, sem dominar tudo
   if(shouldForceSui()){
-    if(!slots.includes(SUI_SLOT)){
-      slots[0] = SUI_SLOT;
-    }
+    if(!slots.includes(SUI_SLOT)) slots[0]=SUI_SLOT;
   }
-  // embaralha
   for(let i=slots.length-1;i>0;i--){
     const j=(Math.random()*(i+1))|0;
     [slots[i],slots[j]]=[slots[j],slots[i]];
@@ -1216,8 +1174,12 @@ async function drawMobile(canvas, key, n){
   const mood = (key==="m1")?"crib":(key==="m2")?"mountains":(key==="m3")?"maze":(key==="m4")?"stairs":"maze";
   drawHorrorPastelBG(ctx,W,H,mood);
 
-  // slots fixos por móbile
-  const slots = sampleSlots(n);
+  // slots fixos
+  let slots = Mob[key]?.slots;
+  if(!slots || slots.length!==n){
+    slots = sampleSlots(n);
+    Mob[key].slots = slots;
+  }
 
   // layout por móbile
   let rects=[];
@@ -1228,10 +1190,14 @@ async function drawMobile(canvas, key, n){
       {x:W*0.58,y:H*0.22,w:W*0.24,h:H*0.42, z:3},
     ];
   }else if(key==="m2"){
-    rects = [
-      {x:W*0.14,y:H*0.30,w:W*0.34,h:H*0.46, z:2}, // fundo (menor)
-      {x:W*0.52,y:H*0.22,w:W*0.36,h:H*0.54, z:3}, // frente (maior)
-    ];
+    // fundo + frente; swap troca a ordem de desenho
+    const back  = {x:W*0.14,y:H*0.30,w:W*0.34,h:H*0.46, z:1};
+    const front = {x:W*0.52,y:H*0.22,w:W*0.36,h:H*0.54, z:2};
+    if(Mob.m2.flip){
+      rects = [front, back];
+    }else{
+      rects = [back, front];
+    }
   }else if(key==="m3"){
     const pts=[
       [0.12,0.25],[0.33,0.20],[0.54,0.24],[0.76,0.18],
@@ -1248,7 +1214,6 @@ async function drawMobile(canvas, key, n){
       x:W*p[0], y:H*p[1], w:W*(0.22+rnd(-0.02,0.02)), h:H*(0.28+rnd(-0.03,0.03)), z:i+1
     }));
   }else{
-    // final: 10 fragmentos em constelação
     const pts=[
       [0.10,0.18],[0.28,0.12],[0.50,0.16],[0.72,0.10],[0.82,0.28],
       [0.62,0.36],[0.38,0.34],[0.16,0.40],[0.24,0.62],[0.62,0.62],
@@ -1258,51 +1223,139 @@ async function drawMobile(canvas, key, n){
     }));
   }
 
-  // ordena por z
   rects.sort((a,b)=>a.z-b.z);
 
-  // desenha
   for(let i=0;i<rects.length;i++){
     const r=rects[i];
     const slot=slots[i];
     const url=slotUrl(slot);
 
+    ctx.save();
+    applyVisualIntensityForSlot(ctx, slot, key);
+
     if(url){
-      const ok = await drawImageInto(ctx, url, r.x, r.y, r.w, r.h);
-      if(!ok){
-        drawProceduralFragment(ctx, r.x, r.y, r.w, r.h, slot);
-      }
+      const ok = await drawImageInto(ctx, url, r.x, r.y, r.w, r.h, slot, key);
+      if(!ok) drawProceduralFragment(ctx, r.x, r.y, r.w, r.h, slot, key);
     }else{
-      drawProceduralFragment(ctx, r.x, r.y, r.w, r.h, slot);
+      drawProceduralFragment(ctx, r.x, r.y, r.w, r.h, slot, key);
     }
 
+    ctx.restore();
+
     // hitbox (só onde o móbile permite)
-    HITS[key].push({x:r.x,y:r.y,w:r.w,h:r.h,slot:{id:slot, axes:{
-      front: (slotFamily(slot)%2===0)? 0.9 : -0.6,
-      dense: (slotFamily(slot)%3===0)? 0.8 : -0.4,
-      cont:  (slotFamily(slot)%4===0)? 0.7 : -0.5,
-    }}});
+    HITS[key].push({x:r.x,y:r.y,w:r.w,h:r.h,slot});
   }
 
-  // guarda slots no estado pra share
-  if(key==="m1") Mob.m1.slots = slots;
-  if(key==="m2") Mob.m2.slots = slots;
-  if(key==="m3") Mob.m3.slots = slots;
-  if(key==="m4") Mob.m4.slots = slots;
-  if(key==="final") Mob.final.slots = slots;
+  // overlay do M4 para “ceder” com regime fonográfico
+  if(key==="m4"){
+    const mode = phMode();
+    const t = clamp(Mob.m4.intensity, 0, 1);
+    ctx.save();
+    ctx.globalAlpha = 0.12 + 0.22*t;
+    if(mode==="surda") ctx.fillStyle="rgba(20,20,22,.55)";
+    else if(mode==="sonora") ctx.fillStyle="rgba(201,178,255,.55)";
+    else if(mode==="fricativa") ctx.fillStyle="rgba(167,255,178,.45)";
+    else ctx.fillStyle="rgba(255,255,255,.35)";
+    ctx.fillRect(0,0,W,H);
+    ctx.restore();
+  }
 }
 
 /* ============================================================
-   CLIQUES (restrições por móbile) — CORRIGIDO
+   M2 — S–V–O com inversão estrita + verbo muda verbo+objeto
+============================================================ */
+const M2_VERBS = [
+  ...V_COMP, ...V_SENS, ...V_DEC
+];
+
+function m2InitIfNeeded(){
+  if(Mob.m2.subjKey && Mob.m2.objKey && Mob.m2.verbKey) return;
+
+  // sujeito e objeto fixos (até M1 retensionar ou colapso global)
+  const subj = (G.front>0.22) ? pick(N_CUR) : pick(N_SENS);
+  const obj  = (G.dense>0.22) ? pick(N_PLAS) : pick(N_MEM);
+  Mob.m2.subjKey = subj;
+  Mob.m2.objKey  = obj;
+
+  // verbo inicial
+  Mob.m2.verbIx = (Math.random()*M2_VERBS.length)|0;
+  Mob.m2.verbKey = M2_VERBS[Mob.m2.verbIx];
+}
+
+function m2PhraseBlockN(nKey){
+  // bloco: núcleo substantivo + adjetivo/adv opcionais dependentes do estado global
+  const n = realize(nKey);
+  const adjProb = clamp(0.25 + Math.abs(G.dense)*0.35 + Math.abs(G.front)*0.20, 0.20, 0.75);
+  const advProb = clamp(0.15 + Math.abs(G.cont)*0.28, 0.10, 0.55);
+  const adj = (Math.random()<adjProb) ? pickAdjByState() : null;
+  const adv = (Math.random()<advProb) ? realize(pick(ADV)) : null;
+
+  let s = n;
+  if(adj) s += " " + adj;
+  if(adv) s += " " + adv;
+  return s;
+}
+
+function renderM2Text(){
+  m2InitIfNeeded();
+  const el = document.getElementById("m2Text");
+  el.innerHTML = "";
+
+  const subjKey = Mob.m2.flip ? Mob.m2.objKey : Mob.m2.subjKey;
+  const objKey  = Mob.m2.flip ? Mob.m2.subjKey : Mob.m2.objKey;
+
+  const block1 = m2PhraseBlockN(subjKey);
+  const block3 = m2PhraseBlockN(objKey);
+
+  const verb = realize(Mob.m2.verbKey);
+
+  const s1 = document.createElement("span");
+  s1.className="lock";
+  s1.textContent = block1 + " ";
+
+  const sv = document.createElement("span");
+  sv.className="w verb";
+  sv.textContent = verb + " ";
+
+  const s3 = document.createElement("span");
+  s3.className="lock";
+  s3.textContent = block3 + ".";
+
+  el.appendChild(s1);
+  el.appendChild(sv);
+  el.appendChild(s3);
+}
+
+function doM2Swap(){
+  // swap estrito: imagens frente↔fundo (já via Mob.m2.flip), e bloco 1↔bloco 3
+  Mob.m2.flip = !Mob.m2.flip;
+  applyDelta({ front: (Mob.m2.flip? -0.08:+0.08), pressure: 0.03, cont:rnd(-0.02,0.02) });
+  rerenderM2(true);
+}
+
+function doM2VerbClick(){
+  // verbo muda verbo + altera OBJETO (bloco 3) — sujeito fica
+  Mob.m2.verbIx = (Mob.m2.verbIx + 1) % M2_VERBS.length;
+  Mob.m2.verbKey = M2_VERBS[Mob.m2.verbIx];
+
+  // muda objeto ao trocar verbo (regra pedida)
+  const pool = (G.dense>0.18) ? N_PLAS.concat(N_MEM) : N_MEM.concat(N_SENS);
+  Mob.m2.objKey = pick(pool);
+
+  applyDelta({ pressure: 0.06, dense:rnd(-0.04,0.04), cont:rnd(-0.04,0.04) });
+  rerenderM2(false);
+}
+
+/* ============================================================
+   CLIQUES (restrições por móbile) — agora cada clique mexe pouco e mostra muito
 ============================================================ */
 function bindCanvasClicks(key, canvas){
   canvas.addEventListener("click", (ev)=>{
-    // Restrições por móbile:
-    // M1: só botão (canvas não responde)
-    // M2: clicar em qualquer fragmento = inverter frente/fundo
-    // M3: clicar em fragmento intensifica
-    // M4: canvas não responde (só palavras)
-    // FINAL: canvas não responde
+    // M1: canvas mudo
+    // M2: clicar no canvas equivale a inverter
+    // M3: clicar no fragmento intensifica família do slot
+    // M4: canvas mudo
+    // FINAL: canvas mudo
     if(key==="m1" || key==="m4" || key==="final") return;
 
     const r = canvas.getBoundingClientRect();
@@ -1313,21 +1366,37 @@ function bindCanvasClicks(key, canvas){
     if(!hit) return;
 
     try{
-      if(key==="m2"){
-        doM2Swap(); // única ação no canvas do M2
-        return;
-      }
+      if(key==="m2"){ doM2Swap(); return; }
+
       if(key==="m3"){
-        // intensifica a partir do fragmento clicado
+        const slot = hit.slot;
+        const fam = slotFamily(slot);
+
+        // intensifica só esse traço (família) — perceptível
+        Mob.m3.focusFam = fam;
+        Mob.m3.intensity = clamp(Mob.m3.intensity + 0.14, 0, 1);
         Mob.m3.clicks++;
-        const a = hit.slot?.axes || {front:rnd(-1,1), dense:rnd(-1,1), cont:rnd(-1,1)};
-        applyDelta("m3", {
-          front: 0.18 * a.front,
-          dense: 0.18 * a.dense,
-          cont:  0.18 * a.cont,
-          pressure: 0.06
+
+        // influência global pequena (para os outros móbiles “sentirem”)
+        applyDelta({
+          pressure: 0.03,
+          cont: (fam===1||fam===4||fam===7) ? +0.05 : -0.02,
+          dense:(fam===6||fam===12) ? +0.05 : 0.00,
+          front:(fam===2||fam===5) ? +0.05 : 0.00
         });
-        rerenderAll();
+
+        // colapso (catástrofe): sobe para nova configuração do M3 (re-amostra só o M3)
+        if(Mob.m3.intensity >= 0.98){
+          Mob.m3.intensity = 0;
+          Mob.m3.focusFam = null;
+          G.collapse = clamp(G.collapse+1,0,3);
+          Mob.m3.slots = null; // reamostra apenas aqui
+          toast("M3: catástrofe — o regime virou.");
+        }
+
+        rerenderM3();
+        // e atualiza M4 texto (pequena ressonância) sem mudar imagens
+        rerenderM4(false);
         return;
       }
     }catch(e){
@@ -1340,135 +1409,133 @@ function bindCanvasClicks(key, canvas){
 function bindTextClicks(key, textEl){
   textEl.addEventListener("click", (ev)=>{
     const t = ev.target;
-    // Restrições por móbile:
-    // M1: texto não é clicável
-    // M2: só o VERBO é clicável (span.verb)
-    // M3: palavras clicáveis
-    // M4: palavras clicáveis (reforça corpo sonoro)
     if(!t || !t.classList) return;
 
     if(key==="m1") return;
 
     if(key==="m2"){
       if(!t.classList.contains("verb")) return;
-      try{
-        // “fuga”: clicar no verbo troca o verbo e empurra o objeto para fora da dupla binária
-        Mob.m2.verbBias += 1;
-        applyDelta("m2", { front:rnd(-0.10,0.10), cont:rnd(-0.10,0.10), pressure:0.10 });
-        rerenderAll();
-      }catch(e){
-        console.error(e);
-        toast("Erro no verbo (ver consola).");
-      }
+      doM2VerbClick();
       return;
     }
 
-    // m3/m4: exige span.w
     if(!t.classList.contains("w")) return;
 
     try{
       if(key==="m3"){
-        // M3: foco / estilo — clique em palavra inclina eixos levemente
-        Mob.m3.clicks++;
+        // palavra intensifica eixo — mas não troca fragmentos
         const axe = t.dataset.axe || "front";
-        const dir = (t.dataset.dir==="neg") ? -1 : 1;
-        const mag = 0.12;
-        const delta = {front:0,dense:0,cont:0,pressure:0.05};
-        delta[axe] = mag * dir;
-        applyDelta("m3", delta);
-        rerenderAll();
+        Mob.m3.clicks++;
+        Mob.m3.intensity = clamp(Mob.m3.intensity + 0.10, 0, 1);
+
+        // traduz eixo em família aproximada (para realce visual)
+        const famByAxe = (axe==="dense") ? 6 : (axe==="cont") ? 1 : 2;
+        Mob.m3.focusFam = famByAxe;
+
+        // influência global pequena
+        const delta = { front:0, dense:0, cont:0, pressure:0.025 };
+        delta[axe] = 0.06;
+        applyDelta(delta);
+
+        if(Mob.m3.intensity >= 0.98){
+          Mob.m3.intensity = 0;
+          Mob.m3.focusFam = null;
+          G.collapse = clamp(G.collapse+1,0,3);
+          Mob.m3.slots = null;
+          toast("M3: catástrofe — nova configuração.");
+        }
+
+        rerenderM3();
+        rerenderM4(false);
         return;
       }
 
       if(key==="m4"){
-        // M4: só palavras — reforça perfil fonético da palavra clicada e aproxima colapso
-        const ph = t.dataset.ph; // "surda" | "sonora" | "fricativa"
-        if(ph==="surda") applyDelta("m4",{ph:{dry:+0.30}, cont:-0.06, pressure:+0.09});
-        else if(ph==="sonora") applyDelta("m4",{ph:{voiced:+0.30}, dense:+0.06, pressure:+0.09});
-        else applyDelta("m4",{ph:{open:+0.30}, cont:+0.06, pressure:+0.09});
-
-        // limiar/colapso
+        // clique só nas palavras: intensifica o perfil fonográfico
+        const ph = t.dataset.ph;
+        Mob.m4.focusPh = ph;
+        Mob.m4.intensity = clamp(Mob.m4.intensity + 0.14, 0, 1);
         Mob.m4.clicks++;
-        if(Math.abs(G.pressure) > 0.92 || Mob.m4.clicks >= 14){
-          Mob.m4.clicks = 0;
+
+        // altera estado fonográfico de modo claro
+        if(ph==="surda") applyDelta({ ph:{dry:+0.30}, pressure:+0.04, cont:-0.02 });
+        else if(ph==="sonora") applyDelta({ ph:{voiced:+0.30}, pressure:+0.04, dense:+0.02 });
+        else applyDelta({ ph:{open:+0.30}, pressure:+0.04, cont:+0.02 });
+
+        // colapso do M4 (regime muda): reamostra só o M4 (não o resto)
+        if(Mob.m4.intensity >= 0.98){
+          Mob.m4.intensity = 0;
+          Mob.m4.focusPh = null;
           G.collapse = clamp(G.collapse+1,0,3);
-          applyDelta("m4", {
-            front: rnd(-0.35,0.35),
-            dense: rnd(-0.35,0.35),
-            cont:  (G.cont>0? -0.55 : +0.55),
-            ph: { dry:rnd(-0.35,0.35), voiced:rnd(-0.35,0.35), open:rnd(-0.35,0.35) },
-            pressure: 0.18
-          });
-          toast("Colapso: o regime mudou.");
+          Mob.m4.slots = null;
+          toast("M4: colapso — o corpo sonoro virou regime.");
         }
 
-        rerenderAll();
+        rerenderM4(true);
         return;
       }
     }catch(e){
-      toast("Erro no texto: ver consola");
       console.error(e);
+      toast("Erro no texto: ver consola");
     }
   });
 }
 
 /* ============================================================
-   M2 ações
-============================================================ */
-function doM2Swap(){
-  Mob.m2.flip = !Mob.m2.flip;
-  applyDelta("m2", { front: (Mob.m2.flip? -0.20:+0.20), pressure: 0.08, cont:rnd(-0.06,0.06) });
-  rerenderAll();
-}
-
-/* ============================================================
-   RENDER
+   RENDER — agora por partes (evita “embaralhar”)
 ============================================================ */
 async function rerenderM1(){
   const c=document.getElementById("m1Canvas");
   await drawMobile(c,"m1",3);
-  const text = genCuratorialLine("m1Body");
-  setRichText(document.getElementById("m1Text"), text, false); // M1 não clicável
+  setRichTextPlain(document.getElementById("m1Text"), genCuratorialParagraph("m1"));
 }
-async function rerenderM2(){
-  const c=document.getElementById("m2Canvas");
-  await drawMobile(c,"m2",2);
-  const m2 = genM2SVO();
-  renderM2Text(document.getElementById("m2Text"), m2);
+async function rerenderM2(redrawCanvas){
+  if(redrawCanvas){
+    const c=document.getElementById("m2Canvas");
+    await drawMobile(c,"m2",2);
+  }else{
+    // só redesenha para mostrar swap visual (já é necessário quando flip muda)
+    const c=document.getElementById("m2Canvas");
+    await drawMobile(c,"m2",2);
+  }
+  renderM2Text();
 }
 async function rerenderM3(){
   const c=document.getElementById("m3Canvas");
   await drawMobile(c,"m3",7);
-  const text = genCuratorialLine("m3Body");
-  setRichTextWithMeta(document.getElementById("m3Text"), text, "m3");
+  setRichTextWithMeta(document.getElementById("m3Text"), genCuratorialParagraph("m3"), "m3");
 }
-async function rerenderM4(){
+async function rerenderM4(redrawText){
   const c=document.getElementById("m4Canvas");
   await drawMobile(c,"m4",5);
-  const text = genCuratorialLine("m4Body");
-  setRichTextWithMeta(document.getElementById("m4Text"), text, "m4");
+
+  // texto do M4 sempre reflete o estado fonográfico, mas não precisa mudar “tudo”
+  if(redrawText!==false){
+    setRichTextWithMeta(document.getElementById("m4Text"), genCuratorialParagraph("m4"), "m4");
+  }else{
+    // ainda mantém texto consistente (não deixando congelado demais)
+    setRichTextWithMeta(document.getElementById("m4Text"), genCuratorialParagraph("m4"), "m4");
+  }
 }
 
 function buildFinalText(){
-  const a = genCuratorialLine("finalA");
-  const b = genCuratorialLine("finalB");
   const link = location.href;
-  const call = `\n\nPartilha e convida: “faz a tua curadoria aqui → ${link}”.`;
-  return `${a}\n\n${b}${call}`;
+  const a = genCuratorialParagraph("finalA");
+  const b = genCuratorialParagraph("finalB");
+  const c = `\n\nPartilha e convida: “faz a tua curadoria aqui → ${link}”.\nassinatura: suiornotsui`;
+  return `${a}\n\n${b}${c}`;
 }
 
 async function rerenderFinal(){
   const c=document.getElementById("finalCanvas");
   await drawMobile(c,"final",10);
-  const txt = buildFinalText();
-  document.getElementById("finalText").textContent = txt;
-
-  const gate = document.getElementById("weeklyGate");
-  gate.textContent = "Para ver os estados expositivos semanais, faz primeiro a tua curadoria (gera a tua expo).";
+  document.getElementById("finalText").textContent = buildFinalText();
+  document.getElementById("weeklyGate").textContent =
+    "Para ver os estados expositivos semanais, faz primeiro a tua curadoria (gera a tua expo).";
 }
 
 /* ============================================================
-   SHARE (canvas -> imagem + texto)
+   SHARE
 ============================================================ */
 function openShare(title, note, text, dataUrl){
   document.getElementById("shareTitle").textContent = title;
@@ -1478,32 +1545,25 @@ function openShare(title, note, text, dataUrl){
   document.getElementById("overlay").style.display="flex";
 }
 function closeShare(){ document.getElementById("overlay").style.display="none"; }
-
 function canvasToDataUrl(id){
   const c=document.getElementById(id);
-  try{
-    return c.toDataURL("image/png");
-  }catch(e){
-    console.warn(e);
-    return "";
-  }
+  try{ return c.toDataURL("image/png"); }catch(e){ return ""; }
 }
-
 function shareTextFor(kind){
   const link = location.href;
   if(kind==="m1"){
-    return `MÓBILES (entrada) — eu tensionei o nascimento do campo.\n\nO que apareceu não é “tudo”: é posição.\n\nFaz o teu percurso aqui: ${link}\n\nassinatura: suiornotsui`;
+    return `MÓBILES (entrada) — eu tensionei o nascimento do campo.\n\nNão escolhi “imagens”: escolhi posição.\n\nFaz o teu percurso aqui: ${link}\n\nassinatura: suiornotsui`;
   }
   if(kind==="m2"){
-    return `MÓBILES — posição e estrutura (S–V–O).\nTroquei frente/fundo e cliquei no verbo para escapar do binário.\n\nFaz o teu aqui: ${link}\n\nassinatura: suiornotsui`;
+    return `MÓBILES — posição e estrutura (S–V–O).\nInverter troca sujeito↔objeto; clicar no verbo muda o objeto.\n\nFaz o teu aqui: ${link}\n\nassinatura: suiornotsui`;
   }
   if(kind==="m3"){
-    return `MÓBILES — foco e estilo.\nOnde eu insisti, o campo cresceu.\n\nTesta o teu gesto: ${link}\n\nassinatura: suiornotsui`;
+    return `MÓBILES — foco e estilo.\nOnde eu insisti, um traço cresceu; o resto recuou.\n\nTesta o teu gesto: ${link}\n\nassinatura: suiornotsui`;
   }
   if(kind==="m4"){
-    return `MÓBILES — corpo sonoro da linguagem.\nCliquei nas palavras até o campo ceder.\n\nJoga também: ${link}\n\nassinatura: suiornotsui`;
+    return `MÓBILES — corpo sonoro da linguagem.\nInsisti no som até o regime ceder.\n\nJoga também: ${link}\n\nassinatura: suiornotsui`;
   }
-  return `MÓBILES — minha exposição provisória.\n\n${buildFinalText()}\n\nFaz a tua curadoria: ${link}\n\nassinatura: suiornotsui`;
+  return `MÓBILES — minha exposição provisória.\n\n${buildFinalText()}`;
 }
 
 /* ============================================================
@@ -1511,14 +1571,22 @@ function shareTextFor(kind){
 ============================================================ */
 function bindButtons(){
   document.getElementById("m1Tension").addEventListener("click", ()=>{
-    // M1: muda tudo de uma vez (posição de nascimento)
-    applyDelta("m1", {
+    // evento grande: retensionar = pode reamostrar todos
+    applyDelta({
       front: rnd(-0.55,0.55),
       dense: rnd(-0.50,0.50),
       cont:  rnd(-0.55,0.55),
       pressure: 0.12,
       ph: { dry:rnd(-0.25,0.25), voiced:rnd(-0.25,0.25), open:rnd(-0.25,0.25) }
     });
+
+    // reamostra todos (regime inicial muda)
+    Mob.m1.slots=null;
+    Mob.m2.slots=null; Mob.m2.subjKey=null; Mob.m2.objKey=null; Mob.m2.verbKey=null;
+    Mob.m3.slots=null; Mob.m3.focusFam=null; Mob.m3.intensity=0;
+    Mob.m4.slots=null; Mob.m4.focusPh=null; Mob.m4.intensity=0;
+    if(Mob.final.ready) Mob.final.slots=null;
+
     rerenderAll();
   });
 
@@ -1526,11 +1594,11 @@ function bindButtons(){
 
   document.getElementById("btnFinalize").addEventListener("click", ()=>{
     Mob.final.ready = true;
+    Mob.final.slots = null; // gera constelação nova do estado atual
     rerenderFinal();
     toast("Exposição gerada.");
   });
 
-  // shares
   document.getElementById("m1Share").addEventListener("click", ()=>{
     openShare("Partilhar — Móbile 1", "imagem + texto", shareTextFor("m1"), canvasToDataUrl("m1Canvas"));
   });
@@ -1551,7 +1619,6 @@ function bindButtons(){
     openShare("Partilhar — tua exposição provisória", "imagem + texto", shareTextFor("final"), canvasToDataUrl("finalCanvas"));
   });
 
-  // modal
   document.getElementById("closeShare").addEventListener("click", closeShare);
   document.getElementById("overlay").addEventListener("click", (e)=>{
     if(e.target && e.target.id==="overlay") closeShare();
@@ -1592,9 +1659,9 @@ function bindAllClicks(){
 
 async function rerenderAll(){
   await rerenderM1();
-  await rerenderM2();
+  await rerenderM2(true);
   await rerenderM3();
-  await rerenderM4();
+  await rerenderM4(true);
   if(Mob.final.ready) await rerenderFinal();
 }
 
