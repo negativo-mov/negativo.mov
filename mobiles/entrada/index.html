@@ -420,6 +420,27 @@ const clamp = (x,a,b)=>Math.max(a,Math.min(b,x));
 const rnd = (a,b)=>a+Math.random()*(b-a);
 const pick = (arr)=>arr[(Math.random()*arr.length)|0];
 
+// ---- determinismo para resultados finais (e para estabilizar a presença da Sui)
+const hashStr = (s)=>{
+  let h = 2166136261>>>0; // FNV-1a
+  for(let i=0;i<s.length;i++){
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h>>>0;
+};
+const mulberry32 = (seed)=>{
+  let t = seed>>>0;
+  return ()=>{
+    t += 0x6D2B79F5;
+    let x = Math.imul(t ^ (t>>>15), 1 | t);
+    x ^= x + Math.imul(x ^ (x>>>7), 61 | x);
+    return ((x ^ (x>>>14))>>>0) / 4294967296;
+  };
+};
+const pickR = (arr, r)=>arr[(r()*arr.length)|0];
+
+
 function toast(msg){
   const t = document.getElementById("toast");
   t.textContent = msg;
@@ -450,6 +471,7 @@ const FIELD = { slots:[] };
 
 // Sui map
 let SUI_MAP = null;
+let WANT_SUI = true; // decidido uma vez por sessão (estável)
 
 function buildField(){
   FIELD.slots = [];
@@ -522,6 +544,8 @@ async function tryLoadSui(){
       s53.sui = { path: candidates[0] };
     }
   }
+  // decisão estável por sessão: 90% de chance de exigir pelo menos 1 Sui
+  WANT_SUI = (Math.random() < 0.90);
 }
 
 /* ============================================================
@@ -604,20 +628,52 @@ function sampleSlots(n){
   return top.slice(0,n);
 }
 
+function sampleSlotsSeeded(n, seed){
+  const r = mulberry32(seed);
+  const idxs = [];
+  for(let i=1;i<=FIELD.slots.length;i++) idxs.push(i);
+  // Fisher-Yates com RNG determinístico
+  for(let i=idxs.length-1;i>0;i--){
+    const j = (r()*(i+1))|0;
+    const tmp = idxs[i]; idxs[i]=idxs[j]; idxs[j]=tmp;
+  }
+  const out = [];
+  for(let k=0;k<n;k++){
+    const ix = idxs[k]-1;
+    out.push(FIELD.slots[ix]);
+  }
+  return out;
+}
+
+function finalSeed(){
+  // assinatura do estado: quantiza vetores globais + estados dos 4 móbiles
+  const q = (x)=>Math.round((x||0)*100)/100;
+  const sig = [
+    "v2",
+    `f${q(G.front)}`, `d${q(G.dense)}`, `c${q(G.cont)}`,
+    `p${q(G.pressure)}`,
+    `m1_${Mob.m1.mode||0}_${Mob.m1.clicks||0}`,
+    `m2_${Mob.m2.flip?1:0}_${Mob.m2.subjKey}_${Mob.m2.objKey}_${Mob.m2.verbKey}_${Mob.m2.verbIx||0}`,
+    `m3_${Mob.m3.focusFam||0}_${q(Mob.m3.intensity||0)}_${Mob.m3.clicks||0}`,
+    `m4_${Mob.m4.focusPh||"none"}_${q(Mob.m4.intensity||0)}_${Mob.m4.clicks||0}`
+  ].join("|");
+  return hashStr(sig);
+}
+
 /* --- regra Sui: em cada móbile, 90% força pelo menos 1 slot 53 --- */
 function ensureSui(slots){
-  const want = (Math.random() < 0.90);
-  if(!want) return slots;
+  // Regra: garantir presença da Sui (slot 53) com alta probabilidade,
+  // mas sem flutuar a cada rerender (decisão estável por sessão).
+  if(!WANT_SUI) return slots;
 
-  const has = slots.some(s => s.idx===53 && s.sui);
+  const has = slots.some(s => s && s.idx===53 && s.sui);
   if(has) return slots;
 
-  const s53 = FIELD.slots[52];
+  const s53 = FIELD.slots[52]; // idx 53
   if(!s53 || !s53.sui) return slots;
 
-  const ix = Math.max(0, slots.length-1);
   const out = slots.slice();
-  out[ix] = s53;
+  out[out.length-1] = s53; // força ao menos 1
   return out;
 }
 
@@ -745,8 +801,8 @@ function maybeAdv(){
   if(Math.random()>p) return null;
   return realize(pick(ADV));
 }
-function Npick(pool){ return realize(pick(pool)); }
-function Vpick(pool){ return realize(pick(pool)); }
+function Npick(pool, r){ return realize(r ? pickR(pool, r) : pick(pool)); }
+function Vpick(pool, r){ return realize(r ? pickR(pool, r) : pick(pool)); }
 
 function genCuratorialParagraph(kind){
   const nA = (G.front>0.25) ? Npick(N_CUR) : Npick(N_SENS);
@@ -822,6 +878,17 @@ function m2Block(nKey){
   return s;
 }
 
+
+function m2ChooseVerb(subjKey, objKey){
+  // escolhe um verbo coerente com a relação (determinístico por estado)
+  // e sensível aos vetores globais (corte/fluxo, densidade).
+  const s = `${subjKey}|${objKey}|${Math.round(G.front*10)}|${Math.round(G.cont*10)}|${Math.round(G.dense*10)}`;
+  const r = mulberry32(hashStr(s));
+  // se o campo está mais “corte”, favorece verbos de decisão; se “fluxo”, verbos de gesto/percepção
+  const prefer = (G.cont < -0.12) ? V_DEC : (G.cont > 0.12) ? V_SENS : V_COMP;
+  const pool = prefer.concat(M2_VERBS);
+  return pickR(pool, r);
+}
 function renderM2Text(){
   m2InitIfNeeded();
   const el = document.getElementById("m2Text");
@@ -854,20 +921,56 @@ function renderM2Text(){
 /* regra: inverter só troca posições; não reamostra */
 function doM2Swap(){
   Mob.m2.flip = !Mob.m2.flip;
+
+  // ao inverter sujeito/objeto (via frente↔fundo), o verbo deve ajustar-se à nova relação
+  const subjKey = Mob.m2.flip ? Mob.m2.objKey : Mob.m2.subjKey;
+  const objKey  = Mob.m2.flip ? Mob.m2.subjKey : Mob.m2.objKey;
+  Mob.m2.verbKey = m2ChooseVerb(subjKey, objKey);
+
   applyDelta({ front: (Mob.m2.flip? -0.08:+0.08), pressure: 0.03, cont:rnd(-0.02,0.02) });
-  rerenderM2(true);
+  rerenderM2();
 }
 
 /* regra: clicar no verbo muda SOMENTE o objeto (bloco 3) */
 function doM2VerbClick(){
+  // Clicar no verbo: muda EXCLUSIVAMENTE o objeto (bloco 3) e o fragmento que o representa.
   Mob.m2.verbIx = (Mob.m2.verbIx + 1) % M2_VERBS.length;
   Mob.m2.verbKey = M2_VERBS[Mob.m2.verbIx];
 
   const pool = (G.dense>0.18) ? N_PLAS.concat(N_MEM) : N_MEM.concat(N_SENS);
-  Mob.m2.objKey = pick(pool);
+
+  // qual lado está ocupando o objeto AGORA?
+  const objectIsSubjSide = !!Mob.m2.flip; // se flip=true, o objeto exibido é o antigo sujeito (lado A)
+  const newObjKey = pick(pool);
+
+  if(objectIsSubjSide){
+    Mob.m2.subjKey = newObjKey;
+  }else{
+    Mob.m2.objKey  = newObjKey;
+  }
+
+  // fragmento do objeto: reamostra apenas o slot do objeto (lado correspondente)
+  if(Mob.m2.slots && Mob.m2.slots.length===2){
+    const r = mulberry32(hashStr(`m2obj|${newObjKey}|${Math.round(G.dense*10)}|${Mob.m2.verbKey}|${Mob.m2.flip?1:0}`));
+    const candidate = pickR(FIELD.slots, r);
+    const objSlot = candidate || (objectIsSubjSide ? Mob.m2.slots[0] : Mob.m2.slots[1]);
+
+    if(objectIsSubjSide){
+      Mob.m2.slots[0] = objSlot; // lado A
+    }else{
+      Mob.m2.slots[1] = objSlot; // lado B
+    }
+
+    if(objSlot && objSlot.sui && !objSlot._img){ preloadSlotImage(objSlot, ()=>rerenderOne("m2")); }
+  }
+
+  // após alterar objeto, o verbo pode ajustar-se levemente ao par atual (sem mexer no sujeito)
+  const subjKeyNow = Mob.m2.flip ? Mob.m2.objKey : Mob.m2.subjKey;
+  const objKeyNow  = Mob.m2.flip ? Mob.m2.subjKey : Mob.m2.objKey;
+  Mob.m2.verbKey = m2ChooseVerb(subjKeyNow, objKeyNow);
 
   applyDelta({ pressure: 0.06, dense:rnd(-0.04,0.04), cont:rnd(-0.04,0.04) });
-  rerenderM2(false);
+  rerenderM2();
 }
 
 /* ============================================================
@@ -1164,12 +1267,12 @@ async function drawMobile(canvas, key, count){
     let xB=W*0.66 - smallW/2;
     let yB=H*0.48 - smallH/2;
     drawSlot(ctx, backSlot, xB,yB,smallW,smallH);
-    hits.push({x:xB,y:yB,w:smallW,h:smallH,slot:backSlot});
+    hits.push({x:xB,y:yB,w:smallW,h:smallH,slot:backSlot, role:"back"});
 
     let xF=W*0.30 - bigW/2;
     let yF=H*0.60 - bigH/2;
     drawSlot(ctx, frontSlot, xF,yF,bigW,bigH);
-    hits.push({x:xF,y:yF,w:bigW,h:bigH,slot:frontSlot});
+    hits.push({x:xF,y:yF,w:bigW,h:bigH,slot:frontSlot, role:"front"});
   } else if(key==="m3"){
     const baseW=W*0.18, baseH=H*0.24;
     for(let i=0;i<7;i++){
@@ -1260,8 +1363,9 @@ async function rerenderM4(){
 async function rerenderFinal(){
   await drawMobile(document.getElementById("finalCanvas"), "final", 10);
 
-  const A = buildFinalA();
-  const B = buildFinalB();
+  const seed = Mob.final.seed ?? finalSeed();
+  const A = Mob.final.textA ?? buildFinalA(seed);
+  const B = Mob.final.textB ?? buildFinalB(seed);
 
   const shareInvite =
 `Partilha a tua exposição.
@@ -1289,24 +1393,45 @@ async function rerenderAll(){
 /* ============================================================
    FINAL TEXTS (duas partes)
 ============================================================ */
-function buildFinalA(){
+function buildFinalA(seed){
+  const r = mulberry32(seed>>>0);
+
   const pFront = (G.front>0.25) ? "frente / figura" : (G.front<-0.25) ? "fundo / atmosfera" : "equilíbrio de planos";
   const pDense = (G.dense>0.25) ? "densidade e peso" : (G.dense<-0.25) ? "rarefação e respiro" : "densidade contida";
   const pCont  = (G.cont>0.25)  ? "continuidade e fluxo" : (G.cont<-0.25) ? "corte e decisão" : "passagens cautelosas";
-  const pPh    = phMode()==="surda" ? "corte seco (plosivas surdas)" : phMode()==="sonora" ? "massa/peso (plosivas sonoras)" : "passagem (fricativas)";
 
-  return `O teu estilo curatorial inclina-se para ${pFront}, com ${pDense}. Predomina ${pCont}, sob um corpo sonoro de ${pPh}.`;
+  const pm = phMode();
+  const pPh = (pm==="surda") ? "corte seco (plosivas surdas)"
+            : (pm==="sonora") ? "massa/peso (plosivas sonoras)"
+            : "passagem (fricativas)";
+
+  const opener = pickR([
+    "O teu estilo curatorial não é neutro.",
+    "O que fizeste aqui desenha um perfil curatorial.",
+    "O percurso que montaste deixa uma assinatura.",
+  ], r);
+
+  return `${opener} Inclina-se para ${pFront}, com ${pDense}. Predomina ${pCont}, sob um corpo sonoro de ${pPh}.`;
 }
 
-function buildFinalB(){
-  const n1 = Npick(N_PLAS);
-  const n2 = Npick(N_SENS);
-  const n3 = Npick(N_MEM);
-  const v1 = Vpick(V_COMP);
-  const a1 = maybeAdj();
-  const adv = maybeAdv();
+function buildFinalB(seed){
+  const r = mulberry32((seed+1337)>>>0);
 
-  return `A exposição resultante ${v1} ${n1} como campo ${a1||Npick(N_CUR)}: ${n2} surge em primeiro plano, enquanto ${n3} permanece como resto${adv?(" — "+adv):""}.`;
+  const n1 = realize(pickR(N_PLAS, r));
+  const n2 = realize(pickR(N_SENS, r));
+  const n3 = realize(pickR(N_MEM, r));
+  const v1 = realize(pickR(V_COMP, r));
+  const v2 = realize(pickR(V_SENS.concat(V_DEC), r));
+
+  const a1 = (r()<0.55) ? realize(pickR(ADJ, r)) : null;
+  const a2 = (r()<0.45) ? realize(pickR(ADJ, r)) : null;
+  const adv1 = (r()<0.55) ? realize(pickR(ADV, r)) : null;
+
+  const seg1 = `A exposição resultante ${v1} ${n1}${a1?` ${a1}`:""} num campo onde ${n2} aparece como ${n3}.`;
+  const seg2 = `O que fica à vista organiza-se por ${G.cont<0? "decisão e recorte" : "passagem e aproximação"}, e o que recua sustenta um resto que não se fecha.`;
+  const seg3 = `${adv1?adv1.charAt(0).toUpperCase()+adv1.slice(1):"Ainda"} assim, o conjunto ${v2} o olhar: pede retorno, comparação, reentrada — como se cada constelação guardasse outras que não emergiram.`;
+
+  return [seg1, seg2, seg3].join(" ");
 }
 
 function buildFinalText(){
@@ -1328,7 +1453,7 @@ function bindCanvasClicks(key, canvas){
     if(!hit) return;
 
     try{
-      if(key==="m2"){ doM2Swap(); return; }
+      if(key==="m2"){ if(hit.role==="front"||hit.role==="back"){ doM2Swap(); } return; }
 
       if(key==="m3"){
         const slot = hit.slot;
@@ -1420,6 +1545,20 @@ function bindTextClicks(key, textEl){
 /* ============================================================
    BOTÕES / SHARE
 ============================================================ */
+
+async function shareDirect(text, srcCanvasId){
+  if(!navigator.share) return false;
+  const src = document.getElementById(srcCanvasId);
+  try{
+    const blob = await new Promise((resolve)=> src.toBlob(resolve, "image/png"));
+    const file = new File([blob], "mobiles.png", {type:"image/png"});
+    if(navigator.canShare && !navigator.canShare({files:[file]})) return false;
+    await navigator.share({ title:"MÓBILES", text, files:[file] });
+    return true;
+  }catch(e){
+    return false;
+  }
+}
 function openShare(title, note, text, srcCanvasId){
   document.getElementById("shareTitle").textContent = title;
   document.getElementById("shareNote").textContent = note;
@@ -1529,30 +1668,50 @@ function bindButtons(){
   document.getElementById("m2Swap").addEventListener("click", doM2Swap);
 
   document.getElementById("btnFinalize").addEventListener("click", ()=>{
+    // gera resultado FINAL determinístico a partir do estado atual (não muda a cada clique)
     Mob.final.ready = true;
-    Mob.final.slots = ensureSui(sampleSlots(10));
+
+    const seed = finalSeed();
+    if(Mob.final.seed !== seed){
+      Mob.final.seed = seed;
+      Mob.final.rng  = mulberry32(seed);
+      Mob.final.slots = ensureSui(sampleSlotsSeeded(10, seed));
+      Mob.final.textA = buildFinalA(seed);
+      Mob.final.textB = buildFinalB(seed);
+    }
     rerenderFinal();
     toast("Exposição gerada.");
   });
 
-  document.getElementById("m1Share").addEventListener("click", ()=>{
-    openShare("Partilhar — Móbile 1", "imagem + texto", shareTextFor("m1"), "m1Canvas");
-  });
-  document.getElementById("m2Share").addEventListener("click", ()=>{
-    openShare("Partilhar — Móbile 2", "imagem + texto", shareTextFor("m2"), "m2Canvas");
-  });
-  document.getElementById("m3Share").addEventListener("click", ()=>{
-    openShare("Partilhar — Móbile 3", "imagem + texto", shareTextFor("m3"), "m3Canvas");
-  });
-  document.getElementById("m4Share").addEventListener("click", ()=>{
-    openShare("Partilhar — Móbile 4", "imagem + texto", shareTextFor("m4"), "m4Canvas");
-  });
-  document.getElementById("finalShare").addEventListener("click", ()=>{
-    if(!Mob.final.ready){
-      toast("Gera a tua exposição primeiro.");
-      return;
+  document.getElementById("m1Share").addEventListener("click", async ()=>{
+    const t = shareTextFor("m1");
+    if(!(await shareDirect(t, "m1Canvas"))){
+      openShare("Partilhar — Móbile 1", "imagem + texto", t, "m1Canvas");
     }
-    openShare("Partilhar — Exposição", "imagem + texto", shareTextFor("final"), "finalCanvas");
+  });
+  document.getElementById("m2Share").addEventListener("click", async ()=>{
+    const t = shareTextFor("m2");
+    if(!(await shareDirect(t, "m2Canvas"))){
+      openShare("Partilhar — Móbile 2", "imagem + texto", t, "m2Canvas");
+    }
+  });
+  document.getElementById("m3Share").addEventListener("click", async ()=>{
+    const t = shareTextFor("m3");
+    if(!(await shareDirect(t, "m3Canvas"))){
+      openShare("Partilhar — Móbile 3", "imagem + texto", t, "m3Canvas");
+    }
+  });
+  document.getElementById("m4Share").addEventListener("click", async ()=>{
+    const t = shareTextFor("m4");
+    if(!(await shareDirect(t, "m4Canvas"))){
+      openShare("Partilhar — Móbile 4", "imagem + texto", t, "m4Canvas");
+    }
+  });
+  document.getElementById("finalShare").addEventListener("click", async ()=>{
+    const t = document.getElementById("finalText").textContent;
+    if(!(await shareDirect(t, "finalCanvas"))){
+      openShare("Partilhar — Exposição", "imagem + texto", t, "finalCanvas");
+    }
   });
 
   document.getElementById("copyTextBtn").addEventListener("click", async ()=>{
