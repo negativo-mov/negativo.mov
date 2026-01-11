@@ -1,337 +1,312 @@
 <!doctype html>
 <html lang="pt">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>MÓBILES — entrada</title>
-  <style>
-    :root{
-      --bg:#f7f2f4;
-      --ink:#181315;
-      --muted:rgba(24,19,21,.60);
-      --muted2:rgba(24,19,21,.45);
-      --card:rgba(255,255,255,.55);
-      --stroke:rgba(24,19,21,.16);
-      --stroke2:rgba(24,19,21,.26);
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MÓBILES — entrada</title>
+<style>
+  :root{
+    --bg:#fbf7fb;
+    --ink:rgba(24,19,21,.88);
+    --muted:rgba(24,19,21,.58);
+    --card:rgba(255,255,255,.72);
+    --stroke:rgba(24,19,21,.22);
+    --stroke2:rgba(24,19,21,.34);
+    --shadow:rgba(0,0,0,.10);
+    --pink:rgba(255,170,210,.55);
+    --blue:rgba(170,215,255,.55);
+    --acid:rgba(190,255,210,.20);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:
+      radial-gradient(900px 450px at 20% 10%, rgba(255,170,210,.18), transparent 60%),
+      radial-gradient(900px 450px at 80% 12%, rgba(170,215,255,.18), transparent 60%),
+      radial-gradient(900px 650px at 50% 90%, rgba(190,255,210,.10), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    line-height:1.55;
+  }
 
-      /* horror-pastel / bizarria doce */
-      --p1: rgba(255,170,210,.35);
-      --p2: rgba(170,215,255,.34);
-      --p3: rgba(190,255,210,.28);
-      --acid: rgba(160,210,120,.18);
-      --bruise: rgba(180,150,210,.16);
-      --smoke: rgba(40,30,38,.08);
-    }
+  .wrap{max-width:980px; margin:0 auto; padding:28px 16px 70px}
+  .top{
+    display:flex; gap:16px; align-items:flex-start; justify-content:space-between;
+    padding:8px 0 16px;
+  }
+  .title{
+    font-weight:900; letter-spacing:.4px; font-size:22px;
+  }
+  .pill{
+    font-size:12px; color:var(--muted);
+    padding:8px 10px; border:1px solid var(--stroke);
+    border-radius:999px; background:rgba(255,255,255,.55);
+    box-shadow:0 8px 22px var(--shadow);
+    white-space:nowrap;
+  }
 
-    html,body{height:100%;}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      background:
-        radial-gradient(1200px 600px at 20% 10%, var(--p1), transparent 60%),
-        radial-gradient(1100px 700px at 70% 15%, var(--p2), transparent 60%),
-        radial-gradient(900px 700px at 40% 80%, var(--p3), transparent 55%),
-        radial-gradient(700px 600px at 80% 85%, var(--bruise), transparent 65%),
-        linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.45)),
-        var(--bg);
-      color:var(--ink);
-      overflow-x:hidden;
-    }
+  .lead{
+    margin:14px 0 26px;
+    font-size:16px;
+    color:rgba(24,19,21,.80);
+  }
+  .sig{
+    margin-top:8px;
+    color:rgba(24,19,21,.55);
+    font-size:13px;
+  }
 
-    .wrap{max-width:980px;margin:0 auto;padding:22px 18px 80px;}
-    .brand{
-      display:flex;align-items:flex-end;gap:10px;
-      padding:10px 0 14px 0;
-    }
-    .brand .t{font-weight:900;letter-spacing:.08em}
-    .brand .s{color:var(--muted);font-size:13px}
+  .section{ margin:28px 0 0; }
+  .intro{
+    margin: 0 0 10px;
+    font-size:15px;
+    color:rgba(24,19,21,.78);
+    white-space:pre-line;
+  }
+  .canvasBox{
+    margin: 10px 0 10px;
+    width:100%;
+    border-radius:22px;
+    background:rgba(255,255,255,.60);
+    border:1px solid var(--stroke);
+    box-shadow: 0 20px 50px var(--shadow);
+    padding:14px;
+  }
+  canvas{
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:18px;
+    background:rgba(255,255,255,.35);
+  }
+  .textgen{
+    margin:10px 6px 0;
+    color:rgba(24,19,21,.82);
+    font-size:15px;
+  }
 
-    .lead{
-      margin:18px 0 22px;
-      font-size:16px;
-      line-height:1.55;
-      color:rgba(24,19,21,.78);
-      max-width:760px;
-      white-space:pre-line;
-    }
+  .controls{
+    display:flex; gap:10px; flex-wrap:wrap;
+    margin:12px 4px 2px;
+    align-items:center;
+  }
+  button{
+    appearance:none;
+    border:1px solid var(--stroke);
+    background:rgba(255,255,255,.70);
+    color:rgba(24,19,21,.86);
+    border-radius:999px;
+    padding:10px 14px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow: 0 10px 24px var(--shadow);
+    transition: transform .06s ease, background .15s ease;
+  }
+  button:active{ transform: translateY(1px); }
+  button:hover{ background:rgba(255,255,255,.82); }
+  .btnQuiet{
+    background:rgba(255,255,255,.45);
+  }
 
-    .intro{
-      margin:30px 0 10px;
-      font-size:15px;
-      line-height:1.5;
-      color:rgba(24,19,21,.82);
-      white-space:pre-line;
-      max-width:760px;
-    }
+  .w{cursor:pointer; text-decoration: none; border-bottom:1px dotted rgba(24,19,21,.18)}
+  .w:hover{ border-bottom-color: rgba(24,19,21,.40); }
+  .verb{
+    border-bottom: 2px solid rgba(24,19,21,.35);
+    font-weight:900;
+  }
+  .lock{cursor:default; border-bottom:none}
 
-    .mobile{
-      margin:18px 0 40px;
-    }
+  .footerBlock{
+    margin-top:26px;
+    padding-top:10px;
+  }
+  .finalActions{
+    display:flex; gap:12px; flex-wrap:wrap; margin-top:12px;
+  }
+  .gate{
+    margin-top:12px;
+    color:rgba(24,19,21,.60);
+    font-size:14px;
+    white-space:pre-line;
+  }
 
-    /* sem “salas”: ainda assim damos um leve “ar” de campo */
-    .canvasShell{
-      width:100%;
-      border-radius:22px;
-      border:1px solid var(--stroke);
-      background: linear-gradient(180deg, rgba(255,255,255,.52), rgba(255,255,255,.26));
-      box-shadow:
-        0 18px 40px rgba(0,0,0,.06),
-        inset 0 1px 0 rgba(255,255,255,.65);
-      padding:14px;
-    }
-
-    canvas{
-      width:100%;
-      height:auto;
-      display:block;
-      border-radius:18px;
-      background: rgba(255,255,255,.35);
-      border:1px solid rgba(24,19,21,.10);
-    }
-
-    .row{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top:12px;
-      align-items:center;
-    }
-
-    .btn{
-      appearance:none;border:1px solid var(--stroke2);
-      background: rgba(255,255,255,.55);
-      color:rgba(24,19,21,.90);
-      padding:9px 12px;border-radius:999px;
-      font-weight:700; font-size:13px;
-      cursor:pointer;
-      box-shadow: 0 10px 18px rgba(0,0,0,.06);
-      user-select:none;
-    }
-    .btn:hover{transform: translateY(-1px);}
-    .btn:active{transform: translateY(0px);}
-
-    .pill{
-      margin-left:auto;
-      font-size:12px;
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(24,19,21,.10);
-      background: rgba(255,255,255,.35);
-    }
-
-    .text{
-      margin:14px 6px 0 6px;
-      font-size:15px;
-      line-height:1.55;
-      color:rgba(24,19,21,.84);
-      white-space:pre-line;
-      max-width:860px;
-    }
-
-    .text .w{
-      cursor:pointer;
-      border-bottom:1px dashed rgba(24,19,21,.22);
-      padding-bottom:1px;
-    }
-    .text .w:hover{
-      background: rgba(255,255,255,.55);
-      border-bottom-color: rgba(24,19,21,.38);
-    }
-    .text .verb{
-      font-weight:900;
-      border-bottom:1px solid rgba(24,19,21,.35);
-    }
-    .text .lock{
-      color:rgba(24,19,21,.78);
-    }
-
-    .finalBlock{margin-top:18px;}
-    .gate{
-      margin-top:10px;
-      font-size:13px;
-      color:var(--muted);
-    }
-
-    /* overlay share */
-    #overlay{
-      position:fixed; inset:0;
-      background: rgba(10,8,10,.58);
-      display:none;
-      align-items:center; justify-content:center;
-      padding:18px;
-      z-index:50;
-    }
-    .dlg{
-      width:min(920px, 96vw);
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.22);
-      background: rgba(255,255,255,.78);
-      box-shadow: 0 30px 90px rgba(0,0,0,.28);
-      overflow:hidden;
-    }
-    .dlgHead{
-      padding:14px 16px;
-      display:flex; align-items:center; justify-content:space-between;
-      border-bottom:1px solid rgba(24,19,21,.12);
-      background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.55));
-    }
-    .dlgHead .h{
-      font-weight:900; letter-spacing:.02em;
-    }
-    .dlgBody{
-      padding:14px 16px 16px;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-    }
-    .shareGrid{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:14px;
-      align-items:start;
-    }
-    @media (max-width:860px){
-      .shareGrid{grid-template-columns:1fr; }
-      .pill{margin-left:0;}
-    }
-    .shareCanvasWrap{
-      border-radius:18px;
-      border:1px solid rgba(24,19,21,.12);
-      background: rgba(255,255,255,.55);
-      padding:10px;
-    }
-    #shareCanvas{width:100%;height:auto;display:block;border-radius:14px;}
-    .shareText{
-      width:100%;
-      min-height:240px;
-      resize:vertical;
-      border-radius:14px;
-      border:1px solid rgba(24,19,21,.18);
-      background: rgba(255,255,255,.65);
-      padding:10px 12px;
-      font: 14px/1.45 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      color:rgba(24,19,21,.88);
-    }
-    .shareBtns{display:flex; gap:10px; flex-wrap:wrap;}
-    .toast{
-      position:fixed;
-      left:50%; bottom:14px;
-      transform:translateX(-50%);
-      padding:10px 12px;
-      border-radius:999px;
-      background: rgba(255,255,255,.85);
-      border:1px solid rgba(24,19,21,.16);
-      box-shadow: 0 16px 40px rgba(0,0,0,.20);
-      font-size:13px;
-      color:rgba(24,19,21,.88);
-      display:none;
-      z-index:60;
-    }
-  </style>
+  /* overlay share */
+  .overlay{
+    position:fixed; inset:0;
+    background:rgba(10,10,12,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    z-index:9999;
+  }
+  .modal{
+    width:min(980px, 96vw);
+    border-radius:22px;
+    background:rgba(255,255,255,.92);
+    border:1px solid rgba(255,255,255,.40);
+    box-shadow: 0 30px 90px rgba(0,0,0,.35);
+    overflow:hidden;
+  }
+  .modalHead{
+    display:flex; align-items:flex-start; justify-content:space-between;
+    gap:12px;
+    padding:14px 16px;
+    border-bottom:1px solid rgba(24,19,21,.10);
+  }
+  .modalTitle{ font-weight:900; }
+  .modalNote{ font-size:13px; color:rgba(24,19,21,.60); margin-top:2px; }
+  .modalBody{ padding:14px 16px; }
+  .shareGrid{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:12px;
+  }
+  @media (min-width:900px){
+    .shareGrid{ grid-template-columns: 1.1fr .9fr; }
+  }
+  .shareCanvasBox{
+    border-radius:18px;
+    border:1px solid rgba(24,19,21,.14);
+    background:rgba(255,255,255,.75);
+    padding:12px;
+  }
+  .shareCanvasBox canvas{ border-radius:14px; }
+  textarea{
+    width:100%;
+    min-height:260px;
+    border-radius:16px;
+    border:1px solid rgba(24,19,21,.14);
+    padding:12px;
+    resize:vertical;
+    font-size:14px;
+    color:rgba(24,19,21,.84);
+    background:rgba(255,255,255,.78);
+    outline:none;
+  }
+  .modalFoot{
+    display:flex; gap:10px; flex-wrap:wrap;
+    padding:12px 16px 16px;
+    border-top:1px solid rgba(24,19,21,.10);
+  }
+  .toast{
+    position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
+    background:rgba(255,255,255,.86);
+    border:1px solid rgba(24,19,21,.12);
+    border-radius:999px;
+    padding:10px 14px;
+    box-shadow:0 16px 40px rgba(0,0,0,.18);
+    color:rgba(24,19,21,.82);
+    font-size:14px;
+    display:none;
+    z-index:99999;
+  }
+</style>
 </head>
 <body>
 <div class="wrap">
-  <div class="brand">
-    <div class="t">MÓBILES</div>
-    <div class="s">entrada — máquina curatorial-semântica (suiornotsui)</div>
+  <div class="top">
+    <div>
+      <div class="title">MÓBILES — entrada</div>
+      <div class="sig">assinatura: suiornotsui</div>
+    </div>
+    <div class="pill" id="pillState">campo: meio · meio · meio</div>
   </div>
 
   <div class="lead" id="leadText"></div>
 
   <!-- M1 -->
-  <div class="mobile" id="m1">
+  <div class="section" id="m1">
     <div class="intro" id="introM1"></div>
-    <div class="canvasShell">
-      <canvas id="m1Canvas" width="940" height="430" aria-label="Móbile 1"></canvas>
-      <div class="row">
-        <button class="btn" id="m1Tension">Tensionar o início</button>
-        <button class="btn" id="m1Share">Partilhar</button>
-        <div class="pill" id="pillState">campo: …</div>
+    <div class="canvasBox">
+      <canvas id="m1Canvas" width="1100" height="520"></canvas>
+      <div class="controls">
+        <button id="m1Tension">Tensionar o início</button>
+        <button class="btnQuiet" id="m1Share">Partilhar este móbile</button>
       </div>
-      <div class="text" id="m1Text"></div>
+      <div class="textgen" id="m1Text"></div>
     </div>
   </div>
 
   <!-- M2 -->
-  <div class="mobile" id="m2">
+  <div class="section" id="m2">
     <div class="intro" id="introM2"></div>
-    <div class="canvasShell">
-      <canvas id="m2Canvas" width="940" height="430" aria-label="Móbile 2"></canvas>
-      <div class="row">
-        <button class="btn" id="m2Swap">Inverter frente ↔ fundo</button>
-        <button class="btn" id="m2Share">Partilhar</button>
-        <div class="pill">S–V–O (estrutura)</div>
+    <div class="canvasBox">
+      <canvas id="m2Canvas" width="1100" height="520"></canvas>
+      <div class="controls">
+        <button id="m2Swap">Trocar frente ↔ fundo</button>
+        <button class="btnQuiet" id="m2Share">Partilhar este móbile</button>
       </div>
-      <div class="text" id="m2Text"></div>
+      <div class="textgen" id="m2Text"></div>
     </div>
   </div>
 
   <!-- M3 -->
-  <div class="mobile" id="m3">
+  <div class="section" id="m3">
     <div class="intro" id="introM3"></div>
-    <div class="canvasShell">
-      <canvas id="m3Canvas" width="940" height="430" aria-label="Móbile 3"></canvas>
-      <div class="row">
-        <button class="btn" id="m3Share">Partilhar</button>
-        <div class="pill">foco / estilo (intensificação)</div>
+    <div class="canvasBox">
+      <canvas id="m3Canvas" width="1100" height="560"></canvas>
+      <div class="controls">
+        <button class="btnQuiet" id="m3Share">Partilhar este móbile</button>
       </div>
-      <div class="text" id="m3Text"></div>
+      <div class="textgen" id="m3Text"></div>
     </div>
   </div>
 
   <!-- M4 -->
-  <div class="mobile" id="m4">
+  <div class="section" id="m4">
     <div class="intro" id="introM4"></div>
-    <div class="canvasShell">
-      <canvas id="m4Canvas" width="940" height="430" aria-label="Móbile 4"></canvas>
-      <div class="row">
-        <button class="btn" id="m4Share">Partilhar</button>
-        <div class="pill">corpo sonoro / colapso</div>
+    <div class="canvasBox">
+      <canvas id="m4Canvas" width="1100" height="560"></canvas>
+      <div class="controls">
+        <button class="btnQuiet" id="m4Share">Partilhar este móbile</button>
       </div>
-      <div class="text" id="m4Text"></div>
+      <div class="textgen" id="m4Text"></div>
     </div>
   </div>
 
-  <!-- FINAL -->
-  <div class="mobile finalBlock" id="final">
+  <!-- Final -->
+  <div class="section footerBlock" id="final">
     <div class="intro" id="finalIntro"></div>
-    <div class="canvasShell">
-      <canvas id="finalCanvas" width="940" height="500" aria-label="Exposição final"></canvas>
-      <div class="row">
-        <button class="btn" id="btnFinalize">Gerar a minha exposição</button>
-        <button class="btn" id="finalShare">Partilhar</button>
-        <div class="pill">10 fragmentos</div>
+    <div class="canvasBox">
+      <div class="intro" style="margin:0 6px 12px; color:rgba(24,19,21,.74)" id="closingText"></div>
+      <div class="finalActions">
+        <button id="btnFinalize">Gerar a minha exposição</button>
+        <button class="btnQuiet" id="finalShare">Partilhar a exposição</button>
       </div>
-      <div class="text" id="finalText"></div>
+      <div style="margin-top:12px"></div>
+      <canvas id="finalCanvas" width="1100" height="620"></canvas>
+      <div class="textgen" id="finalText" style="white-space:pre-line"></div>
       <div class="gate" id="weeklyGate"></div>
     </div>
   </div>
 </div>
 
-<div id="overlay">
-  <div class="dlg">
-    <div class="dlgHead">
-      <div class="h" id="shareTitle">Partilhar</div>
-      <button class="btn" onclick="closeShare()">Fechar</button>
+<!-- Share overlay -->
+<div class="overlay" id="overlay" onclick="closeShare()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modalHead">
+      <div>
+        <div class="modalTitle" id="shareTitle">Partilhar</div>
+        <div class="modalNote" id="shareNote"></div>
+      </div>
+      <button class="btnQuiet" onclick="closeShare()">Fechar</button>
     </div>
-    <div class="dlgBody">
-      <div style="color:rgba(24,19,21,.70);font-size:13px" id="shareNote"></div>
-
+    <div class="modalBody">
       <div class="shareGrid">
-        <div class="shareCanvasWrap">
-          <canvas id="shareCanvas" width="900" height="1200"></canvas>
+        <div class="shareCanvasBox">
+          <canvas id="shareCanvas" width="1200" height="900"></canvas>
         </div>
         <div>
-          <textarea class="shareText" id="shareText"></textarea>
-          <div class="shareBtns" style="margin-top:10px">
-            <button class="btn" id="copyTextBtn">Copiar texto</button>
-            <button class="btn" id="downloadBtn">Baixar imagem (PNG)</button>
-            <button class="btn" id="nativeShareBtn">Partilhar…</button>
-          </div>
-          <div style="margin-top:10px;color:rgba(24,19,21,.55);font-size:12px">
-            Dica: em alguns navegadores o botão “Partilhar…” só funciona no telemóvel.
-          </div>
+          <textarea id="shareText"></textarea>
         </div>
       </div>
+    </div>
+    <div class="modalFoot">
+      <button id="copyTextBtn">Copiar texto</button>
+      <button id="downloadBtn">Baixar imagem</button>
+      <button id="nativeShareBtn">Partilhar (telemóvel)</button>
     </div>
   </div>
 </div>
@@ -342,12 +317,24 @@
 /* ============================================================
    CONFIG / PATHS (robusto para /mobiles/entrada/)
 ============================================================ */
-const BASE_MOBILES = new URL("../", location.href);           // .../mobiles/
+const BASE_MOBILES = (() => {
+  // tenta localizar o diretório /mobiles/ a partir da URL atual (GitHub Pages)
+  const u = new URL(location.href);
+  const parts = u.pathname.split("/").filter(Boolean);
+  const i = parts.lastIndexOf("mobiles");
+  if(i >= 0){
+    u.pathname = "/" + parts.slice(0, i+1).join("/") + "/";
+    u.search = ""; u.hash = "";
+    return u;
+  }
+  // fallback: sobe um nível a partir de /entrada/
+  return new URL("../", location.href);
+})();
 const SUI_JSON_URL = new URL("sui.json", BASE_MOBILES).toString();
 
-/* ============================================================
-   TEXTOS FIXOS (aprovados)
-============================================================ */
+/* ===================
+   COPY FIXED TEXTS
+=================== */
 const TEXT_OPENING =
 `Operas aqui a tua própria curadoria.
 A artista é suiornotsui.
@@ -427,60 +414,75 @@ Não como resposta,
 mas como pergunta aberta aos outros.`;
 
 /* ============================================================
-   UTIL
+   UTILS
 ============================================================ */
-function clamp(x,a,b){ return Math.max(a, Math.min(b,x)); }
-function rnd(a,b){ return a + Math.random()*(b-a); }
-function pick(arr){ return arr[(Math.random()*arr.length)|0]; }
+const clamp = (x,a,b)=>Math.max(a,Math.min(b,x));
+const rnd = (a,b)=>a+Math.random()*(b-a);
+const pick = (arr)=>arr[(Math.random()*arr.length)|0];
 
 function toast(msg){
-  const t=document.getElementById("toast");
-  t.textContent=msg;
+  const t = document.getElementById("toast");
+  t.textContent = msg;
   t.style.display="block";
-  clearTimeout(toast._tm);
-  toast._tm=setTimeout(()=>t.style.display="none", 1600);
+  clearTimeout(toast._t);
+  toast._t = setTimeout(()=>{ t.style.display="none"; }, 1500);
 }
 
 /* ============================================================
-   CAMPO VISUAL (120 slots / 12 famílias)
+   FIELD (120 slots + “gramática visual”)
 ============================================================ */
-const FAMS = [
-  {id:"F1", name:"continuidade linear", axes:{front:-0.2,dense:+0.1,cont:+0.8}},
-  {id:"F2", name:"corte vertical",      axes:{front:+0.4,dense:+0.4,cont:-0.7}},
-  {id:"F3", name:"deslocamento oblíquo",axes:{front:+0.6,dense:-0.2,cont:-0.2}},
-  {id:"F4", name:"ritmo repetitivo",    axes:{front:-0.1,dense:+0.5,cont:+0.2}},
-  {id:"F5", name:"ruptura",             axes:{front:+0.2,dense:+0.7,cont:-0.8}},
-  {id:"F6", name:"densidade",           axes:{front:-0.1,dense:+0.9,cont:-0.2}},
-  {id:"F7", name:"rarefação",           axes:{front:-0.3,dense:-0.9,cont:+0.4}},
-  {id:"F8", name:"centro instável",     axes:{front:+0.2,dense:+0.5,cont:+0.1}},
-  {id:"F9", name:"campo homogêneo",     axes:{front:+0.4,dense:+0.1,cont:-0.8}},
-  {id:"F10",name:"direção múltipla",    axes:{front:+0.4,dense:-0.2,cont:-0.6}},
-  {id:"F11",name:"contorno",            axes:{front:-0.1,dense:+0.6,cont:+0.2}},
-  {id:"F12",name:"massa",               axes:{front:-0.1,dense:+0.8,cont:-0.4}},
+const FAMILIES = [
+  {name:"F1", front:-0.2, dense:-0.2, cont:+0.9},
+  {name:"F2", front:+0.6, dense:+0.1, cont:-0.9},
+  {name:"F3", front:+0.2, dense:-0.1, cont:-0.2},
+  {name:"F4", front:+0.0, dense:+0.0, cont:+0.5},
+  {name:"F5", front:+0.4, dense:+0.3, cont:-0.6},
+  {name:"F6", front:+0.1, dense:+0.9, cont:+0.1},
+  {name:"F7", front:-0.6, dense:-0.9, cont:+0.2},
+  {name:"F8", front:+0.2, dense:+0.1, cont:-0.1},
+  {name:"F9", front:-0.1, dense:-0.1, cont:+0.0},
+  {name:"F10",front:+0.3, dense:+0.2, cont:-0.2},
+  {name:"F11",front:+0.5, dense:-0.1, cont:-0.4},
+  {name:"F12",front:+0.1, dense:+0.8, cont:-0.7},
 ];
 
-function slotId(i){ return "slot_" + String(i).padStart(3,"0"); }
-
 const FIELD = { slots:[] };
+
+// Sui map
 let SUI_MAP = null;
 
 function buildField(){
   FIELD.slots = [];
   for(let i=1;i<=120;i++){
-    const fam = FAMS[(i-1)%12];
-    const v = Math.floor((i-1)/12) % 10;
-    const t = (v-4.5)/4.5;
-    const axes = {
-      front: clamp(fam.axes.front + 0.18*t + rnd(-0.03,0.03), -1, 1),
-      dense: clamp(fam.axes.dense + 0.22*t + rnd(-0.03,0.03), -1, 1),
-      cont:  clamp(fam.axes.cont  - 0.20*t + rnd(-0.03,0.03), -1, 1),
-    };
-    FIELD.slots.push({ id:slotId(i), idx:i, fam:fam.id, famName:fam.name, v, axes, sui:null, _img:null });
+    const famIndex = Math.min(11, Math.floor((i-1)/10));
+    const fam = FAMILIES[famIndex];
+    FIELD.slots.push({
+      idx:i,
+      fam:fam.name,
+      v: (i-1)%10,
+      axes:{
+        front: clamp(fam.front + rnd(-0.18,0.18), -1, 1),
+        dense: clamp(fam.dense + rnd(-0.18,0.18), -1, 1),
+        cont:  clamp(fam.cont  + rnd(-0.18,0.18), -1, 1),
+      },
+      sui: null,
+      _img: null
+    });
   }
 }
 
-/* --- Sui: carrega /mobiles/sui.json ({"53":"assets/sui/slot_053.jpg"}) --- */
+/* ============================================================
+   LOAD SUI MAP (robusto + fallback pro slot 53)
+============================================================ */
 async function tryLoadSui(){
+  // tenta carregar o mapeamento /mobiles/sui.json e, em qualquer caso, garante um fallback robusto para o slot 53
+  const probeImage = (url) => new Promise((resolve)=>{
+    const img = new Image();
+    img.onload = ()=> resolve(true);
+    img.onerror = ()=> resolve(false);
+    img.src = url + "?probe=" + Date.now();
+  });
+
   try{
     const res = await fetch(SUI_JSON_URL + "?cache=" + Date.now(), { cache:"no-store" });
     if(!res.ok) throw new Error("sui.json não carregou");
@@ -491,17 +493,34 @@ async function tryLoadSui(){
       const key = String(s.idx); // "53"
       if(SUI_MAP && SUI_MAP[key]){
         const rel = SUI_MAP[key]; // "assets/sui/slot_053.jpg"
-        s.sui = { path: new URL(rel.replace(/^\.?\/*/,""), BASE_MOBILES).toString() };
+        s.sui = { path: new URL(String(rel).replace(/^\.\?\/*/,"").replace(/^\.?\/*/,""), BASE_MOBILES).toString() };
       }
     }
   }catch(e){
     SUI_MAP = null;
   }
 
-  // fallback mínimo: se falhou, ainda assim fixa o slot 53 no caminho conhecido
+  // fallback mínimo: se falhou (ou se o caminho/ extensão divergir), ainda assim fixa o slot 53 em um dos caminhos prováveis
   const s53 = FIELD.slots[52];
   if(!s53.sui){
-    s53.sui = { path: new URL("assets/sui/slot_053.jpg", BASE_MOBILES).toString() };
+    const candidates = [
+      "assets/sui/slot_053.jpg",
+      "assets/sui/slot_053.JPG",
+      "assets/sui/slot_053.jpeg",
+      "assets/sui/slot_053.JPEG",
+      "assets/sui/slot_053.png",
+      "assets/sui/slot_053.PNG",
+    ].map(p => new URL(p, BASE_MOBILES).toString());
+
+    for(const u of candidates){
+      if(await probeImage(u)){
+        s53.sui = { path: u };
+        break;
+      }
+    }
+    if(!s53.sui){
+      s53.sui = { path: candidates[0] };
+    }
   }
 }
 
@@ -509,13 +528,12 @@ async function tryLoadSui(){
    ESTADO GLOBAL (tensivo + fonográfico)
 ============================================================ */
 const G = {
-  front: 0.0,   // -1 fundo / +1 frente
-  dense: 0.0,   // -1 rarefeito / +1 denso
-  cont:  0.0,   // -1 corte / +1 continuidade
-  ph: { dry:0, voiced:0, open:0 }, // surdas / sonoras / fricativas
-  pressure: 0.0,
+  front: 0,
+  dense: 0,
+  cont: 0,
+  pressure: 0.35,
   birthMode: 0,
-  collapse: 0,
+  ph:{ dry:0, voiced:0, open:0 }
 };
 
 const Mob = {
@@ -562,7 +580,6 @@ function slotScore(slot){
     Math.abs(slot.axes.dense - G.dense) * 0.7 +
     Math.abs(slot.axes.cont  - G.cont ) * 1.0;
 
-  // afinidade fonográfica: dry ~ corte, open ~ continuidade
   const phBonus =
     (G.ph.dry    * (-slot.axes.cont))*0.25 +
     (G.ph.open   * ( slot.axes.cont))*0.22 +
@@ -570,7 +587,6 @@ function slotScore(slot){
 
   let score = -(dx) + phBonus + rnd(-0.06,0.06);
 
-  // viés leve: Sui tem prioridade (mas não garante sozinha)
   if(slot.sui) score += 0.95;
 
   return score;
@@ -596,10 +612,9 @@ function ensureSui(slots){
   const has = slots.some(s => s.idx===53 && s.sui);
   if(has) return slots;
 
-  const s53 = FIELD.slots[52]; // idx 53
+  const s53 = FIELD.slots[52];
   if(!s53 || !s53.sui) return slots;
 
-  // substitui o último (ou um aleatório) para manter o n
   const ix = Math.max(0, slots.length-1);
   const out = slots.slice();
   out[ix] = s53;
@@ -610,7 +625,6 @@ function ensureSui(slots){
    LÉXICO (70 operadores × 3 realizações) — exatamente como aprovado
 ============================================================ */
 const LEX = {
-  /* substantivos 1..28 */
   vestigio:{surda:"traço",sonora:"marca",fricativa:"sombra"},
   sopro:{surda:"pingo",sonora:"bafo",fricativa:"suspiro"},
   dobra:{surda:"prega",sonora:"curva",fricativa:"flexão"},
@@ -640,7 +654,6 @@ const LEX = {
   configuracao:{surda:"forma",sonora:"estrutura",fricativa:"composição"},
   cessacao:{surda:"corte",sonora:"encerramento",fricativa:"silenciamento"},
 
-  /* verbos 29..50 */
   aproximar:{surda:"chegar",sonora:"beirar",fricativa:"esfumar"},
   reparar:{surda:"notar",sonora:"observar",fricativa:"esmiuçar"},
   tocar:{surda:"tatear",sonora:"roçar",fricativa:"aflorar"},
@@ -666,7 +679,6 @@ const LEX = {
   abandonar:{surda:"largar",sonora:"deixar",fricativa:"dissolver"},
   transformar:{surda:"romper",sonora:"converter",fricativa:"transfigurar"},
 
-  /* adjetivos 51..62 */
   leve:{surda:"claro",sonora:"brando",fricativa:"suave"},
   minimo:{surda:"curto",sonora:"pequeno",fricativa:"sutil"},
   fragil:{surda:"ténue",sonora:"delicado",fricativa:"sensível"},
@@ -682,7 +694,6 @@ const LEX = {
   instavel:{surda:"quebrado",sonora:"oscilante",fricativa:"flutuante"},
   provisorio:{surda:"breve",sonora:"mutável",fricativa:"transitório"},
 
-  /* advérbios 63..70 */
   ainda:{surda:"já",sonora:"agora",fricativa:"sempre"},
   quaseAdv:{surda:"logo",sonora:"perto",fricativa:"talvez"},
   lentamente:{surda:"aos poucos",sonora:"com calma",fricativa:"suavemente"},
@@ -738,13 +749,11 @@ function Npick(pool){ return realize(pick(pool)); }
 function Vpick(pool){ return realize(pick(pool)); }
 
 function genCuratorialParagraph(kind){
-  // linhas “catálogo”, sem virar aula
   const nA = (G.front>0.25) ? Npick(N_CUR) : Npick(N_SENS);
   const nB = (G.dense>0.25) ? Npick(N_PLAS) : Npick(N_MEM);
   const nC = (G.cont>0.20) ? Npick(N_SENS) : Npick(N_CUR);
 
   const vA = (G.cont>0.15) ? Vpick(V_SENS) : Vpick(V_COMP);
-  const vB = (G.pressure>0.55) ? Vpick(V_DEC) : Vpick(V_COMP);
 
   const adj1 = maybeAdj();
   const adv1 = maybeAdv();
@@ -802,7 +811,6 @@ function m2InitIfNeeded(){
 
 function m2Block(nKey){
   const n = realize(nKey);
-  // adjs/advs dependem do estado global (como combinamos)
   const adjProb = clamp(0.22 + Math.abs(G.dense)*0.32 + Math.abs(G.front)*0.18, 0.18, 0.68);
   const advProb = clamp(0.12 + Math.abs(G.cont)*0.26, 0.10, 0.52);
   const adj = (Math.random()<adjProb) ? maybeAdj() : null;
@@ -819,7 +827,6 @@ function renderM2Text(){
   const el = document.getElementById("m2Text");
   el.innerHTML = "";
 
-  // swap estrito do texto: bloco1<->bloco3 quando flip
   const subjKey = Mob.m2.flip ? Mob.m2.objKey : Mob.m2.subjKey;
   const objKey  = Mob.m2.flip ? Mob.m2.subjKey : Mob.m2.objKey;
 
@@ -848,7 +855,7 @@ function renderM2Text(){
 function doM2Swap(){
   Mob.m2.flip = !Mob.m2.flip;
   applyDelta({ front: (Mob.m2.flip? -0.08:+0.08), pressure: 0.03, cont:rnd(-0.02,0.02) });
-  rerenderM2(true); // redesenha, mas mantém slots
+  rerenderM2(true);
 }
 
 /* regra: clicar no verbo muda SOMENTE o objeto (bloco 3) */
@@ -869,13 +876,11 @@ function doM2VerbClick(){
 function drawScene(ctx, key, W, H){
   ctx.clearRect(0,0,W,H);
 
-  // “névoa” pastel + resto sombrio
   ctx.save();
   ctx.fillStyle = "rgba(255,255,255,.22)";
   ctx.fillRect(0,0,W,H);
   ctx.restore();
 
-  // manchas suaves
   const g1 = ctx.createRadialGradient(W*0.20,H*0.20,20, W*0.20,H*0.20, W*0.70);
   g1.addColorStop(0,"rgba(255,170,210,.28)");
   g1.addColorStop(1,"rgba(255,170,210,0)");
@@ -886,19 +891,16 @@ function drawScene(ctx, key, W, H){
   g2.addColorStop(1,"rgba(170,215,255,0)");
   ctx.fillStyle=g2; ctx.fillRect(0,0,W,H);
 
-  // cenários visíveis + contornos demarcados (como você pediu)
   ctx.save();
   ctx.lineWidth = 2;
   ctx.strokeStyle = "rgba(24,19,21,.22)";
   ctx.fillStyle = "rgba(255,255,255,.10)";
 
   if(key==="m1"){
-    // berço / arco do móbile
     ctx.beginPath();
     ctx.moveTo(W*0.10,H*0.18);
     ctx.quadraticCurveTo(W*0.50,H*0.04, W*0.90,H*0.18);
     ctx.stroke();
-    // fios
     [0.18,0.50,0.82].forEach(x=>{
       ctx.beginPath();
       ctx.moveTo(W*x,H*0.18);
@@ -907,7 +909,6 @@ function drawScene(ctx, key, W, H){
     });
   }
   if(key==="m2"){
-    // montanhas + horizonte
     ctx.beginPath();
     ctx.moveTo(0,H*0.58);
     ctx.lineTo(W*0.20,H*0.42);
@@ -923,7 +924,6 @@ function drawScene(ctx, key, W, H){
     ctx.strokeStyle="rgba(24,19,21,.18)";
     ctx.stroke();
 
-    // “animais” mínimos
     ctx.strokeStyle="rgba(24,19,21,.20)";
     for(let i=0;i<7;i++){
       const x = W*(0.12 + i*0.12) + rnd(-8,8);
@@ -936,7 +936,6 @@ function drawScene(ctx, key, W, H){
     }
   }
   if(key==="m3"){
-    // labirinto
     ctx.strokeStyle="rgba(24,19,21,.18)";
     for(let y=0;y<7;y++){
       for(let x=0;x<11;x++){
@@ -947,7 +946,6 @@ function drawScene(ctx, key, W, H){
     }
   }
   if(key==="m4"){
-    // escadas escherianas
     ctx.strokeStyle="rgba(24,19,21,.20)";
     const steps=10;
     for(let i=0;i<steps;i++){
@@ -965,7 +963,6 @@ function drawScene(ctx, key, W, H){
 }
 
 function slotFamily(slot){
-  // F1..F12 => número 1..12
   const n = parseInt((slot.fam||"F1").replace("F",""),10);
   return isNaN(n)?1:n;
 }
@@ -973,29 +970,40 @@ function slotFamily(slot){
 async function preloadSlotImage(slot, onload){
   if(!slot.sui) return;
   if(slot._img) return;
+
   const img = new Image();
-  img.crossOrigin="anonymous";
-  // cache-buster leve para evitar “sumiu depois do F5”
-  img.src = slot.sui.path + "?v=" + Date.now();
-  slot._img = img;
+  img.crossOrigin = "anonymous";
+
+  let tried = 0;
+  const load = () => {
+    tried++;
+    img.src = tried === 1 ? (slot.sui.path + "?v=" + Date.now()) : slot.sui.path;
+  };
+
   img.onload = onload;
+  img.onerror = () => {
+    if(tried < 2){
+      load();
+      return;
+    }
+    console.warn("Falha ao carregar imagem da Sui:", slot.sui.path);
+  };
+
+  slot._img = img;
+  load();
 }
 
 function drawProcedural(ctx, slot, x,y,w,h){
-  // gramática visual: famílias + variações; estilo horror-pastel
   const fam = slotFamily(slot);
   ctx.save();
   ctx.translate(x,y);
 
-  // base
   ctx.fillStyle = "rgba(255,255,255,.55)";
   ctx.fillRect(0,0,w,h);
 
-  // “resto mórbido”
   ctx.fillStyle = "rgba(40,30,38,.07)";
   ctx.fillRect(0,0,w,h);
 
-  // cor por família (pastel estranho)
   const hue = (fam*27 + slot.v*11) % 360;
   ctx.fillStyle = `hsla(${hue}, 65%, 80%, 0.26)`;
   ctx.fillRect(0,0,w,h);
@@ -1003,7 +1011,6 @@ function drawProcedural(ctx, slot, x,y,w,h){
   ctx.strokeStyle = "rgba(24,19,21,.30)";
   ctx.lineWidth = 2;
 
-  // desenha “regimes”
   if(fam===1){
     for(let i=0;i<6;i++){
       ctx.beginPath();
@@ -1082,7 +1089,6 @@ function drawProcedural(ctx, slot, x,y,w,h){
 }
 
 function drawSlot(ctx, slot, x,y,w,h){
-  // moldura MUITO visível (pedido)
   ctx.save();
   ctx.shadowColor="rgba(0,0,0,.12)";
   ctx.shadowBlur=18;
@@ -1096,7 +1102,6 @@ function drawSlot(ctx, slot, x,y,w,h){
   ctx.strokeStyle="rgba(24,19,21,.34)";
   ctx.strokeRect(x,y,w,h);
 
-  // interior
   if(slot.sui && slot._img && slot._img.complete && slot._img.naturalWidth){
     ctx.save();
     ctx.beginPath();
@@ -1122,7 +1127,6 @@ async function drawMobile(canvas, key, count){
 
   drawScene(ctx, key, W, H);
 
-  // slots persistem por móbile (critico para M2 inverter)
   if(!Mob[key].slots){
     let slots = sampleSlots(count);
     slots = ensureSui(slots);
@@ -1130,13 +1134,9 @@ async function drawMobile(canvas, key, count){
   }
   const slots = Mob[key].slots;
 
-  // preload Sui (se presente)
   for(const s of slots){
     if(s.sui && !s._img){
-      await preloadSlotImage(s, ()=>{
-        // redesenha apenas o canvas atual quando a imagem carregar
-        rerenderOne(key);
-      });
+      await preloadSlotImage(s, ()=>{ rerenderOne(key); });
     }
   }
 
@@ -1155,7 +1155,6 @@ async function drawMobile(canvas, key, count){
     const bigW=W*0.36, bigH=H*0.42;
     const smallW=W*0.26, smallH=H*0.30;
 
-    // IMPORTANTÍSSIMO: NÃO reamostrar; usa o par fixo Mob.m2.slots
     const a = slots[0];
     const b = slots[1];
 
@@ -1216,18 +1215,13 @@ function setTextPlain(el, text){
   el.textContent = text;
 }
 
-function setTextInteractive(el, text, key){
-  // M3: palavras clicáveis
-  // M4: palavras clicáveis (com data-ph)
+function setTextInteractive(el, text){
   el.innerHTML = "";
   const parts = text.split(/\s+/).filter(Boolean);
   for(const p of parts){
     const span = document.createElement("span");
     span.className="w";
     span.textContent = p + " ";
-    if(key==="m4"){
-      span.dataset.ph = phMode(); // etiqueta do regime atual (reforça)
-    }
     el.appendChild(span);
   }
 }
@@ -1237,9 +1231,9 @@ function setTextInteractive(el, text, key){
 ============================================================ */
 async function rerenderOne(key){
   if(key==="m1") return rerenderM1();
-  if(key==="m2") return rerenderM2(true);
+  if(key==="m2") return rerenderM2();
   if(key==="m3") return rerenderM3();
-  if(key==="m4") return rerenderM4(true);
+  if(key==="m4") return rerenderM4();
   if(key==="final") return rerenderFinal();
 }
 
@@ -1255,12 +1249,12 @@ async function rerenderM2(){
 
 async function rerenderM3(){
   await drawMobile(document.getElementById("m3Canvas"), "m3", 7);
-  setTextInteractive(document.getElementById("m3Text"), genCuratorialParagraph("m3"), "m3");
+  setTextInteractive(document.getElementById("m3Text"), genCuratorialParagraph("m3"));
 }
 
 async function rerenderM4(){
   await drawMobile(document.getElementById("m4Canvas"), "m4", 5);
-  setTextInteractive(document.getElementById("m4Text"), genCuratorialParagraph("m4"), "m4");
+  setTextInteractive(document.getElementById("m4Text"), genCuratorialParagraph("m4"));
 }
 
 async function rerenderFinal(){
@@ -1309,7 +1303,6 @@ function buildFinalB(){
   const n2 = Npick(N_SENS);
   const n3 = Npick(N_MEM);
   const v1 = Vpick(V_COMP);
-  const v2 = Vpick(V_SENS);
   const a1 = maybeAdj();
   const adv = maybeAdv();
 
@@ -1338,7 +1331,6 @@ function bindCanvasClicks(key, canvas){
       if(key==="m2"){ doM2Swap(); return; }
 
       if(key==="m3"){
-        // intensifica família do fragmento clicado
         const slot = hit.slot;
         const fam = slotFamily(slot);
 
@@ -1346,7 +1338,6 @@ function bindCanvasClicks(key, canvas){
         Mob.m3.intensity = clamp(Mob.m3.intensity + 0.14, 0, 1);
         Mob.m3.clicks++;
 
-        // mexe pouco, mostra muito
         applyDelta({
           pressure: 0.03,
           cont: (fam===1||fam===4||fam===7) ? +0.05 : -0.02,
@@ -1357,12 +1348,11 @@ function bindCanvasClicks(key, canvas){
         if(Mob.m3.intensity >= 0.98){
           Mob.m3.intensity = 0;
           Mob.m3.focusFam = null;
-          Mob.m3.slots = null; // reamostra só o M3
+          Mob.m3.slots = null;
           toast("M3: catástrofe — nova configuração.");
         }
 
         rerenderM3();
-        // ressonância pequena no M4 (texto muda; imagens não precisam reamostrar)
         rerenderM4();
         return;
       }
@@ -1380,7 +1370,6 @@ function bindTextClicks(key, textEl){
 
     try{
       if(key==="m3"){
-        // palavra em M3 puxa eixo dominante (menos caótico)
         const axe = (Math.abs(G.cont)>Math.abs(G.front) && Math.abs(G.cont)>Math.abs(G.dense)) ? "cont"
                   : (Math.abs(G.dense)>Math.abs(G.front)) ? "dense" : "front";
 
@@ -1403,12 +1392,10 @@ function bindTextClicks(key, textEl){
       }
 
       if(key==="m4"){
-        // M4: clique só nas palavras — reforça perfil fonográfico
-        const mode = phMode();
-
         Mob.m4.intensity = clamp(Mob.m4.intensity + 0.14, 0, 1);
         Mob.m4.clicks++;
 
+        const mode = phMode();
         if(mode==="surda") applyDelta({ ph:{dry:+0.30}, pressure:+0.04, cont:-0.02 });
         else if(mode==="sonora") applyDelta({ ph:{voiced:+0.30}, pressure:+0.04, dense:+0.02 });
         else applyDelta({ ph:{open:+0.30}, pressure:+0.04, cont:+0.02 });
@@ -1416,7 +1403,7 @@ function bindTextClicks(key, textEl){
         if(Mob.m4.intensity >= 0.98){
           Mob.m4.intensity = 0;
           Mob.m4.focusPh = null;
-          Mob.m4.slots = null; // reamostra só o M4
+          Mob.m4.slots = null;
           toast("M4: colapso — o corpo sonoro virou regime.");
         }
 
@@ -1431,7 +1418,7 @@ function bindTextClicks(key, textEl){
 }
 
 /* ============================================================
-   BOTÕES / BOOT
+   BOTÕES / SHARE
 ============================================================ */
 function openShare(title, note, text, srcCanvasId){
   document.getElementById("shareTitle").textContent = title;
@@ -1442,7 +1429,6 @@ function openShare(title, note, text, srcCanvasId){
   const out = document.getElementById("shareCanvas");
   const ctx = out.getContext("2d");
 
-  // compõe: imagem + texto
   ctx.clearRect(0,0,out.width,out.height);
   ctx.fillStyle = "rgba(255,255,255,.94)";
   ctx.fillRect(0,0,out.width,out.height);
@@ -1455,7 +1441,6 @@ function openShare(title, note, text, srcCanvasId){
   ctx.font = "14px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
   ctx.fillText(new Date().toISOString().slice(0,19).replace("T"," "), 42, 72);
 
-  // imagem
   const pad = 42;
   const targetW = out.width - pad*2;
   const ratio = src.height / src.width;
@@ -1464,7 +1449,6 @@ function openShare(title, note, text, srcCanvasId){
   const dy = 96;
   ctx.drawImage(src, dx, dy, targetW, targetH);
 
-  // texto
   const textTop = dy + targetH + 46;
   ctx.fillStyle = "rgba(24,19,21,.82)";
   ctx.font = "16px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
@@ -1499,6 +1483,7 @@ function wrapLine(ctx, text, x, y, maxWidth, lineHeight){
 }
 
 function closeShare(){ document.getElementById("overlay").style.display="none"; }
+window.closeShare = closeShare;
 
 function canvasToDataURL(canvas){
   try{ return canvas.toDataURL("image/png"); }catch(e){ return ""; }
@@ -1523,7 +1508,6 @@ function shareTextFor(kind){
 
 function bindButtons(){
   document.getElementById("m1Tension").addEventListener("click", ()=>{
-    // retensiona nascimento (mexe tudo)
     G.birthMode = (G.birthMode + 1) % 3;
     if(G.birthMode===0){
       applyDelta({ front:rnd(-0.25,0.25), dense:rnd(-0.15,0.15), cont:+0.20, ph:{open:+0.12}, pressure:0.10 });
@@ -1533,7 +1517,6 @@ function bindButtons(){
       applyDelta({ front:-0.28, dense:-0.10, cont:+0.05, ph:{voiced:+0.16}, pressure:0.12 });
     }
 
-    // reamostra TODOS (novo regime)
     Mob.m1.slots=null;
     Mob.m2.slots=null; Mob.m2.subjKey=null; Mob.m2.objKey=null; Mob.m2.verbKey=null;
     Mob.m3.slots=null; Mob.m3.intensity=0;
@@ -1547,8 +1530,6 @@ function bindButtons(){
 
   document.getElementById("btnFinalize").addEventListener("click", ()=>{
     Mob.final.ready = true;
-    Mob.final.slots = null;
-    // fixa slots do final na geração (não muda ao rolar)
     Mob.final.slots = ensureSui(sampleSlots(10));
     rerenderFinal();
     toast("Exposição gerada.");
@@ -1574,7 +1555,6 @@ function bindButtons(){
     openShare("Partilhar — Exposição", "imagem + texto", shareTextFor("final"), "finalCanvas");
   });
 
-  // share dialog controls
   document.getElementById("copyTextBtn").addEventListener("click", async ()=>{
     try{
       await navigator.clipboard.writeText(document.getElementById("shareText").value);
@@ -1613,18 +1593,17 @@ function bindButtons(){
    BOOT
 ============================================================ */
 async function boot(){
-  // fixa textos
   document.getElementById("leadText").textContent = TEXT_OPENING;
   document.getElementById("introM1").textContent = INTRO_M1;
   document.getElementById("introM2").textContent = INTRO_M2;
   document.getElementById("introM3").textContent = INTRO_M3;
   document.getElementById("introM4").textContent = INTRO_M4;
+  document.getElementById("closingText").textContent = TEXT_FINAL_CLOSING;
   document.getElementById("finalIntro").textContent = "Depois do último móbile, encerra — e gera a tua exposição.";
 
   buildField();
   await tryLoadSui();
 
-  // bind
   bindButtons();
   bindCanvasClicks("m1", document.getElementById("m1Canvas"));
   bindCanvasClicks("m2", document.getElementById("m2Canvas"));
