@@ -21,7 +21,6 @@
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
-
     html,body{height:100%}
     body{
       margin:0;
@@ -33,166 +32,58 @@
         radial-gradient(1200px 800px at 50% 80%, #d9d2ff44 0%, transparent 60%),
         linear-gradient(180deg, var(--bg1), var(--bg2));
     }
-
-    .wrap{
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 28px 16px 90px;
-    }
-
-    .lead{
-      font-size: 16px;
-      line-height: 1.55;
-      color: var(--muted);
-      margin: 6px 0 18px;
-      white-space: pre-line;
-    }
-
+    .wrap{max-width:980px;margin:0 auto;padding:28px 16px 90px;}
+    .title{margin:0 0 8px;font-weight:750;letter-spacing:.2px;font-size:18px;}
+    .lead{font-size:16px;line-height:1.55;color:var(--muted);margin:6px 0 18px;white-space:pre-line;}
     .card{
-      background: var(--card);
-      border: 1px solid var(--stroke);
-      border-radius: var(--r);
-      box-shadow: var(--shadow);
-      padding: 18px;
-      margin: 14px 0 24px;
-      overflow: hidden;
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+      padding:18px;
+      margin:14px 0 24px;
+      overflow:hidden;
     }
-
-    .title{
-      margin: 0 0 8px;
-      font-weight: 650;
-      letter-spacing:.2px;
-      font-size: 18px;
-    }
-
-    .intro{
-      margin: 10px 0 14px;
-      color: #2b2b35;
-      line-height: 1.55;
-      white-space: pre-line;
-    }
-
-    .row{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items:center;
-      margin-top: 10px;
-    }
-
+    .intro{margin:10px 0 14px;color:#2b2b35;line-height:1.55;white-space:pre-line;}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px;}
     button{
-      appearance: none;
-      border: 1px solid var(--stroke2);
-      background: #fff;
-      border-radius: 999px;
-      padding: 10px 14px;
-      font-weight: 600;
-      cursor:pointer;
-      box-shadow: 0 8px 18px rgba(10,10,20,.08);
+      appearance:none;border:1px solid var(--stroke2);background:#fff;border-radius:999px;
+      padding:10px 14px;font-weight:700;cursor:pointer;box-shadow:0 8px 18px rgba(10,10,20,.08);
     }
-    button:hover{ transform: translateY(-1px); }
-    button:active{ transform: translateY(0px); }
-
+    button:hover{transform:translateY(-1px)}
+    button:active{transform:translateY(0px)}
     .canvasWrap{
-      border-radius: 16px;
-      border: 1px solid var(--stroke);
+      border-radius:16px;border:1px solid var(--stroke);
       background:
         radial-gradient(700px 260px at 30% 30%, var(--accent) 0%, transparent 55%),
         radial-gradient(900px 330px at 75% 50%, var(--accent2) 0%, transparent 55%),
         linear-gradient(180deg,#ffffffaa,#ffffff55);
       overflow:hidden;
     }
-
-    canvas{
-      width: 100%;
-      height: auto;
-      display:block;
+    canvas{width:100%;height:auto;display:block;}
+    .gen{margin-top:12px;line-height:1.65;color:#1e1e25;font-size:15px;}
+    .gen .tok{
+      cursor:pointer;border-radius:8px;padding:0 4px;margin:0 1px;display:inline-block;
     }
-
-    .gen{
-      margin-top: 12px;
-      line-height: 1.62;
-      color:#1e1e25;
-      font-size: 15px;
-    }
-
-    .gen .w{
-      cursor: pointer;
-      border-radius: 8px;
-      padding: 0 4px;
-      margin: 0 1px;
-      display:inline-block;
-    }
-    .gen .w:hover{
-      background: #00000008;
-      outline: 1px solid #00000010;
-    }
-    .gen .w:active{
-      background: #00000012;
-    }
-
-    .hint{
-      font-size: 13px;
-      color: #535362;
-      margin-top: 6px;
-    }
-
-    .finalBox{
-      margin-top: 14px;
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px dashed var(--stroke2);
-      background: #ffffff99;
-    }
-
-    .small{
-      font-size: 13px;
-      color: #4f4f5f;
-      line-height: 1.5;
-      white-space: pre-line;
-    }
-
+    .gen .tok:hover{background:#00000008;outline:1px solid #00000010;}
+    .gen .tok:active{background:#00000012;}
+    .hint{font-size:13px;color:#535362;margin-top:6px;}
+    .finalBox{margin-top:14px;padding:14px;border-radius:14px;border:1px dashed var(--stroke2);background:#ffffff99;}
+    .small{font-size:13px;color:#4f4f5f;line-height:1.5;white-space:pre-line;}
     .copy{
-      font-family: var(--mono);
-      font-size: 12px;
-      color: #2f2f3b;
-      background:#ffffffaa;
-      border: 1px solid var(--stroke);
-      padding: 10px;
-      border-radius: 12px;
-      white-space: pre-wrap;
-      word-break: break-word;
-      margin-top: 10px;
+      font-family:var(--mono);font-size:12px;color:#2f2f3b;background:#ffffffaa;border:1px solid var(--stroke);
+      padding:10px;border-radius:12px;white-space:pre-wrap;word-break:break-word;margin-top:10px;
     }
-
-    .ok{
-      display:inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border:1px solid #2a7a3a33;
-      background:#2a7a3a12;
-      color:#2a7a3a;
-      font-weight:700;
-      font-size: 12px;
-      margin-left: 8px;
+    .pill{
+      display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid #15151a22;
+      background:#ffffffaa;color:#2b2b35;font-weight:800;font-size:12px;
     }
-
-    .warn{
-      display:inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border:1px solid #a36b0a33;
-      background:#a36b0a12;
-      color:#7a5205;
-      font-weight:700;
-      font-size: 12px;
-      margin-left: 8px;
-    }
+    .ok{border-color:#2a7a3a33;background:#2a7a3a12;color:#2a7a3a;}
+    .warn{border-color:#a36b0a33;background:#a36b0a12;color:#7a5205;}
   </style>
 </head>
 <body>
 <div class="wrap">
-
   <h1 class="title">MÓBILES — operar curadoria (entrada)</h1>
   <div class="lead">Operas aqui a tua própria curadoria.
 A artista é <b>suiornotsui</b>.
@@ -209,7 +100,6 @@ Outras resistem, permanecem ausentes,
 como se aguardassem um olhar que ainda não chegou.
 Esse resto — aquilo que nunca aparece — sustenta o desejo de continuar.</div>
 
-  <!-- M1 -->
   <section class="card" id="m1">
     <div class="intro">Tudo começa aqui.
 Três formas pendem no campo,
@@ -219,22 +109,16 @@ Não é escolha de imagens.
 É escolha de posição.
 E o modo como começas
 inclina todo o percurso.</div>
-
-    <div class="canvasWrap">
-      <canvas id="c1" width="940" height="340"></canvas>
-    </div>
-
+    <div class="canvasWrap"><canvas id="c1" width="940" height="340"></canvas></div>
     <div class="row">
       <button id="b1">Tensionar o início</button>
-      <button id="s1">Partilhar este móbile</button>
-      <span id="suiState" class="warn" title="Tentaremos carregar a imagem da Sui; se falhar, seguimos com fallback.">Sui: a carregar…</span>
+      <button id="sh1">Partilhar este móbile</button>
+      <span id="suiPill" class="pill warn">Sui: a carregar…</span>
     </div>
-
     <div class="gen" id="t1"></div>
-    <div class="hint">Aqui só este botão opera. Cada clique muda o ponto de partida do campo (e inclina os outros móbiles).</div>
+    <div class="hint">M1: só este botão. Cada clique muda o ponto de partida do campo e inclina o percurso inteiro.</div>
   </section>
 
-  <!-- M2 -->
   <section class="card" id="m2">
     <div class="intro">Agora há relação.
 Algo ocupa a frente.
@@ -245,20 +129,14 @@ Há posições que se repetem.
 Só o gesto —
 o que fazes —
 abre outra possibilidade.</div>
-
-    <div class="canvasWrap">
-      <canvas id="c2" width="940" height="320"></canvas>
-    </div>
-
+    <div class="canvasWrap"><canvas id="c2" width="940" height="320"></canvas></div>
     <div class="row">
-      <button id="s2">Partilhar este móbile</button>
+      <button id="sh2">Partilhar este móbile</button>
     </div>
-
     <div class="gen" id="t2"></div>
-    <div class="hint">Neste móbile: clicar nos fragmentos apenas inverte frente↔fundo (e sujeito↔objeto). Clicar no verbo muda o objeto e abre outra saída.</div>
+    <div class="hint">M2: clicar nos fragmentos apenas inverte frente↔fundo e módulo1↔módulo3. Clicar no verbo muda exclusivamente o objeto (módulo 3) e o fragmento correspondente.</div>
   </section>
 
-  <!-- M3 -->
   <section class="card" id="m3">
     <div class="intro">O campo começa a responder ao teu gesto.
 Onde insistes, algo cresce.
@@ -267,20 +145,14 @@ O que ignoras afasta-se.
 Sem perceber, vais formando um modo de ver.
 Um estilo.
 Uma inclinação do mundo.</div>
-
-    <div class="canvasWrap">
-      <canvas id="c3" width="940" height="360"></canvas>
-    </div>
-
+    <div class="canvasWrap"><canvas id="c3" width="940" height="360"></canvas></div>
     <div class="row">
-      <button id="s3">Partilhar este móbile</button>
+      <button id="sh3">Partilhar este móbile</button>
     </div>
-
     <div class="gen" id="t3"></div>
-    <div class="hint">Aqui: clicar numa palavra reforça o eixo dessa palavra. Clicar num fragmento reforça a família tensiva do slot (F1–F12). O espraiamento é regulado, não aleatório.</div>
+    <div class="hint">M3: só palavras e fragmentos. Clique local reforça o eixo específico do item clicado (com espraiamento regulado por distância).</div>
   </section>
 
-  <!-- M4 -->
   <section class="card" id="m4">
     <div class="intro">Agora já não operas imagens.
 Operas a própria linguagem.
@@ -292,20 +164,14 @@ Insistir numa forma faz o campo inteiro ceder.
 Até que, em excesso,
 algo colapsa
 e o regime muda.</div>
-
-    <div class="canvasWrap">
-      <canvas id="c4" width="940" height="340"></canvas>
-    </div>
-
+    <div class="canvasWrap"><canvas id="c4" width="940" height="340"></canvas></div>
     <div class="row">
-      <button id="s4">Partilhar este móbile</button>
+      <button id="sh4">Partilhar este móbile</button>
     </div>
-
     <div class="gen" id="t4"></div>
-    <div class="hint">Aqui: só palavras são clicáveis. O som (surda/sonora/fricativa) domina progressivamente o texto — até colapsar.</div>
+    <div class="hint">M4: só palavras. O texto migra para a classe sonora dominante (surda/sonora/fricativa) até colapsar para o próximo regime.</div>
   </section>
 
-  <!-- Final -->
   <section class="card" id="final">
     <div class="intro">O que construíste aqui não é um resultado neutro.
 Revela algo do teu modo de ver,
@@ -327,1340 +193,1348 @@ mas como pergunta aberta aos outros.</div>
 
     <div class="row">
       <button id="genFinal">Gerar a minha exposição</button>
-      <button id="shareFinal" style="display:none;">Partilhar a minha exposição</button>
+      <button id="shFinal" style="display:none;">Partilhar a minha exposição</button>
     </div>
 
     <div class="finalBox" id="finalBox" style="display:none;">
-      <div class="canvasWrap">
-        <canvas id="cf" width="940" height="420"></canvas>
-      </div>
+      <div class="canvasWrap"><canvas id="cf" width="940" height="420"></canvas></div>
       <div class="gen" id="tf"></div>
       <div class="small" style="margin-top:10px;">Para ver os demais estados expositivos da semana, faz primeiro a tua curadoria (gera a tua expo).</div>
-      <div class="copy" id="shareText" style="display:none;"></div>
+      <div class="copy" id="fallbackShare" style="display:none;"></div>
     </div>
   </section>
-
 </div>
 
 <script>
-(() => {
-  "use strict";
-
-  // -------------------------------
-  // Helpers: deterministic RNG
-  // -------------------------------
-  function mulberry32(a){
-    return function(){
-      a |= 0; a = a + 0x6D2B79F5 | 0;
-      let t = Math.imul(a ^ a >>> 15, 1 | a);
-      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
-      return ((t ^ t >>> 14) >>> 0) / 4294967296;
-    }
+/* =========================
+   UTIL: seeded RNG (estável)
+========================= */
+function xmur3(str){
+  let h=1779033703 ^ str.length;
+  for(let i=0;i<str.length;i++){
+    h = Math.imul(h ^ str.charCodeAt(i), 3432918353);
+    h = (h << 13) | (h >>> 19);
   }
-  function hashStr(s){
-    let h = 2166136261 >>> 0;
-    for(let i=0;i<s.length;i++){
-      h ^= s.charCodeAt(i);
-      h = Math.imul(h, 16777619);
-    }
-    return h >>> 0;
-  }
-  function clamp(x,a,b){ return Math.max(a, Math.min(b, x)); }
-
-  // -------------------------------
-  // Axes (semantic/tensive)
-  // -------------------------------
-  const AXES = [
-    "continuity","cut","oblique","repetition","rupture","density","rarefaction","center","neutral","conflict","contour","mass",
-    "memory","care","presence","tension","emergence","configuration","cessation","rhythm","surface","texture"
-  ];
-
-  // families F1..F12 → axes weights
-  const FAMILY_AXES = {
-    F1:{continuity:1, presence:.2},
-    F2:{cut:1, contour:.4},
-    F3:{oblique:1, tension:.3},
-    F4:{repetition:1, memory:.4, rhythm:.3},
-    F5:{rupture:1, cut:.5},
-    F6:{density:1, mass:.4, texture:.3},
-    F7:{rarefaction:1, continuity:.3},
-    F8:{center:1, tension:.3},
-    F9:{neutral:1, surface:.2},
-    F10:{conflict:1, oblique:.3},
-    F11:{contour:1, cut:.3},
-    F12:{mass:1, density:.4}
+  return function(){
+    h = Math.imul(h ^ (h >>> 16), 2246822507);
+    h = Math.imul(h ^ (h >>> 13), 3266489909);
+    return (h ^= h >>> 16) >>> 0;
   };
+}
+function sfc32(a,b,c,d){
+  return function(){
+    a >>>= 0; b >>>= 0; c >>>= 0; d >>>= 0;
+    let t = (a + b) | 0;
+    a = b ^ (b >>> 9);
+    b = (c + (c << 3)) | 0;
+    c = (c << 21) | (c >>> 11);
+    d = (d + 1) | 0;
+    t = (t + d) | 0;
+    c = (c + t) | 0;
+    return (t >>> 0) / 4294967296;
+  };
+}
+function makeRng(seedStr){
+  const seed = xmur3(seedStr);
+  return sfc32(seed(), seed(), seed(), seed());
+}
+function clamp(x,a,b){ return Math.max(a, Math.min(b,x)); }
+function lerp(a,b,t){ return a + (b-a)*t; }
 
-  // slot → family (your schema: 1–10 F1, 11–20 F2, ... 111–120 F12)
-  function familyForSlot(slot){
-    const s = clamp(slot,1,120);
-    const idx = Math.floor((s-1)/10) + 1; // 1..12
-    return "F" + idx;
+/* =========================
+   TENSIVE FAMÍLIAS (F1–F12)
+   Cada família reforça eixos
+========================= */
+const AXES = [
+  "continuity","cut","oblique","rhythm","rupture","density",
+  "rarefaction","center","neutral","conflict","contour","mass",
+  "phon_surd","phon_son","phon_fric"
+];
+
+const FAMILIES = [
+  {id:"F1", name:"Continuidade linear", axes:{continuity:1, rhythm:.5}},
+  {id:"F2", name:"Corte vertical", axes:{cut:1, contour:.7}},
+  {id:"F3", name:"Deslocamento oblíquo", axes:{oblique:1, center:.6}},
+  {id:"F4", name:"Ritmo repetitivo", axes:{rhythm:1, continuity:.4}},
+  {id:"F5", name:"Ruptura", axes:{rupture:1, cut:.6}},
+  {id:"F6", name:"Densidade", axes:{density:1, mass:.6}},
+  {id:"F7", name:"Rarefação", axes:{rarefaction:1, continuity:.2}},
+  {id:"F8", name:"Centro instável", axes:{center:1, conflict:.4}},
+  {id:"F9", name:"Campo homogéneo", axes:{neutral:1, continuity:.3}},
+  {id:"F10", name:"Direção múltipla", axes:{conflict:1, oblique:.5}},
+  {id:"F11", name:"Contorno", axes:{contour:1, cut:.3}},
+  {id:"F12", name:"Massa", axes:{mass:1, density:.6}}
+];
+
+// Slots 1–120 → família (10 cada, como combinaste)
+function slotToFamily(slot){
+  const idx = Math.floor((slot-1)/10); // 0..11
+  return FAMILIES[clamp(idx,0,11)];
+}
+
+/* =========================
+   LÉXICO (70 operadores) × 3
+   (prega -> vinco)
+========================= */
+const LEX = {
+  // SUBSTANTIVOS 1..28
+  "vestígio": {pos:"N", variants:{surda:"traço", sonora:"marca", fricativa:"sombra"}, axes:["contour","center"]},
+  "sopro": {pos:"N", variants:{surda:"pingo", sonora:"bafo", fricativa:"suspiro"}, axes:["rarefaction","continuity"]},
+  "dobra": {pos:"N", variants:{surda:"vinco", sonora:"curva", fricativa:"flexão"}, axes:["oblique","continuity"]},
+  "canto": {pos:"N", variants:{surda:"quina", sonora:"beira", fricativa:"franja"}, axes:["contour","cut"]},
+  "margem": {pos:"N", variants:{surda:"limite", sonora:"borda", fricativa:"fronteira"}, axes:["contour","conflict"]},
+  "poeira": {pos:"N", variants:{surda:"pó", sonora:"bruma", fricativa:"cinza"}, axes:["rarefaction","neutral"]},
+  "silêncio": {pos:"N", variants:{surda:"pausa", sonora:"calma", fricativa:"sussurro"}, axes:["rarefaction","continuity"]},
+  "rastro": {pos:"N", variants:{surda:"pegada", sonora:"vesta", fricativa:"resíduo"}, axes:["rhythm","center"]},
+  "fragmento": {pos:"N", variants:{surda:"cortezinho", sonora:"bordado", fricativa:"desfiado"}, axes:["rupture","cut","contour"]},
+  "detalhe": {pos:"N", variants:{surda:"ponto", sonora:"miolo", fricativa:"nuança"}, axes:["center","continuity"]},
+
+  "lembrança": {pos:"N", variants:{surda:"nota", sonora:"memória", fricativa:"recordação"}, axes:["rhythm","center"]},
+  "demora": {pos:"N", variants:{surda:"pausa", sonora:"espera", fricativa:"suspensão"}, axes:["continuity","rarefaction"]},
+  "intervalo": {pos:"N", variants:{surda:"corte", sonora:"entre", fricativa:"fresta"}, axes:["cut","conflict"]},
+  "eco": {pos:"N", variants:{surda:"toque", sonora:"resposta", fricativa:"ressonância"}, axes:["rhythm","continuity"]},
+  "resto": {pos:"N", variants:{surda:"ruga", sonora:"sobra", fricativa:"resíduo"}, axes:["rupture","center"]},
+
+  "plano": {pos:"N", variants:{surda:"linha", sonora:"base", fricativa:"superfície"}, axes:["neutral","continuity"]},
+  "camada": {pos:"N", variants:{surda:"capa", sonora:"nível", fricativa:"espessura"}, axes:["density","mass"]},
+  "textura": {pos:"N", variants:{surda:"trama", sonora:"tecido", fricativa:"fibra"}, axes:["rhythm","density"]},
+  "superfície": {pos:"N", variants:{surda:"pele", sonora:"face", fricativa:"película"}, axes:["contour","neutral"]},
+  "escala": {pos:"N", variants:{surda:"passo", sonora:"medida", fricativa:"proporção"}, axes:["neutral","conflict"]},
+  "ritmo": {pos:"N", variants:{surda:"pulso", sonora:"cadência", fricativa:"fluência"}, axes:["rhythm","continuity"]},
+  "matéria": {pos:"N", variants:{surda:"corpo", sonora:"substância", fricativa:"massa"}, axes:["density","mass"]},
+
+  "presença": {pos:"N", variants:{surda:"toque", sonora:"vulto", fricativa:"sombra"}, axes:["center","contour"]},
+  "tensão": {pos:"N", variants:{surda:"nó", sonora:"peso", fricativa:"pressão"}, axes:["conflict","mass"]},
+  "campo": {pos:"N", variants:{surda:"plano", sonora:"território", fricativa:"ambiente"}, axes:["neutral","continuity"]},
+  "emergência": {pos:"N", variants:{surda:"salto", sonora:"aparição", fricativa:"insurgência"}, axes:["rupture","conflict"]},
+  "configuração": {pos:"N", variants:{surda:"forma", sonora:"estrutura", fricativa:"composição"}, axes:["neutral","density"]},
+  "cessação": {pos:"N", variants:{surda:"corte", sonora:"encerramento", fricativa:"silenciamento"}, axes:["cut","rarefaction","rupture"]},
+
+  // VERBOS 29..50
+  "aproximar": {pos:"V", variants:{surda:"chegar", sonora:"beirar", fricativa:"esfumar"}, axes:["continuity","center"]},
+  "reparar": {pos:"V", variants:{surda:"notar", sonora:"observar", fricativa:"esmiuçar"}, axes:["center","contour"]},
+  "tocar": {pos:"V", variants:{surda:"tatear", sonora:"roçar", fricativa:"aflorar"}, axes:["contour","continuity"]},
+  "escutar": {pos:"V", variants:{surda:"ouvir", sonora:"acolher", fricativa:"sintonizar"}, axes:["rarefaction","continuity"]},
+  "demorar_v": {pos:"V", base:"demorar", variants:{surda:"parar", sonora:"permanecer", fricativa:"alongar-se"}, axes:["continuity","rarefaction"]},
+  "pousar": {pos:"V", variants:{surda:"cair", sonora:"assentar", fricativa:"deslizar"}, axes:["mass","continuity"]},
+  "acompanhar": {pos:"V", variants:{surda:"seguir", sonora:"amparar", fricativa:"entrelaçar"}, axes:["rhythm","continuity"]},
+  "cuidar": {pos:"V", variants:{surda:"zelar", sonora:"nutrir", fricativa:"suavizar"}, axes:["continuity","rarefaction"]},
+
+  "recortar": {pos:"V", variants:{surda:"cortar", sonora:"delimitar", fricativa:"fissurar"}, axes:["cut","contour"]},
+  "deslocar": {pos:"V", variants:{surda:"mover", sonora:"transferir", fricativa:"deslizar"}, axes:["oblique","center"]},
+  "sustentar": {pos:"V", variants:{surda:"segurar", sonora:"manter", fricativa:"suspender"}, axes:["continuity","mass"]},
+  "distribuir": {pos:"V", variants:{surda:"partir", sonora:"organizar", fricativa:"espalhar"}, axes:["neutral","rhythm"]},
+  "sobrepor": {pos:"V", variants:{surda:"cobrir", sonora:"acumular", fricativa:"sobrefluir"}, axes:["density","mass"]},
+  "atravessar": {pos:"V", variants:{surda:"passar", sonora:"cruzar", fricativa:"permeiar"}, axes:["oblique","conflict"]},
+  "insinuar": {pos:"V", variants:{surda:"sugerir", sonora:"indicar", fricativa:"sussurrar"}, axes:["center","rarefaction"]},
+
+  "insistir": {pos:"V", variants:{surda:"bater", sonora:"persistir", fricativa:"ressoar"}, axes:["rhythm","conflict"]},
+  "interromper": {pos:"V", variants:{surda:"cortar", sonora:"cessar", fricativa:"esvair-se"}, axes:["cut","rupture"]},
+  "fixar": {pos:"V", variants:{surda:"marcar", sonora:"estabelecer", fricativa:"sedimentar"}, axes:["contour","mass"]},
+  "suspender": {pos:"V", variants:{surda:"parar", sonora:"reter", fricativa:"flutuar"}, axes:["rarefaction","center"]},
+  "reter": {pos:"V", variants:{surda:"prender", sonora:"guardar", fricativa:"conservar"}, axes:["mass","continuity"]},
+  "abandonar": {pos:"V", variants:{surda:"largar", sonora:"deixar", fricativa:"dissolver"}, axes:["rupture","rarefaction"]},
+  "transformar": {pos:"V", variants:{surda:"romper", sonora:"converter", fricativa:"transfigurar"}, axes:["rupture","oblique"]},
+
+  // ADJETIVOS 51..62
+  "leve": {pos:"ADJ", variants:{surda:"claro", sonora:"brando", fricativa:"suave"}, axes:["rarefaction","continuity"]},
+  "mínimo": {pos:"ADJ", variants:{surda:"curto", sonora:"pequeno", fricativa:"sutil"}, axes:["rarefaction","center"]},
+  "frágil": {pos:"ADJ", variants:{surda:"ténue", sonora:"delicado", fricativa:"sensível"}, axes:["rarefaction","center"]},
+  "tênue": {pos:"ADJ", variants:{surda:"fino", sonora:"delgado", fricativa:"esfumado"}, axes:["rarefaction","continuity"]},
+  "quase_adj": {pos:"ADJ", base:"quase", variants:{surda:"breve", sonora:"próximo", fricativa:"difuso"}, axes:["center","rarefaction"]},
+  "opaco": {pos:"ADJ", variants:{surda:"denso", sonora:"turvo", fricativa:"fosco"}, axes:["density","neutral"]},
+  "poroso": {pos:"ADJ", variants:{surda:"aberto", sonora:"vazado", fricativa:"permeável"}, axes:["continuity","rarefaction"]},
+  "irregular": {pos:"ADJ", variants:{surda:"torto", sonora:"instável", fricativa:"assimétrico"}, axes:["center","conflict"]},
+  "difuso": {pos:"ADJ", variants:{surda:"solto", sonora:"amplo", fricativa:"disperso"}, axes:["center","rarefaction"]},
+  "latente": {pos:"ADJ", variants:{surda:"oculto", sonora:"presente", fricativa:"subjacente"}, axes:["center","neutral"]},
+  "instável": {pos:"ADJ", variants:{surda:"quebrado", sonora:"oscilante", fricativa:"flutuante"}, axes:["conflict","center"]},
+  "provisório": {pos:"ADJ", variants:{surda:"breve", sonora:"mutável", fricativa:"transitório"}, axes:["rarefaction","oblique"]},
+
+  // ADVÉRBIOS 63..70
+  "ainda": {pos:"ADV", variants:{surda:"já", sonora:"agora", fricativa:"sempre"}, axes:["continuity","rhythm"]},
+  "quase_adv": {pos:"ADV", base:"quase", variants:{surda:"logo", sonora:"perto", fricativa:"talvez"}, axes:["center","rarefaction"]},
+  "lentamente": {pos:"ADV", variants:{surda:"aos poucos", sonora:"com calma", fricativa:"suavemente"}, axes:["continuity","rarefaction"]},
+  "por vezes": {pos:"ADV", variants:{surda:"às vezes", sonora:"frequentemente", fricativa:"ocasionalmente"}, axes:["rhythm","neutral"]},
+  "sempre": {pos:"ADV", variants:{surda:"toda vez", sonora:"continuamente", fricativa:"infinitamente"}, axes:["continuity","rhythm"]},
+  "raramente": {pos:"ADV", variants:{surda:"quase nunca", sonora:"poucas vezes", fricativa:"esporadicamente"}, axes:["rarefaction","neutral"]},
+  "talvez": {pos:"ADV", variants:{surda:"quem sabe", sonora:"possivelmente", fricativa:"eventualmente"}, axes:["center","neutral"]},
+  "agora": {pos:"ADV", variants:{surda:"já", sonora:"neste momento", fricativa:"presentemente"}, axes:["continuity","center"]}
+};
+
+const OPS = Object.keys(LEX);
+
+/* =========================
+   FONOLOGIA: classificar
+========================= */
+function phonClass(word){
+  // regras simples: surda = p,t,k,f,s,ch,ç / sonora = b,d,g,v,z,j,m,n,l,r / fricativa = f,s,sh,ç,v,z,j (prioriza fricativa)
+  const w = word.toLowerCase();
+  if(/[fsçxjzv]/.test(w)) return "fricativa";
+  if(/[bdgmnlr]/.test(w)) return "sonora";
+  return "surda";
+}
+
+/* =========================
+   Estado global hard
+========================= */
+const state = {
+  seed: (Math.random().toString(36).slice(2) + "-" + Date.now()),
+  vec: Object.fromEntries(AXES.map(a=>[a,0])),
+  // para travar escolhas determinísticas por estado
+  version: 0,
+  // M2
+  m2FrontSlot: 18,
+  m2BackSlot: 76,
+  m2Swap: false,
+  m2ObjBankIdx: 0,
+  // M3/M4 colapsos
+  m3Clicks: 0,
+  m4Clicks: 0,
+  // Sui
+  suiImg: null,
+  suiReady: false,
+  suiPath: null
+};
+
+function rngFor(tag){
+  return makeRng(state.seed + "::" + state.version + "::" + tag);
+}
+
+/* =========================
+   Espraiamento regulado
+   (alto no móbile, médio no seguinte, baixo nos demais)
+========================= */
+function applyImpulse(sourceMobile, axes, mag){
+  // pesos por distância (1->4)
+  const w = { self:1.0, next:0.45, far:0.18 };
+  // aplica no vetor global com passo máximo (anti-caos)
+  for(const ax of Object.keys(axes)){
+    const delta = axes[ax] * mag;
+    state.vec[ax] = clamp(state.vec[ax] + delta, -3, 3);
   }
+  // também reforça classe fonológica quando eixo fon_*
+  // (já é parte do vetor, mas garantimos que fica sensível)
+}
 
-  // -------------------------------
-  // Lexicon: (70 operators × 3 realizations)
-  // Each operator has: key, pos, baseAxes[], variants {surda,sonora,fricativa}
-  // -------------------------------
-  // NOTE: "prega" -> "vinco"
-  const LEX = [
-    {key:"vestígio", pos:"N", axes:["memory","presence"], v:{surda:"traço", sonora:"marca", fricativa:"sombra"}},
-    {key:"sopro", pos:"N", axes:["rarefaction","continuity"], v:{surda:"pingo", sonora:"bafo", fricativa:"suspiro"}},
-    {key:"dobra", pos:"N", axes:["texture","contour"], v:{surda:"vinco", sonora:"curva", fricativa:"flexão"}},
-    {key:"canto", pos:"N", axes:["contour","cut"], v:{surda:"quina", sonora:"beira", fricativa:"franja"}},
-    {key:"margem", pos:"N", axes:["contour","configuration"], v:{surda:"limite", sonora:"borda", fricativa:"fronteira"}},
-    {key:"poeira", pos:"N", axes:["memory","rarefaction"], v:{surda:"pó", sonora:"bruma", fricativa:"cinza"}},
-    {key:"silêncio", pos:"N", axes:["rarefaction","cessation"], v:{surda:"pausa", sonora:"calma", fricativa:"sussurro"}},
-    {key:"rastro", pos:"N", axes:["memory","repetition"], v:{surda:"pegada", sonora:"vesta", fricativa:"resíduo"}},
-    {key:"fragmento", pos:"N", axes:["cut","texture"], v:{surda:"cortezinho", sonora:"bordado", fricativa:"desfiado"}},
-    {key:"detalhe", pos:"N", axes:["care","surface"], v:{surda:"ponto", sonora:"miolo", fricativa:"nuança"}},
+function axisBundleFromAxesList(list){
+  const out = {};
+  for(const a of list){ out[a] = (out[a]||0) + 1; }
+  return out;
+}
 
-    {key:"lembrança", pos:"N", axes:["memory"], v:{surda:"nota", sonora:"memória", fricativa:"recordação"}},
-    {key:"demora", pos:"N", axes:["continuity","care"], v:{surda:"pausa", sonora:"espera", fricativa:"suspensão"}},
-    {key:"intervalo", pos:"N", axes:["cut","rarefaction"], v:{surda:"corte", sonora:"entre", fricativa:"fresta"}},
-    {key:"eco", pos:"N", axes:["repetition","presence"], v:{surda:"toque", sonora:"resposta", fricativa:"ressonância"}},
-    {key:"resto", pos:"N", axes:["memory","emergence"], v:{surda:"ruga", sonora:"sobra", fricativa:"resíduo"}},
+function blendFamilyIntoVec(fam, strength){
+  applyImpulse("FAM", fam.axes, strength);
+}
 
-    {key:"plano", pos:"N", axes:["surface","configuration"], v:{surda:"linha", sonora:"base", fricativa:"superfície"}},
-    {key:"camada", pos:"N", axes:["density","texture"], v:{surda:"capa", sonora:"nível", fricativa:"espessura"}},
-    {key:"textura", pos:"N", axes:["texture","density"], v:{surda:"trama", sonora:"tecido", fricativa:"fibra"}},
-    {key:"superfície", pos:"N", axes:["surface","presence"], v:{surda:"pele", sonora:"face", fricativa:"película"}},
-    {key:"escala", pos:"N", axes:["configuration","tension"], v:{surda:"passo", sonora:"medida", fricativa:"proporção"}},
-    {key:"ritmo", pos:"N", axes:["rhythm","repetition"], v:{surda:"pulso", sonora:"cadência", fricativa:"fluência"}},
-    {key:"matéria", pos:"N", axes:["mass","density"], v:{surda:"corpo", sonora:"substância", fricativa:"massa"}},
+/* =========================
+   Seleção de realização (surda/sonora/fricativa)
+   baseada no vetor fonológico dominante
+========================= */
+function currentPhonMode(){
+  const s = state.vec.phon_surd, so = state.vec.phon_son, fr = state.vec.phon_fric;
+  if(fr >= so && fr >= s) return "fricativa";
+  if(so >= fr && so >= s) return "sonora";
+  return "surda";
+}
 
-    {key:"presença", pos:"N", axes:["presence"], v:{surda:"toque", sonora:"vulto", fricativa:"sombra"}},
-    {key:"tensão", pos:"N", axes:["tension","conflict"], v:{surda:"nó", sonora:"peso", fricativa:"pressão"}},
-    {key:"campo", pos:"N", axes:["configuration","presence"], v:{surda:"plano", sonora:"território", fricativa:"ambiente"}},
-    {key:"emergência", pos:"N", axes:["emergence"], v:{surda:"salto", sonora:"aparição", fricativa:"insurgência"}},
-    {key:"configuração", pos:"N", axes:["configuration"], v:{surda:"forma", sonora:"estrutura", fricativa:"composição"}},
-    {key:"cessação", pos:"N", axes:["cessation","cut"], v:{surda:"corte", sonora:"encerramento", fricativa:"silenciamento"}},
-
-    // VERBS (infinitive, we will wrap with "um" or "um gesto:" or "a fazer" etc)
-    {key:"aproximar", pos:"V", axes:["care","presence"], v:{surda:"chegar", sonora:"beirar", fricativa:"esfumar"}},
-    {key:"reparar", pos:"V", axes:["care","center"], v:{surda:"notar", sonora:"observar", fricativa:"esmiuçar"}},
-    {key:"tocar", pos:"V", axes:["presence","surface"], v:{surda:"tatear", sonora:"roçar", fricativa:"aflorar"}},
-    {key:"escutar", pos:"V", axes:["care","rarefaction"], v:{surda:"ouvir", sonora:"acolher", fricativa:"sintonizar"}},
-    {key:"demorar(v)", pos:"V", axes:["continuity","care"], v:{surda:"parar", sonora:"permanecer", fricativa:"alongar-se"}},
-    {key:"pousar", pos:"V", axes:["continuity","surface"], v:{surda:"cair", sonora:"assentar", fricativa:"deslizar"}},
-    {key:"acompanhar", pos:"V", axes:["continuity","repetition"], v:{surda:"seguir", sonora:"amparar", fricativa:"entrelaçar"}},
-    {key:"cuidar", pos:"V", axes:["care"], v:{surda:"zelar", sonora:"nutrir", fricativa:"suavizar"}},
-
-    {key:"recortar", pos:"V", axes:["cut","contour"], v:{surda:"cortar", sonora:"delimitar", fricativa:"fissurar"}},
-    {key:"deslocar", pos:"V", axes:["oblique","configuration"], v:{surda:"mover", sonora:"transferir", fricativa:"deslizar"}},
-    {key:"sustentar", pos:"V", axes:["continuity","presence"], v:{surda:"segurar", sonora:"manter", fricativa:"suspender"}},
-    {key:"distribuir", pos:"V", axes:["configuration","rhythm"], v:{surda:"partir", sonora:"organizar", fricativa:"espalhar"}},
-    {key:"sobrepor", pos:"V", axes:["density","texture"], v:{surda:"cobrir", sonora:"acumular", fricativa:"sobrefluir"}},
-    {key:"atravessar", pos:"V", axes:["continuity","oblique"], v:{surda:"passar", sonora:"cruzar", fricativa:"permeiar"}},
-    {key:"insinuar", pos:"V", axes:["rarefaction","emergence"], v:{surda:"sugerir", sonora:"indicar", fricativa:"sussurrar"}},
-
-    {key:"insistir", pos:"V", axes:["repetition","tension"], v:{surda:"bater", sonora:"persistir", fricativa:"ressoar"}},
-    {key:"interromper", pos:"V", axes:["cessation","cut"], v:{surda:"cortar", sonora:"cessar", fricativa:"esvair-se"}},
-    {key:"fixar", pos:"V", axes:["contour","configuration"], v:{surda:"marcar", sonora:"estabelecer", fricativa:"sedimentar"}},
-    {key:"suspender(v)", pos:"V", axes:["rarefaction","tension"], v:{surda:"parar", sonora:"reter", fricativa:"flutuar"}},
-    {key:"reter", pos:"V", axes:["memory","mass"], v:{surda:"prender", sonora:"guardar", fricativa:"conservar"}},
-    {key:"abandonar", pos:"V", axes:["cessation","rarefaction"], v:{surda:"largar", sonora:"deixar", fricativa:"dissolver"}},
-    {key:"transformar", pos:"V", axes:["emergence","configuration"], v:{surda:"romper", sonora:"converter", fricativa:"transfigurar"}},
-
-    // ADJ
-    {key:"leve", pos:"A", axes:["rarefaction","continuity"], v:{surda:"claro", sonora:"brando", fricativa:"suave"}},
-    {key:"mínimo", pos:"A", axes:["rarefaction","care"], v:{surda:"curto", sonora:"pequeno", fricativa:"sutil"}},
-    {key:"frágil", pos:"A", axes:["tension","rarefaction"], v:{surda:"ténue", sonora:"delicado", fricativa:"sensível"}},
-    {key:"tênue", pos:"A", axes:["rarefaction","surface"], v:{surda:"fino", sonora:"delgado", fricativa:"esfumado"}},
-    {key:"quase(adj)", pos:"A", axes:["emergence","rarefaction"], v:{surda:"breve", sonora:"próximo", fricativa:"difuso"}},
-
-    {key:"opaco", pos:"A", axes:["density","mass"], v:{surda:"denso", sonora:"turvo", fricativa:"fosco"}},
-    {key:"poroso", pos:"A", axes:["continuity","rarefaction"], v:{surda:"aberto", sonora:"vazado", fricativa:"permeável"}},
-    {key:"irregular", pos:"A", axes:["oblique","tension"], v:{surda:"torto", sonora:"instável", fricativa:"assimétrico"}},
-    {key:"difuso", pos:"A", axes:["center","rarefaction"], v:{surda:"solto", sonora:"amplo", fricativa:"disperso"}},
-
-    {key:"latente", pos:"A", axes:["emergence","memory"], v:{surda:"oculto", sonora:"presente", fricativa:"subjacente"}},
-    {key:"instável", pos:"A", axes:["tension","oblique"], v:{surda:"quebrado", sonora:"oscilante", fricativa:"flutuante"}},
-    {key:"provisório", pos:"A", axes:["configuration","tension"], v:{surda:"breve", sonora:"mutável", fricativa:"transitório"}},
-
-    // ADV
-    {key:"ainda", pos:"R", axes:["continuity","emergence"], v:{surda:"já", sonora:"agora", fricativa:"sempre"}},
-    {key:"quase(adv)", pos:"R", axes:["emergence","rarefaction"], v:{surda:"logo", sonora:"perto", fricativa:"talvez"}},
-    {key:"lentamente", pos:"R", axes:["continuity","care"], v:{surda:"aos poucos", sonora:"com calma", fricativa:"suavemente"}},
-    {key:"por vezes", pos:"R", axes:["repetition","tension"], v:{surda:"às vezes", sonora:"frequentemente", fricativa:"ocasionalmente"}},
-    {key:"sempre", pos:"R", axes:["repetition"], v:{surda:"toda vez", sonora:"continuamente", fricativa:"infinitamente"}},
-    {key:"raramente", pos:"R", axes:["rarefaction"], v:{surda:"quase nunca", sonora:"poucas vezes", fricativa:"esporadicamente"}},
-    {key:"talvez", pos:"R", axes:["tension","emergence"], v:{surda:"quem sabe", sonora:"possivelmente", fricativa:"eventualmente"}},
-    {key:"agora", pos:"R", axes:["presence"], v:{surda:"já", sonora:"neste momento", fricativa:"presentemente"}}
-  ];
-
-  // Build lookup by rendered word -> operator meta (we’ll attach spans anyway)
-  const OPS = (() => {
-    const out = [];
-    for(const o of LEX) out.push(o);
-    return out;
-  })();
-
-  function pick(arr, r){ return arr[Math.floor(r()*arr.length)]; }
-  function byPos(pos){ return OPS.filter(o => o.pos===pos); }
-
-  const Ns = byPos("N");
-  const Vs = byPos("V");
-  const As = byPos("A");
-  const Rs = byPos("R");
-
-  // -------------------------------
-  // Phon type helper
-  // -------------------------------
-  function phonTypeFromVariantKey(k){
-    if(k==="surda") return "surda";
-    if(k==="sonora") return "sonora";
-    return "fricativa";
+/* =========================
+   Seleção de slots por eixos
+========================= */
+function pickFamilyByVec(rng){
+  // calcula score por família a partir do vetor
+  const scores = FAMILIES.map(f=>{
+    let sc = 0.01;
+    for(const k in f.axes){
+      sc += (state.vec[k] || 0) * f.axes[k];
+    }
+    // pequena aleatoriedade estável
+    sc += (rng()*0.22);
+    return Math.max(0.001, sc);
+  });
+  const sum = scores.reduce((a,b)=>a+b,0);
+  let t = rng()*sum;
+  for(let i=0;i<scores.length;i++){
+    t -= scores[i];
+    if(t<=0) return FAMILIES[i];
   }
+  return FAMILIES[0];
+}
 
-  // -------------------------------
-  // Asset: Sui image
-  // -------------------------------
-  const SUI_URL = "../assets/sui/slot_053.jpg";
-  const imgCache = new Map();
+function pickSlotFromFamily(fam, rng){
+  const base = (FAMILIES.indexOf(fam))*10 + 1;
+  const slot = base + Math.floor(rng()*10); // 1..10 dentro
+  return slot;
+}
 
-  function loadImage(url){
-    if(imgCache.has(url)) return imgCache.get(url);
-    const p = new Promise((resolve) => {
+/* =========================
+   Sui: carregar sui.json e imagem
+========================= */
+async function loadSui(){
+  const pill = document.getElementById("suiPill");
+  try{
+    // index está em mobiles/entrada/ => sui.json está em ../sui.json
+    const res = await fetch("../sui.json", {cache:"no-store"});
+    if(!res.ok) throw new Error("fetch sui.json falhou: " + res.status);
+    const j = await res.json();
+    // formato fixo: { "53": "assets/sui/slot_053.jpg" }
+    const rel = j["53"];
+    if(!rel) throw new Error("sui.json não tem chave 53");
+    state.suiPath = "../" + rel.replace(/^\.?\//,""); // vira ../assets/sui/slot_053.jpg
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    await new Promise((ok, bad)=>{
+      img.onload = ok;
+      img.onerror = ()=>bad(new Error("imagem Sui não carregou"));
+      img.src = state.suiPath + "?v=" + Date.now();
+    });
+    state.suiImg = img;
+    state.suiReady = true;
+    pill.textContent = "Sui: ok";
+    pill.classList.remove("warn");
+    pill.classList.add("ok");
+  }catch(e){
+    // fallback: tenta caminho conhecido
+    try{
+      state.suiPath = "../assets/sui/slot_053.jpg";
       const img = new Image();
-      img.onload = () => resolve({ok:true, img});
-      img.onerror = () => resolve({ok:false, img:null});
-      // avoid taint if we ever need canvas export on github
       img.crossOrigin = "anonymous";
-      img.src = url;
-    });
-    imgCache.set(url, p);
-    return p;
-  }
-
-  // -------------------------------
-  // State machine
-  // -------------------------------
-  const state = {
-    // global axis weights (0..1)
-    axis: Object.fromEntries(AXES.map(a => [a, 0.18])),
-    // mobile-local impulses
-    imp: [Object.fromEntries(AXES.map(a => [a,0])), Object.fromEntries(AXES.map(a => [a,0])),
-          Object.fromEntries(AXES.map(a => [a,0])), Object.fromEntries(AXES.map(a => [a,0]))],
-    // phon bias for M4
-    phon: {surda:0.33, sonora:0.33, fricativa:0.33},
-    phonDom: "surda",
-    phonHeat: 0.0,
-    // counters for determinism
-    step: [0,0,0,0],
-    // M2 flip + object alt
-    m2Flip: false,
-    m2ObjAlt: 0,
-    // caches
-    finalSeed: null,
-    finalCache: null,
-    // slot picks
-    m1Slots:[1,2,3],
-    m2Slots:[12,18],
-    m3Slots:[31,33,36,42,55,69,77],
-    m4Slots:[91,96,104,112,53], // include Sui possibility (slot 53) later by draw
-    // Sui availability
-    suiOk: false
-  };
-
-  function decayWeight(from,to){
-    if(from===to) return 1.0;
-    if(to===from+1) return 0.45;
-    return 0.18;
-  }
-
-  function applyImpulse(fromIdx, axes, amt){
-    for(let to=0; to<4; to++){
-      const w = decayWeight(fromIdx,to);
-      for(const ax of axes){
-        state.imp[to][ax] = clamp(state.imp[to][ax] + amt*w, 0, 1);
-        state.axis[ax] = clamp(state.axis[ax] + (amt*w)*0.25, 0.05, 0.98);
-      }
-    }
-    invalidateFinal();
-  }
-
-  function effAxis(mobileIdx, ax){
-    return clamp(state.axis[ax] + state.imp[mobileIdx][ax], 0, 1);
-  }
-
-  function dampImpulses(){
-    for(let m=0;m<4;m++){
-      for(const ax of AXES){
-        state.imp[m][ax] *= 0.86; // gentle fading to avoid runaway
-      }
+      await new Promise((ok,bad)=>{
+        img.onload = ok;
+        img.onerror = ()=>bad(new Error("fallback falhou"));
+        img.src = state.suiPath + "?v=" + Date.now();
+      });
+      state.suiImg = img;
+      state.suiReady = true;
+      pill.textContent = "Sui: ok";
+      pill.classList.remove("warn");
+      pill.classList.add("ok");
+    }catch(_){
+      pill.textContent = "Sui: fallback";
+      pill.classList.add("warn");
+      state.suiReady = false;
     }
   }
+}
 
-  function invalidateFinal(){
-    state.finalSeed = null;
-    state.finalCache = null;
-    document.getElementById("shareFinal").style.display = "none";
-    document.getElementById("shareText").style.display = "none";
-  }
+/* =========================
+   DESENHO: fragmentos (canvas)
+   - mantém aspect ratio (contain)
+   - frames bem demarcados
+   - cenários visíveis: berço, montanhas, labirinto, escadas
+========================= */
+function drawBackground(ctx, w,h, scene){
+  ctx.clearRect(0,0,w,h);
 
-  // -------------------------------
-  // Operator selection with axis + phon influence
-  // -------------------------------
-  function chooseVariantKey(r, mobileIdx){
-    // M4 uses phon biases strongly; others slightly
-    const s = state.phon;
-    const bias = (mobileIdx===3) ? 0.88 : 0.55;
-    const a = s.surda, b = a + s.sonora;
-    const x = r();
-    if(x < a*bias + a*(1-bias)*0.33) return "surda";
-    if(x < b*bias + b*(1-bias)*0.66) return "sonora";
-    return "fricativa";
-  }
+  // base pastel morbido
+  const g = ctx.createLinearGradient(0,0,w,h);
+  g.addColorStop(0, "rgba(255,210,235,0.30)");
+  g.addColorStop(0.5,"rgba(200,255,245,0.22)");
+  g.addColorStop(1, "rgba(210,200,255,0.20)");
+  ctx.fillStyle = g;
+  ctx.fillRect(0,0,w,h);
 
-  function scoreOperator(op, mobileIdx){
-    let sc = 0;
-    for(const ax of op.axes){
-      sc += effAxis(mobileIdx, ax);
-    }
-    // normalize
-    sc = sc / Math.max(1, op.axes.length);
-    return sc;
-  }
+  // cena
+  ctx.save();
+  ctx.globalAlpha = 0.9;
+  ctx.strokeStyle = "rgba(20,20,30,0.10)";
+  ctx.lineWidth = 2;
 
-  function chooseOp(list, mobileIdx, r){
-    // weighted pick by axis score
-    let sum = 0;
-    const weights = list.map(op => {
-      const w = 0.15 + 0.85 * scoreOperator(op, mobileIdx);
-      sum += w;
-      return w;
-    });
-    let t = r()*sum;
-    for(let i=0;i<list.length;i++){
-      t -= weights[i];
-      if(t<=0) return list[i];
-    }
-    return list[list.length-1];
-  }
-
-  function renderToken(op, vKey){
-    const txt = op.v[vKey];
-    const axes = op.axes.join(",");
-    const ph = phonTypeFromVariantKey(vKey);
-    return {txt, axes, ph, opKey: op.key};
-  }
-
-  // -------------------------------
-  // Text tokenization + rendering
-  // -------------------------------
-  function spansFromTokens(tokens, mobileIdx, clickHandlerName){
-    // tokens: array of {txt, axes, ph, opKey} and string separators
-    const parts = [];
-    for(const t of tokens){
-      if(typeof t === "string"){
-        parts.push(t);
-      }else{
-        const safe = escapeHtml(t.txt);
-        parts.push(`<span class="w" data-axes="${t.axes}" data-ph="${t.ph}" data-op="${escapeHtml(t.opKey)}" data-m="${mobileIdx}">${safe}</span>`);
-      }
-    }
-    return parts.join("");
-  }
-
-  function escapeHtml(s){
-    return String(s).replace(/[&<>"']/g, ch => ({
-      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-    }[ch]));
-  }
-
-  // -------------------------------
-  // Draw fragments (procedural + optional image cover)
-  // -------------------------------
-  function coverDraw(ctx, img, x,y,w,h){
-    const iw = img.width, ih = img.height;
-    const r = Math.max(w/iw, h/ih);
-    const nw = iw*r, nh = ih*r;
-    const cx = x + (w-nw)/2;
-    const cy = y + (h-nh)/2;
-    ctx.drawImage(img, cx, cy, nw, nh);
-  }
-
-  function pastelByFamily(f){
-    const map = {
-      F1:["#f7d6ea","#e8fbf6","#d7dfff"],
-      F2:["#ffe3d6","#ffd7ef","#e7dbff"],
-      F3:["#d9fff0","#f7d6ea","#d8f0ff"],
-      F4:["#fff0d6","#e8fbf6","#f7d6ea"],
-      F5:["#ffd7ef","#ffe3d6","#d7dfff"],
-      F6:["#e8fbf6","#d9fff0","#fff0d6"],
-      F7:["#f9fbff","#f7d6ea","#e8fbf6"],
-      F8:["#e7dbff","#d8f0ff","#ffd7ef"],
-      F9:["#f1f3f8","#f9fbff","#e8fbf6"],
-      F10:["#d8f0ff","#fff0d6","#e7dbff"],
-      F11:["#ffe3d6","#f9fbff","#ffd7ef"],
-      F12:["#fff0d6","#ffd7ef","#e7dbff"]
-    };
-    return map[f] || ["#f7d6ea","#e8fbf6","#d7dfff"];
-  }
-
-  function drawProcedural(ctx, x,y,w,h, f, seed){
-    const r = mulberry32(seed);
-    const cols = pastelByFamily(f);
-    const bg = cols[Math.floor(r()*cols.length)];
-    ctx.save();
-    // card
-    ctx.fillStyle = bg;
-    ctx.strokeStyle = "rgba(20,20,30,.22)";
-    ctx.lineWidth = 2;
-    roundRect(ctx,x,y,w,h,14);
-    ctx.fill();
+  if(scene==="crib"){
+    // arcos do móbile
+    ctx.beginPath();
+    ctx.arc(w*0.5, h*0.05, w*0.28, Math.PI*0.95, Math.PI*0.05, true);
     ctx.stroke();
-
-    // inner “grammar”: vary by family
-    const pad = 10;
-    const ix = x+pad, iy=y+pad, iw=w-2*pad, ih=h-2*pad;
-
-    ctx.globalAlpha = 0.55;
-    ctx.strokeStyle = "rgba(15,15,20,.18)";
-    ctx.fillStyle = "rgba(15,15,20,.08)";
-    ctx.lineWidth = 2;
-
-    if(f==="F2"||f==="F5"||f==="F11"){
-      // cuts / contours
-      const k = 3 + Math.floor(r()*4);
-      for(let i=0;i<k;i++){
-        const xx = ix + r()*iw;
-        ctx.beginPath();
-        ctx.moveTo(xx, iy);
-        ctx.lineTo(xx, iy+ih);
-        ctx.stroke();
-      }
-    }else if(f==="F7"||f==="F9"){
-      // rarefaction / neutral
-      const k = 3 + Math.floor(r()*5);
-      for(let i=0;i<k;i++){
-        ctx.beginPath();
-        const yy = iy + r()*ih;
-        ctx.moveTo(ix, yy);
-        ctx.lineTo(ix+iw, yy);
-        ctx.stroke();
-      }
-    }else if(f==="F4"){
-      // repetition / rhythm
-      const k = 6 + Math.floor(r()*7);
-      for(let i=0;i<k;i++){
-        ctx.fillRect(ix + i*(iw/k), iy, 3, ih);
-      }
-    }else if(f==="F6"||f==="F12"){
-      // density / mass
-      const k = 12 + Math.floor(r()*20);
-      for(let i=0;i<k;i++){
-        const ww = 8 + r()*28;
-        const hh = 8 + r()*28;
-        ctx.fillRect(ix + r()*(iw-ww), iy + r()*(ih-hh), ww, hh);
-      }
-    }else if(f==="F3"||f==="F10"){
-      // oblique / conflict
-      const k = 3 + Math.floor(r()*5);
-      for(let i=0;i<k;i++){
-        ctx.beginPath();
-        ctx.moveTo(ix, iy + r()*ih);
-        ctx.lineTo(ix+iw, iy + r()*ih);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(ix + r()*iw, iy);
-        ctx.lineTo(ix + r()*iw, iy+ih);
-        ctx.stroke();
-      }
-      ctx.globalAlpha = 0.45;
+    // cordas
+    for(const x of [0.35,0.5,0.65]){
       ctx.beginPath();
-      ctx.moveTo(ix,iy+ih);
-      ctx.lineTo(ix+iw,iy);
-      ctx.stroke();
-    }else if(f==="F8"){
-      // center unstable
-      ctx.globalAlpha = 0.55;
-      ctx.beginPath();
-      ctx.arc(ix+iw*(0.35+r()*0.3), iy+ih*(0.35+r()*0.3), Math.min(iw,ih)*(0.12+r()*0.12), 0, Math.PI*2);
-      ctx.stroke();
-    }else{
-      // continuity
-      ctx.globalAlpha = 0.55;
-      ctx.beginPath();
-      ctx.moveTo(ix, iy+ih*0.5);
-      ctx.bezierCurveTo(ix+iw*0.25, iy+ih*(0.15+r()*0.2), ix+iw*0.75, iy+ih*(0.85-r()*0.2), ix+iw, iy+ih*0.5);
+      ctx.moveTo(w*x, h*0.08);
+      ctx.lineTo(w*x, h*0.16);
       ctx.stroke();
     }
-
-    ctx.restore();
-  }
-
-  function roundRect(ctx, x,y,w,h,r){
-    const rr = Math.min(r, w/2, h/2);
+  } else if(scene==="mountain"){
+    // montanhas
+    ctx.fillStyle = "rgba(160,160,180,0.12)";
     ctx.beginPath();
-    ctx.moveTo(x+rr, y);
-    ctx.arcTo(x+w, y, x+w, y+h, rr);
-    ctx.arcTo(x+w, y+h, x, y+h, rr);
-    ctx.arcTo(x, y+h, x, y, rr);
-    ctx.arcTo(x, y, x+w, y, rr);
-    ctx.closePath();
-  }
-
-  async function drawSlot(ctx, x,y,w,h, slot, mobileIdx, seed){
-    const fam = familyForSlot(slot);
-    // Try Sui only if slot == 53 and loaded ok
-    if(slot===53 && state.suiOk){
-      const res = await loadImage(SUI_URL);
-      if(res.ok){
-        ctx.save();
-        roundRect(ctx,x,y,w,h,14);
-        ctx.clip();
-        coverDraw(ctx,res.img,x,y,w,h);
-        ctx.restore();
-
-        // border
-        ctx.save();
-        ctx.strokeStyle = "rgba(20,20,30,.35)";
-        ctx.lineWidth = 2;
-        roundRect(ctx,x,y,w,h,14);
-        ctx.stroke();
-        ctx.restore();
-        return;
-      }
-    }
-    drawProcedural(ctx, x,y,w,h, fam, seed ^ (slot*9973) ^ (mobileIdx*1927));
-  }
-
-  // -------------------------------
-  // Canvas sizing
-  // -------------------------------
-  function fitCanvas(canvas){
-    const wrap = canvas.parentElement.getBoundingClientRect();
-    const cssW = Math.max(320, Math.floor(wrap.width));
-    // keep internal resolution for crispness
-    const ratio = window.devicePixelRatio || 1;
-    const baseW = canvas.getAttribute("width")|0;
-    const baseH = canvas.getAttribute("height")|0;
-    canvas.style.width = cssW + "px";
-    const cssH = Math.floor(cssW * (baseH/baseW));
-    canvas.style.height = cssH + "px";
-    canvas.width = Math.floor(cssW * ratio);
-    canvas.height = Math.floor(cssH * ratio);
-    const ctx = canvas.getContext("2d");
-    ctx.setTransform(ratio,0,0,ratio,0,0);
-    return {ctx, w: cssW, h: cssH};
-  }
-
-  // -------------------------------
-  // Text generators per mobile
-  // -------------------------------
-  function genM1(r){
-    const mobileIdx = 0;
-    const vKey = chooseVariantKey(r, mobileIdx);
-
-    const axisN = chooseOp(Ns, mobileIdx, r);
-    const axisV = chooseOp(Vs, mobileIdx, r);
-    const axisObj = chooseOp(Ns, mobileIdx, r);
-    const adv = chooseOp(Rs, mobileIdx, r);
-
-    const n = renderToken(axisN, vKey);
-    const v = renderToken(axisV, vKey);
-    const o = renderToken(axisObj, vKey);
-    const a = renderToken(adv, vKey);
-
-    // your preferred substantivation:
-    // "O que nasce aqui é um sugerir-ruga, às vezes."
-    const verbObj = `${v.txt}-${o.txt}`;
-
-    const tokens = [
-      "No começo, ", n, " aparece como eixo — e isso já inclina o campo. ",
-      "O que nasce aqui é um ", {txt:verbObj, axes:[...axisV.axes,...axisObj.axes].join(","), ph:n.ph, opKey: axisV.key}, ", ", a, ". ",
-      "O resto não some: fica como ", renderToken(chooseOp(Ns,mobileIdx,r), vKey),
-      " à espera de outra tensão. ",
-      "Se o campo endurece, não é ruído: é ", renderToken(chooseOp(Ns,mobileIdx,r), vKey), " em formação."
-    ];
-    return tokens;
-  }
-
-  function genM2(r){
-    // Must be S–V–O in 3 modules; flip swaps module1<->module3; verb click changes object only
-    const mobileIdx = 1;
-    const vKey = chooseVariantKey(r, mobileIdx);
-
-    // Subject and object are chosen and stored so flips are consistent
-    // We'll keep two candidates for each side; flipping swaps which appears
-    if(!state._m2){
-      state._m2 = {
-        subjA: chooseOp(Ns,mobileIdx,r),
-        objA: chooseOp(Ns,mobileIdx,r),
-        subjB: chooseOp(Ns,mobileIdx,r),
-        objB: chooseOp(Ns,mobileIdx,r),
-        advA: chooseOp(Rs,mobileIdx,r),
-        adjA: chooseOp(As,mobileIdx,r),
-        advB: chooseOp(Rs,mobileIdx,r),
-        adjB: chooseOp(As,mobileIdx,r),
-        verb: chooseOp(Vs,mobileIdx,r)
-      };
-    }
-
-    // object alternation controlled by m2ObjAlt
-    // Clicking verb rotates verb + object for the current "object side"
-    const m = state._m2;
-
-    // choose which side is "front" after flip
-    const frontIsA = !state.m2Flip;
-
-    const subjCore = frontIsA ? m.subjA : m.subjB;
-    const objCore = frontIsA ? m.objA : m.objB;
-
-    // optional adj/adv depend on axes intensity (presence/care etc)
-    const useAdj = effAxis(mobileIdx,"tension") > 0.35 || effAxis(mobileIdx,"configuration") > 0.35;
-    const useAdv = effAxis(mobileIdx,"continuity") > 0.35 || effAxis(mobileIdx,"rarefaction") > 0.35;
-
-    const subjMods = [];
-    if(useAdj) subjMods.push(renderToken(frontIsA ? m.adjA : m.adjB, vKey));
-    if(useAdv) subjMods.push(renderToken(frontIsA ? m.advA : m.advB, vKey));
-
-    // Verb adjusts depending on subject/object axes (without introducing new words)
-    const verb = m.verb;
-    const verbTok = renderToken(verb, vKey);
-
-    const objMods = [];
-    // verb click can change object only: we implement object pool per alt
-    let objTok = renderToken(objCore, vKey);
-
-    if(state.m2ObjAlt>0){
-      // alternate object deterministically from axes profile
-      const pool = Ns.filter(o => o !== objCore);
-      const rr = mulberry32(hashStr(objCore.key + "|" + state.m2ObjAlt));
-      const picked = pool[Math.floor(rr()*pool.length)];
-      objTok = renderToken(picked, vKey);
-    }
-    if(useAdj) objMods.push(renderToken(chooseOp(As,mobileIdx,r), vKey));
-    if(useAdv) objMods.push(renderToken(chooseOp(Rs,mobileIdx,r), vKey));
-
-    // Module 1 and 3 swap on flip
-    const mod1 = [renderToken(subjCore,vKey), ...subjMods];
-    const mod3 = [objTok, ...objMods];
-
-    const module1 = frontIsA ? mod1 : mod3;
-    const module3 = frontIsA ? mod3 : mod1;
-
-    const tokens = [
-      ...module1, " ",
-      {txt:verbTok.txt, axes:verb.axes.join(","), ph:verbTok.ph, opKey: verb.key, _verb:true},
-      " ",
-      ...module3
-    ];
-    return tokens;
-  }
-
-  function genM3(r){
-    const mobileIdx = 2;
-    const vKey = chooseVariantKey(r, mobileIdx);
-
-    // build a longer curatorial paragraph, with clickable tokens
-    const n1 = renderToken(chooseOp(Ns,mobileIdx,r), vKey);
-    const a1 = renderToken(chooseOp(As,mobileIdx,r), vKey);
-    const v1 = renderToken(chooseOp(Vs,mobileIdx,r), vKey);
-    const n2 = renderToken(chooseOp(Ns,mobileIdx,r), vKey);
-    const adv = renderToken(chooseOp(Rs,mobileIdx,r), vKey);
-
-    const n3 = renderToken(chooseOp(Ns,mobileIdx,r), vKey);
-    const a2 = renderToken(chooseOp(As,mobileIdx,r), vKey);
-    const v2 = renderToken(chooseOp(Vs,mobileIdx,r), vKey);
-    const n4 = renderToken(chooseOp(Ns,mobileIdx,r), vKey);
-
-    const tokens = [
-      "No campo, a ", n1, " ", a1, " parece aprender a ", v1, " a ", n2, "; ",
-      adv, ", o ", n3, " ", a2, " insiste em ", v2, " o ", n4, ". ",
-      "O que repetes ganha ", renderToken(chooseOp(Ns,mobileIdx,r), vKey),
-      "; o que deixas passar volta como ", renderToken(chooseOp(Ns,mobileIdx,r), vKey), "."
-    ];
-    return tokens;
-  }
-
-  function genM4(r){
-    const mobileIdx = 3;
-
-    // phon dominance: choose variant key more strongly based on phonDom + heat
-    const dom = state.phonDom;
-    function vKeyDom(){
-      const heat = clamp(state.phonHeat,0,1);
-      const x = r();
-      if(x < 0.15*(1-heat)) return "sonora"; // small variation early
-      if(x < 0.30*(1-heat)) return "fricativa";
-      return dom;
-    }
-
-    const make = (posList) => {
-      const op = chooseOp(posList, mobileIdx, r);
-      const vk = vKeyDom();
-      return renderToken(op, vk);
-    };
-
-    // Template with many slots; verbs in infinitive are made acceptable by "a" / "um" framing
-    // We avoid conjugation problems by using constructions:
-    // "o gesto de VERBO", "a maneira de VERBO", "a tentar VERBO", "a VERBO"
-    const n1 = make(Ns), a1=make(As), v1=make(Vs), n2=make(Ns);
-    const n3 = make(Ns), a2=make(As), v2=make(Vs), n4=make(Ns);
-    const adv = make(Rs);
-    const n5 = make(Ns), v3=make(Vs), n6=make(Ns);
-    const n7 = make(Ns), a3=make(As), v4=make(Vs);
-
-    const tokens = [
-      "No campo, a ", n1, " ", a1, " faz-se ", n2, " — ",
-      "e a ", n3, " ", a2, " tenta ", {txt:"a "+v2.txt, axes:v2.axes.join(","), ph:v2.ph, opKey:v2.opKey}, " a ", n4,
-      "; ", adv, ", a ", n5, " insiste em ", {txt:"a "+v3.txt, axes:v3.axes.join(","), ph:v3.ph, opKey:v3.opKey},
-      " na ", n6, ", até que a ", n7, " ", a3, " se deixa ", {txt:"a "+v4.txt, axes:v4.axes.join(","), ph:v4.ph, opKey:v4.opKey}, "."
-    ];
-    return tokens;
-  }
-
-  // -------------------------------
-  // Móbile drawing layouts
-  // -------------------------------
-  async function drawM1(){
-    const canvas = document.getElementById("c1");
-    const {ctx,w,h} = fitCanvas(canvas);
-    ctx.clearRect(0,0,w,h);
-
-    // cradle mobile background
-    ctx.save();
-    ctx.globalAlpha = 0.18;
-    ctx.strokeStyle = "rgba(20,20,30,.35)";
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.arc(w*0.5, h*0.1, Math.min(w,h)*0.28, Math.PI, 2*Math.PI);
-    ctx.stroke();
-    ctx.restore();
-
-    // 3 hanging cards
-    const slots = state.m1Slots;
-    const cardW = Math.min(220, Math.floor(w*0.24));
-    const cardH = Math.floor(cardW*0.62);
-    const xs = [w*0.32 - cardW/2, w*0.5 - cardW/2, w*0.68 - cardW/2];
-    const ys = [h*0.25, h*0.17, h*0.25];
-
-    for(let i=0;i<3;i++){
-      ctx.save();
-      ctx.strokeStyle="rgba(20,20,30,.25)";
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(w*0.5, h*0.1);
-      ctx.lineTo(xs[i]+cardW/2, ys[i]);
-      ctx.stroke();
-      ctx.restore();
-
-      await drawSlot(ctx, xs[i], ys[i], cardW, cardH, slots[i], 0, (state.step[0]+1)*1009+i*17);
-    }
-  }
-
-  async function drawM2(){
-    const canvas = document.getElementById("c2");
-    const {ctx,w,h} = fitCanvas(canvas);
-    ctx.clearRect(0,0,w,h);
-
-    // mountains
-    ctx.save();
-    ctx.globalAlpha = 0.22;
-    ctx.fillStyle = "rgba(20,20,30,.12)";
-    ctx.beginPath();
-    ctx.moveTo(0,h*0.78);
-    ctx.lineTo(w*0.2,h*0.55);
-    ctx.lineTo(w*0.38,h*0.7);
-    ctx.lineTo(w*0.55,h*0.48);
-    ctx.lineTo(w*0.78,h*0.68);
-    ctx.lineTo(w,h*0.52);
-    ctx.lineTo(w,h);
-    ctx.lineTo(0,h);
+    ctx.moveTo(0,h*0.62);
+    ctx.lineTo(w*0.22,h*0.38);
+    ctx.lineTo(w*0.45,h*0.60);
     ctx.closePath();
     ctx.fill();
-    ctx.restore();
 
-    // two fragments: back smaller, front larger
-    const backW = Math.min(240, Math.floor(w*0.26));
-    const backH = Math.floor(backW*0.62);
-    const frontW = Math.min(320, Math.floor(w*0.34));
-    const frontH = Math.floor(frontW*0.62);
+    ctx.beginPath();
+    ctx.moveTo(w*0.35,h*0.66);
+    ctx.lineTo(w*0.58,h*0.34);
+    ctx.lineTo(w*0.82,h*0.66);
+    ctx.closePath();
+    ctx.fill();
 
-    const backX = w*0.58;
-    const backY = h*0.22;
-    const frontX = w*0.18;
-    const frontY = h*0.42;
+    // chão
+    ctx.fillStyle="rgba(180,220,200,0.12)";
+    ctx.fillRect(0,h*0.66,w,h*0.34);
 
-    // slots represent subject/object and swap on flip
-    // keep fixed pair, just swap which slot draws front/back
-    const sA = state.m2Slots[0];
-    const sB = state.m2Slots[1];
-    const frontSlot = state.m2Flip ? sB : sA;
-    const backSlot  = state.m2Flip ? sA : sB;
-
-    await drawSlot(ctx, backX, backY, backW, backH, backSlot, 1, 7001 + state.step[1]*31);
-    await drawSlot(ctx, frontX, frontY, frontW, frontH, frontSlot, 1, 9001 + state.step[1]*37);
-
-    // tiny animals (minimal)
-    ctx.save();
-    ctx.globalAlpha = 0.18;
-    ctx.strokeStyle = "rgba(20,20,30,.25)";
-    ctx.lineWidth = 2;
-    for(let i=0;i<4;i++){
-      const xx = w*(0.62 + i*0.07);
-      const yy = h*0.78 + (i%2)*6;
-      ctx.beginPath();
-      ctx.arc(xx, yy, 6, 0, Math.PI*2);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(xx-6,yy+5); ctx.lineTo(xx+6,yy+5);
-      ctx.stroke();
-    }
-    ctx.restore();
-  }
-
-  async function drawM3(){
-    const canvas = document.getElementById("c3");
-    const {ctx,w,h} = fitCanvas(canvas);
-    ctx.clearRect(0,0,w,h);
-
-    // labyrinth grid
-    ctx.save();
-    ctx.globalAlpha=0.16;
-    ctx.strokeStyle="rgba(20,20,30,.22)";
+    // animais mínimos
+    ctx.strokeStyle="rgba(20,20,30,0.16)";
     ctx.lineWidth=2;
-    const step = Math.max(34, Math.floor(w/18));
-    for(let y=step; y<h; y+=step){
-      ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke();
-    }
-    for(let x=step; x<w; x+=step){
-      ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke();
-    }
-    ctx.restore();
-
-    const slots = state.m3Slots;
-    // positions distributed
-    const positions = [
-      [w*0.08,h*0.18],[w*0.32,h*0.12],[w*0.58,h*0.18],[w*0.78,h*0.12],
-      [w*0.18,h*0.58],[w*0.52,h*0.62],[w*0.76,h*0.56],
+    const cows = [
+      [w*0.20,h*0.74],[w*0.28,h*0.76],[w*0.34,h*0.73],
+      [w*0.56,h*0.75],[w*0.62,h*0.77]
     ];
-    const cardW = Math.min(210, Math.floor(w*0.22));
-    const cardH = Math.floor(cardW*0.62);
-
-    for(let i=0;i<slots.length;i++){
-      const [x,y] = positions[i];
-      await drawSlot(ctx, x, y, cardW, cardH, slots[i], 2, 11001 + state.step[2]*41 + i*13);
+    for(const [cx,cy] of cows){
+      ctx.beginPath();
+      ctx.moveTo(cx-10,cy);
+      ctx.lineTo(cx+10,cy);
+      ctx.moveTo(cx-6,cy);
+      ctx.lineTo(cx-10,cy+6);
+      ctx.moveTo(cx+6,cy);
+      ctx.lineTo(cx+10,cy+6);
+      ctx.stroke();
     }
-  }
-
-  async function drawM4(){
-    const canvas = document.getElementById("c4");
-    const {ctx,w,h} = fitCanvas(canvas);
-    ctx.clearRect(0,0,w,h);
-
-    // escher-ish stairs
-    ctx.save();
-    ctx.globalAlpha = 0.20;
-    ctx.strokeStyle="rgba(20,20,30,.25)";
+  } else if(scene==="maze"){
+    // labirinto
+    ctx.strokeStyle="rgba(20,20,30,0.10)";
     ctx.lineWidth=3;
-    const baseX = w*0.12, baseY = h*0.82;
-    const stairW = w*0.70, stairH = h*0.52;
-    const steps = 7;
-    for(let i=0;i<steps;i++){
-      const x = baseX + i*(stairW/steps);
-      const y = baseY - i*(stairH/steps);
-      ctx.strokeRect(x,y, stairW/steps, stairH/steps);
+    const step = 28;
+    for(let y=30;y<h-30;y+=step){
+      for(let x=30;x<w-30;x+=step){
+        if(((x/step + y/step)|0)%3===0){
+          ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+step,y); ctx.stroke();
+        }else if(((x/step + y/step)|0)%3===1){
+          ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x,y+step); ctx.stroke();
+        }else{
+          ctx.beginPath(); ctx.rect(x,y,step,step); ctx.stroke();
+        }
+      }
     }
+  } else if(scene==="stairs"){
+    // escadas "Escher"
+    ctx.strokeStyle="rgba(20,20,30,0.12)";
+    ctx.lineWidth=2;
+    const blocks = 10;
+    for(let i=0;i<blocks;i++){
+      const x = w*0.08 + i*(w*0.08);
+      const y = h*0.62 - i*(h*0.04);
+      ctx.strokeRect(x,y,w*0.18,h*0.18);
+      ctx.strokeRect(x+w*0.08,y-h*0.08,w*0.18,h*0.18);
+    }
+  }
+  ctx.restore();
+}
+
+function drawFrame(ctx, x,y, ww,hh, mood){
+  // frame bem demarcado, com leve neon mórbido
+  ctx.save();
+  ctx.shadowColor = "rgba(0,0,0,0.15)";
+  ctx.shadowBlur = 18;
+  ctx.shadowOffsetY = 10;
+
+  ctx.fillStyle = "rgba(255,255,255,0.62)";
+  ctx.fillRect(x,y,ww,hh);
+
+  ctx.shadowBlur = 0;
+  ctx.strokeStyle = "rgba(20,20,30,0.28)";
+  ctx.lineWidth = 2.2;
+  ctx.strokeRect(x,y,ww,hh);
+
+  // inner edge
+  ctx.strokeStyle = "rgba(255,80,210,0.10)";
+  ctx.strokeRect(x+3,y+3,ww-6,hh-6);
+
+  // small label line (gramática visual)
+  ctx.strokeStyle = "rgba(20,20,30,0.08)";
+  ctx.lineWidth = 8;
+  ctx.beginPath();
+  ctx.moveTo(x+10,y+hh-14);
+  ctx.lineTo(x+ww-10,y+hh-14);
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+function drawNonSuiFragment(ctx, x,y, ww,hh, slot){
+  // desenha "fragmento" segundo família (tensivo)
+  const fam = slotToFamily(slot);
+  ctx.save();
+  ctx.translate(x,y);
+
+  // base
+  ctx.fillStyle = "rgba(240,240,255,0.35)";
+  ctx.fillRect(0,0,ww,hh);
+
+  // parâmetros por família (visível)
+  let cut = fam.axes.cut ? fam.axes.cut : 0;
+  let dens = fam.axes.density ? fam.axes.density : 0;
+  let rar = fam.axes.rarefaction ? fam.axes.rarefaction : 0;
+  let cen = fam.axes.center ? fam.axes.center : 0;
+  let rhy = fam.axes.rhythm ? fam.axes.rhythm : 0;
+  let ob  = fam.axes.oblique ? fam.axes.oblique : 0;
+  let con = fam.axes.contour ? fam.axes.contour : 0;
+  let mas = fam.axes.mass ? fam.axes.mass : 0;
+  let rup = fam.axes.rupture ? fam.axes.rupture : 0;
+
+  // background wash per fam
+  const wash = ctx.createLinearGradient(0,0,ww,hh);
+  wash.addColorStop(0, `rgba(${Math.floor(220-30*mas)},${Math.floor(240-30*dens)},${Math.floor(235-40*cut)},0.22)`);
+  wash.addColorStop(1, `rgba(${Math.floor(235-40*rup)},${Math.floor(220-30*con)},${Math.floor(250-40*ob)},0.20)`);
+  ctx.fillStyle = wash;
+  ctx.fillRect(0,0,ww,hh);
+
+  // shapes density
+  const n = Math.floor(6 + dens*10 + mas*6 + rhy*6);
+  ctx.globalAlpha = 0.55 - rar*0.25;
+  for(let i=0;i<n;i++){
+    const rx = (i*37 + slot*13) % Math.floor(ww-40) + 10;
+    const ry = (i*53 + slot*17) % Math.floor(hh-40) + 10;
+    const rw = 18 + ((i*19 + slot*7) % 58);
+    const rh = 12 + ((i*23 + slot*11)% 48);
+    ctx.fillStyle = `rgba(${180+((i*9)%60)},${170+((i*7)%70)},${200+((i*11)%50)},0.18)`;
+    if(ob>0.2){
+      ctx.save();
+      ctx.translate(rx,ry);
+      ctx.rotate(((-0.25+((i%5)/10))*ob));
+      ctx.fillRect(0,0,rw,rh);
+      ctx.restore();
+    }else{
+      ctx.fillRect(rx,ry,rw,rh);
+    }
+    if(cut>0.5){
+      ctx.clearRect(rx+rw*0.55, ry, Math.max(2,rw*0.12), rh);
+    }
+    if(rup>0.5 && i%3===0){
+      ctx.clearRect(rx, ry+rh*0.35, rw, Math.max(2,rh*0.12));
+    }
+  }
+
+  // contour line (if contour)
+  if(con>0.4){
+    ctx.globalAlpha = 0.9;
+    ctx.strokeStyle = "rgba(20,20,30,0.22)";
+    ctx.lineWidth = 3;
+    ctx.strokeRect(10,10,ww-20,hh-20);
+  }
+
+  // center instability (offset focal)
+  if(cen>0.4){
+    ctx.globalAlpha = 0.35;
+    ctx.fillStyle = "rgba(255,90,210,0.18)";
+    ctx.beginPath();
+    ctx.ellipse(ww*0.55, hh*0.45, ww*0.18, hh*0.12, 0, 0, Math.PI*2);
+    ctx.fill();
+  }
+
+  // small slot id (hidden-ish)
+  ctx.globalAlpha = 0.18;
+  ctx.fillStyle = "rgba(20,20,30,0.55)";
+  ctx.font = "12px " + getComputedStyle(document.documentElement).getPropertyValue("--mono");
+  ctx.fillText(String(slot).padStart(3,"0"), ww-44, hh-14);
+
+  ctx.restore();
+}
+
+function drawSui(ctx, x,y, ww,hh){
+  if(!state.suiReady || !state.suiImg) return false;
+  const img = state.suiImg;
+  // contain
+  const r = Math.min(ww/img.width, hh/img.height);
+  const dw = img.width * r;
+  const dh = img.height * r;
+  const dx = x + (ww-dw)/2;
+  const dy = y + (hh-dh)/2;
+  ctx.drawImage(img, dx,dy,dw,dh);
+  return true;
+}
+
+/* =========================
+   Texto: escolher realizações
+========================= */
+function realize(opKey, mode){
+  const o = LEX[opKey];
+  if(!o) return opKey;
+  const m = mode || currentPhonMode();
+  return (o.variants && o.variants[m]) ? o.variants[m] : (o.variants ? Object.values(o.variants)[0] : opKey);
+}
+
+function pickOpsByPos(pos){
+  return OPS.filter(k => LEX[k].pos === pos);
+}
+
+const N_OPS = pickOpsByPos("N");
+const V_OPS = pickOpsByPos("V");
+const ADJ_OPS = pickOpsByPos("ADJ");
+const ADV_OPS = pickOpsByPos("ADV");
+
+/* =========================
+   Render tokenizado
+========================= */
+function renderTokens(el, tokens, clickHandler){
+  el.innerHTML = "";
+  for(const t of tokens){
+    if(t.type==="text"){
+      el.appendChild(document.createTextNode(t.v));
+    }else if(t.type==="tok"){
+      const sp = document.createElement("span");
+      sp.className = "tok";
+      sp.textContent = t.v;
+      sp.dataset.op = t.op;
+      sp.dataset.axes = (t.axes||[]).join(",");
+      sp.addEventListener("click", (ev)=>clickHandler(ev, t));
+      el.appendChild(sp);
+    }
+  }
+}
+
+/* =========================
+   Gerar frases curatorias (M1/M3/M4)
+   (com infinitivo “substantivado”: é um VERB SUB)
+========================= */
+function m1Text(){
+  const rng = rngFor("m1Text");
+  const mode = currentPhonMode();
+
+  const n1 = N_OPS[Math.floor(rng()*N_OPS.length)];
+  const v1 = V_OPS[Math.floor(rng()*V_OPS.length)];
+  const n2 = N_OPS[Math.floor(rng()*N_OPS.length)];
+  const adv = ADV_OPS[Math.floor(rng()*ADV_OPS.length)];
+
+  const line = `No começo, ${realize(n1,mode)} aparece como eixo — e isso já inclina o campo. ` +
+               `O que nasce aqui é um ${realize(v1,mode)} ${realize(n2,mode)}, ${realize(adv,mode)}. ` +
+               `O resto não some: fica como ${realize("eco",mode)} à espera de outra tensão. ` +
+               `Se o campo endurece, não é ruído: é ${realize("cessação",mode)} em formação.`;
+
+  // tokeniza palavras que são realizações (mapear por op)
+  // aqui fazemos tokens só nos operadores principais, para clique local não virar “parágrafo inteiro”
+  const tokens = [];
+  function pushText(s){ tokens.push({type:"text", v:s}); }
+  function pushTok(op, txt){ tokens.push({type:"tok", op, v:txt, axes:LEX[op].axes}); }
+
+  pushText("No começo, ");
+  pushTok(n1, realize(n1,mode));
+  pushText(" aparece como eixo — e isso já inclina o campo. O que nasce aqui é um ");
+  pushTok(v1, realize(v1,mode));
+  pushText(" ");
+  pushTok(n2, realize(n2,mode));
+  pushText(", ");
+  pushTok(adv, realize(adv,mode));
+  pushText(". O resto não some: fica como ");
+  pushTok("eco", realize("eco",mode));
+  pushText(" à espera de outra tensão. Se o campo endurece, não é ruído: é ");
+  pushTok("cessação", realize("cessação",mode));
+  pushText(" em formação.");
+
+  return tokens;
+}
+
+// Template poético-curatorial para M3/M4 (substantivação do infinitivo)
+function poeticCuratorialTokens(tag){
+  const rng = rngFor(tag);
+  const mode = currentPhonMode();
+
+  // pick helpers
+  const nA = N_OPS[Math.floor(rng()*N_OPS.length)];
+  const nB = N_OPS[Math.floor(rng()*N_OPS.length)];
+  const nC = N_OPS[Math.floor(rng()*N_OPS.length)];
+  const nD = N_OPS[Math.floor(rng()*N_OPS.length)];
+  const adjA = ADJ_OPS[Math.floor(rng()*ADJ_OPS.length)];
+  const adjB = ADJ_OPS[Math.floor(rng()*ADJ_OPS.length)];
+  const vA = V_OPS[Math.floor(rng()*V_OPS.length)];
+  const vB = V_OPS[Math.floor(rng()*V_OPS.length)];
+  const advA = ADV_OPS[Math.floor(rng()*ADV_OPS.length)];
+
+  // Migração fonológica no M4: quanto mais domina um modo, mais palavras “forçadas” para ele.
+  const dom = dominantPhonStrength(); // 0..1
+  const forcedMode = (tag==="m4") ? dominantPhonMode() : mode;
+  function maybeForce(op){
+    if(tag!=="m4") return mode;
+    // força mais conforme dom
+    return (rng() < dom) ? forcedMode : mode;
+  }
+
+  const tokens = [];
+  const P = (s)=>tokens.push({type:"text", v:s});
+  const T = (op)=>tokens.push({type:"tok", op, v:realize(op, maybeForce(op)), axes:LEX[op].axes});
+
+  // “No campo, a {SUB} {ADJ} é um {VERB} {SUB}, e a {SUB} {ADJ} é um {VERB} {SUB}; {ADV}, a {SUB} é um {VERB} na {SUB}, até que a {SUB} {ADJ} se {VERB}.”
+  P("No campo, a ");
+  T(nA); P(" "); T(adjA);
+  P(" é um "); T(vA); P(" "); T(nB);
+  P(", e a "); T(nC); P(" "); T(adjB);
+  P(" é um "); T(vB); P(" "); T(nD);
+  P("; "); T(advA);
+  P(", a "); T("presença");
+  P(" é um "); T("insinuar");
+  P(" na "); T("superfície");
+  P(", até que a "); T("configuração");
+  P(" "); T("instável");
+  P(" se "); T("transformar");
+  P(".");
+
+  return tokens;
+}
+
+/* =========================
+   Fonologia: dominância e colapso (M4)
+========================= */
+function dominantPhonMode(){
+  const s = state.vec.phon_surd, so = state.vec.phon_son, fr = state.vec.phon_fric;
+  if(fr >= so && fr >= s) return "fricativa";
+  if(so >= fr && so >= s) return "sonora";
+  return "surda";
+}
+function dominantPhonStrength(){
+  // normaliza 0..1 a partir da distância entre dominante e média
+  const arr = [state.vec.phon_surd, state.vec.phon_son, state.vec.phon_fric];
+  const max = Math.max(...arr);
+  const avg = (arr[0]+arr[1]+arr[2])/3;
+  return clamp((max-avg)/2.0, 0, 1);
+}
+function bumpPhon(mode, amount){
+  if(mode==="surda") state.vec.phon_surd = clamp(state.vec.phon_surd + amount, -3, 3);
+  if(mode==="sonora") state.vec.phon_son = clamp(state.vec.phon_son + amount, -3, 3);
+  if(mode==="fricativa") state.vec.phon_fric = clamp(state.vec.phon_fric + amount, -3, 3);
+}
+function maybePhonCollapse(){
+  // quando dominância fica alta, “colapsa” para o próximo regime (cycle)
+  const dom = dominantPhonStrength();
+  if(dom < 0.92) return false;
+  const current = dominantPhonMode();
+  // ciclo: surda->sonora->fricativa->surda
+  let next = "sonora";
+  if(current==="sonora") next = "fricativa";
+  if(current==="fricativa") next = "surda";
+
+  // reset suave e empurra para o próximo
+  state.vec.phon_surd *= 0.2;
+  state.vec.phon_son  *= 0.2;
+  state.vec.phon_fric *= 0.2;
+  bumpPhon(next, 1.4);
+  return true;
+}
+
+/* =========================
+   M2: módulos restritos (S-V-O)
+========================= */
+function m2Build(){
+  const rng = rngFor("m2");
+  const mode = currentPhonMode();
+
+  // sujeito e objeto são N (+ opcional ADJ/ADV dependendo de rarefação/centro)
+  const subjCore = N_OPS[Math.floor(rng()*N_OPS.length)];
+  const objBank = [
+    // bancos de objeto “fora da dupla binária” via clique no verbo
+    () => N_OPS[Math.floor(rng()*N_OPS.length)],
+    () => "emergência",
+    () => "configuração",
+    () => "resto",
+    () => "textura",
+    () => "cessação",
+    () => "tensão"
+  ];
+  const objCore = objBank[state.m2ObjBankIdx % objBank.length]();
+
+  const allowAdj = (state.vec.center + state.vec.rarefaction) > 0.4;
+  const allowAdv = (state.vec.continuity + state.vec.rhythm) > 0.6;
+
+  const subjAdj = allowAdj ? ADJ_OPS[Math.floor(rng()*ADJ_OPS.length)] : null;
+  const objAdj  = allowAdj ? ADJ_OPS[Math.floor(rng()*ADJ_OPS.length)] : null;
+  const subjAdv = allowAdv ? ADV_OPS[Math.floor(rng()*ADV_OPS.length)] : null;
+  const objAdv  = allowAdv ? ADV_OPS[Math.floor(rng()*ADV_OPS.length)] : null;
+
+  // verbo “adequado” depende de swap (posição)
+  // quando sujeito e objeto trocam, verbo deve mudar (mas só isso)
+  function pickVerbFor(coreA, coreB){
+    // heurística: se há mais cut/rupture => recortar/interromper; se continuity => sustentar/acompanhar; se center => insinuar/reparar
+    const a = state.vec;
+    const cand = [];
+    if(a.cut + a.rupture > 0.8) cand.push("recortar","interromper","fixar");
+    if(a.continuity + a.rhythm > 0.8) cand.push("sustentar","acompanhar","distribuir");
+    if(a.center + a.rarefaction > 0.8) cand.push("insinuar","reparar","escutar");
+    cand.push("tocar","deslocar","atravessar");
+    const v = cand[Math.floor(rng()*cand.length)];
+    return v;
+  }
+
+  let S = {core:subjCore, adj:subjAdj, adv:subjAdv};
+  let O = {core:objCore,  adj:objAdj,  adv:objAdv};
+
+  // swap invertendo módulo 1 e 3
+  if(state.m2Swap){
+    const tmp = S; S = O; O = tmp;
+  }
+
+  const V = pickVerbFor(S.core, O.core);
+
+  // Tokens: apenas verbo clicável para mudar o objeto
+  const tokens = [];
+  const P = (s)=>tokens.push({type:"text", v:s});
+  const T = (op)=>tokens.push({type:"tok", op, v:realize(op,mode), axes:LEX[op].axes});
+
+  // módulo 1
+  if(S.adv) { T(S.adv); P(", "); }
+  T(S.core);
+  if(S.adj) { P(" "); T(S.adj); }
+
+  P(" — é um ");
+  // verbo clicável
+  tokens.push({type:"tok", op:V, v:realize(V,mode), axes:LEX[V].axes, verb:true});
+  P(" ");
+
+  // módulo 3 (objeto)
+  if(O.adv) { T(O.adv); P(" "); }
+  T(O.core);
+  if(O.adj) { P(" "); T(O.adj); }
+
+  P(".");
+
+  return {tokens, S, V, O};
+}
+
+/* =========================
+   Sui placement (90% por móbile, estável por estado)
+========================= */
+function wantsSuiFor(tag){
+  if(!state.suiReady) return false;
+  const rng = rngFor("sui::"+tag);
+  return rng() < 0.90;
+}
+
+/* =========================
+   Render M1..M4 (desenho + texto tokenizado)
+========================= */
+const c1 = document.getElementById("c1").getContext("2d");
+const c2 = document.getElementById("c2").getContext("2d");
+const c3 = document.getElementById("c3").getContext("2d");
+const c4 = document.getElementById("c4").getContext("2d");
+const t1 = document.getElementById("t1");
+const t2 = document.getElementById("t2");
+const t3 = document.getElementById("t3");
+const t4 = document.getElementById("t4");
+
+function renderM1(){
+  const ctx = c1; const w=ctx.canvas.width, h=ctx.canvas.height;
+  drawBackground(ctx,w,h,"crib");
+
+  // 3 pendentes
+  const rng = rngFor("m1Slots");
+  const slots = [];
+  for(let i=0;i<3;i++){
+    const fam = pickFamilyByVec(rng);
+    slots.push(pickSlotFromFamily(fam, rng));
+  }
+
+  // Sui injection
+  let injected = false;
+  if(wantsSuiFor("m1")){
+    slots[2] = 53; injected = true;
+  }
+
+  const frames = [
+    {x:w*0.18, y:h*0.16, ww:w*0.22, hh:h*0.62},
+    {x:w*0.39, y:h*0.16, ww:w*0.22, hh:h*0.62},
+    {x:w*0.60, y:h*0.16, ww:w*0.22, hh:h*0.62},
+  ];
+
+  frames.forEach((f,idx)=>{
+    drawFrame(ctx,f.x,f.y,f.ww,f.hh);
+    const slot = slots[idx];
+    // corda visual
+    ctx.save();
+    ctx.strokeStyle="rgba(20,20,30,0.16)";
+    ctx.lineWidth=2;
+    ctx.beginPath();
+    ctx.moveTo(f.x+f.ww/2, h*0.12);
+    ctx.lineTo(f.x+f.ww/2, f.y);
+    ctx.stroke();
     ctx.restore();
 
-    const slots = state.m4Slots.slice();
-    // ensure slot 53 can appear (Sui), but not necessarily always—only if session says yes
-    // we keep it as one of the five slots; if image fails, it becomes procedural
-    const cardW = Math.min(220, Math.floor(w*0.23));
-    const cardH = Math.floor(cardW*0.62);
-
-    const pos = [
-      [w*0.10,h*0.18],
-      [w*0.32,h*0.10],
-      [w*0.54,h*0.22],
-      [w*0.22,h*0.56],
-      [w*0.62,h*0.54],
-    ];
-
-    for(let i=0;i<5;i++){
-      const [x,y] = pos[i];
-      await drawSlot(ctx, x, y, cardW, cardH, slots[i], 3, 16001 + state.step[3]*53 + i*19);
+    if(slot===53 && state.suiReady){
+      drawSui(ctx,f.x+10,f.y+10,f.ww-20,f.hh-20);
+    }else{
+      drawNonSuiFragment(ctx,f.x+10,f.y+10,f.ww-20,f.hh-20,slot);
     }
-  }
-
-  async function drawFinal(finalSlots){
-    const canvas = document.getElementById("cf");
-    const {ctx,w,h} = fitCanvas(canvas);
-    ctx.clearRect(0,0,w,h);
-
-    // 10 fragments arranged in two rows with overlap (constellation)
-    const cardW = Math.min(240, Math.floor(w*0.26));
-    const cardH = Math.floor(cardW*0.62);
-    const gapX = Math.floor(cardW*0.18);
-    const gapY = Math.floor(cardH*0.38);
-
-    const startX = Math.max(10, Math.floor((w - (cardW*5 - gapX*4))/2));
-    const startY = Math.floor(h*0.14);
-
-    for(let i=0;i<10;i++){
-      const row = Math.floor(i/5);
-      const col = i%5;
-      const x = startX + col*(cardW - gapX) + (row? 22:0);
-      const y = startY + row*(cardH - gapY);
-      await drawSlot(ctx, x, y, cardW, cardH, finalSlots[i], 9, (state.finalSeed||12345) + i*97);
-    }
-  }
-
-  // -------------------------------
-  // Interaction hit-tests for canvases
-  // We make regions roughly match drawn cards.
-  // -------------------------------
-  function makeHitRegionsM2(canvas){
-    const rect = canvas.getBoundingClientRect();
-    const w = rect.width, h = rect.height;
-    const backW = Math.min(240, Math.floor(w*0.26));
-    const backH = Math.floor(backW*0.62);
-    const frontW = Math.min(320, Math.floor(w*0.34));
-    const frontH = Math.floor(frontW*0.62);
-    const backX = w*0.58, backY = h*0.22;
-    const frontX = w*0.18, frontY = h*0.42;
-    return [
-      {name:"back", x:backX, y:backY, w:backW, h:backH},
-      {name:"front", x:frontX, y:frontY, w:frontW, h:frontH}
-    ];
-  }
-
-  function makeHitRegionsM3(canvas){
-    const rect = canvas.getBoundingClientRect();
-    const w = rect.width, h = rect.height;
-    const cardW = Math.min(210, Math.floor(w*0.22));
-    const cardH = Math.floor(cardW*0.62);
-    const positions = [
-      [w*0.08,h*0.18],[w*0.32,h*0.12],[w*0.58,h*0.18],[w*0.78,h*0.12],
-      [w*0.18,h*0.58],[w*0.52,h*0.62],[w*0.76,h*0.56],
-    ];
-    return positions.map((p,i)=>({i, x:p[0], y:p[1], w:cardW, h:cardH}));
-  }
-
-  // -------------------------------
-  // Semantics: word click → axes; fragment click → family axes
-  // -------------------------------
-  function onWordClick(e){
-    const el = e.target;
-    if(!el.classList || !el.classList.contains("w")) return;
-    const axes = (el.dataset.axes||"").split(",").filter(Boolean);
-    const m = parseInt(el.dataset.m||"0",10);
-    const ph = el.dataset.ph || "surda";
-
-    // apply semantic impulse
-    applyImpulse(m, axes, 0.22);
-
-    // phon effect in M4
-    if(m===3){
-      // increase phon heat + bias toward clicked phon type
-      state.phonHeat = clamp(state.phonHeat + 0.10, 0, 1);
-      // raise chosen type, lower others slightly
-      state.phon[ph] = clamp(state.phon[ph] + 0.12, 0.10, 0.85);
-      const other = ["surda","sonora","fricativa"].filter(x=>x!==ph);
-      for(const o of other) state.phon[o] = clamp(state.phon[o] - 0.06, 0.10, 0.80);
-
-      // normalize
-      const s = state.phon.surda + state.phon.sonora + state.phon.fricativa;
-      state.phon.surda/=s; state.phon.sonora/=s; state.phon.fricativa/=s;
-
-      // if saturated → collapse: rotate dom and reset heat partially
-      if(state.phonHeat > 0.92){
-        state.phonHeat = 0.25;
-        state.phonDom = (state.phonDom==="surda") ? "sonora" : (state.phonDom==="sonora") ? "fricativa" : "surda";
-        // re-center biases around new dom
-        state.phon = {surda:0.33, sonora:0.33, fricativa:0.33};
-        state.phon[state.phonDom] = 0.48;
-        const ss = state.phon.surda + state.phon.sonora + state.phon.fricativa;
-        state.phon.surda/=ss; state.phon.sonora/=ss; state.phon.fricativa/=ss;
-      }
-    }
-
-    // local step for determinism + rerender
-    state.step[m]++;
-
-    dampImpulses();
-    renderAll();
-  }
-
-  function onFragmentClickM3(slot){
-    const fam = familyForSlot(slot);
-    const axesObj = FAMILY_AXES[fam] || {};
-    const axes = Object.keys(axesObj);
-    applyImpulse(2, axes, 0.24);
-    state.step[2]++;
-    dampImpulses();
-    renderAll();
-  }
-
-  // -------------------------------
-  // Share: compose text + image
-  // -------------------------------
-  async function shareCanvas(canvas, text){
-    const blob = await new Promise(res => canvas.toBlob(res, "image/png"));
-    const file = blob ? new File([blob], "mobiles.png", {type:"image/png"}) : null;
-
-    const url = location.href;
-    const fullText = text + "\n\n" + "Faz a tua própria curadoria aqui: " + url;
-
-    if(navigator.share && file){
-      try{
-        await navigator.share({text: fullText, files:[file], title:"MÓBILES"});
-        return {ok:true, mode:"native"};
-      }catch(err){
-        // fall back
-      }
-    }
-    // fallback: copy to clipboard
-    try{
-      await navigator.clipboard.writeText(fullText);
-      return {ok:true, mode:"copy"};
-    }catch(err){
-      return {ok:false, mode:"none"};
-    }
-  }
-
-  // -------------------------------
-  // Render functions
-  // -------------------------------
-  function seedForMobile(i){
-    // derive from axis weights + steps so it’s deterministic but responsive
-    const key = AXES.map(a=>Math.round(state.axis[a]*100)).join(",") + "|" + state.step.join("|") + "|" + state.m2Flip + "|" + state.m2ObjAlt + "|" + state.phonDom + "|" + Math.round(state.phonHeat*100);
-    return (hashStr(key) ^ (i*2654435761)) >>> 0;
-  }
-
-  function renderTextInto(el, tokens, mobileIdx){
-    const r = mulberry32(seedForMobile(mobileIdx));
-    // tokens may include objects created with merged axes; ensure proper shape
-    const normalized = tokens.map(t => {
-      if(typeof t==="string") return t;
-      if(t._verb){
-        // verb token clickable: mark special
-        return {txt:t.txt, axes:t.axes, ph:t.ph, opKey:t.opKey};
-      }
-      // if custom token object is incomplete, keep it safe:
-      return {txt:t.txt, axes:t.axes||"", ph:t.ph||chooseVariantKey(r,mobileIdx), opKey:t.opKey||""};
-    });
-    el.innerHTML = spansFromTokens(normalized, mobileIdx);
-  }
-
-  async function renderM1(){
-    const r = mulberry32(seedForMobile(0));
-    const tokens = genM1(r);
-    renderTextInto(document.getElementById("t1"), tokens, 0);
-    await drawM1();
-  }
-
-  async function renderM2(){
-    const r = mulberry32(seedForMobile(1));
-    const tokens = genM2(r);
-    const el = document.getElementById("t2");
-
-    // render with verb clickable: we attach handler by event delegation and detect verb span by opKey matching stored verb
-    renderTextInto(el, tokens, 1);
-
-    await drawM2();
-  }
-
-  async function renderM3(){
-    const r = mulberry32(seedForMobile(2));
-    const tokens = genM3(r);
-    renderTextInto(document.getElementById("t3"), tokens, 2);
-    await drawM3();
-  }
-
-  async function renderM4(){
-    const r = mulberry32(seedForMobile(3));
-    const tokens = genM4(r);
-    renderTextInto(document.getElementById("t4"), tokens, 3);
-    await drawM4();
-  }
-
-  function computeFinal(){
-    // Deterministic final based on axis weights: pick families with weighted draw
-    const base = seedForMobile(99);
-    const r = mulberry32(base);
-
-    // family weights from axes
-    const famWeights = {};
-    for(let i=1;i<=12;i++){
-      const f = "F"+i;
-      const ax = FAMILY_AXES[f] || {};
-      let w = 0.12;
-      for(const k of Object.keys(ax)){
-        w += ax[k] * state.axis[k];
-      }
-      famWeights[f] = w;
-    }
-
-    function pickFamily(){
-      const entries = Object.entries(famWeights);
-      let sum = 0;
-      for(const [,w] of entries) sum += w;
-      let t = r()*sum;
-      for(const [f,w] of entries){
-        t -= w;
-        if(t<=0) return f;
-      }
-      return "F1";
-    }
-
-    // choose 10 slots
-    const slots = [];
-    for(let i=0;i<10;i++){
-      const f = pickFamily();
-      const idx = parseInt(f.slice(1),10);
-      const start = (idx-1)*10 + 1;
-      const slot = start + Math.floor(r()*10);
-      slots.push(slot);
-    }
-
-    // ensure Sui appears sometimes if available and session chose it
-    // We'll do: if suiOk and r()<0.65, force one slot=53
-    if(state.suiOk && r() < 0.65){
-      slots[slots.length-1] = 53;
-    }
-    return {slots, seed: base};
-  }
-
-  function genFinalTexts(finalSlots){
-    // style text must reflect axes
-    const cut = state.axis.cut, cont = state.axis.continuity, den=state.axis.density, rar=state.axis.rarefaction, cen=state.axis.center, rep=state.axis.repetition;
-    const dom = state.phonDom;
-
-    const profile =
-      (cut>cont && cut>0.45) ? "corte e decisão" :
-      (cont>cut && cont>0.45) ? "passagens e sustentação" :
-      (den>0.50) ? "densidade e matéria" :
-      (rar>0.50) ? "suspensão e rarefação" :
-      (cen>0.50) ? "centro instável e desvio" :
-      (rep>0.50) ? "insistência e repetição" :
-      "equilíbrio instável";
-
-    const sound =
-      (dom==="surda") ? "corte seco" :
-      (dom==="sonora") ? "impacto cheio" :
-      "passagem fluida";
-
-    const style = `O teu estilo curatorial inclina-se para ${profile}, com um corpo sonoro de ${sound}.`;
-
-    // critique text uses lexicon with deterministic seed from final
-    const r = mulberry32(state.finalSeed ^ 0xABCDEF);
-    const vk = chooseVariantKey(r, 0);
-    const a1 = renderToken(chooseOp(As,0,r), vk).txt;
-    const n1 = renderToken(chooseOp(Ns,0,r), vk).txt;
-    const v1 = renderToken(chooseOp(Vs,0,r), vk).txt;
-    const n2 = renderToken(chooseOp(Ns,0,r), vk).txt;
-    const adv = renderToken(chooseOp(Rs,0,r), vk).txt;
-
-    const critique =
-      `Nesta constelação, a ${n1} ${a1} organiza um campo onde a ${n2} se deixa ${v1} por aproximações sucessivas. ` +
-      `O resultado não fecha o sentido: mantém uma zona de resto, ${adv}, como se pedisse nova reentrada e outra leitura. ` +
-      `Partilha — e vê que obras emergem para os outros, onde o teu olhar ainda não chegou.`;
-
-    const share = `Eu gerei a minha curadoria no MÓBILES (suiornotsui). E a tua?`;
-
-    return {style, critique, share};
-  }
-
-  async function renderFinal(){
-    const box = document.getElementById("finalBox");
-    const tf = document.getElementById("tf");
-    const shareText = document.getElementById("shareText");
-    const shareBtn = document.getElementById("shareFinal");
-
-    if(!state.finalCache){
-      const res = computeFinal();
-      state.finalSeed = res.seed;
-      state.finalCache = res;
-    }
-    const {slots} = state.finalCache;
-    const texts = genFinalTexts(slots);
-
-    box.style.display = "block";
-    shareBtn.style.display = "inline-block";
-
-    await drawFinal(slots);
-
-    // build final text (clickable not necessary here)
-    tf.innerHTML =
-      `<div class="gen">${escapeHtml(texts.style)}</div>` +
-      `<div class="gen" style="margin-top:10px;">${escapeHtml(texts.critique)}</div>`;
-
-    const url = location.href;
-    shareText.style.display = "none";
-    shareText.textContent = texts.share + "\n\n" + texts.style + "\n\n" + texts.critique + "\n\n" + "Faz a tua própria curadoria: " + url;
-  }
-
-  // -------------------------------
-  // Global render
-  // -------------------------------
-  let rendering = false;
-  async function renderAll(){
-    if(rendering) return;
-    rendering = true;
-    try{
-      await renderM1();
-      await renderM2();
-      await renderM3();
-      await renderM4();
-    }finally{
-      rendering = false;
-    }
-  }
-
-  // -------------------------------
-  // Event wiring
-  // -------------------------------
-  async function init(){
-    // Sui load attempt (non-blocking)
-    const suiBadge = document.getElementById("suiState");
-    const res = await loadImage(SUI_URL);
-    state.suiOk = res.ok;
-    suiBadge.className = res.ok ? "ok" : "warn";
-    suiBadge.textContent = res.ok ? "Sui: ok" : "Sui: fallback";
-    if(res.ok){
-      // decide per session: 90% chance of including Sui presence as "active"
-      const sessKey = localStorage.getItem("mob_sui_session") || String(Math.random());
-      localStorage.setItem("mob_sui_session", sessKey);
-      const rr = mulberry32(hashStr(sessKey));
-      // if active, keep slot 53 in m4 slots (already there) and allow final forcing sometimes
-      // if not active, we'll still keep slot 53 but it will render procedural (since suiOk true though)
-      // so for "90% probability", we treat "active" as 0.90:
-      const active = rr() < 0.90;
-      if(!active){
-        // disable drawing Sui image even if loaded
-        state.suiOk = false;
-        suiBadge.className = "warn";
-        suiBadge.textContent = "Sui: raro (sessão)";
-      }
-    }
-
-    // M1 button
-    document.getElementById("b1").addEventListener("click", () => {
-      // change starting regime: reset a few axes in a meaningful way
-      const r = mulberry32(seedForMobile(0) ^ (state.step[0]+1));
-      // pick a family and bias axes
-      const fam = "F" + (1 + Math.floor(r()*12));
-      const ax = FAMILY_AXES[fam] || {};
-      for(const k of Object.keys(ax)){
-        applyImpulse(0, [k], 0.28*ax[k]);
-      }
-      // refresh slots
-      state.m1Slots = [1+Math.floor(r()*40), 1+Math.floor(r()*60), 1+Math.floor(r()*80)].map(s => clamp(s,1,120));
-      state.step[0]++;
-      dampImpulses();
-      renderAll();
-    });
-
-    // Word clicks (M1/M3/M4)
-    document.getElementById("t1").addEventListener("click", onWordClick);
-    document.getElementById("t3").addEventListener("click", onWordClick);
-    document.getElementById("t4").addEventListener("click", onWordClick);
-
-    // M2: clicking fragments swaps; clicking verb changes object alt
-    const c2 = document.getElementById("c2");
-    c2.addEventListener("click", (ev) => {
-      const regs = makeHitRegionsM2(c2);
-      const rect = c2.getBoundingClientRect();
-      const x = ev.clientX - rect.left, y = ev.clientY - rect.top;
-      for(const r of regs){
-        if(x>=r.x && x<=r.x+r.w && y>=r.y && y<=r.y+r.h){
-          // swap front/back, thus swap module1/module3
-          state.m2Flip = !state.m2Flip;
-          applyImpulse(1, ["configuration","tension"], 0.18);
-          state.step[1]++;
-          dampImpulses();
-          renderAll();
-          return;
-        }
-      }
-    });
-
-    document.getElementById("t2").addEventListener("click", (ev) => {
-      const el = ev.target;
-      if(!el.classList || !el.classList.contains("w")) return;
-      // treat ONLY the verb as special: in our render, verb token has opKey equal to stored verb key
-      // we simply allow clicking any token, but only verb changes object alt
-      const opKey = el.dataset.op || "";
-      // heuristic: verb tokens came from Vs; check if key is in verbs
-      const isVerb = Vs.some(v => v.key === opKey);
-      if(!isVerb) return;
-
-      // change object alt only
-      state.m2ObjAlt = (state.m2ObjAlt + 1) % 6;
-      applyImpulse(1, ["emergence","configuration"], 0.22);
-      state.step[1]++;
-      dampImpulses();
-      renderAll();
-    });
-
-    // M3 fragment clicks
-    const c3 = document.getElementById("c3");
-    c3.addEventListener("click", (ev) => {
-      const regs = makeHitRegionsM3(c3);
-      const rect = c3.getBoundingClientRect();
-      const x = ev.clientX - rect.left, y = ev.clientY - rect.top;
-      for(const rg of regs){
-        if(x>=rg.x && x<=rg.x+rg.w && y>=rg.y && y<=rg.y+rg.h){
-          const slot = state.m3Slots[rg.i];
-          onFragmentClickM3(slot);
-          return;
-        }
-      }
-    });
-
-    // Share buttons per mobile
-    document.getElementById("s1").addEventListener("click", async () => {
-      await shareCanvas(document.getElementById("c1"), document.getElementById("t1").innerText.trim());
-    });
-    document.getElementById("s2").addEventListener("click", async () => {
-      await shareCanvas(document.getElementById("c2"), document.getElementById("t2").innerText.trim());
-    });
-    document.getElementById("s3").addEventListener("click", async () => {
-      await shareCanvas(document.getElementById("c3"), document.getElementById("t3").innerText.trim());
-    });
-    document.getElementById("s4").addEventListener("click", async () => {
-      await shareCanvas(document.getElementById("c4"), document.getElementById("t4").innerText.trim());
-    });
-
-    // Final generate + share
-    document.getElementById("genFinal").addEventListener("click", async () => {
-      await renderFinal();
-    });
-
-    document.getElementById("shareFinal").addEventListener("click", async () => {
-      const shareText = document.getElementById("shareText");
-      if(!state.finalCache){
-        await renderFinal();
-      }
-      const {style, critique, share} = genFinalTexts(state.finalCache.slots);
-      const url = location.href;
-      const text = `${share}\n\n${style}\n\n${critique}\n\nFaz a tua própria curadoria: ${url}`;
-      const result = await shareCanvas(document.getElementById("cf"), text);
-      if(result.ok && result.mode==="copy"){
-        shareText.style.display = "block";
-        shareText.textContent = text + "\n\n(Copiado para a área de transferência — cola no WhatsApp/IG/etc.)";
-      }
-    });
-
-    // resize
-    window.addEventListener("resize", () => renderAll());
-
-    // first render
-    renderAll();
-  }
-
-  // Run
-  init().catch(err => {
-    // Never allow blank screen: show error minimally
-    console.error(err);
-    alert("Erro ao inicializar MÓBILES. Abre a consola (F12) para ver detalhes.");
   });
 
+  // Texto tokenizado (cliques NÃO operam aqui; só botão)
+  renderTokens(t1, m1Text(), ()=>{});
+}
+
+function renderM2(){
+  const ctx = c2; const w=ctx.canvas.width, h=ctx.canvas.height;
+  drawBackground(ctx,w,h,"mountain");
+
+  // slots de frente/fundo
+  const rng = rngFor("m2Slots");
+  // se ainda não setados, cria
+  if(!state.m2FrontSlot || !state.m2BackSlot){
+    const famA = pickFamilyByVec(rng);
+    const famB = pickFamilyByVec(rng);
+    state.m2FrontSlot = pickSlotFromFamily(famA, rng);
+    state.m2BackSlot  = pickSlotFromFamily(famB, rng);
+  }
+
+  // decide Sui (um dos dois) com 90% estável, mas sem quebrar regra: só 1 Sui aqui
+  if(wantsSuiFor("m2")){
+    const pickFront = rng() < 0.5;
+    if(pickFront) state.m2FrontSlot = 53;
+    else state.m2BackSlot = 53;
+  }
+
+  const front = {x:w*0.56, y:h*0.18, ww:w*0.36, hh:h*0.62, slot: state.m2FrontSlot};
+  const back  = {x:w*0.18, y:h*0.26, ww:w*0.32, hh:h*0.52, slot: state.m2BackSlot};
+
+  // desenha fundo primeiro
+  drawFrame(ctx, back.x, back.y, back.ww, back.hh);
+  if(back.slot===53 && state.suiReady) drawSui(ctx, back.x+10, back.y+10, back.ww-20, back.hh-20);
+  else drawNonSuiFragment(ctx, back.x+10, back.y+10, back.ww-20, back.hh-20, back.slot);
+
+  // depois frente
+  drawFrame(ctx, front.x, front.y, front.ww, front.hh);
+  if(front.slot===53 && state.suiReady) drawSui(ctx, front.x+10, front.y+10, front.ww-20, front.hh-20);
+  else drawNonSuiFragment(ctx, front.x+10, front.y+10, front.ww-20, front.hh-20, front.slot);
+
+  // hit regions para click (apenas inverter)
+  state._m2Hit = {front, back};
+
+  // texto S–V–O com restrição
+  const built = m2Build();
+  renderTokens(t2, built.tokens, (ev, tok)=>{
+    // só verbo clicável altera objeto
+    if(tok.verb){
+      state.m2ObjBankIdx = (state.m2ObjBankIdx + 1) % 7;
+      // trocar apenas objeto implica trocar fragmento correspondente ao objeto (o "back" quando não swap? -> regra: objeto é módulo 3 (O) portanto corresponde ao fragmento de fundo quando não swap, e de frente quando swap)
+      const rng2 = rngFor("m2ObjSlot");
+      const fam = pickFamilyByVec(rng2);
+      const newSlot = pickSlotFromFamily(fam, rng2);
+      if(state.m2Swap){
+        // objeto está no "front" (porque swap inverte S e O)
+        state.m2FrontSlot = (wantsSuiFor("m2") ? state.m2FrontSlot : newSlot);
+        if(state.m2FrontSlot!==53) state.m2FrontSlot = newSlot;
+      }else{
+        // objeto está no "back"
+        state.m2BackSlot = (wantsSuiFor("m2") ? state.m2BackSlot : newSlot);
+        if(state.m2BackSlot!==53) state.m2BackSlot = newSlot;
+      }
+      // impulso semântico do verbo (clique local)
+      applyImpulse("m2", axisBundleFromAxesList(LEX[tok.op].axes), 0.25);
+      state.version++;
+      rerenderAll();
+    }
+  });
+}
+
+function renderM3(){
+  const ctx = c3; const w=ctx.canvas.width, h=ctx.canvas.height;
+  drawBackground(ctx,w,h,"maze");
+
+  const rng = rngFor("m3Slots");
+  // 7 slots
+  const slots = [];
+  for(let i=0;i<7;i++){
+    const fam = pickFamilyByVec(rng);
+    slots.push(pickSlotFromFamily(fam, rng));
+  }
+  // Sui injection
+  if(wantsSuiFor("m3")){
+    const k = Math.floor(rng()*7);
+    slots[k] = 53;
+  }
+
+  // layout (bem centrado, sem cortar)
+  const frames = [];
+  const cols = 4;
+  const cellW = w*0.22;
+  const cellH = h*0.34;
+  const startX = w*0.06;
+  const startY = h*0.14;
+  for(let i=0;i<7;i++){
+    const r = Math.floor(i/cols);
+    const c = i%cols;
+    const x = startX + c*(cellW+ w*0.04);
+    const y = startY + r*(cellH+ h*0.08);
+    frames.push({x, y, ww:cellW, hh:cellH, slot:slots[i]});
+  }
+  state._m3Frames = frames;
+
+  for(const f of frames){
+    drawFrame(ctx,f.x,f.y,f.ww,f.hh);
+    if(f.slot===53 && state.suiReady) drawSui(ctx,f.x+10,f.y+10,f.ww-20,f.hh-20);
+    else drawNonSuiFragment(ctx,f.x+10,f.y+10,f.ww-20,f.hh-20,f.slot);
+  }
+
+  // texto maior, curatorial, tokenizado e clicável por palavra
+  const tokens = poeticCuratorialTokens("m3");
+  renderTokens(t3, tokens, (ev, tok)=>{
+    // clique local em palavra reforça eixos dela
+    applyImpulse("m3", axisBundleFromAxesList(tok.axes||[]), 0.28);
+    // também reforça fonologia a partir da classe do token renderizado (sensível)
+    bumpPhon(phonClass(tok.v), 0.10);
+    state.m3Clicks++;
+    // colapso: se clicks acumulados + eixo dominante passa limiar, muda regime levemente
+    if(state.m3Clicks % 12 === 0){
+      // catástrofe suave: amplifica eixo dominante e reduz o resto
+      const best = AXES.filter(a=>!a.startsWith("phon_")).reduce((acc,a)=> (state.vec[a]>state.vec[acc]?a:acc), "continuity");
+      for(const a of AXES){
+        if(a===best) state.vec[a] = clamp(state.vec[a]+0.45, -3, 3);
+        else state.vec[a] *= 0.92;
+      }
+    }
+    state.version++;
+    rerenderAll();
+  });
+}
+
+function renderM4(){
+  const ctx = c4; const w=ctx.canvas.width, h=ctx.canvas.height;
+  drawBackground(ctx,w,h,"stairs");
+
+  const rng = rngFor("m4Slots");
+  const slots = [];
+  for(let i=0;i<5;i++){
+    const fam = pickFamilyByVec(rng);
+    slots.push(pickSlotFromFamily(fam, rng));
+  }
+  if(wantsSuiFor("m4")){
+    slots[Math.floor(rng()*5)] = 53;
+  }
+
+  // layout centralizado (sem cortar direita)
+  const frames = [];
+  const baseY = h*0.18;
+  for(let i=0;i<5;i++){
+    const ww = w*0.20;
+    const hh = h*0.60;
+    const x = w*0.08 + i*(ww + w*0.02);
+    const y = baseY + (i%2)*h*0.05;
+    frames.push({x,y,ww,hh,slot:slots[i]});
+  }
+  state._m4Frames = frames;
+
+  for(const f of frames){
+    drawFrame(ctx,f.x,f.y,f.ww,f.hh);
+    if(f.slot===53 && state.suiReady) drawSui(ctx,f.x+10,f.y+10,f.ww-20,f.hh-20);
+    else drawNonSuiFragment(ctx,f.x+10,f.y+10,f.ww-20,f.hh-20,f.slot);
+  }
+
+  // texto: tokenizado; só palavras clicáveis; migração fonológica + colapso
+  const tokens = poeticCuratorialTokens("m4");
+  renderTokens(t4, tokens, (ev, tok)=>{
+    // restrito: só palavras, reforça fonologia dominante da palavra clicada
+    const cls = phonClass(tok.v);
+    bumpPhon(cls==="surda"?"surda":(cls==="sonora"?"sonora":"fricativa"), 0.35);
+
+    // pequena coerência semântica: também reforça eixos do operador
+    applyImpulse("m4", axisBundleFromAxesList(tok.axes||[]), 0.14);
+
+    state.m4Clicks++;
+    const collapsed = maybePhonCollapse();
+    if(collapsed){
+      // catástrofe sonora deve “puxar” visual: cut<->continuity etc
+      const pm = dominantPhonMode();
+      if(pm==="surda"){ state.vec.cut = clamp(state.vec.cut + 0.55, -3,3); }
+      if(pm==="sonora"){ state.vec.mass = clamp(state.vec.mass + 0.50, -3,3); state.vec.density = clamp(state.vec.density + 0.35, -3,3); }
+      if(pm==="fricativa"){ state.vec.continuity = clamp(state.vec.continuity + 0.55, -3,3); state.vec.rarefaction = clamp(state.vec.rarefaction + 0.35, -3,3); }
+    }
+
+    state.version++;
+    rerenderAll();
+  });
+}
+
+function rerenderAll(){
+  // garantir que nunca “perde” a restrição: re-render não adiciona handlers extras.
+  renderM1();
+  renderM2();
+  renderM3();
+  renderM4();
+}
+
+/* =========================
+   Eventos (restritos por móbile)
+========================= */
+document.getElementById("b1").addEventListener("click", ()=>{
+  // “tensionar o início”: muda sementes iniciais de eixos (regimes)
+  const rng = rngFor("m1Button");
+  // escolhe 1 regime dominante (cut / continuity / density / rarefaction / center / conflict)
+  const regimes = [
+    {continuity:1.2, rhythm:0.6, phon_fric:0.4},
+    {cut:1.3, contour:0.8, phon_surd:0.7},
+    {density:1.2, mass:0.9, phon_son:0.6},
+    {rarefaction:1.2, continuity:0.4, phon_fric:0.6},
+    {center:1.2, conflict:0.6, phon_son:0.3},
+    {conflict:1.1, oblique:0.7, phon_surd:0.4}
+  ];
+  const r = regimes[Math.floor(rng()*regimes.length)];
+
+  // reset suave + aplicar regime
+  for(const a of AXES) state.vec[a] *= 0.35;
+  applyImpulse("m1", r, 0.95);
+
+  // também reinicializa m2 slots de forma coerente com novo campo
+  state.m2FrontSlot = null;
+  state.m2BackSlot  = null;
+
+  state.version++;
+  rerenderAll();
+});
+
+// M2: clique nos fragmentos inverte somente frente/fundo e módulo1/módulo3
+document.getElementById("c2").addEventListener("click", (ev)=>{
+  const rect = ev.target.getBoundingClientRect();
+  const x = (ev.clientX - rect.left) * (c2.canvas.width / rect.width);
+  const y = (ev.clientY - rect.top) * (c2.canvas.height / rect.height);
+  const hit = state._m2Hit;
+  if(!hit) return;
+
+  function inside(r){
+    return x>=r.x && x<=r.x+r.ww && y>=r.y && y<=r.y+r.hh;
+  }
+  const clickedFront = inside(hit.front);
+  const clickedBack  = inside(hit.back);
+  if(!clickedFront && !clickedBack) return;
+
+  // INVERTE SOMENTE:
+  const tmp = state.m2FrontSlot;
+  state.m2FrontSlot = state.m2BackSlot;
+  state.m2BackSlot  = tmp;
+
+  state.m2Swap = !state.m2Swap;
+
+  // verbo muda automaticamente (via rebuild), mas NÃO muda objeto por conta própria
+  // impulso semântico por inversão: reforça conflito/center (posição)
+  applyImpulse("m2swap", {conflict:0.35, center:0.25}, 0.45);
+
+  state.version++;
+  rerenderAll();
+});
+
+// M3: clique nos fragmentos reforça família do slot clicado (clique local de fragmento)
+document.getElementById("c3").addEventListener("click", (ev)=>{
+  const rect = ev.target.getBoundingClientRect();
+  const x = (ev.clientX - rect.left) * (c3.canvas.width / rect.width);
+  const y = (ev.clientY - rect.top) * (c3.canvas.height / rect.height);
+  const frames = state._m3Frames || [];
+  for(const f of frames){
+    if(x>=f.x && x<=f.x+f.ww && y>=f.y && y<=f.y+f.hh){
+      const fam = slotToFamily(f.slot);
+      blendFamilyIntoVec(fam, 0.32);
+      // phon bump por família (aproxima conteúdo->expressão)
+      if(fam.id==="F2"||fam.id==="F5") bumpPhon("surda",0.20);
+      if(fam.id==="F6"||fam.id==="F12") bumpPhon("sonora",0.18);
+      if(fam.id==="F1"||fam.id==="F7") bumpPhon("fricativa",0.18);
+      state.version++;
+      rerenderAll();
+      break;
+    }
+  }
+});
+
+// M4: clique nos fragmentos NÃO faz nada (restrição). (Só palavras via tokens em t4).
+
+/* =========================
+   FINAL: exposição determinística
+========================= */
+const genFinalBtn = document.getElementById("genFinal");
+const shFinalBtn  = document.getElementById("shFinal");
+const finalBox    = document.getElementById("finalBox");
+const cf          = document.getElementById("cf").getContext("2d");
+const tf          = document.getElementById("tf");
+const fallbackShare = document.getElementById("fallbackShare");
+
+function stateSignature(){
+  // assinatura curta do vetor (determinística)
+  const keyAxes = ["continuity","cut","density","rarefaction","center","conflict","contour","rhythm","oblique","mass","rupture","neutral","phon_surd","phon_son","phon_fric"];
+  return keyAxes.map(a=>Math.round(state.vec[a]*100)/100).join("|")
+    + "|m2swap:"+(state.m2Swap?1:0)
+    + "|m2obj:"+(state.m2ObjBankIdx%7);
+}
+
+function finalSlotsFromState(){
+  const rng = makeRng("FINAL::" + stateSignature());
+  const slots = [];
+  for(let i=0;i<10;i++){
+    const fam = pickFamilyByVec(rng);
+    slots.push(pickSlotFromFamily(fam, rng));
+  }
+  // garante Sui com 90% por estado
+  if(state.suiReady && rng() < 0.90){
+    slots[Math.floor(rng()*10)] = 53;
+  }
+  return slots;
+}
+
+function styleTextFromVec(){
+  const v = state.vec;
+  const cutness = v.cut + v.rupture;
+  const flow    = v.continuity + v.rarefaction;
+  const weight  = v.density + v.mass;
+  const drift   = v.oblique + v.center;
+  const conflict= v.conflict;
+  const phon = dominantPhonMode();
+  const phonLabel = (phon==="surda") ? "cortes secos" : (phon==="sonora" ? "peso e impacto" : "passagens suaves");
+
+  // escolha de traços dominantes
+  const traits = [];
+  if(cutness > flow && cutness > weight) traits.push("corte");
+  if(flow > cutness && flow > weight) traits.push("fluxo");
+  if(weight > cutness && weight > flow) traits.push("massa");
+  if(drift > 0.9) traits.push("desvio");
+  if(conflict > 0.9) traits.push("conflito");
+  if(v.neutral > 0.9) traits.push("campo homogéneo");
+  if(v.contour > 0.9) traits.push("contorno");
+
+  return {traits, phon, phonLabel};
+}
+
+function finalTexts(){
+  const rng = makeRng("TXT::" + stateSignature());
+  const mode = currentPhonMode();
+  const {traits, phon, phonLabel} = styleTextFromVec();
+
+  // estilo curatorial (parte 1)
+  const style =
+`O teu estilo curatorial inclina-se para ${traits.length?traits.join(" + "):"um equilíbrio instável"} — com ${phonLabel} no corpo da linguagem.
+As tuas decisões fizeram o campo pender: o que aparece não é “o melhor”, é o que o teu gesto conseguiu sustentar.`;
+
+  // crítica (parte 2) — mais longa, “catálogo”
+  const n1 = N_OPS[Math.floor(rng()*N_OPS.length)];
+  const n2 = N_OPS[Math.floor(rng()*N_OPS.length)];
+  const n3 = N_OPS[Math.floor(rng()*N_OPS.length)];
+  const a1 = ADJ_OPS[Math.floor(rng()*ADJ_OPS.length)];
+  const a2 = ADJ_OPS[Math.floor(rng()*ADJ_OPS.length)];
+  const v1 = V_OPS[Math.floor(rng()*V_OPS.length)];
+  const v2 = V_OPS[Math.floor(rng()*V_OPS.length)];
+  const adv= ADV_OPS[Math.floor(rng()*ADV_OPS.length)];
+
+  const critique =
+`Esta constelação trabalha a ${realize("superfície",mode)} como ${realize(a1,mode)}: não descreve, opera.
+Entre ${realize(n1,mode)} e ${realize(n2,mode)}, o campo faz-se por ${realize(v1,mode)} — e a ${realize("tensão",mode)} não aparece como tema, mas como regra.
+Há um ${realize("resto",mode)} que insiste: o que não entrou mantém a ${realize("emergência",mode)} em aberto.
+${realize(adv,mode)}, a ${realize("configuração",mode)} ${realize(a2,mode)} parece ${realize(v2,mode)} a própria ideia de exposição: não fechar, mas tornar legível a inclinação.`;
+
+  // convite (fixo pop+campo)
+  const invite =
+`Partilha a tua exposição — e chama alguém para operar outra.
+Cada percurso faz emergir obras diferentes.
+Que imagens os teus amigos vão encontrar que tu não conseguiste alcançar?
+https://negativo-mov.github.io/negativo.mov/mobiles/entrada/`;
+
+  return {style, critique, invite};
+}
+
+function drawFinalExhibition(slots){
+  const ctx = cf; const w=ctx.canvas.width, h=ctx.canvas.height;
+  drawBackground(ctx,w,h,"maze");
+
+  // constelação
+  const rng = makeRng("LAY::" + stateSignature());
+  const frames = [];
+  for(let i=0;i<10;i++){
+    const ww = w*(0.18 + rng()*0.05);
+    const hh = h*(0.28 + rng()*0.06);
+    const x = w*(0.06 + rng()*0.86) - ww/2;
+    const y = h*(0.10 + rng()*0.82) - hh/2;
+    frames.push({x:clamp(x,10,w-ww-10), y:clamp(y,10,h-hh-10), ww, hh, slot:slots[i]});
+  }
+
+  // desenha por ordem (fundo->frente)
+  for(const f of frames){
+    drawFrame(ctx,f.x,f.y,f.ww,f.hh);
+    if(f.slot===53 && state.suiReady) drawSui(ctx,f.x+10,f.y+10,f.ww-20,f.hh-20);
+    else drawNonSuiFragment(ctx,f.x+10,f.y+10,f.ww-20,f.hh-20,f.slot);
+  }
+}
+
+genFinalBtn.addEventListener("click", ()=>{
+  const slots = finalSlotsFromState(); // determinístico: não muda por clique
+  drawFinalExhibition(slots);
+
+  const {style, critique, invite} = finalTexts();
+  tf.innerHTML = "";
+  const p1 = document.createElement("div");
+  p1.className = "gen";
+  p1.textContent = style;
+  const p2 = document.createElement("div");
+  p2.className = "gen";
+  p2.style.marginTop = "10px";
+  p2.textContent = critique;
+  tf.appendChild(p1);
+  tf.appendChild(p2);
+
+  // preparar share text
+  const shareText =
+`${style}\n\n${critique}\n\n${invite}`;
+
+  shFinalBtn.style.display = "inline-block";
+  finalBox.style.display = "block";
+
+  // fallback box
+  fallbackShare.style.display = "block";
+  fallbackShare.textContent = shareText;
+
+  // guardar para partilha
+  state._finalShareText = shareText;
+});
+
+// Sharing: Web Share API com imagem do canvas (se disponível), fallback copy/download
+async function shareCanvas(canvasEl, text){
+  const url = "https://negativo-mov.github.io/negativo.mov/mobiles/entrada/";
+  try{
+    const blob = await new Promise(res=>canvasEl.toBlob(res, "image/png", 0.92));
+    const files = blob ? [new File([blob], "mobiles.png", {type:"image/png"})] : [];
+    if(navigator.share && (!files.length || navigator.canShare?.({files})) ){
+      await navigator.share({title:"MÓBILES — curadoria", text, url, files});
+      return true;
+    }
+  }catch(e){}
+  // fallback: copiar texto
+  try{
+    await navigator.clipboard.writeText(text + "\n\n" + url);
+    alert("Texto copiado. Cole no WhatsApp/Instagram/etc. (A imagem pode ser baixada pelo botão do browser no canvas).");
+  }catch(_){
+    alert("Não deu para partilhar automaticamente. Copie o texto no bloco ao fim.");
+  }
+  return false;
+}
+
+document.getElementById("shFinal").addEventListener("click", ()=>{
+  shareCanvas(document.getElementById("cf"), state._finalShareText || "");
+});
+
+document.getElementById("sh1").addEventListener("click", ()=>{
+  const txt = "Eu comecei a minha curadoria no MÓBILES. Vem operar a tua: https://negativo-mov.github.io/negativo.mov/mobiles/entrada/";
+  shareCanvas(document.getElementById("c1"), txt);
+});
+document.getElementById("sh2").addEventListener("click", ()=>{
+  const txt = "Troquei posições e senti a forma prender — até o verbo abrir saída. Faz a tua: https://negativo-mov.github.io/negativo.mov/mobiles/entrada/";
+  shareCanvas(document.getElementById("c2"), txt);
+});
+document.getElementById("sh3").addEventListener("click", ()=>{
+  const txt = "Cliquei em palavras e fragmentos: o campo respondeu ao meu gesto. Experimenta: https://negativo-mov.github.io/negativo.mov/mobiles/entrada/";
+  shareCanvas(document.getElementById("c3"), txt);
+});
+document.getElementById("sh4").addEventListener("click", ()=>{
+  const txt = "Insisti num som e a frase mudou de corpo — até colapsar. Vem: https://negativo-mov.github.io/negativo.mov/mobiles/entrada/";
+  shareCanvas(document.getElementById("c4"), txt);
+});
+
+/* =========================
+   Boot
+========================= */
+(async function boot(){
+  await loadSui();
+
+  // Garantia: se nenhum móbile cair com Sui (raro), força no M1
+  // (Como é determinístico por estado, checamos uma vez)
+  const anySui =
+    wantsSuiFor("m1") || wantsSuiFor("m2") || wantsSuiFor("m3") || wantsSuiFor("m4");
+  if(state.suiReady && !anySui){
+    // força via seed tweak mínima (não muda “do nada”; muda só neste boot)
+    state.version++;
+  }
+
+  // inicializa slots m2 coerentes
+  state.m2FrontSlot = null;
+  state.m2BackSlot  = null;
+
+  rerenderAll();
 })();
 </script>
 </body>
