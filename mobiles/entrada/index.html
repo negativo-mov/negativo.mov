@@ -10,16 +10,6 @@
       --bg1:#f3f7ff;
       --ink:#1a1a1a;
       --mut:#45424a;
-      --ghost:#ffffffcc;
-      --line:#17131d;
-      --line2:#2a2032;
-      --pink:#ffd2e8;
-      --blue:#cfe2ff;
-      --mint:#d7ffe8;
-      --cream:#fff3da;
-      --acid:#b7ffcf;
-      --sick:#d9c7ff;
-      --warn:#ffe2e2;
       --shadow: 0 18px 70px rgba(25,16,40,.16);
       --shadow2: 0 10px 36px rgba(25,16,40,.12);
       --radius: 22px;
@@ -46,6 +36,14 @@
       margin: 28px auto 140px;
     }
 
+    .title{
+      margin: 8px 0 10px;
+      font-size: 26px;
+      letter-spacing: .2px;
+      font-weight: 820;
+      color: #120f17;
+    }
+
     .lead{
       font-size: 16px;
       line-height: 1.55;
@@ -60,14 +58,6 @@
       backdrop-filter: blur(6px);
     }
 
-    .title{
-      margin: 8px 0 10px;
-      font-size: 26px;
-      letter-spacing: .2px;
-      font-weight: 820;
-      color: #120f17;
-    }
-
     .sig{
       display:inline-block;
       font-family: var(--mono);
@@ -80,9 +70,7 @@
       margin: 10px 0 0;
     }
 
-    .section{
-      margin: 28px 0;
-    }
+    .section{ margin: 28px 0; }
 
     .intro{
       white-space: pre-line;
@@ -107,7 +95,23 @@
       overflow:hidden;
     }
 
-    .scenePad{ padding: 18px; }
+    /* ========= tensivo: o campo “respira” ========= */
+    .scene::after{
+      content:"";
+      position:absolute;
+      inset:-12%;
+      background:
+        radial-gradient(700px 420px at 30% 20%, rgba(255,210,232,.22), transparent 60%),
+        radial-gradient(820px 520px at 75% 35%, rgba(207,226,255,.22), transparent 65%),
+        radial-gradient(900px 520px at 45% 85%, rgba(215,255,232,.18), transparent 65%);
+      opacity:.9;
+      mix-blend-mode:multiply;
+      transform: translate3d(var(--bx,0px), var(--by,0px), 0) rotate(var(--br,0deg));
+      transition: transform 520ms ease;
+      pointer-events:none;
+    }
+
+    .scenePad{ padding: 18px; position:relative; z-index:1; }
 
     .controls{
       display:flex;
@@ -118,6 +122,8 @@
       border-top: 1px solid rgba(20,10,30,.10);
       background: rgba(255,255,255,.40);
       backdrop-filter: blur(6px);
+      position:relative;
+      z-index:2;
     }
 
     button{
@@ -151,51 +157,25 @@
       background: rgba(255,255,255,.35);
     }
 
-    /* fragment frames */
-    .frGrid3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      padding: 18px;
-    }
+    /* ========= layouts ========= */
+    .frGrid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .frGrid7{ display:grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+    .frGrid5{ display:grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .fr2{ display:grid; grid-template-columns: 1.25fr .75fr; gap: 14px; align-items:end; }
 
-    .frGrid7{
-      display:grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 10px;
-      padding: 18px;
-    }
     @media (max-width: 860px){
       .frGrid7{ grid-template-columns: repeat(4, 1fr); }
-    }
-    @media (max-width: 520px){
-      .frGrid7{ grid-template-columns: repeat(3, 1fr); }
-    }
-
-    .frGrid5{
-      display:grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-      padding: 18px;
-    }
-    @media (max-width: 860px){
       .frGrid5{ grid-template-columns: repeat(3, 1fr); }
-    }
-    @media (max-width: 520px){
-      .frGrid5{ grid-template-columns: repeat(2, 1fr); }
-    }
-
-    .fr2{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: 14px;
-      padding: 18px;
-      align-items:end;
     }
     @media (max-width: 700px){
       .fr2{ grid-template-columns: 1fr; }
     }
+    @media (max-width: 520px){
+      .frGrid7{ grid-template-columns: repeat(3, 1fr); }
+      .frGrid5{ grid-template-columns: repeat(2, 1fr); }
+    }
 
+    /* ========= fragmentos ========= */
     .frag{
       position: relative;
       border-radius: 18px;
@@ -207,26 +187,24 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      transform: translateZ(0);
+
+      transform: translate3d(var(--dx,0px), var(--dy,0px), 0) rotate(var(--dr,0deg));
+      transition: transform 520ms ease, box-shadow 220ms ease, outline 220ms ease;
+      will-change: transform;
     }
 
     .frag .img{
       width: 100%;
       height: 100%;
-      object-fit: contain; /* IMPORTANT: never squash Sui */
+      object-fit: contain; /* nunca achatar a Sui */
       background: rgba(255,255,255,.25);
-      image-rendering:auto;
     }
 
-    .frag.clickable{
-      cursor:pointer;
-      outline: 0px solid rgba(255,255,255,0);
-      transition: transform .12s ease, outline .12s ease, box-shadow .12s ease;
-    }
+    .frag.clickable{ cursor:pointer; }
     .frag.clickable:hover{
-      transform: translateY(-2px);
       box-shadow: 0 18px 42px rgba(20,10,30,.22);
       outline: 3px solid rgba(255,255,255,.65);
+      transform: translate3d(calc(var(--dx,0px)), calc(var(--dy,0px) - 2px), 0) rotate(var(--dr,0deg));
     }
 
     .fragTag{
@@ -243,7 +221,7 @@
       pointer-events:none;
     }
 
-    /* Scenes backgrounds (visible) */
+    /* ========= fundos por cena ========= */
     .bg-crib::before,
     .bg-mountains::before,
     .bg-lab::before,
@@ -253,6 +231,7 @@
       inset:0;
       opacity:.85;
       pointer-events:none;
+      mix-blend-mode: multiply;
     }
 
     .bg-crib::before{
@@ -260,44 +239,38 @@
         radial-gradient(400px 240px at 50% 20%, rgba(255,255,255,.85), transparent 60%),
         linear-gradient(180deg, rgba(255,210,232,.55), rgba(217,199,255,.25)),
         repeating-linear-gradient(90deg, rgba(20,10,30,.10) 0 2px, transparent 2px 12px);
-      mix-blend-mode: multiply;
     }
 
     .bg-mountains::before{
       background:
         linear-gradient(180deg, rgba(207,226,255,.55), rgba(255,243,218,.35)),
         radial-gradient(900px 450px at 40% 85%, rgba(180,255,207,.35), transparent 60%),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='420' viewBox='0 0 1200 420'%3E%3Cpath d='M0 340 L170 230 L320 330 L500 190 L680 340 L860 210 L1020 340 L1200 250 L1200 420 L0 420 Z' fill='rgba(20,10,30,0.08)'/%3E%3Cpath d='M0 360 L150 280 L280 355 L460 240 L620 370 L780 260 L940 360 L1200 290 L1200 420 L0 420 Z' fill='rgba(20,10,30,0.06)'/%3E%3Ccircle cx='180' cy='368' r='10' fill='rgba(20,10,30,0.10)'/%3E%3Ccircle cx='210' cy='372' r='7' fill='rgba(20,10,30,0.10)'/%3E%3Ccircle cx='860' cy='370' r='9' fill='rgba(20,10,30,0.10)'/%3E%3Ccircle cx='890' cy='372' r='6' fill='rgba(20,10,30,0.10)'/%3E%3C/svg%3E");
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='420' viewBox='0 0 1200 420'%3E%3Cpath d='M0 340 L170 230 L320 330 L500 190 L680 340 L860 210 L1020 340 L1200 250 L1200 420 L0 420 Z' fill='rgba(20,10,30,0.08)'/%3E%3Cpath d='M0 360 L150 280 L280 355 L460 240 L620 370 L780 260 L940 360 L1200 290 L1200 420 L0 420 Z' fill='rgba(20,10,30,0.06)'/%3E%3C/svg%3E");
       background-repeat:no-repeat;
       background-position:center bottom;
       background-size: cover;
-      mix-blend-mode: multiply;
     }
 
     .bg-lab::before{
       background:
         radial-gradient(700px 420px at 30% 20%, rgba(255,210,232,.35), transparent 60%),
         radial-gradient(700px 420px at 85% 30%, rgba(207,226,255,.35), transparent 60%),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='700' viewBox='0 0 1200 700'%3E%3Cg fill='none' stroke='rgba(20,10,30,0.16)' stroke-width='5'%3E%3Cpath d='M80 120 H420 V260 H240 V400 H520 V560 H980'/%3E%3Cpath d='M160 80 H560 V200 H360 V320 H640 V460 H420 V620 H1120'/%3E%3Cpath d='M60 520 H280 V360 H120 V240 H320 V120 H980'/%3E%3C/g%3E%3Cg fill='rgba(20,10,30,0.10)'%3E%3Ccircle cx='240' cy='400' r='10'/%3E%3Ccircle cx='420' cy='260' r='10'/%3E%3Ccircle cx='640' cy='460' r='10'/%3E%3Ccircle cx='360' cy='320' r='10'/%3E%3Ccircle cx='520' cy='560' r='10'/%3E%3C/g%3E%3C/svg%3E");
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='700' viewBox='0 0 1200 700'%3E%3Cg fill='none' stroke='rgba(20,10,30,0.16)' stroke-width='5'%3E%3Cpath d='M80 120 H420 V260 H240 V400 H520 V560 H980'/%3E%3Cpath d='M160 80 H560 V200 H360 V320 H640 V460 H420 V620 H1120'/%3E%3Cpath d='M60 520 H280 V360 H120 V240 H320 V120 H980'/%3E%3C/g%3E%3C/svg%3E");
       background-size: cover;
       background-position:center;
-      mix-blend-mode: multiply;
     }
 
     .bg-stairs::before{
       background:
         radial-gradient(900px 520px at 50% 18%, rgba(255,243,218,.45), transparent 55%),
         radial-gradient(820px 520px at 35% 85%, rgba(217,199,255,.25), transparent 60%),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='520' viewBox='0 0 1200 520'%3E%3Cg fill='none' stroke='rgba(20,10,30,0.16)' stroke-width='7'%3E%3Cpath d='M120 420 L260 340 L400 420 L540 340 L680 420 L820 340 L960 420'/%3E%3Cpath d='M220 130 L220 320 L360 240 L360 430'/%3E%3Cpath d='M620 90 L760 170 L620 250 L760 330 L620 410'/%3E%3Cpath d='M980 140 L860 220 L980 300 L860 380'/%3E%3C/g%3E%3Cg fill='rgba(20,10,30,0.08)'%3E%3Crect x='120' y='420' width='840' height='40'/%3E%3C/g%3E%3C/svg%3E");
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='520' viewBox='0 0 1200 520'%3E%3Cg fill='none' stroke='rgba(20,10,30,0.16)' stroke-width='7'%3E%3Cpath d='M120 420 L260 340 L400 420 L540 340 L680 420 L820 340 L960 420'/%3E%3Cpath d='M220 130 L220 320 L360 240 L360 430'/%3E%3Cpath d='M620 90 L760 170 L620 250 L760 330 L620 410'/%3E%3Cpath d='M980 140 L860 220 L980 300 L860 380'/%3E%3C/g%3E%3C/svg%3E");
       background-size: cover;
       background-position:center;
-      mix-blend-mode: multiply;
     }
 
-    /* text blocks */
-    .dyn{
-      padding: 0 18px 18px;
-    }
+    /* ========= textos ========= */
+    .dyn{ padding: 0 18px 18px; position:relative; z-index:2; }
     .dyn p{
       margin: 10px 0 0;
       color: rgba(20,10,30,.86);
@@ -309,7 +282,7 @@
       color: rgba(20,10,30,.70);
     }
 
-    /* token clickable */
+    /* token clicável */
     .tok{
       display:inline-block;
       padding: 0 2px;
@@ -333,10 +306,7 @@
     }
 
     /* final */
-    .finalWrap{
-      margin-top: 16px;
-      padding: 18px;
-    }
+    .finalWrap{ margin-top: 16px; padding: 18px; }
     .constellation{
       display:grid;
       grid-template-columns: repeat(5, 1fr);
@@ -358,9 +328,7 @@
       white-space: pre-line;
     }
 
-    .flash{
-      animation: flash .22s ease-in-out 1;
-    }
+    .flash{ animation: flash .22s ease-in-out 1; }
     @keyframes flash{
       0%{ filter: saturate(1); }
       50%{ filter: saturate(1.7) contrast(1.05); }
@@ -404,7 +372,7 @@ Não é escolha de imagens.
 E o modo como começas
 inclina todo o percurso.</div>
 
-      <div class="scene bg-crib">
+      <div class="scene bg-crib" id="scene_m1">
         <div class="scenePad frGrid3" id="m1_frags"></div>
         <div class="dyn">
           <p id="m1_text"></p>
@@ -430,11 +398,11 @@ Só o gesto —
 o que fazes —
 abre outra possibilidade.</div>
 
-      <div class="scene bg-mountains">
+      <div class="scene bg-mountains" id="scene_m2">
         <div class="scenePad fr2" id="m2_frags"></div>
         <div class="dyn">
           <p id="m2_text"></p>
-          <p class="small">M2: clicar nos fragmentos apenas inverte frente↔fundo e sujeito↔objeto. Clicar no verbo muda apenas o objeto.</p>
+          <p class="small">M2: clicar nos fragmentos apenas inverte frente↔fundo e sujeito↔objeto. Clicar no verbo muda apenas o objeto (e o fragmento do objeto).</p>
         </div>
         <div class="controls">
           <span class="hint">M2: só fragmentos + verbo.</span>
@@ -454,7 +422,7 @@ Sem perceber, vais formando um modo de ver.
 Um estilo.
 Uma inclinação do mundo.</div>
 
-      <div class="scene bg-lab">
+      <div class="scene bg-lab" id="scene_m3">
         <div class="scenePad frGrid7" id="m3_frags"></div>
         <div class="dyn">
           <p id="m3_text"></p>
@@ -481,7 +449,7 @@ Até que, em excesso,
 algo colapsa
 e o regime muda.</div>
 
-      <div class="scene bg-stairs" id="m4_scene">
+      <div class="scene bg-stairs" id="scene_m4">
         <div class="scenePad frGrid5" id="m4_frags"></div>
         <div class="dyn">
           <p id="m4_text"></p>
@@ -515,7 +483,7 @@ Partilha o teu percurso.
 Não como resposta,
 mas como pergunta aberta aos outros.</div>
 
-      <div class="scene">
+      <div class="scene" id="scene_final">
         <div class="finalWrap">
           <button id="btn_generate">Gerar a minha exposição</button>
           <button class="small ghost" id="btn_share_final" style="display:none;">Partilhar resultado</button>
@@ -539,235 +507,281 @@ mas como pergunta aberta aos outros.</div>
 
 <script>
 /* =========================================================
-   0) PATHS (GitHub Pages) + SUI JSON
+   PATHS (GitHub Pages)
    Page: /mobiles/entrada/index.html
    sui.json: /mobiles/sui.json
-   image: /mobiles/assets/sui/slot_053.jpg
 ========================================================= */
-
-const PATH_SUI_JSON = "../sui.json";        // from /entrada/
-const PATH_PREFIX_FROM_ENTRADA = "../";    // to reach /mobiles/
+const PATH_SUI_JSON = "../sui.json";
+const PATH_PREFIX_FROM_ENTRADA = "../";
 
 /* =========================================================
-   1) HARD SEMANTIC ENGINE — axes + decaying impulses
+   HARD SEMANTIC ENGINE
 ========================================================= */
 const AXES = [
-  "corte", "fluxo", "densidade", "rarefacao",
-  "centro_instavel", "contorno", "ritmo", "memoria",
-  "tensao", "presenca", "emergencia", "cuidado"
+  "corte","fluxo","densidade","rarefacao",
+  "centro_instavel","contorno","ritmo","memoria",
+  "tensao","presenca","emergencia","cuidado"
 ];
 
-function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
-function rnd(n=1){ return Math.random()*n; }
-function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
+function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
 
-const DECAY = {
-  self: 1.00,
-  next: 0.45,
-  far:  0.18
-};
+const DECAY = { self: 1.00, next: 0.45, far: 0.18 };
 
-// Global vectors (tensive + phonological)
 const state = {
   tick: 0,
-  // weights 0..1
-  axes: Object.fromEntries(AXES.map(k => [k, 0.33])),
-  // phonological regime weights (0..1) + active target
-  phono: { surda: 0.33, sonora: 0.33, fricativa: 0.33 },
+  axes: Object.fromEntries(AXES.map(k=>[k, 0.33])),
+  phono: { surda:0.33, sonora:0.33, fricativa:0.33 },
   phonoTarget: "surda",
-  // semantic regime seed from M1
-  seed: 0,
-  // cached Sui map
   suiMap: null,
   suiUrl: null,
-  // enforce 90% at least one
   forceSui: (Math.random() < 0.90),
-  // per-mobile local state
-  m1: { clicks: 0, slots: [12, 53, 71] }, // will be set
-  m2: { frontSlot: 18, backSlot: 66, swapped: false, verbIndex: 0, objVariant: 0 },
-  m3: { slots: [], clicks: 0, localBoost: Object.fromEntries(AXES.map(k => [k, 0])) },
-  m4: { slots: [], clicks: 0, localBoost: { surda:0, sonora:0, fricativa:0 } },
-  // final cache
-  final: { hash: "", slots: [], styleText:"", critText:"", shareText:"" }
+
+  m1: { clicks:0, slots:[12,53,71] },
+
+  // M2 agora é ESTÁVEL: sujeito/objeto guardados e só o objeto muda no clique do verbo
+  m2: {
+    frontSlot: 18,
+    backSlot: 66,
+    swapped: false,
+    verbIndex: 0,
+    subjectOps: null,
+    objectOps: null
+  },
+
+  m3: { slots:[], clicks:0 },
+  m4: { slots:[], clicks:0, localBoost:{surda:0,sonora:0,fricativa:0} },
+
+  final: { hash:"", slots:[], styleText:"", critText:"", shareText:"" }
 };
 
-function applyImpulse(axis, strength, srcMobile){
-  // srcMobile: 1..4
-  // distribute decayed influence to all mobiles via global vector,
-  // but keep the handler local (the local mobile calls this)
-  const s = clamp(strength, -1, 1);
+function axisWeight(axis){ return clamp(state.axes[axis], 0.02, 0.98); }
 
-  // update global axis
+function applyImpulse(axis, strength){
+  const s = clamp(strength, -1, 1);
   state.axes[axis] = clamp(state.axes[axis] + s*0.10, 0.02, 0.98);
 
-  // small coupled updates (semantic consistency)
-  if(axis === "corte"){ state.axes["fluxo"] = clamp(state.axes["fluxo"] - s*0.05, 0.02, 0.98); }
-  if(axis === "fluxo"){ state.axes["corte"] = clamp(state.axes["corte"] - s*0.05, 0.02, 0.98); }
-  if(axis === "densidade"){ state.axes["rarefacao"] = clamp(state.axes["rarefacao"] - s*0.05, 0.02, 0.98); }
-  if(axis === "rarefacao"){ state.axes["densidade"] = clamp(state.axes["densidade"] - s*0.05, 0.02, 0.98); }
+  if(axis==="corte"){ state.axes["fluxo"]=clamp(state.axes["fluxo"]-s*0.05,0.02,0.98); }
+  if(axis==="fluxo"){ state.axes["corte"]=clamp(state.axes["corte"]-s*0.05,0.02,0.98); }
+  if(axis==="densidade"){ state.axes["rarefacao"]=clamp(state.axes["rarefacao"]-s*0.05,0.02,0.98); }
+  if(axis==="rarefacao"){ state.axes["densidade"]=clamp(state.axes["densidade"]-s*0.05,0.02,0.98); }
 
-  // update global tick
   state.tick++;
 }
 
 function applyPhonoImpulse(kind, strength){
   const s = clamp(strength, 0, 1);
-  state.phono[kind] = clamp(state.phono[kind] + s*0.12, 0.02, 0.98);
-  // gently reduce others
+  state.phono[kind] = clamp(state.phono[kind] + s*0.16, 0.02, 0.98);
   for(const k of ["surda","sonora","fricativa"]){
-    if(k !== kind) state.phono[k] = clamp(state.phono[k] - s*0.05, 0.02, 0.98);
+    if(k!==kind) state.phono[k] = clamp(state.phono[k] - s*0.07, 0.02, 0.98);
   }
-  // update target = max
-  let best = "surda", bestV = -1;
+  // target = max
+  let best="surda", bestV=-1;
   for(const k of ["surda","sonora","fricativa"]){
-    if(state.phono[k] > bestV){ bestV = state.phono[k]; best = k; }
+    if(state.phono[k] > bestV){ bestV = state.phono[k]; best=k; }
   }
   state.phonoTarget = best;
   state.tick++;
 }
 
 /* =========================================================
-   2) Lexicon (70 operators, each with 3 surface variants)
-   - plus explicit operator→axes mapping
-   - "prega" replaced by "vinco"
+   LEXICON (com "vinco" no lugar de "prega")
 ========================================================= */
-
 const LEX = [
-  // SUBSTANTIVOS 1..28
-  { op:"vestigio", label:"vestígio", axis:["memoria","presenca"], surda:"traço", sonora:"marca", fricativa:"sombra" },
-  { op:"sopro", label:"sopro", axis:["fluxo","rarefacao"], surda:"pingo", sonora:"bafo", fricativa:"suspiro" },
-  { op:"dobra", label:"dobra", axis:["contorno","fluxo"], surda:"vinco", sonora:"curva", fricativa:"flexão" },
-  { op:"canto", label:"canto", axis:["contorno","corte"], surda:"quina", sonora:"beira", fricativa:"franja" },
-  { op:"margem", label:"margem", axis:["contorno","tensao"], surda:"limite", sonora:"borda", fricativa:"fronteira" },
-  { op:"poeira", label:"poeira", axis:["rarefacao","memoria"], surda:"pó", sonora:"bruma", fricativa:"cinza" },
-  { op:"silencio", label:"silêncio", axis:["rarefacao","cuidado"], surda:"pausa", sonora:"calma", fricativa:"sussurro" },
-  { op:"rastro", label:"rastro", axis:["memoria","ritmo"], surda:"pegada", sonora:"vesta", fricativa:"resíduo" },
-  { op:"fragmento", label:"fragmento", axis:["corte","memoria"], surda:"cortezinho", sonora:"bordado", fricativa:"desfiado" },
-  { op:"detalhe", label:"detalhe", axis:["cuidado","presenca"], surda:"ponto", sonora:"miolo", fricativa:"nuança" },
+  // SUBS (0..27)
+  { op:"vestigio", axis:["memoria","presenca"], surda:"traço", sonora:"marca", fricativa:"sombra" },
+  { op:"sopro", axis:["fluxo","rarefacao"], surda:"pingo", sonora:"bafo", fricativa:"suspiro" },
+  { op:"dobra", axis:["contorno","fluxo"], surda:"vinco", sonora:"curva", fricativa:"flexão" },
+  { op:"canto", axis:["contorno","corte"], surda:"quina", sonora:"beira", fricativa:"franja" },
+  { op:"margem", axis:["contorno","tensao"], surda:"limite", sonora:"borda", fricativa:"fronteira" },
+  { op:"poeira", axis:["rarefacao","memoria"], surda:"pó", sonora:"bruma", fricativa:"cinza" },
+  { op:"silencio", axis:["rarefacao","cuidado"], surda:"pausa", sonora:"calma", fricativa:"sussurro" },
+  { op:"rastro", axis:["memoria","ritmo"], surda:"pegada", sonora:"vesta", fricativa:"resíduo" },
+  { op:"fragmento", axis:["corte","memoria"], surda:"cortezinho", sonora:"bordado", fricativa:"desfiado" },
+  { op:"detalhe", axis:["cuidado","presenca"], surda:"ponto", sonora:"miolo", fricativa:"nuança" },
 
-  { op:"lembranca", label:"lembrança", axis:["memoria","presenca"], surda:"nota", sonora:"memória", fricativa:"recordação" },
-  { op:"demora_n", label:"demora", axis:["ritmo","cuidado"], surda:"pausa", sonora:"espera", fricativa:"suspensão" },
-  { op:"intervalo", label:"intervalo", axis:["corte","rarefacao"], surda:"corte", sonora:"entre", fricativa:"fresta" },
-  { op:"eco", label:"eco", axis:["ritmo","presenca"], surda:"toque", sonora:"resposta", fricativa:"ressonância" },
-  { op:"resto", label:"resto", axis:["memoria","tensao"], surda:"ruga", sonora:"sobra", fricativa:"resíduo" },
+  { op:"lembranca", axis:["memoria","presenca"], surda:"nota", sonora:"memória", fricativa:"recordação" },
+  { op:"demora_n", axis:["ritmo","cuidado"], surda:"pausa", sonora:"espera", fricativa:"suspensão" },
+  { op:"intervalo", axis:["corte","rarefacao"], surda:"corte", sonora:"entre", fricativa:"fresta" },
+  { op:"eco", axis:["ritmo","presenca"], surda:"toque", sonora:"resposta", fricativa:"ressonância" },
+  { op:"resto", axis:["memoria","tensao"], surda:"ruga", sonora:"sobra", fricativa:"resíduo" },
 
-  { op:"plano", label:"plano", axis:["presenca","contorno"], surda:"linha", sonora:"base", fricativa:"superfície" },
-  { op:"camada", label:"camada", axis:["densidade","presenca"], surda:"capa", sonora:"nível", fricativa:"espessura" },
-  { op:"textura", label:"textura", axis:["densidade","cuidado"], surda:"trama", sonora:"tecido", fricativa:"fibra" },
-  { op:"superficie", label:"superfície", axis:["presenca","contorno"], surda:"pele", sonora:"face", fricativa:"película" },
-  { op:"escala", label:"escala", axis:["tensao","presenca"], surda:"passo", sonora:"medida", fricativa:"proporção" },
-  { op:"ritmo", label:"ritmo", axis:["ritmo","fluxo"], surda:"pulso", sonora:"cadência", fricativa:"fluência" },
-  { op:"materia", label:"matéria", axis:["densidade","presenca"], surda:"corpo", sonora:"substância", fricativa:"massa" },
+  { op:"plano", axis:["presenca","contorno"], surda:"linha", sonora:"base", fricativa:"superfície" },
+  { op:"camada", axis:["densidade","presenca"], surda:"capa", sonora:"nível", fricativa:"espessura" },
+  { op:"textura", axis:["densidade","cuidado"], surda:"trama", sonora:"tecido", fricativa:"fibra" },
+  { op:"superficie", axis:["presenca","contorno"], surda:"pele", sonora:"face", fricativa:"película" },
+  { op:"escala", axis:["tensao","presenca"], surda:"passo", sonora:"medida", fricativa:"proporção" },
+  { op:"ritmo", axis:["ritmo","fluxo"], surda:"pulso", sonora:"cadência", fricativa:"fluência" },
+  { op:"materia", axis:["densidade","presenca"], surda:"corpo", sonora:"substância", fricativa:"massa" },
 
-  { op:"presenca", label:"presença", axis:["presenca","tensao"], surda:"toque", sonora:"vulto", fricativa:"sombra" },
-  { op:"tensao", label:"tensão", axis:["tensao","corte"], surda:"nó", sonora:"peso", fricativa:"pressão" },
-  { op:"campo", label:"campo", axis:["presenca","fluxo"], surda:"plano", sonora:"território", fricativa:"ambiente" },
-  { op:"emergencia", label:"emergência", axis:["emergencia","tensao"], surda:"salto", sonora:"aparição", fricativa:"insurgência" },
-  { op:"config", label:"configuração", axis:["presenca","contorno"], surda:"forma", sonora:"estrutura", fricativa:"composição" },
-  { op:"cessacao", label:"cessação", axis:["corte","rarefacao"], surda:"corte", sonora:"encerramento", fricativa:"silenciamento" },
+  { op:"presenca", axis:["presenca","tensao"], surda:"toque", sonora:"vulto", fricativa:"sombra" },
+  { op:"tensao", axis:["tensao","corte"], surda:"nó", sonora:"peso", fricativa:"pressão" },
+  { op:"campo", axis:["presenca","fluxo"], surda:"plano", sonora:"território", fricativa:"ambiente" },
+  { op:"emergencia", axis:["emergencia","tensao"], surda:"salto", sonora:"aparição", fricativa:"insurgência" },
+  { op:"config", axis:["presenca","contorno"], surda:"forma", sonora:"estrutura", fricativa:"composição" },
+  { op:"cessacao", axis:["corte","rarefacao"], surda:"corte", sonora:"encerramento", fricativa:"silenciamento" },
 
-  // VERBOS 29..50 (infinitivo)
-  { op:"aproximar", label:"aproximar", axis:["cuidado","presenca"], surda:"chegar", sonora:"beirar", fricativa:"esfumar" },
-  { op:"reparar", label:"reparar", axis:["cuidado","centro_instavel"], surda:"notar", sonora:"observar", fricativa:"esmiuçar" },
-  { op:"tocar", label:"tocar", axis:["presenca","cuidado"], surda:"tatear", sonora:"roçar", fricativa:"aflorar" },
-  { op:"escutar", label:"escutar", axis:["cuidado","ritmo"], surda:"ouvir", sonora:"acolher", fricativa:"sintonizar" },
-  { op:"demorar_v", label:"demorar", axis:["ritmo","cuidado"], surda:"parar", sonora:"permanecer", fricativa:"alongar-se" },
-  { op:"pousar", label:"pousar", axis:["rarefacao","fluxo"], surda:"cair", sonora:"assentar", fricativa:"deslizar" },
-  { op:"acompanhar", label:"acompanhar", axis:["fluxo","cuidado"], surda:"seguir", sonora:"amparar", fricativa:"entrelaçar" },
-  { op:"cuidar", label:"cuidar", axis:["cuidado","presenca"], surda:"zelar", sonora:"nutrir", fricativa:"suavizar" },
+  // VERBS (28..49) infinitivo
+  { op:"aproximar", axis:["cuidado","presenca"], surda:"chegar", sonora:"beirar", fricativa:"esfumar" },
+  { op:"reparar", axis:["cuidado","centro_instavel"], surda:"notar", sonora:"observar", fricativa:"esmiuçar" },
+  { op:"tocar", axis:["presenca","cuidado"], surda:"tatear", sonora:"roçar", fricativa:"aflorar" },
+  { op:"escutar", axis:["cuidado","ritmo"], surda:"ouvir", sonora:"acolher", fricativa:"sintonizar" },
+  { op:"demorar_v", axis:["ritmo","cuidado"], surda:"parar", sonora:"permanecer", fricativa:"alongar-se" },
+  { op:"pousar", axis:["rarefacao","fluxo"], surda:"cair", sonora:"assentar", fricativa:"deslizar" },
+  { op:"acompanhar", axis:["fluxo","cuidado"], surda:"seguir", sonora:"amparar", fricativa:"entrelaçar" },
+  { op:"cuidar", axis:["cuidado","presenca"], surda:"zelar", sonora:"nutrir", fricativa:"suavizar" },
 
-  { op:"recortar", label:"recortar", axis:["corte","contorno"], surda:"cortar", sonora:"delimitar", fricativa:"fissurar" },
-  { op:"deslocar", label:"deslocar", axis:["centro_instavel","fluxo"], surda:"mover", sonora:"transferir", fricativa:"deslizar" },
-  { op:"sustentar", label:"sustentar", axis:["densidade","presenca"], surda:"segurar", sonora:"manter", fricativa:"suspender" },
-  { op:"distribuir", label:"distribuir", axis:["ritmo","presenca"], surda:"partir", sonora:"organizar", fricativa:"espalhar" },
-  { op:"sobrepor", label:"sobrepor", axis:["densidade","fluxo"], surda:"cobrir", sonora:"acumular", fricativa:"sobrefluir" },
-  { op:"atravessar", label:"atravessar", axis:["fluxo","centro_instavel"], surda:"passar", sonora:"cruzar", fricativa:"permeiar" },
-  { op:"insinuar", label:"insinuar", axis:["centro_instavel","presenca"], surda:"sugerir", sonora:"indicar", fricativa:"sussurrar" },
+  { op:"recortar", axis:["corte","contorno"], surda:"cortar", sonora:"delimitar", fricativa:"fissurar" },
+  { op:"deslocar", axis:["centro_instavel","fluxo"], surda:"mover", sonora:"transferir", fricativa:"deslizar" },
+  { op:"sustentar", axis:["densidade","presenca"], surda:"segurar", sonora:"manter", fricativa:"suspender" },
+  { op:"distribuir", axis:["ritmo","presenca"], surda:"partir", sonora:"organizar", fricativa:"espalhar" },
+  { op:"sobrepor", axis:["densidade","fluxo"], surda:"cobrir", sonora:"acumular", fricativa:"sobrefluir" },
+  { op:"atravessar", axis:["fluxo","centro_instavel"], surda:"passar", sonora:"cruzar", fricativa:"permeiar" },
+  { op:"insinuar", axis:["centro_instavel","presenca"], surda:"sugerir", sonora:"indicar", fricativa:"sussurrar" },
 
-  { op:"insistir", label:"insistir", axis:["tensao","ritmo"], surda:"bater", sonora:"persistir", fricativa:"ressoar" },
-  { op:"interromper", label:"interromper", axis:["corte","rarefacao"], surda:"cortar", sonora:"cessar", fricativa:"esvair-se" },
-  { op:"fixar", label:"fixar", axis:["contorno","densidade"], surda:"marcar", sonora:"estabelecer", fricativa:"sedimentar" },
-  { op:"suspender_v", label:"suspender", axis:["rarefacao","tensao"], surda:"parar", sonora:"reter", fricativa:"flutuar" },
-  { op:"reter", label:"reter", axis:["memoria","densidade"], surda:"prender", sonora:"guardar", fricativa:"conservar" },
-  { op:"abandonar", label:"abandonar", axis:["rarefacao","corte"], surda:"largar", sonora:"deixar", fricativa:"dissolver" },
-  { op:"transformar", label:"transformar", axis:["emergencia","centro_instavel"], surda:"romper", sonora:"converter", fricativa:"transfigurar" },
+  { op:"insistir", axis:["tensao","ritmo"], surda:"bater", sonora:"persistir", fricativa:"ressoar" },
+  { op:"interromper", axis:["corte","rarefacao"], surda:"cortar", sonora:"cessar", fricativa:"esvair-se" },
+  { op:"fixar", axis:["contorno","densidade"], surda:"marcar", sonora:"estabelecer", fricativa:"sedimentar" },
+  { op:"suspender_v", axis:["rarefacao","tensao"], surda:"parar", sonora:"reter", fricativa:"flutuar" },
+  { op:"reter", axis:["memoria","densidade"], surda:"prender", sonora:"guardar", fricativa:"conservar" },
+  { op:"abandonar", axis:["rarefacao","corte"], surda:"largar", sonora:"deixar", fricativa:"dissolver" },
+  { op:"transformar", axis:["emergencia","centro_instavel"], surda:"romper", sonora:"converter", fricativa:"transfigurar" },
 
-  // ADJETIVOS 51..62
-  { op:"leve", label:"leve", axis:["rarefacao","fluxo"], surda:"claro", sonora:"brando", fricativa:"suave" },
-  { op:"minimo", label:"mínimo", axis:["rarefacao","cuidado"], surda:"curto", sonora:"pequeno", fricativa:"sutil" },
-  { op:"fragil", label:"frágil", axis:["rarefacao","tensao"], surda:"ténue", sonora:"delicado", fricativa:"sensível" },
-  { op:"tenue", label:"tênue", axis:["rarefacao","contorno"], surda:"fino", sonora:"delgado", fricativa:"esfumado" },
-  { op:"quase_adj", label:"quase", axis:["centro_instavel","tensao"], surda:"breve", sonora:"próximo", fricativa:"difuso" },
+  // ADJS (50..61)
+  { op:"leve", axis:["rarefacao","fluxo"], surda:"claro", sonora:"brando", fricativa:"suave" },
+  { op:"minimo", axis:["rarefacao","cuidado"], surda:"curto", sonora:"pequeno", fricativa:"sutil" },
+  { op:"fragil", axis:["rarefacao","tensao"], surda:"ténue", sonora:"delicado", fricativa:"sensível" },
+  { op:"tenue", axis:["rarefacao","contorno"], surda:"fino", sonora:"delgado", fricativa:"esfumado" },
+  { op:"quase_adj", axis:["centro_instavel","tensao"], surda:"breve", sonora:"próximo", fricativa:"difuso" },
 
-  { op:"opaco", label:"opaco", axis:["densidade","corte"], surda:"denso", sonora:"turvo", fricativa:"fosco" },
-  { op:"poroso", label:"poroso", axis:["fluxo","centro_instavel"], surda:"aberto", sonora:"vazado", fricativa:"permeável" },
-  { op:"irregular", label:"irregular", axis:["centro_instavel","tensao"], surda:"torto", sonora:"oscilante", fricativa:"assimétrico" },
-  { op:"difuso_adj", label:"difuso", axis:["centro_instavel","rarefacao"], surda:"solto", sonora:"amplo", fricativa:"disperso" },
+  { op:"opaco", axis:["densidade","corte"], surda:"denso", sonora:"turvo", fricativa:"fosco" },
+  { op:"poroso", axis:["fluxo","centro_instavel"], surda:"aberto", sonora:"vazado", fricativa:"permeável" },
+  { op:"irregular", axis:["centro_instavel","tensao"], surda:"torto", sonora:"oscilante", fricativa:"assimétrico" },
+  { op:"difuso_adj", axis:["centro_instavel","rarefacao"], surda:"solto", sonora:"amplo", fricativa:"disperso" },
 
-  { op:"latente", label:"latente", axis:["memoria","emergencia"], surda:"oculto", sonora:"presente", fricativa:"subjacente" },
-  { op:"instavel", label:"instável", axis:["centro_instavel","tensao"], surda:"quebrado", sonora:"oscilante", fricativa:"flutuante" },
-  { op:"provisorio", label:"provisório", axis:["emergencia","fluxo"], surda:"breve", sonora:"mutável", fricativa:"transitório" },
+  { op:"latente", axis:["memoria","emergencia"], surda:"oculto", sonora:"presente", fricativa:"subjacente" },
+  { op:"instavel", axis:["centro_instavel","tensao"], surda:"quebrado", sonora:"oscilante", fricativa:"flutuante" },
+  { op:"provisorio", axis:["emergencia","fluxo"], surda:"breve", sonora:"mutável", fricativa:"transitório" },
 
-  // ADVÉRBIOS 63..70
-  { op:"ainda", label:"ainda", axis:["emergencia","tensao"], surda:"já", sonora:"agora", fricativa:"sempre" },
-  { op:"quase_adv", label:"quase", axis:["centro_instavel","tensao"], surda:"logo", sonora:"perto", fricativa:"talvez" },
-  { op:"lentamente", label:"lentamente", axis:["ritmo","cuidado"], surda:"aos poucos", sonora:"com calma", fricativa:"suavemente" },
-  { op:"por_vezes", label:"por vezes", axis:["centro_instavel","ritmo"], surda:"às vezes", sonora:"frequentemente", fricativa:"ocasionalmente" },
-  { op:"sempre", label:"sempre", axis:["ritmo","tensao"], surda:"toda vez", sonora:"continuamente", fricativa:"infinitamente" },
-  { op:"raramente", label:"raramente", axis:["rarefacao","memoria"], surda:"quase nunca", sonora:"poucas vezes", fricativa:"esporadicamente" },
-  { op:"talvez", label:"talvez", axis:["centro_instavel","emergencia"], surda:"quem sabe", sonora:"possivelmente", fricativa:"eventualmente" },
-  { op:"agora", label:"agora", axis:["presenca","tensao"], surda:"já", sonora:"neste momento", fricativa:"presentemente" }
+  // ADVS (62..69)
+  { op:"ainda", axis:["emergencia","tensao"], surda:"já", sonora:"agora", fricativa:"sempre" },
+  { op:"quase_adv", axis:["centro_instavel","tensao"], surda:"logo", sonora:"perto", fricativa:"talvez" },
+  { op:"lentamente", axis:["ritmo","cuidado"], surda:"aos poucos", sonora:"com calma", fricativa:"suavemente" },
+  { op:"por_vezes", axis:["centro_instavel","ritmo"], surda:"às vezes", sonora:"frequentemente", fricativa:"ocasionalmente" },
+  { op:"sempre", axis:["ritmo","tensao"], surda:"toda vez", sonora:"continuamente", fricativa:"infinitamente" },
+  { op:"raramente", axis:["rarefacao","memoria"], surda:"quase nunca", sonora:"poucas vezes", fricativa:"esporadicamente" },
+  { op:"talvez", axis:["centro_instavel","emergencia"], surda:"quem sabe", sonora:"possivelmente", fricativa:"eventualmente" },
+  { op:"agora", axis:["presenca","tensao"], surda:"já", sonora:"neste momento", fricativa:"presentemente" }
 ];
 
-// helpers
-const byOp = Object.fromEntries(LEX.map(x => [x.op, x]));
+const byOp = Object.fromEntries(LEX.map(x=>[x.op,x]));
+function axesOf(op){ return byOp[op]?.axis || ["presenca"]; }
 function surfaceOf(op, kind){
-  const o = byOp[op];
-  if(!o) return op;
-  return o[kind] || o.label;
-}
-function axesOf(op){
-  const o = byOp[op];
-  return o?.axis || ["presenca"];
+  const o = byOp[op]; if(!o) return op;
+  return o[kind] || o.surda || o.sonora || o.fricativa || op;
 }
 
-// pools by category
 const OPS = {
   subst: LEX.slice(0, 28).map(x=>x.op),
-  verb: LEX.slice(28, 50).map(x=>x.op),
-  adj:  LEX.slice(50, 62).map(x=>x.op),
-  adv:  LEX.slice(62, 70).map(x=>x.op),
+  verb:  LEX.slice(28, 50).map(x=>x.op),
+  adj:   LEX.slice(50, 62).map(x=>x.op),
+  adv:   LEX.slice(62, 70).map(x=>x.op),
 };
 
+function weightedPick(ops){
+  const weights = ops.map(op=>{
+    const ax = axesOf(op);
+    let w = 0.01;
+    for(const a of ax) w += axisWeight(a);
+    // leve bias pro alvo fonológico (sem dominar em M1-3)
+    const bias = 1 + (state.phonoTarget==="surda" && ax.includes("corte") ? 0.10 : 0)
+                   + (state.phonoTarget==="sonora" && (ax.includes("tensao")||ax.includes("emergencia")) ? 0.10 : 0)
+                   + (state.phonoTarget==="fricativa" && (ax.includes("fluxo")||ax.includes("rarefacao")) ? 0.10 : 0);
+    return w*bias;
+  });
+  const sum = weights.reduce((a,b)=>a+b,0);
+  let r = Math.random()*sum;
+  for(let i=0;i<ops.length;i++){
+    r -= weights[i];
+    if(r<=0) return ops[i];
+  }
+  return ops[ops.length-1];
+}
+
+function chooseSurface(op, mode){
+  // mode "semantic": fonologia deriva de eixos
+  // mode "phono": domina pelo phonoTarget
+  let kind = state.phonoTarget;
+
+  if(mode==="semantic"){
+    const s = state.axes.corte;
+    const f = state.axes.fluxo + state.axes.rarefacao*0.6;
+    const t = state.axes.tensao + state.axes.emergencia*0.5;
+    const tot = s+f+t;
+    const r = Math.random()*tot;
+    if(r < s) kind="surda";
+    else if(r < s+t) kind="sonora";
+    else kind="fricativa";
+  }
+
+  if(mode==="phono"){
+    // probabilidade forte conforme pesos atuais
+    const sum = state.phono.surda + state.phono.sonora + state.phono.fricativa;
+    const r = Math.random()*sum;
+    if(r < state.phono.surda) kind="surda";
+    else if(r < state.phono.surda + state.phono.sonora) kind="sonora";
+    else kind="fricativa";
+  }
+
+  return surfaceOf(op, kind);
+}
+
 /* =========================================================
-   3) Visual grammar: 120 slots -> families F1..F12
-      + family -> axes mapping
+   VISUAL FAMILIES
 ========================================================= */
 const FAMILIES = [
-  { name:"F1", range:[1,10],  axis:["fluxo","presenca"] },
-  { name:"F2", range:[11,20], axis:["corte","tensao"] },
-  { name:"F3", range:[21,30], axis:["centro_instavel","fluxo"] },
-  { name:"F4", range:[31,40], axis:["ritmo","memoria"] },
-  { name:"F5", range:[41,50], axis:["corte","centro_instavel"] },
-  { name:"F6", range:[51,60], axis:["densidade","presenca"] },
-  { name:"F7", range:[61,70], axis:["rarefacao","cuidado"] },
-  { name:"F8", range:[71,80], axis:["centro_instavel","tensao"] },
-  { name:"F9", range:[81,90], axis:["rarefacao","contorno"] },
-  { name:"F10",range:[91,100],axis:["tensao","emergencia"] },
-  { name:"F11",range:[101,110],axis:["contorno","presenca"] },
-  { name:"F12",range:[111,120],axis:["densidade","corte"] },
+  { name:"F1",  range:[1,10],   axis:["fluxo","presenca"] },
+  { name:"F2",  range:[11,20],  axis:["corte","tensao"] },
+  { name:"F3",  range:[21,30],  axis:["centro_instavel","fluxo"] },
+  { name:"F4",  range:[31,40],  axis:["ritmo","memoria"] },
+  { name:"F5",  range:[41,50],  axis:["corte","centro_instavel"] },
+  { name:"F6",  range:[51,60],  axis:["densidade","presenca"] },
+  { name:"F7",  range:[61,70],  axis:["rarefacao","cuidado"] },
+  { name:"F8",  range:[71,80],  axis:["centro_instavel","tensao"] },
+  { name:"F9",  range:[81,90],  axis:["rarefacao","contorno"] },
+  { name:"F10", range:[91,100], axis:["tensao","emergencia"] },
+  { name:"F11", range:[101,110],axis:["contorno","presenca"] },
+  { name:"F12", range:[111,120],axis:["densidade","corte"] },
 ];
-
 function familyOfSlot(slot){
   for(const f of FAMILIES){
-    if(slot >= f.range[0] && slot <= f.range[1]) return f;
+    if(slot>=f.range[0] && slot<=f.range[1]) return f;
   }
   return FAMILIES[0];
 }
 
+function selectSlotByAxes(){
+  const famScores = FAMILIES.map(f=>{
+    let s = 0.01;
+    for(const a of f.axis) s += axisWeight(a);
+    if(state.phonoTarget==="surda") s *= (f.axis.includes("corte")?1.18:0.94);
+    if(state.phonoTarget==="fricativa") s *= ((f.axis.includes("fluxo")||f.axis.includes("rarefacao"))?1.18:0.94);
+    if(state.phonoTarget==="sonora") s *= ((f.axis.includes("tensao")||f.axis.includes("emergencia"))?1.18:0.94);
+    return s;
+  });
+  const sum = famScores.reduce((a,b)=>a+b,0);
+  let r = Math.random()*sum;
+  let fam = FAMILIES[0];
+  for(let i=0;i<FAMILIES.length;i++){
+    r -= famScores[i];
+    if(r<=0){ fam = FAMILIES[i]; break; }
+  }
+  const [a,b] = fam.range;
+  return a + Math.floor(Math.random()*(b-a+1));
+}
+
 /* =========================================================
-   4) Procedural fragments (for non-Sui) — SVG data URIs
-      + keep "weights" coherent with family axes
+   FRAGMENTS (SVG procedural + Sui slot 53)
 ========================================================= */
 function makeFragmentSVG(slot){
   const f = familyOfSlot(slot);
@@ -790,24 +804,19 @@ function makeFragmentSVG(slot){
   const light = 86 - (dense*18) + (rare*6);
 
   const strokes = edge ? 3 : 2;
-  const jitter = center ? 12 : 6;
   const cutLines = cut ? 6 : 2;
   const blobs = dense ? 7 : 3;
   const mist = rare ? 0.22 : 0.10;
-  const pulse = rhythm ? 1 : 0;
 
   const seed = slot * 99991;
   function pr(n){
-    // deterministic-ish pseudo random
     return (Math.sin(seed + n*12.9898) * 43758.5453) % 1;
   }
 
   const shapes = [];
-  // background wash
   shapes.push(`<rect x="0" y="0" width="100" height="100" fill="hsla(${hueBase},${sat}%,${light}%,0.95)"/>`);
   shapes.push(`<rect x="0" y="0" width="100" height="100" fill="hsla(${hue2},${sat-10}%,${light-6}%,${mist})"/>`);
 
-  // cut/flow strokes
   for(let i=0;i<cutLines;i++){
     const x1 = (pr(i+1)*100).toFixed(2);
     const y1 = (pr(i+2)*100).toFixed(2);
@@ -819,7 +828,6 @@ function makeFragmentSVG(slot){
     shapes.push(`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="rgba(20,10,30,${op})" stroke-width="${w}" stroke-linecap="round" stroke-dasharray="${dash}"/>`);
   }
 
-  // blobs (density)
   for(let i=0;i<blobs;i++){
     const cx = (10 + pr(50+i)*80).toFixed(2);
     const cy = (10 + pr(70+i)*80).toFixed(2);
@@ -828,7 +836,6 @@ function makeFragmentSVG(slot){
     shapes.push(`<circle cx="${cx}" cy="${cy}" r="${r}" fill="rgba(20,10,30,${op})"/>`);
   }
 
-  // memory texture (grain)
   if(mem){
     for(let i=0;i<24;i++){
       const x = (pr(200+i)*100).toFixed(2);
@@ -838,19 +845,16 @@ function makeFragmentSVG(slot){
     }
   }
 
-  // emergence spark
   if(emer){
     shapes.push(`<path d="M${20+pr(401)*60} ${30+pr(402)*40} L${35+pr(403)*50} ${20+pr(404)*30} L${60+pr(405)*30} ${38+pr(406)*40}"
       stroke="rgba(20,10,30,0.22)" stroke-width="3.2" fill="none" stroke-linecap="round"/>`);
   }
 
-  // care halo
   if(care){
     shapes.push(`<circle cx="50" cy="50" r="38" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="5"/>`);
   }
 
-  // pulse outline
-  if(pulse){
+  if(rhythm){
     shapes.push(`<rect x="6" y="6" width="88" height="88" rx="16" ry="16"
       fill="none" stroke="rgba(20,10,30,0.20)" stroke-width="${strokes}"/>`);
   } else if(edge){
@@ -866,56 +870,42 @@ function makeFragmentSVG(slot){
 }
 
 function getFragmentURL(slot){
-  // If slot is 53 and Sui is loaded, return Sui URL
   if(slot === 53 && state.suiUrl) return state.suiUrl;
   return makeFragmentSVG(slot);
 }
 
 /* =========================================================
-   5) Selection utilities (weighted by axes + phonology)
+   MICRO-MOVIMENTO (campo + fragmentos)
 ========================================================= */
-function axisWeight(axis){
-  return clamp(state.axes[axis], 0.02, 0.98);
+function driftScene(sceneId, amount=10){
+  const el = document.getElementById(sceneId);
+  if(!el) return;
+  const dx = (Math.random()*2-1)*amount;
+  const dy = (Math.random()*2-1)*amount;
+  const dr = (Math.random()*2-1)*(amount/18);
+  el.style.setProperty("--bx", dx.toFixed(1)+"px");
+  el.style.setProperty("--by", dy.toFixed(1)+"px");
+  el.style.setProperty("--br", dr.toFixed(2)+"deg");
 }
 
-function weightedPick(ops, kind){
-  // kind: "surda" | "sonora" | "fricativa"
-  // Weighted by axis alignment with current global vector + phonology target
-  const weights = ops.map(op=>{
-    const ax = axesOf(op);
-    let w = 0.01;
-    for(const a of ax) w += axisWeight(a);
-    // encourage current phonology target in M4; mild elsewhere
-    const bias = (kind === state.phonoTarget) ? 1.15 : 0.95;
-    return w * bias;
-  });
-  const sum = weights.reduce((a,b)=>a+b,0);
-  let r = Math.random()*sum;
-  for(let i=0;i<ops.length;i++){
-    r -= weights[i];
-    if(r<=0) return ops[i];
-  }
-  return ops[ops.length-1];
+function driftFrag(el, amount=7){
+  const dx = (Math.random()*2-1)*amount;
+  const dy = (Math.random()*2-1)*amount;
+  const dr = (Math.random()*2-1)*(amount/30);
+  el.style.setProperty("--dx", dx.toFixed(1)+"px");
+  el.style.setProperty("--dy", dy.toFixed(1)+"px");
+  el.style.setProperty("--dr", dr.toFixed(2)+"deg");
 }
 
-function chooseSurface(op, mode){
-  // mode: "semantic" uses phonoTarget mildly; "phono" uses explicit target strongly
-  let kind = state.phonoTarget;
-  if(mode === "semantic"){
-    // choose by axis-coupled phonology: cut tends surda, flow tends fricativa, tension tends sonora
-    const s = state.axes.corte;
-    const f = state.axes.fluxo;
-    const t = state.axes.tensao;
-    const r = Math.random()*(s+f+t);
-    if(r < s) kind="surda";
-    else if(r < s+t) kind="sonora";
-    else kind="fricativa";
-  }
-  return surfaceOf(op, kind);
+function flash(el){
+  if(!el) return;
+  el.classList.remove("flash");
+  void el.offsetWidth;
+  el.classList.add("flash");
 }
 
 /* =========================================================
-   6) Render tokens with local click addressing
+   TOKEN
 ========================================================= */
 function token(op, text, clickable=true, extraClass=""){
   const cls = ["tok", clickable?"click":"", extraClass].filter(Boolean).join(" ");
@@ -923,450 +913,253 @@ function token(op, text, clickable=true, extraClass=""){
   return `<span class="${cls}" data-op="${op}">${safe}</span>`;
 }
 
-function renderPhrase(ops, mode, clickable=true){
-  // ops: array of operator ids, returns HTML string
-  return ops.map(op => token(op, chooseSurface(op, mode), clickable)).join(" ");
+/* =========================================================
+   PLURALIZAÇÃO LEVE (heurística)
+========================================================= */
+function pluralizePT(w){
+  if(!w) return w;
+  const s = w.trim();
+  if(s.endsWith("s") || s.endsWith("x") || s.endsWith("z")) return s;
+  if(s.endsWith("ão")) return s.slice(0,-2)+"ões";
+  if(s.endsWith("al")) return s.slice(0,-2)+"ais";
+  if(s.endsWith("el")) return s.slice(0,-2)+"eis";
+  if(s.endsWith("il")) return s.slice(0,-2)+"is";
+  if(s.endsWith("ol")) return s.slice(0,-2)+"ois";
+  if(s.endsWith("ul")) return s.slice(0,-2)+"uis";
+  return s + "s";
+}
+function maybePluralSurface(op, mode){
+  const surf = chooseSurface(op, mode);
+  // plural leve principalmente pra SUB/ADJ
+  return pluralizePT(surf);
 }
 
 /* =========================================================
-   7) M1: only button operates
+   FRASES BOAS (M3/M4/Final) — sem artigos, com verbos de apoio
+========================================================= */
+const SUPPORT = {
+  a: ["fazem","permitem","deixam","levam a","fazem tender a","fazem passar a"],
+  b: ["sustentam","organizam","deslocam","inclinam","retêm","abrem"],
+  c: ["até que","de tal modo que","ao ponto de","num excesso em que"]
+};
+
+function phraseM3Ops(){
+  // estrutura: SUBpl ADJpl (aux) INF OBJpl, e SUBpl ADJpl (aux) INF OBJpl; ADV, SUBpl (aux) INF em SUBpl, até que SUBpl ADJpl (aux) INF.
+  const S1 = weightedPick(OPS.subst), A1 = weightedPick(OPS.adj), V1 = weightedPick(OPS.verb), O1 = weightedPick(OPS.subst);
+  const S2 = weightedPick(OPS.subst), A2 = weightedPick(OPS.adj), V2 = weightedPick(OPS.verb), O2 = weightedPick(OPS.subst);
+  const ADV = weightedPick(OPS.adv);
+  const S3 = weightedPick(OPS.subst), V3 = weightedPick(OPS.verb), P3 = weightedPick(OPS.subst);
+  const S4 = weightedPick(OPS.subst), A3 = weightedPick(OPS.adj), V4 = weightedPick(OPS.verb);
+
+  const aux1 = pick(SUPPORT.a);
+  const aux2 = pick(SUPPORT.a);
+  const aux3 = pick(SUPPORT.b);
+  const aux4 = pick(SUPPORT.b);
+  const pivot = pick(SUPPORT.c);
+
+  return { S1,A1,V1,O1,S2,A2,V2,O2,ADV,S3,V3,P3,S4,A3,V4, aux1,aux2,aux3,aux4, pivot };
+}
+
+function renderM3Sentence(clickable=true){
+  const o = phraseM3Ops();
+
+  const parts = [
+    "<span class='tok'>No</span> <span class='tok'>campo,</span>",
+    token(o.S1, maybePluralSurface(o.S1,"semantic"), clickable),
+    token(o.A1, maybePluralSurface(o.A1,"semantic"), clickable),
+    `<span class="tok">${o.aux1}</span>`,
+    token(o.V1, chooseSurface(o.V1,"semantic"), clickable),
+    token(o.O1, maybePluralSurface(o.O1,"semantic"), clickable),
+    "<span class='tok'>,</span>",
+    "<span class='tok'>e</span>",
+    token(o.S2, maybePluralSurface(o.S2,"semantic"), clickable),
+    token(o.A2, maybePluralSurface(o.A2,"semantic"), clickable),
+    `<span class="tok">${o.aux2}</span>`,
+    token(o.V2, chooseSurface(o.V2,"semantic"), clickable),
+    token(o.O2, maybePluralSurface(o.O2,"semantic"), clickable),
+    "<span class='tok'>;</span>",
+    token(o.ADV, chooseSurface(o.ADV,"semantic"), clickable),
+    "<span class='tok'>,</span>",
+    token(o.S3, maybePluralSurface(o.S3,"semantic"), clickable),
+    `<span class="tok">${o.aux3}</span>`,
+    "<span class='tok'>a</span>",
+    token(o.V3, chooseSurface(o.V3,"semantic"), clickable),
+    "<span class='tok'>em</span>",
+    token(o.P3, maybePluralSurface(o.P3,"semantic"), clickable),
+    "<span class='tok'>,</span>",
+    `<span class="tok">${o.pivot}</span>`,
+    token(o.S4, maybePluralSurface(o.S4,"semantic"), clickable),
+    token(o.A3, maybePluralSurface(o.A3,"semantic"), clickable),
+    `<span class="tok">${o.aux4}</span>`,
+    token(o.V4, chooseSurface(o.V4,"semantic"), clickable),
+    "<span class='tok'>.</span>"
+  ];
+
+  return parts.join(" ");
+}
+
+function phraseM4Ops(){
+  // mais denso em tokens para o som dominar
+  const S1=weightedPick(OPS.subst), A1=weightedPick(OPS.adj), V1=weightedPick(OPS.verb), O1=weightedPick(OPS.subst);
+  const S2=weightedPick(OPS.subst), A2=weightedPick(OPS.adj), V2=weightedPick(OPS.verb), O2=weightedPick(OPS.subst);
+  const ADV=weightedPick(OPS.adv);
+  const S3=weightedPick(OPS.subst), A3=weightedPick(OPS.adj), V3=weightedPick(OPS.verb), P3=weightedPick(OPS.subst);
+  const pivot=pick(SUPPORT.c);
+  const aux1=pick(SUPPORT.a), aux2=pick(SUPPORT.a), aux3=pick(SUPPORT.b);
+
+  return {S1,A1,V1,O1,S2,A2,V2,O2,ADV,S3,A3,V3,P3,pivot,aux1,aux2,aux3};
+}
+
+function renderM4Sentence(){
+  const o = phraseM4Ops();
+  const mode = "phono"; // aqui a fonologia realmente domina
+
+  const parts = [
+    "<span class='tok'>No</span> <span class='tok'>limite,</span>",
+    token(o.S1, maybePluralSurface(o.S1,mode), true),
+    token(o.A1, maybePluralSurface(o.A1,mode), true),
+    `<span class="tok">${o.aux1}</span>`,
+    token(o.V1, chooseSurface(o.V1,mode), true),
+    token(o.O1, maybePluralSurface(o.O1,mode), true),
+    "<span class='tok'>,</span>",
+    "<span class='tok'>e</span>",
+    token(o.S2, maybePluralSurface(o.S2,mode), true),
+    token(o.A2, maybePluralSurface(o.A2,mode), true),
+    `<span class="tok">${o.aux2}</span>`,
+    token(o.V2, chooseSurface(o.V2,mode), true),
+    token(o.O2, maybePluralSurface(o.O2,mode), true),
+    "<span class='tok'>;</span>",
+    token(o.ADV, chooseSurface(o.ADV,mode), true),
+    "<span class='tok'>,</span>",
+    token(o.S3, maybePluralSurface(o.S3,mode), true),
+    token(o.A3, maybePluralSurface(o.A3,mode), true),
+    `<span class="tok">${o.aux3}</span>`,
+    "<span class='tok'>a</span>",
+    token(o.V3, chooseSurface(o.V3,mode), true),
+    "<span class='tok'>em</span>",
+    token(o.P3, maybePluralSurface(o.P3,mode), true),
+    "<span class='tok'>,</span>",
+    `<span class="tok">${o.pivot}</span>`,
+    "<span class='tok'>o</span>",
+    token("resto", chooseSurface("resto",mode), true),
+    "<span class='tok'>cede.</span>"
+  ];
+
+  return parts.join(" ");
+}
+
+/* =========================================================
+   M1
 ========================================================= */
 function m1_generateText(){
-  // “substantivação” + "se faz" to accept infinitive variants
-  const core = weightedPick(OPS.subst, "semantic");
-  const v = weightedPick(OPS.verb, "semantic");
-  const o = weightedPick(OPS.subst, "semantic");
-  const adv = weightedPick(OPS.adv, "semantic");
-  const adj = weightedPick(OPS.adj, "semantic");
+  const core = weightedPick(OPS.subst);
+  const v = weightedPick(OPS.verb);
+  const o = weightedPick(OPS.subst);
+  const adv = weightedPick(OPS.adv);
 
-  // fixed parts + local operators (not clickable in M1)
-  const t1 = chooseSurface(core, "semantic");
+  const t1 = chooseSurface(core,"semantic");
   const t2 = `${chooseSurface(v,"semantic")} ${chooseSurface(o,"semantic")}`;
   const t3 = chooseSurface(adv,"semantic");
-  const t4 = chooseSurface(adj,"semantic");
 
-  return `No começo, ${t1} aparece como eixo — e isso já inclina o campo. O que nasce aqui é um ${t2}, ${t3}. O resto não some: fica como ${chooseSurface("eco","semantic")} à espera de outra tensão. Se o campo endurece, não é ruído: é ${t4} em formação.`;
+  return `No começo, ${t1} aparece como eixo — e isso já inclina o campo. O que nasce aqui é um ${t2}, ${t3}. O resto não some: fica como toque à espera de outra tensão. Se endurece, não é ruído: é corte em formação.`;
 }
 
 function m1_tension(){
   state.m1.clicks++;
-  // rotate seed; push impulses
   const axes = pick([["corte","tensao"],["fluxo","cuidado"],["densidade","presenca"],["rarefacao","centro_instavel"],["emergencia","memoria"]]);
-  for(const a of axes) applyImpulse(a, +1 * DECAY.self, 1);
+  for(const a of axes) applyImpulse(a, +1 * DECAY.self);
 
-  // choose 3 slots based on axes dominance
-  const slots = [];
-  for(let i=0;i<3;i++){
-    slots.push(selectSlotByAxes());
-  }
-  // enforce Sui on first mobile sometimes? not required, but allowed. we keep overall force elsewhere.
-  if(state.forceSui && !slots.includes(53) && Math.random()<0.35){
+  // slots
+  const slots = [selectSlotByAxes(), selectSlotByAxes(), selectSlotByAxes()];
+  if(state.forceSui && state.suiUrl && !slots.includes(53) && Math.random()<0.45){
     slots[Math.floor(Math.random()*3)] = 53;
   }
   state.m1.slots = slots;
-  // cascade mild phonology shift
-  const target = pick(["surda","sonora","fricativa"]);
-  applyPhonoImpulse(target, 0.35);
+
+  // leve arrasto fonológico
+  applyPhonoImpulse(pick(["surda","sonora","fricativa"]), 0.35);
 }
 
 /* =========================================================
-   8) Slot selection by axes (visual grammar)
-========================================================= */
-function selectSlotByAxes(){
-  // score each family by global axes
-  const famScores = FAMILIES.map(f=>{
-    let s = 0.01;
-    for(const a of f.axis) s += axisWeight(a);
-    // slight bias to current phonology: surda -> corte families, fricativa -> fluxo/rarefacao, sonora -> tensao/emergencia
-    if(state.phonoTarget==="surda") s *= (f.axis.includes("corte")?1.18:0.94);
-    if(state.phonoTarget==="fricativa") s *= (f.axis.includes("fluxo")||f.axis.includes("rarefacao")?1.18:0.94);
-    if(state.phonoTarget==="sonora") s *= (f.axis.includes("tensao")||f.axis.includes("emergencia")?1.18:0.94);
-    return s;
-  });
-  const sum = famScores.reduce((a,b)=>a+b,0);
-  let r = Math.random()*sum;
-  let fam = FAMILIES[0];
-  for(let i=0;i<FAMILIES.length;i++){
-    r -= famScores[i];
-    if(r<=0){ fam = FAMILIES[i]; break; }
-  }
-  const [a,b] = fam.range;
-  return a + Math.floor(Math.random()*(b-a+1));
-}
-
-/* =========================================================
-   9) M2 strict mechanics
+   M2 — estrito, estável
 ========================================================= */
 const M2_VERB_POOL = ["sustentar","recortar","aproximar","insinuar","distribuir","atravessar","fixar","transformar","interromper","acompanhar"];
 
-function m2_buildSubjectObject(){
-  // optional adj/adv based on global: if rarefacao high -> more adv; if densidade high -> more adj
-  const wantAdj = Math.random() < (0.25 + 0.40*state.axes.densidade);
-  const wantAdv = Math.random() < (0.20 + 0.40*state.axes.rarefacao + 0.20*state.axes.ritmo);
+function buildPhraseCluster(){
+  const wantAdj = Math.random() < (0.30 + 0.35*state.axes.densidade);
+  const wantAdv = Math.random() < (0.20 + 0.35*state.axes.rarefacao + 0.20*state.axes.ritmo);
 
-  const subjCore = weightedPick(OPS.subst, "semantic");
-  const objCore = weightedPick(OPS.subst, "semantic");
+  const core = weightedPick(OPS.subst);
+  const ops = [core];
 
-  const subj = [];
-  subj.push(subjCore);
-  if(wantAdj) subj.push(weightedPick(OPS.adj, "semantic"));
-  if(wantAdv && Math.random()<0.6) subj.push(weightedPick(OPS.adv, "semantic"));
+  if(wantAdj) ops.push(weightedPick(OPS.adj));
+  if(wantAdv && Math.random()<0.6) ops.push(weightedPick(OPS.adv));
 
-  const obj = [];
-  obj.push(objCore);
-  if(wantAdj && Math.random()<0.7) obj.push(weightedPick(OPS.adj, "semantic"));
-  if(wantAdv) obj.push(weightedPick(OPS.adv, "semantic"));
-
-  return { subj, obj };
+  return ops;
 }
 
-function m2_autoVerbFor(subjOps, objOps){
-  // choose verb based on axes contrast: if corte high -> recortar/interromper; if fluxo -> atravessar/acompanhar; if densidade -> sustentar/fixar; if emergencia -> transformar
-  const sC = state.axes.corte;
-  const sF = state.axes.fluxo;
-  const sD = state.axes.densidade;
-  const sE = state.axes.emergencia;
-  const v = (sC > sF && sC > sD) ? pick(["recortar","interromper"]) :
-            (sF > sD && sF > sC) ? pick(["atravessar","acompanhar"]) :
-            (sE > 0.55) ? "transformar" :
-            pick(["sustentar","fixar","insinuar","distribuir"]);
-  return v;
+function initM2Phrases(){
+  state.m2.subjectOps = buildPhraseCluster();
+  state.m2.objectOps  = buildPhraseCluster();
 }
 
 function m2_swapByFragments(){
   state.m2.swapped = !state.m2.swapped;
-
   // swap front/back slots
   const t = state.m2.frontSlot;
   state.m2.frontSlot = state.m2.backSlot;
   state.m2.backSlot = t;
 
-  // impulse by visual family
-  const fam = familyOfSlot(state.m2.frontSlot);
-  fam.axis.forEach(a => applyImpulse(a, 0.55, 2));
+  // swap subject/object clusters (módulo1 ↔ módulo3)
+  const tmp = state.m2.subjectOps;
+  state.m2.subjectOps = state.m2.objectOps;
+  state.m2.objectOps = tmp;
+
+  // impulse by new front family axes
+  familyOfSlot(state.m2.frontSlot).axis.forEach(a=>applyImpulse(a, 0.55));
 }
 
 function m2_cycleVerbAndObject(){
+  // ONLY object changes
   state.m2.verbIndex = (state.m2.verbIndex + 1) % M2_VERB_POOL.length;
-  state.m2.objVariant++;
-  // verb click changes only object phrase + object fragment
-  applyImpulse("emergencia", 0.45, 2);
-  applyImpulse("centro_instavel", 0.20, 2);
 
-  // change the object slot (the slot representing object) while keeping front/back structure
-  // object is the "background" when swapped=false, and "front" when swapped=true
+  // semantic impulse
+  applyImpulse("emergencia", 0.55);
+  applyImpulse("centro_instavel", 0.25);
+
+  // new object cluster
+  state.m2.objectOps = buildPhraseCluster();
+
+  // change object fragment ONLY:
+  // object is represented by backSlot when not swapped, and by frontSlot when swapped (because swap already exchanges)
   const newSlot = selectSlotByAxes();
   if(state.m2.swapped){
-    // object is in front when swapped=true (since subject/object swapped)
-    state.m2.frontSlot = newSlot;
+    state.m2.frontSlot = newSlot; // object currently in front
   }else{
-    state.m2.backSlot = newSlot;
+    state.m2.backSlot = newSlot; // object currently in back
   }
 }
 
-function m2_render(){
-  const wrap = document.getElementById("m2_frags");
-  wrap.innerHTML = "";
-
-  // determine which slot is subject/object by swapped flag:
-  // we keep "front slot" as displayed front visually (bigger),
-  // but subject/object swap is coupled to swapping modules.
-  // After clicking a fragment: front/back swap AND subject/object swap. So we can just tie:
-  // subject represented by front slot when swapped=false; by back slot when swapped=true.
-  const subjSlot = state.m2.swapped ? state.m2.backSlot : state.m2.frontSlot;
-  const objSlot  = state.m2.swapped ? state.m2.frontSlot : state.m2.backSlot;
-
-  // build modules
-  const { subj, obj } = m2_buildSubjectObject();
-
-  const verb = M2_VERB_POOL[state.m2.verbIndex] || "sustentar";
-  const autoVerb = m2_autoVerbFor(subj, obj);
-
-  // If swapped, choose verb coherent with swap; else also coherent.
-  const verbChosen = (state.m2.verbIndex % 2 === 0) ? autoVerb : verb;
-
-  // Render fragments (clickable)
-  const frontDiv = fragDiv(state.m2.frontSlot, true, "m2_frag");
-  const backDiv = fragDiv(state.m2.backSlot, true, "m2_frag");
-
-  // Hook clicks: clicking either fragment only inverts (and swaps modules)
-  frontDiv.addEventListener("click", ()=>{ m2_swapByFragments(); rerenderAll(); });
-  backDiv.addEventListener("click", ()=>{ m2_swapByFragments(); rerenderAll(); });
-
-  wrap.appendChild(frontDiv);
-  wrap.appendChild(backDiv);
-
-  // Build text modules:
-  // Module1 = subject (+ optional)
-  // Module3 = object (+ optional)
-  // click fragments => swap module1 and module3 (because swapped toggles)
-  // click verb => change only module3 + its fragment (done in m2_cycleVerbAndObject)
-  const module1Ops = state.m2.swapped ? obj : subj;
-  const module3Ops = state.m2.swapped ? subj : obj;
-
-  // verb click: only verb token is clickable
-  const m1HTML = renderPhrase(module1Ops, "semantic", false);
-  const verbHTML = `<span class="tok click verb" data-verb="1">${chooseSurface(verbChosen,"semantic")}</span>`;
-  const m3HTML = renderPhrase(module3Ops, "semantic", false);
-
-  const text = `${m1HTML} ${verbHTML} ${m3HTML}.`;
-  const tEl = document.getElementById("m2_text");
-  tEl.innerHTML = text;
-
-  // attach verb click
-  const vTok = tEl.querySelector("[data-verb='1']");
-  if(vTok){
-    vTok.addEventListener("click", (e)=>{
-      e.stopPropagation();
-      m2_cycleVerbAndObject();
-      rerenderAll();
-    });
-  }
-}
-
-/* =========================================================
-   10) M3: click local token/fragment -> axis impulse -> visible consequences
-========================================================= */
-function m3_generateTextOps(){
-  // A curatorial sentence with many operator slots
-  // Use "se faz" to host infinitives.
-  const S1 = weightedPick(OPS.subst, "semantic");
-  const A1 = weightedPick(OPS.adj,  "semantic");
-  const V1 = weightedPick(OPS.verb, "semantic");
-  const O1 = weightedPick(OPS.subst, "semantic");
-
-  const S2 = weightedPick(OPS.subst, "semantic");
-  const A2 = weightedPick(OPS.adj,  "semantic");
-  const V2 = weightedPick(OPS.verb, "semantic");
-  const O2 = weightedPick(OPS.subst, "semantic");
-
-  const ADV = weightedPick(OPS.adv, "semantic");
-  const S3 = weightedPick(OPS.subst, "semantic");
-  const V3 = weightedPick(OPS.verb, "semantic");
-  const S4 = weightedPick(OPS.subst, "semantic");
-  const A3 = weightedPick(OPS.adj,  "semantic");
-  const V4 = weightedPick(OPS.verb, "semantic");
-
-  // Template you asked for (with infinitives made acceptable)
-  // “No campo, a {SUB} {ADJ} se faz {VERB} a {SUB}...”
-  return [
-    "No","campo,","a",
-    S1,A1,"se","faz",V1,"a",O1+",","e","a",
-    S2,A2,"se","faz",V2,"a",O2+";",ADV+",","a",
-    S3,"se","faz",V3,"na",S4+",","até","que","a",
-    S4,A3,"se","faz",V4+"."
-  ];
-}
-
-function m3_render(){
-  // slots (7) selected by axes; keep stable but responsive
-  if(state.m3.slots.length !== 7){
-    state.m3.slots = Array.from({length:7}, ()=>selectSlotByAxes());
-    if(state.forceSui && state.suiUrl){
-      // ensure at least one Sui might appear in M3 sometimes, but not always
-      if(!state.m3.slots.includes(53) && Math.random()<0.45){
-        state.m3.slots[Math.floor(Math.random()*7)] = 53;
-      }
-    }
-  }else{
-    // mild drift to reflect global changes (not chaotic)
-    const driftChance = 0.18 + 0.25*state.axes.centro_instavel;
-    for(let i=0;i<state.m3.slots.length;i++){
-      if(Math.random()<driftChance*0.25) state.m3.slots[i] = selectSlotByAxes();
-    }
-  }
-
-  const wrap = document.getElementById("m3_frags");
-  wrap.innerHTML = "";
-  state.m3.slots.forEach((slot)=>{
-    const el = fragDiv(slot, true, "m3_frag");
-    el.addEventListener("click", ()=>{
-      // local: reinforce that fragment's family axes
-      const fam = familyOfSlot(slot);
-      fam.axis.forEach(a=>{
-        applyImpulse(a, 0.85, 3);
-        // local boost for perceptibility
-        state.m3.localBoost[a] = clamp(state.m3.localBoost[a] + 0.15, 0, 2.5);
-      });
-      state.m3.clicks++;
-      // catastrofe: after enough clicks, jump regime (reset some + push emergence)
-      if(state.m3.clicks >= 9){
-        state.m3.clicks = 0;
-        // reset local boost softly
-        for(const a of AXES) state.m3.localBoost[a] *= 0.35;
-        applyImpulse("emergencia", 1.0, 3);
-        applyImpulse("tensao", 0.7, 3);
-        // refresh slots more strongly (but still axis-guided)
-        state.m3.slots = Array.from({length:7}, ()=>selectSlotByAxes());
-        flash(document.getElementById("m3"));
-      }
-      rerenderAll();
-    });
-    wrap.appendChild(el);
-  });
-
-  // Text tokens clickable locally
-  const ops = m3_generateTextOps();
-  const html = ops.map(w=>{
-    // if the word corresponds to an operator in our system (by surface match? no),
-    // we render operators by id, not by surface. Here we already have operator ids in ops list (except fixed words).
-    if(byOp[w]){
-      return token(w, chooseSurface(w,"semantic"), true);
-    }else{
-      // fixed word
-      return `<span class="tok">${w.replace(/</g,"&lt;")}</span>`;
-    }
+function renderPhraseOps(ops, mode, clickable){
+  return ops.map(op=>{
+    const surf = (OPS.subst.includes(op) || OPS.adj.includes(op)) ? maybePluralSurface(op,mode) : chooseSurface(op,mode);
+    return token(op, surf, clickable);
   }).join(" ");
+}
 
-  const tEl = document.getElementById("m3_text");
-  tEl.innerHTML = html;
-
-  // attach token click handlers (local, per op)
-  tEl.querySelectorAll(".tok.click[data-op]").forEach(span=>{
-    span.addEventListener("click",(e)=>{
-      e.stopPropagation();
-      const op = span.getAttribute("data-op");
-      const axes = axesOf(op);
-      // reinforce axis of the clicked word
-      axes.forEach(a=>{
-        applyImpulse(a, 0.95, 3);
-        state.m3.localBoost[a] = clamp(state.m3.localBoost[a] + 0.18, 0, 2.8);
-      });
-      state.m3.clicks++;
-      if(state.m3.clicks >= 9){
-        state.m3.clicks = 0;
-        for(const a of AXES) state.m3.localBoost[a] *= 0.35;
-        applyImpulse("emergencia", 1.0, 3);
-        applyImpulse("tensao", 0.7, 3);
-        state.m3.slots = Array.from({length:7}, ()=>selectSlotByAxes());
-        flash(document.getElementById("m3"));
-      }
-      rerenderAll();
-    });
-  });
+function autoVerbFor(){
+  const sC = state.axes.corte;
+  const sF = state.axes.fluxo;
+  const sD = state.axes.densidade;
+  const sE = state.axes.emergencia;
+  return (sC > sF && sC > sD) ? pick(["recortar","interromper"]) :
+         (sF > sD && sF > sC) ? pick(["atravessar","acompanhar"]) :
+         (sE > 0.55) ? "transformar" :
+         pick(["sustentar","fixar","insinuar","distribuir"]);
 }
 
 /* =========================================================
-   11) M4: only words clickable — phonology dominance and collapse
-========================================================= */
-function m4_generateTextOps(){
-  // Many operator slots, so phonology dominance can be heard.
-  // We avoid naming the regime; the user must feel it.
-  const S1 = weightedPick(OPS.subst, "semantic");
-  const A1 = weightedPick(OPS.adj,  "semantic");
-  const V1 = weightedPick(OPS.verb, "semantic");
-  const O1 = weightedPick(OPS.subst, "semantic");
-
-  const S2 = weightedPick(OPS.subst, "semantic");
-  const V2 = weightedPick(OPS.verb, "semantic");
-  const A2 = weightedPick(OPS.adj, "semantic");
-
-  const ADV = weightedPick(OPS.adv, "semantic");
-  const S3 = weightedPick(OPS.subst, "semantic");
-  const V3 = weightedPick(OPS.verb, "semantic");
-  const S4 = weightedPick(OPS.subst, "semantic");
-  const A3 = weightedPick(OPS.adj,  "semantic");
-  const V4 = weightedPick(OPS.verb, "semantic");
-
-  // Long, operator-rich line (poetic potential)
-  return [
-    "No","limite,","a",
-    S1,A1,"se","faz",V1,"a",O1+";",
-    "e","a",
-    S2,"se","faz",V2,"na",S3+",",
-    ADV+",","até","que","o",
-    S4,A2,"se","faz",V3,"na",S4+",",
-    "e","a",
-    S3,A3,"se","faz",V4+"."
-  ];
-}
-
-function m4_render(){
-  // 5 slots, axis-guided, stable
-  if(state.m4.slots.length !== 5){
-    state.m4.slots = Array.from({length:5}, ()=>selectSlotByAxes());
-    // ensure Sui tends to appear at least somewhere; M4 is a good place:
-    if(state.forceSui && state.suiUrl){
-      if(!state.m4.slots.includes(53) && Math.random()<0.65){
-        state.m4.slots[Math.floor(Math.random()*5)] = 53;
-      }
-    }
-  }else{
-    // very small drift only
-    for(let i=0;i<state.m4.slots.length;i++){
-      if(Math.random()<0.06) state.m4.slots[i] = selectSlotByAxes();
-    }
-  }
-
-  const wrap = document.getElementById("m4_frags");
-  wrap.innerHTML = "";
-  state.m4.slots.forEach((slot)=>{
-    const el = fragDiv(slot, false, "m4_frag"); // NOT clickable in M4
-    wrap.appendChild(el);
-  });
-
-  // Build tokenized text: all operator tokens clickable
-  const ops = m4_generateTextOps();
-  const html = ops.map(w=>{
-    if(byOp[w]){
-      // In M4, choose surface strongly under current target (phono)
-      const surface = surfaceOf(w, state.phonoTarget);
-      // still keep semantic content stable by using same operator id
-      return `<span class="tok click" data-op="${w}">${surface.replace(/</g,"&lt;")}</span>`;
-    }
-    return `<span class="tok">${w.replace(/</g,"&lt;")}</span>`;
-  }).join(" ");
-
-  const tEl = document.getElementById("m4_text");
-  tEl.innerHTML = html;
-
-  // Only words clickable: clicking a word reinforces its dominant phonology (current surface class!)
-  tEl.querySelectorAll(".tok.click[data-op]").forEach(span=>{
-    span.addEventListener("click",(e)=>{
-      e.stopPropagation();
-      const op = span.getAttribute("data-op");
-
-      // Determine which phonology to reinforce: we treat the CURRENT SURFACE as belonging to phonoTarget,
-      // but we also allow operator axes to nudge phonology: corte->surda, tensao->sonora, fluxo/rarefacao->fricativa.
-      const ax = axesOf(op);
-      let kind = state.phonoTarget;
-      if(ax.includes("corte")) kind = "surda";
-      else if(ax.includes("tensao") || ax.includes("emergencia")) kind = "sonora";
-      else if(ax.includes("fluxo") || ax.includes("rarefacao")) kind = "fricativa";
-
-      state.m4.localBoost[kind] = clamp(state.m4.localBoost[kind] + 1, 0, 999);
-      applyPhonoImpulse(kind, 0.75);
-
-      // also let phonology drag visuals: surda->corte, sonora->tensao, fricativa->fluxo/rarefacao
-      if(kind==="surda"){ applyImpulse("corte", 0.70, 4); applyImpulse("contorno", 0.25, 4); }
-      if(kind==="sonora"){ applyImpulse("tensao", 0.70, 4); applyImpulse("emergencia", 0.35, 4); }
-      if(kind==="fricativa"){ applyImpulse("fluxo", 0.70, 4); applyImpulse("rarefacao", 0.35, 4); }
-
-      state.m4.clicks++;
-
-      // Catastrophe: after enough clicks, switch regime strongly
-      if(state.m4.clicks >= 12){
-        state.m4.clicks = 0;
-        // shift target in cycle
-        const order = ["surda","sonora","fricativa"];
-        const idx = order.indexOf(state.phonoTarget);
-        const next = order[(idx+1)%order.length];
-        // snap toward next
-        state.phonoTarget = next;
-        state.phono[next] = 0.88;
-        for(const k of order){ if(k!==next) state.phono[k] = 0.14; }
-        // refresh slots more noticeably but still axis-guided
-        state.m4.slots = Array.from({length:5}, ()=>selectSlotByAxes());
-        flash(document.getElementById("m4_scene"));
-      }
-
-      rerenderAll();
-    });
-  });
-}
-
-/* =========================================================
-   12) Fragment div helper
+   FRAGMENT DIV
 ========================================================= */
 function fragDiv(slot, clickable, tagPrefix){
   const d = document.createElement("div");
@@ -1385,108 +1178,199 @@ function fragDiv(slot, clickable, tagPrefix){
 
   d.appendChild(img);
   d.appendChild(tag);
+
+  driftFrag(d, 7);
   return d;
 }
 
-function flash(el){
-  if(!el) return;
-  el.classList.remove("flash");
-  void el.offsetWidth;
-  el.classList.add("flash");
-}
-
 /* =========================================================
-   13) Render M1 fragments + text (no clicks on frags/text)
+   RENDERERS
 ========================================================= */
 function m1_render(){
+  driftScene("scene_m1", 12);
   const wrap = document.getElementById("m1_frags");
   wrap.innerHTML = "";
-  state.m1.slots.forEach((slot)=>{
+  state.m1.slots.forEach(slot=>{
     const el = fragDiv(slot, false, "m1");
     wrap.appendChild(el);
   });
   document.getElementById("m1_text").textContent = m1_generateText();
 }
 
-function m1_generateText(){
-  // More consistent & “Caio-curatorial”: “O que nasce aqui é um X...”
-  const core = weightedPick(OPS.subst, "semantic");
-  const v = weightedPick(OPS.verb, "semantic");
-  const o = weightedPick(OPS.subst, "semantic");
-  const adv = weightedPick(OPS.adv, "semantic");
-  const rest = pick(["resto","vestigio","eco","rastro","silencio"]);
+function m2_render(){
+  driftScene("scene_m2", 10);
 
-  const t1 = chooseSurface(core,"semantic");
-  const t2 = `${chooseSurface(v,"semantic")} ${chooseSurface(o,"semantic")}`;
-  const t3 = chooseSurface(adv,"semantic");
-  const t4 = chooseSurface(rest,"semantic");
+  const wrap = document.getElementById("m2_frags");
+  wrap.innerHTML = "";
 
-  return `No começo, ${t1} aparece como eixo — e isso já inclina o campo. O que nasce aqui é um ${t2}, ${t3}. O resto não some: fica como ${t4} à espera de outra tensão. Se endurece, não é ruído: é ${chooseSurface("corte","semantic")} em formação.`;
-}
+  const front = fragDiv(state.m2.frontSlot, true, "m2");
+  const back  = fragDiv(state.m2.backSlot, true, "m2");
 
-/* =========================================================
-   14) Enforce Sui path loading
-========================================================= */
-async function loadSui(){
-  try{
-    const res = await fetch(PATH_SUI_JSON, { cache:"no-store" });
-    if(!res.ok) throw new Error("Falha ao carregar sui.json");
-    const data = await res.json();
-    state.suiMap = data;
-    const p = data["53"] || data[53];
-    if(p){
-      state.suiUrl = PATH_PREFIX_FROM_ENTRADA + String(p).replace(/^\/+/,"");
-    }else{
-      state.suiUrl = PATH_PREFIX_FROM_ENTRADA + "assets/sui/slot_053.jpg";
-    }
-  }catch(e){
-    // fallback to expected path
-    state.suiUrl = PATH_PREFIX_FROM_ENTRADA + "assets/sui/slot_053.jpg";
+  front.addEventListener("click", ()=>{
+    m2_swapByFragments();
+    rerenderAll();
+  });
+  back.addEventListener("click", ()=>{
+    m2_swapByFragments();
+    rerenderAll();
+  });
+
+  wrap.appendChild(front);
+  wrap.appendChild(back);
+
+  const verbAuto = autoVerbFor();
+  const verbChosen = (state.m2.verbIndex % 2 === 0) ? verbAuto : M2_VERB_POOL[state.m2.verbIndex];
+
+  const module1HTML = renderPhraseOps(state.m2.subjectOps, "semantic", false);
+  const verbHTML = `<span class="tok click verb" data-verb="1">${chooseSurface(verbChosen,"semantic")}</span>`;
+  const module3HTML = renderPhraseOps(state.m2.objectOps, "semantic", false);
+
+  const tEl = document.getElementById("m2_text");
+  tEl.innerHTML = `${module1HTML} ${verbHTML} ${module3HTML}.`;
+
+  const vTok = tEl.querySelector("[data-verb='1']");
+  if(vTok){
+    vTok.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      m2_cycleVerbAndObject();
+      rerenderAll();
+    });
   }
 }
 
-/* =========================================================
-   15) Global rerender + initial setup
-========================================================= */
-function rerenderAll(){
-  // M1
-  m1_render();
+function m3_render(){
+  driftScene("scene_m3", 10);
 
-  // M2 strict render
-  m2_render();
-
-  // M3
-  m3_render();
-
-  // M4
-  m4_render();
-
-  // invalidate final cache when state changes
-  // create a lightweight hash based on main vectors + local states
-  const h = computeStateHash();
-  if(state.final.hash !== h){
-    state.final.hash = "";
-    state.final.slots = [];
-    state.final.styleText = "";
-    state.final.critText = "";
-    state.final.shareText = "";
-    // if final already shown, hide share until regen
-    const out = document.getElementById("final_out");
-    const shareBtn = document.getElementById("btn_share_final");
-    if(out.style.display !== "none"){
-      // keep the old visible but require regenerate? no: better to keep visible and update button states
-      // Here we simply hide share until new generation.
-      shareBtn.style.display = "none";
+  if(state.m3.slots.length !== 7){
+    state.m3.slots = Array.from({length:7}, ()=>selectSlotByAxes());
+    if(state.forceSui && state.suiUrl && !state.m3.slots.includes(53) && Math.random()<0.45){
+      state.m3.slots[Math.floor(Math.random()*7)] = 53;
+    }
+  }else{
+    // drift muito leve
+    const driftChance = 0.10 + 0.20*state.axes.centro_instavel;
+    for(let i=0;i<state.m3.slots.length;i++){
+      if(Math.random()<driftChance*0.18) state.m3.slots[i] = selectSlotByAxes();
     }
   }
+
+  const wrap = document.getElementById("m3_frags");
+  wrap.innerHTML = "";
+  state.m3.slots.forEach(slot=>{
+    const el = fragDiv(slot, true, "m3");
+    el.addEventListener("click", ()=>{
+      const fam = familyOfSlot(slot);
+      fam.axis.forEach(a=>applyImpulse(a, 0.90));
+      state.m3.clicks++;
+      if(state.m3.clicks >= 9){
+        state.m3.clicks = 0;
+        applyImpulse("emergencia", 1.0);
+        applyImpulse("tensao", 0.7);
+        state.m3.slots = Array.from({length:7}, ()=>selectSlotByAxes());
+        flash(document.getElementById("scene_m3"));
+      }
+      rerenderAll();
+    });
+    wrap.appendChild(el);
+  });
+
+  const tEl = document.getElementById("m3_text");
+  tEl.innerHTML = renderM3Sentence(true);
+
+  // clique local por palavra: reforça eixos daquela palavra
+  tEl.querySelectorAll(".tok.click[data-op]").forEach(span=>{
+    span.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      const op = span.getAttribute("data-op");
+      axesOf(op).forEach(a=>applyImpulse(a, 0.95));
+      state.m3.clicks++;
+      if(state.m3.clicks >= 9){
+        state.m3.clicks = 0;
+        applyImpulse("emergencia", 1.0);
+        applyImpulse("tensao", 0.7);
+        state.m3.slots = Array.from({length:7}, ()=>selectSlotByAxes());
+        flash(document.getElementById("scene_m3"));
+      }
+      rerenderAll();
+    });
+  });
 }
 
+function m4_render(){
+  driftScene("scene_m4", 11);
+
+  if(state.m4.slots.length !== 5){
+    state.m4.slots = Array.from({length:5}, ()=>selectSlotByAxes());
+    if(state.forceSui && state.suiUrl && !state.m4.slots.includes(53) && Math.random()<0.70){
+      state.m4.slots[Math.floor(Math.random()*5)] = 53;
+    }
+  }else{
+    for(let i=0;i<state.m4.slots.length;i++){
+      if(Math.random()<0.06) state.m4.slots[i] = selectSlotByAxes();
+    }
+  }
+
+  const wrap = document.getElementById("m4_frags");
+  wrap.innerHTML = "";
+  state.m4.slots.forEach(slot=>{
+    const el = fragDiv(slot, false, "m4");
+    wrap.appendChild(el);
+  });
+
+  const tEl = document.getElementById("m4_text");
+  tEl.innerHTML = renderM4Sentence();
+
+  tEl.querySelectorAll(".tok.click[data-op]").forEach(span=>{
+    span.addEventListener("click",(e)=>{
+      e.stopPropagation();
+      const op = span.getAttribute("data-op");
+      const ax = axesOf(op);
+
+      // fonologia “sentida” por eixos (corte->surda, tensao/emerg->sonora, fluxo/raref->fricativa)
+      let kind = state.phonoTarget;
+      if(ax.includes("corte")) kind = "surda";
+      else if(ax.includes("tensao") || ax.includes("emergencia")) kind = "sonora";
+      else if(ax.includes("fluxo") || ax.includes("rarefacao")) kind = "fricativa";
+
+      state.m4.localBoost[kind] = clamp(state.m4.localBoost[kind] + 1, 0, 999);
+      applyPhonoImpulse(kind, 0.95);
+
+      // arrasto visual coerente
+      if(kind==="surda"){ applyImpulse("corte", 0.80); applyImpulse("contorno", 0.25); }
+      if(kind==="sonora"){ applyImpulse("tensao", 0.80); applyImpulse("emergencia", 0.35); }
+      if(kind==="fricativa"){ applyImpulse("fluxo", 0.80); applyImpulse("rarefacao", 0.35); }
+
+      state.m4.clicks++;
+
+      // catástrofe: troca regime com salto sensível
+      if(state.m4.clicks >= 12){
+        state.m4.clicks = 0;
+        const order = ["surda","sonora","fricativa"];
+        const idx = order.indexOf(state.phonoTarget);
+        const next = order[(idx+1)%order.length];
+        state.phonoTarget = next;
+        state.phono[next] = 0.92;
+        for(const k of order){ if(k!==next) state.phono[k] = 0.12; }
+        state.m4.slots = Array.from({length:5}, ()=>selectSlotByAxes());
+        flash(document.getElementById("scene_m4"));
+      }
+
+      rerenderAll();
+    });
+  });
+}
+
+/* =========================================================
+   FINAL (determinístico por estado — não muda por clique no botão)
+========================================================= */
 function computeStateHash(){
   const a = AXES.map(k=>state.axes[k].toFixed(3)).join(",");
   const p = ["surda","sonora","fricativa"].map(k=>state.phono[k].toFixed(3)).join(",");
   const l = [
     state.m1.clicks,
-    state.m2.frontSlot, state.m2.backSlot, state.m2.swapped?1:0, state.m2.verbIndex, state.m2.objVariant,
+    state.m2.frontSlot, state.m2.backSlot, state.m2.swapped?1:0, state.m2.verbIndex,
+    state.m2.subjectOps?.join("-")||"",
+    state.m2.objectOps?.join("-")||"",
     state.m3.slots.join("-"),
     state.m4.slots.join("-"),
     state.phonoTarget
@@ -1494,11 +1378,7 @@ function computeStateHash(){
   return `${a}__${p}__${l}`;
 }
 
-/* =========================================================
-   16) Final: generate deterministic from current state hash
-========================================================= */
 function seededRng(seedStr){
-  // small deterministic PRNG from string
   let h = 2166136261 >>> 0;
   for(let i=0;i<seedStr.length;i++){
     h ^= seedStr.charCodeAt(i);
@@ -1512,56 +1392,22 @@ function seededRng(seedStr){
   }
 }
 
-function generateFinal(){
-  const hash = computeStateHash();
-  if(state.final.hash === hash && state.final.slots.length === 10){
-    // already generated for this state
-    return;
-  }
-
-  const R = seededRng(hash);
-
-  // choose 10 slots weighted by axes
-  const slots = [];
-  for(let i=0;i<10;i++){
-    slots.push(selectSlotByAxesSeeded(R));
-  }
-
-  // enforce Sui (90%) at least once in final if forceSui
-  if(state.forceSui && state.suiUrl && !slots.includes(53)){
-    // guarantee in final
-    slots[Math.floor(R()*10)] = 53;
-  }
-
-  // style text derived from dominant axes + phonology
-  const domAxes = AXES.slice().sort((a,b)=>state.axes[b]-state.axes[a]).slice(0,3);
-  const ph = state.phonoTarget;
-  const phText = (ph==="surda") ? "corte seco" : (ph==="sonora") ? "ruptura sonora" : "passagem fricativa";
-
-  const dom1 = axisLabel(domAxes[0]);
-  const dom2 = axisLabel(domAxes[1]);
-  const dom3 = axisLabel(domAxes[2]);
-
-  const style = `O teu estilo curatorial inclina-se para ${dom1}, com ${dom2} e um resto de ${dom3}. Predomina um corpo sonoro de ${phText} — e isso organiza o modo como o campo decide o que aparece e o que insiste em faltar.`;
-
-  // critique text (longer, catalogue-like), uses operators as surfaces to sound curatorial/poetic
-  const crit = buildCritiqueText(ph, domAxes, R);
-
-  const shareText =
-`Eu gerei a minha curadoria possível em MÓBILES (suiornotsui).
-O que apareceu para mim não é “o todo”: é um recorte.
-E o resto — o que não consegui alcançar — é o motor.
-
-Faz a tua:
-${location.href}`;
-
-  state.final.hash = hash;
-  state.final.slots = slots;
-  state.final.styleText = style;
-  state.final.critText = crit;
-  state.final.shareText = shareText;
-
-  renderFinal();
+function axisLabel(a){
+  const map = {
+    corte: "corte e decisão",
+    fluxo: "passagens e continuidade",
+    densidade: "densidade contida",
+    rarefacao: "rarefação e respiro",
+    centro_instavel: "centro instável",
+    contorno: "contorno e margem",
+    ritmo: "ritmo de insistência",
+    memoria: "memória e vestígio",
+    tensao: "tensão e peso",
+    presenca: "presença táctil",
+    emergencia: "emergência",
+    cuidado: "cuidado de aproximação",
+  };
+  return map[a] || a;
 }
 
 function selectSlotByAxesSeeded(R){
@@ -1584,53 +1430,81 @@ function selectSlotByAxesSeeded(R){
   return a + Math.floor(R()*(b-a+1));
 }
 
-function axisLabel(a){
-  const map = {
-    corte: "corte e decisão",
-    fluxo: "passagens e continuidade",
-    densidade: "densidade contida",
-    rarefacao: "rarefação e respiro",
-    centro_instavel: "centro instável",
-    contorno: "contorno e margem",
-    ritmo: "ritmo de insistência",
-    memoria: "memória e vestígio",
-    tensao: "tensão e peso",
-    presenca: "presença táctil",
-    emergencia: "emergência",
-    cuidado: "cuidado de aproximação",
-  };
-  return map[a] || a;
-}
+function buildCritiqueText(){
+  // frase boa, sem “se faz”, com suporte de infinitivo
+  const mode = "phono";
+  const S1=weightedPick(OPS.subst), A1=weightedPick(OPS.adj), V1=weightedPick(OPS.verb), O1=weightedPick(OPS.subst);
+  const S2=weightedPick(OPS.subst), A2=weightedPick(OPS.adj), V2=weightedPick(OPS.verb), O2=weightedPick(OPS.subst);
+  const ADV=weightedPick(OPS.adv);
 
-function buildCritiqueText(ph, domAxes, R){
-  // Use operator surfaces consistent with phonology for extra “poesia”
-  const phKind = ph; // surda|sonora|fricativa
-  function opSurf(op){ return surfaceOf(op, phKind); }
-
-  const s1 = opSurf(weightedPick(OPS.subst,"semantic"));
-  const a1 = opSurf(weightedPick(OPS.adj,"semantic"));
-  const v1 = opSurf(weightedPick(OPS.verb,"semantic"));
-  const o1 = opSurf(weightedPick(OPS.subst,"semantic"));
-  const adv = opSurf(weightedPick(OPS.adv,"semantic"));
-
-  const s2 = opSurf(weightedPick(OPS.subst,"semantic"));
-  const a2 = opSurf(weightedPick(OPS.adj,"semantic"));
-  const v2 = opSurf(weightedPick(OPS.verb,"semantic"));
-  const o2 = opSurf(weightedPick(OPS.subst,"semantic"));
-
+  const domAxes = AXES.slice().sort((a,b)=>state.axes[b]-state.axes[a]).slice(0,2);
   const domA = axisLabel(domAxes[0]);
   const domB = axisLabel(domAxes[1]);
 
-  return `A constelação que se organiza aqui trabalha como campo e como crítica: não descreve um tema, mas fixa um regime de aparecimento. Entre ${domA} e ${domB}, a exposição produz uma circulação de ${s1} ${a1} — onde o olhar se faz ${v1} a ${o1}. ${adv}, a matéria não fecha: ela se reescreve como ${s2} ${a2}, que se faz ${v2} a ${o2}. O que parece “mínimo” é, na verdade, dispositivo: cada fragmento sustenta uma decisão e deixa um resto operável — aquilo que ainda não veio, mas que já pressiona o próximo gesto.`;
+  const aux1 = pick(["fazem","permitem","deixam","forçam a","inclinam a"]);
+  const aux2 = pick(["sustentam","organizam","recortam","deslocam","retêm"]);
+  const aux3 = pick(["ao ponto de","de tal modo que","num excesso em que"]);
+
+  const s1 = maybePluralSurface(S1, mode);
+  const a1 = maybePluralSurface(A1, mode);
+  const v1 = chooseSurface(V1, mode);
+  const o1 = maybePluralSurface(O1, mode);
+
+  const s2 = maybePluralSurface(S2, mode);
+  const a2 = maybePluralSurface(A2, mode);
+  const v2 = chooseSurface(V2, mode);
+  const o2 = maybePluralSurface(O2, mode);
+
+  const adv = chooseSurface(ADV, mode);
+
+  return `A constelação organiza um regime de aparecimento — não um tema. Entre ${domA} e ${domB}, ${s1} ${a1} ${aux1} ${v1} ${o1}. ${adv}, ${s2} ${a2} ${aux2} ${v2} ${o2}, ${aux3} o resto insistir como dispositivo.`;
+}
+
+function generateFinal(){
+  const hash = computeStateHash();
+  if(state.final.hash === hash && state.final.slots.length===10) return;
+
+  const R = seededRng(hash);
+  const slots = [];
+  for(let i=0;i<10;i++) slots.push(selectSlotByAxesSeeded(R));
+
+  if(state.forceSui && state.suiUrl && !slots.includes(53)){
+    slots[Math.floor(R()*10)] = 53;
+  }
+
+  const domAxes = AXES.slice().sort((a,b)=>state.axes[b]-state.axes[a]).slice(0,3);
+  const ph = state.phonoTarget;
+  const phText = (ph==="surda") ? "corte seco" : (ph==="sonora") ? "ruptura sonora" : "passagem fricativa";
+
+  const style = `O teu estilo curatorial inclina-se para ${axisLabel(domAxes[0])}, com ${axisLabel(domAxes[1])} e um resto de ${axisLabel(domAxes[2])}. Predomina um corpo sonoro de ${phText}, que reorganiza o modo como o campo decide presença e ausência.`;
+
+  const crit = buildCritiqueText();
+
+  const shareText =
+`Eu gerei a minha curadoria possível em MÓBILES (suiornotsui).
+O que apareceu para mim não é “o todo”: é um recorte.
+E o resto — o que não consegui alcançar — é o motor.
+
+Faz a tua:
+${location.href}`;
+
+  state.final.hash = hash;
+  state.final.slots = slots;
+  state.final.styleText = style;
+  state.final.critText = crit;
+  state.final.shareText = shareText;
+
+  renderFinal();
 }
 
 function renderFinal(){
+  driftScene("scene_final", 10);
+
   const out = document.getElementById("final_out");
   const grid = document.getElementById("final_frags");
   grid.innerHTML = "";
 
-  const slots = state.final.slots;
-  slots.forEach((slot)=>{
+  state.final.slots.forEach(slot=>{
     const el = fragDiv(slot, false, "expo");
     grid.appendChild(el);
   });
@@ -1646,17 +1520,15 @@ Para descobrir outras constelações expositivas, é preciso antes arriscar a tu
 }
 
 /* =========================================================
-   17) Sharing (priority: native share with image+text)
+   SHARE (prioridade: native share com imagem+texto)
 ========================================================= */
 async function buildCanvasFromSlots(slots, title){
-  // Create a shareable image (canvas), 1080x1080
   const size = 1080;
   const pad = 64;
-  const bg = document.createElement("canvas");
-  bg.width = size; bg.height = size;
-  const ctx = bg.getContext("2d");
+  const canvas = document.createElement("canvas");
+  canvas.width = size; canvas.height = size;
+  const ctx = canvas.getContext("2d");
 
-  // background
   const g1 = ctx.createRadialGradient(size*0.25,size*0.2, 20, size*0.25,size*0.2, size*0.9);
   g1.addColorStop(0, "rgba(255,210,232,0.85)");
   g1.addColorStop(1, "rgba(251,244,248,1)");
@@ -1669,7 +1541,6 @@ async function buildCanvasFromSlots(slots, title){
   ctx.fillStyle = g2;
   ctx.fillRect(0,0,size,size);
 
-  // title
   ctx.fillStyle = "rgba(20,10,30,0.82)";
   ctx.font = "800 44px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
   ctx.fillText(title, pad, pad+30);
@@ -1678,16 +1549,14 @@ async function buildCanvasFromSlots(slots, title){
   ctx.fillStyle = "rgba(20,10,30,0.62)";
   ctx.fillText("suiornotsui · MÓBILES", pad, pad+64);
 
-  // grid
   const cols = 5;
-  const rows = Math.ceil(slots.length / cols);
   const gap = 18;
   const usableW = size - pad*2;
   const cell = Math.floor((usableW - gap*(cols-1)) / cols);
   const startY = pad + 110;
 
   async function loadImg(src){
-    return new Promise((resolve,reject)=>{
+    return new Promise(resolve=>{
       const im = new Image();
       im.crossOrigin = "anonymous";
       im.onload = ()=>resolve(im);
@@ -1696,13 +1565,25 @@ async function buildCanvasFromSlots(slots, title){
     });
   }
 
+  function roundRect(ctx, x, y, w, h, r, fill, stroke){
+    const rr = Math.min(r, w/2, h/2);
+    ctx.beginPath();
+    ctx.moveTo(x+rr, y);
+    ctx.arcTo(x+w, y, x+w, y+h, rr);
+    ctx.arcTo(x+w, y+h, x, y+h, rr);
+    ctx.arcTo(x, y+h, x, y, rr);
+    ctx.arcTo(x, y, x+w, y, rr);
+    ctx.closePath();
+    if(fill) ctx.fill();
+    if(stroke) ctx.stroke();
+  }
+
   for(let i=0;i<slots.length;i++){
     const r = Math.floor(i/cols);
     const c = i%cols;
     const x = pad + c*(cell+gap);
     const y = startY + r*(cell+gap);
 
-    // frame
     ctx.fillStyle = "rgba(255,255,255,0.55)";
     roundRect(ctx, x, y, cell, cell, 24, true, false);
     ctx.strokeStyle = "rgba(20,10,30,0.85)";
@@ -1713,7 +1594,6 @@ async function buildCanvasFromSlots(slots, title){
     const src = getFragmentURL(slot);
     const im = await loadImg(src);
     if(im){
-      // contain
       const iw = im.width, ih = im.height;
       const scale = Math.min((cell-18)/iw, (cell-18)/ih);
       const dw = iw*scale, dh = ih*scale;
@@ -1723,25 +1603,11 @@ async function buildCanvasFromSlots(slots, title){
     }
   }
 
-  // footer
   ctx.fillStyle = "rgba(20,10,30,0.68)";
   ctx.font = "650 22px ui-sans-serif, system-ui";
   ctx.fillText("Faz a tua curadoria: " + location.href, pad, size - pad);
 
-  return bg;
-}
-
-function roundRect(ctx, x, y, w, h, r, fill, stroke){
-  const rr = Math.min(r, w/2, h/2);
-  ctx.beginPath();
-  ctx.moveTo(x+rr, y);
-  ctx.arcTo(x+w, y, x+w, y+h, rr);
-  ctx.arcTo(x+w, y+h, x, y+h, rr);
-  ctx.arcTo(x, y+h, x, y, rr);
-  ctx.arcTo(x, y, x+w, y, rr);
-  ctx.closePath();
-  if(fill) ctx.fill();
-  if(stroke) ctx.stroke();
+  return canvas;
 }
 
 async function shareSlots(slots, title, text){
@@ -1749,14 +1615,13 @@ async function shareSlots(slots, title, text){
   const blob = await new Promise(res=>canvas.toBlob(res, "image/png", 0.92));
   const file = new File([blob], "mobiles.png", { type: "image/png" });
 
-  // try native share with file
   if(navigator.canShare && navigator.canShare({ files:[file] })){
     try{
       await navigator.share({ title, text, files:[file], url: location.href });
       return;
     }catch(e){}
   }
-  // fallback: open a download + copy text
+
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
@@ -1772,78 +1637,92 @@ async function shareSlots(slots, title, text){
   }
 }
 
-/* =========================================================
-   18) Share per mobile / final
-========================================================= */
 function bindSharing(){
   document.getElementById("share_m1").addEventListener("click", ()=>{
-    const slots = state.m1.slots.slice();
-    const text = `Eu tensionei o início (MÓBILE 1). E tu?\n${location.href}`;
-    shareSlots(slots, "MÓBILES — início", text);
+    shareSlots(state.m1.slots.slice(), "MÓBILES — início", `Eu tensionei o início (MÓBILE 1). E tu?\n${location.href}`);
   });
-
   document.getElementById("share_m2").addEventListener("click", ()=>{
-    const slots = [state.m2.frontSlot, state.m2.backSlot];
-    const text = `Eu inverti posições (MÓBILE 2). E tu?\n${location.href}`;
-    shareSlots(slots, "MÓBILES — posição", text);
+    shareSlots([state.m2.frontSlot, state.m2.backSlot], "MÓBILES — posição", `Eu inverti posições (MÓBILE 2). E tu?\n${location.href}`);
   });
-
   document.getElementById("share_m3").addEventListener("click", ()=>{
-    const slots = state.m3.slots.slice();
-    const text = `Eu intensifiquei um gesto (MÓBILE 3). Faz a tua curadoria:\n${location.href}`;
-    shareSlots(slots, "MÓBILES — gesto", text);
+    shareSlots(state.m3.slots.slice(), "MÓBILES — gesto", `Eu intensifiquei um gesto (MÓBILE 3). Faz a tua curadoria:\n${location.href}`);
   });
-
   document.getElementById("share_m4").addEventListener("click", ()=>{
-    const slots = state.m4.slots.slice();
-    const text = `Eu fiz o som dominar (MÓBILE 4). Faz a tua curadoria:\n${location.href}`;
-    shareSlots(slots, "MÓBILES — corpo da linguagem", text);
+    shareSlots(state.m4.slots.slice(), "MÓBILES — corpo da linguagem", `Eu fiz o som dominar (MÓBILE 4). Faz a tua curadoria:\n${location.href}`);
   });
-
   document.getElementById("btn_share_final").addEventListener("click", ()=>{
-    shareSlots(state.final.slots, "MÓBILES — minha exposição", state.final.shareText);
+    shareSlots(state.final.slots.slice(), "MÓBILES — minha exposição", state.final.shareText);
   });
 }
 
 /* =========================================================
-   19) Init
+   SUI LOADER
+========================================================= */
+async function loadSui(){
+  try{
+    const res = await fetch(PATH_SUI_JSON, { cache:"no-store" });
+    if(!res.ok) throw new Error("Falha ao carregar sui.json");
+    const data = await res.json();
+    state.suiMap = data;
+    const p = data["53"] || data[53];
+    if(p){
+      state.suiUrl = PATH_PREFIX_FROM_ENTRADA + String(p).replace(/^\/+/,"");
+    }else{
+      state.suiUrl = PATH_PREFIX_FROM_ENTRADA + "assets/sui/slot_053.jpg";
+    }
+  }catch(e){
+    state.suiUrl = PATH_PREFIX_FROM_ENTRADA + "assets/sui/slot_053.jpg";
+  }
+}
+
+/* =========================================================
+   GLOBAL RERENDER
+========================================================= */
+function rerenderAll(){
+  m1_render();
+  m2_render();
+  m3_render();
+  m4_render();
+
+  const h = computeStateHash();
+  if(state.final.hash && state.final.hash !== h){
+    // invalida final se estado mudou
+    document.getElementById("btn_share_final").style.display = "none";
+  }
+}
+
+/* =========================================================
+   INIT
 ========================================================= */
 async function init(){
   await loadSui();
 
-  // set initial M1 slots in a way that respects grammar and possibly includes Sui
+  // M1 slots
   state.m1.slots = [selectSlotByAxes(), selectSlotByAxes(), selectSlotByAxes()];
-  if(state.forceSui && state.suiUrl){
-    // ensure at least one Sui appears early in the run (not necessarily in M1, but often)
-    if(!state.m1.slots.includes(53) && Math.random()<0.55){
-      state.m1.slots[Math.floor(Math.random()*3)] = 53;
-    }
+  if(state.forceSui && state.suiUrl && !state.m1.slots.includes(53) && Math.random()<0.55){
+    state.m1.slots[Math.floor(Math.random()*3)] = 53;
   }
 
-  // initial M2 slots
+  // M2 init
   state.m2.frontSlot = selectSlotByAxes();
   state.m2.backSlot = selectSlotByAxes();
+  initM2Phrases();
+
   if(state.forceSui && state.suiUrl && Math.random()<0.35){
-    // sometimes Sui appears in M2 background/foreground
     if(Math.random()<0.5) state.m2.frontSlot = 53; else state.m2.backSlot = 53;
   }
 
   rerenderAll();
+  bindSharing();
 
-  // bind M1 button
   document.getElementById("btn_m1").addEventListener("click", ()=>{
     m1_tension();
-    // small drift in M2/M3/M4 due to new start position (but not chaotic)
-    state.m2.verbIndex = (state.m2.verbIndex + 1) % M2_VERB_POOL.length;
     rerenderAll();
   });
 
-  // generate final
   document.getElementById("btn_generate").addEventListener("click", ()=>{
     generateFinal();
   });
-
-  bindSharing();
 }
 
 init();
