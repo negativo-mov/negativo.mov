@@ -1,0 +1,1572 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MÓBILES — entrada</title>
+  <style>
+    :root{
+      --bg0:#fbf4f8;
+      --bg1:#f3f7ff;
+      --ink:#1a1a1a;
+      --mut:#45424a;
+      --shadow: 0 18px 70px rgba(25,16,40,.16);
+      --shadow2: 0 10px 36px rgba(25,16,40,.12);
+      --radius: 22px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 900px at 20% 10%, rgba(255,210,232,.75), transparent 55%),
+        radial-gradient(1100px 900px at 85% 20%, rgba(207,226,255,.85), transparent 60%),
+        radial-gradient(900px 900px at 30% 85%, rgba(215,255,232,.65), transparent 55%),
+        radial-gradient(900px 900px at 80% 85%, rgba(217,199,255,.55), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    .wrap{ width:min(980px, calc(100% - 28px)); margin: 28px auto 140px; }
+    .title{ margin: 8px 0 10px; font-size: 26px; letter-spacing: .2px; font-weight: 820; color: #120f17; }
+    .lead{
+      font-size: 16px; line-height: 1.55; color: var(--mut); white-space: pre-line;
+      margin: 14px 0 22px; padding: 18px 18px; border-radius: var(--radius);
+      background: rgba(255,255,255,.55); box-shadow: var(--shadow2);
+      border: 1.5px solid rgba(20,10,30,.12); backdrop-filter: blur(6px);
+    }
+    .sig{
+      display:inline-block; font-family: var(--mono); font-size: 12px;
+      color: rgba(20,10,30,.64); background: rgba(255,255,255,.6);
+      border: 1px solid rgba(20,10,30,.12); padding: 6px 10px; border-radius: 999px;
+      margin: 10px 0 0;
+    }
+    .section{ margin: 28px 0; }
+    .intro{
+      white-space: pre-line; font-size: 15px; line-height: 1.55;
+      color: rgba(15,10,22,.80); margin: 0 0 14px; padding: 14px 16px;
+      border-radius: 18px; background: rgba(255,255,255,.50);
+      border: 1.3px solid rgba(20,10,30,.10); box-shadow: var(--shadow2);
+      backdrop-filter: blur(6px);
+    }
+    .scene{
+      position: relative; border-radius: calc(var(--radius) + 8px);
+      border: 1.6px solid rgba(20,10,30,.14);
+      background: rgba(255,255,255,.42);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      transform: translateZ(0);
+    }
+    .scene::after{
+      content:""; position:absolute; inset:-14%;
+      background:
+        radial-gradient(700px 420px at 30% 20%, rgba(255,210,232,.22), transparent 60%),
+        radial-gradient(820px 520px at 75% 35%, rgba(207,226,255,.22), transparent 65%),
+        radial-gradient(900px 520px at 45% 85%, rgba(215,255,232,.18), transparent 65%);
+      opacity:.95; mix-blend-mode:multiply;
+      transform: translate3d(var(--bx,0px), var(--by,0px), 0) rotate(var(--br,0deg));
+      transition: transform 820ms cubic-bezier(.2,.9,.2,1);
+      pointer-events:none;
+    }
+    .scenePad{
+      padding: 26px 22px 30px;
+      position:relative; z-index:1;
+      min-height: 320px;
+    }
+    .controls{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      padding: 14px 16px; border-top: 1px solid rgba(20,10,30,.10);
+      background: rgba(255,255,255,.40); backdrop-filter: blur(6px);
+      position:relative; z-index:2;
+    }
+    button{
+      font-family: var(--sans);
+      font-weight: 720;
+      letter-spacing:.2px;
+      border-radius: 999px;
+      padding: 10px 14px;
+      border: 1.4px solid rgba(20,10,30,.16);
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.62));
+      color: #140e1e;
+      box-shadow: 0 10px 20px rgba(20,10,30,.10);
+      cursor:pointer; user-select:none;
+    }
+    button:hover{ transform: translateY(-1px); }
+    button:active{ transform: translateY(0px); }
+    button.small{ padding: 8px 12px; font-size: 13px; }
+    button.ghost{ background: rgba(255,255,255,.35); box-shadow:none; }
+    .hint{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(15,10,22,.65);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px dashed rgba(20,10,30,.18);
+      background: rgba(255,255,255,.35);
+    }
+
+    .frGrid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items:end; }
+    .frGrid7{ display:grid; grid-template-columns: repeat(7, 1fr); gap: 14px; }
+    .frGrid5{ display:grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+    .fr2{ display:grid; grid-template-columns: 1.25fr .75fr; gap: 18px; align-items:end; }
+    @media (max-width: 860px){
+      .scenePad{ min-height: 290px; }
+      .frGrid7{ grid-template-columns: repeat(4, 1fr); }
+      .frGrid5{ grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 700px){
+      .fr2{ grid-template-columns: 1fr; }
+      .scenePad{ min-height: 260px; }
+    }
+    @media (max-width: 520px){
+      .frGrid7{ grid-template-columns: repeat(3, 1fr); }
+      .frGrid5{ grid-template-columns: repeat(2, 1fr); }
+      .scenePad{ min-height: 240px; }
+    }
+
+    .frag{
+      position: relative;
+      border-radius: 18px;
+      border: 2.2px solid rgba(20,10,30,.72);
+      background: rgba(255,255,255,.40);
+      box-shadow: 0 14px 32px rgba(20,10,30,.18);
+      overflow:hidden;
+      aspect-ratio: 1 / 1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transform: translate3d(var(--dx,0px), var(--dy,0px), 0) rotate(var(--dr,0deg)) scale(.92);
+      transition:
+        transform 760ms cubic-bezier(.18,.9,.18,1),
+        box-shadow 260ms ease,
+        outline 220ms ease;
+      will-change: transform;
+    }
+    .frag .img{ width: 100%; height: 100%; object-fit: contain; background: rgba(255,255,255,.25); }
+    .frag.clickable{ cursor:pointer; }
+    .frag.clickable:hover{
+      box-shadow: 0 18px 44px rgba(20,10,30,.22);
+      outline: 3px solid rgba(255,255,255,.65);
+      transform: translate3d(var(--dx,0px), calc(var(--dy,0px) - 3px), 0) rotate(var(--dr,0deg)) scale(.94);
+    }
+    .fragTag{
+      position:absolute;
+      left: 10px;
+      top: 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.65);
+      border: 1px solid rgba(20,10,30,.14);
+      color: rgba(20,10,30,.75);
+      pointer-events:none;
+    }
+
+    .bg-crib::before,
+    .bg-mountains::before,
+    .bg-lab::before,
+    .bg-stairs::before{
+      content:""; position:absolute; inset:0; opacity:.85;
+      pointer-events:none; mix-blend-mode: multiply;
+    }
+    .bg-crib::before{
+      background:
+        radial-gradient(420px 260px at 50% 20%, rgba(255,255,255,.85), transparent 60%),
+        linear-gradient(180deg, rgba(255,210,232,.55), rgba(217,199,255,.25)),
+        repeating-linear-gradient(90deg, rgba(20,10,30,.10) 0 2px, transparent 2px 12px);
+    }
+    .bg-mountains::before{
+      background:
+        linear-gradient(180deg, rgba(207,226,255,.55), rgba(255,243,218,.35)),
+        radial-gradient(900px 450px at 40% 85%, rgba(180,255,207,.35), transparent 60%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='420' viewBox='0 0 1200 420'%3E%3Cpath d='M0 340 L170 230 L320 330 L500 190 L680 340 L860 210 L1020 340 L1200 250 L1200 420 L0 420 Z' fill='rgba(20,10,30,0.08)'/%3E%3Cpath d='M0 360 L150 280 L280 355 L460 240 L620 370 L780 260 L940 360 L1200 290 L1200 420 L0 420 Z' fill='rgba(20,10,30,0.06)'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;
+      background-position:center bottom;
+      background-size: cover;
+    }
+    .bg-lab::before{
+      background:
+        radial-gradient(700px 420px at 30% 20%, rgba(255,210,232,.35), transparent 60%),
+        radial-gradient(700px 420px at 85% 30%, rgba(207,226,255,.35), transparent 60%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='700' viewBox='0 0 1200 700'%3E%3Cg fill='none' stroke='rgba(20,10,30,0.16)' stroke-width='5'%3E%3Cpath d='M80 120 H420 V260 H240 V400 H520 V560 H980'/%3E%3Cpath d='M160 80 H560 V200 H360 V320 H640 V460 H420 V620 H1120'/%3E%3Cpath d='M60 520 H280 V360 H120 V240 H320 V120 H980'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: cover;
+      background-position:center;
+    }
+    .bg-stairs::before{
+      background:
+        radial-gradient(900px 520px at 50% 18%, rgba(255,243,218,.45), transparent 55%),
+        radial-gradient(820px 520px at 35% 85%, rgba(217,199,255,.25), transparent 60%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='520' viewBox='0 0 1200 520'%3E%3Cg fill='none' stroke='rgba(20,10,30,0.16)' stroke-width='7'%3E%3Cpath d='M120 420 L260 340 L400 420 L540 340 L680 420 L820 340 L960 420'/%3E%3Cpath d='M220 130 L220 320 L360 240 L360 430'/%3E%3Cpath d='M620 90 L760 170 L620 250 L760 330 L620 410'/%3E%3Cpath d='M980 140 L860 220 L980 300 L860 380'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: cover;
+      background-position:center;
+    }
+
+    .dyn{ padding: 0 18px 20px; position:relative; z-index:2; }
+    .dyn p{ margin: 12px 0 0; color: rgba(20,10,30,.86); line-height: 1.6; font-size: 15px; }
+    .dyn .small{ font-size: 13px; color: rgba(20,10,30,.70); }
+
+    .tok{
+      display:inline-block;
+      padding: 0 2px;
+      border-radius: 6px;
+      transition: background .12s ease, outline .12s ease, transform .12s ease;
+    }
+    .tok.click{
+      cursor:pointer;
+      outline: 1.2px dashed rgba(20,10,30,.18);
+      background: rgba(255,255,255,.35);
+    }
+    .tok.click:hover{
+      background: rgba(255,255,255,.68);
+      outline-color: rgba(20,10,30,.30);
+      transform: translateY(-1px);
+    }
+    .tok.verb{
+      font-weight: 820;
+      outline: 2px solid rgba(20,10,30,.65);
+      background: rgba(255,255,255,.72);
+    }
+
+    .finalWrap{ margin-top: 16px; padding: 18px; }
+    .constellation{
+      display:grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+    @media (max-width: 860px){ .constellation{ grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 520px){ .constellation{ grid-template-columns: repeat(2, 1fr); } }
+
+    .note{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(20,10,30,.65);
+      margin-top: 12px;
+      white-space: pre-line;
+    }
+
+    .flash{ animation: flash .22s ease-in-out 1; }
+    @keyframes flash{
+      0%{ filter: saturate(1); }
+      50%{ filter: saturate(1.7) contrast(1.05); }
+      100%{ filter: saturate(1); }
+    }
+  /* Long intro blocks (I, II, III) */
+.leadLong{margin:18px 0 10px 0;}
+.leadGrid{display:grid;grid-template-columns:1fr;gap:14px;}
+.leadCard{
+  background:rgba(255,255,255,0.62);
+  border:1px solid rgba(0,0,0,0.06);
+  border-radius:18px;
+  padding:18px 18px;
+  box-shadow:0 10px 28px rgba(0,0,0,0.06);
+}
+.leadCard h2{
+  margin:0 0 10px 0;
+  font-size:18px;
+  letter-spacing:0.06em;
+}
+.leadCard p{margin:0 0 10px 0;line-height:1.55;}
+.leadCard p:last-child{margin-bottom:0;}
+@media (min-width: 980px){
+  .leadGrid{grid-template-columns:1fr 1fr 1fr;}
+  .leadCard{padding:20px 22px;}
+}
+
+</style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="title">MÓBILES — entrada</div>
+
+    <div class="lead"><div class="leadLong">
+  <div class="leadGrid">
+    <section class="leadCard">
+      <h2>I</h2>
+      <p>O trabalho de suiornotsui inscreve-se numa zona rara da produção visual contemporânea em que a leveza material não coincide com superficialidade formal, e em que a aparente precariedade dos meios não constitui índice de fragilidade poética, mas estratégia estruturante de pensamento plástico. O uso recorrente de papéis de baixa gramatura, canetas de traço instável, lápis escolares, colagens frágeis, suportes quotidianos e materiais considerados menores no regime tradicional das belas-artes não configura um gesto de empobrecimento técnico, mas uma tomada de posição estética consciente: a escolha deliberada por uma materialidade que não estabiliza a forma, que não promete permanência, que não monumentaliza o gesto. A obra nasce já atravessada por sua própria condição de impermanência, e é precisamente nessa instabilidade que reside sua força estruturante. Não se trata, portanto, de um regime de “intimidade” ou “delicadeza” no sentido sentimentalizado com que frequentemente se recobre a produção visual feminina contemporânea, mas de uma operação formal rigorosa: a construção de imagens cuja consistência depende não da fixidez da forma, mas da relação dinâmica entre fragmentos, camadas, interrupções, reaparições e vazios.<br>Essa lógica fragmentária não deve ser compreendida como colagem arbitrária nem como acumulação decorativa de elementos. Ao contrário, a organização interna das composições de suiornotsui revela uma atenção estrutural à distribuição tensiva dos componentes visuais no campo da imagem. As figuras — crianças, animais, corpos suspensos, flores, objetos domésticos, paisagens rarefeitas — não ocupam o espaço de forma neutra; elas emergem como unidades instáveis, frequentemente deslocadas do centro, por vezes parcialmente obliteradas, outras vezes atravessadas por sobreposições gráficas que perturbam a leitura imediata. A relação entre fundo e figura é constantemente reconfigurada: o fundo nunca se reduz a suporte passivo, mas atua como campo ativo de forças que ora absorve, ora expulsa, ora fragmenta aquilo que nele aparece. Há, nesse gesto compositivo, uma recusa sistemática do fechamento formal e da centralidade estável, substituídas por uma organização espacial que privilegia a oscilação, a suspensão e a ambiguidade estrutural.<br>Essa oscilação manifesta-se também no modo como elementos visuais retornam ao longo de diferentes trabalhos, configurando um verdadeiro regime de arquivo em funcionamento. Fragmentos iconográficos — uma determinada flor, um gesto corporal, um animal específico, um motivo gráfico — reaparecem em contextos distintos, nunca como repetição idêntica, mas como variação instável de uma mesma matriz imagética. Esse procedimento aproxima o trabalho de suiornotsui menos da lógica da série e mais da lógica do campo: não há obras isoladas, mas um conjunto de operações que se atualizam diferentemente a cada nova configuração. O desenho não é aqui entendido como produto finalizado, mas como estado transitório de uma pesquisa formal contínua, em que o arquivo não é depósito de passado, mas reserva operatória de possibilidades futuras. A imagem nasce da reativação de restos, da recombinação de resíduos, da reinscrição de vestígios, num processo que impede tanto o esgotamento do repertório quanto a estabilização de uma linguagem fechada.<br>Esse modo de operar confere ao conjunto da produção um caráter estruturalmente móvel, no qual nenhuma imagem pode ser compreendida como definitiva. A obra existe como campo de variações, não como unidade conclusa. Essa mobilidade interna é acentuada ainda pela coexistência de técnicas heterogêneas em um mesmo suporte: aquarela diluída que convive com traços duros de caneta, colagens que interrompem a continuidade gráfica, zonas saturadas justapostas a grandes áreas de rarefação visual. Essa coexistência não se resolve por harmonia estilística, mas por tensão produtiva entre regimes materiais distintos. Cada técnica traz consigo uma temporalidade própria — a demora da mancha aquosa, a velocidade do traço, a rigidez do recorte colado — e a imagem final preserva visíveis essas diferenças de tempo, como se o processo de composição permanecesse inscrito na própria superfície do trabalho.<br>É precisamente essa recusa da homogeneização formal que impede a leitura do trabalho de suiornotsui como mero exercício estético de delicadeza ou nostalgia. Embora elementos iconográficos ligados à infância, à memória e ao universo doméstico estejam frequentemente presentes, eles não operam como tematização psicológica, mas como dispositivos formais de deslocamento. A infância, aqui, não aparece como conteúdo, mas como regime de instabilidade: formas que não se estabilizam, narrativas que não se fecham, personagens que flutuam entre presença e apagamento. A memória não é evocada como recuperação do passado, mas como estrutura fragmentária do próprio presente da imagem: aquilo que retorna nunca retorna intacto, mas como resto, como resíduo que já foi alterado pelo próprio ato de reaparecer. Nesse sentido, o trabalho constrói uma poética do retorno que está mais próxima de uma lógica estrutural da variação do que de uma estética do sentimental.<br>Essa organização instável do espaço, da forma e do arquivo aproxima o trabalho de suiornotsui de um conjunto de problemáticas centrais da história da arte do século XX que atravessaram as práticas construtivas, neoconcretas e processuais. A recusa do objeto fechado, a ênfase na relação entre partes móveis, a instabilidade entre figura e fundo, a valorização do processo sobre o produto final são questões que encontram ressonância direta em experiências como as de Lygia Clark, sobretudo em sua investigação sobre a obra como estrutura relacional e não como forma autônoma. Não se trata, evidentemente, de filiação estilística nem de genealogia direta, mas de convergência estrutural: em ambos os casos, a obra não se oferece como objeto contemplativo estabilizado, mas como campo de forças que exige reposicionamento contínuo do olhar e da experiência.<br>Essa convergência torna particularmente fecunda a leitura do trabalho de suiornotsui a partir do conceito de móbile, não no sentido restrito do objeto cinético tradicional, mas como princípio estrutural de organização formal. O móbile não designa aqui um artefato específico, mas um regime de composição no qual as partes não se subordinam a uma hierarquia fixa, mas se articulam segundo relações de equilíbrio provisório, suscetíveis a deslocamentos, reconfigurações e instabilidades. A obra torna-se, assim, menos um corpo e mais um campo: um conjunto de elementos cujas relações internas permanecem abertas, mesmo quando materialmente fixadas no suporte. O que se desloca não é o papel, mas a relação entre as forças que nele operam; o que permanece móvel não é o objeto, mas o regime de leitura que ele convoca.<br>Sob essa perspectiva, cada imagem de suiornotsui pode ser compreendida como um microcampo tensivo no qual diferentes vetores formais — densidade e rarefação, centralização e dispersão, continuidade e ruptura, presença e apagamento — coexistem em estado de equilíbrio precário. A força do trabalho reside precisamente nesse equilíbrio instável, nessa recusa de soluções formais totalizantes, nessa manutenção do campo em estado de abertura. O olhar não encontra repouso definitivo, a composição não se fecha em totalidade, a imagem não se oferece como resposta, mas como problema formal persistente. Trata-se, portanto, de um trabalho que opera no limite entre construção e dissolução, entre forma e resto, entre organização e falha produtiva.<br>É a partir desse diagnóstico rigoroso do funcionamento interno da obra — e não a partir de categorias exteriores ou temáticas — que o conceito de móbiles se torna operatório enquanto chave curatorial. Ele não é uma metáfora aplicada ao trabalho, mas uma formalização conceitual que emerge do próprio modo como as imagens se organizam, retornam, se desestabilizam e se rearticulam. O móbile, nesse contexto, nomeia uma condição estrutural: a da obra como sistema aberto de relações, como campo de variações e como dispositivo que resiste à fixação semântica e à captura interpretativa. É esse regime de mobilidade imanente que torna possível pensar o trabalho não apenas como conjunto de obras, mas como estrutura viva, capaz de sustentar uma prática curatorial que não se limite à seleção ou à exposição, mas que opere diretamente sobre as condições de emergência do sentido.</p>
+    </section>
+    <section class="leadCard">
+      <h2>II</h2>
+      <p>Se o termo móbile se torna operatório para pensar o trabalho de suiornotsui, isso ocorre precisamente porque ele permite deslocar a análise do plano meramente iconográfico ou estilístico para o plano estrutural das relações formais. O móbile não nomeia aqui um objeto, mas um regime de organização: uma forma cuja identidade não reside na estabilidade de suas partes, mas na tensão permanente entre elas. Historicamente, o móbile emerge na obra de Alexander Calder como ruptura decisiva com a tradição escultórica baseada na massa, no peso e na centralidade estática. Ao introduzir o movimento real como princípio compositivo, Calder não apenas transforma a escultura em acontecimento temporal, mas desmonta a própria ideia de forma como totalidade fechada. A obra deixa de ser presença fixa e passa a existir como configuração contingente de equilíbrios instáveis, continuamente renegociados pela ação de forças externas — o ar, o acaso, o ambiente, o olhar em deslocamento. O móbile inaugura, assim, uma ontologia da obra como sistema relacional aberto.<br>Essa ontologia relacional da forma será radicalizada em diferentes vertentes da arte do século XX que passam a compreender a obra não mais como objeto autônomo, mas como dispositivo de relações. A investigação neoconcreta brasileira, em particular, constitui um dos momentos mais rigorosos dessa transformação. Em Lygia Clark, por exemplo, a noção de forma torna-se inseparável da experiência de manipulação, do tempo do gesto e da instabilidade estrutural. Os Bichos não são esculturas no sentido tradicional, mas estruturas articuladas que existem apenas na medida em que são constantemente reconfiguradas. Como observou Max Bense em seus textos sobre a produção construtiva brasileira, a força dessas experiências reside justamente na passagem da obra como objeto fechado para a obra como sistema de possibilidades formais, em que a configuração nunca se estabiliza definitivamente. A forma deixa de ser essência para tornar-se evento.<br>O que importa, nesse contexto, não é a mobilidade física em si, mas o princípio mais profundo que ela introduz: a recusa da forma como totalidade concluída e a afirmação da forma como campo de variações. Esse princípio atravessa também experiências como os Penetráveis e Parangolés de Hélio Oiticica, nos quais a obra só se realiza plenamente no deslocamento do corpo, na transformação contínua da configuração espacial e na imprevisibilidade da experiência. A arte deixa de ser aquilo que se contempla e passa a ser aquilo que acontece. Essa mutação não é apenas estética, mas epistemológica: ela implica uma redefinição radical do que significa produzir, experienciar e sustentar uma forma.<br>É nesse ponto que o conceito de móbile pode ser deslocado para além do domínio estrito da escultura ou da arte cinética, tornando-se uma categoria formal transversal capaz de nomear um regime mais amplo de organização cultural. Um móbile, nesse sentido expandido, não é aquilo que se move, mas aquilo cuja estrutura interna impede o fechamento. É aquilo cuja consistência depende da tensão entre partes heterogêneas, cuja identidade emerge da relação entre forças e não da estabilidade de uma essência. O móbile não é o contrário da forma; é o que torna a forma dependente de suas próprias condições de variação.<br>Essa leitura permite compreender o trabalho de suiornotsui não como exceção poética no interior da arte contemporânea, mas como inscrição rigorosa numa tradição crítica que interroga o estatuto da forma, do objeto e da obra. A mobilidade que atravessa suas composições — a instabilidade entre figura e fundo, a reorganização contínua do repertório imagético, a coexistência de temporalidades materiais distintas, a recusa do acabamento definitivo — não constitui um efeito estilístico, mas uma posição estrutural: a recusa de qualquer forma que se apresente como encerramento. A obra permanece aberta não porque careça de rigor, mas porque seu rigor reside precisamente em sustentar a abertura.<br>A partir desse ponto, o conceito de móbile pode ser ampliado ainda em uma direção decisiva: a da circulação. A palavra inglesa mobile carrega não apenas a ideia de movimento interno da forma, mas também a noção de mobilidade no espaço social, nos meios, nos circuitos de comunicação. Pensar o móbile hoje implica necessariamente pensar a condição das formas num ecossistema mediático em que imagens, textos e obras circulam incessantemente, mas frequentemente sem produzir presença efetiva, sem densidade de experiência, sem duração significativa. A mobilidade contemporânea é, paradoxalmente, uma mobilidade sem consistência: tudo circula, quase nada se sustenta.<br>É nesse ponto que o conceito de móbile se articula diretamente com uma problemática ontológica mais ampla: a das condições de emergência do sentido. Uma forma móvel no sentido forte — isto é, uma forma que não se fecha, mas também não se dissolve — exige um regime específico de organização capaz de sustentar a tensão entre abertura e consistência. Sem essa sustentação, a mobilidade degenera em fluxo indiferenciado; a circulação torna-se mero trânsito sem espessura. O desafio contemporâneo não é produzir movimento, mas construir estruturas que tornem o movimento legível, experienciável, habitável. O móbile, enquanto conceito formal rigoroso, permite nomear precisamente esse tipo de estrutura: aquela que suporta a variação sem colapsar em caos, e que resiste à fixação sem dissolver-se em dispersão.<br>Essa concepção desloca profundamente o campo da curadoria. Curar deixa de significar organizar obras em um espaço estável para significar construir condições de relação entre formas, tempos e experiências. O gesto curatorial, nesse regime, não é explicativo nem representacional, mas estrutural: trata-se de montar dispositivos que operem como móbiles conceituais, capazes de produzir campos de tensão nos quais obras, fragmentos, textos e públicos não se alinham segundo hierarquias fixas, mas se rearticulam continuamente. A curadoria deixa de ser gestão de objetos para tornar-se engenharia de relações.<br>Essa engenharia não é neutra: ela envolve uma posição ética e política em relação ao que pode emergir, ao que pode sustentar-se e ao que deve permanecer como resto. Uma estrutura verdadeiramente móvel não é aquela que absorve tudo, mas aquela que mantém zonas de indeterminação, resíduos irredutíveis, falhas produtivas. O móbile, enquanto princípio ontológico, implica necessariamente uma ética do não fechamento: a recusa da totalização, da captura completa, da estabilização final do sentido. A obra, o arquivo, a exposição e a própria experiência cultural permanecem, assim, em estado de devir estruturado.<br>É a partir desse horizonte teórico que o conceito de móbiles deixa de ser apenas uma chave interpretativa do trabalho de suiornotsui para tornar-se o fundamento de uma proposta curatorial mais ampla. Não se trata mais de expor obras como unidades concluídas, mas de construir um campo em que o próprio modo de organização das formas — visuais, textuais, interativas — opere segundo o regime do móbile: instável, relacional, tensivo, aberto à emergência e resistente à fixação. O que está em jogo já não é apenas a leitura de uma produção artística singular, mas a elaboração de um modelo de estrutura cultural capaz de sustentar a experiência do novo em meio à saturação contemporânea de imagens e discursos.</p>
+    </section>
+    <section class="leadCard">
+      <h2>III</h2>
+      <p>Se as partes anteriores estabeleceram o móbile como categoria formal capaz de articular o trabalho de suiornotsui, a história da arte moderna e uma ontologia da instabilidade, resta agora enfrentar a questão decisiva: de que modo esse princípio pode ser formalizado não apenas como interpretação crítica, mas como estrutura material efetivamente operante? A proposta de MÓBILES não se limita, portanto, a um enquadramento curatorial do trabalho de uma artista; ela constitui uma tentativa de construir um dispositivo real no qual as teses formuladas até aqui se tornem operatórias. Não se trata de ilustrar conceitualmente uma teoria, mas de produzir uma máquina cuja própria lógica interna encarne — em sua forma de funcionamento — o regime do móbile enquanto forma aberta, tensiva e não totalizável.<br>O site, nesse sentido, não deve ser compreendido como “interface” no sentido corrente do termo, isto é, como superfície de mediação transparente entre um conteúdo prévio e um usuário exterior. Ele deve ser compreendido como objeto técnico em sentido forte: um dispositivo que organiza relações, distribui forças, impõe restrições e produz efeitos de sentido a partir da maneira como estrutura seus próprios elementos. A página não apresenta uma obra; ela própria é uma obra-dispositivo. Mais ainda: ela é uma máquina curatorial, no sentido em que produz condições de relação entre fragmentos, textos, interações e percursos, em vez de simplesmente ordenar materiais já significantes.<br>A primeira camada desse dispositivo — a chamada página-base — não funciona como acervo no sentido tradicional, mas como campo de potencialidades. O conjunto de fragmentos visuais ali presentes não constitui uma coleção de unidades autônomas, mas um repertório latente cujas propriedades são definidas por parâmetros formais mínimos: posição relativa, densidade compositiva, continuidade ou ruptura, intensidade gráfica. Esses parâmetros não são descrições de conteúdo, mas traços operatórios que permitem que cada fragmento atue como força em um campo relacional. O fragmento deixa de ser imagem isolada para tornar-se vetor possível de organização formal. A página-base, assim, não arquiva obras: ela disponibiliza forças.<br>A segunda camada — a página de entrada — introduz o elemento decisivo da máquina: a interação como perturbação de um campo e não como escolha subjetiva. Cada gesto do visitante (um clique, uma reconfiguração, uma insistência, uma cessação) não é interpretado como preferência, mas como modificação local de um estado tensivo global. O dispositivo lê a interação como acontecimento material, não como opinião. Isso significa que o visitante não seleciona conteúdos, mas participa involuntariamente da reorganização de um sistema. A experiência que emerge daí é radicalmente distinta daquela proporcionada por interfaces interativas convencionais: não se trata de customizar um resultado, mas de experimentar os efeitos de perturbações sucessivas sobre uma estrutura que resiste, responde, se reequilibra e, por vezes, estabiliza provisoriamente.<br>Essa lógica transforma o texto gerado pelo sistema em algo igualmente distinto de uma mensagem comunicativa ou de um comentário interpretativo. O texto não explica as imagens nem traduz seus conteúdos; ele emerge como efeito formal da configuração tensiva do campo. Os verbos que estruturam esses textos — sustentar, desviar, estancar, cortar, arrastar — não nomeiam temas, mas regimes de passagem. Os advérbios mínimos que os acompanham — mais, menos, quase, ainda — não qualificam psicologicamente a experiência, mas indicam gradientes de intensidade e saturação. O texto não comunica um significado externo; ele torna perceptível a dinâmica interna do sistema. Ele não diz “o que é”, mas deixa ver “como está operando”.<br>O elemento decisivo dessa arquitetura é que nenhuma das camadas — visual, textual, interativa — funciona de modo isolado. Cada gesto em qualquer plano altera os demais por espraiamento: uma modificação local no regime visual afeta a escolha verbal; uma insistência textual altera a distribuição espacial dos fragmentos; uma sequência de reconfigurações modifica as probabilidades internas do campo. Essa co-dependência estrutural impede que o dispositivo se estabilize como mera soma de partes e força a experiência a ocorrer como campo relacional. O sentido não está em nenhum elemento isolado, mas na própria dinâmica de suas interações.<br>A terceira camada — o estado expositivo condensado — torna ainda mais evidente a dimensão propriamente curatorial do dispositivo. Ao produzir configurações periódicas que resultam da acumulação difusa de interações anônimas, o sistema desloca o conceito de exposição do plano da seleção autoral para o plano da emergência estrutural. Não há aqui um curador que escolhe quais obras entram e quais saem; há uma máquina curatorial que sintetiza, a partir de múltiplas perturbações mínimas, um estado provisório do campo. A exposição deixa de ser um recorte estático para tornar-se um acontecimento temporal: um momento de estabilização relativa de forças que logo voltará a se transformar.<br>O que se formaliza, assim, é uma concepção radicalmente distinta de curadoria. Curar não é explicar, não é tematizar, não é organizar discursos sobre obras; curar é construir dispositivos que tornem possível a emergência de relações significantes entre formas heterogêneas. A máquina MÓBILES não interpreta o trabalho de suiornotsui: ela cria um espaço estrutural no qual as qualidades formais de seu trabalho — fragmentação, leveza, mobilidade, retorno, instabilidade — tornam-se princípios operatórios de organização. A curadoria deixa de ser um gesto exterior à obra para tornar-se continuação formal de suas próprias exigências internas.<br>Nesse sentido, o dispositivo não apenas acolhe o trabalho de suiornotsui, mas o prolonga estruturalmente. A lógica de recomposição permanente que atravessa sua prática artística encontra aqui um correlato técnico rigoroso: um sistema em que nada se fecha definitivamente, em que toda configuração permanece provisória, em que o repertório nunca se esgota e em que a própria exposição assume a forma de um processo em devir. A máquina não representa o trabalho; ela o reencena em outro plano material.<br>Essa reencenação, contudo, não é neutra. Ela constitui uma posição ontológica clara diante do problema contemporâneo da circulação cultural. Em um contexto em que imagens e discursos circulam de maneira incessante, mas frequentemente sem produzir experiência, o dispositivo MÓBILES aposta em um modelo oposto: restringir para intensificar, estruturar para permitir emergência, limitar para tornar perceptível. A máquina não visa maximizar engajamento, fluidez ou consumo; ela constrói atrito, lentidão, resistência e hesitação como condições para que algo possa, eventualmente, sustentar-se.<br>O dispositivo opera, assim, como uma crítica material às formas dominantes de mediação cultural. Ao recusar a transparência da interface, a lógica da recomendação, a personalização algorítmica e a captura do usuário, MÓBILES propõe uma experiência que não se organiza em torno do sujeito consumidor, mas em torno do campo de forças que se constitui entre elementos heterogêneos. O visitante não é o centro da experiência, mas uma de suas variáveis. O sistema não se adapta ao usuário; o usuário é atravessado pelo sistema.<br>Essa inversão é decisiva. Ela recoloca a experiência estética fora do regime da escolha, da preferência e da identificação imediata e a reinscreve no regime da exposição a uma estrutura que resiste, que impõe forma, que exige atenção e que produz, eventualmente, momentos de cessação significativa. Quando o gesto cessa, não é porque algo foi plenamente compreendido, mas porque algo se sustentou suficientemente para interromper o movimento. Essa cessação não é conclusão; é apenas um momento de consistência no fluxo.<br>É nesse ponto que o dispositivo deixa de ser apenas um experimento formal e assume plenamente sua dimensão ontológica. Ele não propõe uma nova maneira de ver obras, mas uma nova maneira de pensar as condições de existência do sentido. Ele afirma, na própria materialidade de seu funcionamento, que o sentido não é transmitido, mas emerge; que não é comunicado, mas sustentado; que não reside nos conteúdos, mas nas relações; que não se estabiliza por consenso, mas por tensão. A máquina torna visível, operativamente, uma teoria da significação que não poderia ser plenamente formulada apenas no plano discursivo.</p>
+    </section>
+  </div>
+</div></div>
+
+    <div class="sig">suiornotsui</div>
+
+    <!-- M1 -->
+    <div class="section" id="m1">
+      <div class="intro"><p>O primeiro móbile não opera como escolha, mas como perturbação. Sua função não é permitir que o visitante “decida” uma configuração, mas introduzir um desvio inaugural no campo. Tecnicamente, isso se formaliza como uma redistribuição probabilística dos fragmentos visuais e dos pesos semânticos do sistema; conceitualmente, trata-se de instaurar aquilo que poderíamos chamar de acidente controlado: um gesto mínimo que desorganiza o equilíbrio inicial sem conduzir ao caos. Essa lógica deriva diretamente da compreensão do sentido não como conteúdo, mas como efeito de relação — e da curadoria não como seleção, mas como engenharia de condições.<br>O que está em jogo aqui é a construção de um campo sensível em que nenhuma configuração é natural ou neutra, mas sempre resultado de um estado provisório de forças. O móbile não apresenta obras: ele redistribui vetores. Cada fragmento emerge não porque “representa algo”, mas porque, naquele instante, sustenta uma posição mais intensa no campo. Esse regime é homólogo ao próprio funcionamento do trabalho de suiornotsui, no qual imagens retornam, materiais reaparecem, formas reaprendem a ocupar o espaço — nunca como repetição idêntica, mas como reconfiguração instável de um arquivo vivo.<br>Do ponto de vista técnico, o que o sistema executa é uma reponderação do estado global: pequenas variações nos eixos de posição, densidade e continuidade são suficientes para alterar profundamente a configuração resultante. Do ponto de vista conceitual, porém, o efeito é mais profundo: demonstra-se que a emergência não depende de uma intenção autoral clara nem de uma escolha consciente, mas da disposição correta de um campo de relações. O primeiro móbile existe para tornar sensível essa condição fundamental: antes de qualquer forma, antes de qualquer interpretação, é preciso que algo se desloque.</p></div>
+
+      <div class="scene bg-crib" id="scene_m1">
+        <div class="scenePad frGrid3" id="m1_frags"></div>
+        <div class="dyn"><p id="m1_text"></p></div>
+        <div class="controls">
+          <button id="btn_m1">Tensionar o início</button>
+          <button class="small ghost" id="btn_share_m1">Partilhar Móbile 1</button>
+          <span class="hint">M1: só este botão opera.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M2 -->
+    <div class="section" id="m2">
+      <div class="intro"><p>Se o primeiro móbile introduz a perturbação inaugural, o segundo explicita a existência de estrutura. Aqui, a experiência deixa de ser apenas campo instável e passa a revelar que toda emergência ocorre sob condições formais precisas. A operação é deliberadamente simples: frente e fundo podem ser alternados; a ordem dos elementos pode ser deslocada; a posição de cada fragmento deixa de ser evidente. Contudo, essa simplicidade técnica corresponde a uma tese conceitual exigente: o sentido não reside nos elementos, mas nas relações posicionais que os articulam.<br>Ao tornar reversível aquilo que, na percepção ordinária, aparece como dado — o que está em primeiro plano, o que recua, o que sustenta, o que é sustentado — este móbile transforma o visitante em operador de uma sintaxe espacial. A cada gesto, evidencia-se que o significado não acompanha a imagem como legenda, mas emerge da redistribuição dos lugares. Frente e fundo deixam de ser propriedades dos fragmentos e passam a ser funções do campo. Tal procedimento encontra ressonância direta no trabalho de suiornotsui, cuja composição raramente estabiliza um centro: personagens flutuam, cenas parecem suspensas, elementos que deveriam sustentar a imagem tornam-se periféricos, enquanto detalhes frágeis assumem uma potência inesperada de organização.<br>Tecnicamente, este móbile atua sobre o eixo posicional do sistema, fazendo com que pequenas alterações de ordenação gerem consequências globais na configuração semântica. Conceitualmente, ele opera como uma demonstração prática de que não existe neutralidade na disposição: toda escolha espacial é já uma decisão de mundo. A curadoria, nesse regime, não é interpretação nem explicação, mas montagem de condições estruturais nas quais a reversibilidade permanece visível, ativa, e irredutível a uma leitura única. O que se oferece aqui não é liberdade de escolha, mas exposição do próprio mecanismo pelo qual a escolha se torna possível.</p></div>
+
+      <div class="scene bg-mountains" id="scene_m2">
+        <div class="scenePad fr2" id="m2_frags"></div>
+        <div class="dyn">
+          <p id="m2_text"></p>
+          <p class="small">M2: fragmentos só invertem frente↔fundo e sujeito↔objeto. O verbo muda apenas o objeto (e o fragmento do objeto).</p>
+        </div>
+        <div class="controls">
+          <button class="small ghost" id="btn_share_m2">Partilhar Móbile 2</button>
+          <span class="hint">M2: só fragmentos + verbo.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M3 -->
+    <div class="section" id="m3">
+      <div class="intro"><p>Se o segundo móbile torna perceptível a estrutura, o terceiro introduz uma dimensão mais radical: a experiência da pressão. Aqui, o gesto do visitante deixa de ser meramente redistributivo e passa a atuar como força acumulativa. Cada clique não escolhe, não seleciona, não prefere — ele insiste. E é essa insistência, e não a vontade declarada, que reorganiza progressivamente o campo. O que se torna visível é um princípio central da máquina curatorial-semântica: o sentido não emerge por decisão, mas por saturação; não por intenção, mas pelo acúmulo de pequenas perturbações que, ao ultrapassarem um limiar, produzem mutação de regime.<br>Neste móbile, a lógica operatória aproxima-se deliberadamente do funcionamento real dos processos perceptivos, linguísticos e afetivos: nada muda abruptamente por um único gesto, mas tudo pode se transformar quando um mesmo gesto retorna, insiste, se repete, pressiona. A imagem torna-se, assim, um campo de forças em desequilíbrio contínuo, no qual certos fragmentos ganham peso não por serem “melhores” ou “mais belos”, mas porque suportaram mais tempo de exposição à pressão do gesto. A analogia com o trabalho de suiornotsui é aqui estrutural: seus desenhos raramente se impõem como forma totalizante; antes, operam por acumulação de detalhes frágeis, pequenas recorrências gráficas, mínimas variações cromáticas que, por repetição e persistência, acabam por organizar a percepção global da cena.<br>Do ponto de vista técnico, este móbile atua sobre os eixos de densidade e continuidade do sistema, alterando os pesos relativos dos fragmentos e provocando um reequilíbrio dinâmico do conjunto. Cada interação local repercute no campo inteiro com intensidade decrescente, produzindo um efeito de espraiamento que jamais é totalmente controlável. Conceitualmente, o que se demonstra não é uma estética da escolha, mas uma ontologia da insistência: aquilo que permanece não é o que foi eleito, mas o que conseguiu sustentar-se no interior de um campo instável. A curadoria, aqui, deixa definitivamente de ser seleção de conteúdos e passa a ser engenharia de condições para que algo, sob pressão, encontre a sua própria forma provisória de consistência.</p></div>
+
+      <div class="scene bg-lab" id="scene_m3">
+        <div class="scenePad frGrid7" id="m3_frags"></div>
+        <div class="dyn">
+          <p id="m3_text"></p>
+          <p class="small">M3: clique local (palavra ou fragmento) reforça o traço daquele item, com espraiamento e decaimento.</p>
+        </div>
+        <div class="controls">
+          <button class="small ghost" id="btn_share_m3">Partilhar Móbile 3</button>
+          <span class="hint">M3: só palavras + fragmentos.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M4 -->
+    <div class="section" id="m4">
+      <div class="intro"><p>O quarto móbile introduz uma camada decisiva para a arquitetura conceitual do projeto: a materialidade da linguagem enquanto força operatória. Se os móbiles anteriores já haviam tornado perceptíveis a estrutura, a distribuição e a pressão, aqui o próprio tecido da escrita passa a funcionar como dispositivo. Não se trata de tematizar a linguagem, nem de explicá-la como conteúdo, mas de fazê-la operar como plano material entre outros — com peso, resistência, textura e ritmo próprios. O texto deixa de ser comentário sobre a imagem e passa a agir no mesmo regime que ela: como inscrição gráfica submetida a tensões, modulações e perturbações.<br>A escolha deliberada de trabalhar com grafemas — e não com som, voz ou oralidade — inscreve esta camada no campo de uma fonografia silenciosa: uma escrita que sugere regimes de força sem recorrer à emissão acústica. Certas configurações gráficas operam como cortes secos; outras como prolongamentos, escorrimentos, atritos; outras ainda como hesitações ou quase-cessações. Essa dimensão não é metafórica, mas estrutural: do mesmo modo que no trabalho de suiornotsui a diferença entre um lápis de cor infantil, uma caneta hidrográfica barata e um marcador mais denso não é apenas estética, mas material, aqui também as palavras são tratadas como corpos gráficos distintos, atravessados por pesos e velocidades diferentes. A escrita participa da exposição não como legenda, mas como matéria sensível.<br>Operacionalmente, este móbile atua sobre o regime fonográfico do sistema, inclinando a máquina para determinadas famílias de realização verbal e gráfica. Interagir com uma palavra, com uma letra, com uma sequência de grafemas não reforça um significado, mas desloca probabilidades: certas formas tendem a reaparecer, outras a rarefazer-se, outras ainda a deformar-se progressivamente. O que se torna visível é uma tese forte, raramente assumida na prática curatorial: que o sentido não reside nos conteúdos, mas na forma material de inscrição que os sustenta. Assim como os desenhos de suiornotsui fazem da precariedade do suporte, da leveza do traço e da fragilidade do material uma condição produtiva — e não um limite —, este móbile transforma a própria linguagem em campo de experimentação, onde escrever é já curar, e curar é já construir condições para que algo, instável e provisório, possa emergir como presença.</p></div>
+
+      <div class="scene bg-stairs" id="scene_m4">
+        <div class="scenePad frGrid5" id="m4_frags"></div>
+        <div class="dyn">
+          <p id="m4_text"></p>
+          <p class="small">M4: só palavras. O som domina o texto até colapsar.</p>
+        </div>
+        <div class="controls">
+          <button class="small ghost" id="btn_share_m4">Partilhar Móbile 4</button>
+          <span class="hint">M4: só palavras.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final -->
+    <div class="section" id="final">
+      <div class="intro"><p>O que se apresenta a seguir não é síntese expressiva, nem tradução de preferências, nem retrato psicológico de um sujeito interativo. A configuração que emerge ao final do percurso pelos móbiles não resulta de escolhas diretas, mas de um acúmulo de perturbações locais que alteraram progressivamente o campo global da máquina. Cada gesto — um clique, uma troca de posição, uma insistência, uma cessação — não operou como decisão estética, mas como deslocamento de peso em um sistema de relações. O que se torna visível aqui é, portanto, um estado de campo: uma disposição momentaneamente estável entre forças que poderiam ter se organizado de outro modo, sob outras condições.<br>A máquina não pergunta “o que você quer ver”. Ela observa como o campo responde à pressão. Os fragmentos que persistem não o fazem por preferência, mas por compatibilidade estrutural com o regime que se formou. As palavras que permanecem não são escolhidas por afinidade semântica, mas por sustentarem melhor o gradiente tensivo instaurado ao longo do percurso. A imagem final não é composição deliberada, mas consequência: um arranjo que resistiu mais tempo à perturbação do que os demais, até que o gesto cessou. A cessação, aqui, é o único critério real de conclusão: não quando algo agrada, mas quando algo se mantém.<br>Por isso, este estado não deve ser entendido como obra, nem como resultado, nem como identidade. Ele é uma cristalização provisória de relações — uma espécie de fotografia do campo no instante em que deixou de ser tensionado. Poderia ter sido outro. Poderá ser outro novamente. Sua importância não está na forma que assume, mas no fato de ter conseguido emergir: de ter conquistado consistência suficiente para não colapsar imediatamente em ruído. O que se oferece à experiência não é um produto, mas a prova de um processo: a demonstração de que, sob certas condições materiais e formais, algo pode adquirir presença sem ter sido projetado como forma final.<br>Gerar esta configuração não é concluir a exposição, mas torná-la momentaneamente legível. Trata-se menos de um fim do que de um limiar: um ponto a partir do qual se pode observar, com alguma clareza, como a máquina opera, como as relações se distribuem, como o resto persiste, como a emergência acontece. O que se vê aqui não é “a sua exposição”, mas a evidência de que uma exposição pode existir sem tema, sem narrativa, sem explicação — sustentada apenas pela coerência interna de suas forças.</p></div>
+
+      <div class="scene" id="scene_final">
+        <div class="finalWrap">
+          <button id="btn_generate">Gerar a minha exposição</button>
+          <button class="small ghost" id="btn_share_final" style="display:none;">Partilhar resultado</button>
+
+          <div id="final_out" style="display:none;">
+            <div class="constellation" id="final_frags"></div>
+            <div class="dyn">
+              <p id="final_style"></p>
+              <p id="final_crit"></p>
+              <div class="note" id="final_call"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <span class="hint">Para ver outros percursos: faz primeiro a tua curadoria.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+/* paths */
+const PATH_SUI_JSON = "../sui.json";
+const PATH_PREFIX_FROM_ENTRADA = "../";
+
+/* util */
+const AXES = ["corte","fluxo","densidade","rarefacao","centro_instavel","contorno","ritmo","memoria","tensao","presenca","emergencia","cuidado"];
+function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
+function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+
+/* pluralização (boa o bastante p/ nosso léxico fechado) */
+function pluralPT(word){
+  if(!word) return word;
+  const w = word.trim();
+  if(w.includes(" ")) return w;       // não mexe em locuções
+  if(w.includes("-")) return w;       // não mexe em hifenizados
+  if(w.endsWith("ões") || w.endsWith("ães")) return w;
+  if(w.endsWith("ão")) return w.slice(0,-2) + "ões";
+  if(w.endsWith("s")) return w;
+  if(w.endsWith("z")) return w + "es";
+  if(w.endsWith("r")) return w + "es";
+  if(w.endsWith("l")) return w.slice(0,-1) + "is";
+  if(w.endsWith("m")) return w.slice(0,-1) + "ns";
+  if(w.endsWith("a")) return w + "s";
+  if(w.endsWith("o")) return w.slice(0,-1) + "os";
+  if(w.endsWith("e")) return w + "s";
+  return w + "s";
+}
+function maybePluralize(text, on=true){
+  return on ? pluralPT(text) : text;
+}
+
+/* state */
+const state = {
+  tick: 0,
+  axes: Object.fromEntries(AXES.map(k=>[k, 0.33])),
+  phono: { surda:0.33, sonora:0.33, fricativa:0.33 },
+  phonoTarget: "surda",
+
+  suiMap: null,
+  suiUrl: null,
+  forceSui: (Math.random() < 0.90),
+  suiPlaced: { m1:false, m3:false, m4:false, final:false },
+
+  m1: { clicks:0, slots:[12,53,71] },
+
+  m2: {
+    frontSlot: 18,
+    backSlot: 66,
+    swapped: false,
+    verbIndex: 0,
+    subj: null,
+    obj: null
+  },
+
+  m3: { slots:[], clicks:0 },
+  m4: { slots:[], clicks:0 },
+
+  final: { hash:"", slots:[], styleText:"", critText:"", shareText:"" }
+};
+
+function axisWeight(axis){ return clamp(state.axes[axis], 0.02, 0.98); }
+
+function applyImpulse(axis, strength){
+  const s = clamp(strength, -1, 1);
+  state.axes[axis] = clamp(state.axes[axis] + s*0.10, 0.02, 0.98);
+
+  if(axis==="corte"){ state.axes["fluxo"]=clamp(state.axes["fluxo"]-s*0.05,0.02,0.98); }
+  if(axis==="fluxo"){ state.axes["corte"]=clamp(state.axes["corte"]-s*0.05,0.02,0.98); }
+  if(axis==="densidade"){ state.axes["rarefacao"]=clamp(state.axes["rarefacao"]-s*0.05,0.02,0.98); }
+  if(axis==="rarefacao"){ state.axes["densidade"]=clamp(state.axes["densidade"]-s*0.05,0.02,0.98); }
+
+  state.tick++;
+}
+
+function applyPhonoImpulse(kind, strength){
+  const s = clamp(strength, 0, 1);
+  state.phono[kind] = clamp(state.phono[kind] + s*0.16, 0.02, 0.98);
+  for(const k of ["surda","sonora","fricativa"]){
+    if(k!==kind) state.phono[k] = clamp(state.phono[k] - s*0.07, 0.02, 0.98);
+  }
+  let best="surda", bestV=-1;
+  for(const k of ["surda","sonora","fricativa"]){
+    if(state.phono[k] > bestV){ bestV = state.phono[k]; best=k; }
+  }
+  state.phonoTarget = best;
+  state.tick++;
+}
+
+/* lexicon (vinco no lugar de prega) */
+const LEX = [
+  { op:"vestigio", axis:["memoria","presenca"], surda:"traço", sonora:"marca", fricativa:"sombra" },
+  { op:"sopro", axis:["fluxo","rarefacao"], surda:"pingo", sonora:"bafo", fricativa:"suspiro" },
+  { op:"dobra", axis:["contorno","fluxo"], surda:"vinco", sonora:"curva", fricativa:"flexão" },
+  { op:"canto", axis:["contorno","corte"], surda:"quina", sonora:"beira", fricativa:"franja" },
+  { op:"margem", axis:["contorno","tensao"], surda:"limite", sonora:"borda", fricativa:"fronteira" },
+  { op:"poeira", axis:["rarefacao","memoria"], surda:"pó", sonora:"bruma", fricativa:"cinza" },
+  { op:"silencio", axis:["rarefacao","cuidado"], surda:"pausa", sonora:"calma", fricativa:"sussurro" },
+  { op:"rastro", axis:["memoria","ritmo"], surda:"pegada", sonora:"vesta", fricativa:"resíduo" },
+  { op:"fragmento", axis:["corte","memoria"], surda:"cortezinho", sonora:"bordado", fricativa:"desfiado" },
+  { op:"detalhe", axis:["cuidado","presenca"], surda:"ponto", sonora:"miolo", fricativa:"nuança" },
+  { op:"lembranca", axis:["memoria","presenca"], surda:"nota", sonora:"memória", fricativa:"recordação" },
+  { op:"demora_n", axis:["ritmo","cuidado"], surda:"pausa", sonora:"espera", fricativa:"suspensão" },
+  { op:"intervalo", axis:["corte","rarefacao"], surda:"corte", sonora:"entre", fricativa:"fresta" },
+  { op:"eco", axis:["ritmo","presenca"], surda:"toque", sonora:"resposta", fricativa:"ressonância" },
+  { op:"resto", axis:["memoria","tensao"], surda:"ruga", sonora:"sobra", fricativa:"resíduo" },
+  { op:"plano", axis:["presenca","contorno"], surda:"linha", sonora:"base", fricativa:"superfície" },
+  { op:"camada", axis:["densidade","presenca"], surda:"capa", sonora:"nível", fricativa:"espessura" },
+  { op:"textura", axis:["densidade","cuidado"], surda:"trama", sonora:"tecido", fricativa:"fibra" },
+  { op:"superficie", axis:["presenca","contorno"], surda:"pele", sonora:"face", fricativa:"película" },
+  { op:"escala", axis:["tensao","presenca"], surda:"passo", sonora:"medida", fricativa:"proporção" },
+  { op:"ritmo", axis:["ritmo","fluxo"], surda:"pulso", sonora:"cadência", fricativa:"fluência" },
+  { op:"materia", axis:["densidade","presenca"], surda:"corpo", sonora:"substância", fricativa:"massa" },
+  { op:"presenca", axis:["presenca","tensao"], surda:"toque", sonora:"vulto", fricativa:"sombra" },
+  { op:"tensao", axis:["tensao","corte"], surda:"nó", sonora:"peso", fricativa:"pressão" },
+  { op:"campo", axis:["presenca","fluxo"], surda:"plano", sonora:"território", fricativa:"ambiente" },
+  { op:"emergencia", axis:["emergencia","tensao"], surda:"salto", sonora:"aparição", fricativa:"insurgência" },
+  { op:"config", axis:["presenca","contorno"], surda:"forma", sonora:"estrutura", fricativa:"composição" },
+  { op:"cessacao", axis:["corte","rarefacao"], surda:"corte", sonora:"encerramento", fricativa:"silenciamento" },
+
+  { op:"aproximar", axis:["cuidado","presenca"], surda:"chegar", sonora:"beirar", fricativa:"esfumar" },
+  { op:"reparar", axis:["cuidado","centro_instavel"], surda:"notar", sonora:"observar", fricativa:"esmiuçar" },
+  { op:"tocar", axis:["presenca","cuidado"], surda:"tatear", sonora:"roçar", fricativa:"aflorar" },
+  { op:"escutar", axis:["cuidado","ritmo"], surda:"ouvir", sonora:"acolher", fricativa:"sintonizar" },
+  { op:"demorar_v", axis:["ritmo","cuidado"], surda:"parar", sonora:"permanecer", fricativa:"alongar-se" },
+  { op:"pousar", axis:["rarefacao","fluxo"], surda:"cair", sonora:"assentar", fricativa:"deslizar" },
+  { op:"acompanhar", axis:["fluxo","cuidado"], surda:"seguir", sonora:"amparar", fricativa:"entrelaçar" },
+  { op:"cuidar", axis:["cuidado","presenca"], surda:"zelar", sonora:"nutrir", fricativa:"suavizar" },
+  { op:"recortar", axis:["corte","contorno"], surda:"cortar", sonora:"delimitar", fricativa:"fissurar" },
+  { op:"deslocar", axis:["centro_instavel","fluxo"], surda:"mover", sonora:"transferir", fricativa:"deslizar" },
+  { op:"sustentar", axis:["densidade","presenca"], surda:"segurar", sonora:"manter", fricativa:"suspender" },
+  { op:"distribuir", axis:["ritmo","presenca"], surda:"partir", sonora:"organizar", fricativa:"espalhar" },
+  { op:"sobrepor", axis:["densidade","fluxo"], surda:"cobrir", sonora:"acumular", fricativa:"sobrefluir" },
+  { op:"atravessar", axis:["fluxo","centro_instavel"], surda:"passar", sonora:"cruzar", fricativa:"permeiar" },
+  { op:"insinuar", axis:["centro_instavel","presenca"], surda:"sugerir", sonora:"indicar", fricativa:"sussurrar" },
+  { op:"insistir", axis:["tensao","ritmo"], surda:"bater", sonora:"persistir", fricativa:"ressoar" },
+  { op:"interromper", axis:["corte","rarefacao"], surda:"cortar", sonora:"cessar", fricativa:"esvair-se" },
+  { op:"fixar", axis:["contorno","densidade"], surda:"marcar", sonora:"estabelecer", fricativa:"sedimentar" },
+  { op:"suspender_v", axis:["rarefacao","tensao"], surda:"parar", sonora:"reter", fricativa:"flutuar" },
+  { op:"reter", axis:["memoria","densidade"], surda:"prender", sonora:"guardar", fricativa:"conservar" },
+  { op:"abandonar", axis:["rarefacao","corte"], surda:"largar", sonora:"deixar", fricativa:"dissolver" },
+  { op:"transformar", axis:["emergencia","centro_instavel"], surda:"romper", sonora:"converter", fricativa:"transfigurar" },
+
+  { op:"leve", axis:["rarefacao","fluxo"], surda:"claro", sonora:"brando", fricativa:"suave" },
+  { op:"minimo", axis:["rarefacao","cuidado"], surda:"curto", sonora:"pequeno", fricativa:"sutil" },
+  { op:"fragil", axis:["rarefacao","tensao"], surda:"ténue", sonora:"delicado", fricativa:"sensível" },
+  { op:"tenue", axis:["rarefacao","contorno"], surda:"fino", sonora:"delgado", fricativa:"esfumado" },
+  { op:"quase_adj", axis:["centro_instavel","tensao"], surda:"breve", sonora:"próximo", fricativa:"difuso" },
+  { op:"opaco", axis:["densidade","corte"], surda:"denso", sonora:"turvo", fricativa:"fosco" },
+  { op:"poroso", axis:["fluxo","centro_instavel"], surda:"aberto", sonora:"vazado", fricativa:"permeável" },
+  { op:"irregular", axis:["centro_instavel","tensao"], surda:"torto", sonora:"oscilante", fricativa:"assimétrico" },
+  { op:"difuso_adj", axis:["centro_instavel","rarefacao"], surda:"solto", sonora:"amplo", fricativa:"disperso" },
+  { op:"latente", axis:["memoria","emergencia"], surda:"oculto", sonora:"presente", fricativa:"subjacente" },
+  { op:"instavel", axis:["centro_instavel","tensao"], surda:"quebrado", sonora:"oscilante", fricativa:"flutuante" },
+  { op:"provisorio", axis:["emergencia","fluxo"], surda:"breve", sonora:"mutável", fricativa:"transitório" },
+
+  { op:"ainda", axis:["emergencia","tensao"], surda:"já", sonora:"agora", fricativa:"sempre" },
+  { op:"quase_adv", axis:["centro_instavel","tensao"], surda:"logo", sonora:"perto", fricativa:"talvez" },
+  { op:"lentamente", axis:["ritmo","cuidado"], surda:"aos poucos", sonora:"com calma", fricativa:"suavemente" },
+  { op:"por_vezes", axis:["centro_instavel","ritmo"], surda:"às vezes", sonora:"frequentemente", fricativa:"ocasionalmente" },
+  { op:"sempre", axis:["ritmo","tensao"], surda:"toda vez", sonora:"continuamente", fricativa:"infinitamente" },
+  { op:"raramente", axis:["rarefacao","memoria"], surda:"quase nunca", sonora:"poucas vezes", fricativa:"esporadicamente" },
+  { op:"talvez", axis:["centro_instavel","emergencia"], surda:"quem sabe", sonora:"possivelmente", fricativa:"eventualmente" },
+  { op:"agora", axis:["presenca","tensao"], surda:"já", sonora:"neste momento", fricativa:"presentemente" }
+];
+
+const byOp = Object.fromEntries(LEX.map(x=>[x.op,x]));
+function axesOf(op){ return byOp[op]?.axis || ["presenca"]; }
+function surfaceOf(op, kind){
+  const o = byOp[op]; if(!o) return op;
+  return o[kind] || o.surda || o.sonora || o.fricativa || op;
+}
+
+const OPS = {
+  subst: LEX.slice(0, 28).map(x=>x.op),
+  verb:  LEX.slice(28, 50).map(x=>x.op),
+  adj:   LEX.slice(50, 62).map(x=>x.op),
+  adv:   LEX.slice(62, 70).map(x=>x.op),
+};
+
+function weightedPick(ops){
+  const weights = ops.map(op=>{
+    const ax = axesOf(op);
+    let w = 0.01;
+    for(const a of ax) w += axisWeight(a);
+    return w;
+  });
+  const sum = weights.reduce((a,b)=>a+b,0);
+  let r = Math.random()*sum;
+  for(let i=0;i<ops.length;i++){
+    r -= weights[i];
+    if(r<=0) return ops[i];
+  }
+  return ops[ops.length-1];
+}
+
+function chooseSurface(op, mode){
+  let kind = state.phonoTarget;
+
+  if(mode==="semantic"){
+    const s = state.axes.corte;
+    const f = state.axes.fluxo + state.axes.rarefacao*0.6;
+    const t = state.axes.tensao + state.axes.emergencia*0.5;
+    const tot = s+f+t;
+    const r = Math.random()*tot;
+    if(r < s) kind="surda";
+    else if(r < s+t) kind="sonora";
+    else kind="fricativa";
+  }
+
+  if(mode==="phono"){
+    const sum = state.phono.surda + state.phono.sonora + state.phono.fricativa;
+    const r = Math.random()*sum;
+    if(r < state.phono.surda) kind="surda";
+    else if(r < state.phono.surda + state.phono.sonora) kind="sonora";
+    else kind="fricativa";
+  }
+
+  return surfaceOf(op, kind);
+}
+
+/* visual families */
+const FAMILIES = [
+  { name:"F1",  range:[1,10],   axis:["fluxo","presenca"] },
+  { name:"F2",  range:[11,20],  axis:["corte","tensao"] },
+  { name:"F3",  range:[21,30],  axis:["centro_instavel","fluxo"] },
+  { name:"F4",  range:[31,40],  axis:["ritmo","memoria"] },
+  { name:"F5",  range:[41,50],  axis:["corte","centro_instavel"] },
+  { name:"F6",  range:[51,60],  axis:["densidade","presenca"] },
+  { name:"F7",  range:[61,70],  axis:["rarefacao","cuidado"] },
+  { name:"F8",  range:[71,80],  axis:["centro_instavel","tensao"] },
+  { name:"F9",  range:[81,90],  axis:["rarefacao","contorno"] },
+  { name:"F10", range:[91,100], axis:["tensao","emergencia"] },
+  { name:"F11", range:[101,110],axis:["contorno","presenca"] },
+  { name:"F12", range:[111,120],axis:["densidade","corte"] },
+];
+function familyOfSlot(slot){
+  for(const f of FAMILIES){
+    if(slot>=f.range[0] && slot<=f.range[1]) return f;
+  }
+  return FAMILIES[0];
+}
+
+function selectSlotByAxes(){
+  const famScores = FAMILIES.map(f=>{
+    let s = 0.01;
+    for(const a of f.axis) s += axisWeight(a);
+    if(state.phonoTarget==="surda") s *= (f.axis.includes("corte")?1.18:0.94);
+    if(state.phonoTarget==="fricativa") s *= ((f.axis.includes("fluxo")||f.axis.includes("rarefacao"))?1.18:0.94);
+    if(state.phonoTarget==="sonora") s *= ((f.axis.includes("tensao")||f.axis.includes("emergencia"))?1.18:0.94);
+    return s;
+  });
+  const sum = famScores.reduce((a,b)=>a+b,0);
+  let r = Math.random()*sum;
+  let fam = FAMILIES[0];
+  for(let i=0;i<FAMILIES.length;i++){
+    r -= famScores[i];
+    if(r<=0){ fam = FAMILIES[i]; break; }
+  }
+  const [a,b] = fam.range;
+  return a + Math.floor(Math.random()*(b-a+1));
+}
+
+/* fragment svg */
+function makeFragmentSVG(slot){
+  const f = familyOfSlot(slot);
+  const a = f.axis;
+  const cut = a.includes("corte") ? 1 : 0;
+  const flow = a.includes("fluxo") ? 1 : 0;
+  const dense = a.includes("densidade") ? 1 : 0;
+  const rare = a.includes("rarefacao") ? 1 : 0;
+  const center = a.includes("centro_instavel") ? 1 : 0;
+  const edge = a.includes("contorno") ? 1 : 0;
+  const rhythm = a.includes("ritmo") ? 1 : 0;
+  const mem = a.includes("memoria") ? 1 : 0;
+  const tens = a.includes("tensao") ? 1 : 0;
+  const emer = a.includes("emergencia") ? 1 : 0;
+  const care = a.includes("cuidado") ? 1 : 0;
+
+  const hueBase = (slot * 17) % 360;
+  const hue2 = (hueBase + 110) % 360;
+  const sat = 35 + (dense*20) + (tens*12);
+  const light = 86 - (dense*18) + (rare*6);
+
+  const strokes = edge ? 3 : 2;
+  const cutLines = cut ? 6 : 2;
+  const blobs = dense ? 7 : 3;
+  const mist = rare ? 0.22 : 0.10;
+
+  const seed = slot * 99991;
+  function pr(n){ return (Math.sin(seed + n*12.9898) * 43758.5453) % 1; }
+
+  const shapes = [];
+  shapes.push(`<rect x="0" y="0" width="100" height="100" fill="hsla(${hueBase},${sat}%,${light}%,0.95)"/>`);
+  shapes.push(`<rect x="0" y="0" width="100" height="100" fill="hsla(${hue2},${sat-10}%,${light-6}%,${mist})"/>`);
+
+  for(let i=0;i<cutLines;i++){
+    const x1 = (pr(i+1)*100).toFixed(2);
+    const y1 = (pr(i+2)*100).toFixed(2);
+    const x2 = (pr(i+3)*100).toFixed(2);
+    const y2 = (pr(i+4)*100).toFixed(2);
+    const w = (1.2 + pr(i+5)*2.8 + (cut?1.2:0)).toFixed(2);
+    const op = (0.18 + pr(i+6)*0.22 + (cut?0.12:0) - (rare?0.05:0)).toFixed(2);
+    const dash = flow ? `${(6+pr(i+7)*10).toFixed(1)} ${(4+pr(i+8)*10).toFixed(1)}` : "0 0";
+    shapes.push(`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="rgba(20,10,30,${op})" stroke-width="${w}" stroke-linecap="round" stroke-dasharray="${dash}"/>`);
+  }
+
+  for(let i=0;i<blobs;i++){
+    const cx = (10 + pr(50+i)*80).toFixed(2);
+    const cy = (10 + pr(70+i)*80).toFixed(2);
+    const r  = (6 + pr(90+i)*18 + (dense?6:0) - (rare?3:0)).toFixed(2);
+    const op = (0.10 + pr(110+i)*0.18 + (dense?0.12:0) - (rare?0.05:0)).toFixed(2);
+    shapes.push(`<circle cx="${cx}" cy="${cy}" r="${r}" fill="rgba(20,10,30,${op})"/>`);
+  }
+
+  if(mem){
+    for(let i=0;i<24;i++){
+      const x = (pr(200+i)*100).toFixed(2);
+      const y = (pr(230+i)*100).toFixed(2);
+      const op = (0.06 + pr(260+i)*0.12).toFixed(2);
+      shapes.push(`<circle cx="${x}" cy="${y}" r="${(0.6 + pr(290+i)*1.2).toFixed(2)}" fill="rgba(20,10,30,${op})"/>`);
+    }
+  }
+
+  if(emer){
+    shapes.push(`<path d="M${20+pr(401)*60} ${30+pr(402)*40} L${35+pr(403)*50} ${20+pr(404)*30} L${60+pr(405)*30} ${38+pr(406)*40}"
+      stroke="rgba(20,10,30,0.22)" stroke-width="3.2" fill="none" stroke-linecap="round"/>`);
+  }
+
+  if(care){
+    shapes.push(`<circle cx="50" cy="50" r="38" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="5"/>`);
+  }
+
+  if(rhythm){
+    shapes.push(`<rect x="6" y="6" width="88" height="88" rx="16" ry="16"
+      fill="none" stroke="rgba(20,10,30,0.20)" stroke-width="${strokes}"/>`);
+  } else if(edge){
+    shapes.push(`<rect x="7" y="7" width="86" height="86" rx="14" ry="14"
+      fill="none" stroke="rgba(20,10,30,0.18)" stroke-width="${strokes}"/>`);
+  }
+
+  const svg =
+`<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 100 100">
+  ${shapes.join("\n  ")}
+</svg>`;
+  return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+}
+
+function getFragmentURL(slot){
+  if(slot === 53 && state.suiUrl) return state.suiUrl;
+  return makeFragmentSVG(slot);
+}
+
+/* movimento tensivo */
+function driftScene(sceneId, amount=16){
+  const el = document.getElementById(sceneId);
+  if(!el) return;
+  const dx = (Math.random()*2-1)*amount;
+  const dy = (Math.random()*2-1)*amount;
+  const dr = (Math.random()*2-1)*(amount/16);
+  el.style.setProperty("--bx", dx.toFixed(1)+"px");
+  el.style.setProperty("--by", dy.toFixed(1)+"px");
+  el.style.setProperty("--br", dr.toFixed(2)+"deg");
+}
+function driftFrag(el, amount=14){
+  const dx = (Math.random()*2-1)*amount;
+  const dy = (Math.random()*2-1)*amount;
+  const dr = (Math.random()*2-1)*(amount/22);
+  el.style.setProperty("--dx", dx.toFixed(1)+"px");
+  el.style.setProperty("--dy", dy.toFixed(1)+"px");
+  el.style.setProperty("--dr", dr.toFixed(2)+"deg");
+}
+function driftAllFrags(containerId, amount=14){
+  const c = document.getElementById(containerId);
+  if(!c) return;
+  c.querySelectorAll(".frag").forEach(el=>driftFrag(el, amount));
+}
+function flash(el){
+  if(!el) return;
+  el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash");
+}
+
+/* tokens */
+function token(op, text, clickable=true, extraClass=""){
+  const cls = ["tok", clickable?"click":"", extraClass].filter(Boolean).join(" ");
+  const safe = text.replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  return `<span class="${cls}" data-op="${op}">${safe}</span>`;
+}
+
+/* frases */
+function m1_generateText(){
+  const sub = weightedPick(OPS.subst);
+  const verb = weightedPick(OPS.verb);
+  const obj = weightedPick(OPS.subst);
+  const adv = weightedPick(OPS.adv);
+  const t1 = chooseSurface(sub,"semantic");
+  const t2 = `${chooseSurface(verb,"semantic")}-${chooseSurface(obj,"semantic")}`; // substantivação com hífen (Caio)
+  const t3 = chooseSurface(adv,"semantic");
+  return `No começo, ${t1} aparece como eixo — e isso já inclina o campo. O que nasce aqui é um ${t2}, ${t3}. O resto não some: fica como toque à espera de outra tensão. Se o campo endurece, não é ruído: é corte em formação.`;
+}
+
+/* ========= M3 (NOVO: frase robusta, plural, sem ridículo) =========
+   - sujeitos fixos no plural
+   - variáveis pluralizadas (quando são uma palavra só)
+   - adjetivo sempre entra como "em modo X" (sem concordância)
+   - infinitivos sempre sustentados por verbos conjugados
+*/
+function renderM3Sentence(){
+  const mode = "semantic";
+  const adv1 = chooseSurface(weightedPick(OPS.adv), mode);
+  const adv2 = chooseSurface(weightedPick(OPS.adv), mode);
+
+  const subA = maybePluralize(chooseSurface(weightedPick(OPS.subst), mode), true);
+  const subB = maybePluralize(chooseSurface(weightedPick(OPS.subst), mode), true);
+  const subC = maybePluralize(chooseSurface(weightedPick(OPS.subst), mode), true);
+  const subD = maybePluralize(chooseSurface(weightedPick(OPS.subst), mode), true);
+
+  const v1 = chooseSurface(weightedPick(OPS.verb), mode);
+  const v2 = chooseSurface(weightedPick(OPS.verb), mode);
+  const v3 = chooseSurface(weightedPick(OPS.verb), mode);
+
+  const adjMode = chooseSurface(weightedPick(OPS.adj), mode);
+
+  const parts = [
+    "<span class='tok'>No</span> <span class='tok'>campo,</span>",
+    `<span class="tok">${adv1}</span><span class='tok'>,</span>`,
+    "<span class='tok'>vestígios</span> <span class='tok'>e</span> <span class='tok'>margens</span>",
+    "<span class='tok'>permitem</span>",
+    token("v1", v1, true),
+    token("subA", subA, true),
+    "<span class='tok'>;</span>",
+    "<span class='tok'>gestos</span> <span class='tok'>em</span> <span class='tok'>modo</span>",
+    token("adjMode", adjMode, true),
+    "<span class='tok'>deixam</span>",
+    token("v2", v2, true),
+    token("subB", subB, true),
+    "<span class='tok'>;</span>",
+    "<span class='tok'>ritmos</span> <span class='tok'>e</span> <span class='tok'>camadas</span>",
+    "<span class='tok'>levam</span> <span class='tok'>a</span>",
+    token("v3", v3, true),
+    token("subC", subC, true),
+    "<span class='tok'>—</span>",
+    `<span class="tok">${adv2}</span><span class='tok'>,</span>`,
+    "<span class='tok'>até</span> <span class='tok'>que</span>",
+    "<span class='tok'>restos</span>",
+    "<span class='tok'>voltam</span> <span class='tok'>a</span>",
+    token("v4", chooseSurface(weightedPick(OPS.verb), mode), true),
+    token("subD", subD, true),
+    "<span class='tok'>.</span>"
+  ];
+  return parts.join(" ");
+}
+
+/* ========= M4 (NOVO: poético por som, sem dizer regime) =========
+   - muita superfície trocável por phono
+   - sujeitos fixos no plural
+   - variáveis pluralizadas quando cabível
+*/
+function renderM4Sentence(){
+  const mode = "phono";
+
+  const adv1 = chooseSurface(weightedPick(OPS.adv), mode);
+  const adv2 = chooseSurface(weightedPick(OPS.adv), mode);
+
+  const subA = maybePluralize(chooseSurface(weightedPick(OPS.subst), mode), true);
+  const subB = maybePluralize(chooseSurface(weightedPick(OPS.subst), mode), true);
+  const subC = maybePluralize(chooseSurface(weightedPick(OPS.subst), mode), true);
+  const subD = maybePluralize(chooseSurface(weightedPick(OPS.subst), mode), true);
+
+  const v1 = chooseSurface(weightedPick(OPS.verb), mode);
+  const v2 = chooseSurface(weightedPick(OPS.verb), mode);
+  const v3 = chooseSurface(weightedPick(OPS.verb), mode);
+
+  const adjMode = chooseSurface(weightedPick(OPS.adj), mode);
+
+  const parts = [
+    "<span class='tok'>No</span> <span class='tok'>limite,</span>",
+    "<span class='tok'>corpos</span> <span class='tok'>e</span> <span class='tok'>regimes</span>",
+    "<span class='tok'>em</span> <span class='tok'>modo</span>",
+    token("adjMode4", adjMode, true),
+    "<span class='tok'>deixam</span>",
+    token("v1", v1, true),
+    token("subA", subA, true),
+    "<span class='tok'>em</span>",
+    token("subB", subB, true),
+    "<span class='tok'>;</span>",
+    `<span class="tok">${adv1}</span><span class='tok'>,</span>`,
+    "<span class='tok'>cortes</span> <span class='tok'>e</span> <span class='tok'>passagens</span>",
+    "<span class='tok'>fazem</span>",
+    token("v2", v2, true),
+    token("subC", subC, true),
+    "<span class='tok'>;</span>",
+    `<span class="tok">${adv2}</span><span class='tok'>,</span>`,
+    "<span class='tok'>ecos</span> <span class='tok'>e</span> <span class='tok'>restos</span>",
+    "<span class='tok'>levam</span> <span class='tok'>a</span>",
+    token("v3", v3, true),
+    token("subD", subD, true),
+    "<span class='tok'>—</span>",
+    "<span class='tok'>até</span> <span class='tok'>que</span>",
+    "<span class='tok'>tudo</span> <span class='tok'>cede</span><span class='tok'>.</span>"
+  ];
+  return parts.join(" ");
+}
+
+/* M2 — clusters congelados */
+function buildFrozenCluster(){
+  const core = weightedPick(OPS.subst);
+  const wantAdj = Math.random() < (0.28 + 0.30*state.axes.densidade);
+  const wantAdv = Math.random() < (0.22 + 0.28*state.axes.rarefacao + 0.16*state.axes.ritmo);
+  const pieces = [];
+  pieces.push({op:core, text: chooseSurface(core, "semantic")});
+  if(wantAdj){
+    const adj = weightedPick(OPS.adj);
+    pieces.push({op:"modo", text:"modo"});
+    pieces.push({op:adj, text: chooseSurface(adj, "semantic")});
+  }
+  if(wantAdv){
+    const adv = weightedPick(OPS.adv);
+    pieces.push({op:adv, text: chooseSurface(adv, "semantic")});
+  }
+  return pieces;
+}
+function renderFrozenCluster(cluster){
+  return cluster.map(p=>`<span class="tok">${p.text}</span>`).join(" ");
+}
+
+const M2_VERB_POOL = ["sustentar","recortar","aproximar","insinuar","distribuir","atravessar","fixar","transformar","interromper","acompanhar"];
+function autoVerbFor(){
+  const sC = state.axes.corte;
+  const sF = state.axes.fluxo;
+  const sD = state.axes.densidade;
+  const sE = state.axes.emergencia;
+  return (sC > sF && sC > sD) ? pick(["recortar","interromper"]) :
+         (sF > sD && sF > sC) ? pick(["atravessar","acompanhar"]) :
+         (sE > 0.55) ? "transformar" :
+         pick(["sustentar","fixar","insinuar","distribuir"]);
+}
+
+/* fragment div */
+function fragDiv(slot, clickable, tagPrefix){
+  const d = document.createElement("div");
+  d.className = "frag" + (clickable ? " clickable" : "");
+  d.dataset.slot = slot;
+
+  const img = document.createElement("img");
+  img.className = "img";
+  img.alt = `fragmento ${slot}`;
+  img.crossOrigin = "anonymous";
+  img.src = getFragmentURL(slot);
+
+  const tag = document.createElement("div");
+  tag.className = "fragTag";
+  const fam = familyOfSlot(slot).name;
+  tag.textContent = `${tagPrefix} · ${fam} · ${slot}`;
+
+  d.appendChild(img);
+  d.appendChild(tag);
+
+  driftFrag(d, 18);
+  return d;
+}
+
+/* SUI loader */
+async function loadSui(){
+  try{
+    const res = await fetch(PATH_SUI_JSON, { cache:"no-store" });
+    if(!res.ok) throw new Error("Falha ao carregar sui.json");
+    const data = await res.json();
+    state.suiMap = data;
+    const p = data["53"] || data[53];
+    if(p){
+      state.suiUrl = PATH_PREFIX_FROM_ENTRADA + String(p).replace(/^\/+/,"");
+    }else{
+      state.suiUrl = PATH_PREFIX_FROM_ENTRADA + "assets/sui/slot_053.jpg";
+    }
+  }catch(e){
+    state.suiUrl = PATH_PREFIX_FROM_ENTRADA + "assets/sui/slot_053.jpg";
+  }
+}
+
+/* Sui guarantee helper */
+function ensureSuiInSlots(slots, markKey){
+  if(!state.forceSui || !state.suiUrl) return slots;
+  if(slots.includes(53)){ state.suiPlaced[markKey]=true; return slots; }
+  if(!state.suiPlaced[markKey]){
+    slots[Math.floor(Math.random()*slots.length)] = 53;
+    state.suiPlaced[markKey]=true;
+  }
+  return slots;
+}
+
+/* M1 */
+function m1_tension(){
+  state.m1.clicks++;
+  const axes = pick([["corte","tensao"],["fluxo","cuidado"],["densidade","presenca"],["rarefacao","centro_instavel"],["emergencia","memoria"]]);
+  for(const a of axes) applyImpulse(a, +1);
+  applyPhonoImpulse(pick(["surda","sonora","fricativa"]), 0.35);
+
+  let slots = [selectSlotByAxes(), selectSlotByAxes(), selectSlotByAxes()];
+  slots = ensureSuiInSlots(slots, "m1");
+  state.m1.slots = slots;
+}
+
+/* M2 interactions */
+function m2_swapByFragments(){
+  state.m2.swapped = !state.m2.swapped;
+  const t = state.m2.frontSlot;
+  state.m2.frontSlot = state.m2.backSlot;
+  state.m2.backSlot = t;
+
+  const tmp = state.m2.subj;
+  state.m2.subj = state.m2.obj;
+  state.m2.obj = tmp;
+
+  familyOfSlot(state.m2.frontSlot).axis.forEach(a=>applyImpulse(a, 0.55));
+}
+
+function m2_cycleVerbAndObject(){
+  state.m2.verbIndex = (state.m2.verbIndex + 1) % M2_VERB_POOL.length;
+
+  applyImpulse("emergencia", 0.55);
+  applyImpulse("centro_instavel", 0.22);
+
+  state.m2.obj = buildFrozenCluster();
+
+  const newSlot = selectSlotByAxes();
+  if(state.m2.swapped){
+    state.m2.frontSlot = newSlot;
+  }else{
+    state.m2.backSlot = newSlot;
+  }
+}
+
+/* renderers */
+function m1_render(){
+  driftScene("scene_m1", 18);
+  const wrap = document.getElementById("m1_frags");
+  wrap.innerHTML = "";
+  state.m1.slots.forEach(slot=>{
+    const el = fragDiv(slot, false, "m1");
+    wrap.appendChild(el);
+  });
+  document.getElementById("m1_text").textContent = m1_generateText();
+  driftAllFrags("m1_frags", 18);
+}
+
+function m2_render(){
+  driftScene("scene_m2", 16);
+  const wrap = document.getElementById("m2_frags");
+  wrap.innerHTML = "";
+
+  const front = fragDiv(state.m2.frontSlot, true, "m2");
+  const back  = fragDiv(state.m2.backSlot, true, "m2");
+
+  front.addEventListener("click", ()=>{
+    m2_swapByFragments();
+    rerenderAll(true);
+  });
+  back.addEventListener("click", ()=>{
+    m2_swapByFragments();
+    rerenderAll(true);
+  });
+
+  wrap.appendChild(front);
+  wrap.appendChild(back);
+
+  const verbAuto = autoVerbFor();
+  const verbChosen = (state.m2.verbIndex % 2 === 0) ? verbAuto : M2_VERB_POOL[state.m2.verbIndex];
+
+  const module1HTML = renderFrozenCluster(state.m2.subj);
+  const verbHTML = `<span class="tok click verb" data-verb="1">${chooseSurface(verbChosen,"semantic")}</span>`;
+  const module3HTML = renderFrozenCluster(state.m2.obj);
+
+  const tEl = document.getElementById("m2_text");
+  tEl.innerHTML = `${module1HTML} ${verbHTML} ${module3HTML}.`;
+
+  const vTok = tEl.querySelector("[data-verb='1']");
+  if(vTok){
+    vTok.addEventListener("click",(e)=>{
+      e.stopPropagation();
+      m2_cycleVerbAndObject();
+      rerenderAll(true);
+    });
+  }
+
+  driftAllFrags("m2_frags", 18);
+}
+
+function m3_render(){
+  driftScene("scene_m3", 16);
+
+  if(state.m3.slots.length !== 7){
+    state.m3.slots = Array.from({length:7}, ()=>selectSlotByAxes());
+    state.m3.slots = ensureSuiInSlots(state.m3.slots, "m3");
+  }else{
+    const driftChance = 0.10 + 0.20*state.axes.centro_instavel;
+    for(let i=0;i<state.m3.slots.length;i++){
+      if(Math.random()<driftChance*0.12) state.m3.slots[i] = selectSlotByAxes();
+    }
+    state.m3.slots = ensureSuiInSlots(state.m3.slots, "m3");
+  }
+
+  const wrap = document.getElementById("m3_frags");
+  wrap.innerHTML = "";
+  state.m3.slots.forEach(slot=>{
+    const el = fragDiv(slot, true, "m3");
+    el.addEventListener("click", ()=>{
+      const fam = familyOfSlot(slot);
+      fam.axis.forEach(a=>applyImpulse(a, 0.90));
+      state.m3.clicks++;
+
+      if(state.m3.clicks >= 9){
+        state.m3.clicks = 0;
+        applyImpulse("emergencia", 1.0);
+        applyImpulse("tensao", 0.7);
+        state.m3.slots = Array.from({length:7}, ()=>selectSlotByAxes());
+        state.m3.slots = ensureSuiInSlots(state.m3.slots, "m3");
+        flash(document.getElementById("scene_m3"));
+      }
+      rerenderAll(true);
+    });
+    wrap.appendChild(el);
+  });
+
+  const tEl = document.getElementById("m3_text");
+  tEl.innerHTML = renderM3Sentence();
+
+  tEl.querySelectorAll(".tok.click[data-op]").forEach(span=>{
+    span.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      const op = span.getAttribute("data-op");
+      axesOf(op).forEach(a=>applyImpulse(a, 0.95));
+      state.m3.clicks++;
+
+      if(state.m3.clicks >= 9){
+        state.m3.clicks = 0;
+        applyImpulse("emergencia", 1.0);
+        applyImpulse("tensao", 0.7);
+        state.m3.slots = Array.from({length:7}, ()=>selectSlotByAxes());
+        state.m3.slots = ensureSuiInSlots(state.m3.slots, "m3");
+        flash(document.getElementById("scene_m3"));
+      }
+      rerenderAll(true);
+    });
+  });
+
+  driftAllFrags("m3_frags", 18);
+}
+
+function m4_render(){
+  driftScene("scene_m4", 16);
+
+  if(state.m4.slots.length !== 5){
+    state.m4.slots = Array.from({length:5}, ()=>selectSlotByAxes());
+    state.m4.slots = ensureSuiInSlots(state.m4.slots, "m4");
+  }else{
+    for(let i=0;i<state.m4.slots.length;i++){
+      if(Math.random()<0.05) state.m4.slots[i] = selectSlotByAxes();
+    }
+    state.m4.slots = ensureSuiInSlots(state.m4.slots, "m4");
+  }
+
+  const wrap = document.getElementById("m4_frags");
+  wrap.innerHTML = "";
+  state.m4.slots.forEach(slot=>{
+    wrap.appendChild(fragDiv(slot, false, "m4"));
+  });
+
+  const tEl = document.getElementById("m4_text");
+  tEl.innerHTML = renderM4Sentence();
+
+  tEl.querySelectorAll(".tok.click[data-op]").forEach(span=>{
+    span.addEventListener("click",(e)=>{
+      e.stopPropagation();
+      const op = span.getAttribute("data-op");
+      const ax = axesOf(op);
+
+      let kind = state.phonoTarget;
+      if(ax.includes("corte")) kind = "surda";
+      else if(ax.includes("tensao") || ax.includes("emergencia")) kind = "sonora";
+      else if(ax.includes("fluxo") || ax.includes("rarefacao")) kind = "fricativa";
+
+      applyPhonoImpulse(kind, 0.95);
+
+      if(kind==="surda"){ applyImpulse("corte", 0.80); applyImpulse("contorno", 0.25); }
+      if(kind==="sonora"){ applyImpulse("tensao", 0.80); applyImpulse("emergencia", 0.35); }
+      if(kind==="fricativa"){ applyImpulse("fluxo", 0.80); applyImpulse("rarefacao", 0.35); }
+
+      state.m4.clicks++;
+      if(state.m4.clicks >= 12){
+        state.m4.clicks = 0;
+        const order = ["surda","sonora","fricativa"];
+        const idx = order.indexOf(state.phonoTarget);
+        const next = order[(idx+1)%order.length];
+        state.phonoTarget = next;
+        state.phono[next] = 0.92;
+        for(const k of order){ if(k!==next) state.phono[k] = 0.12; }
+
+        state.m4.slots = Array.from({length:5}, ()=>selectSlotByAxes());
+        state.m4.slots = ensureSuiInSlots(state.m4.slots, "m4");
+        flash(document.getElementById("scene_m4"));
+      }
+
+      rerenderAll(true);
+    });
+  });
+
+  driftAllFrags("m4_frags", 18);
+}
+
+/* FINAL determinístico */
+function computeStateHash(){
+  const a = AXES.map(k=>state.axes[k].toFixed(3)).join(",");
+  const p = ["surda","sonora","fricativa"].map(k=>state.phono[k].toFixed(3)).join(",");
+  const l = [
+    state.m1.clicks,
+    state.m2.frontSlot, state.m2.backSlot, state.m2.swapped?1:0, state.m2.verbIndex,
+    JSON.stringify(state.m2.subj||[]),
+    JSON.stringify(state.m2.obj||[]),
+    state.m3.slots.join("-"),
+    state.m4.slots.join("-"),
+    state.phonoTarget
+  ].join("|");
+  return `${a}__${p}__${l}`;
+}
+function seededRng(seedStr){
+  let h = 2166136261 >>> 0;
+  for(let i=0;i<seedStr.length;i++){
+    h ^= seedStr.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return function(){
+    h += 0x6D2B79F5;
+    let t = Math.imul(h ^ (h >>> 15), 1 | h);
+    t ^= t + Math.imul(t ^ (t >>> 7), 61 | t);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  }
+}
+function axisLabel(a){
+  const map = {
+    corte: "corte e decisão",
+    fluxo: "passagens e continuidade",
+    densidade: "densidade contida",
+    rarefacao: "rarefação e respiro",
+    centro_instavel: "centro instável",
+    contorno: "contorno e margem",
+    ritmo: "ritmo de insistência",
+    memoria: "memória e vestígio",
+    tensao: "tensão e peso",
+    presenca: "presença táctil",
+    emergencia: "emergência",
+    cuidado: "cuidado de aproximação",
+  };
+  return map[a] || a;
+}
+function selectSlotByAxesSeeded(R){
+  const famScores = FAMILIES.map(f=>{
+    let s = 0.01;
+    for(const a of f.axis) s += axisWeight(a);
+    if(state.phonoTarget==="surda") s *= (f.axis.includes("corte")?1.18:0.94);
+    if(state.phonoTarget==="fricativa") s *= ((f.axis.includes("fluxo")||f.axis.includes("rarefacao"))?1.18:0.94);
+    if(state.phonoTarget==="sonora") s *= ((f.axis.includes("tensao")||f.axis.includes("emergencia"))?1.18:0.94);
+    return s;
+  });
+  const sum = famScores.reduce((a,b)=>a+b,0);
+  let r = R()*sum;
+  let fam = FAMILIES[0];
+  for(let i=0;i<FAMILIES.length;i++){
+    r -= famScores[i];
+    if(r<=0){ fam = FAMILIES[i]; break; }
+  }
+  const [a,b] = fam.range;
+  return a + Math.floor(R()*(b-a+1));
+}
+function buildCritiqueText(){
+  const domAxes = AXES.slice().sort((a,b)=>state.axes[b]-state.axes[a]).slice(0,2);
+  const ph = state.phonoTarget;
+  const phText = (ph==="surda") ? "corte seco" : (ph==="sonora") ? "ruptura sonora" : "passagem fricativa";
+
+  const v = chooseSurface(weightedPick(OPS.verb), "phono");
+  const sub = maybePluralize(chooseSurface(weightedPick(OPS.subst), "phono"), true);
+  const obj = maybePluralize(chooseSurface(weightedPick(OPS.subst), "phono"), true);
+  const adv = chooseSurface(weightedPick(OPS.adv), "phono");
+  const adj = chooseSurface(weightedPick(OPS.adj), "phono");
+
+  return `A exposição não fecha um tema: instala um regime de olhar. Entre ${axisLabel(domAxes[0])} e ${axisLabel(domAxes[1])}, um corpo em modo ${adj} faz a linguagem tender a ${phText}. ${adv}, vestígios permitem ${v} ${sub} em ${obj} — e o resto insiste como condição de reentrada.`;
+}
+function renderFinal(){
+  driftScene("scene_final", 16);
+  const out = document.getElementById("final_out");
+  const grid = document.getElementById("final_frags");
+  grid.innerHTML = "";
+  state.final.slots.forEach(slot=>{
+    grid.appendChild(fragDiv(slot, false, "expo"));
+  });
+
+  document.getElementById("final_style").textContent = state.final.styleText;
+  document.getElementById("final_crit").textContent  = state.final.critText;
+  document.getElementById("final_call").textContent =
+`Partilha a tua exposição — e chama outras pessoas para verem o que tu não conseguiste alcançar.
+Para descobrir outras constelações, é preciso antes arriscar a tua própria curadoria.`;
+
+  out.style.display = "block";
+  document.getElementById("btn_share_final").style.display = "inline-block";
+}
+function generateFinal(){
+  const hash = computeStateHash();
+  if(state.final.hash === hash && state.final.slots.length===10) return;
+
+  const R = seededRng(hash);
+  const slots = [];
+  for(let i=0;i<10;i++) slots.push(selectSlotByAxesSeeded(R));
+
+  if(state.forceSui && state.suiUrl && !slots.includes(53)){
+    slots[Math.floor(R()*10)] = 53;
+  }
+
+  const domAxes = AXES.slice().sort((a,b)=>state.axes[b]-state.axes[a]).slice(0,3);
+  const ph = state.phonoTarget;
+  const phText = (ph==="surda") ? "corte seco" : (ph==="sonora") ? "ruptura sonora" : "passagem fricativa";
+
+  const style = `O teu estilo curatorial inclina-se para ${axisLabel(domAxes[0])}, com ${axisLabel(domAxes[1])} e um resto de ${axisLabel(domAxes[2])}. Predomina um corpo sonoro de ${phText}, que reorganiza a presença e a ausência no campo.`;
+  const crit = buildCritiqueText();
+
+  const shareText =
+`Eu gerei a minha curadoria possível em MÓBILES (suiornotsui).
+O que apareceu para mim não é “o todo”: é um recorte.
+E o resto — o que não consegui alcançar — continua a operar.
+
+Faz a tua:
+${location.href}`;
+
+  state.final.hash = hash;
+  state.final.slots = slots;
+  state.final.styleText = style;
+  state.final.critText = crit;
+  state.final.shareText = shareText;
+
+  renderFinal();
+}
+
+/* ========= PARTILHA: imagem + texto + link ========= */
+function buildShareText(kind){
+  const url = "http://negativo-mov.github.io/negativo.mov/mobiles/entrada";
+  let generated = "";
+  let label = "";
+  if(kind==="m1"){ generated = state.m1.text || ""; label = "Móbile 1"; }
+  else if(kind==="m2"){ generated = state.m2.text || ""; label = "Móbile 2"; }
+  else if(kind==="m3"){ generated = state.m3.text || ""; label = "Móbile 3"; }
+  else if(kind==="m4"){ generated = state.m4.text || ""; label = "Móbile 4"; }
+  else { generated = state.final.shareText || state.final.text || ""; label = "Configuração provisória"; }
+
+  const explain =
+`MÓBILES é uma máquina curatorial‑semântica: quatro móbiles interativos que reponderam um campo de fragmentos do trabalho de @suiornotsui. Cada clique não “escolhe” um tema — perturba, reequilibra, intensifica e faz emergir um estado provisório (com resto).`;
+  const invite =
+`Experimenta: insiste em certos traços, encontra imagens “escondidas” no arquivo, e vê como o teu gesto inclina a exposição.`;
+
+  // Texto pre‑preenchido (WhatsApp/Facebook etc.)
+  return `${label}
+
+${generated}
+
+—
+${explain}
+${invite}
+
+Abrir MÓBILES: ${url}`;
+}
+
+async function makeSceneImage(sceneKey){
+  // sceneKey: "m1"|"m2"|"m3"|"m4"|"final"
+  // desenha grade simples com os fragmentos atuais, num canvas exportável.
+  const cfg = {
+    m1: { slots: state.m1.slots.slice(), cols: 3, title: "Móbile 1" },
+    m2: { slots: [state.m2.frontSlot, state.m2.backSlot], cols: 2, title: "Móbile 2" },
+    m3: { slots: state.m3.slots.slice(), cols: 4, title: "Móbile 3" },
+    m4: { slots: state.m4.slots.slice(), cols: 3, title: "Móbile 4" },
+    final: { slots: state.final.slots.slice(), cols: 5, title: "Exposição final" }
+  }[sceneKey];
+
+  const W = 1080, H = 1350;
+  const pad = 70;
+  const headerH = 150;
+  const gap = 22;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext("2d");
+
+  // fundo
+  ctx.fillStyle = "rgba(255,255,255,0.92)";
+  ctx.fillRect(0,0,W,H);
+
+  // título
+  ctx.fillStyle = "rgba(20,10,30,0.92)";
+  ctx.font = "700 46px system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+  ctx.fillText(cfg.title, pad, 78);
+
+  ctx.fillStyle = "rgba(20,10,30,0.60)";
+  ctx.font = "500 24px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace";
+  ctx.fillText("suiornotsui — NEGATIVO.mov", pad, 118);
+
+  const slots = cfg.slots.filter(Boolean);
+  const cols = cfg.cols;
+  const rows = Math.ceil(slots.length / cols);
+
+  const availW = W - pad*2;
+  const availH = H - pad - headerH - 90;
+  const cellW = Math.floor((availW - gap*(cols-1)) / cols);
+  const cellH = Math.floor((availH - gap*(rows-1)) / rows);
+  const size = Math.min(cellW, cellH);
+
+  // carrega imagens e desenha
+  async function loadImg(src){
+    return new Promise((resolve,reject)=>{
+      const im = new Image();
+      im.crossOrigin = "anonymous";
+      im.onload = ()=>resolve(im);
+      im.onerror = ()=>resolve(null);
+      im.src = src;
+    });
+  }
+
+  for(let i=0;i<slots.length;i++){
+    const slot = slots[i];
+    const col = i % cols;
+    const row = Math.floor(i / cols);
+
+    const x = pad + col*(size+gap);
+    const y = headerH + pad + row*(size+gap);
+
+    // moldura
+    ctx.fillStyle = "rgba(255,255,255,0.82)";
+    ctx.strokeStyle = "rgba(20,10,30,0.78)";
+    ctx.lineWidth = 8;
+    roundRect(ctx, x, y, size, size, 26);
+    ctx.fill();
+    ctx.stroke();
+
+    const img = await loadImg(getFragmentURL(slot));
+    if(img){
+      // contain
+      const iw = img.width, ih = img.height;
+      const scale = Math.min((size-18)/iw, (size-18)/ih);
+      const dw = iw*scale, dh = ih*scale;
+      const ix = x + (size-dw)/2;
+      const iy = y + (size-dh)/2;
+      ctx.drawImage(img, ix, iy, dw, dh);
+    }
+
+    // tag
+    ctx.fillStyle = "rgba(20,10,30,0.72)";
+    ctx.font = "600 20px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace";
+    ctx.fillText(`#${slot}`, x+16, y+32);
+  }
+
+  // rodapé link
+  ctx.fillStyle = "rgba(20,10,30,0.70)";
+  ctx.font = "500 22px system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+  ctx.fillText(location.href, pad, H-40);
+
+  return canvas;
+}
+
+function roundRect(ctx, x, y, w, h, r){
+  const rr = Math.min(r, w/2, h/2);
+  ctx.beginPath();
+  ctx.moveTo(x+rr, y);
+  ctx.arcTo(x+w, y, x+w, y+h, rr);
+  ctx.arcTo(x+w, y+h, x, y+h, rr);
+  ctx.arcTo(x, y+h, x, y, rr);
+  ctx.arcTo(x, y, x+w, y, rr);
+  ctx.closePath();
+}
+
+async function shareWithImage(sceneKey){
+  const kind = (sceneKey==="final") ? "Exposição final" : `Móbile ${sceneKey.replace("m","")}`;
+  const text = buildShareText(kind);
+
+  const canvas = await makeSceneImage(sceneKey);
+  const blob = await new Promise(res=>canvas.toBlob(res, "image/png", 0.95));
+  if(!blob){ return shareTextOnly(text); }
+
+  const file = new File([blob], `mobiles_${sceneKey}.png`, { type:"image/png" });
+
+  if(navigator.share && navigator.canShare && navigator.canShare({ files:[file] })){
+    try{
+      await navigator.share({ text, files:[file] });
+      return;
+    }catch(e){
+      // fallback abaixo
+    }
+  }
+
+  // fallback: copia texto + abre imagem em nova aba
+  try{
+    await navigator.clipboard.writeText(text);
+  }catch(e){}
+  const url = URL.createObjectURL(blob);
+  window.open(url, "_blank");
+  alert("Texto copiado. A imagem abriu numa nova aba (se o share nativo não estiver disponível).");
+}
+
+async function shareTextOnly(text){
+  if(navigator.share){
+    try{ await navigator.share({ text, url: location.href }); return; }catch(e){}
+  }
+  try{ await navigator.clipboard.writeText(text); alert("Texto copiado."); }
+  catch(e){ prompt("Copia o texto:", text); }
+}
+
+/* rerender */
+function rerenderAll(withDrift=false){
+  m1_render();
+  m2_render();
+  m3_render();
+  m4_render();
+
+  if(withDrift){
+    driftScene("scene_m1", 18); driftAllFrags("m1_frags", 20);
+    driftScene("scene_m2", 16); driftAllFrags("m2_frags", 20);
+    driftScene("scene_m3", 16); driftAllFrags("m3_frags", 20);
+    driftScene("scene_m4", 16); driftAllFrags("m4_frags", 20);
+  }
+
+  const h = computeStateHash();
+  if(state.final.hash && state.final.hash !== h){
+    document.getElementById("btn_share_final").style.display = "none";
+  }
+}
+
+/* init */
+async function init(){
+  await loadSui();
+
+  state.m1.slots = [selectSlotByAxes(), selectSlotByAxes(), selectSlotByAxes()];
+  if(state.forceSui && state.suiUrl){
+    state.m1.slots[1] = 53;
+    state.suiPlaced.m1 = true;
+  }
+
+  state.m2.frontSlot = selectSlotByAxes();
+  state.m2.backSlot = selectSlotByAxes();
+  state.m2.subj = buildFrozenCluster();
+  state.m2.obj  = buildFrozenCluster();
+
+  if(state.forceSui && state.suiUrl && Math.random()<0.25){
+    if(Math.random()<0.5) state.m2.frontSlot = 53; else state.m2.backSlot = 53;
+  }
+
+  rerenderAll(true);
+
+  document.getElementById("btn_m1").addEventListener("click", ()=>{
+    m1_tension();
+    rerenderAll(true);
+  });
+
+  document.getElementById("btn_generate").addEventListener("click", ()=>{
+    generateFinal();
+  });
+
+  document.getElementById("btn_share_m1").addEventListener("click", ()=>shareWithImage("m1"));
+  document.getElementById("btn_share_m2").addEventListener("click", ()=>shareWithImage("m2"));
+  document.getElementById("btn_share_m3").addEventListener("click", ()=>shareWithImage("m3"));
+  document.getElementById("btn_share_m4").addEventListener("click", ()=>shareWithImage("m4"));
+
+  document.getElementById("btn_share_final").addEventListener("click", ()=>{
+    shareWithImage("final");
+  });
+}
+
+init();
+</script>
+</body>
+</html>
