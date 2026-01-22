@@ -565,6 +565,8 @@
       object-fit: cover;
       border:1px solid rgba(255,255,255,0.10);
     }
+    .youtube-thumb{ overflow:hidden; }
+    .youtube-thumb iframe{ width:100%; height:100%; aspect-ratio:16/9; border:0; display:block; }
     .youtube-meta{ display:flex; flex-direction:column; justify-content:center; }
     .youtube-title{ font-weight:700; margin-bottom:6px; }
     .youtube-cta{ opacity:0.8; font-size:12px; }
@@ -716,18 +718,18 @@
           </div>
           <!-- AGORA LINKA PARA A PÁGINA DO CINEMA -->
           <a href="cinema-triz.html" class="status-pill" target="_blank" rel="noopener">ver frente</a>
-      <a class="panel" href="mobiles/entrada/">
-        <div class="panel-top">
-          <span class="panel-kicker">Dispositivo expositivo</span>
-          <span class="pill">em fluxo</span>
+</div>
+        
+      <div class="card" style="cursor:default;">
+        <div class="card-label">frente</div>
+        <h3 class="card-title">MÓBILES</h3>
+        <div class="card-body">
+          Dispositivo curatorial interativo: seleção, ritmo, combinação e reentrada. Protótipo público de curadoria como tecnologia de inscrição.
         </div>
-        <h3>MÓBILES</h3>
-        <p>Dispositivo curatorial interativo: seleção, ritmo, combinação e reentrada. Protótipo público de curadoria como tecnologia de inscrição.</p>
-        <span class="panel-link">Abrir MÓBILES →</span>
-      </a>
+        <a href="mobiles/entrada/" class="status-pill" target="_blank" rel="noopener">abrir MÓBILES →</a>
+      </div>
 
-        </div>
-        <div class="card" style="cursor:default;">
+<div class="card" style="cursor:default;">
           <div class="card-label">frente</div>
           <h3 class="card-title">Colunistas</h3>
           <div class="card-body">
@@ -800,6 +802,11 @@
           </p>
         </div>
         <div id="cinema-feed" class="feed-snippet"></div>
+        <div style="margin-top:12px; display:flex; flex-wrap:wrap; gap:10px;">
+          <a href="cinema-triz.html" class="status-pill">abrir Cinema.triz →</a>
+          <a href="https://negativomov.substack.com/p/cinematriz" class="status-pill" target="_blank" rel="noopener">teoria: Cinematriz →</a>
+          <a href="https://www.youtube.com/playlist?list=PL4eyJG4HmqSu2a2W5-z2GugrbBLYfAA9M" class="status-pill" target="_blank" rel="noopener">playlist no YouTube →</a>
+        </div>
         <span class="status-pill">em fluxo</span>
       </div>
     
@@ -807,7 +814,19 @@
       <p class="section-label">Autor em vídeo</p>
       <h2>Notas públicas (curadoria, forma, presença)</h2>
       <p>Vídeos curtos e ensaios falados: fratura, método, operação. Um outro ritmo — mais direto, mais pessoal, menos “formato”.</p>
-      <div id="autor-feed" class="youtube-grid" aria-label="Último vídeo no canal"></div>
+      <div id="autor-feed" class="youtube-grid" aria-label="Último vídeo no canal">
+        <div class="youtube-item">
+          <div class="youtube-thumb">
+            <iframe
+              src="https://www.youtube.com/embed?listType=user_uploads&list=negativomov"
+              title="Últimos vídeos do NEGATIVO.mov"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
       <p><a href="https://www.youtube.com/@negativomov/videos" target="_blank" rel="noopener">Abrir canal →</a></p>
     </div>
 
@@ -950,7 +969,7 @@
           estética, midialogia, museus e território. Aparecem aqui como
           hipóteses indexadas — rascunhos públicos de um livro em fluxo.
         </div>
-        <div id="ensaios-feed" class="feed-snippet"></div>
+        <div id="livro-feed" class="feed-snippet"></div>
         <a href="https://negativomov.substack.com/s/ser-improvavel" class="status-pill" target="_blank" rel="noopener">EM FLUXO</a>
       </div>
 
@@ -1253,7 +1272,7 @@
 
   // Último texto do NEGATIVO.mov (onde estará o livro / ensaios)
   (function () {
-    const box = document.getElementById('ensaios-feed');
+    const box = document.getElementById('livro-feed');
     if (!box) return;
     const rssUrl = 'https://negativomov.substack.com/feed';
     fetchRSSFeed(rssUrl, (item) => {
@@ -1264,131 +1283,29 @@
         + '<div class="feed-snippet-title"><a href="' + item.link + '" target="_blank" rel="noopener">' + item.title + '</a></div>'
         + (snippet ? '<div>' + snippet + '</div>' : '');
     });
-  })();
+  })()
 
-  // Último estado da Gramática Improvável
+  // --- Substack (Ensaios): último texto publicado (feed principal)
   (function () {
-    const box = document.getElementById('gramatica-feed');
+    const box = document.getElementById('substack-latest');
     if (!box) return;
-    const rssUrl = 'https://gramaticaimprovavel.substack.com/feed';
-    fetchRSSFeed(rssUrl, (item) => {
-      if (!item || !item.title || !item.link) return;
-      const snippet = truncate(stripHTML(item.description), 180);
-      box.innerHTML = ''
-        + '<div class="feed-snippet-meta">Último estado da Gramática Improvável</div>'
-        + '<div class="feed-snippet-title"><a href="' + item.link + '" target="_blank" rel="noopener">' + item.title + '</a></div>'
-        + (snippet ? '<div>' + snippet + '</div>' : '')
-        + '<div style="margin-top:0.35rem;">→ Contribuir com inscrições: '
-        + '<a href="museumirandes.html" target="_blank" rel="noopener">responder no laboratório mirandês</a></div>';
-    });
-  })();
-
-  // Último vídeo da playlist do Cinema.triz
-  (function () {
-    const box = document.getElementById('cinema-feed');
-    if (!box) return;
-    const rssUrl = 'https://www.youtube.com/feeds/videos.xml?playlist_id=PL39_wg5gv6Rjd24MpY9rArysKc4_uGlcZ';
-    fetchRSSFeed(rssUrl, (item) => {
-      if (!item || !item.title || !item.link) return;
-      let link = item.link;
-      let videoId = '';
-      try {
-        const url = new URL(link);
-        if (url.searchParams && url.searchParams.get('v')) {
-          videoId = url.searchParams.get('v');
-        } else if (url.pathname && url.pathname.startsWith('/embed/')) {
-          videoId = url.pathname.split('/embed/')[1];
-        }
-      } catch (e) {
-        // se não conseguir extrair o ID, segue só com o título
-      }
-      const thumb = videoId
-        ? 'https://img.youtube.com/vi/' + videoId + '/hqdefault.jpg'
-        : '';
-      let html = '<div class="feed-snippet-meta">Último movimento na playlist Cinema.triz</div>';
-      html += '<div class="card" style="max-width:340px;margin-top:0.5rem;cursor:pointer;">';
-      html += '<a class="card-link" href="' + link + '" target="_blank" rel="noopener">';
-      if (thumb) {
-        html += '<img src="' + thumb + '" alt="Cinema.triz — último vídeo" class="cover-thumb">';
-      }
-      html += '<div class="card-body"><div class="feed-snippet-title">' + item.title + '</div></div>';
-      html += '</a></div>';
-      box.innerHTML = html;
-    });
-  })();;
-
-
-  // --- Autor em vídeo: último vídeo do canal (fallback: link) ---
-  (async () => {
-    const container = document.getElementById("autor-feed");
-    if (!container) return;
-
-    // Se este feed não funcionar, substitui por channel_id:
-    // https://www.youtube.com/feeds/videos.xml?channel_id=SEU_CHANNEL_ID
-    const rssUrl = "https://www.youtube.com/feeds/videos.xml?user=negativomov";
-
-    try {
-      const items = await fetchRSSFeed(rssUrl);
-      if (!items || !items.length) throw new Error("Sem itens no feed.");
-
-      const latest = items[0];
-      const title = latest.querySelector("title")?.textContent ?? "Último vídeo";
-      const link = latest.querySelector("link")?.getAttribute("href") ?? "https://www.youtube.com/@negativomov/videos";
-      const thumbUrl = latest.querySelector("media\\:thumbnail")?.getAttribute("url") || "";
-
-      container.innerHTML = `
-        <a href="${link}" target="_blank" rel="noopener" class="youtube-item">
-          ${thumbUrl ? `<img src="${thumbUrl}" alt="${title}" class="youtube-thumb">` : ""}
-          <div class="youtube-meta">
-            <div class="youtube-title">${title}</div>
-            <div class="youtube-cta">abrir vídeo →</div>
-          </div>
-        </a>
-      `;
-    } catch (e) {
-      console.warn("Autor feed error:", e);
-      container.innerHTML = `
-        <a href="https://www.youtube.com/@negativomov/videos" target="_blank" rel="noopener" class="youtube-item">
-          <div class="youtube-meta">
-            <div class="youtube-title">Abrir vídeos do NEGATIVO.mov</div>
-            <div class="youtube-cta">ver canal →</div>
-          </div>
-        </a>
-      `;
-    }
-  })();
-
-  // --- Substack: último ensaio (feed) ---
-  (async () => {
-    const el = document.getElementById("substack-latest");
-    if (!el) return;
 
     const rssUrl = "https://negativomov.substack.com/feed";
 
-    try {
-      const items = await fetchRSSFeed(rssUrl);
-      if (!items || !items.length) throw new Error("Sem itens no feed.");
+    const stripHtml = (s) => (s || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 
-      const latest = items[0];
-      const title = latest.querySelector("title")?.textContent ?? "Último ensaio";
-      const link = latest.querySelector("link")?.textContent ?? "https://negativomov.substack.com/";
+    fetchRSSFeed(rssUrl, function (item) {
+      if (!item) return;
+      const link = item.querySelector('link')?.textContent || "#";
+      const title = item.querySelector('title')?.textContent || "Último texto";
+      const desc = item.querySelector('description')?.textContent || "";
+      const snippet = stripHtml(desc).slice(0, 260);
 
-      el.innerHTML = `
-        <div class="feed-snippet">
-          <div class="feed-title">${title}</div>
-          <a href="${link}" target="_blank" rel="noopener">ler o último →</a>
-        </div>
+      box.innerHTML = `
+        <div class="feed-snippet-title">${title}</div>
+        <div class="feed-snippet-meta">último texto publicado</div>        <a href="${link}" target="_blank" rel="noopener" class="status-pill">abrir texto →</a>
       `;
-    } catch (e) {
-      console.warn("Substack feed error:", e);
-      el.innerHTML = `
-        <div class="feed-snippet">
-          <a href="https://negativomov.substack.com/" target="_blank" rel="noopener">abrir Substack →</a>
-        </div>
-      `;
-    }
+    });
   })();
-</script>
 
-</body>
-</html>
+>
