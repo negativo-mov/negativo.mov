@@ -807,7 +807,29 @@
           <a href="https://negativomov.substack.com/p/cinematriz" class="status-pill" target="_blank" rel="noopener">teoria: Cinematriz →</a>
           <a href="https://www.youtube.com/playlist?list=PL4eyJG4HmqSu2a2W5-z2GugrbBLYfAA9M" class="status-pill" target="_blank" rel="noopener">playlist no YouTube →</a>
         </div>
-        <span class="status-pill">em fluxo</span>
+        
+        <div class="youtube-grid" style="margin-top:14px;">
+          <div class="youtube-item" style="max-width:520px;">
+            <div class="youtube-thumb" aria-label="Último movimento na playlist CINEMA.triz">
+              <iframe
+                src="https://www.youtube.com/embed/videoseries?list=PL39_wg5gv6Rjd24MpY9rArysKc4_uGlcZ"
+                title="CINEMA.triz — playlist"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+                style="width:100%; aspect-ratio:16/9; border-radius:14px;"
+              ></iframe>
+            </div>
+            <div class="youtube-meta">
+              <div class="youtube-title">Último movimento na playlist CINEMA.triz</div>
+              <div class="youtube-desc">Prévia automática da playlist (YouTube).</div>
+            </div>
+          </div>
+        </div>
+
+<span class="status-pill">em fluxo</span>
       </div>
     
     <div class="card">
@@ -816,15 +838,17 @@
       <p>Vídeos curtos e ensaios falados: fratura, método, operação. Um outro ritmo — mais direto, mais pessoal, menos “formato”.</p>
       <div id="autor-feed" class="youtube-grid" aria-label="Último vídeo no canal">
         <div class="youtube-item">
-          <div class="youtube-thumb">
-            <iframe
-              src="https://www.youtube.com/embed?listType=user_uploads&list=negativomov"
-              title="Últimos vídeos do NEGATIVO.mov"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
+          <div class="youtube-thumb" id="autor-embed" aria-label="Prévia do último vídeo">
+            <div style="padding:18px 18px 16px; border:1px solid rgba(255,255,255,.10); border-radius:16px; background:rgba(0,0,0,.20);">
+              <div style="opacity:.9; font-weight:700; margin-bottom:6px;">Prévia automática do canal</div>
+              <div style="opacity:.75; line-height:1.35;">
+                Se o embed falhar, abre diretamente o canal:
+                <a href="https://www.youtube.com/@negativomov/videos" target="_blank" rel="noopener" style="color:#b6ff6a; text-decoration:none;">@negativomov/videos →</a>
+              </div>
+            </div>
           </div>
+        </div>
+</div>
         </div>
       </div>
       <p><a href="https://www.youtube.com/@negativomov/videos" target="_blank" rel="noopener">Abrir canal →</a></p>
@@ -1214,98 +1238,109 @@
   }
 </script>
 
+
 <script>
   // Utilitário genérico para ler RSS via proxy (evita CORS)
-  function fetchRSSFeed(rssUrl, onItem) {
-    fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(rssUrl))
-      .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
-        return response.text();
-      })
-      .then(text => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(text, 'application/xml');
-        const entry = doc.querySelector('item') || doc.querySelector('entry');
-        if (!entry) return;
+  async function fetchRSSFeed(url) {
+    // allorigins é simples e tem funcionado bem em GitHub Pages
+    const proxy = "https://api.allorigins.win/raw?url=" + encodeURIComponent(url);
+    const res = await fetch(proxy, { cache: "no-store" });
+    const xmlText = await res.text();
+    const doc = new DOMParser().parseFromString(xmlText, "text/xml");
+    const item = doc.querySelector("item");
+    if (!item) return null;
 
-        const getText = (selector) => {
-          const el = entry.querySelector(selector);
-          return el ? (el.textContent || '').trim() : '';
-        };
-
-        const title = getText('title');
-
-        let link = '';
-        const linkEl = entry.querySelector('link');
-        if (linkEl) {
-          link = (linkEl.getAttribute('href') || linkEl.textContent || '').trim();
-        }
-
-        const pubDate = getText('pubDate') || getText('published');
-
-        let description = getText('description') || getText('content') || '';
-        const mediaDescEls = entry.getElementsByTagName('media:description');
-        if (!description && mediaDescEls && mediaDescEls.length > 0) {
-          description = (mediaDescEls[0].textContent || '').trim();
-        }
-
-        onItem({ title, link, pubDate, description });
-      })
-      .catch(err => {
-        console.error('Erro ao carregar feed:', rssUrl, err);
-      });
+    const get = (tag) => item.querySelector(tag)?.textContent?.trim() || "";
+    return {
+      title: get("title"),
+      link: get("link"),
+      description: get("description"),
+      pubDate: get("pubDate")
+    };
   }
 
-  function stripHTML(str) {
-    const tmp = document.createElement('div');
-    tmp.innerHTML = str || '';
-    return (tmp.textContent || tmp.innerText || '').trim();
+  function stripHtml(html) {
+    return (html || "").replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
   }
 
-  function truncate(str, maxLen) {
-    if (!str) return '';
-    if (str.length <= maxLen) return str;
-    const shortened = str.slice(0, maxLen);
-    const lastSpace = shortened.lastIndexOf(' ');
-    return (lastSpace > 0 ? shortened.slice(0, lastSpace) : shortened) + '…';
+  function renderRSSCard(containerId, feedUrl, kicker, fallbackLink) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    (async () => {
+      try {
+        const item = await fetchRSSFeed(feedUrl);
+        if (!item) return;
+
+        const title = item.title || kicker;
+        const link = item.link || fallbackLink;
+        const desc = stripHtml(item.description).slice(0, 220);
+
+        container.innerHTML = `
+          <a href="${link}" target="_blank" rel="noopener" style="text-decoration:none;">
+            <div class="rss-card">
+              <div class="rss-kicker">${kicker}</div>
+              <div class="rss-title">${title}</div>
+              <div class="rss-desc">${desc}</div>
+            </div>
+          </a>
+        `;
+      } catch (e) {
+        console.warn("RSS preview failed:", containerId, e);
+      }
+    })();
   }
 
-  // Último texto do NEGATIVO.mov (onde estará o livro / ensaios)
-  (function () {
-    const box = document.getElementById('livro-feed');
-    if (!box) return;
-    const rssUrl = 'https://negativomov.substack.com/feed';
-    fetchRSSFeed(rssUrl, (item) => {
-      if (!item || !item.title || !item.link) return;
-      const snippet = truncate(stripHTML(item.description), 200);
-      box.innerHTML = ''
-        + '<div class="feed-snippet-meta">Último texto publicado</div>'
-        + '<div class="feed-snippet-title"><a href="' + item.link + '" target="_blank" rel="noopener">' + item.title + '</a></div>'
-        + (snippet ? '<div>' + snippet + '</div>' : '');
-    });
-  })()
+  // --- Livro (ser-improvável) — último capítulo
+  renderRSSCard(
+    "livro-feed",
+    "https://negativomov.substack.com/s/ser-improvavel/feed",
+    "último capítulo publicado",
+    "https://negativomov.substack.com/s/ser-improvavel"
+  );
 
-  // --- Substack (Ensaios): último texto publicado (feed principal)
-  (function () {
-    const box = document.getElementById('substack-latest');
-    if (!box) return;
+  // --- Substack (ensaios) — último texto
+  renderRSSCard(
+    "substack-latest",
+    "https://negativomov.substack.com/feed",
+    "último texto publicado",
+    "https://negativomov.substack.com"
+  );
 
-    const rssUrl = "https://negativomov.substack.com/feed";
+  // --- Autor em vídeo — tenta puxar automaticamente o vídeo mais recente do canal
+  async function loadAutorVideoPreview() {
+    const target = document.getElementById("autor-embed");
+    if (!target) return;
 
-    const stripHtml = (s) => (s || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+    const channelUrl = "https://www.youtube.com/@negativomov/videos";
+    try {
+      const proxy = "https://api.allorigins.win/raw?url=" + encodeURIComponent(channelUrl);
+      const html = await fetch(proxy, { cache: "no-store" }).then(r => r.text());
 
-    fetchRSSFeed(rssUrl, function (item) {
-      if (!item) return;
-      const link = item.querySelector('link')?.textContent || "#";
-      const title = item.querySelector('title')?.textContent || "Último texto";
-      const desc = item.querySelector('description')?.textContent || "";
-      const snippet = stripHtml(desc).slice(0, 260);
+      // Extrai o primeiro watch?v= (normalmente o mais recente na página /videos)
+      const m = html.match(/"url":"\\/watch\\?v=([a-zA-Z0-9_-]{11})/);
+      const id = m ? m[1] : null;
+      if (!id) throw new Error("No video id found");
 
-      box.innerHTML = `
-        <div class="feed-snippet-title">${title}</div>
-        <div class="feed-snippet-meta">último texto publicado</div>        <a href="${link}" target="_blank" rel="noopener" class="status-pill">abrir texto →</a>
+      target.innerHTML = `
+        <iframe
+          src="https://www.youtube.com/embed/${id}"
+          title="Último vídeo — NEGATIVO.mov"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          style="width:100%; aspect-ratio:16/9; border-radius:14px;"
+        ></iframe>
       `;
-    });
-  })();
+    } catch (e) {
+      console.warn("Autor video preview failed:", e);
+    }
+  }
 
->
+  loadAutorVideoPreview();
+</script>
+
+</body>
+</html>
