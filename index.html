@@ -268,6 +268,17 @@
       text-shadow: 0 0 12px rgba(0,0,0,0.7);
     }
 
+    .btn-tertiary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.22);
+      box-shadow: none;
+    }
+    .btn-tertiary:hover {
+      border-color: rgba(255,255,255,0.42);
+      transform: translateY(-1px);
+    }
+
     .btn:hover {
       box-shadow:
         0 0 32px rgba(140,235,96,0.9),
@@ -536,7 +547,43 @@
       opacity: 0.9;
       margin-bottom: 0.15rem;
     }
-  </style>
+  
+    .youtube-item{
+      display:flex;
+      gap:14px;
+      align-items:stretch;
+      text-decoration:none;
+      border:1px solid rgba(255,255,255,0.10);
+      border-radius:18px;
+      padding:12px;
+      background: rgba(0,0,0,0.18);
+    }
+    .youtube-thumb{
+      width: 180px;
+      max-width: 42%;
+      border-radius:14px;
+      object-fit: cover;
+      border:1px solid rgba(255,255,255,0.10);
+    }
+    .youtube-meta{ display:flex; flex-direction:column; justify-content:center; }
+    .youtube-title{ font-weight:700; margin-bottom:6px; }
+    .youtube-cta{ opacity:0.8; font-size:12px; }
+    .feed-title{ font-weight:700; margin-bottom:6px; }
+</style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"NEGATIVO.mov",
+    "url":"https://negativo-mov.github.io/negativo.mov/",
+    "sameAs":[
+      "https://negativomov.substack.com/",
+      "https://www.youtube.com/@negativomov/videos"
+    ]
+  }
+  </script>
+
 </head>
 
 <body>
@@ -558,6 +605,7 @@
         <li><a href="#experimentos">Visuais</a></li>
         <li><a href="pitch.html">Operação</a></li>
         <li><a href="trabalhar-com.html">Trabalhar com</a></li>
+        <li><a href="caioeduardogabriel.html">Autor</a></li>
         <li><a href="sessoes.html">Sessões</a></li>
         <li><a href="#mov">.mov</a></li>
       </ul>
@@ -597,6 +645,18 @@
         </div>
       </div>
     </section>
+
+    <!-- CHAMADA PARA TRABALHAR COM -->
+    <section>
+      <div class="card" style="cursor:default;">
+        <div class="card-body">
+          <p><strong>Trabalhar com o NEGATIVO.mov</strong></p>
+          <p>Para instituições, museus, centros culturais, fundações, municípios, artistas e espaços independentes que precisam de forma, método e execução — sem perder risco e invenção.</p>
+          <p>→ Página estratégica completa: <a href="trabalhar-com.html">Trabalhar com — NEGATIVO.mov</a></p>
+        </div>
+      </div>
+    </section>
+
 
     <!-- MANIFESTO -->
     <section id="manifesto">
@@ -656,6 +716,16 @@
           </div>
           <!-- AGORA LINKA PARA A PÁGINA DO CINEMA -->
           <a href="cinema-triz.html" class="status-pill" target="_blank" rel="noopener">ver frente</a>
+      <a class="panel" href="mobiles/entrada/">
+        <div class="panel-top">
+          <span class="panel-kicker">Dispositivo expositivo</span>
+          <span class="pill">em fluxo</span>
+        </div>
+        <h3>MÓBILES</h3>
+        <p>Dispositivo curatorial interativo: seleção, ritmo, combinação e reentrada. Protótipo público de curadoria como tecnologia de inscrição.</p>
+        <span class="panel-link">Abrir MÓBILES →</span>
+      </a>
+
         </div>
         <div class="card" style="cursor:default;">
           <div class="card-label">frente</div>
@@ -732,7 +802,16 @@
         <div id="cinema-feed" class="feed-snippet"></div>
         <span class="status-pill">em fluxo</span>
       </div>
-    </section>
+    
+    <div class="card">
+      <p class="section-label">Autor em vídeo</p>
+      <h2>Notas públicas (curadoria, forma, presença)</h2>
+      <p>Vídeos curtos e ensaios falados: fratura, método, operação. Um outro ritmo — mais direto, mais pessoal, menos “formato”.</p>
+      <div id="autor-feed" class="youtube-grid" aria-label="Último vídeo no canal"></div>
+      <p><a href="https://www.youtube.com/@negativomov/videos" target="_blank" rel="noopener">Abrir canal →</a></p>
+    </div>
+
+  </section>
 
     <!-- COLUNISTAS -->
     <section id="colunistas">
@@ -873,6 +952,17 @@
         </div>
         <div id="ensaios-feed" class="feed-snippet"></div>
         <a href="https://negativomov.substack.com/s/ser-improvavel" class="status-pill" target="_blank" rel="noopener">EM FLUXO</a>
+      </div>
+
+      <div class="card" style="cursor:default;">
+        <div class="card-label">ensaios</div>
+        <h3 class="card-title">Ensaios em curadoria, mídia e presença</h3>
+        <div class="card-body">
+          Artigos e micro-ensaios sobre curadoria contemporânea, crítica institucional,
+          linguagem, materialidade técnica e regimes de atenção. Atualiza-se em processo.
+        </div>
+        <div id="substack-latest" class="feed-snippet"></div>
+        <a href="https://negativomov.substack.com/" class="status-pill" target="_blank" rel="noopener">EM FLUXO</a>
       </div>
     </section>
 
@@ -1226,6 +1316,78 @@
       box.innerHTML = html;
     });
   })();;
+
+
+  // --- Autor em vídeo: último vídeo do canal (fallback: link) ---
+  (async () => {
+    const container = document.getElementById("autor-feed");
+    if (!container) return;
+
+    // Se este feed não funcionar, substitui por channel_id:
+    // https://www.youtube.com/feeds/videos.xml?channel_id=SEU_CHANNEL_ID
+    const rssUrl = "https://www.youtube.com/feeds/videos.xml?user=negativomov";
+
+    try {
+      const items = await fetchRSSFeed(rssUrl);
+      if (!items || !items.length) throw new Error("Sem itens no feed.");
+
+      const latest = items[0];
+      const title = latest.querySelector("title")?.textContent ?? "Último vídeo";
+      const link = latest.querySelector("link")?.getAttribute("href") ?? "https://www.youtube.com/@negativomov/videos";
+      const thumbUrl = latest.querySelector("media\\:thumbnail")?.getAttribute("url") || "";
+
+      container.innerHTML = `
+        <a href="${link}" target="_blank" rel="noopener" class="youtube-item">
+          ${thumbUrl ? `<img src="${thumbUrl}" alt="${title}" class="youtube-thumb">` : ""}
+          <div class="youtube-meta">
+            <div class="youtube-title">${title}</div>
+            <div class="youtube-cta">abrir vídeo →</div>
+          </div>
+        </a>
+      `;
+    } catch (e) {
+      console.warn("Autor feed error:", e);
+      container.innerHTML = `
+        <a href="https://www.youtube.com/@negativomov/videos" target="_blank" rel="noopener" class="youtube-item">
+          <div class="youtube-meta">
+            <div class="youtube-title">Abrir vídeos do NEGATIVO.mov</div>
+            <div class="youtube-cta">ver canal →</div>
+          </div>
+        </a>
+      `;
+    }
+  })();
+
+  // --- Substack: último ensaio (feed) ---
+  (async () => {
+    const el = document.getElementById("substack-latest");
+    if (!el) return;
+
+    const rssUrl = "https://negativomov.substack.com/feed";
+
+    try {
+      const items = await fetchRSSFeed(rssUrl);
+      if (!items || !items.length) throw new Error("Sem itens no feed.");
+
+      const latest = items[0];
+      const title = latest.querySelector("title")?.textContent ?? "Último ensaio";
+      const link = latest.querySelector("link")?.textContent ?? "https://negativomov.substack.com/";
+
+      el.innerHTML = `
+        <div class="feed-snippet">
+          <div class="feed-title">${title}</div>
+          <a href="${link}" target="_blank" rel="noopener">ler o último →</a>
+        </div>
+      `;
+    } catch (e) {
+      console.warn("Substack feed error:", e);
+      el.innerHTML = `
+        <div class="feed-snippet">
+          <a href="https://negativomov.substack.com/" target="_blank" rel="noopener">abrir Substack →</a>
+        </div>
+      `;
+    }
+  })();
 </script>
 
 </body>
