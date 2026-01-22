@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0d12" />
+
+  <title>Caio Eduardo Gabriel (Cacá Gabriel) — Curador e operador cultural | NEGATIVO.mov</title>
+  <meta name="description" content="Caio Eduardo Gabriel (Cacá Gabriel) é curador, ensaísta e operador cultural. Curadoria como engenharia do aparecimento. Fundador do NEGATIVO.mov — máquina cultural dedicada a sustentar emergência real." />
+
+  <!-- Canonical (ajuste o slug conforme o nome do ficheiro final) -->
+  <link rel="canonical" href="https://negativo-mov.github.io/negativo.mov/caioeduardogabriel.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Caio Eduardo Gabriel (Cacá Gabriel) — Curador e operador cultural | NEGATIVO.mov" />
+  <meta property="og:description" content="Curadoria como engenharia do aparecimento. Operador do NEGATIVO.mov — máquina cultural dedicada a sustentar emergência real." />
+  <meta property="og:url" content="https://negativo-mov.github.io/negativo.mov/caioeduardogabriel.html" />
+  <!-- Sugestão: substituir por uma imagem tua no repositório (ex.: /assets/caio.jpg) -->
+  <meta property="og:image" content="https://negativo-mov.github.io/negativo.mov/caca-metafisica.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Caio Eduardo Gabriel (Cacá Gabriel) — Curador e operador cultural" />
+  <meta name="twitter:description" content="Curadoria como engenharia do aparecimento. Fundador do NEGATIVO.mov." />
+  <meta name="twitter:image" content="https://negativo-mov.github.io/negativo.mov/caca-metafisica.jpg" />
+
+  <!-- JSON-LD (SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Caio Eduardo Gabriel",
+    "alternateName":["Caio Gabriel","Cacá Gabriel"],
+    "jobTitle":"Curador e operador cultural",
+    "url":"https://negativo-mov.github.io/negativo.mov/caioeduardogabriel.html",
+    "image":"https://negativo-mov.github.io/negativo.mov/caca-metafisica.jpg",
+    "worksFor":{
+      "@type":"Organization",
+      "name":"NEGATIVO.mov",
+      "url":"https://negativo-mov.github.io/negativo.mov/"
+    },
+    "sameAs":[
+      "https://www.linkedin.com/in/caioeduardogabriel/",
+      "https://negativomov.substack.com",
+      "https://cacagabrielmov.substack.com/",
+      "https://negativo-mov.github.io/negativo.mov/"
+    ]
+  }
+  </script>
+
+  <!-- ====== ESTILO: colado da “versão 22” (index.html) para não bifurcar estética ====== -->
+  <style>
+    :root{
+      --bg:#0b0d12;
+      --fg:#e8ecff;
+      --muted:#a9b1d6;
+      --line:rgba(232,236,255,.14);
+      --panel:rgba(255,255,255,.04);
+      --panel2:rgba(255,255,255,.06);
+      --accent:#b7ff5a;
+      --accent2:#66e3ff;
+      --danger:#ff3b6b;
+      --shadow:0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+      --radius2:26px;
+      --max:1100px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--fg);
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(102,227,255,.12), transparent 55%),
+        radial-gradient(900px 700px at 80% 20%, rgba(183,255,90,.10), transparent 55%),
+        radial-gradient(700px 600px at 50% 80%, rgba(255,59,107,.08), transparent 55%),
+        linear-gradient(180deg, #090b10, #0b0d12 45%, #07080c);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    a:hover{opacity:.92}
+
+    .grain{
+      pointer-events:none;
+      position:fixed; inset:0;
+      background-image:url("film-strip.jpg");
+      background-size: 420px;
+      mix-blend-mode: overlay;
+      opacity:.08;
+      filter:contrast(130%) brightness(110%);
+    }
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 90px}
+
+    header{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(11,13,18,.88), rgba(11,13,18,.58));
+      border-bottom:1px solid var(--line);
+    }
+    .head-inner{max-width:var(--max); margin:0 auto; padding:14px 18px; display:flex; align-items:center; gap:14px}
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-family:var(--mono);
+      letter-spacing:.2px;
+      font-weight:700;
+      text-transform:uppercase;
+      font-size:12px;
+    }
+    .brand .dot{
+      width:10px; height:10px; border-radius:99px;
+      background: conic-gradient(from 120deg, var(--accent), var(--accent2), var(--danger), var(--accent));
+      box-shadow: 0 0 0 3px rgba(255,255,255,.03), 0 0 24px rgba(183,255,90,.18);
+    }
+    nav{margin-left:auto; display:flex; align-items:center; gap:10px}
+    .nav-toggle{
+      display:none;
+      border:1px solid var(--line);
+      background:var(--panel);
+      color:var(--fg);
+      border-radius:14px;
+      padding:10px 12px;
+      font-family:var(--mono);
+      font-size:12px;
+    }
+    .nav-list{
+      display:flex; align-items:center; gap:10px;
+      list-style:none; margin:0; padding:0;
+      font-family:var(--mono);
+      font-size:12px;
+    }
+    .nav-list a{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid transparent;
+      color:var(--muted);
+      background:transparent;
+    }
+    .nav-list a:hover{
+      color:var(--fg);
+      border-color:var(--line);
+      background:rgba(255,255,255,.03);
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      font-family:var(--mono);
+      font-size:12px;
+      color:var(--fg);
+    }
+    .chip strong{color:var(--accent)}
+
+    .hero{
+      margin-top:28px;
+      border:1px solid var(--line);
+      border-radius:var(--radius2);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(600px 300px at 10% 10%, rgba(102,227,255,.18), transparent 60%),
+                  radial-gradient(520px 260px at 80% 10%, rgba(183,255,90,.16), transparent 55%),
+                  radial-gradient(520px 300px at 50% 100%, rgba(255,59,107,.10), transparent 60%);
+      pointer-events:none;
+      opacity:.9;
+    }
+    .hero-inner{
+      position:relative;
+      display:grid;
+      grid-template-columns: 140px 1fr;
+      gap:18px;
+      padding:22px 18px 18px;
+      align-items:center;
+    }
+    .portrait{
+      width:120px; height:120px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.25);
+      overflow:hidden;
+      box-shadow: 0 16px 42px rgba(0,0,0,.35);
+    }
+    .portrait img{width:100%; height:100%; object-fit:cover; display:block}
+    .kicker{
+      font-family:var(--mono);
+      font-size:12px;
+      color:var(--muted);
+      letter-spacing:.35px;
+      text-transform:uppercase;
+      margin:0 0 8px 0;
+    }
+    .title{
+      margin:0;
+      font-size:26px;
+      line-height:1.15;
+      letter-spacing:-.3px;
+    }
+    .subtitle{
+      margin:10px 0 0 0;
+      color:var(--muted);
+      line-height:1.35;
+      max-width:70ch;
+    }
+    .hero-actions{
+      position:relative;
+      padding:0 18px 18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      border-top:1px solid var(--line);
+      background:rgba(0,0,0,.10);
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:11px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      font-family:var(--mono);
+      font-size:12px;
+      color:var(--fg);
+    }
+    .btn.primary{
+      border-color: rgba(183,255,90,.25);
+      background: linear-gradient(180deg, rgba(183,255,90,.16), rgba(255,255,255,.04));
+    }
+    .btn:hover{transform: translateY(-1px)}
+    .btn:active{transform: translateY(0px)}
+
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:14px;
+    }
+    .card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background: rgba(255,255,255,.035);
+      padding:16px;
+      box-shadow: 0 12px 44px rgba(0,0,0,.25);
+    }
+    .card h2{
+      margin:0 0 10px 0;
+      font-size:15px;
+      letter-spacing:.2px;
+      font-family:var(--mono);
+      text-transform:uppercase;
+      color:var(--fg);
+    }
+    .card p{
+      margin:0 0 10px 0;
+      color:var(--muted);
+      line-height:1.52;
+    }
+    .card p:last-child{margin-bottom:0}
+    .list{
+      margin:10px 0 0 0;
+      padding:0;
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .item{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px;
+      background: rgba(255,255,255,.03);
+    }
+    .item .top{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:6px;
+      font-family:var(--mono);
+      font-size:12px;
+    }
+    .item .top b{color:var(--fg)}
+    .item .top span{color:var(--muted)}
+    .item .desc{color:var(--muted); line-height:1.45; font-size:14px; margin:0}
+    .pillrow{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      font-family:var(--mono);
+      font-size:12px;
+      color:var(--muted);
+    }
+    .pill strong{color:var(--fg); font-weight:600}
+
+    .foot{
+      margin-top:20px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-family:var(--mono);
+      font-size:12px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .foot a{color:var(--fg)}
+    .fine{opacity:.85; max-width:88ch}
+
+    @media (max-width: 920px){
+      .grid{grid-template-columns:1fr}
+    }
+    @media (max-width: 720px){
+      .nav-toggle{display:inline-flex}
+      .nav-list{
+        position:absolute;
+        top:58px; right:18px;
+        flex-direction:column;
+        align-items:stretch;
+        width:min(330px, calc(100vw - 36px));
+        background: rgba(11,13,18,.96);
+        border:1px solid var(--line);
+        border-radius:18px;
+        padding:10px;
+        box-shadow: var(--shadow);
+        display:none;
+      }
+      .nav-list.nav-open{display:flex}
+      .hero-inner{grid-template-columns: 96px 1fr}
+      .portrait{width:88px; height:88px}
+      .title{font-size:22px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Header idêntico ao index.html (âncoras/atalhos mantidas) -->
+  <header>
+    <div class="head-inner">
+      <a class="brand" href="index.html" title="NEGATIVO.mov (início)">
+        <span class="dot" aria-hidden="true"></span>
+        <span>NEGATIVO.mov</span>
+      </a>
+
+      <nav aria-label="Atalhos">
+        <button class="nav-toggle" id="navToggle" type="button">MENU</button>
+        <ul class="nav-list" id="navList">
+          <!-- Mantém os mesmos hrefs do index (sem bifurcação).
+               Nesta página, se o id não existir, o script envia para index.html#... -->
+          <li><a href="#inicio">INÍCIO</a></li>
+          <li><a href="#manifesto">MANIFESTO</a></li>
+          <li><a href="#dispositivos">DISPOSITIVOS</a></li>
+          <li><a href="#colunistas">COLUNISTAS</a></li>
+          <li><a href="#textos">TEXTOS</a></li>
+          <li><a href="#sessões">SESSÕES</a></li>
+          <li><a href="#contacto">CONTACTO</a></li>
+        </ul>
+      </nav>
+
+      <span class="chip" title="Página canónica">
+        <strong>CAIO</strong> / PERFIL
+      </span>
+    </div>
+  </header>
+
+  <main class="wrap" id="topo">
+    <!-- HERO -->
+    <section class="hero" id="caio">
+      <div class="hero-inner">
+        <div class="portrait" aria-hidden="true">
+          <!-- Troca o src por uma foto tua no repositório (ex.: /assets/caio.jpg) -->
+          <img src="caca-metafisica.jpg" alt="Retrato de Caio Eduardo Gabriel (Cacá Gabriel)" />
+        </div>
+
+        <div>
+          <p class="kicker">Curadoria · Ensaio · Dispositivos</p>
+          <h1 class="title">Caio Eduardo Gabriel (Cacá Gabriel)</h1>
+          <p class="subtitle">
+            Curador e operador cultural. Curadoria como engenharia do aparecimento.
+            Fundador do <b>NEGATIVO.mov</b> — máquina cultural dedicada a sustentar emergência real.
+          </p>
+        </div>
+      </div>
+
+      <div class="hero-actions" role="navigation" aria-label="Links principais">
+        <a class="btn primary" href="https://www.linkedin.com/in/caioeduardogabriel/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="btn" href="https://negativo-mov.github.io/negativo.mov/" target="_blank" rel="noopener noreferrer">Site (NEGATIVO.mov)</a>
+        <a class="btn" href="https://negativomov.substack.com" target="_blank" rel="noopener noreferrer">Substack (projeto)</a>
+        <a class="btn" href="https://cacagabrielmov.substack.com/" target="_blank" rel="noopener noreferrer">Substack (Cacá)</a>
+        <a class="btn" href="mailto:negativomov@gmail.com">Email</a>
+      </div>
+    </section>
+
+    <section class="grid">
+      <!-- Apresentação -->
+      <article class="card">
+        <h2>Apresentação</h2>
+        <p>
+          Caio Eduardo Gabriel (também conhecido como Caio Gabriel ou Cacá Gabriel) é curador, ensaísta e operador cultural.
+          O seu trabalho incide sobre as condições materiais pelas quais algo consegue efetivamente aparecer no presente —
+          e sobre os mecanismos que capturam, neutralizam ou tornam invisíveis práticas, ideias e formas de vida mesmo quando circulam intensamente.
+        </p>
+        <p>
+          O núcleo da sua pesquisa não é a obra enquanto objeto, mas a infraestrutura de emergência:
+          dispositivos, mediações, regimes de atenção e formatos de circulação que tornam uma experiência possível ou impossível.
+          Desenvolve a curadoria como tecnologia de inscrição, capaz de sustentar fratura, imprevisibilidade e transformação efetiva no campo cultural.
+        </p>
+        <p>
+          Trabalha onde a crítica costuma cessar: no nível dos dispositivos.
+        </p>
+
+        <div class="pillrow" aria-label="Eixos">
+          <span class="pill"><strong>Curadoria</strong> tecnologia do aparecimento</span>
+          <span class="pill"><strong>Mediação</strong> regimes de atenção</span>
+          <span class="pill"><strong>Linguagem</strong> materialidade técnica</span>
+          <span class="pill"><strong>Circulação</strong> vs. presença</span>
+          <span class="pill"><strong>Forma</strong> e subjetivação</span>
+        </div>
+      </article>
+
+      <!-- Projeto central -->
+      <aside class="card">
+        <h2>Projeto central: NEGATIVO.mov</h2>
+        <p>
+          O <b>NEGATIVO.mov</b> é simultaneamente plataforma, laboratório e prática pública contínua —
+          uma máquina cultural em devir que articula ensaio, curadoria experimental, investigação sobre mídia e circulação,
+          e a construção de infraestruturas públicas de emergência cultural.
+        </p>
+
+        <ul class="list">
+          <li class="item">
+            <div class="top"><b>MÓBILES</b><span>dispositivo expositivo</span></div>
+            <p class="desc">Curadoria operatória: relações, ritmo, seleção e reconfiguração — protótipo público em funcionamento.</p>
+          </li>
+          <li class="item">
+            <div class="top"><b>Cinema.triz</b><span>experiência audiovisual</span></div>
+            <p class="desc">Montagem e forma como regime de presença: teste contínuo de inscrição e circulação.</p>
+          </li>
+          <li class="item">
+            <div class="top"><b>Museu Improvável do Mirandês</b><span>território · linguagem</span></div>
+            <p class="desc">Dispositivo museológico e linguístico: mirandês como infraestrutura cultural situada.</p>
+          </li>
+          <li class="item">
+            <div class="top"><b>Sessões</b><span>Condição de Emergência</span></div>
+            <p class="desc">Encontros presenciais como dispositivo: deslocamento perceptivo e mediação crítica de alta densidade.</p>
+          </li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- Textos (curto, direto, com links) -->
+    <section class="card" id="publicacoes" style="margin-top:14px;">
+      <h2>Textos e publicações em curso</h2>
+      <p>
+        Publica regularmente ensaios no Substack do projeto. A escrita funciona como peça operatória do dispositivo:
+        não comentário, mas construção de condições de leitura, atenção e consequência.
+      </p>
+
+      <ul class="list">
+        <li class="item">
+          <div class="top">
+            <b>Curadoria como tecnologia de inscrição</b>
+            <span>ensaio</span>
+          </div>
+          <p class="desc">
+            Fundamentação conceptual: curadoria como tecnologia material de inscrição e produção de condições de aparecimento.
+            <a href="https://negativomov.substack.com/p/curadoria-como-tecnologia-de-inscricao" target="_blank" rel="noopener noreferrer">Abrir</a>
+          </p>
+        </li>
+
+        <li class="item">
+          <div class="top">
+            <b>A máquina curatorial e o esgotamento da crítica</b>
+            <span>ensaio</span>
+          </div>
+          <p class="desc">
+            Leitura dos bloqueios contemporâneos: crítica capturada, circulação sem presença, repertório saturado.
+            <a href="https://negativomov.substack.com/p/a-maquina-curatorial-e-o-esgotamento" target="_blank" rel="noopener noreferrer">Abrir</a>
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Contacto -->
+    <section class="card" id="contacto" style="margin-top:14px;">
+      <h2>Presença pública e contacto</h2>
+      <p>
+        Esta página funciona como ponto de entrada canónico para a presença pública de Caio Eduardo Gabriel (Cacá Gabriel)
+        e para o ecossistema NEGATIVO.mov.
+      </p>
+
+      <ul class="list">
+        <li class="item">
+          <div class="top"><b>Site (NEGATIVO.mov)</b><span>arquitetura geral</span></div>
+          <p class="desc"><a href="https://negativo-mov.github.io/negativo.mov/" target="_blank" rel="noopener noreferrer">https://negativo-mov.github.io/negativo.mov/</a></p>
+        </li>
+        <li class="item">
+          <div class="top"><b>MÓBILES</b><span>entrada</span></div>
+          <p class="desc"><a href="https://negativo-mov.github.io/negativo.mov/mobiles/entrada/" target="_blank" rel="noopener noreferrer">https://negativo-mov.github.io/negativo.mov/mobiles/entrada/</a></p>
+        </li>
+        <li class="item">
+          <div class="top"><b>Museu Improvável do Mirandês</b><span>território · linguagem</span></div>
+          <p class="desc"><a href="https://negativo-mov.github.io/negativo.mov/museumirandes.html" target="_blank" rel="noopener noreferrer">https://negativo-mov.github.io/negativo.mov/museumirandes.html</a></p>
+        </li>
+        <li class="item">
+          <div class="top"><b>Email</b><span>convites · colaborações</span></div>
+          <p class="desc"><a href="mailto:negativomov@gmail.com">negativomov@gmail.com</a></p>
+        </li>
+      </ul>
+
+      <p style="margin-top:12px;">
+        Disponível para colaborações curatoriais, residências, convites académicos, conferências e projetos institucionais.
+      </p>
+    </section>
+
+    <footer class="foot">
+      <div class="fine">
+        Esta página integra um gesto curatorial aplicado à própria presença pública: não marca, mas posição operatória num campo de práticas.
+      </div>
+      <div>
+        <a href="index.html">Voltar ao NEGATIVO.mov</a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- JS: igual ao index + fallback de âncoras para index.html -->
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navList = document.getElementById('navList');
+
+    if (navToggle && navList) {
+      navToggle.addEventListener('click', () => {
+        navList.classList.toggle('nav-open');
+      });
+
+      navList.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          // Fecha menu mobile
+          navList.classList.remove('nav-open');
+
+          // Fallback: se a âncora não existir nesta página, manda para index.html#...
+          const href = link.getAttribute('href') || '';
+          if (href.startsWith('#')) {
+            const id = href.slice(1);
+            const target = document.getElementById(id);
+            if (!target) {
+              e.preventDefault();
+              window.location.href = 'index.html' + href;
+            }
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>
