@@ -270,7 +270,7 @@
 
     .btn-tertiary {
       background: transparent;
-      color: var(--text);
+      color: var(--fg);
       border: 1px solid rgba(255,255,255,0.22);
       box-shadow: none;
     }
@@ -784,79 +784,54 @@
       </div>
     </section>
 
-    <!-- CINEMA.triz -->
-    <section id="cinema-pobre">
-      <div class="section-header">
-        <div>
-          <div class="section-kicker">cinema</div>
-          <h2 class="section-title">Cinema.triz</h2>
-        </div>
-      </div>
-      <div class="card" style="cursor:default;">
-        <div class="card-body">
-          <p>
-            Protótipos pobres de cinema e estudos de diferença mínima:
-            ônus na forma, não no meio. Frames e roteiros operam em matrizes
-            que nunca fecham — toda imagem produz resto, toda novidade é sintaxe
-            recombinada do que insiste em voltar.
-          </p>
-        </div>
-        <div id="cinema-feed" class="feed-snippet"></div>
-        <div style="margin-top:12px; display:flex; flex-wrap:wrap; gap:10px;">
-          <a href="cinema-triz.html" class="status-pill">abrir Cinema.triz →</a>
-          <a href="https://negativomov.substack.com/p/cinematriz" class="status-pill" target="_blank" rel="noopener">teoria: Cinematriz →</a>
-          <a href="https://www.youtube.com/playlist?list=PL4eyJG4HmqSu2a2W5-z2GugrbBLYfAA9M" class="status-pill" target="_blank" rel="noopener">playlist no YouTube →</a>
-        </div>
-        
-        <div class="youtube-grid" style="margin-top:14px;">
-          <div class="youtube-item" style="max-width:520px;">
-            <div class="youtube-thumb" aria-label="Último movimento na playlist CINEMA.triz">
-              <iframe
-                src="https://www.youtube.com/embed/videoseries?list=PL39_wg5gv6Rjd24MpY9rArysKc4_uGlcZ"
-                title="CINEMA.triz — playlist"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-                style="width:100%; aspect-ratio:16/9; border-radius:14px;"
-              ></iframe>
-            </div>
-            <div class="youtube-meta">
-              <div class="youtube-title">Último movimento na playlist CINEMA.triz</div>
-              <div class="youtube-desc">Prévia automática da playlist (YouTube).</div>
-            </div>
-          </div>
+          <!-- CINEMA.triz -->
+      <section id="cinema-pobre" class="section">
+        <div class="kicker">CINEMA</div>
+        <h2>Cinema.triz</h2>
+        <p>
+          Protótipos pobres de cinema e estudos de diferença mínima: ônus na forma, não no meio. Frames e roteiros operam em matrizes que nunca fecham — toda imagem produz resto, toda novidade é sintaxe recombinada do que insiste em voltar.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="cinema-triz.html">ABRIR CINEMA.TRIZ →</a>
+          <a class="btn btn-secondary" href="https://negativomov.substack.com/p/cinematriz" target="_blank" rel="noopener">TEORIA: CINEMATRIZ →</a>
+          <a class="btn btn-secondary" href="https://www.youtube.com/watch?v=lY3NuZnjbq0&list=PL39_wg5gv6Rjd24MpY9rArysKc4_uGlcZ&pp=gAQBsAgC" target="_blank" rel="noopener">PLAYLIST NO YOUTUBE →</a>
+          <span class="btn btn-tertiary" aria-label="Estado do projeto">EM FLUXO</span>
         </div>
 
-<span class="status-pill">em fluxo</span>
-      </div>
-    
-    <div class="card">
-      <p class="section-label">Autor em vídeo</p>
-      <h2>Notas públicas (curadoria, forma, presença)</h2>
-      <p>Vídeos curtos e ensaios falados: fratura, método, operação. Um outro ritmo — mais direto, mais pessoal, menos “formato”.</p>
-      <div id="autor-feed" class="youtube-grid" aria-label="Último vídeo no canal">
-        <div class="youtube-item">
-          <div class="youtube-thumb" id="autor-embed" aria-label="Prévia do último vídeo">
-            <div style="padding:18px 18px 16px; border:1px solid rgba(255,255,255,.10); border-radius:16px; background:rgba(0,0,0,.20);">
-              <div style="opacity:.9; font-weight:700; margin-bottom:6px;">Prévia automática do canal</div>
-              <div style="opacity:.75; line-height:1.35;">
-                Se o embed falhar, abre diretamente o canal:
-                <a href="https://www.youtube.com/@negativomov/videos" target="_blank" rel="noopener" style="color:#b6ff6a; text-decoration:none;">@negativomov/videos →</a>
+        <div class="card" style="margin-top:14px;">
+          <div style="display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap;">
+            <div style="flex: 1 1 420px; min-width: 320px;">
+              <div class="muted small" style="margin-bottom:10px;">ÚLTIMO MOVIMENTO NA PLAYLIST CINEMA.TRIZ</div>
+              <div class="embed">
+                <iframe
+                  title="Cinema.triz — último movimento"
+                  width="100%"
+                  height="315"
+                  src="https://www.youtube.com/embed/lY3NuZnjbq0?list=PL39_wg5gv6Rjd24MpY9rArysKc4_uGlcZ"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </div>
+
+            <div style="flex: 1 1 340px; min-width: 280px;">
+              <div class="muted small" style="margin-bottom:6px;">AUTOR EM VÍDEO</div>
+              <h3 style="margin: 6px 0 10px 0;">Notas públicas (curadoria, forma, presença)</h3>
+              <p class="muted" style="margin-top:0;">
+                Vídeos curtos e ensaios falados: fratura, método, operação. Um outro ritmo — mais direto, mais pessoal, menos “formato”.
+              </p>
+              <div class="actions" style="margin-top:12px;">
+                <a class="btn btn-secondary" href="https://www.youtube.com/@negativomov/videos" target="_blank" rel="noopener">Abrir canal →</a>
               </div>
             </div>
           </div>
         </div>
-</div>
-        </div>
-      </div>
-      <p><a href="https://www.youtube.com/@negativomov/videos" target="_blank" rel="noopener">Abrir canal →</a></p>
-    </div>
+      </section>
 
-  </section>
-
-    <!-- COLUNISTAS -->
+<!-- COLUNISTAS -->
     <section id="colunistas">
       <div class="section-header">
         <div>
@@ -1263,35 +1238,106 @@
     return (html || "").replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
   }
 
-  function renderRSSCard(containerId, feedUrl, kicker, fallbackLink) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    (async () => {
-      try {
-        const item = await fetchRSSFeed(feedUrl);
-        if (!item) return;
-
-        const title = item.title || kicker;
-        const link = item.link || fallbackLink;
-        const desc = stripHtml(item.description).slice(0, 220);
-
-        container.innerHTML = `
-          <a href="${link}" target="_blank" rel="noopener" style="text-decoration:none;">
-            <div class="rss-card">
-              <div class="rss-kicker">${kicker}</div>
-              <div class="rss-title">${title}</div>
-              <div class="rss-desc">${desc}</div>
-            </div>
-          </a>
-        `;
-      } catch (e) {
-        console.warn("RSS preview failed:", containerId, e);
+  
+      // --- RSS: prévias (robustas + com fallback discreto) ---
+      async function fetchTextWithTimeout(url, ms = 8000) {
+        const controller = new AbortController();
+        const t = setTimeout(() => controller.abort(), ms);
+        try {
+          const res = await fetch(url, { signal: controller.signal, cache: "no-store" });
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          return await res.text();
+        } finally {
+          clearTimeout(t);
+        }
       }
-    })();
-  }
 
-  // --- Livro (ser-improvável) — último capítulo
+      async function fetchFeedRaw(feedUrl) {
+        const candidates = [
+          feedUrl,
+          "https://api.allorigins.win/raw?url=" + encodeURIComponent(feedUrl),
+          "https://r.jina.ai/https://" + feedUrl.replace(/^https?:\/\//, ""),
+          "https://r.jina.ai/http://" + feedUrl.replace(/^https?:\/\//, ""),
+        ];
+
+        for (const u of candidates) {
+          try {
+            const txt = await fetchTextWithTimeout(u);
+            // heurística: precisa ter alguma cara de XML/Atom/RSS
+            if (txt && (txt.includes("<rss") || txt.includes("<feed") || txt.includes("<item") || txt.includes("<entry"))) {
+              return txt;
+            }
+          } catch (e) {
+            // tenta o próximo
+          }
+        }
+        throw new Error("feed indisponível");
+      }
+
+      function stripTags(html) {
+        return (html || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+      }
+
+      function parseFeedFirstEntry(xmlText) {
+        const doc = new DOMParser().parseFromString(xmlText, "text/xml");
+        const isRSS = doc.querySelector("rss, channel, item");
+        if (isRSS) {
+          const item = doc.querySelector("item");
+          if (!item) return null;
+          const title = item.querySelector("title")?.textContent?.trim() || "";
+          const link = item.querySelector("link")?.textContent?.trim() || "";
+          const desc = item.querySelector("description")?.textContent || item.querySelector("content\\:encoded")?.textContent || "";
+          return { title, link, excerpt: stripTags(desc) };
+        }
+
+        // Atom
+        const entry = doc.querySelector("entry");
+        if (!entry) return null;
+        const title = entry.querySelector("title")?.textContent?.trim() || "";
+        const linkEl = entry.querySelector('link[rel="alternate"]') || entry.querySelector("link");
+        const link = linkEl?.getAttribute("href") || "";
+        const summary = entry.querySelector("summary")?.textContent || entry.querySelector("content")?.textContent || "";
+        return { title, link, excerpt: stripTags(summary) };
+      }
+
+      async function renderFeedCard(containerId, feedUrlCandidates, fallbackHref) {
+        const el = document.getElementById(containerId);
+        if (!el) return;
+
+        // placeholder “limpo” (sem texto interno “debug”)
+        el.innerHTML = `
+          <div class="rss-card">
+            <div class="muted small">EM FLUXO</div>
+            <div class="rss-title">Abrir publicação</div>
+            <a class="rss-link" href="${escapeHTML(fallbackHref)}" target="_blank" rel="noopener">abrir →</a>
+          </div>
+        `;
+
+        const urls = Array.isArray(feedUrlCandidates) ? feedUrlCandidates : [feedUrlCandidates];
+
+        for (const u of urls) {
+          try {
+            const raw = await fetchFeedRaw(u);
+            const entry = parseFeedFirstEntry(raw);
+            if (!entry || !entry.link) continue;
+
+            const excerpt = (entry.excerpt || "").slice(0, 180) + ((entry.excerpt || "").length > 180 ? "…" : "");
+            el.innerHTML = `
+              <div class="rss-card">
+                <div class="muted small">ÚLTIMO TEXTO PUBLICADO</div>
+                <div class="rss-title">${escapeHTML(entry.title)}</div>
+                <div class="rss-excerpt">${escapeHTML(excerpt)}</div>
+                <a class="rss-link" href="${escapeHTML(entry.link)}" target="_blank" rel="noopener">abrir →</a>
+              </div>
+            `;
+            return;
+          } catch (e) {
+            // tenta o próximo feed
+          }
+        }
+      }
+
+// --- Livro (ser-improvável) — último capítulo
   renderRSSCard(
     "livro-feed",
     "https://negativomov.substack.com/s/ser-improvavel/feed",
@@ -1308,38 +1354,9 @@
   );
 
   // --- Autor em vídeo — tenta puxar automaticamente o vídeo mais recente do canal
-  async function loadAutorVideoPreview() {
-    const target = document.getElementById("autor-embed");
-    if (!target) return;
-
-    const channelUrl = "https://www.youtube.com/@negativomov/videos";
-    try {
-      const proxy = "https://api.allorigins.win/raw?url=" + encodeURIComponent(channelUrl);
-      const html = await fetch(proxy, { cache: "no-store" }).then(r => r.text());
-
-      // Extrai o primeiro watch?v= (normalmente o mais recente na página /videos)
-      const m = html.match(/"url":"\\/watch\\?v=([a-zA-Z0-9_-]{11})/);
-      const id = m ? m[1] : null;
-      if (!id) throw new Error("No video id found");
-
-      target.innerHTML = `
-        <iframe
-          src="https://www.youtube.com/embed/${id}"
-          title="Último vídeo — NEGATIVO.mov"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-          loading="lazy"
-          referrerpolicy="strict-origin-when-cross-origin"
-          style="width:100%; aspect-ratio:16/9; border-radius:14px;"
-        ></iframe>
-      `;
-    } catch (e) {
-      console.warn("Autor video preview failed:", e);
-    }
   }
 
-  loadAutorVideoPreview();
+  
 </script>
 
 </body>
