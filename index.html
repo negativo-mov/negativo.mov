@@ -691,6 +691,39 @@
     .youtube-title{ font-weight:700; margin-bottom:6px; }
     .youtube-cta{ opacity:0.8; font-size:12px; }
     .feed-title{ font-weight:700; margin-bottom:6px; }
+
+
+/* --- Previews (cards) --- */
+.card-thumb{
+  width:100%;
+  height:140px;
+  object-fit:cover;
+  display:block;
+  border-radius:16px;
+  margin:10px 0 12px;
+  border:1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.20) inset, 0 10px 30px rgba(0,0,0,0.25);
+}
+
+/* --- Autor em vídeo (placeholder consistente) --- */
+.video-placeholder{
+  width:100%;
+  aspect-ratio: 16 / 9;
+  display:block;
+  overflow:hidden;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.35);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.35) inset, 0 18px 60px rgba(0,0,0,0.25);
+}
+.video-placeholder-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 28%;
+  display:block;
+  transform: scale(1.02);
+}
 </style>
 
   <script type="application/ld+json">
@@ -869,7 +902,8 @@
       <div class="card" style="cursor:default;">
         <div class="card-label">frente</div>
         <h3 class="card-title">MÓBILES</h3>
-        <div class="card-body">
+        <img class="card-thumb" src="mobiles-preview.jpg" alt="MÓBILES — prévia do dispositivo" loading="lazy" decoding="async">
+          <div class="card-body">
           Dispositivo curatorial interativo: seleção, ritmo, combinação e reentrada. Protótipo público de curadoria como tecnologia de inscrição.
         </div>
         <a href="mobiles/entrada/" class="status-pill" target="_blank" rel="noopener">abrir MÓBILES →</a>
@@ -898,6 +932,7 @@
         <div class="card" style="cursor:default;">
           <div class="card-label">frente</div>
           <h3 class="card-title">Museu Digital</h3>
+          <img class="card-thumb" src="mirandes-preview.jpg" alt="Museu Improvável do Mirandês — prévia" loading="lazy" decoding="async">
           <div class="card-body">
             Prototipagem do possível, não herança fóssil: um museu que nasce
             primeiro como superfície, nunca como arquivo.
@@ -965,15 +1000,16 @@
 
             <div style="flex: 1 1 340px; min-width: 280px;">
               <div class="muted small" style="margin-bottom:6px;">AUTOR EM VÍDEO</div>
-              <div class="video-placeholder">
-                <img src="fotoperfil.jpeg" alt="Autor em vídeo — notas públicas do NEGATIVO.mov" class="video-placeholder-img">
-              </div>
+              <a class="video-placeholder" href="https://www.youtube.com/@negativomov/videos" target="_blank" rel="noopener" aria-label="Abrir canal do NEGATIVO.mov no YouTube">
+                <img src="fotoperfil.jpeg" alt="Autor em vídeo — notas públicas do NEGATIVO.mov" class="video-placeholder-img" loading="lazy" decoding="async">
+              </a>
               <h3 style="margin: 10px 0 10px 0;">Notas públicas (curadoria, forma, presença)</h3>
               <p class="muted" style="margin-top:0;">
                 Vídeos curtos e ensaios falados: fratura, método, operação. Um outro ritmo — mais direto, mais pessoal, menos “formato”.
               </p>
               <div class="actions" style="margin-top:12px;">
                 <a class="btn btn-secondary" href="https://www.youtube.com/@negativomov/videos" target="_blank" rel="noopener">Abrir canal →</a>
+                <a class="btn btn-ghost" href="caioeduardogabriel.html">Ver autor →</a>
               </div>
             </div>
           </div>
