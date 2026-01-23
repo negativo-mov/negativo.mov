@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="NEGATIVO.mov — projeto cultural transmontano-luso-brasileiro. Cultura inscrita como fluxo vivo. Obras existem antes do público, e o possível circula em Terra de Miranda.">
   <meta name="robots" content="index,follow">
-  <meta name="keywords" content="NEGATIVO.mov, NEGATIVO mov, Terra de Miranda, Miranda do Douro, Trás-os-Montes, cinema pobre, cinema.triz, museu digital, museu do possível, hub cultural digital, MVP cultura fluxo vivo, projeto cultural transmontano, cultura como fluxo vivo, Caio Eduardo Gabriel, mediação cultural, ensaio filosófico, cinema experimental, ontologia estética materialista, fluxo e repertório, midialogia aplicada, midialogia territorial, polifonia midial, formas improváveis, estética do negativo, interior português em fluxo.">
+  <meta name="keywords" content="NEGATIVO.mov, curadoria experimental, tecnologia de inscrição, Miranda do Douro, Terra de Miranda, cinema.triz, MÓBILES, ensaio crítico, teoria da mídia">
 
   <!-- Open Graph / Social -->
   <meta property="og:locale" content="pt_PT">
@@ -185,6 +185,126 @@
       border: 1px solid rgba(255,255,255,0.08);
       box-shadow: var(--shadow-soft);
     }
+
+
+    .hero-right {
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+    }
+
+    .author-card {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 0.9rem;
+      padding: 1.05rem 1.05rem;
+      background: rgba(16,6,3,0.62);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .author-photo {
+      width: 88px;
+      height: 88px;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 0 18px rgba(0,0,0,0.55);
+    }
+
+    .author-name {
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      margin-top: 0.1rem;
+    }
+
+    .author-role {
+      color: rgba(255,255,255,0.78);
+      font-size: 0.92rem;
+      margin-top: 0.12rem;
+    }
+
+    .author-links {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.7rem;
+    }
+
+    .hero-authorline {
+      margin: 0.9rem 0 0;
+      color: rgba(255,255,255,0.86);
+      font-size: 0.98rem;
+    }
+
+    .hero-authorline a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(140,235,96,0.55);
+    }
+
+    .hero-guide {
+      margin: 0.9rem 0 0;
+      color: rgba(255,255,255,0.72);
+      font-size: 0.92rem;
+    }
+
+    .hero-guide a {
+      color: rgba(255,255,255,0.95);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .mini-proof {
+      padding: 1.05rem 1.05rem;
+      background: rgba(16,6,3,0.5);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .mini-proof-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.66);
+      margin-bottom: 0.55rem;
+    }
+
+    .mini-proof ul {
+      margin: 0;
+      padding-left: 1.05rem;
+      color: rgba(255,255,255,0.86);
+    }
+
+    .mini-proof li {
+      margin: 0.35rem 0;
+    }
+
+    .mini-proof a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(140,235,96,0.45);
+    }
+
+    @media (max-width: 920px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .hero-right {
+        grid-template-columns: 1fr;
+      }
+      .author-card {
+        grid-template-columns: 72px 1fr;
+      }
+      .author-photo {
+        width: 72px;
+        height: 72px;
+        border-radius: 16px;
+      }
+    }
+
 
     .hero-title {
       font-size: clamp(2rem,4vw,2.8rem);
@@ -619,46 +739,72 @@
   <div class="page">
 
     <!-- HERO -->
-    <section class="hero">
+        <section class="hero">
       <div class="hero-left">
         <h1 class="hero-title">
           <span class="hero-title-main">NEGATIVO</span>
           <span class="hero-mov-link"><a href="#mov">.mov</a></span>
         </h1>
+
         <p class="hero-subtitle">
           Hub mínimo nos meios. Radical nas consequências.<br>
           NEGATIVO.mov é uma máquina cultural que pensa e produz formas em Terra de Miranda.<br>
           Cinema, museologia, filosofia aplicada, IA, território e linguagens híbridas — obras em fluxo, antes da instituição.
         </p>
+
+        <p class="hero-authorline">
+          Máquina concebida e operada por <a href="caioeduardogabriel.html">Caio Eduardo Gabriel (Cacá Gabriel)</a>.
+        </p>
+
         <div class="hero-actions">
-          <a href="#frentes" class="btn btn-primary">explorar</a>
-          <a href="pitch.html" class="btn btn-secondary">Operação</a>
+          <a href="pitch.html" class="btn btn-primary">Começar pela Operação</a>
+          <a href="#frentes" class="btn btn-secondary">Explorar frentes</a>
         </div>
+
+        <p class="hero-guide">
+          Entrada recomendada: <a href="pitch.html">Operação</a> → <a href="caioeduardogabriel.html">Autor</a> → <a href="trabalhar-com.html">Trabalhar com</a>.
+        </p>
       </div>
+
+      <aside class="hero-right">
+        <div class="author-card">
+          <img src="fotoperfil.jpeg" alt="Caio Eduardo Gabriel (Cacá Gabriel) — operador do NEGATIVO.mov" class="author-photo">
+          <div class="author-meta">
+            <div class="author-name">Caio Eduardo Gabriel</div>
+            <div class="author-role">Curador e operador cultural</div>
+            <div class="author-links">
+              <a class="status-pill" href="caioeduardogabriel.html">autor →</a>
+              <a class="status-pill" href="trabalhar-com.html">contacto/convites →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mini-proof">
+          <div class="mini-proof-kicker">Em funcionamento</div>
+          <ul>
+            <li><a href="mobiles/entrada/" target="_blank" rel="noopener">MÓBILES</a> — dispositivo expositivo interativo</li>
+            <li><a href="cinema-triz.html">Cinema.triz</a> — teoria + protótipos pobres</li>
+            <li><a href="https://negativomov.substack.com/" target="_blank" rel="noopener">Substack</a> — ensaios e livro em produção</li>
+          </ul>
+        </div>
+      </aside>
     </section>
 
-    <!-- CHAMADA PARA PÁGINA ESTRATÉGICA -->
+    
+    <!-- ENTRADA RECOMENDADA (coreografia) -->
     <section>
       <div class="card" style="cursor:default;">
         <div class="card-body">
-          <p><strong>Conheça a máquina cultural NEGATIVO.mov</strong></p>
-          <p>Para instituições, museus, centros culturais, artistas, municípios, programas e plataformas que precisam de pensamento e forma em alto nível.</p>
-          <p>→ Página estratégica completa: <a href="pitch.html">Operação — NEGATIVO.mov</a></p>
+          <p><strong>Se quer compreender como o projeto atua na prática, começa por Operação.</strong></p>
+          <p>Operação descreve método, formatos de colaboração e o tipo de intervenção que o NEGATIVO.mov consegue executar com instituições e espaços independentes.</p>
+          <div class="actions" style="margin-top:12px;">
+            <a class="btn btn-primary" href="pitch.html">Abrir Operação →</a>
+            <a class="btn btn-secondary" href="caioeduardogabriel.html">Conhecer o autor →</a>
+            <a class="btn btn-secondary" href="trabalhar-com.html">Trabalhar com →</a>
+          </div>
         </div>
       </div>
     </section>
-
-    <!-- CHAMADA PARA TRABALHAR COM -->
-    <section>
-      <div class="card" style="cursor:default;">
-        <div class="card-body">
-          <p><strong>Trabalhar com o NEGATIVO.mov</strong></p>
-          <p>Para instituições, museus, centros culturais, fundações, municípios, artistas e espaços independentes que precisam de forma, método e execução — sem perder risco e invenção.</p>
-          <p>→ Página estratégica completa: <a href="trabalhar-com.html">Trabalhar com — NEGATIVO.mov</a></p>
-        </div>
-      </div>
-    </section>
-
 
     <!-- MANIFESTO -->
     <section id="manifesto">
@@ -819,7 +965,10 @@
 
             <div style="flex: 1 1 340px; min-width: 280px;">
               <div class="muted small" style="margin-bottom:6px;">AUTOR EM VÍDEO</div>
-              <h3 style="margin: 6px 0 10px 0;">Notas públicas (curadoria, forma, presença)</h3>
+              <div class="video-placeholder">
+                <img src="fotoperfil.jpeg" alt="Autor em vídeo — notas públicas do NEGATIVO.mov" class="video-placeholder-img">
+              </div>
+              <h3 style="margin: 10px 0 10px 0;">Notas públicas (curadoria, forma, presença)</h3>
               <p class="muted" style="margin-top:0;">
                 Vídeos curtos e ensaios falados: fratura, método, operação. Um outro ritmo — mais direto, mais pessoal, menos “formato”.
               </p>
@@ -964,9 +1113,8 @@
         <div class="card-label">capítulos</div>
         <h3 class="card-title">Livro em produção</h3>
         <div class="card-body">
-          Capítulos e séries da ontologia estética materialista em produção:
-          estética, midialogia, museus e território. Aparecem aqui como
-          hipóteses indexadas — rascunhos públicos de um livro em fluxo.
+          Capítulos e séries de investigação em curso sobre estética, mídia, museus e território.
+          O livro aparece aqui como escrita em processo: hipóteses, recortes e montagem pública de método.
         </div>
         <div id="livro-feed" class="feed-snippet"></div>
         <a href="https://negativomov.substack.com/s/ser-improvavel" class="status-pill" target="_blank" rel="noopener">EM FLUXO</a>
@@ -1133,19 +1281,7 @@
         </div>
       </div>
     </section>
-
-    <!-- BLOCO DISCRETO DE PALAVRAS-CHAVE PARA SEO -->
-    <div aria-hidden="true" style="position:absolute; left:-9999px; height:0; overflow:hidden;">
-      NEGATIVO.mov, NEGATIVO mov, Terra de Miranda, Miranda do Douro, Trás-os-Montes,
-      cinema pobre, cinema.triz, museu digital, museu do possível, hub cultural digital,
-      MVP cultura fluxo vivo, projeto cultural transmontano, cultura como fluxo vivo,
-      Caio Eduardo Gabriel, mediação cultural, ensaio filosófico, cinema experimental,
-      ontologia estética materialista, fluxo e repertório, midialogia aplicada,
-      midialogia territorial, polifonia midial, formas improváveis, estética do negativo,
-      interior português em fluxo.
-    </div>
-
-    <!-- MOVIMENTO .mov -->
+<!-- MOVIMENTO .mov -->
     <section id="mov">
       <div class="mov-card">
         <div class="mov-title">
@@ -1215,148 +1351,135 @@
 
 
 <script>
-  // Utilitário genérico para ler RSS via proxy (evita CORS)
-  async function fetchRSSFeed(url) {
-    // allorigins é simples e tem funcionado bem em GitHub Pages
-    const proxy = "https://api.allorigins.win/raw?url=" + encodeURIComponent(url);
-    const res = await fetch(proxy, { cache: "no-store" });
-    const xmlText = await res.text();
+  // Navegação móvel
+  (function () {
+    const btn = document.getElementById("navToggle");
+    const list = document.getElementById("navList");
+    if (!btn || !list) return;
+    btn.addEventListener("click", () => {
+      list.classList.toggle("open");
+    });
+  })();
+
+  // --- Prévia de feeds (Substack) ---
+  function escapeHTML(s) {
+    return String(s || "").replace(/[&<>"']/g, (m) => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
+    }[m]));
+  }
+
+  function stripTags(html) {
+    return (html || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+  }
+
+  async function fetchTextWithTimeout(url, ms = 9000) {
+    const controller = new AbortController();
+    const t = setTimeout(() => controller.abort(), ms);
+    try {
+      const res = await fetch(url, { signal: controller.signal, cache: "no-store" });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return await res.text();
+    } finally {
+      clearTimeout(t);
+    }
+  }
+
+  async function fetchFeedRaw(feedUrl) {
+    const clean = feedUrl.replace(/^https?:\/\//, "");
+    const candidates = [
+      "https://api.allorigins.win/raw?url=" + encodeURIComponent(feedUrl),
+      "https://r.jina.ai/https://" + clean,
+      "https://r.jina.ai/http://" + clean
+    ];
+
+    for (const u of candidates) {
+      try {
+        const t = await fetchTextWithTimeout(u);
+        if (t && (t.includes("<rss") || t.includes("<feed") || t.includes("<item") || t.includes("<entry"))) return t;
+      } catch (e) { /* tenta o próximo */ }
+    }
+    throw new Error("feed indisponível");
+  }
+
+  function parseFeedFirstEntry(xmlText) {
     const doc = new DOMParser().parseFromString(xmlText, "text/xml");
+
+    // RSS 2.0
     const item = doc.querySelector("item");
-    if (!item) return null;
+    if (item) {
+      const title = item.querySelector("title")?.textContent?.trim() || "";
+      const link = item.querySelector("link")?.textContent?.trim() || "";
+      const desc = item.querySelector("description")?.textContent
+        || item.querySelector("content\\:encoded")?.textContent
+        || "";
+      return { title, link, excerpt: stripTags(desc) };
+    }
 
-    const get = (tag) => item.querySelector(tag)?.textContent?.trim() || "";
-    return {
-      title: get("title"),
-      link: get("link"),
-      description: get("description"),
-      pubDate: get("pubDate")
-    };
+    // Atom
+    const entry = doc.querySelector("entry");
+    if (entry) {
+      const title = entry.querySelector("title")?.textContent?.trim() || "";
+      const linkEl = entry.querySelector('link[rel="alternate"]') || entry.querySelector("link");
+      const link = linkEl?.getAttribute("href") || "";
+      const summary = entry.querySelector("summary")?.textContent
+        || entry.querySelector("content")?.textContent
+        || "";
+      return { title, link, excerpt: stripTags(summary) };
+    }
+
+    return null;
   }
 
-  function stripHtml(html) {
-    return (html || "").replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+  function renderFeedFallback(el, href) {
+    el.innerHTML = `
+      <div class="rss-card">
+        <div class="muted small">EM FLUXO</div>
+        <div class="rss-title">Abrir publicação</div>
+        <a class="rss-link" href="${escapeHTML(href)}" target="_blank" rel="noopener">abrir →</a>
+      </div>
+    `;
   }
 
-  
-      // --- RSS: prévias (robustas + com fallback discreto) ---
-      async function fetchTextWithTimeout(url, ms = 8000) {
-        const controller = new AbortController();
-        const t = setTimeout(() => controller.abort(), ms);
-        try {
-          const res = await fetch(url, { signal: controller.signal, cache: "no-store" });
-          if (!res.ok) throw new Error("HTTP " + res.status);
-          return await res.text();
-        } finally {
-          clearTimeout(t);
-        }
-      }
+  async function renderFeedSnippet(containerId, feedUrl, fallbackHref) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
 
-      async function fetchFeedRaw(feedUrl) {
-        const candidates = [
-          feedUrl,
-          "https://api.allorigins.win/raw?url=" + encodeURIComponent(feedUrl),
-          "https://r.jina.ai/https://" + feedUrl.replace(/^https?:\/\//, ""),
-          "https://r.jina.ai/http://" + feedUrl.replace(/^https?:\/\//, ""),
-        ];
+    renderFeedFallback(el, fallbackHref);
 
-        for (const u of candidates) {
-          try {
-            const txt = await fetchTextWithTimeout(u);
-            // heurística: precisa ter alguma cara de XML/Atom/RSS
-            if (txt && (txt.includes("<rss") || txt.includes("<feed") || txt.includes("<item") || txt.includes("<entry"))) {
-              return txt;
-            }
-          } catch (e) {
-            // tenta o próximo
-          }
-        }
-        throw new Error("feed indisponível");
-      }
+    try {
+      const raw = await fetchFeedRaw(feedUrl);
+      const entry = parseFeedFirstEntry(raw);
+      if (!entry || !entry.link) return;
 
-      function stripTags(html) {
-        return (html || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
-      }
+      const excerpt = (entry.excerpt || "");
+      const clipped = excerpt.length > 180 ? excerpt.slice(0, 180) + "…" : excerpt;
 
-      function parseFeedFirstEntry(xmlText) {
-        const doc = new DOMParser().parseFromString(xmlText, "text/xml");
-        const isRSS = doc.querySelector("rss, channel, item");
-        if (isRSS) {
-          const item = doc.querySelector("item");
-          if (!item) return null;
-          const title = item.querySelector("title")?.textContent?.trim() || "";
-          const link = item.querySelector("link")?.textContent?.trim() || "";
-          const desc = item.querySelector("description")?.textContent || item.querySelector("content\\:encoded")?.textContent || "";
-          return { title, link, excerpt: stripTags(desc) };
-        }
+      el.innerHTML = `
+        <div class="rss-card">
+          <div class="muted small">ÚLTIMO TEXTO PUBLICADO</div>
+          <div class="rss-title">${escapeHTML(entry.title)}</div>
+          <div class="rss-excerpt">${escapeHTML(clipped)}</div>
+          <a class="rss-link" href="${escapeHTML(entry.link)}" target="_blank" rel="noopener">abrir →</a>
+        </div>
+      `;
+    } catch (e) {
+      // mantém fallback sem “debug”
+    }
+  }
 
-        // Atom
-        const entry = doc.querySelector("entry");
-        if (!entry) return null;
-        const title = entry.querySelector("title")?.textContent?.trim() || "";
-        const linkEl = entry.querySelector('link[rel="alternate"]') || entry.querySelector("link");
-        const link = linkEl?.getAttribute("href") || "";
-        const summary = entry.querySelector("summary")?.textContent || entry.querySelector("content")?.textContent || "";
-        return { title, link, excerpt: stripTags(summary) };
-      }
-
-      async function renderFeedCard(containerId, feedUrlCandidates, fallbackHref) {
-        const el = document.getElementById(containerId);
-        if (!el) return;
-
-        // placeholder “limpo” (sem texto interno “debug”)
-        el.innerHTML = `
-          <div class="rss-card">
-            <div class="muted small">EM FLUXO</div>
-            <div class="rss-title">Abrir publicação</div>
-            <a class="rss-link" href="${escapeHTML(fallbackHref)}" target="_blank" rel="noopener">abrir →</a>
-          </div>
-        `;
-
-        const urls = Array.isArray(feedUrlCandidates) ? feedUrlCandidates : [feedUrlCandidates];
-
-        for (const u of urls) {
-          try {
-            const raw = await fetchFeedRaw(u);
-            const entry = parseFeedFirstEntry(raw);
-            if (!entry || !entry.link) continue;
-
-            const excerpt = (entry.excerpt || "").slice(0, 180) + ((entry.excerpt || "").length > 180 ? "…" : "");
-            el.innerHTML = `
-              <div class="rss-card">
-                <div class="muted small">ÚLTIMO TEXTO PUBLICADO</div>
-                <div class="rss-title">${escapeHTML(entry.title)}</div>
-                <div class="rss-excerpt">${escapeHTML(excerpt)}</div>
-                <a class="rss-link" href="${escapeHTML(entry.link)}" target="_blank" rel="noopener">abrir →</a>
-              </div>
-            `;
-            return;
-          } catch (e) {
-            // tenta o próximo feed
-          }
-        }
-      }
-
-// --- Livro (ser-improvável) — último capítulo
-  renderRSSCard(
+  // Livro (série ser-improvável) — último capítulo
+  renderFeedSnippet(
     "livro-feed",
     "https://negativomov.substack.com/s/ser-improvavel/feed",
-    "último capítulo publicado",
     "https://negativomov.substack.com/s/ser-improvavel"
   );
 
-  // --- Substack (ensaios) — último texto
-  renderRSSCard(
+  // Ensaios — último texto
+  renderFeedSnippet(
     "substack-latest",
     "https://negativomov.substack.com/feed",
-    "último texto publicado",
-    "https://negativomov.substack.com"
+    "https://negativomov.substack.com/"
   );
-
-  // --- Autor em vídeo — tenta puxar automaticamente o vídeo mais recente do canal
-  }
-
-  
 </script>
 
 </body>
