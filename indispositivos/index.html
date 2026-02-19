@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Núcleo de Indispositivos em NEGATIVO</title>
+  <meta name="description" content="Núcleo de Indispositivos em NEGATIVO — campo de emergência para condições materiais de existência do poético." />
+  <style>
+    :root{
+      /* TROCA AQUI quando você subir a imagem:
+         Ex.: url('../assets/indispositivos/bg-01.jpg')  */
+      --bg-image: url(''); /* vazio por enquanto */
+      --ink: rgba(255,255,255,.92);
+      --ink2: rgba(255,255,255,.72);
+      --shadow: rgba(0,0,0,.55);
+      --glass: rgba(0,0,0,.28);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%; margin:0; overflow-x:hidden; background:#05010a; color:var(--ink); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+    a{color:inherit; text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* --- CAMADAS DO FUNDO: radioatividade + carnaval + ruído --- */
+    .stage{
+      position:relative;
+      min-height:100vh;
+      isolation:isolate;
+      padding:28px 18px 90px;
+    }
+
+    .bg{
+      position:fixed; inset:0;
+      z-index:-5;
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(255,0,160,.35), transparent 65%),
+        radial-gradient(900px 650px at 85% 25%, rgba(0,255,220,.25), transparent 60%),
+        radial-gradient(1000px 800px at 50% 90%, rgba(255,210,0,.18), transparent 65%),
+        linear-gradient(180deg, #070014, #04000b 55%, #020007);
+      filter:saturate(1.35) contrast(1.05);
+      animation:bgDrift 14s linear infinite;
+    }
+    @keyframes bgDrift{
+      0%{transform:translate3d(0,0,0) scale(1)}
+      50%{transform:translate3d(-1.2%, .8%, 0) scale(1.02)}
+      100%{transform:translate3d(0,0,0) scale(1)}
+    }
+
+    /* Imagem doida (quando entrar) */
+    .bg::before{
+      content:"";
+      position:absolute; inset:-6%;
+      background-image: var(--bg-image);
+      background-size: cover;
+      background-position: center;
+      opacity:.33;
+      mix-blend-mode: screen;
+      filter: saturate(1.8) contrast(1.1) blur(.2px);
+      transform:rotate(-.3deg) scale(1.02);
+    }
+
+    /* Ruído */
+    .noise{
+      position:fixed; inset:-20%;
+      z-index:-4;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
+      opacity:.22;
+      mix-blend-mode: overlay;
+      animation: noiseShift .9s steps(2) infinite;
+      pointer-events:none;
+    }
+    @keyframes noiseShift{
+      0%{transform:translate3d(0,0,0)}
+      25%{transform:translate3d(-2%,1%,0)}
+      50%{transform:translate3d(1%,-1%,0)}
+      75%{transform:translate3d(2%,2%,0)}
+      100%{transform:translate3d(0,0,0)}
+    }
+
+    /* Scanlines */
+    .scan{
+      position:fixed; inset:0;
+      z-index:-3;
+      background:
+        repeating-linear-gradient(
+          180deg,
+          rgba(255,255,255,.06) 0px,
+          rgba(255,255,255,.06) 1px,
+          transparent 2px,
+          transparent 6px
+        );
+      opacity:.14;
+      mix-blend-mode: soft-light;
+      pointer-events:none;
+    }
+
+    /* --- TOPO: título como placa elétrica --- */
+    header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      margin: 6px auto 18px;
+      max-width: 1120px;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      padding:14px 16px 12px;
+      border-radius:18px;
+      background:linear-gradient(135deg, rgba(0,0,0,.62), rgba(0,0,0,.28));
+      box-shadow: 0 18px 45px rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(6px);
+      position:relative;
+      overflow:hidden;
+      min-width:min(700px, 100%);
+    }
+    .brand::after{
+      content:"";
+      position:absolute; inset:-20%;
+      background:
+        conic-gradient(from 160deg, rgba(255,0,160,.22), rgba(0,255,220,.18), rgba(255,210,0,.16), rgba(255,0,160,.22));
+      filter: blur(18px);
+      opacity:.55;
+      animation: spin 8s linear infinite;
+      mix-blend-mode: screen;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .brand h1{
+      position:relative;
+      z-index:1;
+      margin:0;
+      font-size: clamp(22px, 3.1vw, 44px);
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      line-height: 1.05;
+      text-shadow: 0 2px 0 rgba(0,0,0,.35), 0 10px 28px rgba(0,0,0,.45);
+    }
+    .tag{
+      position:relative;
+      z-index:1;
+      font-size: clamp(12px, 1.3vw, 15px);
+      color: var(--ink2);
+      max-width: 72ch;
+    }
+
+    .meta{
+      max-width: 1120px;
+      margin: 8px auto 0;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .pill{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.24);
+      backdrop-filter: blur(6px);
+      font-size: 12px;
+      letter-spacing:.02em;
+      box-shadow: 0 10px 28px rgba(0,0,0,.25);
+    }
+
+    /* --- CORPO: colagem de blocos e estilhaços --- */
+    .grid{
+      max-width: 1120px;
+      margin: 18px auto 0;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+      align-items:start;
+    }
+
+    .card{
+      border-radius: 18px;
+      padding: 14px 14px 12px;
+      background: rgba(0,0,0,.28);
+      border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(7px);
+      box-shadow: 0 18px 45px rgba(0,0,0,.33);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:-35%;
+      background:
+        radial-gradient(closest-side, rgba(255,0,160,.22), transparent 65%),
+        radial-gradient(closest-side, rgba(0,255,220,.18), transparent 60%),
+        radial-gradient(closest-side, rgba(255,210,0,.14), transparent 65%);
+      opacity:.55;
+      filter: blur(20px);
+      mix-blend-mode: screen;
+      animation: drift 9s ease-in-out infinite;
+    }
+    @keyframes drift{
+      0%{transform:translate3d(-2%,1%,0) rotate(-2deg)}
+      50%{transform:translate3d(2%,-1%,0) rotate(2deg)}
+      100%{transform:translate3d(-2%,1%,0) rotate(-2deg)}
+    }
+
+    .card > *{position:relative; z-index:1}
+
+    .card h2{
+      margin:0 0 8px;
+      font-size: 13px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+    }
+    .card p{
+      margin: 0 0 10px;
+      font-size: 13px;
+      line-height: 1.35;
+      color: rgba(255,255,255,.86);
+    }
+    .card .small{
+      font-size: 12px;
+      color: rgba(255,255,255,.72);
+    }
+
+    /* Layout */
+    .span-12{grid-column: span 12;}
+    .span-8{grid-column: span 8;}
+    .span-7{grid-column: span 7;}
+    .span-6{grid-column: span 6;}
+    .span-5{grid-column: span 5;}
+    .span-4{grid-column: span 4;}
+    .span-3{grid-column: span 3;}
+    @media (max-width: 900px){
+      .brand{min-width: 0}
+      .span-8,.span-7,.span-6,.span-5,.span-4,.span-3{grid-column: span 12;}
+    }
+
+    /* Estilhaços flutuantes */
+    .shard{
+      position:absolute;
+      padding: 10px 10px 9px;
+      border-radius: 16px;
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 22px 55px rgba(0,0,0,.35);
+      max-width: min(44ch, 86vw);
+      transform: translate3d(var(--x), var(--y), 0) rotate(var(--r));
+      animation: floaty var(--t) ease-in-out infinite;
+      pointer-events:none;
+      mix-blend-mode: lighten;
+    }
+    @keyframes floaty{
+      0%{filter:contrast(1) saturate(1.1); opacity:.92}
+      50%{transform: translate3d(calc(var(--x) + 6px), calc(var(--y) - 10px), 0) rotate(calc(var(--r) + 1deg)); opacity:.78}
+      100%{filter:contrast(1.05) saturate(1.25); opacity:.92}
+    }
+    .shard b{
+      font-weight:800;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-size:12px;
+      display:inline-block;
+      margin-right:6px;
+    }
+    .shard em{
+      font-style:normal;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Glitch de título (micro) */
+    .glitch{
+      position:relative;
+      display:inline-block;
+    }
+    .glitch::before, .glitch::after{
+      content: attr(data-text);
+      position:absolute; left:0; top:0;
+      opacity:.7;
+      mix-blend-mode: screen;
+      clip-path: inset(0 0 0 0);
+      pointer-events:none;
+    }
+    .glitch::before{
+      transform: translate3d(2px,0,0);
+      animation: g1 2.2s infinite steps(2,end);
+      color: rgba(0,255,220,.75);
+    }
+    .glitch::after{
+      transform: translate3d(-2px,0,0);
+      animation: g2 1.7s infinite steps(2,end);
+      color: rgba(255,0,160,.75);
+    }
+    @keyframes g1{
+      0%{clip-path: inset(0 0 78% 0)}
+      25%{clip-path: inset(32% 0 42% 0)}
+      50%{clip-path: inset(64% 0 10% 0)}
+      75%{clip-path: inset(12% 0 66% 0)}
+      100%{clip-path: inset(0 0 78% 0)}
+    }
+    @keyframes g2{
+      0%{clip-path: inset(70% 0 0 0)}
+      25%{clip-path: inset(42% 0 28% 0)}
+      50%{clip-path: inset(16% 0 54% 0)}
+      75%{clip-path: inset(58% 0 14% 0)}
+      100%{clip-path: inset(70% 0 0 0)}
+    }
+
+    /* Rodapé discreto */
+    footer{
+      max-width:1120px;
+      margin: 24px auto 0;
+      padding: 14px 0 0;
+      color: rgba(255,255,255,.65);
+      font-size: 12px;
+    }
+    .tiny-links{display:flex; gap:14px; flex-wrap:wrap; align-items:center}
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="noise"></div>
+  <div class="scan"></div>
+
+  <main class="stage" id="stage">
+    <header>
+      <div class="brand">
+        <h1>
+          <span class="glitch" data-text="Núcleo de Indispositivos em NEGATIVO">Núcleo de Indispositivos em NEGATIVO</span>
+        </h1>
+        <div class="tag">
+          Campo de emergência para condições materiais de existência do poético —
+          inscrição, circulação, atrito, resto, reentrada.
+          <span style="opacity:.9">Institui-se por funcionamento.</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="meta">
+      <div class="pill">2026</div>
+      <div class="pill">poíesis / materialidade</div>
+      <div class="pill">indispositivos de criação</div>
+      <div class="pill">máquinas de inscrição</div>
+      <div class="pill">Terra / rede / ruído</div>
+      <div class="pill"><a href="../index.html">NEGATIVO.mov</a></div>
+    </section>
+
+    <section class="grid">
+      <article class="card span-7">
+        <h2>Instituição mínima</h2>
+        <p>
+          O Núcleo precipita onde o poético não cabe mais no circuito como está:
+          quando “publicar” vira anestesia, quando “prêmio” vira filtro, quando “boa forma” vira
+          protocolo de docilidade.
+        </p>
+        <p class="small">
+          Operamos em NEGATIVO: o meio onde a forma não fecha, onde o sentido não se apressa,
+          onde a língua volta a ser máquina.
+        </p>
+      </article>
+
+      <article class="card span-5">
+        <h2>Operação</h2>
+        <p class="small">
+          Ritmo: encontros + protótipos + circulação.<br/>
+          Método: objeto real + fricção material + dispositivo de sobrevivência.<br/>
+          Saída: indispositivos de criação, modos de existência, regimes de inscrição.
+        </p>
+      </article>
+
+      <article class="card span-6">
+        <h2>Agenda em estado nascente</h2>
+        <p class="small">
+          1) Prosificação / transparência / neutralização<br/>
+          2) Léxico como atrito — pausa, pergunta, desvio<br/>
+          3) Poético como regime de energia e forma de vida<br/>
+          4) Publicação como problema midiológico<br/>
+          5) Indispositivos de circulação: tatuagem, pixo, lixo, cochicho, meme, cartaz, áudio, nota, rasura
+        </p>
+      </article>
+
+      <article class="card span-6">
+        <h2>Chamamento (sem vitrine)</h2>
+        <p class="small">
+          O Núcleo não busca volume: busca densidade. Interlocução real, risco real,
+          pensamento em ato. Operadores que aceitam trabalhar com a língua como matéria e com
+          a instituição como tecnologia de inscrição.
+        </p>
+      </article>
+
+      <article class="card span-12">
+        <h2>Ritmo dodecafónico de página</h2>
+        <p class="small">
+          Esta página é o ambiente: o texto não explica — o texto opera. Clique em qualquer lugar:
+          a página cospe estilhaços. O ruído sustenta o aparecimento.
+        </p>
+      </article>
+    </section>
+
+    <footer>
+      <div class="tiny-links">
+        <span>© NEGATIVO.mov — Núcleo de Indispositivos em NEGATIVO</span>
+        <span>•</span>
+        <a href="../index.html">voltar ao NEGATIVO.mov</a>
+        <span>•</span>
+        <a href="../caioeduardogabriel.html">Caio Eduardo Gabriel</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Estilhaços: caos com gravidade (Grau 2).
+    const stage = document.getElementById('stage');
+
+    const shards = [
+      ["NÚCLEO", "pré-big-bang institucional: condensação em NEGATIVO"],
+      ["INDISPOSITIVO", "aquilo que suspende a captura e abre condição de existência"],
+      ["POÍESIS", "criação como sobrevivência material: forma como atrito"],
+      ["CIRCULAÇÃO", "não como rota — como ecossistema de reentrada"],
+      ["RESTO", "isco: persistência do que não fecha"],
+      ["LÍNGUA", "máquina: não espelho"],
+      ["PUBLICAÇÃO", "problema midiológico — e não destino"],
+      ["RUÍDO", "meio: emergência do real no Ser"],
+      ["GELÉIA", "gerais: mistura como método, não como ornamento"],
+      ["TÁTICA", "tatuagem / pixo / cartaz / áudio / rasura / lixo / cochicho"],
+      ["RITMO", "dissonância serial pelos cinco mil auto-falantes"],
+      ["NEGATIVO", "campo de inscrição: fotografia, choque, latência"]
+    ];
+
+    function rand(min, max){ return Math.random()*(max-min)+min; }
+    function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+    function spawnShard(x, y, intensity=1){
+      const [b, em] = pick(shards);
+      const el = document.createElement('div');
+      el.className = 'shard';
+      const r = rand(-8, 8) * intensity;
+      const t = rand(4.5, 10) / Math.max(.7, intensity);
+
+      el.style.setProperty('--x', `${x}px`);
+      el.style.setProperty('--y', `${y}px`);
+      el.style.setProperty('--r', `${r}deg`);
+      el.style.setProperty('--t', `${t}s`);
+
+      // texto
+      el.innerHTML = `<b>${b}</b><em>${em}</em>`;
+
+      stage.appendChild(el);
+
+      // decair e sumir (mas deixando sensação de insistência)
+      const ttl = Math.floor(rand(5200, 9800));
+      setTimeout(() => {
+        el.style.transition = 'opacity 900ms ease';
+        el.style.opacity = '0';
+        setTimeout(()=> el.remove(), 920);
+      }, ttl);
+    }
+
+    // Cliques: cospe estilhaços
+    window.addEventListener('click', (e) => {
+      const rect = stage.getBoundingClientRect();
+      const x = e.clientX - rect.left + rand(-18, 18);
+      const y = e.clientY - rect.top + window.scrollY + rand(-18, 18);
+
+      const n = Math.floor(rand(2, 5));
+      for(let i=0;i<n;i++){
+        spawnShard(x + rand(-40, 40), y + rand(-40, 40), 1.2);
+      }
+    });
+
+    // Pré-ambiente: alguns estilhaços já nascem
+    function seed(){
+      const vw = Math.min(window.innerWidth, 1120);
+      const baseX = (window.innerWidth - vw)/2;
+      for(let i=0;i<10;i++){
+        const x = baseX + rand(40, vw-40);
+        const y = rand(90, 720);
+        spawnShard(x, y, rand(.7, 1.25));
+      }
+    }
+    seed();
+  </script>
+</body>
+</html>
