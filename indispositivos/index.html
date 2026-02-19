@@ -8,7 +8,7 @@
 
   <style>
     :root{
-      /* IMAGEM (quando você subir) */
+      /* IMAGEM */
       --bg-image: url('./bg-01.jpg?v=20260219-1117');
 
       --ink: rgba(255,255,255,.94);
@@ -56,15 +56,22 @@
       100%{transform:translate3d(0,0,0) scale(1)}
     }
 
+    /* >>> ÚNICA MUDANÇA: garantir que a imagem apareça SEMPRE <<< */
     .bg::before{
       content:"";
       position:absolute; inset:-8%;
       background-image: var(--bg-image);
       background-size: cover;
       background-position:center;
-      opacity:.36;
-      mix-blend-mode: screen;
-      filter: saturate(1.9) contrast(1.12) blur(.25px);
+      background-repeat:no-repeat;
+
+      /* antes: opacity:.36 + screen (podia apagar a imagem) */
+      opacity:.72;
+      mix-blend-mode: normal;
+
+      /* mantém o “vapor/pixo” sem sumir */
+      filter: saturate(1.25) contrast(1.05) blur(.18px);
+
       transform: rotate(-.25deg) scale(1.04);
     }
 
@@ -438,7 +445,10 @@
     body.over .marquees{opacity:.82}
     body.over .noise{opacity:.30}
     body.over .scan{opacity:.20}
-    body.over .bg::before{opacity:.44; filter:saturate(2.05) contrast(1.18) blur(.18px)}
+    body.over .bg::before{
+      opacity:.86;
+      filter:saturate(1.38) contrast(1.08) blur(.14px);
+    }
     body.over .card{background: rgba(0,0,0,.22)}
   </style>
 </head>
