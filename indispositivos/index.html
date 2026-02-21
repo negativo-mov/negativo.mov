@@ -25,11 +25,13 @@
       --shadow2: 0 28px 90px rgba(0,0,0,.44);
 
       --max: 1120px;
+
+      /* ===== NOVO: intensidade acumulativa do ruído (tecla R) ===== */
+      --storm: 0; /* 0..10 (JS) */
     }
 
     *{box-sizing:border-box}
     html,body{height:100%; margin:0; overflow-x:hidden; color:var(--ink);}
-    /* IMPORTANTE: não “prender” o fundo no body; deixa o fundo ser o .bg */
     body{ background: transparent; }
 
     body{
@@ -86,7 +88,8 @@
       position:fixed; inset:-20%;
       z-index:1;
       background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
-      opacity:.20;
+      /* NOVO: ruído cresce com a tempestade */
+      opacity: calc(0.20 + (var(--storm) * 0.03));
       mix-blend-mode: overlay;
       animation: noiseShift .85s steps(2) infinite;
       pointer-events:none;
@@ -110,7 +113,8 @@
           transparent 2px,
           transparent 6px
         );
-      opacity:.12;
+      /* NOVO: scan cresce com a tempestade */
+      opacity: calc(0.12 + (var(--storm) * 0.012));
       mix-blend-mode: soft-light;
       pointer-events:none;
     }
@@ -128,7 +132,8 @@
       z-index:4;
       pointer-events:none;
       transform: rotate(-12deg);
-      opacity:.55;
+      /* NOVO: cresce com a tempestade */
+      opacity: calc(0.55 + (var(--storm) * 0.02));
       mix-blend-mode: lighten;
     }
 
@@ -164,6 +169,38 @@
     @keyframes moveL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
     @keyframes moveR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 
+    /* ===== NOVO: camada de “fragmentos do fundo” (multiplica no R) ===== */
+    .frags{
+      position:fixed; inset:-6%;
+      z-index:5;
+      pointer-events:none;
+      overflow:hidden;
+      mix-blend-mode: screen;
+      opacity:.92;
+    }
+    .frag{
+      position:absolute;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background-image: var(--bg-image);
+      background-size: cover;
+      background-repeat:no-repeat;
+      filter: saturate(2.1) contrast(1.15) blur(.10px);
+      box-shadow: 0 18px 55px rgba(0,0,0,.28);
+      opacity: .0;
+      transform: translate3d(var(--x), var(--y), 0) rotate(var(--r)) scale(var(--s));
+      animation: fragIn 520ms ease-out forwards, fragFloat var(--t) ease-in-out infinite;
+    }
+    @keyframes fragIn{
+      from{opacity:0; filter: saturate(2.2) contrast(1.2) blur(.35px)}
+      to{opacity: var(--o); filter: saturate(2.1) contrast(1.15) blur(.10px)}
+    }
+    @keyframes fragFloat{
+      0%{transform: translate3d(var(--x), var(--y), 0) rotate(var(--r)) scale(var(--s))}
+      50%{transform: translate3d(calc(var(--x) + 14px), calc(var(--y) - 12px), 0) rotate(calc(var(--r) + 1.8deg)) scale(var(--s))}
+      100%{transform: translate3d(var(--x), var(--y), 0) rotate(var(--r)) scale(var(--s))}
+    }
+
     /* ===== PALCO (ACIMA DO FUNDO) ===== */
     .stage{
       position:relative;
@@ -171,6 +208,19 @@
       min-height:100vh;
       padding: 26px 18px 90px;
       isolation:isolate;
+    }
+
+    /* NOVO: micro-tremor no estilhaço */
+    body.shatter .stage{
+      animation: quake 280ms steps(2,end) 1;
+    }
+    @keyframes quake{
+      0%{transform:translate3d(0,0,0)}
+      20%{transform:translate3d(-2px,1px,0)}
+      40%{transform:translate3d(2px,-1px,0)}
+      60%{transform:translate3d(-3px,2px,0)}
+      80%{transform:translate3d(2px,1px,0)}
+      100%{transform:translate3d(0,0,0)}
     }
 
     header{
@@ -432,6 +482,21 @@
     body.over .bg .imgA{opacity:.72; filter:saturate(1.95) contrast(1.16)}
     body.over .bg .imgB{opacity:.56; filter:saturate(2.45) contrast(1.24) blur(.18px)}
     body.over .card{background: rgba(0,0,0,.22)}
+
+    /* NOVO: flash do estilhaço */
+    .flash{
+      position:fixed; inset:0;
+      z-index:9;
+      pointer-events:none;
+      opacity:0;
+      background:
+        radial-gradient(800px 520px at 45% 40%, rgba(255,255,255,.22), transparent 62%),
+        radial-gradient(900px 600px at 65% 55%, rgba(255,0,170,.14), transparent 68%),
+        radial-gradient(900px 650px at 28% 62%, rgba(0,255,230,.12), transparent 70%);
+      mix-blend-mode: screen;
+      transition: opacity 160ms ease;
+    }
+    body.shatter .flash{opacity:.9}
   </style>
 </head>
 
@@ -443,6 +508,12 @@
   <div class="noise" aria-hidden="true"></div>
   <div class="scan" aria-hidden="true"></div>
   <div class="vignette" aria-hidden="true"></div>
+
+  <!-- NOVO: fragmentos do fundo (multiplicam no R) -->
+  <div class="frags" id="frags" aria-hidden="true"></div>
+
+  <!-- NOVO: flash do estilhaço -->
+  <div class="flash" aria-hidden="true"></div>
 
   <div class="marquees" aria-hidden="true">
     <div class="marquee m1 moveL">
@@ -741,8 +812,19 @@
             display:flex;
             flex-wrap: wrap;
             gap: 10px;
-            align-items:center;
+            align-items:stretch;
           }
+
+          /* ===== NOVO: no telemóvel, vira grid e garante que os shares aparecem ===== */
+          @media (max-width: 520px){
+            #gerador-lero-lero .leroActions{
+              display:grid;
+              grid-template-columns: repeat(2, minmax(0,1fr));
+              gap: 10px;
+              align-items:stretch;
+            }
+          }
+
           #gerador-lero-lero .leroBtn{
             appearance:none;
             border:1px solid rgba(255,255,255,.14);
@@ -758,7 +840,18 @@
             backdrop-filter: blur(8px);
             position:relative;
             overflow:hidden;
+            text-align:center;
+            display:inline-flex;
+            justify-content:center;
+            align-items:center;
+            min-height: 34px;
           }
+          @media (max-width: 520px){
+            #gerador-lero-lero .leroBtn{
+              width:100%;
+            }
+          }
+
           #gerador-lero-lero .leroBtn::after{
             content:"";
             position:absolute; inset:-40%;
@@ -938,6 +1031,8 @@
 
     // Estilhaços
     const stage = document.getElementById('stage');
+    const fragsHost = document.getElementById('frags');
+
     const shards = [
       ["NÚCLEO", "pré-big-bang institucional: condensação em NEGATIVO", "hot"],
       ["INDISPOSITIVO", "suspende captura — abre condição de existência", "cold"],
@@ -949,6 +1044,7 @@
       ["RUÍDO", "meio: emergência do real no Ser", "cold"],
       ["NEGATIVO", "campo de inscrição: latência, choque, forma que não fecha", "acid"]
     ];
+
     function rand(min, max){ return Math.random()*(max-min)+min; }
     function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 
@@ -958,11 +1054,11 @@
       el.className = 'shard';
 
       const rect = stage.getBoundingClientRect();
-      const x = (pageX - rect.left - window.scrollX) + rand(-18, 18);
-      const y = (pageY - rect.top) + rand(-18, 18);
+      const x = (pageX - rect.left - window.scrollX) + rand(-24, 24);
+      const y = (pageY - rect.top) + rand(-26, 26);
 
-      const r = rand(-11, 11) * intensity;
-      const t = rand(4.2, 9.2) / Math.max(.7, intensity);
+      const r = rand(-14, 14) * intensity;
+      const t = rand(3.2, 9.2) / Math.max(.6, intensity);
 
       el.style.setProperty('--x', `${x}px`);
       el.style.setProperty('--y', `${y}px`);
@@ -975,7 +1071,7 @@
       el.innerHTML = `<b style="color:${toneColor}">${b}</b><em>${em}</em> <i>·</i> <i>${tone}</i>`;
       stage.appendChild(el);
 
-      const ttl = Math.floor(rand(5200, 9800));
+      const ttl = Math.floor(rand(4200, 11800));
       setTimeout(() => {
         el.style.transition = 'opacity 900ms ease';
         el.style.opacity = '0';
@@ -985,24 +1081,127 @@
 
     function burst(pageX, pageY, n=4, intensity=1.25){
       for(let i=0;i<n;i++){
-        spawnShard(pageX + rand(-50, 50), pageY + rand(-50, 50), intensity);
+        spawnShard(pageX + rand(-110, 110), pageY + rand(-110, 110), intensity);
       }
     }
 
-    document.addEventListener('click', (e) => burst(e.pageX, e.pageY, Math.floor(rand(2,6)), 1.25));
+    // ===== NOVO: fragmentos do fundo (multiplicam no R) =====
+    function spawnFrag(intensity=1){
+      if(!fragsHost) return;
+
+      const w = rand(70, 220) * (0.95 + intensity*0.08);
+      const h = rand(60, 210) * (0.95 + intensity*0.08);
+
+      const x = rand(-40, window.innerWidth + 40);
+      const y = rand(-40, window.innerHeight + 40);
+
+      const d = document.createElement("div");
+      d.className = "frag";
+
+      // recorte “estilhaçado” (sem canvas, puro CSS)
+      const a = rand(8, 26);
+      const b = rand(10, 30);
+      const c = rand(12, 34);
+      const poly = `polygon(${a}% 0%, 100% ${b}%, ${100-c}% 100%, 0% ${100-b}%)`;
+      d.style.clipPath = poly;
+
+      d.style.width = `${w}px`;
+      d.style.height = `${h}px`;
+      d.style.setProperty("--x", `${x}px`);
+      d.style.setProperty("--y", `${y}px`);
+      d.style.setProperty("--r", `${rand(-18,18)}deg`);
+      d.style.setProperty("--s", `${rand(.88, 1.12)}`);
+      d.style.setProperty("--t", `${rand(5.2, 10.8)}s`);
+      d.style.setProperty("--o", `${Math.min(0.92, 0.34 + intensity*0.08)}`);
+
+      // desloca o “recorte” dentro do bg
+      const bx = rand(10, 90);
+      const by = rand(10, 90);
+      d.style.backgroundPosition = `${bx}% ${by}%`;
+
+      fragsHost.appendChild(d);
+
+      const ttl = Math.floor(rand(5200, 14000));
+      setTimeout(() => {
+        d.style.transition = "opacity 900ms ease";
+        d.style.opacity = "0";
+        setTimeout(()=> d.remove(), 920);
+      }, ttl);
+    }
+
+    // ===== NOVO: estilhaço mais forte + flash + tremor =====
+    function shatterFx(){
+      document.body.classList.add("shatter");
+      setTimeout(()=> document.body.classList.remove("shatter"), 320);
+    }
+
+    document.addEventListener('click', (e) => {
+      shatterFx();
+      burst(e.pageX, e.pageY, Math.floor(rand(10, 18)), rand(1.45, 2.25));
+      // micro-estilhaço extra
+      for(let i=0;i<Math.floor(rand(6, 12));i++){
+        spawnShard(e.pageX + rand(-220,220), e.pageY + rand(-220,220), rand(1.0, 1.7));
+      }
+    });
+
+    // ===== NOVO: tempestade acumulativa (tecla R) =====
+    let stormLevel = 0;     // 0..10
+    let rainTimer = null;
+
+    function applyStorm(){
+      document.documentElement.style.setProperty("--storm", String(stormLevel));
+    }
+
+    function startRain(){
+      if(rainTimer) return;
+      rainTimer = setInterval(() => {
+        if(stormLevel <= 0) return;
+
+        const density = Math.min(14, 2 + stormLevel); // mais level, mais densidade
+        for(let i=0;i<density;i++){
+          const x = rand(10, window.innerWidth - 10);
+          const y = window.scrollY + rand(10, window.innerHeight - 10);
+          spawnShard(x, y, rand(0.85, 1.9) + stormLevel*0.08);
+        }
+
+        const fragCount = Math.min(8, 1 + Math.floor(stormLevel/2));
+        for(let j=0;j<fragCount;j++){
+          spawnFrag(1 + stormLevel*0.35);
+        }
+      }, 220);
+    }
 
     document.addEventListener('keydown', (e) => {
       const k = (e.key || "").toLowerCase();
       if(k === "o") document.body.classList.toggle("over");
+
       if(k === "r"){
-        const vw = Math.min(window.innerWidth, 1120);
-        const baseX = (window.innerWidth - vw)/2;
-        const top = window.scrollY + 120;
-        for(let i=0;i<18;i++){
-          spawnShard(baseX + rand(40, vw-40), top + rand(0, 620), rand(.9, 1.6));
+        stormLevel = Math.min(10, stormLevel + 1);
+        applyStorm();
+        startRain();
+
+        // “chuva” imediata espalhada por toda a viewport (não só no topo)
+        const n = 28 + stormLevel * 10;
+        for(let i=0;i<n;i++){
+          const x = rand(10, window.innerWidth - 10);
+          const y = window.scrollY + rand(10, window.innerHeight - 10);
+          spawnShard(x, y, rand(0.95, 2.15) + stormLevel*0.10);
         }
+
+        // multiplica fragmentos do fundo por toda a viewport
+        const f = 6 + stormLevel * 2;
+        for(let j=0;j<f;j++){
+          spawnFrag(1 + stormLevel*0.40);
+        }
+
+        // pequeno “colapso” visual a cada R (só um toque)
+        shatterFx();
       }
     });
+
+    // expõe p/ outros módulos (mantém compatível e “seguro”)
+    window.spawnShard = spawnShard;
+    window.burstShard = burst;
   </script>
 
   <!-- ==========================================================
@@ -1255,13 +1454,11 @@ Ser não é ter sido:
         const id = stateToId(s);
         const newHash = `#estado=${id}`;
         if(window.location.hash !== newHash){
-          // não polui histórico ao apertar gerar muitas vezes
           history.replaceState(null, "", newHash);
         }
       }
 
       function getCanonicalUrlForCurrentHash(){
-        // URL completo (com hash) para compartilhamento/reabertura
         return window.location.href;
       }
 
@@ -1275,7 +1472,6 @@ Ser não é ter sido:
       }
 
       function safeSetFaceSrc(src){
-        // evita cache “grudado” durante ajuste das imagens no Pages
         const cb = "v=" + Date.now();
         els.img.src = `${src}?${cb}`;
       }
@@ -1298,23 +1494,18 @@ Ser não é ter sido:
 
       function updateShareLinks(s){
         const url = getCanonicalUrlForCurrentHash();
-
         const fullText = composeText(s, true);
         const shareText = fullText + "\n\n" + url;
 
-        // WhatsApp
         els.shareWA.href = "https://wa.me/?text=" + encodeURIComponent(shareText);
 
-        // X/Twitter (curto + URL)
         const shortBase = `${frasesPop[s.pi]} / ${operadores[s.oi]}`.replace(/\s+/g, " ").trim();
-        const maxLen = 240; // deixa margem
+        const maxLen = 240;
         const shortText = (shortBase.length > maxLen) ? (shortBase.slice(0, maxLen-1) + "…") : shortBase;
         els.shareX.href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shortText + "\n" + url);
 
-        // Facebook (URL)
         els.shareFB.href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url);
 
-        // Telegram (texto + url)
         els.shareTG.href = "https://t.me/share/url?url=" + encodeURIComponent(url) + "&text=" + encodeURIComponent(fullText);
       }
 
@@ -1324,7 +1515,7 @@ Ser não é ter sido:
             await navigator.clipboard.writeText(text);
             return true;
           }
-        }catch(e){ /* fallback abaixo */ }
+        }catch(e){}
 
         try{
           const ta = document.createElement("textarea");
@@ -1352,7 +1543,6 @@ Ser não é ter sido:
         };
       }
 
-      // Intro “flutuante” (sem tutorial, só ruído visual)
       function seedIntroFloats(){
         const chips = [
           ["CAMPO", "falha como infraestrutura", "hot"],
@@ -1365,7 +1555,7 @@ Ser não é ter sido:
         const host = els.introFloats;
         if(!host) return;
 
-        const w = 1000; // “palco” abstrato interno (não medimos; só espalhamos)
+        const w = 1000;
         const h = 520;
 
         function r(min, max){ return Math.random()*(max-min)+min; }
@@ -1388,7 +1578,6 @@ Ser não é ter sido:
         }
       }
 
-      // boot
       seedIntroFloats();
 
       function boot(){
@@ -1400,10 +1589,7 @@ Ser não é ter sido:
 
         els.btnCopyText.addEventListener("click", async () => {
           const s = parseHashState() || initial;
-          const ok = await copyToClipboard(composeText(s, true));
-          if(ok && window.spawnShard){
-            // não existe no escopo; mas deixamos quieto. (mantemos puro)
-          }
+          await copyToClipboard(composeText(s, true));
         });
 
         els.btnCopyLink.addEventListener("click", async () => {
