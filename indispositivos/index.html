@@ -596,6 +596,333 @@
         <a href="../caioeduardogabriel.html">Caio Eduardo Gabriel</a>
       </div>
     </footer>
+
+    <!-- ==========================================================
+         NOVO SECTOR (ACRESCENTADO AO FINAL, SEM ALTERAR O RESTO)
+         ========================================================== -->
+    <section class="grid" id="gerador-lero-lero">
+      <article class="card span-12">
+        <h2>GERADOR DE LERO-LERO — indispositivo de atrito e registrabilidade</h2>
+
+        <style>
+          /* CSS APENAS DO SECTOR (escopado por #gerador-lero-lero) */
+          #gerador-lero-lero .leroWrap{
+            display:grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 14px;
+            align-items: start;
+            margin-top: 10px;
+          }
+          @media (max-width: 900px){
+            #gerador-lero-lero .leroWrap{grid-template-columns: 1fr;}
+          }
+
+          #gerador-lero-lero .leroFace{
+            border-radius: 18px;
+            overflow:hidden;
+            border: 1px solid rgba(255,255,255,.14);
+            background: rgba(0,0,0,.22);
+            box-shadow: 0 18px 55px rgba(0,0,0,.38);
+            position:relative;
+            min-height: 220px;
+          }
+          #gerador-lero-lero .leroFace::after{
+            content:"";
+            position:absolute; inset:-35%;
+            background:
+              radial-gradient(closest-side, rgba(255,0,170,.22), transparent 65%),
+              radial-gradient(closest-side, rgba(0,255,230,.18), transparent 65%),
+              radial-gradient(closest-side, rgba(255,220,0,.14), transparent 70%);
+            filter: blur(24px);
+            opacity:.75;
+            mix-blend-mode: screen;
+            pointer-events:none;
+            animation: leroGlow 9s ease-in-out infinite;
+          }
+          @keyframes leroGlow{
+            0%{transform:translate3d(-2%,1%,0) rotate(-2deg)}
+            50%{transform:translate3d(2%,-1%,0) rotate(2deg)}
+            100%{transform:translate3d(-2%,1%,0) rotate(-2deg)}
+          }
+
+          #gerador-lero-lero img#leroFaceImg{
+            width:100%;
+            height:100%;
+            display:block;
+            object-fit: cover;
+            filter: saturate(1.15) contrast(1.08);
+            transform: scale(1.02);
+          }
+
+          #gerador-lero-lero .leroStamp{
+            position:absolute;
+            left: 10px;
+            bottom: 10px;
+            padding: 6px 10px 6px;
+            border-radius: 999px;
+            border:1px solid rgba(255,255,255,.16);
+            background: rgba(0,0,0,.28);
+            backdrop-filter: blur(8px);
+            font-size: 12px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.84);
+            box-shadow: 0 10px 28px rgba(0,0,0,.25);
+            max-width: calc(100% - 20px);
+            white-space: nowrap;
+            overflow:hidden;
+            text-overflow: ellipsis;
+          }
+
+          #gerador-lero-lero .leroText{
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,.12);
+            background: rgba(0,0,0,.22);
+            backdrop-filter: blur(9px);
+            box-shadow: 0 18px 55px rgba(0,0,0,.38);
+            padding: 12px 12px 10px;
+            position:relative;
+            overflow:hidden;
+          }
+          #gerador-lero-lero .leroText::before{
+            content:"";
+            position:absolute; inset:-40%;
+            background:
+              conic-gradient(from 190deg, rgba(255,0,170,.18), rgba(0,255,230,.14), rgba(255,220,0,.10), rgba(255,0,170,.18));
+            filter: blur(22px);
+            opacity:.55;
+            mix-blend-mode: screen;
+            pointer-events:none;
+            animation: leroSpin 11s linear infinite;
+          }
+          @keyframes leroSpin{to{transform:rotate(360deg)}}
+          #gerador-lero-lero .leroText > *{position:relative; z-index:1}
+
+          #gerador-lero-lero .leroPop{
+            font-size: 13px;
+            line-height: 1.35;
+            color: rgba(255,255,255,.92);
+            padding: 10px 10px 9px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,.12);
+            background: rgba(0,0,0,.22);
+            box-shadow: 0 10px 28px rgba(0,0,0,.22);
+          }
+
+          #gerador-lero-lero .leroOp{
+            margin: 10px 0 0;
+            padding: 10px 10px 9px;
+            border-radius: 14px;
+            border: 1px dashed rgba(255,255,255,.22);
+            background: rgba(0,0,0,.26);
+            color: rgba(0,255,230,.84);
+            font-size: 12px;
+            line-height: 1.25;
+            white-space: pre-wrap;
+            word-break: break-word;
+            box-shadow: 0 10px 28px rgba(0,0,0,.22);
+          }
+
+          #gerador-lero-lero .leroPoem{
+            margin-top: 10px;
+            padding: 10px 10px 9px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,.12);
+            background: rgba(0,0,0,.22);
+            color: rgba(255,255,255,.90);
+            font-size: 13px;
+            line-height: 1.38;
+            box-shadow: 0 10px 28px rgba(0,0,0,.22);
+            white-space: pre-wrap;
+          }
+
+          #gerador-lero-lero .leroActions{
+            margin-top: 12px;
+            display:flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items:center;
+          }
+          #gerador-lero-lero .leroBtn{
+            appearance:none;
+            border:1px solid rgba(255,255,255,.14);
+            background: rgba(0,0,0,.22);
+            color: rgba(255,255,255,.88);
+            padding: 8px 10px;
+            border-radius: 999px;
+            font: inherit;
+            font-size: 12px;
+            letter-spacing: .02em;
+            cursor:pointer;
+            box-shadow: 0 10px 28px rgba(0,0,0,.25);
+            backdrop-filter: blur(8px);
+            position:relative;
+            overflow:hidden;
+          }
+          #gerador-lero-lero .leroBtn::after{
+            content:"";
+            position:absolute; inset:-40%;
+            background: radial-gradient(closest-side, rgba(255,0,170,.18), transparent 70%);
+            opacity:.55; filter:blur(14px);
+            mix-blend-mode: screen;
+          }
+          #gerador-lero-lero .leroBtn > span{position:relative; z-index:1}
+          #gerador-lero-lero .leroBtn:hover{transform: translateY(-1px);}
+          #gerador-lero-lero .leroBtn:active{transform: translateY(0);}
+
+          #gerador-lero-lero .leroMetaLine{
+            margin-top: 10px;
+            font-size: 12px;
+            color: rgba(255,255,255,.62);
+            display:flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items:center;
+          }
+          #gerador-lero-lero .leroMetaLine code{
+            font-size: 12px;
+            color: rgba(255,255,255,.78);
+            background: rgba(0,0,0,.22);
+            border: 1px solid rgba(255,255,255,.12);
+            padding: 2px 6px;
+            border-radius: 10px;
+          }
+        </style>
+
+        <div class="leroWrap" id="leroApp">
+          <div class="leroFace">
+            <img id="leroFaceImg" alt="Rosto do estado" src="" />
+            <div class="leroStamp" id="leroFaceName">—</div>
+          </div>
+
+          <div class="leroText" aria-live="polite">
+            <div class="leroPop" id="leroPop">—</div>
+            <pre class="leroOp mono" id="leroOp">—</pre>
+            <div class="leroPoem" id="leroPoem">—</div>
+
+            <div class="leroActions">
+              <button class="leroBtn" type="button" id="leroGenerate"><span>GERAR NOVO ESTADO</span></button>
+              <button class="leroBtn" type="button" id="leroCopyText"><span>COPIAR TEXTO</span></button>
+              <button class="leroBtn" type="button" id="leroCopyLink"><span>COPIAR LINK DO ESTADO</span></button>
+
+              <a class="leroBtn" id="shareWhatsApp" href="#" target="_blank" rel="noopener"><span>WhatsApp</span></a>
+              <a class="leroBtn" id="shareX" href="#" target="_blank" rel="noopener"><span>X/Twitter</span></a>
+              <a class="leroBtn" id="shareFacebook" href="#" target="_blank" rel="noopener"><span>Facebook</span></a>
+              <a class="leroBtn" id="shareTelegram" href="#" target="_blank" rel="noopener"><span>Telegram</span></a>
+            </div>
+
+            <div class="leroMetaLine">
+              <span class="small">estado:</span> <code id="leroStateId">—</code>
+              <span class="small">reabertura:</span> <code>#estado=face-pop-op-poema</code>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card span-12" id="leroIntro">
+        <h2>GERADOR DE LERO-LERO</h2>
+
+        <style>
+          /* CSS APENAS DO BLOCO DE INTRO (escopado por #leroIntro) */
+          #leroIntro{position:relative; overflow:hidden;}
+          #leroIntro .leroIntroBody{
+            position:relative;
+            padding: 10px 6px 2px;
+            max-width: 92ch;
+          }
+          #leroIntro .leroIntroBody .t{
+            display:block;
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.35;
+            color: rgba(255,255,255,.88);
+            text-shadow: 0 2px 0 rgba(0,0,0,.25), 0 14px 38px rgba(0,0,0,.30);
+          }
+          #leroIntro .leroIntroBody .t b{
+            font-weight: 900;
+            letter-spacing:.08em;
+            text-transform: uppercase;
+          }
+          #leroIntro .leroIntroBody .t.hot{color: rgba(255,0,170,.90)}
+          #leroIntro .leroIntroBody .t.cold{color: rgba(0,255,230,.86)}
+          #leroIntro .leroIntroBody .t.acid{color: rgba(255,220,0,.84)}
+          #leroIntro .leroIntroBody .indent{padding-left: 16px;}
+          #leroIntro .leroIntroBody .indent2{padding-left: 30px;}
+
+          #leroIntro .floats{
+            position:absolute; inset:-10%;
+            pointer-events:none;
+            mix-blend-mode: lighten;
+            opacity:.9;
+          }
+          #leroIntro .float{
+            position:absolute;
+            max-width: min(52ch, 86vw);
+            padding: 10px 10px 9px;
+            border-radius: 16px;
+            background: rgba(0,0,0,.20);
+            border: 1px solid rgba(255,255,255,.14);
+            backdrop-filter: blur(7px);
+            box-shadow: 0 18px 55px rgba(0,0,0,.38);
+            transform: translate3d(var(--x), var(--y), 0) rotate(var(--r));
+            animation: leroFloat var(--t) ease-in-out infinite;
+            filter: blur(.10px);
+          }
+          @keyframes leroFloat{
+            0%{opacity:.88}
+            50%{transform: translate3d(calc(var(--x) + 10px), calc(var(--y) - 14px), 0) rotate(calc(var(--r) + 1.3deg)); opacity:.68}
+            100%{opacity:.88}
+          }
+          #leroIntro .float b{
+            font-weight:900;
+            letter-spacing:.08em;
+            text-transform:uppercase;
+            font-size:12px;
+            display:inline-block;
+            margin-right:6px;
+          }
+          #leroIntro .float em{font-style:normal; color: rgba(255,255,255,.82)}
+          #leroIntro .float i{font-style:normal; color: rgba(255,255,255,.70)}
+        </style>
+
+        <div class="floats" aria-hidden="true" id="leroIntroFloats"></div>
+
+        <div class="leroIntroBody">
+          <span class="t"><b>GERADOR DE LERO-LERO</b></span>
+          <span class="t indent cold">indispositivo de atrito e registrabilidade</span>
+
+          <span class="t hot">Este não é um gerador de frases.</span>
+          <span class="t indent">É um campo de falha.</span>
+
+          <span class="t">Aqui, a linguagem é devolvida ao meio que a sustenta —</span>
+          <span class="t indent2 acid">exposta como fluxo, interrompida como forma.</span>
+
+          <span class="t">A frase circulável aparece primeiro: lisa, fechada, pronta.</span>
+          <span class="t indent">Em seguida, o sistema responde.</span>
+
+          <span class="t hot">Não com outra frase, mas com um defeito.</span>
+          <span class="t indent cold">Erro de registrabilidade.</span>
+          <span class="t indent2 cold">Violação de persistência.</span>
+          <span class="t indent2 cold">Sentido deslocado de seu regime de compatibilidade.</span>
+
+          <span class="t">O que emerge não é uma síntese, mas um intervalo:</span>
+          <span class="t indent2 acid">um ponto onde a linguagem deixa de coincidir consigo mesma.</span>
+
+          <span class="t">Cada estado gerado é um objeto instável,</span>
+          <span class="t indent">mantido entre atribuição e colapso,</span>
+          <span class="t indent2">entre circulação e resto.</span>
+
+          <span class="t hot">Não se trata de interpretar.</span>
+          <span class="t indent">Trata-se de sustentar a falha o tempo suficiente</span>
+          <span class="t indent2 acid">para que outra forma de legibilidade se torne possível.</span>
+
+          <span class="t">O indispositivo não corrige o fluxo.</span>
+          <span class="t indent hot">Ele cria as condições para que o fluxo encontre seu limite.</span>
+        </div>
+      </article>
+    </section>
+    <!-- ===================== FIM DO NOVO SECTOR ===================== -->
+
   </main>
 
   <script>
@@ -676,6 +1003,426 @@
         }
       }
     });
+  </script>
+
+  <!-- ==========================================================
+       JS DO NOVO SECTOR (ACRESCENTADO; NÃO ALTERA O RESTO)
+       ========================================================== -->
+  <script>
+    (function leroLero(){
+      const assinatura = "— Núcleo de Indispositivos em NEGATIVO (Artefato: Gerador de Lero-Lero)";
+
+      const faces = [
+        { nome: "Nietzsche", src: "./faces/face-nietzsche.jpg" },
+        { nome: "Clarice Lispector", src: "./faces/face-clarice.jpg" },
+        { nome: "Einstein", src: "./faces/face-einstein.jpg" },
+        { nome: "Pessoa", src: "./faces/face-pessoa.jpg" },
+        { nome: "Deleuze", src: "./faces/face-deleuze.jpg" }
+      ];
+
+      const frasesPop = [
+        "Você se torna aquilo que decide não abandonar.",
+        "Tudo começa a mudar quando você aprende a permanecer.",
+        "O que você procura também está procurando por você.",
+        "A verdadeira transformação acontece em silêncio.",
+        "Quem aprende a esperar descobre o tempo certo de tudo.",
+        "Nada é mais forte do que uma consciência desperta.",
+        "O que você aceita transforma o que você é.",
+        "Toda resposta nasce de uma pergunta que você teve coragem de fazer.",
+        "Você já é aquilo que procura se tornar.",
+        "O mundo muda quando você muda a forma de olhar.",
+        "Tudo o que é essencial cresce sem pressa.",
+        "A clareza chega quando você para de fugir de si mesmo.",
+        "O que é verdadeiro permanece, mesmo quando tudo muda.",
+        "O sentido aparece para quem continua caminhando.",
+        "Você encontra o caminho quando decide não parar.",
+        "A vida revela mais a quem aprende a escutar.",
+        "Nada floresce onde há resistência ao que é.",
+        "O que você constrói em si ninguém pode retirar.",
+        "A consciência é o primeiro passo de toda liberdade.",
+        "Você já atravessou tudo o que pensou que não conseguiria."
+      ];
+
+      const operadores = [
+        "SEGMENTATION FAULT",
+        "KERNEL PANIC: semantic exception not handled",
+        "ERROR 0x00000000: NULL REFERENCE ENCOUNTERED",
+        "STACK OVERFLOW: recursion limit exceeded",
+        "PROCESS TERMINATED UNEXPECTEDLY",
+        "BUFFER UNDERFLOW DETECTED",
+        "UNDEFINED SYMBOL: meaning",
+        "CORE DUMP INITIATED",
+        "FATAL ERROR: registrability lost",
+        "MEMORY ACCESS VIOLATION",
+        "PROCESS KILLED BY SYSTEM",
+        "INVALID POINTER DEREFERENCE",
+        "SYNTAX ERROR NEAR 'existence'",
+        "UNHANDLED EXCEPTION: persistence_failure",
+        "INDEX NOT FOUND",
+        "TIMEOUT: response not received",
+        "ILLEGAL INSTRUCTION EXECUTED",
+        "DATA CORRUPTION DETECTED",
+        "PROCESS ENTERED UNDEFINED STATE",
+        "SYSTEM HALTED"
+      ];
+
+      const poemas = [
+`A água não passa: passa-nos.
+Entre a ponte e o passo, o mesmo rio se desfaz —
+refaz-se —
+num sussurro de sibilos, lixa do tempo,
+e o fogo, por trás da forma, insiste:
+não há coisa — há troca,
+não há chão — há corrente.`,
+`Nada começa. Nada cessa. O ser sustém
+seu próprio peso — pedra presa em pedra,
+pleno no plano pleno, sem fenda, sem fora.
+O movimento é rumor na margem do mesmo,
+eco de erro na borda daquilo que é.
+Aqui, nenhum passo passa:
+o real não se desloca — insiste.`,
+`Fecha os olhos — e a cadeira hesita.
+Não cai, não fica: aguarda o teu retorno.
+No escuro, o mundo reduz-se a um sopro suspenso,
+arquivo sem leitor, cor sem córnea.
+Ser é esse fio fino entre ver e haver:
+quando ninguém o segura,
+o real desaprende o próprio nome.`,
+`Não há superfície: há lâminas de leitura.
+O mundo não pesa — inclina-se.
+Cada olhar é um corte que decide a carne do real,
+cada nome, uma faca sem bainha.
+A verdade não repousa: disputa.
+E sob as formas que fingem durar,
+late o dente invisível do sentido.`,
+`Duvido — e o chão cede primeiro.
+Tudo recua: a mesa, o nome, o número.
+Mas no centro do colapso, algo não consente:
+uma brasa breve, branca,
+que arde ao negar-se e, ardendo, afirma.
+Não penso o ser —
+sou o ponto onde o pensar insiste.`,
+`O nome chegou antes do corpo.
+Chamou — e a carne, tardia, teve de caber.
+Entre sílaba e sangue, uma fenda:
+ali o eu tropeça, eco sem origem.
+Falas — e o que responde não és tu,
+mas o sulco que o som abriu no silêncio.
+Sujeito: ferida que fala onde foi escrita.`,
+`O mundo termina onde a frase falha.
+Além desse ponto, nada falta — nada cabe.
+O indizível não espera tradução:
+permanece, opaco, inteiro em seu silêncio.
+Falas — e o real se alinha ao teu contorno;
+calas — e ele cessa de caber no possível.
+Os limites não cercam: constroem o dentro.`,
+`Nenhuma palavra pesa: paira entre outras.
+“Árvore” não é tronco, nem folha — é intervalo.
+Vive do que não é, respira por contraste,
+tecida de ausências que a mantêm de pé.
+Muda um som — e o mundo recalcula sua borda.
+Nada nomeia por conter:
+nomeia por separar.`,
+`O tempo não passa: alonga-se em mim.
+O que foi não está — insiste como marca;
+o que virá não veio — arde como espera.
+Entre ambos, este agora vacila,
+fio tenso demais para durar.
+Não vivo no tempo: é ele que, em mim,
+aprende a dividir-se.`,
+`O passado não dorme: aguarda falha.
+Sob o verniz do presente, range.
+Uma imagem esquecida, ao romper o lacre,
+faz o agora sangrar seu próprio atraso.
+Não recordas: és interrompido.
+E nesse corte — súbito, ilegível —
+a história reaprende a respirar.`,
+`Não pensas do vazio: pensas do peso.
+O pão antecede a palavra,
+o ferro educa a mão antes da ideia.
+Sob cada conceito, um campo trabalha,
+sob cada certeza, um corpo sustém.
+A consciência não nasce: é forjada,
+golpe a golpe, no escuro da matéria.`,
+`Não desejas o objeto: desejas o olhar.
+A coisa basta ao animal — ao homem, não.
+Entre o que tens e o que és, abre-se um outro,
+espelho que exige tua forma.
+Arriscas o corpo por um nome que não possuis,
+pois só existes inteiro
+onde alguém te vê existir.`,
+`Nada entra — nada sai — e, ainda assim, tudo ocorre.
+Cada ponto sonha o universo por dentro,
+esfera selada, sem fresta, sem fora.
+Não vê — coincide. Não toca — contém.
+O múltiplo não dispersa: repete-se inteiro
+em cada centro que ignora os outros
+e, ignorando, os espelha.`,
+`Não tocas o mundo: tocas teu molde.
+Espaço e tempo — grades sem ferro —
+ordenam o caos antes que o vejas.
+Nada aparece cru: tudo atravessa
+a forma que o torna visível.
+O real não entra inteiro na mente:
+entra conforme cabe.`,
+`Não começa no mesmo — começa no desvio.
+O idêntico é efeito, nunca origem.
+Sob cada forma, um fluxo foge,
+linha que se bifurca ao insistir.
+Nada repete por cópia: repete por variação,
+e o ser, ao tentar fixar-se, falha —
+vaza em devir.`,
+`O sentido não chega: adia-se.
+Entre signo e coisa, um sulco se desloca,
+rastro sem origem que insiste em partir.
+Lês — e o que procuras recua,
+não por ausência, mas por excesso de distância.
+Toda presença vem tarde:
+escrita por um atraso que a precede.`,
+`Dizes “eu” — e algo responde por baixo.
+Não o sabes, mas age. Não o queres, mas insiste.
+No lapso, a língua revela seu outro dono,
+na falha, o comando troca de mãos.
+És hóspede tardio do corpo que te abriga:
+a casa pensa antes de ti
+e fecha portas que não viste abrir.`,
+`O ser não cessou — foi coberto.
+Sob o ruído exato das máquinas, retrai-se,
+não por fraqueza, mas por saturação de presença.
+Tudo funciona — e, funcionando, encobre.
+O útil avança, o essencial se cala.
+Já não habitamos o aberto:
+operamos dentro do que responde.`,
+`Nada é visível por si: alguém o expôs.
+Entre o gesto e o olhar, uma máquina decide.
+Não é a obra que chega — é trazida,
+indexada ao campo que a torna presente.
+Fora do fluxo, tudo persiste mudo;
+dentro, até o silêncio adquire forma.
+Arte: aquilo que o meio permite durar.`,
+`Nada nasce pronto: tudo atravessa tensão.
+O indivíduo não começa — condensa-se,
+cristal tardio de um campo em desequilíbrio.
+Antes da forma, uma carga espera,
+antes do nome, um limiar insiste.
+Ser não é ter sido:
+é continuar a resolver-se.`
+      ];
+
+      const els = {
+        img: document.getElementById("leroFaceImg"),
+        faceName: document.getElementById("leroFaceName"),
+        pop: document.getElementById("leroPop"),
+        op: document.getElementById("leroOp"),
+        poem: document.getElementById("leroPoem"),
+        stateId: document.getElementById("leroStateId"),
+        btnGen: document.getElementById("leroGenerate"),
+        btnCopyText: document.getElementById("leroCopyText"),
+        btnCopyLink: document.getElementById("leroCopyLink"),
+        shareWA: document.getElementById("shareWhatsApp"),
+        shareX: document.getElementById("shareX"),
+        shareFB: document.getElementById("shareFacebook"),
+        shareTG: document.getElementById("shareTelegram"),
+        introFloats: document.getElementById("leroIntroFloats")
+      };
+
+      function clampInt(n, min, max){
+        const x = Number.parseInt(n, 10);
+        if(Number.isNaN(x)) return null;
+        if(x < min || x > max) return null;
+        return x;
+      }
+
+      function randomIndex(max){ return Math.floor(Math.random() * max); }
+
+      function parseHashState(){
+        const h = window.location.hash || "";
+        const m = h.match(/#estado=([0-9]+)-([0-9]+)-([0-9]+)-([0-9]+)/);
+        if(!m) return null;
+
+        const fi = clampInt(m[1], 0, faces.length-1);
+        const pi = clampInt(m[2], 0, frasesPop.length-1);
+        const oi = clampInt(m[3], 0, operadores.length-1);
+        const mi = clampInt(m[4], 0, poemas.length-1);
+
+        if(fi === null || pi === null || oi === null || mi === null) return null;
+        return { fi, pi, oi, mi };
+      }
+
+      function stateToId(s){ return `${s.fi}-${s.pi}-${s.oi}-${s.mi}`; }
+
+      function setHashState(s){
+        const id = stateToId(s);
+        const newHash = `#estado=${id}`;
+        if(window.location.hash !== newHash){
+          // não polui histórico ao apertar gerar muitas vezes
+          history.replaceState(null, "", newHash);
+        }
+      }
+
+      function getCanonicalUrlForCurrentHash(){
+        // URL completo (com hash) para compartilhamento/reabertura
+        return window.location.href;
+      }
+
+      function composeText(s, withSignature=true){
+        const text = [
+          frasesPop[s.pi],
+          operadores[s.oi],
+          poemas[s.mi]
+        ].join("\n\n") + (withSignature ? `\n\n${assinatura}` : "");
+        return text;
+      }
+
+      function safeSetFaceSrc(src){
+        // evita cache “grudado” durante ajuste das imagens no Pages
+        const cb = "v=" + Date.now();
+        els.img.src = `${src}?${cb}`;
+      }
+
+      function render(s){
+        const face = faces[s.fi];
+        safeSetFaceSrc(face.src);
+        els.faceName.textContent = face.nome;
+
+        els.pop.textContent = frasesPop[s.pi];
+        els.op.textContent = operadores[s.oi];
+        els.poem.textContent = poemas[s.mi];
+
+        const id = stateToId(s);
+        els.stateId.textContent = id;
+
+        setHashState(s);
+        updateShareLinks(s);
+      }
+
+      function updateShareLinks(s){
+        const url = getCanonicalUrlForCurrentHash();
+
+        const fullText = composeText(s, true);
+        const shareText = fullText + "\n\n" + url;
+
+        // WhatsApp
+        els.shareWA.href = "https://wa.me/?text=" + encodeURIComponent(shareText);
+
+        // X/Twitter (curto + URL)
+        const shortBase = `${frasesPop[s.pi]} / ${operadores[s.oi]}`.replace(/\s+/g, " ").trim();
+        const maxLen = 240; // deixa margem
+        const shortText = (shortBase.length > maxLen) ? (shortBase.slice(0, maxLen-1) + "…") : shortBase;
+        els.shareX.href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shortText + "\n" + url);
+
+        // Facebook (URL)
+        els.shareFB.href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url);
+
+        // Telegram (texto + url)
+        els.shareTG.href = "https://t.me/share/url?url=" + encodeURIComponent(url) + "&text=" + encodeURIComponent(fullText);
+      }
+
+      async function copyToClipboard(text){
+        try{
+          if(navigator.clipboard && navigator.clipboard.writeText){
+            await navigator.clipboard.writeText(text);
+            return true;
+          }
+        }catch(e){ /* fallback abaixo */ }
+
+        try{
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          ta.style.top = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          const ok = document.execCommand("copy");
+          document.body.removeChild(ta);
+          return ok;
+        }catch(e){
+          return false;
+        }
+      }
+
+      function newRandomState(){
+        return {
+          fi: randomIndex(faces.length),
+          pi: randomIndex(frasesPop.length),
+          oi: randomIndex(operadores.length),
+          mi: randomIndex(poemas.length)
+        };
+      }
+
+      // Intro “flutuante” (sem tutorial, só ruído visual)
+      function seedIntroFloats(){
+        const chips = [
+          ["CAMPO", "falha como infraestrutura", "hot"],
+          ["REGISTRO", "persistência sob atrito", "cold"],
+          ["FLUXO", "circulação encontra limite", "acid"],
+          ["ERRO", "legibilidade em colapso", "cold"],
+          ["RESTO", "reentrada do que não fecha", "hot"]
+        ];
+
+        const host = els.introFloats;
+        if(!host) return;
+
+        const w = 1000; // “palco” abstrato interno (não medimos; só espalhamos)
+        const h = 520;
+
+        function r(min, max){ return Math.random()*(max-min)+min; }
+        function pickLocal(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+        for(let i=0;i<8;i++){
+          const [b, em, tone] = pickLocal(chips);
+          const d = document.createElement("div");
+          d.className = "float";
+          d.style.setProperty("--x", `${r(-40, w)}px`);
+          d.style.setProperty("--y", `${r(-40, h)}px`);
+          d.style.setProperty("--r", `${r(-10, 10)}deg`);
+          d.style.setProperty("--t", `${r(5.5, 10.5)}s`);
+
+          const toneColor = tone === "hot" ? "rgba(255,0,170,.92)"
+                          : tone === "cold" ? "rgba(0,255,230,.88)"
+                          : "rgba(255,220,0,.84)";
+          d.innerHTML = `<b style="color:${toneColor}">${b}</b><em>${em}</em> <i>·</i> <i>${tone}</i>`;
+          host.appendChild(d);
+        }
+      }
+
+      // boot
+      seedIntroFloats();
+
+      function boot(){
+        const fromHash = parseHashState();
+        const initial = fromHash || newRandomState();
+        render(initial);
+
+        els.btnGen.addEventListener("click", () => render(newRandomState()));
+
+        els.btnCopyText.addEventListener("click", async () => {
+          const s = parseHashState() || initial;
+          const ok = await copyToClipboard(composeText(s, true));
+          if(ok && window.spawnShard){
+            // não existe no escopo; mas deixamos quieto. (mantemos puro)
+          }
+        });
+
+        els.btnCopyLink.addEventListener("click", async () => {
+          const url = getCanonicalUrlForCurrentHash();
+          await copyToClipboard(url);
+        });
+
+        window.addEventListener("hashchange", () => {
+          const s = parseHashState();
+          if(s) render(s);
+        });
+      }
+
+      if(document.readyState === "loading"){
+        document.addEventListener("DOMContentLoaded", boot);
+      }else{
+        boot();
+      }
+    })();
   </script>
 </body>
 </html>
