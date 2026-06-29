@@ -355,6 +355,10 @@
       border-bottom: 1px solid var(--ink);
     }
 
+    .field[id] {
+      scroll-margin-top: calc(var(--header-height) + 28px);
+    }
+
     .section-header {
       display: grid;
       grid-template-columns: 94px 1fr;
@@ -489,6 +493,13 @@
       border-top: 2px solid var(--ink);
     }
 
+    .orientation-grid {
+      margin: 54px 0 0 118px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-top: 2px solid var(--ink);
+    }
+
     .classification-item,
     .operation,
     .caderno-item,
@@ -496,6 +507,20 @@
     .participation-item {
       padding: 22px 24px 28px 0;
       border-bottom: 1px solid var(--line);
+    }
+
+    .orientation-item {
+      padding: 22px 24px 28px 0;
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+    }
+
+    .orientation-item + .orientation-item {
+      padding-left: 24px;
+    }
+
+    .orientation-item:last-child {
+      border-right: 0;
     }
 
     .classification-item:nth-child(odd),
@@ -526,11 +551,23 @@
       font-weight: 500;
     }
 
+    .orientation-item h3 {
+      margin: 0 0 10px;
+      font-family: var(--serif);
+      font-size: 1.32rem;
+      font-weight: 500;
+      line-height: 1.18;
+    }
+
     .classification-item p,
     .operation p,
     .caderno-item p,
     .role p,
     .participation-item p {
+      margin: 0;
+    }
+
+    .orientation-item p {
       margin: 0;
     }
 
@@ -1074,6 +1111,7 @@
       .caderno-grid,
       .roles-grid,
       .participation-grid,
+      .orientation-grid,
       .timeline,
       .chain,
       .program,
@@ -1101,7 +1139,8 @@
       .operations-grid,
       .caderno-grid,
       .roles-grid,
-      .participation-grid {
+      .participation-grid,
+      .orientation-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1110,6 +1149,7 @@
       .caderno-item,
       .role,
       .participation-item,
+      .orientation-item,
       .classification-item:nth-child(odd),
       .operation:nth-child(odd),
       .caderno-item:nth-child(odd),
@@ -1120,6 +1160,12 @@
       .caderno-item:nth-child(even),
       .role:nth-child(even),
       .participation-item:nth-child(even) {
+        padding: 20px 0 24px;
+        border-right: 0;
+      }
+
+      .orientation-item,
+      .orientation-item + .orientation-item {
         padding: 20px 0 24px;
         border-right: 0;
       }
@@ -1214,7 +1260,6 @@
       }
     }
 
-    /* Redesenho editorial: arquivo contemporâneo em atividade */
     :root {
       --page: min(1400px, calc(100vw - 64px));
       --header-height: 64px;
@@ -1315,6 +1360,14 @@
       border-top: 1px solid var(--ink);
       font-size: clamp(1rem, 1.25vw, 1.2rem);
       line-height: 1.48;
+    }
+
+    .hero-orientation {
+      grid-column: 1 / -1;
+      max-width: 880px;
+      margin-top: 24px;
+      padding-top: 0;
+      border-top: 0;
     }
 
     .hero-operations {
@@ -1529,6 +1582,7 @@
     .caderno-grid,
     .roles-grid,
     .participation-grid,
+    .orientation-grid,
     .timeline,
     .program,
     .interest-form,
@@ -1613,6 +1667,7 @@
     .caderno-item h3,
     .role h3,
     .participation-item h3,
+    .orientation-item h3,
     .meeting h3 {
       font-family: var(--display);
       font-weight: 750;
@@ -1799,6 +1854,7 @@
       <h2>Belarmino Afonso e a invenção do povo transmontano</h2>
       <p class="hero-intro">Uma voz é recolhida. Recebe um título, uma data, uma classificação. Uma prática torna-se documento; um conjunto de documentos passa a falar em nome de uma cultura. Entre a voz e o arquivo, uma região adquire forma pública, memória transmissível e possibilidade de futuro.</p>
       <p class="hero-intro"><em>Da Voz ao Arquivo</em> é um ciclo inaugural de quatro encontros dedicado a investigar as operações pelas quais vozes, práticas, objetos, recolhas escolares, fotografias, publicações e registos sonoros passam a constituir aquilo que reconhecemos como povo transmontano.</p>
+      <p class="hero-intro hero-orientation">Para quem deseja compreender como uma região se transforma em cultura pública — e como arquivos, escolas, publicações, imagens e vozes podem participar dessa transformação.</p>
     </div>
 
     <div class="hero-operations" aria-label="Informações essenciais">
@@ -1818,6 +1874,10 @@
         <div class="hero-fact">
           <dt>Valor</dt>
           <dd>80 € · Associados A.L.M.A.: 65 €</dd>
+        </div>
+        <div class="hero-fact">
+          <dt>Inclui</dt>
+          <dd>Caderno Zero + gravações por 60 dias</dd>
         </div>
       </dl>
       <div class="hero-actions">
@@ -1841,32 +1901,57 @@
 
   <div class="page-grid">
     <main id="conteudo">
+      <section class="field" id="compreender" aria-labelledby="titulo-compreender">
+        <div class="section-header">
+          <span class="section-number">00 / Orientação</span>
+          <h2 id="titulo-compreender">O que este ciclo permite compreender</h2>
+        </div>
+        <div class="prose">
+          <p>Em quatro encontros, o ciclo mostra como vozes, fotografias, recolhas escolares, publicações, ritos, objetos e registos sonoros podem deixar de ser materiais dispersos e passar a constituir uma imagem pública de uma região. A partir do espólio de Belarmino Afonso, o participante compreenderá como uma cultura se organiza, se transmite, ganha valor público e pode voltar a agir sobre o presente.</p>
+        </div>
+        <div class="orientation-grid">
+          <article class="orientation-item">
+            <h3>Para quem se interessa por Trás-os-Montes</h3>
+            <p>Compreender como práticas, vozes, imagens e memórias da região foram recolhidas, organizadas e transmitidas como cultura.</p>
+          </article>
+          <article class="orientation-item">
+            <h3>Para quem trabalha com arquivo, património ou educação</h3>
+            <p>Ver como documentos, classificações, trabalhos escolares, publicações e exposições produzem formas de leitura pública de um território.</p>
+          </article>
+          <article class="orientation-item">
+            <h3>Para quem quer agir culturalmente sobre uma região</h3>
+            <p>Aprender a pensar como materiais dispersos podem tornar-se discurso, projeto, circulação, comunidade e futuro.</p>
+          </article>
+        </div>
+      </section>
+
       <section class="field" id="voz" aria-labelledby="titulo-voz">
         <div class="section-header">
           <span class="section-number">01 / Voz</span>
           <h2 id="titulo-voz">Uma voz recebe uma ficha</h2>
         </div>
 
-        <article class="record" aria-labelledby="nota-sonora">
+        <article class="record" aria-labelledby="nota-abertura">
           <div class="record-head">
             <div>
-              <span class="record-code">Nota sonora de abertura</span>
-              <h3 class="record-title" id="nota-sonora">Caio Gabriel</h3>
+              <span class="record-code">Nota de abertura</span>
+              <h3 class="record-title" id="nota-abertura">Uma voz é recolhida</h3>
             </div>
             <dl class="metadata">
               <div><dt>Data</dt><dd>Junho de 2026</dd></div>
-              <div><dt>Suporte</dt><dd>Gravação digital</dd></div>
-              <div><dt>Duração</dt><dd>Cerca de 1 minuto</dd></div>
+              <div><dt>Suporte</dt><dd>Texto de abertura</dd></div>
+              <div><dt>Extensão</dt><dd>Fragmento breve</dd></div>
               <div><dt>Acesso</dt><dd>Público</dd></div>
             </dl>
           </div>
           <details>
             <summary>Abrir ficha</summary>
             <div class="details-body">
-              <p><strong>Fragmento:</strong> nota sonora concebida como abertura da investigação.</p>
-              <p><strong>Identificação:</strong> voz de Caio Gabriel, registo digital, junho de 2026.</p>
+              <p><strong>Fragmento:</strong> nota de abertura concebida como entrada da investigação.</p>
+              <p><strong>Autoria:</strong> Caio Gabriel.</p>
+              <p><strong>Identificação:</strong> texto de abertura, junho de 2026.</p>
               <p><strong>Operação:</strong> passagem do acontecimento vocal à unidade documental.</p>
-              <p><strong>Relação:</strong> gravação, transcrição, descrição e possibilidade de regresso.</p>
+              <p><strong>Relação:</strong> voz, escrita, descrição e possibilidade de regresso.</p>
               <p><strong>Questão:</strong> o que uma voz ganha e perde quando passa a existir como documento?</p>
             </div>
           </details>
@@ -1911,7 +1996,7 @@
           </article>
         </div>
         <div class="prose">
-          <p>Essas entradas pertencem ao estado atual da pesquisa. A classificação documental do espólio e a organização editorial do NEGATIVO.mov aparecerão sempre distinguidas. Uma descreve o conjunto recebido; a outra formula as relações que o curso pretende investigar.</p>
+          <p>Essas entradas pertencem ao estado atual da investigação. A classificação documental do espólio e a organização editorial do NEGATIVO.mov aparecerão sempre distinguidas. Uma descreve o conjunto recebido; a outra formula as relações que o curso pretende investigar.</p>
           <blockquote>Um material torna-se cultural quando entra numa ordem capaz de o fazer circular.</blockquote>
           <a class="text-action relation-link" href="#regiao">Seguir as relações</a>
         </div>
@@ -2114,7 +2199,7 @@
         </div>
         <div class="prose">
           <p class="campaign-form-intro">Deixe o contacto para receber o aviso de abertura das inscrições e as informações da primeira edição.</p>
-          <p>O registo é feito num formulário seguro do Brevo, em nova aba. Depois do envio, será necessário confirmar o endereço através do email recebido; nos primeiros testes, essa mensagem pode chegar à pasta de spam.</p>
+          <p>O formulário abre em nova aba e recolhe apenas os dados necessários para enviar informações sobre o ciclo. Depois do envio, será necessário confirmar o endereço através do email recebido. Caso a mensagem não apareça, verifique também a pasta de spam.</p>
         </div>
         <div class="interest-form" aria-label="Lista de interesse">
           <p class="form-note">O formulário externo recolhe nome, email, país, relação com o tema e consentimento. Os dados serão usados apenas para enviar informações sobre <em>Da Voz ao Arquivo</em>.</p>
@@ -2171,6 +2256,7 @@
         <li><a href="#regiao">A região aprende a recolher-se</a></li>
         <li><a href="#invencao">A invenção do povo</a></li>
         <li><a href="#ciclo">O ciclo</a></li>
+        <li><a href="#caderno-zero">Caderno Zero</a></li>
         <li><a href="#participacao">Participação</a></li>
         <li><a href="#formulario">Contacto</a></li>
       </ul>
@@ -2188,7 +2274,7 @@
         <p>Projeto independente de pensamento crítico, semiótica, midialogia, cultura, arquivo e circulação pública.</p>
         <p>Conceção, investigação e realização: Caio Gabriel/NEGATIVO.mov</p>
         <p>Apoio institucional e documental: A.L.M.A.</p>
-        <p>Contacto através do formulário da página.</p>
+        <p>Contacto através do formulário seguro de interesse.</p>
       </div>
       <nav class="footer-links" aria-label="Ligações do rodapé">
         <h2 class="footer-title">Ligações</h2>
@@ -2201,7 +2287,7 @@
       </nav>
       <div class="footer-state">
         <h2 class="footer-title">Estado da investigação</h2>
-        <p>Edição 01<br>Atualizada em julho de 2026</p>
+        <p>Edição 01<br>Estado de interesse aberto</p>
       </div>
       <div class="sources">
         <details>
@@ -2209,7 +2295,6 @@
           <ol>
             <li><a href="https://adbgc.dglab.gov.pt/historia/">Arquivo Distrital de Bragança — História</a></li>
             <li><a href="https://adbgc.dglab.gov.pt/2023/11/01/documento-do-mes-de-novembro-2023-gratidao-para-com-o-conego-belarmino-afonso/">Arquivo Distrital de Bragança — Gratidão para com o Cónego Belarmino Augusto Afonso</a></li>
-            <li><a href="https://biblioteca.patrimoniocultural.gov.pt/Catalogo/winlibsrch.aspx?cap=&amp;doc=34237&amp;pesq=5&amp;skey=187595A5B02646EE8D7A723ACE637F7D&amp;thes1=1474">Património Cultural — Brigantia: Revista de Cultura</a></li>
             <li><a href="https://scm-braganca.pt/museuetnograficodrbelarminoafonso/">Santa Casa da Misericórdia de Bragança — Museu Etnográfico Dr. Belarmino Afonso</a></li>
             <li><a href="https://www.rtp.pt/noticias/pais/braganca-perde-referencia-cultural-com-morte-do-conego-berlarmino-afonso_n21615">RTP/Lusa — Bragança perde referência cultural com morte do cónego Belarmino Afonso</a></li>
           </ol>
@@ -2248,7 +2333,6 @@
   </div>
 
   <script>
-    // Alterar apenas este valor: interest, enrollment, confirmed, live, complete ou postponed.
     const CAMPAIGN_STATE = "interest";
     const BREVO_INTEREST_URL = "https://4d0daace.sibforms.com/serve/MUIFAN5DlnFBH45Xw5l_JmLgI_vM5u3VHzExVvOFMiGxhi5Hg9OZUgxIBhin5CMTKJLuTYZLsBRXXVVoUlFfp_FR-SuANHuPWKuuYqmI2WIiXIooFljbWHz41vsxgSTn-Oy7pcK5X87icOE79V5wo81tDcniamHuCgFsTg9trRXKAgKVEEY9_EIIgxYp2ezTY3RXMMc57Jsz4Yhrrw==";
 
@@ -2363,20 +2447,6 @@
       observedSections.forEach((section) => sectionObserver.observe(section));
     }
 
-    const form = document.querySelector("#interest-form");
-    if (form) {
-      const formStatus = form.querySelector(".form-status");
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        formStatus.textContent = "";
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          formStatus.textContent = "Reveja os campos assinalados.";
-          return;
-        }
-        formStatus.textContent = "A estrutura está validada. O envio será ativado na etapa de integração com o Brevo.";
-      });
-    }
   </script>
 </body>
 </html>
