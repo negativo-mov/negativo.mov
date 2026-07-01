@@ -2,2451 +2,677 @@
 <html lang="pt-PT">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Da Voz ao Arquivo — Belarmino Afonso e a invenção do povo transmontano. Ciclo online de investigação concebido por Caio Gabriel / NEGATIVO.mov.">
-  <meta name="theme-color" content="#f4f5f1">
-  <title>Da Voz ao Arquivo — Belarmino Afonso e a invenção do povo transmontano</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Uma máquina do mundo repensada - A produção transmontana de Belarmino Afonso</title>
+  <meta name="description" content="Ciclo online de investigação de Caio Gabriel / NEGATIVO.mov sobre Belarmino Afonso, arquivo, cultura transmontana, mediações e produção pública de mundo.">
+  <meta name="theme-color" content="#050504">
   <style>
-    :root {
-      --paper: #f4f5f1;
-      --ink: #121212;
-      --line: #d9ddd6;
-      --muted: #5d615b;
-      --red: #c9342c;
-      --green: #c7ff3d;
-      --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-      --sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
-      --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
-      --page: min(1440px, calc(100vw - 48px));
-      --header-height: 68px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: calc(var(--header-height) + 24px);
-    }
-
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.55;
-      letter-spacing: 0;
-    }
-
-    body.index-open {
-      overflow: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 0.22em;
-    }
-
-    button,
-    input,
-    select,
-    textarea {
-      font: inherit;
-      letter-spacing: 0;
-    }
-
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    :focus-visible {
-      outline: 3px solid var(--red);
-      outline-offset: 3px;
-    }
-
-    .skip-link {
-      position: fixed;
-      top: 8px;
-      left: 8px;
-      z-index: 1000;
-      padding: 10px 14px;
-      background: var(--green);
-      color: var(--ink);
-      transform: translateY(-150%);
-      transition: transform 180ms ease;
-    }
-
-    .skip-link:focus {
-      transform: translateY(0);
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      min-height: var(--header-height);
-      background: rgba(244, 245, 241, 0.97);
-      border-bottom: 1px solid var(--ink);
-    }
-
-    .header-inner {
-      width: var(--page);
-      min-height: var(--header-height);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto auto;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: baseline;
-      min-width: 0;
-      text-decoration: none;
-    }
-
-    .brand strong {
-      font-family: var(--mono);
-      font-size: 0.82rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .brand span {
-      min-width: 0;
-      margin-left: 18px;
-      color: var(--muted);
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .plain-button,
-    .action,
-    .text-action {
-      min-height: 44px;
-      border-radius: 2px;
-      cursor: pointer;
-    }
-
-    .plain-button {
-      padding: 9px 13px;
-      border: 1px solid var(--ink);
-      background: transparent;
-      color: var(--ink);
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      text-transform: uppercase;
-    }
-
-    .action {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 11px 16px;
-      border: 1px solid var(--ink);
-      background: var(--green);
-      color: var(--ink);
-      font-family: var(--sans);
-      font-weight: 700;
-      line-height: 1.2;
-      text-align: center;
-      text-decoration: none;
-    }
-
-    .action:hover,
-    .action:focus-visible {
-      background: var(--ink);
-      color: var(--paper);
-    }
-
-    .action.secondary {
-      background: transparent;
-    }
-
-    .text-action {
-      display: inline-flex;
-      align-items: center;
-      padding: 8px 0;
-      border: 0;
-      border-bottom: 1px solid var(--ink);
-      background: transparent;
-      color: var(--ink);
-      font-family: var(--mono);
-      font-size: 0.76rem;
-      text-decoration: none;
-      text-transform: uppercase;
-    }
-
-    .hero {
-      width: var(--page);
-      min-height: calc(100vh - var(--header-height));
-      margin: 0 auto;
-      padding: clamp(64px, 9vh, 118px) 0 54px;
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      align-content: space-between;
-      column-gap: 24px;
-      border-bottom: 1px solid var(--ink);
-    }
-
-    .hero-copy {
-      grid-column: 1 / span 8;
-      align-self: start;
-    }
-
-    .eyebrow,
-    .record-code,
-    .section-number,
-    .meta,
-    .state-label {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      line-height: 1.35;
-      text-transform: uppercase;
-    }
-
-    .eyebrow,
-    .record-code,
-    .section-number,
-    .state-label {
-      color: var(--red);
-    }
-
-    .hero h1 {
-      max-width: 1060px;
-      margin: 24px 0 0;
-      font-family: var(--serif);
-      font-size: clamp(4.1rem, 8.5vw, 8.7rem);
-      font-weight: 450;
-      line-height: 0.88;
-    }
-
-    .hero h2 {
-      max-width: 840px;
-      margin: 32px 0 0;
-      font-family: var(--serif);
-      font-size: clamp(1.75rem, 3vw, 3.1rem);
-      font-weight: 400;
-      line-height: 1.08;
-    }
-
-    .hero-intro {
-      max-width: 850px;
-      margin: 48px 0 0;
-      font-family: var(--serif);
-      font-size: clamp(1.2rem, 1.7vw, 1.55rem);
-      line-height: 1.45;
-    }
-
-    .hero-operations {
-      grid-column: 10 / -1;
-      align-self: end;
-      border-top: 1px solid var(--ink);
-    }
-
-    .hero-fact {
-      display: grid;
-      grid-template-columns: 110px 1fr;
-      gap: 12px;
-      padding: 13px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .hero-fact dt,
-    .hero-fact dd {
-      margin: 0;
-    }
-
-    .hero-fact dt {
-      color: var(--muted);
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-    }
-
-    .hero-fact dd {
-      font-weight: 600;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 24px;
-    }
-
-    .credits-line {
-      grid-column: 1 / -1;
-      margin: 64px 0 0;
-      padding-top: 16px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 12px 36px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.82rem;
-    }
-
-    .page-grid {
-      width: var(--page);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      column-gap: 24px;
-    }
-
-    main {
-      grid-column: 1 / span 8;
-      min-width: 0;
-    }
-
-    .operational-rail {
-      grid-column: 10 / -1;
-      align-self: start;
-      position: sticky;
-      top: calc(var(--header-height) + 28px);
-      margin-top: 96px;
-      padding-top: 14px;
-      border-top: 2px solid var(--ink);
-    }
-
-    .rail-state {
-      margin: 8px 0 14px;
-      font-family: var(--serif);
-      font-size: 1.45rem;
-      line-height: 1.15;
-    }
-
-    .rail-list {
-      margin: 20px 0;
-      padding: 0;
-      list-style: none;
-      border-top: 1px solid var(--line);
-    }
-
-    .rail-list li {
-      padding: 9px 0;
-      border-bottom: 1px solid var(--line);
-      font-size: 0.82rem;
-    }
-
-    .rail-list a {
-      display: block;
-      color: var(--muted);
-      text-decoration: none;
-    }
-
-    .rail-list a[aria-current="location"] {
-      color: var(--ink);
-      font-weight: 700;
-    }
-
-    .field {
-      padding: clamp(82px, 10vw, 146px) 0;
-      border-bottom: 1px solid var(--ink);
-    }
-
-    .field[id] {
-      scroll-margin-top: calc(var(--header-height) + 28px);
-    }
-
-    .section-header {
-      display: grid;
-      grid-template-columns: 94px 1fr;
-      gap: 24px;
-      align-items: start;
-      margin-bottom: 48px;
-    }
-
-    .section-header h2 {
-      max-width: 770px;
-      margin: -7px 0 0;
-      font-family: var(--serif);
-      font-size: clamp(2.45rem, 5vw, 5.2rem);
-      font-weight: 450;
-      line-height: 0.98;
-    }
-
-    .prose {
-      max-width: 790px;
-      margin-left: 118px;
-    }
-
-    .prose > p {
-      margin: 0 0 1.35em;
-      font-family: var(--serif);
-      font-size: clamp(1.15rem, 1.6vw, 1.38rem);
-      line-height: 1.58;
-    }
-
-    blockquote {
-      margin: 64px 0;
-      padding: 0 0 0 24px;
-      border-left: 5px solid var(--red);
-      font-family: var(--serif);
-      font-size: clamp(1.6rem, 3vw, 2.9rem);
-      line-height: 1.16;
-    }
-
-    .record {
-      margin: 32px 0 54px 118px;
-      border-top: 2px solid var(--ink);
-      border-bottom: 1px solid var(--ink);
-    }
-
-    .record-head {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      padding: 18px 0;
-    }
-
-    .record-title {
-      margin: 8px 0 0;
-      font-family: var(--serif);
-      font-size: 1.7rem;
-    }
-
-    .metadata {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px 18px;
-      margin: 0;
-    }
-
-    .metadata div {
-      padding-bottom: 7px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .metadata dt,
-    .metadata dd {
-      margin: 0;
-      font-family: var(--mono);
-      font-size: 0.69rem;
-    }
-
-    .metadata dt {
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    .metadata dd {
-      margin-top: 3px;
-    }
-
-    details {
-      border-top: 1px solid var(--line);
-    }
-
-    summary {
-      min-height: 52px;
-      padding: 14px 40px 14px 0;
-      position: relative;
-      cursor: pointer;
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      list-style: none;
-      text-transform: uppercase;
-    }
-
-    summary::-webkit-details-marker {
-      display: none;
-    }
-
-    summary::after {
-      content: "+";
-      position: absolute;
-      right: 8px;
-      top: 10px;
-      font-family: var(--sans);
-      font-size: 1.5rem;
-    }
-
-    details[open] summary::after {
-      content: "−";
-    }
-
-    .details-body {
-      padding: 8px 0 24px;
-      font-family: var(--serif);
-      font-size: 1.08rem;
-    }
-
-    .classification-grid,
-    .operations-grid,
-    .caderno-grid,
-    .roles-grid,
-    .participation-grid {
-      margin: 54px 0 0 118px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-top: 2px solid var(--ink);
-    }
-
-    .orientation-grid {
-      margin: 54px 0 0 118px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      border-top: 2px solid var(--ink);
-    }
-
-    .classification-item,
-    .operation,
-    .caderno-item,
-    .role,
-    .participation-item {
-      padding: 22px 24px 28px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .orientation-item {
-      padding: 22px 24px 28px 0;
-      border-bottom: 1px solid var(--line);
-      border-right: 1px solid var(--line);
-    }
-
-    .orientation-item + .orientation-item {
-      padding-left: 24px;
-    }
-
-    .orientation-item:last-child {
-      border-right: 0;
-    }
-
-    .classification-item:nth-child(odd),
-    .operation:nth-child(odd),
-    .caderno-item:nth-child(odd),
-    .role:nth-child(odd),
-    .participation-item:nth-child(odd) {
-      padding-right: 36px;
-      border-right: 1px solid var(--line);
-    }
-
-    .classification-item:nth-child(even),
-    .operation:nth-child(even),
-    .caderno-item:nth-child(even),
-    .role:nth-child(even),
-    .participation-item:nth-child(even) {
-      padding-left: 36px;
-    }
-
-    .classification-item h3,
-    .operation h3,
-    .caderno-item h3,
-    .role h3,
-    .participation-item h3 {
-      margin: 0 0 10px;
-      font-family: var(--serif);
-      font-size: 1.55rem;
-      font-weight: 500;
-    }
-
-    .orientation-item h3 {
-      margin: 0 0 10px;
-      font-family: var(--serif);
-      font-size: 1.32rem;
-      font-weight: 500;
-      line-height: 1.18;
-    }
-
-    .classification-item p,
-    .operation p,
-    .caderno-item p,
-    .role p,
-    .participation-item p {
-      margin: 0;
-    }
-
-    .orientation-item p {
-      margin: 0;
-    }
-
-    .timeline {
-      margin: 64px 0 0 118px;
-      border-top: 2px solid var(--ink);
-    }
-
-    .timeline-entry {
-      display: grid;
-      grid-template-columns: 118px 1fr;
-      padding: 18px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .timeline-entry time {
-      color: var(--red);
-      font-family: var(--mono);
-    }
-
-    .timeline-entry p {
-      margin: 0;
-    }
-
-    .chain {
-      margin: 54px 0 54px 118px;
-      padding: 0;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      list-style: none;
-      border-top: 2px solid var(--ink);
-      border-left: 1px solid var(--line);
-    }
-
-    .chain li {
-      min-height: 94px;
-      padding: 15px 26px 15px 14px;
-      position: relative;
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      text-transform: uppercase;
-    }
-
-    .chain li:not(:last-child)::after {
-      content: "→";
-      position: absolute;
-      right: 8px;
-      bottom: 10px;
-      color: var(--red);
-    }
-
-    .operation:last-child {
-      grid-column: 1 / -1;
-      padding-left: 0;
-      border-right: 0;
-      background: var(--green);
-    }
-
-    .operation:last-child h3,
-    .operation:last-child p {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-
-    .program {
-      margin: 60px 0 0 118px;
-      border-top: 2px solid var(--ink);
-    }
-
-    .meeting {
-      display: grid;
-      grid-template-columns: 136px 1fr;
-      gap: 28px;
-      padding: 34px 0 40px;
-      border-bottom: 1px solid var(--ink);
-    }
-
-    .meeting-meta {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      text-transform: uppercase;
-    }
-
-    .meeting-meta time {
-      display: block;
-      margin-top: 12px;
-      color: var(--red);
-    }
-
-    .meeting h3 {
-      max-width: 700px;
-      margin: 0 0 20px;
-      font-family: var(--serif);
-      font-size: clamp(1.75rem, 3vw, 2.7rem);
-      font-weight: 450;
-      line-height: 1.08;
-    }
-
-    .meeting p {
-      max-width: 680px;
-      margin: 0 0 18px;
-      font-family: var(--serif);
-      font-size: 1.12rem;
-    }
-
-    .operation-label {
-      font-family: var(--mono) !important;
-      font-size: 0.74rem !important;
-      text-transform: uppercase;
-    }
-
-    .author-name {
-      margin: 0 0 24px;
-      font-family: var(--serif);
-      font-size: clamp(2.4rem, 4.5vw, 4.5rem);
-      font-weight: 450;
-    }
-
-    .price {
-      display: block;
-      margin-top: 10px;
-      font-family: var(--serif);
-      font-size: 2rem;
-      line-height: 1.1;
-    }
-
-    .form-field {
-      margin: 0 0 24px;
-    }
-
-    .interest-form {
-      margin: 54px 0 0 118px;
-      padding-top: 24px;
-      border-top: 2px solid var(--ink);
-    }
-
-    .interest-form label,
-    .interest-form legend {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 700;
-    }
-
-    .interest-form input[type="text"],
-    .interest-form input[type="email"],
-    .interest-form select,
-    .interest-form textarea {
-      width: 100%;
-      min-height: 50px;
-      padding: 12px 13px;
-      border: 1px solid var(--ink);
-      border-radius: 0;
-      background: transparent;
-      color: var(--ink);
-    }
-
-    .interest-form textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    .interest-form input:focus,
-    .interest-form select:focus,
-    .interest-form textarea:focus {
-      outline: 3px solid var(--green);
-      outline-offset: 0;
-    }
-
-    .checkbox-field {
-      display: grid;
-      grid-template-columns: 24px 1fr;
-      gap: 12px;
-      align-items: start;
-      margin: 28px 0;
-    }
-
-    .checkbox-field input {
-      width: 20px;
-      height: 20px;
-      margin: 2px 0 0;
-      accent-color: var(--red);
-    }
-
-    .checkbox-field label {
-      margin: 0;
-      font-weight: 400;
-    }
-
-    .form-note,
-    .form-status {
-      max-width: 680px;
-      font-size: 0.84rem;
-    }
-
-    .form-note {
-      color: var(--muted);
-    }
-
-    .form-status {
-      min-height: 24px;
-      margin-top: 16px;
-      font-weight: 700;
-    }
-
-    .faq {
-      margin: 54px 0 0 118px;
-      border-bottom: 1px solid var(--ink);
-    }
-
-    .faq details {
-      border-top-color: var(--ink);
-    }
-
-    .faq summary {
-      padding-top: 18px;
-      padding-bottom: 18px;
-      font-family: var(--sans);
-      font-size: 1rem;
-      font-weight: 700;
-      text-transform: none;
-    }
-
-    .faq .details-body {
-      max-width: 720px;
-      padding-right: 40px;
-    }
-
-    .closing {
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .closing-lines {
-      max-width: 880px;
-      margin: 0 0 58px 118px;
-      font-family: var(--serif);
-      font-size: clamp(1.5rem, 2.8vw, 2.55rem);
-      line-height: 1.3;
-    }
-
-    .closing-lines p {
-      margin: 0 0 0.65em;
-    }
-
-    .site-footer {
-      background: var(--ink);
-      color: var(--paper);
-    }
-
-    .footer-inner {
-      width: var(--page);
-      margin: 0 auto;
-      padding: 54px 0 110px;
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: 24px;
-    }
-
-    .footer-main {
-      grid-column: 1 / span 5;
-    }
-
-    .footer-links {
-      grid-column: 7 / span 3;
-    }
-
-    .footer-state {
-      grid-column: 10 / -1;
-    }
-
-    .footer-title {
-      margin: 0 0 20px;
-      font-family: var(--mono);
-      font-size: 1rem;
-    }
-
-    .footer-main p,
-    .footer-state p {
-      color: #d9ddd6;
-    }
-
-    .footer-links ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 9px;
-    }
-
-    .sources {
-      grid-column: 1 / -1;
-      margin-top: 48px;
-      padding-top: 24px;
-      border-top: 1px solid #5d615b;
-    }
-
-    .sources details {
-      border: 0;
-    }
-
-    .sources summary {
-      color: var(--paper);
-    }
-
-    .sources ol {
-      max-width: 920px;
-      padding-left: 22px;
-    }
-
-    .sources li {
-      margin-bottom: 10px;
-      overflow-wrap: anywhere;
-    }
-
-    .index-dialog {
-      width: min(620px, calc(100vw - 32px));
-      max-height: calc(100vh - 32px);
-      margin: 16px 16px 16px auto;
-      padding: 0;
-      border: 1px solid var(--ink);
-      border-radius: 0;
-      background: var(--paper);
-      color: var(--ink);
-    }
-
-    .index-dialog::backdrop {
-      background: rgba(18, 18, 18, 0.68);
-    }
-
-    .index-head {
-      position: sticky;
-      top: 0;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--paper);
-      border-bottom: 1px solid var(--ink);
-    }
-
-    .index-head h2 {
-      margin: 0;
-      font-family: var(--serif);
-      font-size: 2rem;
-      font-weight: 450;
-    }
-
-    .index-nav {
-      margin: 0;
-      padding: 0 20px 30px;
-      list-style: none;
-      counter-reset: index;
-    }
-
-    .index-nav li {
-      counter-increment: index;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .index-nav a {
-      min-height: 54px;
-      padding: 14px 0;
-      display: grid;
-      grid-template-columns: 42px 1fr;
-      align-items: center;
-      text-decoration: none;
-    }
-
-    .index-nav a::before {
-      content: counter(index, decimal-leading-zero);
-      color: var(--red);
-      font-family: var(--mono);
-      font-size: 0.7rem;
-    }
-
-    .mobile-action {
-      display: none;
-    }
-
-    .highlighted {
-      animation: relation-highlight 900ms ease;
-    }
-
-    @keyframes relation-highlight {
-      0%, 100% { background: transparent; }
-      35% { background: var(--green); }
-    }
-
-    @media (max-width: 980px) {
-      :root {
-        --page: calc(100vw - 40px);
-      }
-
-      .header-inner {
-        grid-template-columns: 1fr auto;
-      }
-
-      .header-inner > .action {
-        display: none;
-      }
-
-      .brand span {
-        display: none;
-      }
-
-      .hero {
-        min-height: auto;
-        grid-template-columns: 1fr;
-        padding-top: 58px;
-      }
-
-      .hero-copy,
-      .hero-operations,
-      .credits-line {
-        grid-column: 1;
-      }
-
-      .hero-operations {
-        margin-top: 58px;
-      }
-
-      .credits-line {
-        margin-top: 42px;
-      }
-
-      .hero h1 {
-        font-size: clamp(4rem, 15vw, 7rem);
-      }
-
-      .page-grid {
-        display: block;
-      }
-
-      main {
-        width: 100%;
-      }
-
-      .operational-rail {
-        display: none;
-      }
-
-      .mobile-action {
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: 90;
-        padding: 8px 20px max(8px, env(safe-area-inset-bottom));
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 14px;
-        background: var(--ink);
-        color: var(--paper);
-      }
-
-      .mobile-action .state-label {
-        color: var(--paper);
-      }
-
-      .mobile-action .action {
-        min-width: min(62vw, 360px);
-      }
-    }
-
-    @media (max-width: 680px) {
-      :root {
-        --page: calc(100vw - 40px);
-        --header-height: 60px;
-      }
-
-      body {
-        padding-bottom: 74px;
-      }
-
-      .site-header,
-      .header-inner {
-        min-height: var(--header-height);
-      }
-
-      .hero {
-        padding-top: 48px;
-      }
-
-      .hero h1 {
-        font-size: clamp(3.55rem, 20vw, 5.5rem);
-        line-height: 0.88;
-      }
-
-      .hero h2 {
-        font-size: 1.72rem;
-      }
-
-      .hero-intro {
-        margin-top: 34px;
-        font-size: 1.16rem;
-      }
-
-      .hero-fact {
-        grid-template-columns: 92px 1fr;
-      }
-
-      .hero-actions .action {
-        width: 100%;
-      }
-
-      .credits-line {
-        display: block;
-      }
-
-      .credits-line span {
-        display: block;
-        margin-top: 10px;
-      }
-
-      .field {
-        padding: 78px 0;
-      }
-
-      .section-header {
-        grid-template-columns: 1fr;
-        gap: 22px;
-        margin-bottom: 38px;
-      }
-
-      .section-header h2 {
-        margin-top: 0;
-        font-size: clamp(2.5rem, 13vw, 4rem);
-      }
-
-      .prose,
-      .record,
-      .classification-grid,
-      .operations-grid,
-      .caderno-grid,
-      .roles-grid,
-      .participation-grid,
-      .orientation-grid,
-      .timeline,
-      .chain,
-      .program,
-      .interest-form,
-      .faq,
-      .closing-lines {
-        margin-left: 0;
-      }
-
-      .prose > p {
-        font-size: 1.14rem;
-      }
-
-      blockquote {
-        margin: 46px 0;
-        font-size: 1.65rem;
-      }
-
-      .record-head {
-        grid-template-columns: 1fr;
-      }
-
-      .metadata,
-      .classification-grid,
-      .operations-grid,
-      .caderno-grid,
-      .roles-grid,
-      .participation-grid,
-      .orientation-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .classification-item,
-      .operation,
-      .caderno-item,
-      .role,
-      .participation-item,
-      .orientation-item,
-      .classification-item:nth-child(odd),
-      .operation:nth-child(odd),
-      .caderno-item:nth-child(odd),
-      .role:nth-child(odd),
-      .participation-item:nth-child(odd),
-      .classification-item:nth-child(even),
-      .operation:nth-child(even),
-      .caderno-item:nth-child(even),
-      .role:nth-child(even),
-      .participation-item:nth-child(even) {
-        padding: 20px 0 24px;
-        border-right: 0;
-      }
-
-      .orientation-item,
-      .orientation-item + .orientation-item {
-        padding: 20px 0 24px;
-        border-right: 0;
-      }
-
-      .operation:last-child {
-        grid-column: 1;
-      }
-
-      .timeline-entry {
-        grid-template-columns: 78px 1fr;
-        gap: 14px;
-      }
-
-      .chain {
-        grid-template-columns: 1fr;
-      }
-
-      .chain li {
-        min-height: 58px;
-      }
-
-      .chain li:not(:last-child)::after {
-        content: "↓";
-      }
-
-      .meeting {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-
-      .meeting-meta time {
-        display: inline;
-        margin: 0 0 0 10px;
-      }
-
-      .footer-inner {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-main,
-      .footer-links,
-      .footer-state,
-      .sources {
-        grid-column: 1;
-      }
-
-      .footer-links,
-      .footer-state {
-        margin-top: 24px;
-      }
-
-      .mobile-action .state-label {
-        display: none;
-      }
-
-      .mobile-action .action {
-        width: 100%;
-        min-width: 0;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-    @media print {
-      .site-header,
-      .operational-rail,
-      .mobile-action,
-      .hero-actions,
-      .interest-form button {
-        display: none !important;
-      }
-
-      .hero {
-        min-height: 0;
-      }
-
-      .page-grid {
-        display: block;
-      }
-
-      main {
-        width: 100%;
-      }
-    }
-
-    :root {
-      --page: min(1400px, calc(100vw - 64px));
-      --header-height: 64px;
-      --display: "Arial Narrow", "Aptos Display", "Helvetica Neue", Arial, sans-serif;
-    }
-
-    body {
-      background: #f4f5f1;
-    }
-
-    .site-header {
-      background: var(--ink);
-      color: var(--paper);
-      border-bottom: 0;
-    }
-
-    .header-inner {
-      grid-template-columns: 1fr auto auto;
-    }
-
-    .brand strong {
-      color: var(--green);
-      font-weight: 700;
-    }
-
-    .brand span {
-      color: #b9bdb6;
-    }
-
-    .site-header .plain-button {
-      color: var(--paper);
-      border-color: #666a64;
-    }
-
-    .site-header .plain-button:hover {
-      color: var(--ink);
-      background: var(--paper);
-    }
-
-    .action {
-      border-radius: 0;
-      transition: background-color 180ms ease, color 180ms ease;
-    }
-
-    .hero {
-      min-height: 0;
-      padding: clamp(38px, 5vw, 68px) 0 0;
-      align-content: start;
-      row-gap: 0;
-      border-bottom: 0;
-    }
-
-    .hero-copy {
-      grid-column: 1 / span 8;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      column-gap: 32px;
-      align-content: start;
-      padding-right: 10px;
-    }
-
-    .hero-copy .eyebrow,
-    .hero-copy h1,
-    .hero-copy h2 {
-      grid-column: 1 / -1;
-    }
-
-    .eyebrow {
-      width: max-content;
-      margin: 0 0 18px;
-      padding: 5px 8px 4px;
-      color: var(--paper);
-      background: var(--red);
-      font-weight: 700;
-    }
-
-    .hero h1 {
-      max-width: 820px;
-      margin: 0;
-      font-family: var(--display);
-      font-size: clamp(4.35rem, 7.1vw, 7.35rem);
-      font-weight: 800;
-      line-height: 0.88;
-    }
-
-    .hero h2 {
-      max-width: 780px;
-      margin: 22px 0 0;
-      font-family: var(--serif);
-      font-size: clamp(1.75rem, 2.45vw, 2.65rem);
-      font-weight: 400;
-      line-height: 1.06;
-    }
-
-    .hero-intro {
-      margin: 38px 0 0;
-      padding-top: 15px;
-      border-top: 1px solid var(--ink);
-      font-size: clamp(1rem, 1.25vw, 1.2rem);
-      line-height: 1.48;
-    }
-
-    .hero-orientation {
-      grid-column: 1 / -1;
-      max-width: 880px;
-      margin-top: 24px;
-      padding-top: 0;
-      border-top: 0;
-    }
-
-    .hero-operations {
-      grid-column: 10 / -1;
-      align-self: start;
-      padding: 20px;
-      color: var(--paper);
-      background: var(--ink);
-      border-top: 0;
-    }
-
-    .hero-operations::before {
-      content: "EDIÇÃO 01 / INFORMAÇÃO ATIVA";
-      display: block;
-      margin-bottom: 14px;
-      color: var(--green);
-      font-family: var(--mono);
-      font-size: 0.66rem;
-      font-weight: 700;
-    }
-
-    .hero-operations dl {
-      margin: 0;
-    }
-
-    .hero-operations .hero-fact {
-      grid-template-columns: 74px 1fr;
-      gap: 14px;
-      padding: 11px 0;
-      border-bottom-color: #494c47;
-    }
-
-    .hero-operations .hero-fact:first-child {
-      border-top: 1px solid #494c47;
-    }
-
-    .hero-operations .hero-fact dt {
-      color: #aeb2ab;
-    }
-
-    .hero-operations .hero-fact dd {
-      font-size: 0.92rem;
-      line-height: 1.35;
-    }
-
-    .hero-operations .action {
-      width: 100%;
-    }
-
-    .process-strip {
-      grid-column: 1 / -1;
-      margin: 42px 0 0;
-      padding: 0;
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      color: var(--paper);
-      background: var(--ink);
-      list-style: none;
-      counter-reset: process;
-    }
-
-    .process-strip li {
-      min-height: 78px;
-      padding: 15px 30px 15px 16px;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border-right: 1px solid #555953;
-      counter-increment: process;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .process-strip li::before {
-      content: "0" counter(process);
-      color: var(--red);
-      font-size: 0.64rem;
-    }
-
-    .process-strip li:not(:last-child)::after {
-      content: ">";
-      position: absolute;
-      right: 12px;
-      bottom: 13px;
-      color: var(--green);
-    }
-
-    .process-strip li:last-child {
-      color: var(--ink);
-      background: var(--green);
-      border-right: 0;
-    }
-
-    .process-strip li:last-child::before {
-      color: var(--red);
-    }
-
-    .credits-line {
-      grid-column: 1 / -1;
-      margin: 0;
-      padding: 13px 0 15px;
-      border-top: 0;
-      border-bottom: 1px solid var(--ink);
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      text-transform: uppercase;
-    }
-
-    .page-grid {
-      column-gap: 32px;
-    }
-
-    main {
-      grid-column: 1 / span 8;
-    }
-
-    .operational-rail {
-      margin-top: 54px;
-      padding-top: 0;
-      border-top: 0;
-    }
-
-    .operational-rail > .state-label {
-      display: block;
-      padding: 7px 9px;
-      color: var(--ink);
-      background: var(--green);
-      font-weight: 700;
-    }
-
-    .rail-state {
-      margin: 0;
-      padding: 14px 10px 16px;
-      color: var(--paper);
-      background: var(--ink);
-      font-family: var(--display);
-      font-size: 1.45rem;
-      font-weight: 700;
-    }
-
-    .operational-rail > .action {
-      width: 100%;
-      margin-top: 8px;
-    }
-
-    .rail-list {
-      margin-top: 28px;
-      border-top-color: var(--ink);
-    }
-
-    .rail-list li {
-      padding: 0;
-    }
-
-    .rail-list a {
-      padding: 8px 4px;
-      position: relative;
-    }
-
-    .rail-list a[aria-current="location"] {
-      padding-left: 14px;
-    }
-
-    .rail-list a[aria-current="location"]::before {
-      content: "";
-      width: 6px;
-      position: absolute;
-      top: 7px;
-      bottom: 7px;
-      left: 0;
-      background: var(--red);
-    }
-
-    .field {
-      padding: clamp(76px, 8vw, 118px) 0;
-      position: relative;
-    }
-
-    .section-header {
-      grid-template-columns: 104px 1fr;
-      margin-bottom: 42px;
-    }
-
-    .section-number {
-      width: max-content;
-      padding: 5px 7px;
-      color: var(--paper);
-      background: var(--red);
-      font-weight: 700;
-    }
-
-    .section-header h2 {
-      max-width: 700px;
-      margin-top: -8px;
-      font-family: var(--display);
-      font-size: clamp(2.75rem, 4.8vw, 4.8rem);
-      font-weight: 800;
-      line-height: 0.94;
-    }
-
-    .prose > p {
-      font-size: clamp(1.08rem, 1.42vw, 1.27rem);
-      line-height: 1.6;
-    }
-
-    .record,
-    .classification-grid,
-    .operations-grid,
-    .caderno-grid,
-    .roles-grid,
-    .participation-grid,
-    .orientation-grid,
-    .timeline,
-    .program,
-    .interest-form,
-    .faq {
-      border-top-width: 3px;
-    }
-
-    .classification-item,
-    .operation,
-    .caderno-item,
-    .role,
-    .participation-item {
-      min-height: 146px;
-    }
-
-    .classification-item {
-      position: relative;
-      padding-top: 44px;
-    }
-
-    .classification-item::before {
-      content: "CAMPO / " attr(id);
-      position: absolute;
-      top: 16px;
-      left: 0;
-      color: var(--red);
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      text-transform: uppercase;
-    }
-
-    .classification-item:nth-child(even)::before {
-      left: 36px;
-    }
-
-    #belarmino,
-    #ciclo {
-      color: var(--paper);
-      background: var(--ink);
-      box-shadow: -48px 0 0 var(--ink), 48px 0 0 var(--ink);
-      border-bottom-color: #686c65;
-    }
-
-    #belarmino .prose > p,
-    #ciclo .prose > p,
-    #belarmino .timeline-entry p,
-    #ciclo .meeting p {
-      color: #e3e5df;
-    }
-
-    #belarmino .timeline,
-    #ciclo .program,
-    #belarmino .timeline-entry,
-    #ciclo .meeting {
-      border-color: #686c65;
-    }
-
-    #belarmino .section-number,
-    #ciclo .section-number {
-      color: var(--ink);
-      background: var(--green);
-    }
-
-    #belarmino .timeline-entry time,
-    #ciclo .meeting-meta time,
-    #ciclo .operation-label {
-      color: var(--green);
-    }
-
-    .chain {
-      border-top-width: 3px;
-    }
-
-    .chain li {
-      min-height: 108px;
-      display: flex;
-      align-items: flex-end;
-      font-weight: 700;
-    }
-
-    .operation h3,
-    .caderno-item h3,
-    .role h3,
-    .participation-item h3,
-    .orientation-item h3,
-    .meeting h3 {
-      font-family: var(--display);
-      font-weight: 750;
-    }
-
-    .operation:last-child {
-      min-height: 122px;
-      display: grid;
-      align-content: center;
-    }
-
-    .meeting {
-      padding-top: 28px;
-    }
-
-    .meeting-meta {
-      padding-top: 4px;
-      color: #bfc2bc;
-    }
-
-    #formulario {
-      margin-top: 0;
-      padding-left: 0;
-      background: var(--green);
-      box-shadow: -48px 0 0 var(--green), 48px 0 0 var(--green);
-    }
-
-    #formulario .section-number {
-      background: var(--ink);
-    }
-
-    #formulario .interest-form {
-      border-top-color: var(--ink);
-    }
-
-    #formulario input,
-    #formulario textarea {
-      background: rgba(244, 245, 241, 0.5);
-    }
-
-    .price {
-      font-family: var(--display);
-      font-weight: 800;
-    }
-
-    .closing {
-      min-height: 70vh;
-    }
-
-    .closing-lines {
-      border-left: 7px solid var(--red);
-      padding-left: 24px;
-    }
-
-    @media (max-width: 980px) {
-      :root {
-        --page: calc(100vw - 40px);
-      }
-
-      .hero-copy {
-        grid-column: 1;
-        padding-right: 0;
-      }
-
-      .hero-operations {
-        grid-column: 1;
-        margin-top: 42px;
-      }
-
-      .process-strip,
-      .credits-line {
-        grid-column: 1;
-      }
-
-      .process-strip {
-        margin-top: 28px;
-      }
-
-      #belarmino,
-      #ciclo,
-      #formulario {
-        box-shadow: -20px 0 0 currentColor, 20px 0 0 currentColor;
-      }
-
-      #belarmino,
-      #ciclo {
-        box-shadow: -20px 0 0 var(--ink), 20px 0 0 var(--ink);
-      }
-
-      #formulario {
-        box-shadow: -20px 0 0 var(--green), 20px 0 0 var(--green);
-      }
-    }
-
-    @media (max-width: 680px) {
-      .header-inner {
-        grid-template-columns: 1fr auto;
-      }
-
-      .hero {
-        padding-top: 34px;
-      }
-
-      .hero-copy {
-        display: block;
-      }
-
-      .hero h1 {
-        max-width: 520px;
-        font-size: clamp(3.55rem, 17.5vw, 5.2rem);
-        line-height: 0.9;
-      }
-
-      .hero h2 {
-        margin-top: 18px;
-        font-size: 1.65rem;
-      }
-
-      .hero-intro {
-        margin-top: 28px;
-      }
-
-      .hero-operations {
-        padding: 18px;
-      }
-
-      .process-strip {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .process-strip li {
-        min-height: 68px;
-        border-bottom: 1px solid #555953;
-      }
-
-      .process-strip li:nth-child(2) {
-        border-right: 0;
-      }
-
-      .process-strip li:last-child {
-        grid-column: 1 / -1;
-      }
-
-      .credits-line {
-        padding-top: 15px;
-      }
-
-      .section-header {
-        grid-template-columns: 1fr;
-      }
-
-      .section-header h2 {
-        font-size: clamp(2.6rem, 12vw, 4rem);
-      }
-
-      .classification-item:nth-child(even)::before {
-        left: 0;
-      }
-
-      .closing-lines {
-        padding-left: 18px;
-      }
+    @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,500..900,50..100,1&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@600;800&display=swap");
+
+    :root{
+      --oil:#050504;--black:#0b0907;--night:#080d18;--acid:#c7ff3d;--mineral:#123322;--wound:#ff2b1f;--wine:#3b0505;--bone:#e4d7aa;--dirty:#f3efe2;--dust:#837f70;
+      --display:"Fraunces","Cormorant Garamond",Georgia,serif;--serif:"Cormorant Garamond",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Consolas,monospace;--sans:"Inter",system-ui,sans-serif;
+      --max:1180px;--ease:cubic-bezier(.19,1,.22,1);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--oil);color:var(--dirty)}
+    body{
+      margin:0;min-height:100vh;overflow-x:hidden;font-family:var(--serif);font-size:20px;line-height:1.45;
+      background:
+        radial-gradient(circle at 13% 7%,rgba(255,43,31,.25),transparent 28rem),
+        radial-gradient(circle at 78% 15%,rgba(199,255,61,.13),transparent 24rem),
+        radial-gradient(circle at 51% 72%,rgba(18,51,34,.76),transparent 34rem),
+        linear-gradient(135deg,#050504 0%,#0b0907 42%,#080d18 100%);
+    }
+    body:before,body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0}
+    body:before{
+      opacity:.36;mix-blend-mode:screen;
+      background-image:
+        linear-gradient(90deg,rgba(228,215,170,.05) 1px,transparent 1px),
+        linear-gradient(0deg,rgba(228,215,170,.035) 1px,transparent 1px),
+        repeating-linear-gradient(101deg,rgba(255,43,31,.05) 0 1px,transparent 1px 11px);
+      background-size:74px 74px,74px 74px,170px 170px;
+      animation:gridDrift 26s linear infinite;
+    }
+    body:after{
+      opacity:.18;filter:contrast(190%);
+      background:
+        radial-gradient(circle at 20% 40%,rgba(243,239,226,.8) 0 1px,transparent 1px 6px),
+        radial-gradient(circle at 70% 20%,rgba(199,255,61,.65) 0 1px,transparent 1px 9px),
+        repeating-radial-gradient(circle at 50% 50%,rgba(228,215,170,.06) 0 1px,transparent 1px 4px);
+    }
+    @keyframes gridDrift{to{transform:translate3d(-74px,74px,0)}}
+    @keyframes crawl{to{transform:translateX(-50%)}}
+    @keyframes pulse{0%,100%{opacity:.52;transform:translateY(0) rotate(-1deg)}50%{opacity:1;transform:translateY(-7px) rotate(1deg)}}
+    @keyframes slash{0%,100%{transform:scaleX(.92) rotate(-1.2deg);opacity:.78}50%{transform:scaleX(1.02) rotate(.7deg);opacity:1}}
+
+    a{color:inherit;text-decoration-color:rgba(199,255,61,.7);text-underline-offset:.18em}
+    a:hover{color:var(--acid)}
+    p{margin:0 0 1rem}
+    h1,h2,h3{margin:0;font-family:var(--display);line-height:.9;font-weight:850;letter-spacing:-.035em}
+    .site{position:relative;z-index:1;isolation:isolate}
+    .skip{position:fixed;top:1rem;left:1rem;z-index:30;padding:.75rem 1rem;background:var(--acid);color:var(--oil);font-family:var(--mono);transform:translateY(-160%);transition:.2s}
+    .skip:focus{transform:none}
+
+    .top{
+      position:fixed;left:0;right:0;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:1rem;
+      padding:.72rem clamp(1rem,3vw,2rem);font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;
+      background:linear-gradient(90deg,rgba(5,5,4,.92),rgba(11,9,7,.72),rgba(59,5,5,.76));border-bottom:1px solid rgba(228,215,170,.18);backdrop-filter:blur(18px)
+    }
+    .top nav{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:flex-end}
+    .top a{text-decoration:none;color:rgba(243,239,226,.78)}
+    .top a:hover,.top a.active{color:var(--acid)}
+
+    .ticker{margin-top:2.5rem;overflow:hidden;border-block:1px solid rgba(255,43,31,.24);background:rgba(5,5,4,.46);color:rgba(228,215,170,.74);font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+    .ticker span{display:inline-block;min-width:200%;padding:.65rem 0;animation:crawl 36s linear infinite}
+
+    .hero{position:relative;min-height:100svh;padding:clamp(5rem,8vw,8rem) clamp(1rem,4vw,3rem) clamp(3rem,8vw,7rem);display:grid;align-items:center;overflow:hidden;border-bottom:1px solid rgba(228,215,170,.16)}
+    .hero:before{
+      content:"";position:absolute;inset:0;z-index:-2;filter:saturate(135%);
+      background:
+        linear-gradient(115deg,transparent 0 24%,rgba(255,43,31,.19) 24% 26%,transparent 26%),
+        radial-gradient(ellipse at 24% 56%,rgba(59,5,5,.82),transparent 42%),
+        radial-gradient(ellipse at 82% 44%,rgba(199,255,61,.14),transparent 36%),
+        radial-gradient(ellipse at 56% 88%,rgba(18,51,34,.58),transparent 50%);
+    }
+    .hero:after{
+      content:"voz escola igreja arquivo revista museu território mundo resto";position:absolute;left:-8vw;bottom:2vh;z-index:-1;width:120vw;
+      font-family:var(--display);font-weight:900;font-size:clamp(4rem,18vw,17rem);line-height:.75;letter-spacing:-.045em;color:rgba(243,239,226,.035);transform:rotate(-7deg)
+    }
+    .hero-grid{width:min(100%,var(--max));margin:0 auto;display:grid;grid-template-columns:minmax(0,1.16fr) minmax(290px,.66fr);gap:clamp(1.4rem,4vw,4rem);align-items:end}
+
+    .label,.section-label{display:inline-flex;gap:.5rem;align-items:center;width:fit-content;color:var(--acid);font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase}
+    .label:before,.section-label:before{content:"";width:2.8rem;height:1px;background:var(--wound);box-shadow:0 0 14px rgba(255,43,31,.8)}
+
+    .rasura{position:relative;display:inline-block;margin:2rem 0 1.2rem;padding:.8rem 1rem .75rem;max-width:34rem;color:rgba(228,215,170,.78);font-family:var(--mono);font-size:.76rem;line-height:1.45;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(228,215,170,.16);background:linear-gradient(90deg,rgba(59,5,5,.48),rgba(5,5,4,.68)),repeating-linear-gradient(0deg,transparent 0 7px,rgba(243,239,226,.04) 7px 8px);transform:rotate(-1deg)}
+    .rasura strong{display:block;margin-top:.25rem;color:rgba(243,239,226,.82);font-weight:500}
+    .rasura:before,.rasura:after{content:"";position:absolute;left:-4%;right:-4%;top:54%;height:3px;background:var(--wound);box-shadow:0 0 18px rgba(255,43,31,.72);transform-origin:left center;animation:slash 4.8s ease-in-out infinite}
+    .rasura:after{top:64%;height:1px;opacity:.55;animation-delay:-1.5s}
+
+    h1{max-width:10ch;font-size:clamp(4.4rem,13vw,12.8rem);color:var(--dirty);text-shadow:0 0 1px var(--dirty),.045em .035em 0 rgba(255,43,31,.72),-.03em -.025em 0 rgba(199,255,61,.35),0 .12em 2.2rem rgba(0,0,0,.92);font-variation-settings:"WONK" 1,"SOFT" 60}
+    .subtitle{margin-top:1.2rem;max-width:48rem;font-size:clamp(1.7rem,4vw,3.6rem);line-height:.98;color:var(--bone)}
+    .epigraph{margin-top:2.2rem;max-width:34rem;color:rgba(243,239,226,.76);font-family:var(--mono);font-size:.88rem;letter-spacing:.08em;text-transform:uppercase}
+    .epigraph cite{display:block;margin-top:.55rem;color:var(--dust);font-style:normal}
+    .hero-copy{margin-top:2.2rem;max-width:46rem;color:rgba(243,239,226,.88);font-size:clamp(1.25rem,2vw,1.72rem);line-height:1.28}
+
+    .panel{position:relative;padding:1rem;background:linear-gradient(150deg,rgba(228,215,170,.16),rgba(5,5,4,.2) 34%,rgba(59,5,5,.42)),radial-gradient(circle at 100% 0%,rgba(199,255,61,.18),transparent 15rem);border:1px solid rgba(228,215,170,.26);box-shadow:0 2rem 5rem rgba(0,0,0,.62),inset 0 0 0 1px rgba(255,255,255,.04);transform:rotate(.7deg)}
+    .panel:before{content:"";position:absolute;inset:.55rem;border:1px solid rgba(199,255,61,.18);pointer-events:none}
+    .panel-title{margin:0 0 1rem;color:var(--acid);font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+    .op-list{display:grid;gap:.82rem;margin:0;padding:0;list-style:none}
+    .op-list li{display:grid;grid-template-columns:6.5rem 1fr;gap:1rem;padding-bottom:.75rem;border-bottom:1px solid rgba(228,215,170,.16);font-family:var(--mono);font-size:.82rem;line-height:1.45}
+    .op-list b{color:var(--dust);font-weight:500;text-transform:uppercase;letter-spacing:.08em}
+    .machine-link{color:var(--dirty);text-decoration-color:rgba(199,255,61,.85);text-decoration-thickness:1px;text-underline-offset:.2em}
+    .machine-link:hover{color:var(--acid)}
+    .cta{display:inline-flex;align-items:center;justify-content:center;min-height:3.4rem;margin-top:1.2rem;padding:.95rem 1.15rem;color:var(--oil);background:var(--acid);border:1px solid rgba(199,255,61,.7);font-family:var(--sans);font-size:.82rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;box-shadow:.5rem .5rem 0 rgba(255,43,31,.78),0 0 28px rgba(199,255,61,.18);transition:.2s var(--ease)}
+    .cta:hover{color:var(--oil);background:var(--dirty);transform:translate(-.15rem,-.15rem);box-shadow:.72rem .72rem 0 rgba(255,43,31,.84),0 0 36px rgba(199,255,61,.25)}
+    .cta-row{margin-top:2rem}
+    .microcopy{margin:.85rem 0 0;color:rgba(228,215,170,.68);font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+    .operators{margin-top:1.3rem;display:flex;flex-wrap:wrap;gap:.45rem}
+    .operators span{position:relative;padding:.35rem .54rem;color:rgba(243,239,226,.82);font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(228,215,170,.18);background:rgba(5,5,4,.42);transform:rotate(var(--r,-1deg));animation:pulse 7s ease-in-out infinite;animation-delay:var(--d,0s)}
+
+    .result-strip{position:relative;padding:1.2rem clamp(1rem,4vw,3rem);border-bottom:1px solid rgba(228,215,170,.14);background:linear-gradient(90deg,rgba(59,5,5,.38),rgba(5,5,4,.68),rgba(18,51,34,.28)),repeating-linear-gradient(90deg,transparent 0 18px,rgba(243,239,226,.03) 18px 19px)}
+    .result-strip:before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(255,43,31,.38);box-shadow:0 0 18px rgba(255,43,31,.3);transform:rotate(-.25deg)}
+    .result-grid{position:relative;width:min(100%,var(--max));margin:0 auto;display:grid;grid-template-columns:.55fr 1.45fr;gap:1.5rem;align-items:center}
+    .result-title{color:var(--acid);font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
+    .result-items{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem}
+    .result-items span{display:block;padding:.75rem;border:1px solid rgba(228,215,170,.15);background:rgba(5,5,4,.42);color:rgba(243,239,226,.84);font-family:var(--mono);font-size:.76rem;line-height:1.35;text-transform:uppercase;letter-spacing:.05em}
+
+    .section{position:relative;padding:clamp(4rem,9vw,8rem) clamp(1rem,4vw,3rem);border-bottom:1px solid rgba(228,215,170,.12)}
+    .section:before{content:attr(data-ghost);position:absolute;top:1.2rem;right:-2vw;z-index:-1;max-width:72vw;color:rgba(243,239,226,.035);font-family:var(--display);font-size:clamp(4rem,15vw,14rem);font-weight:900;line-height:.75;letter-spacing:-.05em;pointer-events:none}
+    .wrap{width:min(100%,var(--max));margin:0 auto}
+    .split{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(1.5rem,5vw,5rem);align-items:start}
+    .section h2{margin-top:.9rem;font-size:clamp(3rem,8vw,7.2rem);color:var(--dirty);text-shadow:.035em .03em 0 rgba(255,43,31,.42)}
+    .lead{font-size:clamp(1.3rem,2.3vw,2rem);line-height:1.22;color:var(--bone)}
+    .prose{color:rgba(243,239,226,.86)}
+    .prose p{font-size:clamp(1.1rem,1.6vw,1.38rem);line-height:1.5}
+    .entries{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:2rem;background:rgba(228,215,170,.18);border:1px solid rgba(228,215,170,.18)}
+    .entry{padding:1.2rem;background:linear-gradient(145deg,rgba(11,9,7,.92),rgba(18,51,34,.38)),repeating-linear-gradient(90deg,transparent 0 12px,rgba(243,239,226,.035) 12px 13px)}
+    .entry h3{margin-bottom:.8rem;font-size:1.55rem;line-height:1;color:var(--acid);letter-spacing:-.02em}
+    .entry p{margin:0;color:rgba(243,239,226,.79);font-size:1.05rem}
+    .gains{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:2.2rem}
+    .gain{position:relative;min-height:14rem;padding:1.05rem;border:1px solid rgba(228,215,170,.18);background:radial-gradient(circle at 86% 14%,rgba(199,255,61,.13),transparent 6.5rem),linear-gradient(160deg,rgba(5,5,4,.84),rgba(18,51,34,.3) 48%,rgba(59,5,5,.38)),repeating-linear-gradient(115deg,transparent 0 13px,rgba(243,239,226,.035) 13px 14px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);overflow:hidden;transition:.28s var(--ease)}
+    .gain:before{content:"";position:absolute;left:-12%;right:12%;top:52%;height:1px;background:rgba(255,43,31,.58);transform:rotate(-5deg);box-shadow:0 0 14px rgba(255,43,31,.42)}
+    .gain h3{position:relative;font-family:var(--mono);font-size:.86rem;line-height:1.2;letter-spacing:.13em;text-transform:uppercase;color:var(--acid);margin-bottom:.85rem}
+    .gain p{position:relative;margin:0;color:rgba(243,239,226,.82);font-size:1.02rem;line-height:1.42}
+    .blade{position:relative;margin:2rem 0;padding:1.15rem 1.2rem 1.1rem 1.5rem;color:var(--dirty);font-family:var(--display);font-size:clamp(1.8rem,4vw,4rem);font-weight:850;line-height:.95;letter-spacing:-.035em;background:linear-gradient(90deg,rgba(255,43,31,.24),rgba(5,5,4,.2));border-left:4px solid var(--wound)}
+    .blade:after{content:"";position:absolute;left:0;right:10%;top:52%;height:2px;background:rgba(199,255,61,.68);transform:rotate(-.4deg)}
+    .timeline{display:grid;gap:.8rem;margin-top:2rem}
+    .time{display:grid;grid-template-columns:5.2rem 1fr;gap:1rem;padding:.8rem 0;border-top:1px solid rgba(228,215,170,.14);font-family:var(--mono);font-size:.84rem}
+    .time b{color:var(--acid);font-size:1rem}
+
+    .nodes{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:2.3rem}
+    .node{min-height:12rem;padding:1rem;border:1px solid rgba(228,215,170,.18);background:radial-gradient(circle at 90% 10%,rgba(199,255,61,.14),transparent 6rem),linear-gradient(160deg,rgba(5,5,4,.82),rgba(59,5,5,.34));box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);transition:.28s var(--ease)}
+    .node:hover,.gain:hover{transform:translateY(-.35rem) rotate(-.5deg);border-color:rgba(199,255,61,.48)}
+    .node h3{font-family:var(--mono);font-size:.82rem;line-height:1;letter-spacing:.16em;text-transform:uppercase;color:var(--acid)}
+    .node p{margin:.9rem 0 0;color:rgba(243,239,226,.8);font-size:1rem;line-height:1.4}
+
+    .archive{margin-top:1.5rem;padding:1rem;background:linear-gradient(110deg,rgba(228,215,170,.12),rgba(5,5,4,.74)),repeating-linear-gradient(0deg,rgba(243,239,226,.04) 0 1px,transparent 1px 9px);border:1px solid rgba(228,215,170,.25);font-family:var(--mono);font-size:.84rem;color:rgba(243,239,226,.82)}
+    .archive h3{font-family:var(--display);font-size:2.6rem;color:var(--dirty);margin-bottom:.8rem}
+    .archive-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem 1rem}
+    .archive-grid div{padding-top:.55rem;border-top:1px solid rgba(228,215,170,.16)}
+    .archive-grid b{display:block;color:var(--dust);text-transform:uppercase;letter-spacing:.08em;font-weight:500}
+    .dark{background:linear-gradient(180deg,rgba(5,5,4,.1),rgba(5,5,4,.9)),radial-gradient(circle at 30% 20%,rgba(255,43,31,.17),transparent 22rem),#030302}
+
+    .meetings{display:grid;gap:1rem;margin-top:2rem;counter-reset:meetings}
+    .meeting{position:relative;display:grid;grid-template-columns:10rem 1fr;gap:1.2rem;padding:1.2rem;border:1px solid rgba(228,215,170,.18);background:linear-gradient(125deg,rgba(11,9,7,.92),rgba(18,51,34,.25),rgba(59,5,5,.28))}
+    .meeting:before{counter-increment:meetings;content:"0" counter(meetings);position:absolute;top:.9rem;right:1rem;color:rgba(243,239,226,.08);font-family:var(--display);font-size:5rem;font-weight:900;line-height:1}
+    .date{font-family:var(--mono);color:var(--acid);font-size:.9rem;letter-spacing:.08em;text-transform:uppercase}
+    .meeting h3{font-size:clamp(1.9rem,3.5vw,3.2rem);color:var(--dirty);margin-bottom:.8rem}
+    .meeting p{max-width:50rem;color:rgba(243,239,226,.82);font-size:1.08rem}
+    .operation{display:inline-flex;margin-top:.5rem;color:var(--oil);background:var(--acid);padding:.35rem .55rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+
+    .quad{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-top:2rem}
+    .box{padding:1rem;min-height:12rem;border:1px solid rgba(228,215,170,.17);background:linear-gradient(160deg,rgba(228,215,170,.13),rgba(5,5,4,.6) 42%,rgba(59,5,5,.32))}
+    .box h3{font-family:var(--mono);font-size:.82rem;color:var(--acid);text-transform:uppercase;letter-spacing:.1em;line-height:1.2;margin-bottom:.8rem}
+    .box p{color:rgba(243,239,226,.82);font-size:1rem;line-height:1.4}
+    .zero-more{margin-top:1.5rem;border:1px solid rgba(228,215,170,.2);background:radial-gradient(circle at 100% 0%,rgba(199,255,61,.14),transparent 13rem),linear-gradient(130deg,rgba(59,5,5,.45),rgba(5,5,4,.7)),repeating-linear-gradient(0deg,rgba(243,239,226,.035) 0 1px,transparent 1px 10px)}
+    .zero-more summary{font-size:.82rem}
+    .zero-more p{font-size:1.08rem;line-height:1.48}
+    .price{margin-top:2rem;padding:1.2rem;background:var(--dirty);color:var(--oil);border:4px solid var(--wound);box-shadow:.7rem .7rem 0 rgba(199,255,61,.7);font-family:var(--mono)}
+    .price h3{font-family:var(--display);font-size:3rem;color:var(--oil);margin-bottom:.8rem}
+    .price p{margin:.35rem 0;font-size:1rem}
+    .price .microcopy{color:rgba(5,5,4,.62)}
+    .bio{padding:1.2rem;border-left:3px solid var(--acid);background:rgba(5,5,4,.48)}
+    .partners{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.4rem}
+    .partner{padding:1rem;border:1px solid rgba(228,215,170,.18);background:rgba(11,9,7,.7);font-family:var(--mono);font-size:.88rem}
+    .partner b{display:block;color:var(--acid);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.1em}
+    .contact{max-width:45rem;padding:clamp(1.2rem,3vw,2rem);background:radial-gradient(circle at 100% 0%,rgba(199,255,61,.22),transparent 16rem),linear-gradient(145deg,rgba(59,5,5,.54),rgba(5,5,4,.72));border:1px solid rgba(228,215,170,.26)}
+    .faq{display:grid;gap:.7rem;margin-top:2rem}
+    details{border:1px solid rgba(228,215,170,.18);background:rgba(5,5,4,.52)}
+    summary{cursor:pointer;padding:1rem;color:var(--bone);font-family:var(--mono);font-size:.86rem;letter-spacing:.06em;text-transform:uppercase;list-style:none}
+    summary::-webkit-details-marker{display:none}
+    summary:after{content:" / abrir";color:var(--acid)}
+    details[open] summary:after{content:" / fechar";color:var(--wound)}
+    details p{margin:0;padding:0 1rem 1rem;color:rgba(243,239,226,.82);font-size:1.05rem}
+    .finale{min-height:86vh;display:grid;align-items:center;background:radial-gradient(circle at 50% 40%,rgba(255,43,31,.22),transparent 20rem),radial-gradient(circle at 80% 70%,rgba(199,255,61,.12),transparent 24rem),#050504}
+    .finale h2{max-width:9ch}
+    .closing{margin-top:2rem;color:var(--bone);font-family:var(--mono);font-size:.92rem;line-height:1.8;letter-spacing:.08em;text-transform:uppercase}
+
+    .fixed-cta{
+      position:fixed;right:1rem;bottom:1rem;z-index:25;display:flex;align-items:center;gap:.65rem;padding:.55rem .62rem .55rem .85rem;
+      color:rgba(243,239,226,.88);font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+      background:linear-gradient(110deg,rgba(5,5,4,.88),rgba(59,5,5,.76));border:1px solid rgba(228,215,170,.22);box-shadow:0 1rem 3rem rgba(0,0,0,.55),inset 0 0 0 1px rgba(199,255,61,.08);backdrop-filter:blur(14px);
+      opacity:0;transform:translateY(1rem);pointer-events:none;transition:opacity .28s var(--ease),transform .28s var(--ease)
+    }
+    body.has-scrolled .fixed-cta{opacity:1;transform:none;pointer-events:auto}
+    .fixed-cta a{display:inline-flex;align-items:center;justify-content:center;min-height:2rem;padding:.35rem .65rem;color:var(--oil);background:var(--acid);font-family:var(--sans);font-size:.68rem;font-weight:800;text-decoration:none;box-shadow:.22rem .22rem 0 rgba(255,43,31,.86)}
+    .fixed-cta a:hover{color:var(--oil);background:var(--dirty)}
+
+    footer{padding:3rem clamp(1rem,4vw,3rem);background:#030302;color:rgba(243,239,226,.75);font-family:var(--mono);font-size:.78rem;line-height:1.6;border-top:1px solid rgba(228,215,170,.16)}
+    .footer-grid{width:min(100%,var(--max));margin:0 auto;display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:1.5rem}
+    .footer-title{color:var(--dirty);font-family:var(--display);font-size:2.6rem;line-height:.9;letter-spacing:-.03em}
+    .footer-links,.sources{display:grid;gap:.35rem}
+    .sources{color:var(--dust)}
+    .sources a{color:var(--dust);text-decoration-color:rgba(131,127,112,.55)}
+    .sources a:hover{color:var(--acid)}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+    .reveal.visible{opacity:1;transform:none}
+
+    @media(max-width:900px){
+      body{font-size:18px;padding-bottom:4.2rem}.top{position:absolute}.top nav{display:none}.hero{padding-top:5.5rem}.hero-grid,.split,.meeting,.footer-grid,.result-grid{grid-template-columns:1fr}.panel{transform:none}.entries,.nodes,.quad,.partners,.gains,.result-items{grid-template-columns:1fr}.archive-grid{grid-template-columns:1fr}.time,.op-list li{grid-template-columns:1fr;gap:.25rem}h1{font-size:clamp(4rem,20vw,7rem)}
+      .fixed-cta{left:.7rem;right:.7rem;bottom:.7rem;justify-content:space-between;padding:.55rem .6rem .55rem .75rem;font-size:.68rem}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}
     }
   </style>
 </head>
+
 <body>
-  <a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
+  <a class="skip" href="#conteudo">Saltar para o conteúdo</a>
+  <div class="site">
+    <header class="top" aria-label="Navegação principal">
+      <a href="/negativo.mov/da-voz-ao-arquivo/">NEGATIVO.mov / Da Voz ao Arquivo</a>
+      <nav>
+        <a href="#operacao">Operação</a>
+        <a href="#ganhos">Ganhos</a>
+        <a href="#caderno-zero">Caderno Zero</a>
+        <a href="#ciclo">Ciclo</a>
+        <a href="#participacao">Participação</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </header>
 
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="brand" href="#abertura" aria-label="Da Voz ao Arquivo, voltar à abertura">
-        <strong>NEGATIVO.mov</strong>
-        <span>Da Voz ao Arquivo</span>
-      </a>
-      <button class="plain-button" type="button" data-open-index aria-haspopup="dialog">Índice</button>
-      <a class="action campaign-action" href="https://4d0daace.sibforms.com/serve/MUIFAN5DlnFBH45Xw5l_JmLgI_vM5u3VHzExVvOFMiGxhi5Hg9OZUgxIBhin5CMTKJLuTYZLsBRXXVVoUlFfp_FR-SuANHuPWKuuYqmI2WIiXIooFljbWHz41vsxgSTn-Oy7pcK5X87icOE79V5wo81tDcniamHuCgFsTg9trRXKAgKVEEY9_EIIgxYp2ezTY3RXMMc57Jsz4Yhrrw==" target="_blank" rel="noopener noreferrer">Entrar na lista de interesse</a>
-    </div>
-  </header>
-
-  <section class="hero" id="abertura" aria-labelledby="titulo-principal">
-    <div class="hero-copy">
-      <p class="eyebrow">Ciclo online de investigação</p>
-      <h1 id="titulo-principal">Da Voz ao Arquivo</h1>
-      <h2>Belarmino Afonso e a invenção do povo transmontano</h2>
-      <p class="hero-intro">Uma voz é recolhida. Recebe um título, uma data, uma classificação. Uma prática torna-se documento; um conjunto de documentos passa a falar em nome de uma cultura. Entre a voz e o arquivo, uma região adquire forma pública, memória transmissível e possibilidade de futuro.</p>
-      <p class="hero-intro"><em>Da Voz ao Arquivo</em> é um ciclo inaugural de quatro encontros dedicado a investigar as operações pelas quais vozes, práticas, objetos, recolhas escolares, fotografias, publicações e registos sonoros passam a constituir aquilo que reconhecemos como povo transmontano.</p>
-      <p class="hero-intro hero-orientation">Para quem deseja compreender como uma região se transforma em cultura pública — e como arquivos, escolas, publicações, imagens e vozes podem participar dessa transformação.</p>
+    <div class="fixed-cta" aria-label="Chamada fixa para lista de interesse">
+      <span>Lista aberta / inscrições em 24.08</span>
+      <a href="https://4d0daace.sibforms.com/serve/MUIFAN5DlnFBH45Xw5l_JmLgI_vM5u3VHzExVvOFMiGxhi5Hg9OZUgxIBhin5CMTKJLuTYZLsBRXXVVoUlFfp_FR-SuANHuPWKuuYqmI2WIiXIooFljbWHz41vsxgSTn-Oy7pcK5X87icOE79V5wo81tDcniamHuCgFsTg9trRXKAgKVEEY9_EIIgxYp2ezTY3RXMMc57Jsz4Yhrrw==" target="_blank" rel="noopener">Entrar</a>
     </div>
 
-    <div class="hero-operations" aria-label="Informações essenciais">
-      <dl>
-        <div class="hero-fact">
-          <dt>Formato</dt>
-          <dd>Quatro encontros online e quinzenais</dd>
-        </div>
-        <div class="hero-fact">
-          <dt>Datas</dt>
-          <dd>24 de setembro — 5 de novembro de 2026</dd>
-        </div>
-        <div class="hero-fact">
-          <dt>Horário</dt>
-          <dd>Quintas-feiras, 21h — 22h30, Lisboa</dd>
-        </div>
-        <div class="hero-fact">
-          <dt>Valor</dt>
-          <dd>80 € · Associados A.L.M.A.: 65 €</dd>
-        </div>
-        <div class="hero-fact">
-          <dt>Inclui</dt>
-          <dd>Caderno Zero + gravações por 60 dias</dd>
-        </div>
-      </dl>
-      <div class="hero-actions">
-        <a class="action campaign-action" href="https://4d0daace.sibforms.com/serve/MUIFAN5DlnFBH45Xw5l_JmLgI_vM5u3VHzExVvOFMiGxhi5Hg9OZUgxIBhin5CMTKJLuTYZLsBRXXVVoUlFfp_FR-SuANHuPWKuuYqmI2WIiXIooFljbWHz41vsxgSTn-Oy7pcK5X87icOE79V5wo81tDcniamHuCgFsTg9trRXKAgKVEEY9_EIIgxYp2ezTY3RXMMc57Jsz4Yhrrw==" target="_blank" rel="noopener noreferrer">Entrar na lista de interesse</a>
-      </div>
-    </div>
+    <div class="ticker" aria-hidden="true"><span>voz / escola / igreja / arquivo / revista / museu / território / mundo / resto / voz / escola / igreja / arquivo / revista / museu / território / mundo / resto / </span></div>
 
-    <ol class="process-strip" aria-label="Percurso da investigação">
-      <li>Voz</li>
-      <li>Inscrição</li>
-      <li>Classificação</li>
-      <li>Povo</li>
-      <li>Resto</li>
-    </ol>
-
-    <p class="credits-line">
-      <span>Conceção, investigação e realização: <strong>Caio Gabriel / NEGATIVO.mov</strong></span>
-      <span>Apoio institucional e documental: <strong>A.L.M.A.</strong></span>
-    </p>
-  </section>
-
-  <div class="page-grid">
     <main id="conteudo">
-      <section class="field" id="compreender" aria-labelledby="titulo-compreender">
-        <div class="section-header">
-          <span class="section-number">00 / Orientação</span>
-          <h2 id="titulo-compreender">O que este ciclo permite compreender</h2>
-        </div>
-        <div class="prose">
-          <p>Em quatro encontros, o ciclo mostra como vozes, fotografias, recolhas escolares, publicações, ritos, objetos e registos sonoros podem deixar de ser materiais dispersos e passar a constituir uma imagem pública de uma região. A partir do espólio de Belarmino Afonso, o participante compreenderá como uma cultura se organiza, se transmite, ganha valor público e pode voltar a agir sobre o presente.</p>
-        </div>
-        <div class="orientation-grid">
-          <article class="orientation-item">
-            <h3>Para quem se interessa por Trás-os-Montes</h3>
-            <p>Compreender como práticas, vozes, imagens e memórias da região foram recolhidas, organizadas e transmitidas como cultura.</p>
-          </article>
-          <article class="orientation-item">
-            <h3>Para quem trabalha com arquivo, património ou educação</h3>
-            <p>Ver como documentos, classificações, trabalhos escolares, publicações e exposições produzem formas de leitura pública de um território.</p>
-          </article>
-          <article class="orientation-item">
-            <h3>Para quem quer agir culturalmente sobre uma região</h3>
-            <p>Aprender a pensar como materiais dispersos podem tornar-se discurso, projeto, circulação, comunidade e futuro.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="field" id="voz" aria-labelledby="titulo-voz">
-        <div class="section-header">
-          <span class="section-number">01 / Voz</span>
-          <h2 id="titulo-voz">Uma voz recebe uma ficha</h2>
-        </div>
-
-        <article class="record" aria-labelledby="nota-abertura">
-          <div class="record-head">
-            <div>
-              <span class="record-code">Nota de abertura</span>
-              <h3 class="record-title" id="nota-abertura">Uma voz é recolhida</h3>
+      <section class="hero" id="abertura">
+        <div class="hero-grid">
+          <div>
+            <div class="label">Ciclo Da Voz ao Arquivo</div>
+            <a class="rasura" href="/negativo.mov/rastro-da-voz-ao-arquivo/">
+              camada 00 / sob rasura
+              <strong>Belarmino Afonso e a invenção do povo transmontano</strong>
+            </a>
+            <h1>Uma máquina do mundo repensada</h1>
+            <div class="subtitle">A produção transmontana de Belarmino Afonso</div>
+            <div class="epigraph">testar noutro sistema / minha agnose <cite>Haroldo de Campos</cite></div>
+            <div class="hero-copy">
+              <p>Um ciclo sobre voz, escola, arquivo, revista, museu e território: como o trabalho de Belarmino Afonso participou na produção pública de um mundo transmontano.</p>
+              <p>Aqui, o espólio aparece como campo de forças: uma trama de recolhas, classificações, publicações, imagens, vozes, instituições e formas de transmissão pelas quais uma região se tornou legível como cultura.</p>
             </div>
-            <dl class="metadata">
-              <div><dt>Data</dt><dd>Junho de 2026</dd></div>
-              <div><dt>Suporte</dt><dd>Texto de abertura</dd></div>
-              <div><dt>Extensão</dt><dd>Fragmento breve</dd></div>
-              <div><dt>Acesso</dt><dd>Público</dd></div>
-            </dl>
           </div>
-          <details>
-            <summary>Abrir ficha</summary>
-            <div class="details-body">
-              <p><strong>Fragmento:</strong> nota de abertura concebida como entrada da investigação.</p>
-              <p><strong>Autoria:</strong> Caio Gabriel.</p>
-              <p><strong>Identificação:</strong> texto de abertura, junho de 2026.</p>
-              <p><strong>Operação:</strong> passagem do acontecimento vocal à unidade documental.</p>
-              <p><strong>Relação:</strong> voz, escrita, descrição e possibilidade de regresso.</p>
-              <p><strong>Questão:</strong> o que uma voz ganha e perde quando passa a existir como documento?</p>
+
+          <aside class="panel" aria-label="Informações principais do ciclo">
+            <p class="panel-title">Painel operacional</p>
+            <ul class="op-list">
+              <li><b>Formato</b><span>Quatro encontros online e quinzenais</span></li>
+              <li><b>Datas</b><span>24 de setembro - 5 de novembro de 2026</span></li>
+              <li><b>Horário</b><span>Quintas-feiras, 21h - 22h30, Lisboa</span></li>
+              <li><b>Valor</b><span>80 euros público geral<br>65 euros associados A.L.M.A.</span></li>
+              <li><b>Inclui</b><span><a class="machine-link" href="#caderno-zero">Caderno Zero</a> + gravações por 60 dias</span></li>
+              <li><b>Recebe ao entrar</b><span><a class="machine-link" href="#caderno-zero">Caderno Zero</a> + preparação para o primeiro encontro</span></li>
+              <li><b>Estado</b><span>Lista de interesse aberta</span></li>
+            </ul>
+            <a class="cta" href="https://4d0daace.sibforms.com/serve/MUIFAN5DlnFBH45Xw5l_JmLgI_vM5u3VHzExVvOFMiGxhi5Hg9OZUgxIBhin5CMTKJLuTYZLsBRXXVVoUlFfp_FR-SuANHuPWKuuYqmI2WIiXIooFljbWHz41vsxgSTn-Oy7pcK5X87icOE79V5wo81tDcniamHuCgFsTg9trRXKAgKVEEY9_EIIgxYp2ezTY3RXMMc57Jsz4Yhrrw==" target="_blank" rel="noopener">Entrar na lista de interesse</a>
+            <p class="microcopy">A lista é gratuita. As inscrições abrem em 24 de agosto de 2026.</p>
+            <div class="operators" aria-label="Palavras operadoras">
+              <span style="--r:-2deg;--d:0s">voz</span><span style="--r:1deg;--d:-.8s">escola</span><span style="--r:-1deg;--d:-1.6s">igreja</span><span style="--r:2deg;--d:-2.4s">arquivo</span><span style="--r:-2deg;--d:-3.2s">revista</span><span style="--r:1deg;--d:-4s">museu</span><span style="--r:-1deg;--d:-4.8s">território</span><span style="--r:2deg;--d:-5.6s">mundo</span><span style="--r:-2deg;--d:-6.4s">resto</span>
             </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="result-strip" aria-label="Resultados do ciclo">
+        <div class="result-grid">
+          <div class="result-title">Ao entrar no ciclo, você recebe</div>
+          <div class="result-items">
+            <span>um método para ler arquivos como máquinas culturais</span>
+            <span>um <a class="machine-link" href="#caderno-zero">Caderno Zero</a> para iniciar o estudo antes das aulas</span>
+            <span>quatro encontros para pensar voz, escola, arquivo, museu e território</span>
+            <span>uma linguagem para transformar materiais dispersos em projeto público</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" id="operacao" data-ghost="operação">
+        <div class="wrap split">
+          <div><div class="section-label">00 / orientação</div><h2>O que está em operação</h2></div>
+          <div class="prose">
+            <p class="lead">Este ciclo investiga como materiais dispersos passam a produzir mundo.</p>
+            <p>Uma voz, uma fotografia, uma recolha escolar, uma prática ritual, uma publicação ou um registo sonoro mudam quando atravessam escola, Igreja, revista, museu, classificação e arquivo. Cada passagem reorganiza a matéria, atribui-lhe escala, cria formas de autoridade e abre possibilidades de transmissão.</p>
+            <p>A produção transmontana de Belarmino Afonso designa essa dupla operação: a obra realizada por Belarmino em Trás-os-Montes e o modo como essa obra participou na formação pública de um mundo transmontano. O ciclo acompanha esse cruzamento sem reduzir o espólio a homenagem, património imóvel ou celebração regional.</p>
+            <div class="entries">
+              <article class="entry"><h3>Para quem se interessa por Trás-os-Montes</h3><p>Compreender como práticas, vozes, imagens e memórias da região atravessaram suportes e instituições até se tornarem cultura transmissível.</p></article>
+              <article class="entry"><h3>Para quem trabalha com arquivo, património ou educação</h3><p>Ver como documentos, classificações, trabalhos escolares, publicações e exposições produzem formas de leitura pública de um território.</p></article>
+              <article class="entry"><h3>Para quem quer agir culturalmente sobre uma região</h3><p>Aprender a pensar como materiais dispersos podem tornar-se discurso, projeto, circulação, comunidade e futuro.</p></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" id="ganhos" data-ghost="ganhos">
+        <div class="wrap">
+          <div class="section-label">00.1 / ganhos</div>
+          <h2>O que se ganha ao entrar na máquina</h2>
+          <div class="prose" style="max-width:62rem;margin-top:1.4rem">
+            <p class="lead">Este ciclo não oferece apenas uma apresentação sobre Belarmino Afonso. Ele entrega um modo de leitura e operação: uma forma de compreender como arquivos, vozes, imagens, escolas, publicações e instituições produzem mundo cultural.</p>
+          </div>
+          <div class="gains" aria-label="Ganhos do ciclo">
+            <article class="gain"><h3>Ler arquivos como dispositivos</h3><p>Sair capaz de olhar para um espólio e reconhecer as operações que o constituem: seleção, classificação, autoridade, circulação, lacuna e resto.</p></article>
+            <article class="gain"><h3>Reconhecer operações culturais</h3><p>Identificar como recolher, classificar, publicar, arquivar, expor e transmitir transformam materiais dispersos em cultura pública.</p></article>
+            <article class="gain"><h3>Pensar uma região sem idolatria</h3><p>Compreender Trás-os-Montes para além da nostalgia, da homenagem e do património imóvel, acompanhando as mediações que produzem uma imagem pública da região.</p></article>
+            <article class="gain"><h3>Transformar materiais em projeto</h3><p>Ganhar método para converter documentos, vozes, fotografias, memórias e práticas em aulas, textos, exposições, publicações, plataformas ou investigações.</p></article>
+            <article class="gain"><h3>Entrar com ferramentas de estudo</h3><p>Receber o <a class="machine-link" href="#caderno-zero">Caderno Zero</a>: vídeo introdutório, ensaio original, bibliografia orientada e questões preparatórias para começar o percurso antes do primeiro encontro.</p></article>
+            <article class="gain"><h3>Ganhar linguagem de intervenção</h3><p>Sair com vocabulário, método e perguntas para agir culturalmente sobre arquivos, territórios, obras e instituições.</p></article>
+          </div>
+          <div class="cta-row">
+            <a class="cta" href="https://4d0daace.sibforms.com/serve/MUIFAN5DlnFBH45Xw5l_JmLgI_vM5u3VHzExVvOFMiGxhi5Hg9OZUgxIBhin5CMTKJLuTYZLsBRXXVVoUlFfp_FR-SuANHuPWKuuYqmI2WIiXIooFljbWHz41vsxgSTn-Oy7pcK5X87icOE79V5wo81tDcniamHuCgFsTg9trRXKAgKVEEY9_EIIgxYp2ezTY3RXMMc57Jsz4Yhrrw==" target="_blank" rel="noopener">Entrar na lista de interesse</a>
+            <p class="microcopy">A lista é gratuita. As inscrições abrem em 24 de agosto de 2026.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" data-ghost="passagem">
+        <div class="wrap split">
+          <div><div class="section-label">01 / operador</div><h2>Belarmino como ponto de passagem</h2></div>
+          <div class="prose">
+            <p>Belarmino Augusto Afonso nasceu em 1931, em Castro Vicente, no concelho de Mogadouro, e morreu em 2005. Padre, professor, investigador, etnógrafo, arquivista, bibliotecário, editor e organizador cultural, atravessou durante décadas diferentes estruturas de produção cultural no Nordeste Transmontano.</p>
+            <p>O ponto decisivo está na circulação entre funções. Uma mesma figura podia ensinar, recolher, classificar, publicar, expor, dirigir arquivo, organizar revista, participar em museu e devolver ao território uma imagem pública da sua própria cultura.</p>
+            <p>Belarmino torna-se ponto de passagem: entre voz e ficha, entre aluno e arquivo, entre religiosidade popular e classificação, entre território e publicação, entre cultura oral e instituição.</p>
+            <div class="blade">O que se torna possível quando uma mesma figura ensina, recolhe, classifica, publica, expõe e arquiva uma região?</div>
+            <div class="timeline" aria-label="Cronologia">
+              <div class="time"><b>1981</b><span>Início de <em>Brigantia: Revista de Cultura</em>, dirigida por Belarmino Afonso.</span></div>
+              <div class="time"><b>1985</b><span>Posse como diretor da Biblioteca Pública e Arquivo Distrital de Bragança.</span></div>
+              <div class="time"><b>1999</b><span>Reinstalação do Arquivo Distrital de Bragança no antigo Convento de São Francisco.</span></div>
+              <div class="time"><b>2000</b><span>Término da direção do Arquivo e abertura ao público do Museu Etnográfico Dr. Belarmino Afonso.</span></div>
+              <div class="time"><b>2002</b><span>Condecoração com a Ordem do Infante D. Henrique pelos serviços prestados à cultura regional.</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" data-ghost="máquina">
+        <div class="wrap">
+          <div class="section-label">02 / máquina</div>
+          <h2>A máquina</h2>
+          <div class="prose" style="max-width:62rem;margin-top:1.4rem">
+            <p>Uma cultura torna-se pública quando atravessa suportes, instituições, cortes, autorizações e formas de transmissão. O espólio de Belarmino Afonso permite acompanhar uma máquina composta por elementos heterogéneos: voz, escola, Igreja, arquivo, revista, museu, fotografia, exposição, classificação e território.</p>
+            <p>Cada elemento transforma os outros. A voz recolhida ganha data e proveniência. O aluno torna-se órgão de escuta. A classificação cria séries. A revista coloca materiais em circulação. O museu estabiliza objetos e imagens. A Igreja fornece autoridade, capilaridade e linguagem pastoral. O arquivo preserva, mas também define condições de acesso, pertinência e reaparecimento.</p>
+          </div>
+          <div class="nodes" aria-label="Módulos da máquina">
+            <article class="node"><h3>Voz</h3><p>Aquilo que atravessa corpo, escuta, gravação, transcrição e arquivo.</p></article>
+            <article class="node"><h3>Escola</h3><p>O dispositivo que transforma território, memória e prática em tarefa de recolha.</p></article>
+            <article class="node"><h3>Igreja</h3><p>A infraestrutura pastoral que organiza escuta, autoridade, rito, comunidade e transmissão.</p></article>
+            <article class="node"><h3>Arquivo</h3><p>A ordem que descreve, conserva, relaciona e regula a possibilidade de regresso dos materiais.</p></article>
+            <article class="node"><h3>Revista</h3><p>A forma editorial que converte recolha em publicação, autoria, circulação e autoridade intelectual.</p></article>
+            <article class="node"><h3>Museu</h3><p>O dispositivo que estabiliza objetos, imagens e práticas como presença cultural visível.</p></article>
+            <article class="node"><h3>Fotografia</h3><p>O enquadramento que converte corpos, lugares e objetos em aparições repetíveis.</p></article>
+            <article class="node"><h3>Classificação</h3><p>A operação que decide pertinências, nomes, séries e caminhos de acesso.</p></article>
+            <article class="node"><h3>Território</h3><p>O campo que aparece menos como origem pura do que como superfície trabalhada por mediações.</p></article>
+          </div>
+          <div class="blade">A máquina aparece quando a cultura deixa de parecer natural.</div>
+        </div>
+      </section>
+
+      <section class="section reveal" data-ghost="arquivo">
+        <div class="wrap split">
+          <div><div class="section-label">03 / método</div><h2>Da Voz ao Arquivo</h2></div>
+          <div class="prose">
+            <p>Da Voz ao Arquivo nomeia o percurso metodológico do ciclo. A investigação acompanha como vozes, práticas, ritos, objetos, fotografias, trabalhos escolares e publicações chegam a tornar-se arquivo.</p>
+            <p>Uma voz acontece no tempo. A gravação separa-a do corpo e permite que regresse. A transcrição distribui-a novamente, agora em palavras, linhas, pausas e sinais. A descrição acrescenta autoria, data, duração e proveniência. Aquilo que parecia imediato começa a existir como unidade consultável.</p>
+            <p>O arquivo inicia-se antes da conservação. Inicia-se no gesto que recorta um acontecimento, atribui-lhe identidade e decide as condições do seu reaparecimento.</p>
+            <div class="archive">
+              <h3>Nota de abertura / Uma voz é recolhida</h3>
+              <div class="archive-grid">
+                <div><b>Data</b>junho de 2026</div><div><b>Suporte</b>texto de abertura</div><div><b>Extensão</b>fragmento breve</div><div><b>Acesso</b>público</div>
+                <div><b>Fragmento</b>nota de abertura concebida como entrada da investigação</div><div><b>Autoria</b>Caio Gabriel</div>
+                <div><b>Identificação</b>texto de abertura, junho de 2026</div><div><b>Operação</b>passagem do acontecimento vocal a unidade documental</div>
+                <div><b>Relação</b>voz, escrita, descrição e possibilidade de regresso</div><div><b>Questão</b>o que uma voz ganha e perde quando passa a existir como documento?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" data-ghost="mundo">
+        <div class="wrap split">
+          <div><div class="section-label">04 / mundo</div><h2>A produção transmontana</h2></div>
+          <div class="prose">
+            <p>A expressão produção transmontana de Belarmino Afonso conserva uma ambiguidade decisiva. Designa a produção realizada por Belarmino em Trás-os-Montes e, ao mesmo tempo, o modo como essa produção participou na formação pública de um mundo transmontano.</p>
+            <p>Esse mundo ganha consistência por meio de repertórios reconhecíveis, imagens repetíveis, temas de investigação, arquivos, museus, escolas, publicações e formas de transmissão. A região passa a poder ser citada, ensinada, fotografada, catalogada, exposta, lembrada, financiada, disputada.</p>
+            <p>Essa consistência produz reconhecimento e autoridade. Produz também cortes. Algumas vozes tornam-se representativas. Certas práticas recebem o nome de tradição. Objetos específicos passam a condensar uma região. Outros materiais permanecem fora do enquadramento, sem nome, sem ficheiro, sem lugar.</p>
+            <p>O espólio permite estudar essa tensão por dentro. Nele encontram-se marcas de passagem entre território e corpus, acontecimento e registo, ensino e recolha, memória e instituição.</p>
+            <div class="blade">Nenhum mundo coincide inteiramente com a máquina que o faz aparecer.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dark reveal" data-ghost="desencanto">
+        <div class="wrap split">
+          <div><div class="section-label">05 / desencanto</div><h2>O desencanto</h2></div>
+          <div class="prose">
+            <p>O desencanto nasce da visão da máquina. Quando a operação aparece, a idolatria perde a sua inocência. Um espólio deixa de ser apenas conjunto de papéis, imagens e sons; passa a mostrar as condições que permitiram a certos materiais ocupar o lugar de cultura.</p>
+            <p>O ciclo trabalha nessa zona. A homenagem estabiliza uma imagem. A investigação abre a imagem, acompanha os seus suportes, mostra as suas escolhas, observa os seus restos. Belarmino Afonso aparece como ponto privilegiado de passagem por uma rede maior: escola, Igreja, arquivo, revista, museu, território, voz popular, autoridade intelectual.</p>
+            <p>Repensar a máquina do mundo, aqui, significa acompanhar o modo como um mundo transmontano foi produzido, disciplinado, arquivado, transmitido e tornado reconhecível. O pensamento começa quando a cultura deixa de aparecer como dado e passa a expor as suas condições materiais de aparição.</p>
+            <div class="blade">A idolatria morre quando a operação fica visível.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" id="ciclo" data-ghost="ciclo">
+        <div class="wrap">
+          <div class="section-label">06 / curso</div>
+          <h2>O ciclo</h2>
+          <div class="prose" style="max-width:58rem;margin-top:1.4rem">
+            <p>Quatro encontros constituem a primeira unidade pública desta investigação. Cada aula parte de materiais precisos, descreve as operações que os atravessam, convoca os conceitos exigidos pelo problema e regressa ao corpus com uma hipótese transformada.</p>
+          </div>
+          <div class="meetings">
+            <article class="meeting"><div class="date">24.09.2026</div><div><h3>Da voz ao arquivo: como uma cultura se torna transmissível</h3><p>O primeiro encontro apresenta o problema geral: o que acontece quando vozes, práticas e memórias atravessam gravação, fotografia, caderno, revista e arquivo? A estrutura do espólio permite acompanhar a passagem entre acontecimento e documento, introduzindo a máquina de mediações pela qual uma cultura ganha forma pública.</p><span class="operation">Operação central: transpor</span></div></article>
+            <article class="meeting"><div class="date">08.10.2026</div><div><h3>A escola como máquina de escuta</h3><p>Os trabalhos realizados por alunos permitem pensar a escola como dispositivo de recolha territorial. A tarefa escolar envia o estudante ao encontro de orações, lendas, práticas, memórias e formas de sociabilidade. A aula investigará como o território se transforma em corpus e como o aluno passa a participar da produção do arquivo.</p><span class="operation">Operação central: recolher</span></div></article>
+            <article class="meeting"><div class="date">22.10.2026</div><div><h3>Voz, morte e promessa</h3><p>Registos sonoros, cancioneiro, orações, encomendação das almas, religiosidade popular e ex-votos abrem uma interrogação sobre voz, ausência e sobrevivência. O encontro acompanha a passagem da experiência ritual para a gravação, a classificação, a publicação e a exposição.</p><span class="operation">Operação central: fazer sobreviver</span></div></article>
+            <article class="meeting"><div class="date">05.11.2026</div><div><h3>Património ou pensamento vivo?</h3><p>O percurso regressa ao presente do espólio. Conservar, descrever e divulgar constituem escolhas de futuro. A aula investigará como um arquivo pode sustentar ensino, publicações, exposições, plataformas e novas formas de pensamento sobre Trás-os-Montes, preservando as fraturas que impedem a cultura de se converter em repertório imóvel.</p><span class="operation">Operação central: colocar em circulação</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" id="caderno-zero" data-ghost="inscrição">
+        <div class="wrap">
+          <div class="section-label">07 / inscrição</div>
+          <h2>A investigação começa na inscrição</h2>
+          <div class="prose" style="max-width:60rem;margin-top:1.4rem">
+            <p>Cada participante recebe, depois da confirmação do pagamento, o Caderno Zero do ciclo. Ele funciona como primeira entrada material na investigação: não apenas um suplemento, mas o início do trabalho.</p>
+            <p>O Caderno Zero é a primeira entrega concreta do ciclo. Ele não funciona como brinde, mas como dispositivo de entrada: organiza o problema, apresenta a hipótese, orienta leituras e prepara o participante para chegar ao primeiro encontro já dentro da investigação.</p>
+          </div>
+
+          <details class="zero-more">
+            <summary>Saber mais sobre o Caderno Zero</summary>
+            <p>O Caderno Zero é a primeira peça material da investigação. Ele antecipa a entrada no ciclo e mostra, desde o início, que a inscrição não dá acesso apenas a quatro encontros futuros, mas a um campo de estudo já em funcionamento.</p>
+            <p>Nele, o participante recebe um vídeo introdutório, um ensaio original, uma bibliografia orientada e questões preparatórias. A função do material é abrir o problema, oferecer chaves de leitura, organizar o vocabulário inicial e preparar a chegada ao primeiro encontro.</p>
+            <p>O Caderno Zero transforma a espera pelo início das aulas em trabalho de pensamento: a pessoa entra na lista, confirma a inscrição e começa a estudar antes da primeira sessão.</p>
           </details>
-        </article>
 
-        <div class="prose">
-          <p>Uma voz acontece no tempo. A gravação separa-a do corpo e permite que regresse. A transcrição distribui-a novamente, agora em palavras, linhas, pausas e sinais. A descrição acrescenta autoria, data, duração e proveniência. Aquilo que parecia imediato começa a existir como unidade consultável.</p>
-          <p>O arquivo inicia-se antes da conservação. Inicia-se no gesto que recorta um acontecimento, atribui-lhe identidade e decide as condições do seu reaparecimento.</p>
-          <blockquote>O que uma voz ganha e perde quando passa a existir como documento?</blockquote>
+          <div class="quad">
+            <article class="box"><h3>Vídeo de entrada</h3><p><strong>O que é uma máquina de mundo?</strong><br>Introdução audiovisual ao problema do ciclo, com duração aproximada de 12 a 18 minutos.</p></article>
+            <article class="box"><h3>Ensaio original</h3><p><strong>Uma máquina de mundo: sete operações e um resto</strong><br>Texto concentrado sobre as operações pelas quais trabalhos arquivísticos, pedagógicos, artísticos, editoriais e institucionais fazem aparecer formas coletivas.</p></article>
+            <article class="box"><h3>Bibliografia orientada</h3><p><strong>Dez obras relacionadas</strong><br>Leituras centrais, complementares e laterais, com partes prioritárias, problemas, chaves de leitura e relações.</p></article>
+            <article class="box"><h3>Questões preparatórias</h3><p><strong>Campo de investigação aberto</strong><br>Perguntas para acompanhar os materiais e chegar ao primeiro encontro com o campo aberto.</p></article>
+          </div>
+          <div class="prose" style="max-width:60rem;margin-top:1.4rem">
+            <p>O Caderno Zero terá aproximadamente 30 a 40 páginas. As leituras funcionam como possibilidade de aprofundamento; nenhuma delas constitui requisito para acompanhar as aulas.</p>
+          </div>
+          <div class="blade">A experiência do curso começa quando a inscrição se transforma em estudo.</div>
+          <div class="cta-row">
+            <a class="cta" href="https://4d0daace.sibforms.com/serve/MUIFAN5DlnFBH45Xw5l_JmLgI_vM5u3VHzExVvOFMiGxhi5Hg9OZUgxIBhin5CMTKJLuTYZLsBRXXVVoUlFfp_FR-SuANHuPWKuuYqmI2WIiXIooFljbWHz41vsxgSTn-Oy7pcK5X87icOE79V5wo81tDcniamHuCgFsTg9trRXKAgKVEEY9_EIIgxYp2ezTY3RXMMc57Jsz4Yhrrw==" target="_blank" rel="noopener">Entrar na lista de interesse</a>
+            <p class="microcopy">A lista é gratuita. As inscrições abrem em 24 de agosto de 2026.</p>
+          </div>
         </div>
       </section>
 
-      <section class="field" id="ordem" aria-labelledby="titulo-ordem">
-        <div class="section-header">
-          <span class="section-number">02 / Classificação</span>
-          <h2 id="titulo-ordem">Entrar numa ordem</h2>
-        </div>
-        <div class="prose">
-          <p>Um documento isolado conserva poucos caminhos de leitura. Quando entra numa série, passa a relacionar-se com outras unidades, recebe palavras de indexação e torna-se encontrável segundo determinadas perguntas.</p>
-          <p>Nesta investigação, cinco entradas organizam provisoriamente o campo:</p>
-        </div>
-        <div class="classification-grid">
-          <article class="classification-item" id="classe-voz">
-            <h3>Voz</h3>
-            <p>Aquilo que atravessa corpo, gravação, transcrição e escuta.</p>
-          </article>
-          <article class="classification-item" id="classe-escola">
-            <h3>Escola</h3>
-            <p>O dispositivo que transforma território, memória e prática numa tarefa de recolha.</p>
-          </article>
-          <article class="classification-item" id="classe-fotografia">
-            <h3>Fotografia</h3>
-            <p>O enquadramento que converte corpos, objetos e lugares em aparições repetíveis.</p>
-          </article>
-          <article class="classification-item" id="classe-publicacao">
-            <h3>Publicação</h3>
-            <p>A passagem pela qual a recolha adquire forma editorial, autoria e circulação intelectual.</p>
-          </article>
-          <article class="classification-item" id="classe-arquivo">
-            <h3>Arquivo</h3>
-            <p>A ordem que preserva, descreve, relaciona e regula o acesso a um conjunto de materiais.</p>
-          </article>
-        </div>
-        <div class="prose">
-          <p>Essas entradas pertencem ao estado atual da investigação. A classificação documental do espólio e a organização editorial do NEGATIVO.mov aparecerão sempre distinguidas. Uma descreve o conjunto recebido; a outra formula as relações que o curso pretende investigar.</p>
-          <blockquote>Um material torna-se cultural quando entra numa ordem capaz de o fazer circular.</blockquote>
-          <a class="text-action relation-link" href="#regiao">Seguir as relações</a>
+      <section class="section reveal" data-ghost="aula">
+        <div class="wrap split">
+          <div><div class="section-label">08 / aula</div><h2>Forma da aula</h2></div>
+          <div class="prose">
+            <p>Cada encontro combina exposição ensaística, leitura minuciosa de materiais, escuta, desenvolvimento conceitual e discussão.</p>
+            <p>A aula parte do documento antes de convocar a teoria. Um som, uma classificação, uma fotografia ou um trabalho escolar introduz uma resistência concreta. Os conceitos aparecem para responder a essa resistência e permanecem submetidos àquilo que o material ainda pode contrariar.</p>
+            <p>As quatro aulas formam uma linha argumentativa. Cada encontro termina no limite a partir do qual o seguinte se torna necessário.</p>
+            <p>Haverá espaço para perguntas e comentários. A discussão participa da investigação sem substituir a condução do percurso.</p>
+            <p>As exposições serão gravadas. As imagens, vozes e intervenções dos participantes permanecerão fora dos conteúdos públicos, salvo autorização específica.</p>
+          </div>
         </div>
       </section>
 
-      <section class="field" id="belarmino" aria-labelledby="titulo-belarmino">
-        <div class="section-header">
-          <span class="section-number">03 / Operador</span>
-          <h2 id="titulo-belarmino">Belarmino como operador</h2>
-        </div>
-        <div class="prose">
-          <p>Belarmino Augusto Afonso nasceu em 1931, em Castro Vicente, no concelho de Mogadouro, e morreu em 2005. Padre, professor e investigador, atravessou durante décadas diferentes estruturas de produção cultural no Nordeste Transmontano.</p>
-          <p>Dirigiu a Biblioteca Pública e o Arquivo Distrital de Bragança entre 1985 e 2000, período que inclui a reinstalação do Arquivo no antigo Convento de São Francisco. Fundou e dirigiu a revista <em>Brigantia</em>, iniciada em 1981 como publicação dedicada à cultura, etnografia, história local e estudos regionais. Participou na criação do Grupo Etnográfico de Babe, promoveu exposições e encontros e reuniu, ao longo de anos, materiais ligados à cultura tradicional transmontana. Parte desse trabalho integra o Museu Etnográfico Dr. Belarmino Afonso, aberto ao público em 2000.</p>
-          <p>Professor, padre, etnógrafo, arquivista, bibliotecário, editor e organizador cultural designam menos uma soma de títulos que uma circulação entre posições. Em cada uma delas, Belarmino podia recolher materiais, formar outros recolhedores, produzir classificações, organizar publicações e devolver ao território uma imagem pública de si.</p>
-          <blockquote>O que se torna possível quando uma mesma figura ensina, recolhe, classifica, publica, expõe e arquiva uma região?</blockquote>
-        </div>
-        <div class="timeline" aria-label="Cronologia pública">
-          <article class="timeline-entry"><time datetime="1981">1981</time><p>Início de <em>Brigantia: Revista de Cultura</em>, dirigida por Belarmino Afonso.</p></article>
-          <article class="timeline-entry"><time datetime="1985">1985</time><p>Posse como diretor da Biblioteca Pública e Arquivo Distrital de Bragança.</p></article>
-          <article class="timeline-entry"><time datetime="1999">1999</time><p>Reinstalação do Arquivo Distrital de Bragança no antigo Convento de São Francisco.</p></article>
-          <article class="timeline-entry"><time datetime="2000">2000</time><p>Término da direção do Arquivo e abertura ao público do Museu Etnográfico Dr. Belarmino Afonso.</p></article>
-          <article class="timeline-entry"><time datetime="2002">2002</time><p>Condecoração com a Ordem do Infante D. Henrique pelos serviços prestados à cultura regional.</p></article>
+      <section class="section reveal" data-ghost="participantes">
+        <div class="wrap split">
+          <div><div class="section-label">09 / participantes</div><h2>Para quem</h2></div>
+          <div class="prose">
+            <p>O ciclo dirige-se a quem deseja compreender como arquivos, escolas, publicações, museus e suportes técnicos participam da formação pública de uma cultura.</p>
+            <p>Pode interessar especialmente a professores, estudantes, investigadores, artistas, arquivistas, bibliotecários, museólogos, agentes culturais, pessoas ligadas a Trás-os-Montes e membros da diáspora transmontana.</p>
+            <p>O conhecimento prévio de Belarmino Afonso amplia algumas relações, mas não constitui condição de entrada. O caso transmontano abre perguntas transferíveis para outros territórios, arquivos e práticas.</p>
+            <p>O curso possui densidade filosófica e académica. A linguagem parte de materiais concretos e permite a participação de pessoas com percursos formativos diferentes.</p>
+            <div class="cta-row">
+              <a class="cta" href="https://4d0daace.sibforms.com/serve/MUIFAN5DlnFBH45Xw5l_JmLgI_vM5u3VHzExVvOFMiGxhi5Hg9OZUgxIBhin5CMTKJLuTYZLsBRXXVVoUlFfp_FR-SuANHuPWKuuYqmI2WIiXIooFljbWHz41vsxgSTn-Oy7pcK5X87icOE79V5wo81tDcniamHuCgFsTg9trRXKAgKVEEY9_EIIgxYp2ezTY3RXMMc57Jsz4Yhrrw==" target="_blank" rel="noopener">Entrar na lista de interesse</a>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="field" id="regiao" aria-labelledby="titulo-regiao">
-        <div class="section-header">
-          <span class="section-number">04 / Rede</span>
-          <h2 id="titulo-regiao">A região aprende a recolher-se</h2>
-        </div>
-        <div class="prose">
-          <p>O ensino introduz uma operação decisiva. Um professor pode transmitir conhecimentos sobre uma região. Pode também criar as condições para que alunos regressem aos seus lugares, escutem familiares e habitantes, descrevam práticas, recolham vozes e convertam essa experiência em cadernos, trabalhos e unidades documentais.</p>
-        </div>
-        <ol class="chain" aria-label="Cadeia pedagógica de recolha">
-          <li>Território</li>
-          <li>Informante</li>
-          <li>Aluno</li>
-          <li>Tarefa</li>
-          <li>Caderno</li>
-          <li>Professor</li>
-          <li>Classificação</li>
-          <li>Arquivo</li>
-        </ol>
-        <div class="prose">
-          <p>Cada passagem transforma o material. A fala responde a uma pergunta. A memória recebe a forma da tarefa. O aluno seleciona e escreve. O professor lê, avalia e organiza. O arquivo preserva o resultado e permite que, anos depois, uma experiência localizada reapareça como documento de cultura transmontana.</p>
-          <p>Belarmino deixa então de ocupar apenas a posição de quem recolhe. Surge como alguém que forma uma rede de recolha: corpos, cadernos e instituições pelos quais a região aprende a inscrever-se.</p>
-          <blockquote>Um aluno pode tornar-se órgão de escuta do território.</blockquote>
-        </div>
-      </section>
-
-      <section class="field" id="invencao" aria-labelledby="titulo-invencao">
-        <div class="section-header">
-          <span class="section-number">05 / Povo</span>
-          <h2 id="titulo-invencao">A invenção do povo</h2>
-        </div>
-        <div class="prose">
-          <p>“Invenção” designa aqui uma operação material. Vozes, objetos, ritos e memórias existem em tempos e lugares diferentes. A recolha aproxima-os. A classificação distribui-os por categorias. A fotografia oferece uma superfície visual. A gravação conserva uma duração sonora. A escola transforma práticas em trabalhos. A revista atribui forma editorial. O arquivo relaciona essas unidades e as entrega a consultas futuras.</p>
-          <p>O povo transmontano adquire consistência pública nesse percurso. Passa a possuir repertórios reconhecíveis, imagens repetíveis, temas de investigação, instituições de memória e formas de transmissão. Essa consistência produz reconhecimento e autoridade; produz também escolhas. Algumas vozes tornam-se representativas. Certas práticas recebem o nome de tradição. Objetos específicos passam a condensar uma região. Outros materiais permanecem fora do enquadramento.</p>
-          <p>Inventar um povo significa acompanhar as operações pelas quais uma multiplicidade recebe nome, duração e possibilidade de aparecer em conjunto. O povo participa dessas mediações e simultaneamente excede a unidade que elas produzem. A classificação nunca absorve inteiramente os corpos, os conflitos e os modos de vida que procura representar.</p>
-          <p>O espólio de Belarmino Afonso permite estudar essa tensão por dentro. Nele encontram-se as marcas de uma passagem entre território e corpus, entre acontecimento e registo, entre ensino e recolha, entre memória e instituição. A investigação começa quando o arquivo deixa de oferecer apenas respostas sobre o passado e passa a expor as máquinas que tornaram esse passado legível.</p>
-          <blockquote>Nenhum povo coincide inteiramente com o arquivo que o faz aparecer.</blockquote>
-        </div>
-        <div class="operations-grid" aria-label="Sete operações e um resto">
-          <article class="operation"><h3>Delimitar</h3><p>Um campo no qual determinados materiais passam a pertencer uns aos outros.</p></article>
-          <article class="operation"><h3>Recolher</h3><p>Aquilo que se encontrava disperso em corpos, lugares e tempos diferentes.</p></article>
-          <article class="operation"><h3>Selecionar</h3><p>O que recebe presença, duração e escala.</p></article>
-          <article class="operation"><h3>Classificar</h3><p>Segundo categorias que definem pertinências e caminhos de acesso.</p></article>
-          <article class="operation"><h3>Transpor</h3><p>Entre voz, escrita, fotografia, gravação, exposição e arquivo.</p></article>
-          <article class="operation"><h3>Autorizar</h3><p>Nomes, representantes e formas reconhecíveis de cultura.</p></article>
-          <article class="operation"><h3>Colocar em circulação</h3><p>Por meio da escola, da revista, do museu, da biblioteca e da comunicação pública.</p></article>
-          <article class="operation"><h3>Reconhecer o resto</h3><p>Aquilo que resiste ao nome coletivo, permanece sem identificação ou desaparece durante a passagem.</p></article>
-        </div>
-        <div class="prose">
-          <a class="action campaign-action" href="https://4d0daace.sibforms.com/serve/MUIFAN5DlnFBH45Xw5l_JmLgI_vM5u3VHzExVvOFMiGxhi5Hg9OZUgxIBhin5CMTKJLuTYZLsBRXXVVoUlFfp_FR-SuANHuPWKuuYqmI2WIiXIooFljbWHz41vsxgSTn-Oy7pcK5X87icOE79V5wo81tDcniamHuCgFsTg9trRXKAgKVEEY9_EIIgxYp2ezTY3RXMMc57Jsz4Yhrrw==" target="_blank" rel="noopener noreferrer">Entrar na lista de interesse</a>
+      <section class="section reveal" id="participacao" data-ghost="contrato">
+        <div class="wrap">
+          <div class="section-label">10 / contrato</div>
+          <h2>Participação</h2>
+          <div class="quad">
+            <article class="box"><h3>Formato</h3><p>Quatro encontros online e ao vivo, com 90 minutos cada.</p></article>
+            <article class="box"><h3>Calendário</h3><p>24 de setembro, 8 de outubro, 22 de outubro e 5 de novembro de 2026.</p></article>
+            <article class="box"><h3>Horário</h3><p>Quintas-feiras, das 21h às 22h30, hora de Lisboa.</p></article>
+            <article class="box"><h3>Gravações</h3><p>Acesso às exposições durante 60 dias após o último encontro.</p></article>
+            <article class="box"><h3>Materiais</h3><p><a class="machine-link" href="#caderno-zero">Caderno Zero</a>, referências complementares e materiais de acompanhamento.</p></article>
+            <article class="box"><h3>Vagas</h3><p>Turma limitada a 15 participantes. A realização depende da formação de uma turma mínima.</p></article>
+            <article class="box"><h3>Abertura</h3><p>As solicitações de inscrição abrem em 24 de agosto de 2026.</p></article>
+            <article class="box"><h3>Pagamento</h3><p>Pagamento futuro manual por MB WAY ou IBAN.</p></article>
+          </div>
+          <div class="price">
+            <h3>Valores</h3>
+            <p><strong>Ciclo completo:</strong> 80 euros público geral / 65 euros associados da A.L.M.A.</p>
+            <p><strong>Encontro avulso:</strong> 25 euros público geral / 20 euros associados da A.L.M.A.</p>
+            <p>Inscrições avulsas poderão ser abertas depois da confirmação da turma, caso existam vagas.</p>
+            <p><strong>A lista recebe o primeiro aviso quando as inscrições abrirem.</strong></p>
+            <a class="cta" href="https://4d0daace.sibforms.com/serve/MUIFAN5DlnFBH45Xw5l_JmLgI_vM5u3VHzExVvOFMiGxhi5Hg9OZUgxIBhin5CMTKJLuTYZLsBRXXVVoUlFfp_FR-SuANHuPWKuuYqmI2WIiXIooFljbWHz41vsxgSTn-Oy7pcK5X87icOE79V5wo81tDcniamHuCgFsTg9trRXKAgKVEEY9_EIIgxYp2ezTY3RXMMc57Jsz4Yhrrw==" target="_blank" rel="noopener">Entrar na lista de interesse</a>
+            <p class="microcopy">A lista é gratuita. As inscrições abrem em 24 de agosto de 2026.</p>
+          </div>
         </div>
       </section>
 
-      <section class="field" id="ciclo" aria-labelledby="titulo-ciclo">
-        <div class="section-header">
-          <span class="section-number">06 / Curso</span>
-          <h2 id="titulo-ciclo">O ciclo</h2>
-        </div>
-        <div class="prose">
-          <p>Quatro encontros constituem a primeira unidade pública desta investigação. Cada aula parte de materiais precisos, descreve as operações que os atravessam, convoca os conceitos exigidos pelo problema e regressa ao corpus com uma hipótese transformada.</p>
-        </div>
-        <div class="program">
-          <article class="meeting">
-            <div class="meeting-meta">Encontro 1<time datetime="2026-09-24">24.09.2026</time></div>
-            <div><h3>Da voz ao arquivo: como uma cultura se torna transmissível</h3><p>O primeiro encontro apresenta o problema geral: o que acontece quando vozes, práticas e memórias atravessam gravação, fotografia, caderno, revista e arquivo? A estrutura do espólio permite acompanhar a passagem entre acontecimento e documento, introduzindo a ideia de invenção como processo de mediação, inscrição e transmissão.</p><p class="operation-label">Operação central: transpor.</p></div>
-          </article>
-          <article class="meeting">
-            <div class="meeting-meta">Encontro 2<time datetime="2026-10-08">08.10.2026</time></div>
-            <div><h3>A escola como máquina de escuta</h3><p>Os trabalhos realizados por alunos permitem pensar a escola como dispositivo de recolha territorial. A tarefa escolar envia o estudante ao encontro de orações, lendas, práticas, memórias e formas de sociabilidade. A aula investigará como o território se transforma em corpus e como o aluno passa a participar da produção do arquivo.</p><p class="operation-label">Operação central: recolher.</p></div>
-          </article>
-          <article class="meeting">
-            <div class="meeting-meta">Encontro 3<time datetime="2026-10-22">22.10.2026</time></div>
-            <div><h3>Voz, morte e promessa</h3><p>Registos sonoros, cancioneiro, orações, encomendação das almas, religiosidade popular e ex-votos abrem uma interrogação sobre voz, ausência e sobrevivência. O encontro acompanha a passagem da experiência ritual para a gravação, a classificação, a publicação e a exposição.</p><p class="operation-label">Operação central: fazer sobreviver.</p></div>
-          </article>
-          <article class="meeting">
-            <div class="meeting-meta">Encontro 4<time datetime="2026-11-05">05.11.2026</time></div>
-            <div><h3>Património ou pensamento vivo?</h3><p>O percurso regressa ao presente do espólio. Conservar, descrever e divulgar constituem escolhas de futuro. A aula investigará como um arquivo pode sustentar ensino, publicações, exposições, plataformas e novas formas de pensamento sobre Trás-os-Montes, preservando as fraturas que impedem a cultura de se converter em repertório imóvel.</p><p class="operation-label">Operação central: colocar em circulação.</p></div>
-          </article>
+      <section class="section reveal" data-ghost="responsável">
+        <div class="wrap split">
+          <div><div class="section-label">11 / responsabilidade</div><h2>Responsável e parceria</h2></div>
+          <div class="prose">
+            <div class="bio">
+              <p>Caio Gabriel é professor, semiólogo e investigador independente. O seu trabalho articula semiótica, midialogia, filosofia, estética e crítica cultural, com interesse pelas formas através das quais suportes, instituições e linguagens produzem modos de aparição pública.</p>
+              <p>É responsável pelo NEGATIVO.mov, projeto intelectual, editorial e cultural independente desenvolvido a partir de Miranda do Douro. Nele, investiga arquivos, obras, territórios e práticas culturais como sistemas de inscrição, circulação e pensamento.</p>
+              <p><em>Uma máquina do mundo repensada</em> inaugura uma linha continuada de investigação filosófica sobre Belarmino Afonso, o espólio e as mediações que participaram da produção pública de um mundo transmontano.</p>
+            </div>
+            <div class="partners">
+              <div class="partner"><b>Realização</b>Caio Gabriel / NEGATIVO.mov<br>Concepção intelectual, investigação, programa, preparação, aulas, materiais e organização dos participantes.</div>
+              <div class="partner"><b>Apoio</b>A.L.M.A.<br>Apoio institucional e documental, verificação de informações sobre o espólio, autorização dos materiais utilizados e colaboração na divulgação.</div>
+            </div>
+            <p style="margin-top:1rem">As interpretações desenvolvidas no ciclo permanecem sob responsabilidade autoral de Caio Gabriel / NEGATIVO.mov.</p>
+          </div>
         </div>
       </section>
 
-      <section class="field" id="caderno-zero" aria-labelledby="titulo-caderno">
-        <div class="section-header">
-          <span class="section-number">07 / Inscrição</span>
-          <h2 id="titulo-caderno">A investigação começa na inscrição</h2>
-        </div>
-        <div class="prose">
-          <p>Cada participante recebe, depois da confirmação do pagamento, o <strong>Caderno Zero de Da Voz ao Arquivo</strong>.</p>
-        </div>
-        <div class="caderno-grid">
-          <article class="caderno-item"><span class="meta">Vídeo de entrada</span><h3>O que quer dizer inventar um povo?</h3><p>Uma introdução audiovisual ao problema do ciclo, com duração aproximada de 12 a 18 minutos.</p></article>
-          <article class="caderno-item"><span class="meta">Ensaio original</span><h3>Um método para inventar um povo: sete operações e um resto</h3><p>Um texto concentrado sobre as operações pelas quais trabalhos arquivísticos, pedagógicos, artísticos, editoriais e institucionais fazem aparecer formas coletivas.</p></article>
-          <article class="caderno-item"><span class="meta">Bibliografia orientada</span><h3>Dez obras relacionadas</h3><p>Leituras centrais, complementares e laterais, com partes prioritárias, problemas, chaves de leitura e relações.</p></article>
-          <article class="caderno-item"><span class="meta">Questões preparatórias</span><h3>Campo de investigação aberto</h3><p>Um conjunto de perguntas para acompanhar os materiais e chegar ao primeiro encontro com o campo aberto.</p></article>
-        </div>
-        <div class="prose">
-          <p>O Caderno Zero terá aproximadamente 30 a 40 páginas. As leituras funcionam como possibilidade de aprofundamento; nenhuma delas constitui requisito para acompanhar as aulas.</p>
-          <blockquote>A experiência do curso começa no momento em que a inscrição se transforma em estudo.</blockquote>
+      <section class="section reveal" id="contacto" data-ghost="contacto">
+        <div class="wrap split">
+          <div><div class="section-label">12 / contacto</div><h2>Acompanhar a abertura</h2></div>
+          <div class="contact prose">
+            <p>Deixe o contacto para receber o aviso de abertura das inscrições e as informações da primeira edição.</p>
+            <p>O formulário abre em nova aba e recolhe apenas os dados necessários para enviar informações sobre o ciclo. Depois do envio, será necessário confirmar o endereço através do email recebido. Caso a mensagem não apareça, verifique também a pasta de spam.</p>
+            <p>O formulário externo recolhe nome, email, país, relação com o tema e consentimento. Os dados serão usados apenas para enviar informações sobre o ciclo.</p>
+            <a class="cta" href="https://4d0daace.sibforms.com/serve/MUIFAN5DlnFBH45Xw5l_JmLgI_vM5u3VHzExVvOFMiGxhi5Hg9OZUgxIBhin5CMTKJLuTYZLsBRXXVVoUlFfp_FR-SuANHuPWKuuYqmI2WIiXIooFljbWHz41vsxgSTn-Oy7pcK5X87icOE79V5wo81tDcniamHuCgFsTg9trRXKAgKVEEY9_EIIgxYp2ezTY3RXMMc57Jsz4Yhrrw==" target="_blank" rel="noopener">Entrar na lista de interesse</a>
+            <p class="microcopy">A lista é gratuita. As inscrições abrem em 24 de agosto de 2026.</p>
+          </div>
         </div>
       </section>
 
-      <section class="field" id="forma" aria-labelledby="titulo-forma">
-        <div class="section-header">
-          <span class="section-number">08 / Aula</span>
-          <h2 id="titulo-forma">Forma da aula</h2>
-        </div>
-        <div class="prose">
-          <p>Cada encontro combina exposição ensaística, leitura minuciosa de materiais, escuta, desenvolvimento conceitual e discussão.</p>
-          <p>A aula parte do documento antes de convocar a teoria. Um som, uma classificação, uma fotografia ou um trabalho escolar introduz uma resistência concreta. Os conceitos aparecem para responder a essa resistência e permanecem submetidos àquilo que o material ainda pode contrariar.</p>
-          <p>As quatro aulas formam uma linha argumentativa. Cada encontro termina no limite a partir do qual o seguinte se torna necessário.</p>
-          <p>Haverá espaço para perguntas e comentários. A discussão participa da investigação sem substituir a condução do percurso.</p>
-          <p>As exposições serão gravadas. As imagens, vozes e intervenções dos participantes permanecerão fora dos conteúdos públicos, salvo autorização específica.</p>
-        </div>
-      </section>
-
-      <section class="field" id="publico" aria-labelledby="titulo-publico">
-        <div class="section-header">
-          <span class="section-number">09 / Participantes</span>
-          <h2 id="titulo-publico">Para quem</h2>
-        </div>
-        <div class="prose">
-          <p>O ciclo dirige-se a quem deseja compreender como arquivos, escolas, publicações, museus e suportes técnicos participam da formação pública de uma cultura.</p>
-          <p>Pode interessar especialmente a professores, estudantes, investigadores, artistas, arquivistas, bibliotecários, museólogos, agentes culturais, pessoas ligadas a Trás-os-Montes e membros da diáspora transmontana.</p>
-          <p>O conhecimento prévio de Belarmino Afonso amplia algumas relações, mas não constitui condição de entrada. O caso transmontano abre perguntas transferíveis para outros territórios, arquivos e práticas.</p>
-          <p>O curso possui densidade filosófica e académica. A linguagem parte de materiais concretos e permite a participação de pessoas com percursos formativos diferentes.</p>
+      <section class="section reveal" id="faq" data-ghost="faq">
+        <div class="wrap">
+          <div class="section-label">13 / informação</div>
+          <h2>Perguntas frequentes</h2>
+          <div class="faq">
+            <details><summary>Preciso conhecer a obra de Belarmino Afonso?</summary><p>Não. O primeiro encontro apresenta o problema, a figura de Belarmino e a estrutura geral da investigação. Pessoas que já conhecem o seu trabalho encontrarão novas relações; quem chega pela primeira vez receberá os elementos necessários para acompanhar.</p></details>
+            <details><summary>Preciso ter formação em filosofia, antropologia ou arquivo?</summary><p>Não. Os conceitos partem de documentos, sons, imagens e práticas concretas. A bibliografia permite aprofundamento, mas não funciona como requisito de entrada.</p></details>
+            <details><summary>As aulas ficam gravadas?</summary><p>Sim. Os participantes terão acesso às gravações das exposições durante 60 dias depois do último encontro.</p></details>
+            <details><summary>As intervenções dos participantes serão publicadas?</summary><p>Imagens, vozes e comentários de participantes só poderão integrar materiais públicos mediante autorização específica. A gravação destinada a conteúdos posteriores privilegiará a exposição do professor.</p></details>
+            <details><summary>Quando recebo o <a class="machine-link" href="#caderno-zero">Caderno Zero</a>?</summary><p>Depois da confirmação do pagamento. O email de confirmação inclui acesso ao vídeo, ao ensaio, à bibliografia orientada e às questões preparatórias.</p></details>
+            <details><summary>Como funcionará o pagamento?</summary><p>Quando as inscrições abrirem, a página apresentará um formulário de solicitação. As instruções para pagamento por MB WAY ou IBAN serão enviadas individualmente. A vaga permanece reservada durante 48 horas e fica confirmada depois do recebimento do valor.</p></details>
+            <details><summary>Como funciona o valor para associados?</summary><p>Associados da A.L.M.A. pagam 65 euros pelo ciclo completo. A condição de associado será indicada no pedido de inscrição e verificada pela associação quando necessário.</p></details>
+            <details><summary>Posso participar apenas num encontro?</summary><p>Inscrições avulsas poderão abrir depois da confirmação da turma, caso existam vagas. A prioridade inicial pertence às inscrições no ciclo completo.</p></details>
+            <details><summary>O que acontece se a turma não abrir?</summary><p>Os pagamentos realizados serão integralmente devolvidos e uma eventual nova data será comunicada aos interessados.</p></details>
+            <details><summary>Posso cancelar a inscrição?</summary><p>O participante poderá exercer os direitos legalmente aplicáveis aos contratos celebrados à distância. Depois do respetivo prazo e do início do ciclo, a inscrição poderá ser transferida para outra pessoa. As condições completas serão enviadas antes do pagamento.</p></details>
+            <details><summary>Será emitido comprovativo?</summary><p>Será emitido o documento fiscal aplicável aos dados fornecidos pelo participante.</p></details>
+            <details><summary>Como serão utilizados os materiais do espólio?</summary><p>O ciclo utilizará apenas materiais autorizados pelos respetivos titulares. Cada unidade será acompanhada por identificação e proveniência. Restrições de reprodução ou circulação serão respeitadas.</p></details>
+          </div>
         </div>
       </section>
 
-      <section class="field" id="responsavel" aria-labelledby="titulo-responsavel">
-        <div class="section-header">
-          <span class="section-number">10 / Responsabilidade</span>
-          <h2 id="titulo-responsavel">Responsável e parceria</h2>
-        </div>
-        <div class="prose">
-          <h3 class="author-name">Caio Gabriel</h3>
-          <p>Caio Gabriel é professor, semiólogo e investigador independente. O seu trabalho articula semiótica, midialogia, filosofia, estética e crítica cultural, com interesse pelas formas através das quais suportes, instituições e linguagens produzem modos de aparição pública.</p>
-          <p>É responsável pelo <strong>NEGATIVO.mov</strong>, projeto intelectual, editorial e cultural independente desenvolvido a partir de Miranda do Douro. Nele, investiga arquivos, obras, territórios e práticas culturais como sistemas de inscrição, circulação e pensamento.</p>
-          <p><em>Da Voz ao Arquivo</em> inaugura uma linha continuada de investigação filosófica sobre Belarmino Afonso, o espólio e as mediações que participaram da formação pública da cultura transmontana.</p>
-        </div>
-        <div class="roles-grid">
-          <article class="role"><span class="meta">Realização</span><h3>Caio Gabriel / NEGATIVO.mov</h3><p>Conceção intelectual, investigação, programa, preparação, aulas, materiais e organização dos participantes.</p></article>
-          <article class="role"><span class="meta">Apoio</span><h3>A.L.M.A.</h3><p>Apoio institucional e documental, verificação de informações sobre o espólio, autorização dos materiais utilizados e colaboração na divulgação.</p></article>
-        </div>
-        <div class="prose">
-          <p>As interpretações desenvolvidas no ciclo permanecem sob responsabilidade autoral de Caio Gabriel/NEGATIVO.mov.</p>
-        </div>
-      </section>
-
-      <section class="field" id="participacao" aria-labelledby="titulo-participacao">
-        <div class="section-header">
-          <span class="section-number">11 / Contrato</span>
-          <h2 id="titulo-participacao">Participação</h2>
-        </div>
-        <div class="participation-grid">
-          <article class="participation-item"><h3>Formato</h3><p>Quatro encontros online e ao vivo, com 90 minutos cada.</p></article>
-          <article class="participation-item"><h3>Calendário</h3><p>24 de setembro, 8 de outubro, 22 de outubro e 5 de novembro.</p></article>
-          <article class="participation-item"><h3>Horário</h3><p>Quintas-feiras, das 21h às 22h30, hora de Lisboa.</p></article>
-          <article class="participation-item"><h3>Gravações</h3><p>Acesso às exposições durante 60 dias após o último encontro.</p></article>
-          <article class="participation-item"><h3>Materiais</h3><p>Caderno Zero, referências complementares e materiais de acompanhamento.</p></article>
-          <article class="participation-item"><h3>Vagas</h3><p>Turma limitada a 15 participantes. A realização depende da formação de uma turma mínima.</p></article>
-          <article class="participation-item"><h3>Ciclo completo</h3><p><strong class="price">80 €</strong>Público geral</p><p><strong class="price">65 €</strong>Associados da A.L.M.A.</p></article>
-          <article class="participation-item"><h3>Encontro avulso</h3><p><strong class="price">25 €</strong>Público geral</p><p><strong class="price">20 €</strong>Associados da A.L.M.A.</p></article>
-        </div>
-        <div class="prose">
-          <p>Inscrições avulsas poderão ser abertas depois da confirmação da turma, caso existam vagas.</p>
-          <p>As solicitações de inscrição abrem em <strong>24 de agosto de 2026</strong>.</p>
-          <a class="action campaign-action" href="https://4d0daace.sibforms.com/serve/MUIFAN5DlnFBH45Xw5l_JmLgI_vM5u3VHzExVvOFMiGxhi5Hg9OZUgxIBhin5CMTKJLuTYZLsBRXXVVoUlFfp_FR-SuANHuPWKuuYqmI2WIiXIooFljbWHz41vsxgSTn-Oy7pcK5X87icOE79V5wo81tDcniamHuCgFsTg9trRXKAgKVEEY9_EIIgxYp2ezTY3RXMMc57Jsz4Yhrrw==" target="_blank" rel="noopener noreferrer">Entrar na lista de interesse</a>
-          <blockquote>A lista recebe o primeiro aviso quando as inscrições abrirem.</blockquote>
-        </div>
-      </section>
-
-      <section class="field" id="formulario" aria-labelledby="titulo-formulario">
-        <div class="section-header">
-          <span class="section-number">12 / Contacto</span>
-          <h2 id="titulo-formulario">Acompanhar a abertura</h2>
-        </div>
-        <div class="prose">
-          <p class="campaign-form-intro">Deixe o contacto para receber o aviso de abertura das inscrições e as informações da primeira edição.</p>
-          <p>O formulário abre em nova aba e recolhe apenas os dados necessários para enviar informações sobre o ciclo. Depois do envio, será necessário confirmar o endereço através do email recebido. Caso a mensagem não apareça, verifique também a pasta de spam.</p>
-        </div>
-        <div class="interest-form" aria-label="Lista de interesse">
-          <p class="form-note">O formulário externo recolhe nome, email, país, relação com o tema e consentimento. Os dados serão usados apenas para enviar informações sobre <em>Da Voz ao Arquivo</em>.</p>
-          <a class="action campaign-action campaign-form-button" href="https://4d0daace.sibforms.com/serve/MUIFAN5DlnFBH45Xw5l_JmLgI_vM5u3VHzExVvOFMiGxhi5Hg9OZUgxIBhin5CMTKJLuTYZLsBRXXVVoUlFfp_FR-SuANHuPWKuuYqmI2WIiXIooFljbWHz41vsxgSTn-Oy7pcK5X87icOE79V5wo81tDcniamHuCgFsTg9trRXKAgKVEEY9_EIIgxYp2ezTY3RXMMc57Jsz4Yhrrw==" target="_blank" rel="noopener noreferrer">Entrar na lista de interesse</a>
-        </div>
-      </section>
-
-      <section class="field" id="faq" aria-labelledby="titulo-faq">
-        <div class="section-header">
-          <span class="section-number">13 / Informação</span>
-          <h2 id="titulo-faq">Perguntas frequentes</h2>
-        </div>
-        <div class="faq">
-          <details><summary>Preciso conhecer a obra de Belarmino Afonso?</summary><div class="details-body"><p>Não. O primeiro encontro apresenta o problema, a figura de Belarmino e a estrutura geral da investigação. Pessoas que já conhecem o seu trabalho encontrarão novas relações; quem chega pela primeira vez receberá os elementos necessários para acompanhar.</p></div></details>
-          <details><summary>Preciso ter formação em filosofia, antropologia ou arquivo?</summary><div class="details-body"><p>Não. Os conceitos partem de documentos, sons, imagens e práticas concretas. A bibliografia permite aprofundamento, mas não funciona como requisito de entrada.</p></div></details>
-          <details><summary>As aulas ficam gravadas?</summary><div class="details-body"><p>Sim. Os participantes terão acesso às gravações das exposições durante 60 dias depois do último encontro.</p></div></details>
-          <details><summary>As intervenções dos participantes serão publicadas?</summary><div class="details-body"><p>Imagens, vozes e comentários de participantes só poderão integrar materiais públicos mediante autorização específica. A gravação destinada a conteúdos posteriores privilegiará a exposição do professor.</p></div></details>
-          <details><summary>Quando recebo o Caderno Zero?</summary><div class="details-body"><p>Depois da confirmação do pagamento. O email de confirmação inclui acesso ao vídeo, ao ensaio, à bibliografia orientada e às questões preparatórias.</p></div></details>
-          <details><summary>Como funcionará o pagamento?</summary><div class="details-body"><p>Quando as inscrições abrirem, a página apresentará um formulário de solicitação. As instruções para pagamento por MB WAY ou IBAN serão enviadas individualmente. A vaga permanece reservada durante 48 horas e fica confirmada depois do recebimento do valor.</p></div></details>
-          <details><summary>Como funciona o valor para associados?</summary><div class="details-body"><p>Associados da A.L.M.A. pagam 65 € pelo ciclo completo. A condição de associado será indicada no pedido de inscrição e verificada pela associação quando necessário.</p></div></details>
-          <details><summary>Posso participar apenas num encontro?</summary><div class="details-body"><p>Inscrições avulsas poderão abrir depois da confirmação da turma, caso existam vagas. A prioridade inicial pertence às inscrições no ciclo completo.</p></div></details>
-          <details><summary>O que acontece se a turma não abrir?</summary><div class="details-body"><p>Os pagamentos realizados serão integralmente devolvidos e uma eventual nova data será comunicada aos interessados.</p></div></details>
-          <details><summary>Posso cancelar a inscrição?</summary><div class="details-body"><p>O participante poderá exercer os direitos legalmente aplicáveis aos contratos celebrados a distância. Depois do respetivo prazo e do início do ciclo, a inscrição poderá ser transferida para outra pessoa. As condições completas serão enviadas antes do pagamento.</p></div></details>
-          <details><summary>Será emitido comprovativo?</summary><div class="details-body"><p>Será emitido o documento fiscal aplicável aos dados fornecidos pelo participante.</p></div></details>
-          <details><summary>Como serão utilizados os materiais do espólio?</summary><div class="details-body"><p>O ciclo utilizará apenas materiais autorizados pelos respetivos titulares. Cada unidade será acompanhada por identificação e proveniência. Restrições de reprodução ou circulação serão respeitadas.</p></div></details>
-        </div>
-      </section>
-
-      <section class="field closing" id="encerramento" aria-labelledby="titulo-encerramento">
-        <div class="section-header">
-          <span class="section-number">14 / Resto</span>
-          <h2 id="titulo-encerramento">Uma voz entrou no arquivo</h2>
-        </div>
-        <div class="closing-lines">
-          <p>O arquivo atribuiu-lhe uma data, uma série e uma possibilidade de regresso.</p>
-          <p>Outras vozes aproximaram-se. Uma classificação começou a produzir relações. Uma região adquiriu uma forma capaz de atravessar o tempo.</p>
-        </div>
-        <div class="prose">
-          <blockquote>Que povo passa a existir quando um território aprende a arquivar-se? E o que continua a faltar depois de o arquivo fechar a sua classificação?</blockquote>
-          <p><strong>Da Voz ao Arquivo</strong><br>Belarmino Afonso e a invenção do povo transmontano<br>24 de setembro — 5 de novembro de 2026</p>
-          <a class="action campaign-action" href="https://4d0daace.sibforms.com/serve/MUIFAN5DlnFBH45Xw5l_JmLgI_vM5u3VHzExVvOFMiGxhi5Hg9OZUgxIBhin5CMTKJLuTYZLsBRXXVVoUlFfp_FR-SuANHuPWKuuYqmI2WIiXIooFljbWHz41vsxgSTn-Oy7pcK5X87icOE79V5wo81tDcniamHuCgFsTg9trRXKAgKVEEY9_EIIgxYp2ezTY3RXMMc57Jsz4Yhrrw==" target="_blank" rel="noopener noreferrer">Entrar na lista de interesse</a>
+      <section class="section finale reveal" data-ghost="rastro">
+        <div class="wrap split">
+          <div><div class="section-label">14 / rastro</div><h2>Uma máquina deixa rastros</h2></div>
+          <div class="prose">
+            <p>Uma voz entrou no arquivo. Recebeu data, série e possibilidade de regresso. Outras vozes aproximaram-se. Uma classificação começou a produzir relações. Uma região adquiriu uma forma capaz de atravessar o tempo.</p>
+            <p>Mas nenhuma classificação fecha o mundo que ajuda a produzir. Toda máquina deixa resto: aquilo que resiste ao nome, escapa à representação, permanece fora do ficheiro ou regressa como pergunta.</p>
+            <div class="blade">Que mundo passa a existir quando um território aprende a arquivar-se?</div>
+            <div class="closing">Uma máquina do mundo repensada<br>A produção transmontana de Belarmino Afonso<br>Ciclo Da Voz ao Arquivo<br>24 de setembro - 5 de novembro de 2026</div>
+            <a class="cta" href="https://4d0daace.sibforms.com/serve/MUIFAN5DlnFBH45Xw5l_JmLgI_vM5u3VHzExVvOFMiGxhi5Hg9OZUgxIBhin5CMTKJLuTYZLsBRXXVVoUlFfp_FR-SuANHuPWKuuYqmI2WIiXIooFljbWHz41vsxgSTn-Oy7pcK5X87icOE79V5wo81tDcniamHuCgFsTg9trRXKAgKVEEY9_EIIgxYp2ezTY3RXMMc57Jsz4Yhrrw==" target="_blank" rel="noopener">Entrar na lista de interesse</a>
+          </div>
         </div>
       </section>
     </main>
 
-    <aside class="operational-rail" aria-label="Informação operacional">
-      <span class="state-label">Estado da edição</span>
-      <p class="rail-state campaign-status">Lista de interesse aberta</p>
-      <a class="action campaign-action" href="https://4d0daace.sibforms.com/serve/MUIFAN5DlnFBH45Xw5l_JmLgI_vM5u3VHzExVvOFMiGxhi5Hg9OZUgxIBhin5CMTKJLuTYZLsBRXXVVoUlFfp_FR-SuANHuPWKuuYqmI2WIiXIooFljbWHz41vsxgSTn-Oy7pcK5X87icOE79V5wo81tDcniamHuCgFsTg9trRXKAgKVEEY9_EIIgxYp2ezTY3RXMMc57Jsz4Yhrrw==" target="_blank" rel="noopener noreferrer">Entrar na lista de interesse</a>
-      <ul class="rail-list" aria-label="Índice da investigação">
-        <li><a href="#voz">Uma voz recebe uma ficha</a></li>
-        <li><a href="#ordem">Entrar numa ordem</a></li>
-        <li><a href="#belarmino">Belarmino como operador</a></li>
-        <li><a href="#regiao">A região aprende a recolher-se</a></li>
-        <li><a href="#invencao">A invenção do povo</a></li>
-        <li><a href="#ciclo">O ciclo</a></li>
-        <li><a href="#caderno-zero">Caderno Zero</a></li>
-        <li><a href="#participacao">Participação</a></li>
-        <li><a href="#formulario">Contacto</a></li>
-      </ul>
-      <dl>
-        <div class="hero-fact"><dt>Primeiro encontro</dt><dd>24.09.2026</dd></div>
-        <div class="hero-fact"><dt>Vagas</dt><dd>15 participantes</dd></div>
-      </dl>
-    </aside>
-  </div>
-
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-main">
-        <h2 class="footer-title">NEGATIVO.mov</h2>
-        <p>Projeto independente de pensamento crítico, semiótica, midialogia, cultura, arquivo e circulação pública.</p>
-        <p>Conceção, investigação e realização: Caio Gabriel/NEGATIVO.mov</p>
-        <p>Apoio institucional e documental: A.L.M.A.</p>
-        <p>Contacto através do formulário seguro de interesse.</p>
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title">NEGATIVO.mov</div>
+          <p>Projeto independente de pensamento crítico, semiótica, midialogia, cultura, arquivo e circulação pública.</p>
+          <p>Conceção, investigação e realização: Caio Gabriel / NEGATIVO.mov</p>
+          <p>Apoio institucional e documental: A.L.M.A.</p>
+          <p>Contacto através do formulário de interesse.</p>
+        </div>
+        <div class="footer-links" aria-label="Ligações de rodapé">
+          <a href="#abertura">Abertura</a>
+          <a href="#participacao">Participação</a>
+          <a href="#contacto">Contacto</a>
+          <a href="#faq">Perguntas frequentes</a>
+          <a href="/negativo.mov/rastro-da-voz-ao-arquivo/">Rastro da formulação anterior</a>
+        </div>
+        <div>
+          <p><strong>Estado</strong><br>Edição 01<br>Lista de interesse aberta<br>Página oficial atualizada em julho de 2026</p>
+          <div class="sources">
+            <strong>Fontes públicas para informações biográficas</strong>
+            <a href="https://adbgc.dglab.gov.pt/historia/" target="_blank" rel="noopener">Arquivo Distrital de Bragança - História</a>
+            <a href="https://adbgc.dglab.gov.pt/2023/11/01/documento-do-mes-de-novembro-2023-gratidao-para-com-o-conego-belarmino-afonso/" target="_blank" rel="noopener">Arquivo Distrital de Bragança - Gratidão para com o Cónego Belarmino Augusto Afonso</a>
+            <a href="https://scm-braganca.pt/museuetnograficodrbelarminoafonso/" target="_blank" rel="noopener">Santa Casa da Misericórdia de Bragança - Museu Etnográfico Dr. Belarmino Afonso</a>
+            <a href="https://www.rtp.pt/noticias/pais/braganca-perde-referencia-cultural-com-morte-do-conego-berlarmino-afonso_n21615" target="_blank" rel="noopener">RTP/Lusa - Bragança perde referência cultural com morte do cónego Belarmino Afonso</a>
+          </div>
+        </div>
       </div>
-      <nav class="footer-links" aria-label="Ligações do rodapé">
-        <h2 class="footer-title">Ligações</h2>
-        <ul>
-          <li><a href="#abertura">Abertura</a></li>
-          <li><a href="#participacao">Informações</a></li>
-          <li><a href="#formulario">Contacto</a></li>
-          <li><a href="#faq">Perguntas frequentes</a></li>
-        </ul>
-      </nav>
-      <div class="footer-state">
-        <h2 class="footer-title">Estado da investigação</h2>
-        <p>Edição 01<br>Estado de interesse aberto</p>
-      </div>
-      <div class="sources">
-        <details>
-          <summary>Fontes públicas para informações biográficas</summary>
-          <ol>
-            <li><a href="https://adbgc.dglab.gov.pt/historia/">Arquivo Distrital de Bragança — História</a></li>
-            <li><a href="https://adbgc.dglab.gov.pt/2023/11/01/documento-do-mes-de-novembro-2023-gratidao-para-com-o-conego-belarmino-afonso/">Arquivo Distrital de Bragança — Gratidão para com o Cónego Belarmino Augusto Afonso</a></li>
-            <li><a href="https://scm-braganca.pt/museuetnograficodrbelarminoafonso/">Santa Casa da Misericórdia de Bragança — Museu Etnográfico Dr. Belarmino Afonso</a></li>
-            <li><a href="https://www.rtp.pt/noticias/pais/braganca-perde-referencia-cultural-com-morte-do-conego-berlarmino-afonso_n21615">RTP/Lusa — Bragança perde referência cultural com morte do cónego Belarmino Afonso</a></li>
-          </ol>
-        </details>
-      </div>
-    </div>
-  </footer>
-
-  <dialog class="index-dialog" id="index-dialog" aria-labelledby="index-title">
-    <div class="index-head">
-      <h2 id="index-title">Índice</h2>
-      <button class="plain-button" type="button" data-close-index>Fechar</button>
-    </div>
-    <ol class="index-nav">
-      <li><a href="#abertura">Abertura</a></li>
-      <li><a href="#voz">Uma voz recebe uma ficha</a></li>
-      <li><a href="#ordem">Entrar numa ordem</a></li>
-      <li><a href="#belarmino">Belarmino como operador</a></li>
-      <li><a href="#regiao">A região aprende a recolher-se</a></li>
-      <li><a href="#invencao">A invenção do povo</a></li>
-      <li><a href="#ciclo">O ciclo</a></li>
-      <li><a href="#caderno-zero">Caderno Zero</a></li>
-      <li><a href="#forma">Forma da aula</a></li>
-      <li><a href="#publico">Para quem</a></li>
-      <li><a href="#responsavel">Responsável e parceria</a></li>
-      <li><a href="#participacao">Participação</a></li>
-      <li><a href="#formulario">Formulário</a></li>
-      <li><a href="#faq">Perguntas frequentes</a></li>
-      <li><a href="#encerramento">Encerramento</a></li>
-    </ol>
-  </dialog>
-
-  <div class="mobile-action">
-    <span class="state-label campaign-status">Lista de interesse aberta</span>
-    <a class="action campaign-action" href="https://4d0daace.sibforms.com/serve/MUIFAN5DlnFBH45Xw5l_JmLgI_vM5u3VHzExVvOFMiGxhi5Hg9OZUgxIBhin5CMTKJLuTYZLsBRXXVVoUlFfp_FR-SuANHuPWKuuYqmI2WIiXIooFljbWHz41vsxgSTn-Oy7pcK5X87icOE79V5wo81tDcniamHuCgFsTg9trRXKAgKVEEY9_EIIgxYp2ezTY3RXMMc57Jsz4Yhrrw==" target="_blank" rel="noopener noreferrer">Entrar na lista de interesse</a>
+    </footer>
   </div>
 
   <script>
-    const CAMPAIGN_STATE = "interest";
-    const BREVO_INTEREST_URL = "https://4d0daace.sibforms.com/serve/MUIFAN5DlnFBH45Xw5l_JmLgI_vM5u3VHzExVvOFMiGxhi5Hg9OZUgxIBhin5CMTKJLuTYZLsBRXXVVoUlFfp_FR-SuANHuPWKuuYqmI2WIiXIooFljbWHz41vsxgSTn-Oy7pcK5X87icOE79V5wo81tDcniamHuCgFsTg9trRXKAgKVEEY9_EIIgxYp2ezTY3RXMMc57Jsz4Yhrrw==";
+    (() => {
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const reveals = document.querySelectorAll(".reveal");
 
-    const campaign = {
-      interest: {
-        action: "Entrar na lista de interesse",
-        status: "Lista de interesse aberta",
-        heading: "Acompanhar a abertura",
-        intro: "Deixe o contacto para receber o aviso de abertura das inscrições e as informações da primeira edição."
-      },
-      enrollment: {
-        action: "Solicitar inscrição",
-        status: "Inscrições abertas",
-        heading: "Solicitar inscrição",
-        intro: "As inscrições estão abertas. Envie o pedido para receber as instruções de pagamento. A vaga permanece reservada durante 48 horas e fica confirmada depois do recebimento do valor."
-      },
-      confirmed: {
-        action: "Solicitar uma das vagas disponíveis",
-        status: "Turma confirmada. Primeiro encontro em 24 de setembro.",
-        heading: "Solicitar uma vaga",
-        intro: "A turma está confirmada. Envie o pedido para saber se ainda existe uma das vagas disponíveis."
-      },
-      live: {
-        action: "Entrar na lista da próxima edição",
-        status: "Primeira edição em andamento",
-        heading: "Acompanhar a próxima edição",
-        intro: "Deixe o contacto para receber informações sobre a próxima edição de Da Voz ao Arquivo."
-      },
-      complete: {
-        action: "Receber informações sobre a próxima edição",
-        status: "Primeira edição concluída",
-        heading: "Receber informações",
-        intro: "Deixe o contacto para receber informações sobre a continuidade da investigação e a próxima edição."
-      },
-      postponed: {
-        action: "Receber informações sobre novas datas",
-        status: "Edição adiada",
-        heading: "Acompanhar novas datas",
-        intro: "Deixe o contacto para receber informações quando uma nova data for definida."
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: .12 });
+        reveals.forEach(item => observer.observe(item));
+      } else {
+        reveals.forEach(item => item.classList.add("visible"));
       }
-    };
 
-    const state = campaign[CAMPAIGN_STATE] || campaign.interest;
-    document.querySelectorAll(".campaign-action").forEach((element) => {
-      element.textContent = state.action;
-      element.href = BREVO_INTEREST_URL;
-      element.target = "_blank";
-      element.rel = "noopener noreferrer";
-    });
-    document.querySelectorAll(".campaign-status").forEach((element) => {
-      element.textContent = state.status;
-    });
-    document.querySelector(".campaign-form-button").textContent = state.action;
-    document.querySelector("#titulo-formulario").textContent = state.heading;
-    document.querySelector(".campaign-form-intro").textContent = state.intro;
+      const links = document.querySelectorAll(".top nav a[href^='#']");
+      const sections = [...links].map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
 
-    const indexDialog = document.querySelector("#index-dialog");
-    const indexOpenButton = document.querySelector("[data-open-index]");
-    const indexCloseButton = document.querySelector("[data-close-index]");
+      if ("IntersectionObserver" in window && sections.length) {
+        const navObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            links.forEach(link => link.classList.remove("active"));
+            const active = document.querySelector(`.top nav a[href="#${entry.target.id}"]`);
+            if (active) active.classList.add("active");
+          });
+        }, { rootMargin: "-35% 0px -55% 0px", threshold: 0 });
+        sections.forEach(section => navObserver.observe(section));
+      }
 
-    indexOpenButton.addEventListener("click", () => {
-      indexDialog.showModal();
-      document.body.classList.add("index-open");
-    });
-
-    const closeIndex = () => {
-      indexDialog.close();
-      document.body.classList.remove("index-open");
-      indexOpenButton.focus();
-    };
-
-    indexCloseButton.addEventListener("click", closeIndex);
-    indexDialog.addEventListener("cancel", (event) => {
-      event.preventDefault();
-      closeIndex();
-    });
-    indexDialog.addEventListener("click", (event) => {
-      if (event.target === indexDialog) closeIndex();
-    });
-    indexDialog.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        indexDialog.close();
-        document.body.classList.remove("index-open");
-      });
-    });
-
-    document.querySelectorAll(".relation-link").forEach((link) => {
-      link.addEventListener("click", () => {
-        const target = document.querySelector(link.getAttribute("href"));
-        if (!target) return;
-        window.setTimeout(() => {
-          target.classList.add("highlighted");
-          window.setTimeout(() => target.classList.remove("highlighted"), 950);
-        }, 300);
-      });
-    });
-
-    const observedSections = [...document.querySelectorAll("main > section[id]")];
-    const railLinks = [...document.querySelectorAll(".rail-list a")];
-    if ("IntersectionObserver" in window) {
-      const sectionObserver = new IntersectionObserver((entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (!visible) return;
-        railLinks.forEach((link) => {
-          const active = link.getAttribute("href") === `#${visible.target.id}`;
-          if (active) link.setAttribute("aria-current", "location");
-          else link.removeAttribute("aria-current");
+      document.querySelectorAll("details").forEach(detail => {
+        detail.addEventListener("toggle", () => {
+          if (!detail.open) return;
+          document.querySelectorAll("details[open]").forEach(other => {
+            if (other !== detail) other.open = false;
+          });
         });
-      }, { rootMargin: "-20% 0px -60% 0px", threshold: [0, 0.1, 0.4] });
-      observedSections.forEach((section) => sectionObserver.observe(section));
-    }
+      });
 
+      document.querySelectorAll("summary a").forEach(link => {
+        link.addEventListener("click", event => event.stopPropagation());
+      });
+
+      const setScrolled = () => {
+        document.body.classList.toggle("has-scrolled", window.scrollY > 360);
+      };
+
+      setScrolled();
+      window.addEventListener("scroll", () => {
+        setScrolled();
+        if (!reduced) document.documentElement.style.setProperty("--scroll", String(window.scrollY));
+      }, { passive: true });
+    })();
   </script>
 </body>
 </html>
