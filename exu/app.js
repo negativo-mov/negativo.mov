@@ -38,18 +38,15 @@ function friction(speed){
 soundToggle.onclick=e=>{e.stopPropagation();soundOn=!soundOn;soundToggle.classList.toggle('off',!soundOn);soundToggle.textContent=soundOn?'◌':'×';soundToggle.setAttribute('aria-label',soundOn?'Som ligado':'Som desligado');if(soundOn)tone('focus',.7)};
 
 CARDS.forEach(o=>{
-  o.x0=o.x;o.z0=o.z;o.tx=o.x;o.tz=o.z;o.vz=0;o.z=o.z;o.pick=0;o.focused=false;
+  o.x0=o.x;o.z0=o.z;o.tx=o.x;o.tz=o.z;o.vz=0;o.z=o.z;o.pick=0;
   const el=document.createElement('div');
   el.className='portal'; el.dataset.id=o.id; el.style.width=o.w+'px'; el.style.height=o.h+'px';
   el.innerHTML=`<div class="card ${o.pattern}">
       <div class="liquid ${o.pattern}"><div class="wash"></div><div class="relief"></div></div>
       <div class="cardContent center"><div class="eyebrow">${o.eye}</div><h3 class="title">${o.title}</h3><div class="line">${o.line}</div></div>
       <div class="openMark">＋</div>
-      <div class="focusReveal"><div class="focusText">${o.focusText}</div><div class="focusActions"><button class="moreBtn">Ver melhor →</button><button class="backBtn">Voltar</button></div></div>
     </div>`;
   plane.appendChild(el); o.el=el;
-  el.querySelector('.moreBtn').onclick=e=>{e.stopPropagation(); openDetail(o)};
-  el.querySelector('.backBtn').onclick=e=>{e.stopPropagation(); restoreField()};
 
   el.addEventListener('pointerdown',e=>{
     if(detail.classList.contains('on')||utility.classList.contains('on')) return;
@@ -183,8 +180,6 @@ function render(){
     o.el.style.filter=`blur(${Math.max(0,(p.z-.74)*3.1)}px)`;
     o.el.style.zIndex=String(Math.max(Math.round(p.near*1200),o.pick||0));
     o.el.classList.toggle('near',p.z<.31);
-    const targetH=o.focused?Math.min(o.h+96, o.h*1.38):o.h;
-    const current=parseFloat(o.el.style.height||o.h); if(Math.abs(current-targetH)>.5) o.el.style.height=targetH+'px';
   });
   requestAnimationFrame(render);
 }

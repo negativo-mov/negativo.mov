@@ -68,12 +68,6 @@ button{color:inherit}
 .line{font-size:10px;line-height:1.44;color:rgba(248,242,226,.72);margin-top:10px;max-width:78%}
 .portal.near .line{color:rgba(248,242,226,.82)}
 .openMark{position:absolute;right:16px;bottom:16px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(249,243,228,.56);display:grid;place-items:center;color:#f7efdc;font-size:17px;z-index:4;background:rgba(255,255,255,.03)}
-.focusReveal{position:absolute;left:22px;right:22px;bottom:20px;z-index:5;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .18s,transform .20s}
-.focusText{font-size:10.3px;line-height:1.48;color:rgba(248,241,220,.80);max-width:90%}
-.focusActions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.focusActions button{border-radius:999px;padding:9px 12px;cursor:pointer;font-size:9.5px}
-.moreBtn{border:0;background:var(--red);color:#fff}
-.backBtn{border:1px solid rgba(248,241,218,.28);background:rgba(255,255,255,.04);color:#F7F0DB}
 #hint{position:absolute;z-index:55;left:7%;bottom:18px;padding:7px 11px;border-radius:999px;background:rgba(245,236,214,.36);backdrop-filter:blur(10px);font-size:7px;letter-spacing:.10em;text-transform:uppercase;color:rgba(42,39,25,.58);transition:opacity .35s}
 #hint.hide{opacity:0}
 #veil{position:absolute;z-index:92;left:var(--side);right:0;top:0;bottom:0;background:rgba(43,31,20,.16);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .22s}
@@ -129,10 +123,7 @@ button{color:inherit}
 #focusDeck .focusInner{position:absolute;z-index:2;left:30px;right:30px;top:28px;bottom:26px;display:flex;flex-direction:column;color:#F8F1DE}
 #focusDeck .focusEye{font-size:8px;letter-spacing:.26em;text-transform:uppercase;opacity:.56}
 #focusDeck .focusTitle{font:400 clamp(30px,3vw,46px)/1.01 Georgia,serif;letter-spacing:-.04em;margin:15px 0 0;max-width:88%}
-#focusDeck .focusText{margin-top:auto;font-size:11px;line-height:1.5;color:rgba(249,242,223,.83);max-width:88%}
-#focusDeck .focusActions{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}
-#focusDeck .focusActions button{border-radius:999px;padding:10px 14px;cursor:pointer;font-size:10px}
-#focusDeckMore{border:0;background:var(--red);color:white}
+#focusDeck #focusDeck #focusDeck #focusDeckMore{border:0;background:var(--red);color:white}
 #focusDeckBack{border:1px solid rgba(248,241,218,.30);background:rgba(255,255,255,.04);color:#F8F1DE}
 #soundToggle{position:absolute;z-index:74;right:22px;bottom:19px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,251,241,.42);background:rgba(245,235,212,.20);backdrop-filter:blur(10px);color:rgba(42,39,25,.70);cursor:pointer;font-size:15px;display:grid;place-items:center}
 #soundToggle.off{opacity:.42}
